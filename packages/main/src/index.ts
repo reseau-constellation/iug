@@ -2,15 +2,14 @@ import {app} from 'electron';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
 
-const ipa = eval("import('@constl/ipa')") as Promise<typeof import("@constl/ipa")>;  // eslint-disable-line
+const ipa = eval("import('@constl/ipa')") as Promise<typeof import('@constl/ipa')>; // eslint-disable-line
 
-ipa.then(async (IPA)=>{
+ipa.then(async IPA => {
   const client = IPA.proxy.ipa.générerProxyProc();
-  
+
   const idCompte = await client.obtIdCompte();
   console.log(idCompte);
-},
-);
+});
 
 /**
  * Prevent electron from running multiple instances.
