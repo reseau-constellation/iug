@@ -31,6 +31,7 @@ const config = {
       output: {
         entryFileNames: '[name].cjs',
       },
+      external: ['assert', 'wrtc', 'chokidar'],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
