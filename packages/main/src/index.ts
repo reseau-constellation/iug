@@ -2,9 +2,6 @@ import {app} from 'electron';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
 
-// const ipa = import("@constl/ipa");
-// ipa.then(x=>x.client.default.créer().then(console.log))
-
 const ipa = eval("import('@constl/ipa')") as Promise<typeof import("@constl/ipa")>;  // eslint-disable-line
 
 ipa.then(async (IPA)=>{
@@ -14,17 +11,7 @@ ipa.then(async (IPA)=>{
   console.log(idCompte);
 },
 );
-/*async function importer() {
-  console.log("ici, 1")
-  const dynamicallyImportedEsmModule = await dynamicImport('@constl/ipa', module);
-  console.log("ici, 2")
-  return dynamicallyImportedEsmModule
-}
-console.log("ici, 0")
-const y = importer();
 
-y.then(z=>{console.log("là, 0"); console.log(z)})
-*/
 /**
  * Prevent electron from running multiple instances.
  */
