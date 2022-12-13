@@ -4,23 +4,23 @@ import {ipcRenderer} from 'electron';
 import type {proxy} from '@constl/ipa';
 
 // À faire : incorporer dans paquet @constl/serveur
-export type messagePourServeur = messageInitServeur | messageFermerServeur
+export type messagePourServeur = messageInitServeur | messageFermerServeur;
 
 export type messageInitServeur = {
-    type: 'init',
-    port?: number,
-}
+  type: 'init';
+  port?: number;
+};
 
 export type messageFermerServeur = {
-    type: 'fermer',
-}
+  type: 'fermer';
+};
 
 export type messageDeServeur = messagePrêtDeServeur;
 
 export type messagePrêtDeServeur = {
-    type: 'prêt',
-    port: number,
-}
+  type: 'prêt';
+  port: number;
+};
 
 export const attendreFenêtreAttachée = (): Promise<void> => {
   return new Promise<void>(résoudre => {

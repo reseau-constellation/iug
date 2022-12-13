@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import {computed, ref, onMounted, inject} from 'vue';
 import {sha256sum} from '#preload';
-import type { ProxyClientConstellation } from '@constl/ipa/dist/proxy/proxy';
-import type { GestionnaireServeur } from '/@/plugins/constellation';
+import type {ProxyClientConstellation} from '@constl/ipa/dist/proxy/proxy';
+import type {GestionnaireServeur} from '/@/plugins/constellation';
 
 const constl: ProxyClientConstellation = inject('constl')!;
 const serveur: GestionnaireServeur = inject('serveurConstl')!;
@@ -13,8 +13,8 @@ const rawString = ref('Hello World');
  */
 const hashedString = computed(() => sha256sum(rawString.value));
 
-const idCompte = ref<string|undefined>();
-const portServeur = ref<number|undefined>();
+const idCompte = ref<string | undefined>();
+const portServeur = ref<number | undefined>();
 
 onMounted(async () => {
   idCompte.value = await constl.obtIdCompte();

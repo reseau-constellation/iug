@@ -1,14 +1,14 @@
-import { 
-    messageÀConstellation, 
-    écouterMessagesDeConstellation,
-    messageÀServeurConstellation,
-    écouterMessagesDeServeurConstellation,
+import {
+  messageÀConstellation,
+  écouterMessagesDeConstellation,
+  messageÀServeurConstellation,
+  écouterMessagesDeServeurConstellation,
 } from '#preload';
-import { ClientProxifiable, générerProxy } from './proxy';
-import type { proxy } from '@constl/ipa';
-import type { App } from 'vue';
-import type { messageFermerServeur, messageInitServeur } from '../../../../preload/src/constellation';
-import { EventEmitter, once } from 'events';
+import {ClientProxifiable, générerProxy} from './proxy';
+import type {proxy} from '@constl/ipa';
+import type {App} from 'vue';
+import type {messageFermerServeur, messageInitServeur} from '../../../../preload/src/constellation';
+import {EventEmitter, once} from 'events';
 
 class ProxyClientÉlectronPrincipal extends ClientProxifiable {
   constructor() {
@@ -25,37 +25,36 @@ class ProxyClientÉlectronPrincipal extends ClientProxifiable {
 }
 
 export class GestionnaireServeur {
-    événements: EventEmitter;
+  événements: EventEmitter;
 
-    constructor() {
-        this.événements = new EventEmitter();
-        écouterMessagesDeServeurConstellation((message) => {
-            if (message.type === 'prêt')
-                this.événements.emit('prêt', message.port);
-        });
-    }
-    async initialiser(port?: number): Promise<number> {
-        const messageInit: messageInitServeur = {
-            type: 'init',
-            port,
-        };
-        const promessePort = once(this.événements, 'prêt') as unknown as Promise<number>;
-        messageÀServeurConstellation(messageInit);
+  constructor() {
+    this.événements = new EventEmitter();
+    écouterMessagesDeServeurConstellation(message => {
+      if (message.type === 'prêt') this.événements.emit('prêt', message.port);
+    });
+  }
+  async initialiser(port?: number): Promise<number> {
+    const messageInit: messageInitServeur = {
+      type: 'init',
+      port,
+    };
+    const promessePort = once(this.événements, 'prêt') as unknown as Promise<number>;
+    messageÀServeurConstellation(messageInit);
 
-        return await promessePort;
-    }
+    return await promessePort;
+  }
 
-    async fermer() {
-        const messageFermer: messageFermerServeur = {
-            type: 'fermer',
-        };
-        messageÀServeurConstellation(messageFermer);
-    }
+  async fermer() {
+    const messageFermer: messageFermerServeur = {
+      type: 'fermer',
+    };
+    messageÀServeurConstellation(messageFermer);
+  }
 }
 
 export default {
-    install: (app: App) => {
-        app.provide('constl', générerProxy(new ProxyClientÉlectronPrincipal()));
-        app.provide('serveurConstl', new GestionnaireServeur());
-    },
+  install: (app: App) => {
+    app.provide('constl', générerProxy(new ProxyClientÉlectronPrincipal()));
+    app.provide('serveurConstl', new GestionnaireServeur());
+  },
 };
