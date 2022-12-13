@@ -14,8 +14,8 @@ const enDéveloppement = process.env.NODE_ENV !== 'production';
 
 const promesseIPA = eval("import('@constl/ipa')") as Promise<typeof import('@constl/ipa')>; // eslint-disable-line
 const promesseServeur = eval("import('@constl/serveur')") as Promise<
-  typeof import('@constl/serveur')
->; // eslint-disable-line
+  typeof import('@constl/serveur') // eslint-disable-line
+>;
 
 class GestionnaireFenêtres {
   fenêtres: {[key: string]: BrowserWindow};

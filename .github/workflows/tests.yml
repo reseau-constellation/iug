@@ -29,7 +29,7 @@ jobs:
       - run: pnpm install
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: npm run test:${{ matrix.package }} --if-present
+      - run: pnpm run test:${{ matrix.package }}
 
   e2e:
     strategy:
