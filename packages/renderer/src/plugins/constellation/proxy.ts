@@ -1,10 +1,7 @@
-import { v4 as uuidv4 } from 'uuid';
-import { EventEmitter, once } from 'events';
+import {v4 as uuidv4} from 'uuid';
+import {EventEmitter, once} from 'events';
 
-import type {
-  utils, proxy, client,
-} from '@constl/ipa';
-
+import type {utils, proxy, client} from '@constl/ipa';
 
 interface Tâche {
   id: string;
@@ -13,22 +10,20 @@ interface Tâche {
 }
 
 class Callable extends Function {
-
   // Code obtenu de https://hackernoon.com/creating-callable-objects-in-javascript-d21l3te1
   //@ts-expect-error On ne peut pas appeller super() d'une fonction dans un contexte navigateur sécuritaire
   constructor() {
-    const closure = function() { 
+    const closure = function () {
       // Rien faire. Je ne comprends pas tout ça mais ça fonctionne.
     };
     return Object.setPrototypeOf(closure, new.target.prototype);
   }
-
 }
 
 export abstract class ClientProxifiable extends Callable {
   événements: EventEmitter;
-  tâches: { [key: string]: Tâche };
-  erreurs: { erreur: string; id?: string }[];
+  tâches: {[key: string]: Tâche};
+  erreurs: {erreur: string; id?: string}[];
 
   constructor() {
     super();
@@ -39,29 +34,29 @@ export abstract class ClientProxifiable extends Callable {
     this.erreurs = [];
 
     this.événements.on('message', (m: proxy.messages.MessageDeTravailleur) => {
-      const { type } = m;
+      const {type} = m;
       switch (type) {
         case 'suivre': {
-          const { id, données } = m as proxy.messages.MessageSuivreDeTravailleur;
+          const {id, données} = m as proxy.messages.MessageSuivreDeTravailleur;
           if (!this.tâches[id]) return;
-          const { fSuivre } = this.tâches[id];
+          const {fSuivre} = this.tâches[id];
           fSuivre(données);
           break;
         }
         case 'suivrePrêt': {
-          const { id, fonctions } = m as proxy.messages.MessageSuivrePrêtDeTravailleur;
-          this.événements.emit(id, { fonctions });
+          const {id, fonctions} = m as proxy.messages.MessageSuivrePrêtDeTravailleur;
+          this.événements.emit(id, {fonctions});
           break;
         }
         case 'action': {
-          const { id, résultat } = m as proxy.messages.MessageActionDeTravailleur;
-          this.événements.emit(id, { résultat });
+          const {id, résultat} = m as proxy.messages.MessageActionDeTravailleur;
+          this.événements.emit(id, {résultat});
           break;
         }
         case 'erreur': {
-          const { erreur, id } = m as proxy.messages.MessageErreurDeTravailleur;
-          if (id) this.événements.emit(id, { erreur });
-          else this.erreur({ erreur, id });
+          const {erreur, id} = m as proxy.messages.MessageErreurDeTravailleur;
+          if (id) this.événements.emit(id, {erreur});
+          else this.erreur({erreur, id});
           break;
         }
         default: {
@@ -74,19 +69,12 @@ export abstract class ClientProxifiable extends Callable {
     });
   }
 
-  __call__(
-    fonction: string[],
-    args: { [key: string]: unknown } = {},
-  ): Promise<unknown> {
+  __call__(fonction: string[], args: {[key: string]: unknown} = {}): Promise<unknown> {
     if (typeof args !== 'object')
-      throw new Error(`La fonction ${fonction.join(
-        '.',
-      )} fut appelée avec arguments ${args}. 
+      throw new Error(`La fonction ${fonction.join('.')} fut appelée avec arguments ${args}. 
       Toute fonction proxy Constellation doit être appelée avec un seul argument en format d'objet (dictionnaire).`);
     const id = uuidv4();
-    const nomArgFonction = Object.entries(args).find(
-      (x) => typeof x[1] === 'function',
-    )?.[0];
+    const nomArgFonction = Object.entries(args).find(x => typeof x[1] === 'function')?.[0];
 
     if (nomArgFonction) {
       return this.appelerFonctionSuivre(id, fonction, args, nomArgFonction);
@@ -98,22 +86,17 @@ export abstract class ClientProxifiable extends Callable {
   async appelerFonctionSuivre(
     id: string,
     fonction: string[],
-    args: { [key: string]: unknown },
+    args: {[key: string]: unknown},
     nomArgFonction: string,
-  ): Promise<
-    utils.schémaFonctionOublier | { [key: string]: (...args: unknown[]) => void }
-  > {
+  ): Promise<utils.schémaFonctionOublier | {[key: string]: (...args: unknown[]) => void}> {
     const f = args[nomArgFonction] as utils.schémaFonctionSuivi<unknown>;
     const argsSansF = Object.fromEntries(
-      Object.entries(args).filter((x) => typeof x[1] !== 'function'),
+      Object.entries(args).filter(x => typeof x[1] !== 'function'),
     );
     if (f === undefined) {
       this.erreur({
         erreur:
-          'Aucun argument de nom ' +
-          nomArgFonction +
-          " n'a été donnée pour " +
-          fonction.join('.'),
+          'Aucun argument de nom ' + nomArgFonction + " n'a été donnée pour " + fonction.join('.'),
       });
     }
     if (Object.keys(args).length !== Object.keys(argsSansF).length + 1) {
@@ -159,15 +142,17 @@ export abstract class ClientProxifiable extends Callable {
 
     this.envoyerMessage(message);
 
-    const { fonctions, erreur } = (await once(this.événements, id))[0] as
-      | { fonctions?: string[]; erreur?: string };
+    const {fonctions, erreur} = (await once(this.événements, id))[0] as {
+      fonctions?: string[];
+      erreur?: string;
+    };
     if (erreur) {
-      this.erreur({ erreur, id });
+      this.erreur({erreur, id});
       throw new Error(erreur);
     }
 
     if (fonctions && fonctions[0]) {
-      const retour: { [key: string]: (...args: unknown[]) => Promise<void> } = {
+      const retour: {[key: string]: (...args: unknown[]) => Promise<void>} = {
         fOublier: fOublierTâche,
       };
       for (const f of fonctions) {
@@ -184,7 +169,7 @@ export abstract class ClientProxifiable extends Callable {
   async appelerFonctionAction<T>(
     id: string,
     fonction: string[],
-    args: { [key: string]: unknown },
+    args: {[key: string]: unknown},
   ): Promise<T> {
     const message: proxy.messages.MessageActionPourTravailleur = {
       type: 'action',
@@ -195,7 +180,7 @@ export abstract class ClientProxifiable extends Callable {
 
     const promesse = new Promise<T>((résoudre, rejeter) => {
       once(this.événements, id).then(données => {
-        const { résultat, erreur } = données[0];
+        const {résultat, erreur} = données[0];
         if (erreur) rejeter(new Error(erreur));
         else résoudre(résultat);
       });
@@ -206,8 +191,8 @@ export abstract class ClientProxifiable extends Callable {
     return promesse;
   }
 
-  erreur({ erreur, id }: { erreur: string; id?: string }): void {
-    const infoErreur = { erreur, id };
+  erreur({erreur, id}: {erreur: string; id?: string}): void {
+    const infoErreur = {erreur, id};
     this.événements.emit('erreur', {
       nouvelle: infoErreur,
       toutes: this.erreurs,
@@ -242,23 +227,14 @@ class Handler {
     }
   }
 
-  apply(
-    target: ClientProxifiable,
-    _thisArg: Handler,
-    args: [{ [key: string]: unknown }],
-  ) {
+  apply(target: ClientProxifiable, _thisArg: Handler, args: [{[key: string]: unknown}]) {
     return target.__call__(this.listeAtributs, args[0]);
   }
 }
 
 export type ProxyClientConstellation = client.default & ClientProxifiable;
 
-export const générerProxy = (
-  proxyClient: ClientProxifiable,
-): ProxyClientConstellation => {
+export const générerProxy = (proxyClient: ClientProxifiable): ProxyClientConstellation => {
   const handler = new Handler();
-  return new Proxy<ClientProxifiable>(
-    proxyClient,
-    handler,
-  ) as ProxyClientConstellation;
+  return new Proxy<ClientProxifiable>(proxyClient, handler) as ProxyClientConstellation;
 };

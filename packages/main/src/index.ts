@@ -1,8 +1,7 @@
 import {app} from 'electron';
-import { gestionnaireFenêtres } from './constellation';
+import {gestionnaireFenêtres} from './constellation';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
-
 
 /**
  * Prevent electron from running multiple instances.
