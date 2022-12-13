@@ -3,18 +3,21 @@ import { ipcRenderer } from 'electron';
 
 import type { proxy } from '@constl/ipa';
 
-type messagePourServeur = messageInitServeur | messageFermerServeur
+// À faire : incorporer dans paquet @constl/serveur
+export type messagePourServeur = messageInitServeur | messageFermerServeur
 
-type messageInitServeur = {
+export type messageInitServeur = {
     type: 'init',
     port?: number,
 }
 
-type messageFermerServeur = {
+export type messageFermerServeur = {
     type: 'fermer',
 }
 
-type messageDeServeur = {
+export type messageDeServeur = messagePrêtDeServeur;
+
+export type messagePrêtDeServeur = {
     type: 'prêt',
     port: number,
 }
