@@ -20,8 +20,12 @@ jobs:
           node-version: 16 # Need for npm >=7.7
           cache: 'npm'
 
-      - run: npm ci
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: latest
+
+      - run: pnpm install
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
-      - run: npm run typecheck --if-present
+      - run: pnpm run typecheck --if-present
