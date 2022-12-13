@@ -1,16 +1,8 @@
 import {app} from 'electron';
+import { gestionnaireFenêtres } from './constellation';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
 
-const ipa = eval("import('@constl/ipa')") as Promise<typeof import("@constl/ipa")>;  // eslint-disable-line
-
-ipa.then(async (IPA)=>{
-  const client = IPA.proxy.ipa.générerProxyProc();
-  
-  const idCompte = await client.obtIdCompte();
-  console.log(idCompte);
-},
-);
 
 /**
  * Prevent electron from running multiple instances.
@@ -34,6 +26,13 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+});
+
+/**
+ * Fermer Constellation lorsqu'on a fini
+ */
+app.on('will-quit', async () => {
+  await gestionnaireFenêtres.fermerConstellation();
 });
 
 /**

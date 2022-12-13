@@ -3,9 +3,9 @@
   "description": "Secure boilerplate for Electron app based on Vite",
   "private": true,
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "julien.malard@mail.mcgill.ca",
+    "name": "Julien Jean Malard-Adam",
+    "url": "https://github.com/julienmalard"
   },
   "main": "packages/main/dist/index.cjs",
   "scripts": {
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^14.1.0",
     "@types/node": "^18.11.13",
+    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "5.38.0",
     "@typescript-eslint/parser": "^5.46.1",
     "@vitejs/plugin-vue": "3.1.0",
@@ -53,11 +54,13 @@
   },
   "dependencies": {
     "@constl/ipa": "^0.5.4",
-    "@constl/serveur": "0.1.6",
-    "@herbcaudill/crypto": "^3.0.2",
+    "@constl/serveur": "0.1.10",
     "assert": "^2.0.0",
     "core-js": "^3.25.3",
     "electron-updater": "5.2.1",
+    "events": "^3.3.0",
+    "semaphore-async-await": "^1.5.1",
+    "uuid": "^9.0.0",
     "vue": "3.2.39"
   }
 }
