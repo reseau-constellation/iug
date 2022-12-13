@@ -14,11 +14,9 @@ class ProxyClientÉlectronPrincipal extends ClientProxifiable {
   constructor() {
     super();
 
-    écouterMessagesDeConstellation(
-      (m: proxy.messages.MessageDeTravailleur) => {
-        this.événements.emit('message', m);
-      },
-    );
+    écouterMessagesDeConstellation((m: proxy.messages.MessageDeTravailleur) => {
+      this.événements.emit('message', m);
+    });
   }
 
   envoyerMessage(message: proxy.messages.MessagePourTravailleur): void {

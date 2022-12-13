@@ -79,7 +79,7 @@ class GestionnaireFenêtres {
     }
 
     private déconnecterFenêtre(idFenêtre: string): void {
-        delete this.fenêtres[idFenêtre];
+      delete this.fenêtres[idFenêtre];
     }
 
     envoyerMessageDuServeur(m: messageDeServeur) {
@@ -102,21 +102,24 @@ class GestionnaireFenêtres {
         }
     }
 
-    envoyerErreur(e: string) {
-        const messageErreur: proxy.messages.MessageErreurDeTravailleur = {
-            type: 'erreur',
-            erreur: e,
-        };
-        Object.values(this.fenêtres).forEach((f) =>
-            f.webContents.send('deClient', messageErreur),
-        );
+  envoyerMessage(m: proxy.messages.MessageDeTravailleur) {
+    if (m.id) {
+      const idFenêtre = m.id.split(':')[0];
+      m.id = m.id.split(':').slice(1).join(':');
+      const fenêtre = this.fenêtres[idFenêtre];
+      fenêtre.webContents.send('deClient', m);
+    } else {
+      Object.values(this.fenêtres).forEach(f => f.webContents.send('deClient', m));
     }
-   
-    async fermerConstellation() {
-        if (this.clientConstellation) await this.clientConstellation.fermer();
-        this.clientConstellation = undefined;
-    }
+  }
 
+  envoyerErreur(e: string) {
+    const messageErreur: proxy.messages.MessageErreurDeTravailleur = {
+      type: 'erreur',
+      erreur: e,
+    };
+    Object.values(this.fenêtres).forEach(f => f.webContents.send('deClient', messageErreur));
+  }
     connecterFenêtreÀConstellation(
         fenêtre: BrowserWindow,
     ) {
@@ -171,6 +174,13 @@ class GestionnaireFenêtres {
 
         this.verrouServeur.release();
         return this.port!;
+    }
+
+
+    async fermerConstellation() {
+      await this.fermerServeur();
+      if (this.clientConstellation) await this.clientConstellation.fermer();
+      this.clientConstellation = undefined;
     }
 
     async fermerServeur() {

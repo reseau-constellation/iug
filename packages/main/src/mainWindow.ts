@@ -1,7 +1,7 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
-import { gestionnaireFenêtres } from './constellation';
+import {gestionnaireFenêtres} from './constellation';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -60,8 +60,6 @@ export async function restoreOrCreateWindow() {
   if (window.isMinimized()) {
     window.restore();
   }
-  
-  
 
   window.focus();
 }
