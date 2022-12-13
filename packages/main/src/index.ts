@@ -71,5 +71,5 @@ if (import.meta.env.PROD) {
     .whenReady()
     .then(() => import('electron-updater'))
     .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
-    .catch(e => console.error('Failed check updates:', e));
+    .catch(e => console.error('Erreur vérification mises à jour :', e));
 }
