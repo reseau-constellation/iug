@@ -28,4 +28,4 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
-      - run: pnpm run typecheck --if-present
+      - run: pnpm run typecheck
