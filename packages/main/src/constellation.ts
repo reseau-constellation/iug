@@ -12,10 +12,8 @@ import type {
 } from '../../preload/src/constellation';
 const enDéveloppement = process.env.NODE_ENV !== 'production';
 
-const promesseIPA = eval("import('@constl/ipa')") as Promise<typeof import('@constl/ipa')>; // eslint-disable-line
-const promesseServeur = eval("import('@constl/serveur')") as Promise<
-  typeof import('@constl/serveur') // eslint-disable-line
->;
+const promesseIPA = import('@constl/ipa');
+const promesseServeur = import('@constl/serveur');
 
 class GestionnaireFenêtres {
   fenêtres: {[key: string]: BrowserWindow};
@@ -155,10 +153,12 @@ class GestionnaireFenêtres {
     }
 
     if (!this.port) {
-      const constlServeur = await promesseServeur;
+      if (!this.clientConstellation) throw new Error("Erreur d'initialisation de Constellation");
+
+      const constlServeur = await promesseServeur;  
       const {fermerServeur, port: portServeur} = await constlServeur.lancerServeur({
         port,
-        optsConstellation: this.clientConstellation!,
+        optsConstellation: this.clientConstellation,
       });
 
       this.oublierServeur = fermerServeur;
@@ -166,7 +166,9 @@ class GestionnaireFenêtres {
     }
 
     this.verrouServeur.release();
-    return this.port!;
+    
+    if (!this.port) throw new Error("Erreur d'initialisation du serveur local Constellation");
+    return this.port;
   }
 
   async fermerConstellation() {
