@@ -1,7 +1,6 @@
 {
-  "name": "vite-electron-builder",
+  "name": "constellation",
   "description": "Secure boilerplate for Electron app based on Vite",
-  "private": true,
   "author": {
     "email": "julien.malard@mail.mcgill.ca",
     "name": "Julien Jean Malard-Adam",
@@ -53,13 +52,16 @@
     "vue-tsc": "1.0.13"
   },
   "dependencies": {
-    "@constl/ipa": "^0.5.4",
-    "@constl/serveur": "0.1.10",
+    "@constl/ipa": "0.5.7",
+    "@constl/serveur": "^0.1.10",
     "assert": "^2.0.0",
     "core-js": "^3.26.1",
     "electron-updater": "5.3.0",
     "events": "^3.3.0",
+    "multiformats": "9.9.0",
+    "node-gyp-build": "^4.5.0",
     "semaphore-async-await": "^1.5.1",
+    "tslib": "^2.4.1",
     "uuid": "^9.0.0",
     "vue": "3.2.45"
   }

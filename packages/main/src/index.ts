@@ -69,6 +69,7 @@ if (import.meta.env.PROD) {
   app
     .whenReady()
     .then(() => import('electron-updater'))
-    .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
+    // @ts-expect-error On doit importer de default pour une drôle de raison
+    .then(({default: {autoUpdater}}) => autoUpdater.checkForUpdatesAndNotify())
     .catch(e => console.error('Erreur vérification mises à jour :', e));
 }
