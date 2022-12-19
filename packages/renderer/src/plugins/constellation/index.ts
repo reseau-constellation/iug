@@ -4,13 +4,13 @@ import {
   messageÀServeurConstellation,
   écouterMessagesDeServeurConstellation,
 } from '#preload';
-import {ClientProxifiable, générerProxy} from './proxy';
+import {ClientMandatairifiable, générerMandataire} from '@constl/mandataire';
 import type {proxy} from '@constl/ipa';
 import type {App} from 'vue';
 import type {messageFermerServeur, messageInitServeur} from '../../../../preload/src/constellation';
 import {EventEmitter, once} from 'events';
 
-class ProxyClientÉlectronPrincipal extends ClientProxifiable {
+class ProxyClientÉlectronPrincipal extends ClientMandatairifiable {
   constructor() {
     super();
 
@@ -54,7 +54,7 @@ export class GestionnaireServeur {
 
 export default {
   install: (app: App) => {
-    app.provide('constl', générerProxy(new ProxyClientÉlectronPrincipal()));
+    app.provide('constl', générerMandataire(new ProxyClientÉlectronPrincipal()));
     app.provide('serveurConstl', new GestionnaireServeur());
   },
 };

@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "@constl/ipa": "0.5.7",
+    "@constl/mandataire": "^0.1.1",
     "@constl/serveur": "^0.1.10",
     "assert": "^2.0.0",
     "core-js": "^3.26.1",
