@@ -1,0 +1,335 @@
+<template>
+  <svg
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 -10 200 110"
+    width="250"
+  >
+    <title>Logo Constellation</title>
+    <line
+      class="l"
+      x1="70.1742129851985"
+      y1="1.87"
+      x2="34.3464829934943"
+      y2="10.01"
+    />
+    <line
+      class="l"
+      x1="67.306684713793"
+      y1="16.47"
+      x2="34.3464829934943"
+      y2="10.01"
+    />
+    <line
+      class="l"
+      x1="34.3464829934943"
+      y1="10.01"
+      x2="22.5783740121382"
+      y2="31.93"
+    />
+    <line
+      class="l"
+      x1="22.5783740121382"
+      y1="31.93"
+      x2="13.8115094092477"
+      y2="56.91"
+    />
+    <line
+      class="l"
+      x1="13.8115094092477"
+      y1="56.91"
+      x2="46.9376282583068"
+      y2="69.76"
+    />
+    <line
+      class="l"
+      x1="46.9376282583068"
+      y1="69.76"
+      x2="86.0040169410121"
+      y2="61.32"
+    />
+    <line
+      class="l"
+      x1="86.0040169410121"
+      y1="61.32"
+      x2="91.0120944854386"
+      y2="54.13"
+    />
+    <line
+      class="l"
+      x1="86.0040169410121"
+      y1="61.32"
+      x2="100.419159062132"
+      y2="66.30"
+    />
+    <line
+      class="l"
+      x1="91.0120944854386"
+      y1="54.13"
+      x2="112.68938567"
+      y2="63.71"
+    />
+    <line
+      class="l"
+      x1="100.419159062132"
+      y1="66.30"
+      x2="112.68938567"
+      y2="63.71"
+    />
+    <line
+      class="l"
+      x1="112.68938567"
+      y1="63.71"
+      x2="97.9593284722526"
+      y2="84.10"
+    />
+    <line
+      class="l"
+      x1="97.9593284722526"
+      y1="84.10"
+      x2="88.4938654324761"
+      y2="82.18"
+    />
+    <line
+      class="l"
+      x1="88.4938654324761"
+      y1="82.18"
+      x2="69.5525695323757"
+      y2="90.44"
+    />
+    <line
+      class="l"
+      x1="69.5525695323757"
+      y1="90.44"
+      x2="64.1411605466533"
+      y2="94.60"
+    />
+    <line
+      class="l"
+      x1="112.68938567"
+      y1="63.71"
+      x2="136.188490590752"
+      y2="68.42"
+    />
+    <line
+      class="l"
+      x1="136.188490590752"
+      y1="68.42"
+      x2="157.031284111252"
+      y2="83.37"
+    />
+    <line
+      class="l"
+      x1="136.188490590752"
+      y1="68.42"
+      x2="142.952888267913"
+      y2="53.85"
+    />
+    <line
+      class="l"
+      x1="112.68938567"
+      y1="63.71"
+      x2="142.952888267913"
+      y2="53.85"
+    />
+    <line
+      class="l"
+      x1="142.952888267913"
+      y1="53.85"
+      x2="137.021896694756"
+      y2="38.01"
+    />
+    <line
+      class="l"
+      x1="91.0120944854386"
+      y1="54.13"
+      x2="137.021896694756"
+      y2="38.01"
+    />
+    <line
+      class="l"
+      x1="137.021896694756"
+      y1="38.01"
+      x2="142.973627909008"
+      y2="29.65"
+    />
+    <line
+      class="l"
+      x1="137.021896694756"
+      y1="38.01"
+      x2="162.02953761516"
+      y2="50.80"
+    />
+    <line
+      class="l"
+      x1="142.952888267913"
+      y1="53.85"
+      x2="162.02953761516"
+      y2="50.80"
+    />
+    <line
+      class="l"
+      x1="162.02953761516"
+      y1="50.80"
+      x2="185.910142776055"
+      y2="57.71"
+    />
+
+    <circle
+      class="cls-1"
+      cx="70.1742129851985"
+      cy="1.87"
+      :r="rayonDynamique(2, 0, 21)"
+    />
+    <circle
+      class="cls-2"
+      cx="67.306684713793"
+      cy="16.47"
+      :r="rayonDynamique(5, 1, 21)"
+    />
+    <circle
+      class="cls-3"
+      cx="34.3464829934943"
+      cy="10.01"
+      :r="rayonDynamique(3, 2, 21)"
+    />
+    <circle
+      class="cls-4"
+      cx="22.5783740121382"
+      cy="31.93"
+      :r="rayonDynamique(3, 3, 21)"
+    />
+    <circle
+      class="cls-1"
+      cx="13.8115094092477"
+      cy="56.91"
+      :r="rayonDynamique(2, 4, 21)"
+    />
+    <circle
+      class="cls-2"
+      cx="46.9376282583068"
+      cy="69.76"
+      :r="rayonDynamique(6, 5, 21)"
+    />
+    <circle
+      class="cls-3"
+      cx="86.0040169410121"
+      cy="61.32"
+      :r="rayonDynamique(4, 6, 21)"
+    />
+    <circle
+      class="cls-4"
+      cx="91.0120944854386"
+      cy="54.13"
+      :r="rayonDynamique(2, 7, 21)"
+    />
+    <circle
+      class="cls-1"
+      cx="112.68938567"
+      cy="63.71"
+      :r="rayonDynamique(5, 8, 21)"
+    />
+    <circle
+      class="cls-2"
+      cx="100.419159062132"
+      cy="66.30"
+      :r="rayonDynamique(2, 9, 21)"
+    />
+    <circle
+      class="cls-3"
+      cx="88.4938654324761"
+      cy="82.18"
+      :r="rayonDynamique(4, 10, 21)"
+    />
+    <circle
+      class="cls-4"
+      cx="97.9593284722526"
+      cy="84.10"
+      :r="rayonDynamique(3, 11, 21)"
+    />
+    <circle
+      class="cls-1"
+      cx="69.5525695323757"
+      cy="90.44"
+      :r="rayonDynamique(5, 12, 21)"
+    />
+    <circle
+      class="cls-2"
+      cx="64.1411605466533"
+      cy="94.60"
+      :r="rayonDynamique(2, 13, 21)"
+    />
+    <circle
+      class="cls-3"
+      cx="157.031284111252"
+      cy="83.37"
+      :r="rayonDynamique(3, 14, 21)"
+    />
+    <circle
+      class="cls-4"
+      cx="136.188490590752"
+      cy="68.42"
+      :r="rayonDynamique(5, 15, 21)"
+    />
+    <circle
+      class="cls-1"
+      cx="142.952888267913"
+      cy="53.85"
+      :r="rayonDynamique(2, 16, 21)"
+    />
+    <circle
+      class="cls-2"
+      cx="162.02953761516"
+      cy="50.80"
+      :r="rayonDynamique(4, 17, 21)"
+    />
+    <circle
+      class="cls-3"
+      cx="185.910142776055"
+      cy="57.71"
+      :r="rayonDynamique(4, 18, 21)"
+    />
+    <circle
+      class="cls-4"
+      cx="137.021896694756"
+      cy="38.01"
+      :r="rayonDynamique(5, 19, 21)"
+    />
+    <circle
+      class="cls-1"
+      cx="142.973627909008"
+      cy="29.65"
+      :r="rayonDynamique(3, 20, 21)"
+    />
+  </svg>
+</template>
+
+<script setup lang="ts">
+const props = defineProps<{t: number}>();
+
+const rayonDynamique = (r: number, n: number, total: number): number => {
+    const { t } = props;
+    return Math.min(Math.max(0, (t / 100 -  n / total) * total), 1) * r;
+};
+
+</script>
+
+<style>
+.cls-1 {
+  fill: #1697f6;
+}
+.cls-2 {
+  fill: #7bc6ff;
+}
+.cls-3 {
+  fill: #1867c0;
+}
+.cls-4 {
+  fill: #aeddff;
+}
+.l {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 0.5;
+}
+</style>

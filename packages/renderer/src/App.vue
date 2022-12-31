@@ -1,17 +1,31 @@
 <script lang="ts" setup>
+import { ref, onMounted } from 'vue';
 import ReactiveCounter from '/@/components/ReactiveCounter.vue';
 import ReactiveHash from '/@/components/ReactiveHash.vue';
 import ElectronVersions from '/@/components/ElectronVersions.vue';
+import LogoAnimé from './components/LogoAnimé.vue';
 
 const APP_VERSION = import.meta.env.VITE_APP_VERSION;
+
+const t = ref(0);
+
+onMounted(()=>{
+  const annuler = setInterval(
+    () => {
+      t.value++;
+      if (t.value >= 100) clearInterval(annuler);
+    }, 
+    100,
+  );
+});
 </script>
 
 <template>
-  <img
-    alt="Vue logo"
-    src="../assets/logo.svg"
-    width="150"
+  <LogoAnimé 
+    :t="t"
   />
+
+  <h1>Constellation</h1>
 
   <p>
     <!-- Example how to inject current app version to UI -->

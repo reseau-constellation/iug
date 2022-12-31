@@ -155,7 +155,7 @@ class GestionnaireFenêtres {
     if (!this.port) {
       if (!this.clientConstellation) throw new Error("Erreur d'initialisation de Constellation");
 
-      const constlServeur = await promesseServeur;  
+      const constlServeur = await promesseServeur;
       const {fermerServeur, port: portServeur} = await constlServeur.lancerServeur({
         port,
         optsConstellation: this.clientConstellation,
@@ -166,7 +166,7 @@ class GestionnaireFenêtres {
     }
 
     this.verrouServeur.release();
-    
+
     if (!this.port) throw new Error("Erreur d'initialisation du serveur local Constellation");
     return this.port;
   }
