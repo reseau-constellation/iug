@@ -1,9 +1,9 @@
 import {createApp} from 'vue';
 import App from '/@/App.vue';
-import Constellation from './plugins/constellation';
+import { registerPlugins } from '/@/plugins';
 
 const app = createApp(App);
 
-app.use(Constellation);
+registerPlugins(app);
 
 app.mount('#app');

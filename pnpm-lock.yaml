@@ -4,9 +4,11 @@ specifiers:
   '@constl/ipa': 0.5.7
   '@constl/mandataire': ^0.1.1
   '@constl/serveur': ^0.1.10
+  '@mdi/font': ^7.1.96
   '@rollup/plugin-node-resolve': ^15.0.1
   '@types/node': ^18.11.14
   '@types/uuid': ^9.0.0
+  '@types/webfontloader': ^1.6.35
   '@typescript-eslint/eslint-plugin': 5.46.1
   '@typescript-eslint/parser': ^5.46.1
   '@vitejs/plugin-vue': 4.0.0
@@ -36,11 +38,14 @@ specifiers:
   vitest: 0.25.8
   vue: 3.2.45
   vue-tsc: 1.0.13
+  vuetify: ^3.0.6
+  webfontloader: ^1.6.28
 
 dependencies:
   '@constl/ipa': 0.5.7
   '@constl/mandataire': 0.1.1_@constl+ipa@0.5.7
   '@constl/serveur': 0.1.10_@constl+ipa@0.5.7
+  '@mdi/font': 7.1.96
   assert: 2.0.0
   core-js: 3.26.1
   electron-updater: 5.3.0
@@ -51,11 +56,14 @@ dependencies:
   tslib: 2.4.1
   uuid: 9.0.0
   vue: 3.2.45
+  vuetify: 3.0.6_vue@3.2.45
+  webfontloader: 1.6.28
 
 devDependencies:
   '@rollup/plugin-node-resolve': 15.0.1
   '@types/node': 18.11.14
   '@types/uuid': 9.0.0
+  '@types/webfontloader': 1.6.35
   '@typescript-eslint/eslint-plugin': 5.46.1_imrg37k3svwu377c6q7gkarwmi
   '@typescript-eslint/parser': 5.46.1_ha6vam6werchizxrnqvarmz2zu
   '@vitejs/plugin-vue': 4.0.0_vite@4.0.1+vue@3.2.45
@@ -2087,6 +2095,10 @@ packages:
       - supports-color
     dev: false
 
+  /@mdi/font/7.1.96:
+    resolution: {integrity: sha512-Imag6npmfkBDi2Ze2jiZVAPTDIKLxhz2Sx82xJ2zctyAU5LYJejLI5ChnDwiD9bMkQfVuzEsI98Q8toHyC+HCg==}
+    dev: false
+
   /@multiformats/base-x/4.0.1:
     resolution: {integrity: sha512-eMk0b9ReBbV23xXU693TAIrLyeO5iTgBZGSJfpqriG8UkYvr/hC9u9pyMlAakDNHWmbhMZCDs6KQO0jzKD8OTw==}
     dev: false
@@ -2568,6 +2580,10 @@ packages:
     resolution: {integrity: sha512-NNm+gdePAX1VGvPcGZCDKQZKYSiAWigKhKaz5KF94hG6f2s8de9Ow5+7AbXoeKxL8gavZfk4UquSAygOF2duEQ==}
     dev: true
     optional: true
+
+  /@types/webfontloader/1.6.35:
+    resolution: {integrity: sha512-IJlrsiDWq6KghQ7tPlL5tcwSUyOxLDceT+AFUY7Ylj0Fcv3/h3QkANqQxZ0B5mEpEKxhTw76vDmvrruSMV9n9Q==}
+    dev: true
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
@@ -6315,7 +6331,7 @@ packages:
       libp2p: 0.40.0
     optionalDependencies:
       electron-webrtc: 0.3.0
-      prom-client: 14.1.0
+      prom-client: 14.1.1
       wrtc: 0.4.7
     transitivePeerDependencies:
       - bufferutil
@@ -6462,7 +6478,7 @@ packages:
       timeout-abort-controller: 3.0.0
       uint8arrays: 4.0.2
     optionalDependencies:
-      prom-client: 14.1.0
+      prom-client: 14.1.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -9322,8 +9338,8 @@ packages:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
 
-  /prom-client/14.1.0:
-    resolution: {integrity: sha512-iFWCchQmi4170omLpFXbzz62SQTmPhtBL35v0qGEVRHKcqIeiexaoYeP0vfZTujxEq3tA87iqOdRbC9svS1B9A==}
+  /prom-client/14.1.1:
+    resolution: {integrity: sha512-hFU32q7UZQ59bVJQGUtm3I2PrJ3gWvoCkilX9sF165ks1qflhugVCeK+S1JjJYHvyt3o5kj68+q3bchormjnzw==}
     engines: {node: '>=10'}
     requiresBuild: true
     dependencies:
@@ -9811,8 +9827,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /rxjs/7.6.0:
-    resolution: {integrity: sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==}
+  /rxjs/7.8.0:
+    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     requiresBuild: true
     dependencies:
       tslib: 2.4.1
@@ -10584,7 +10600,7 @@ packages:
   /typed-emitter/2.1.0:
     resolution: {integrity: sha512-g/KzbYKbH5C2vPkaXGu8DJlHrGKHLsM25Zg9WuC9pMGfuvT+X25tZQWo5fK1BjBm8+UrVE9LDCvaY0CQk+fXDA==}
     optionalDependencies:
-      rxjs: 7.6.0
+      rxjs: 7.8.0
     dev: false
 
   /typedarray-to-buffer/3.1.5:
@@ -10951,6 +10967,25 @@ packages:
       '@vue/server-renderer': 3.2.45_vue@3.2.45
       '@vue/shared': 3.2.45
 
+  /vuetify/3.0.6_vue@3.2.45:
+    resolution: {integrity: sha512-Illtc9t8PExlKqUEIivNNMpDif4/tvn+04ZEAwrxpQAG75x6V7oUFOF1kVKAFZ2ryuLnBpscXBR85GwFBmLeMQ==}
+    engines: {node: ^12.20 || >=14.13}
+    peerDependencies:
+      vite-plugin-vuetify: ^1.0.0-alpha.12
+      vue: ^3.2.0
+      vue-i18n: ^9.0.0
+      webpack-plugin-vuetify: ^2.0.0-alpha.11
+    peerDependenciesMeta:
+      vite-plugin-vuetify:
+        optional: true
+      vue-i18n:
+        optional: true
+      webpack-plugin-vuetify:
+        optional: true
+    dependencies:
+      vue: 3.2.45
+    dev: false
+
   /wcwidth/1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
     dependencies:
@@ -10963,6 +10998,10 @@ packages:
       util: 0.12.5
     optionalDependencies:
       '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /webfontloader/1.6.28:
+    resolution: {integrity: sha512-Egb0oFEga6f+nSgasH3E0M405Pzn6y3/9tOVanv/DLfa1YBIgcv90L18YyWnvXkRbIM17v5Kv6IT2N6g1x5tvQ==}
     dev: false
 
   /webidl-conversions/3.0.1:
