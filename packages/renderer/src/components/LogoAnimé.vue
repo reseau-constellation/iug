@@ -4,7 +4,7 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 -10 200 110"
-    width="250"
+    :width="largeur"
   >
     <title>Logo Constellation</title>
     <line
@@ -180,137 +180,143 @@
       class="cls-1"
       cx="70.1742129851985"
       cy="1.87"
-      :r="rayonDynamique(2, 0, 21)"
+      :r="rayonDynamique(2, 0)"
     />
     <circle
       class="cls-2"
       cx="67.306684713793"
       cy="16.47"
-      :r="rayonDynamique(5, 1, 21)"
+      :r="rayonDynamique(5, 1)"
     />
     <circle
       class="cls-3"
       cx="34.3464829934943"
       cy="10.01"
-      :r="rayonDynamique(3, 2, 21)"
+      :r="rayonDynamique(3, 2)"
     />
     <circle
       class="cls-4"
       cx="22.5783740121382"
       cy="31.93"
-      :r="rayonDynamique(3, 3, 21)"
+      :r="rayonDynamique(3, 3)"
     />
     <circle
       class="cls-1"
       cx="13.8115094092477"
       cy="56.91"
-      :r="rayonDynamique(2, 4, 21)"
+      :r="rayonDynamique(2, 4)"
     />
     <circle
       class="cls-2"
       cx="46.9376282583068"
       cy="69.76"
-      :r="rayonDynamique(6, 5, 21)"
+      :r="rayonDynamique(6, 5)"
     />
     <circle
       class="cls-3"
       cx="86.0040169410121"
       cy="61.32"
-      :r="rayonDynamique(4, 6, 21)"
+      :r="rayonDynamique(4, 6)"
     />
     <circle
       class="cls-4"
       cx="91.0120944854386"
       cy="54.13"
-      :r="rayonDynamique(2, 7, 21)"
+      :r="rayonDynamique(2, 7)"
     />
     <circle
       class="cls-1"
       cx="112.68938567"
       cy="63.71"
-      :r="rayonDynamique(5, 8, 21)"
+      :r="rayonDynamique(5, 8)"
     />
     <circle
       class="cls-2"
       cx="100.419159062132"
       cy="66.30"
-      :r="rayonDynamique(2, 9, 21)"
+      :r="rayonDynamique(2, 9)"
     />
     <circle
       class="cls-3"
       cx="88.4938654324761"
       cy="82.18"
-      :r="rayonDynamique(4, 10, 21)"
+      :r="rayonDynamique(4, 10)"
     />
     <circle
       class="cls-4"
       cx="97.9593284722526"
       cy="84.10"
-      :r="rayonDynamique(3, 11, 21)"
+      :r="rayonDynamique(3, 11)"
     />
     <circle
       class="cls-1"
       cx="69.5525695323757"
       cy="90.44"
-      :r="rayonDynamique(5, 12, 21)"
+      :r="rayonDynamique(5, 12)"
     />
     <circle
       class="cls-2"
       cx="64.1411605466533"
       cy="94.60"
-      :r="rayonDynamique(2, 13, 21)"
+      :r="rayonDynamique(2, 13)"
     />
     <circle
       class="cls-3"
       cx="157.031284111252"
       cy="83.37"
-      :r="rayonDynamique(3, 14, 21)"
+      :r="rayonDynamique(3, 14)"
     />
     <circle
       class="cls-4"
       cx="136.188490590752"
       cy="68.42"
-      :r="rayonDynamique(5, 15, 21)"
+      :r="rayonDynamique(5, 15)"
     />
     <circle
       class="cls-1"
       cx="142.952888267913"
       cy="53.85"
-      :r="rayonDynamique(2, 16, 21)"
+      :r="rayonDynamique(2, 16)"
     />
     <circle
       class="cls-2"
       cx="162.02953761516"
       cy="50.80"
-      :r="rayonDynamique(4, 17, 21)"
+      :r="rayonDynamique(4, 17)"
     />
     <circle
       class="cls-3"
       cx="185.910142776055"
       cy="57.71"
-      :r="rayonDynamique(4, 18, 21)"
+      :r="rayonDynamique(4, 18)"
     />
     <circle
       class="cls-4"
       cx="137.021896694756"
       cy="38.01"
-      :r="rayonDynamique(5, 19, 21)"
+      :r="rayonDynamique(5, 19)"
     />
     <circle
       class="cls-1"
       cx="142.973627909008"
       cy="29.65"
-      :r="rayonDynamique(3, 20, 21)"
+      :r="rayonDynamique(3, 20)"
     />
   </svg>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{t: number}>();
+const props = defineProps<{t: number, largeur: number}>();
 
-const rayonDynamique = (r: number, n: number, total: number): number => {
+const a = 0.30;
+const r_ = 5;
+const total = 21;
+const ordre = Array.from(Array(total).keys()).map(p => ({ p, i: Math.random()})).sort((a, b) => a.i - b.i).map(p => p.p);
+
+const rayonDynamique = (r: number, n: number): number => {
     const { t } = props;
-    return Math.min(Math.max(0, (t / 100 -  n / total) * total), 1) * r;
+    const z = ordre.indexOf(n) / total;
+    return r / (1 + a * Math.exp(-r_ * (t * 10 - 1 - z)));
 };
 
 </script>
