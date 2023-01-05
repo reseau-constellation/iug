@@ -306,19 +306,21 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{t: number, largeur: number}>();
+const props = defineProps<{t: number; largeur: number}>();
 
-const a = 0.30;
+const a = 0.3;
 const r_ = 5;
 const total = 21;
-const ordre = Array.from(Array(total).keys()).map(p => ({ p, i: Math.random()})).sort((a, b) => a.i - b.i).map(p => p.p);
+const ordre = Array.from(Array(total).keys())
+  .map(p => ({p, i: Math.random()}))
+  .sort((a, b) => a.i - b.i)
+  .map(p => p.p);
 
 const rayonDynamique = (r: number, n: number): number => {
-    const { t } = props;
-    const z = ordre.indexOf(n) / total;
-    return r / (1 + a * Math.exp(-r_ * (t * 10 - 1 - z)));
+  const {t} = props;
+  const z = ordre.indexOf(n) / total;
+  return r / (1 + a * Math.exp(-r_ * (t * 10 - 1 - z)));
 };
-
 </script>
 
 <style>

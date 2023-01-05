@@ -2,7 +2,7 @@
 import {computed, ref, onMounted, inject} from 'vue';
 import {sha256sum} from '#preload';
 import type {ProxyClientConstellation} from '@constl/ipa/dist/proxy/proxy';
-import type {GestionnaireServeur} from '/@/plugins/constellation';
+import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
 
 const constl: ProxyClientConstellation = inject('constl')!;
 const serveur: GestionnaireServeur = inject('serveurConstl')!;

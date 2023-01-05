@@ -5,8 +5,8 @@
 export {sha256sum} from './nodeCrypto';
 export {versions} from './versions';
 export {
-  messageÀConstellation,
+  envoyerMessageÀConstellation,
   écouterMessagesDeConstellation,
-  messageÀServeurConstellation,
+  envoyerMessageÀServeurConstellation,
   écouterMessagesDeServeurConstellation,
-} from './constellation';
+} from '@constl/mandataire-electron-principal';
