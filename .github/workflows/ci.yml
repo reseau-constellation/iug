@@ -27,7 +27,7 @@ jobs:
   tests:
     uses: ./.github/workflows/tests.yml
   page_internet:
-    uses: ./.github/workflows/déployerPage.yml
+    uses: "./.github/workflows/déployerPage.yml"
   draft_release:
     if: github.event_name == 'push' && github.ref_name == 'main'
     needs: [ typechecking, tests ]
