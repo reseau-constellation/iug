@@ -12,14 +12,19 @@ import {
 
 export default {
   install: (app: App) => {
-    app.provide('constl', générerMandataireÉlectronPrincipal({
-      envoyerMessageÀConstellation,
-      écouterMessagesDeConstellation,
-    }));
-    app.provide('serveurConstl', new GestionnaireServeur({
-      écouterMessagesDeServeurConstellation,
-      envoyerMessageÀServeurConstellation,
-    }));
+    app.provide(
+      'constl',
+      générerMandataireÉlectronPrincipal({
+        envoyerMessageÀConstellation,
+        écouterMessagesDeConstellation,
+      }),
+    );
+    app.provide(
+      'serveurConstl',
+      new GestionnaireServeur({
+        écouterMessagesDeServeurConstellation,
+        envoyerMessageÀServeurConstellation,
+      }),
+    );
   },
 };
-

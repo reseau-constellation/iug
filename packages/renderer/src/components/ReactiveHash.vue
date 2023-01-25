@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import {ref, onMounted, inject} from 'vue';
 
-import type { MandataireClientConstellation } from '@constl/mandataire';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
 
-const constl: MandataireClientConstellation|undefined = inject('constl');
+const constl: MandataireClientConstellation | undefined = inject('constl');
 const serveur = inject<GestionnaireServeur>('serveurConstl');
 
 const rawString = ref('Hello World');
@@ -17,8 +17,8 @@ const idCompte = ref<string | undefined>();
 const portServeur = ref<number | undefined>();
 
 onMounted(async () => {
-  idCompte.value = constl && await constl.obtIdCompte();
-  portServeur.value = serveur && await serveur.initialiser();
+  idCompte.value = constl && (await constl.obtIdCompte());
+  portServeur.value = serveur && (await serveur.initialiser());
 });
 </script>
 
@@ -31,10 +31,7 @@ onMounted(async () => {
     />
   </label>
   <br />
-  <label>
-    Hashed by node:crypto
-
-  </label>
+  <label> Hashed by node:crypto </label>
   <br />
   <label>
     Id compte Constellation

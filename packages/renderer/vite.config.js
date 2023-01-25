@@ -6,10 +6,10 @@ import vuetify from 'vite-plugin-vuetify';
 import {renderer} from 'unplugin-auto-expose';
 import {join} from 'node:path';
 import {injectAppVersion} from '../../version/inject-app-version-plugin.mjs';
-import { copyFileSync } from 'fs';
+import {copyFileSync} from 'fs';
 
 import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
-import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
@@ -30,17 +30,20 @@ const générerExtentions = () => {
     vuetify({
       autoImport: true,
     }),
-    
   ];
   if (pourÉlectron) {
-    extentions.push(renderer.vite({
-      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
-    }));
+    extentions.push(
+      renderer.vite({
+        preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
+      }),
+    );
   } else {
-    extentions.push(NodeGlobalsPolyfillPlugin({
-      buffer: true,
-      process: true,
-    }));
+    extentions.push(
+      NodeGlobalsPolyfillPlugin({
+        buffer: true,
+        process: true,
+      }),
+    );
   }
   extentions.push(injectAppVersion());
   return extentions;
@@ -71,15 +74,7 @@ const config = {
   envDir: PROJECT_ROOT,
   resolve: {
     alias: générerAliasRésolution(),
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-    ],
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
   base: '',
   server: {
@@ -95,9 +90,7 @@ const config = {
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
       external: pourÉlectron ? undefined : ['chokidar'],
-      plugins: pourÉlectron ? undefined : [
-        rollupNodePolyFill(),
-      ],
+      plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
@@ -109,9 +102,11 @@ const config = {
     environment: 'happy-dom',
   },
   plugins: générerExtentions(),
-  define: pourÉlectron ? undefined : {
-    global: 'globalThis',
-  },
+  define: pourÉlectron
+    ? undefined
+    : {
+        global: 'globalThis',
+      },
 };
 
 export default config;
