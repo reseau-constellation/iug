@@ -10,14 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16 # Need for npm >=7.7
-          cache: 'pnpm'
 
       - uses: pnpm/action-setup@v2.2.4
         with:
           version: latest
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16 # Need for npm >=7.7
+          cache: 'pnpm'
 
       - run: pnpm run format
       - run: |
