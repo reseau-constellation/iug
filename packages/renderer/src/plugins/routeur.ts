@@ -4,12 +4,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Accueil',
-    component: () => import('../vues/PageAccueil.vue'),
+    component: () => import('/@/vues/PageAccueil.vue'),
   },
   {
     path: '/compte',
     name: 'Compte',
-    component: () => import('../vues/PageCompte.vue'),
+    component: () => import('/@/vues/PageCompte.vue'),
   },
   {
     path: '/données',
@@ -18,36 +18,36 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/données/bd/:id',
-    component: () => import('../vues/données/PageBD.vue'),
+    component: () => import('/@/vues/données/PageBD.vue'),
   },
   {
     path: '/données/bd/:id/tableau/:idTableau',
-    component: () => import('../vues/données/PageTableau.vue'),
+    component: () => import('/@/vues/données/PageTableau.vue'),
   },
   {
     path: '/recherche',
     name: 'Recherche',
-    component: () => import('../vues/PageRecherche.vue'),
+    component: () => import('/@/vues/PageRecherche.vue'),
   },
   {
     path: '/favoris',
     name: 'Favoris',
-    component: () => import('../vues/PageFavoris.vue'),
+    component: () => import('/@/vues/PageFavoris.vue'),
   },
   {
     path: '/automatisations',
     name: 'Automatisations',
-    component: () => import('../vues/PageAutomatisations.vue'),
+    component: () => import('/@/vues/PageAutomatisations.vue'),
   },
   {
     path: '/signalements',
     name: 'Signalements',
-    component: () => import('../vues/PageSignalements.vue'),
+    component: () => import('/@/vues/PageSignalements.vue'),
   },
   {
     path: encodeURI('/téléchargements'),
     name: 'Téléchargements',
-    component: () => import('../vues/PageTéléchargements.vue'),
+    component: () => import('/@/vues/PageTéléchargements.vue'),
   },
 ];
 

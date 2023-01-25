@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import {computed, ref, onMounted, inject} from 'vue';
-import {sha256sum} from '#preload';
-import type {ProxyClientConstellation} from '@constl/ipa/dist/proxy/proxy';
+import {ref, onMounted, inject} from 'vue';
+
+import type { MandataireClientConstellation } from '@constl/mandataire';
 import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
 
-const constl: ProxyClientConstellation = inject('constl')!;
-const serveur: GestionnaireServeur = inject('serveurConstl')!;
+const constl: MandataireClientConstellation|undefined = inject('constl');
+const serveur = inject<GestionnaireServeur>('serveurConstl');
 
 const rawString = ref('Hello World');
 /**
  * window.nodeCrypto was exposed from {@link module:preload}
  */
-const hashedString = computed(() => sha256sum(rawString.value));
+// const hashedString = computed(() => sha256sum(rawString.value));
 
 const idCompte = ref<string | undefined>();
 const portServeur = ref<number | undefined>();
 
 onMounted(async () => {
-  idCompte.value = await constl.obtIdCompte();
-  portServeur.value = await serveur.initialiser();
+  idCompte.value = constl && await constl.obtIdCompte();
+  portServeur.value = serveur && await serveur.initialiser();
 });
 </script>
 
@@ -33,11 +33,7 @@ onMounted(async () => {
   <br />
   <label>
     Hashed by node:crypto
-    <input
-      v-model="hashedString"
-      readonly
-      type="text"
-    />
+
   </label>
   <br />
   <label>
