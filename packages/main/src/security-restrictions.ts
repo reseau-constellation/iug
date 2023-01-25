@@ -13,7 +13,8 @@ type Permissions =
   | 'pointerLock'
   | 'fullscreen'
   | 'openExternal'
-  | 'unknown';
+  | 'unknown'
+  | 'window-placement';
 
 /**
  * A list of origins that you allow open INSIDE the application and permissions for them.
