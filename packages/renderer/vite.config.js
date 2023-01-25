@@ -92,9 +92,7 @@ const config = {
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
       external: pourÉlectron ? undefined : ['chokidar', 'fs', 'fs/promises'],
-      plugins: pourÉlectron ? undefined : [
-        rollupNodePolyFill(),
-      ],
+      plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
