@@ -57,6 +57,8 @@ const générerAliasRésolution = () => {
       assert: 'rollup-plugin-node-polyfills/polyfills/assert',
       crypto: 'crypto-browserify',
       path: 'rollup-plugin-node-polyfills/polyfills/path',
+      './buffer-globalThis': 'crypto-browserify',
+      stream: 'rollup-plugin-node-polyfills/polyfills/stream',
     });
   }
 };
@@ -94,7 +96,7 @@ const config = {
     assetsDir: '.',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: pourÉlectron ? undefined : ['chokidar'],
+      external: pourÉlectron ? undefined : ['chokidar', 'fs', 'fs/promises'],
       plugins: pourÉlectron ? undefined : [
         rollupNodePolyFill(),
       ],
