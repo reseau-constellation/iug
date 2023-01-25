@@ -39,10 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { inject, ref, onMounted, onUnmounted } from 'vue';
+import {inject, ref, onMounted, onUnmounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
-import type { schémaFonctionOublier } from '@constl/ipa/dist/utils';
-
+import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
 
 const constl: ClientConstellation = inject('constl')!;
 const image = ref<Uint8Array | null>();
@@ -51,12 +50,11 @@ let oublierImageProfil: schémaFonctionOublier;
 
 onMounted(async () => {
   oublierImageProfil = await constl.profil!.suivreImage({
-    f: x => image.value = x,
+    f: x => (image.value = x),
   });
 });
 
 onUnmounted(async () => {
   if (oublierImageProfil) await oublierImageProfil();
 });
-
 </script>
