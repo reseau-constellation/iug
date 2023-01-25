@@ -26,8 +26,6 @@ jobs:
     uses: ./.github/workflows/typechecking.yml
   tests:
     uses: ./.github/workflows/tests.yml
-  page_internet:
-    uses: ./.github/workflows/publierPage.yml
   draft_release:
     if: github.event_name == 'push' && github.ref_name == 'main'
     needs: [ typechecking, tests ]
