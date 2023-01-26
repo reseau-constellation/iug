@@ -1,25 +1,22 @@
 <script lang="ts" setup>
-import ReactiveHash from '/@/components/ReactiveHash.vue';
-import NavigationPrincipale from '/@/components/NavigationPrincipale.vue';
+import {ref} from 'vue';
 
-const APP_VERSION = import.meta.env.VITE_APP_VERSION;
+import PagePrincipale from './misesEnPage/PagePrincipale.vue';
+import AccueilInitial from './misesEnPage/AccueilInitial.vue';
+
+const initialisé = ref(false);
 </script>
 
 <template>
   <v-app>
     <v-main>
-      <navigation-principale />
-      <router-view></router-view>
-      <p>
-        <!-- Example how to inject current app version to UI -->
-        Version: {{ APP_VERSION }}
-      </p>
-      <p> Julien Malard-Adam </p>
-
-      <fieldset>
-        <legend>Test Node.js API</legend>
-        <reactive-hash />
-      </fieldset>
+      <v-fade-transition leave-absolute>
+        <AccueilInitial
+          v-if="!initialisé"
+          @entrer="initialisé = true"
+        />
+        <PagePrincipale v-else />
+      </v-fade-transition>
     </v-main>
   </v-app>
 </template>
