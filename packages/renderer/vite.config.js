@@ -46,7 +46,7 @@ const générerExtentions = () => {
       }),
     );
     extentions.push({
-      name: 'vite:global-ployfill',
+      name: 'vite:global-polyfill',
       transformIndexHtml: {
         transform(html) {
           return {
