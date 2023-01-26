@@ -10,6 +10,7 @@ import {copyFileSync} from 'fs';
 
 import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
 import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill';
+import builtins from 'rollup-plugin-node-builtins';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
@@ -44,6 +45,35 @@ const générerExtentions = () => {
         process: true,
       }),
     );
+    extentions.push({
+      name: 'vite:global-ployfill',
+      transformIndexHtml: {
+        transform(html) {
+          return {
+            html,
+            tags: [
+              {
+                tag: 'script',
+                children: `
+                  function getGlobal() {
+                    if (typeof globalThis === 'object') return globalThis;
+                    if (typeof window === 'object') return window;
+                  }
+                  global = getGlobal()
+                `,
+                injectTo: 'head-prepend',
+              },
+            ],
+          };
+        },
+      },
+    });
+    extentions.push(
+      builtins({
+        fs: true,
+      }),
+    );
+   
   }
   extentions.push(injectAppVersion());
   return extentions;
@@ -91,7 +121,7 @@ const config = {
     assetsDir: '.',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: pourÉlectron ? undefined : ['chokidar', 'fs', 'fs/promises'],
+      external: pourÉlectron ? undefined : ['chokidar'],
       plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
@@ -104,11 +134,11 @@ const config = {
     environment: 'happy-dom',
   },
   plugins: générerExtentions(),
-  define: pourÉlectron
+  /*define: pourÉlectron || process.env.PROD
     ? undefined
     : {
-        global: 'globalThis',
-      },
+        global: ({}),
+      },*/
 };
 
 export default config;
