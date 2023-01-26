@@ -73,7 +73,6 @@ const générerExtentions = () => {
         fs: true,
       }),
     );
-   
   }
   extentions.push(injectAppVersion());
   return extentions;
