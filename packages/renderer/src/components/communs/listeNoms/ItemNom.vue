@@ -72,12 +72,12 @@ const effacer = () => {
   emit('effacer', {id: props.id});
 };
 const sauvegarder = () => {
-    if (!nouvelleLangue.value || !nouveauNom.value) return;
-    const nom = nouveauNom.value.trim();
-    if (nom === props.nom.trim() && nouvelleLangue.value === props.langue) return;
-    emit('changerNom', {id: props.id, nom: nouveauNom.value, lng: nouvelleLangue.value});
+  if (!nouvelleLangue.value || !nouveauNom.value) return;
+  const nom = nouveauNom.value.trim();
+  if (nom === props.nom.trim() && nouvelleLangue.value === props.langue) return;
+  emit('changerNom', {id: props.id, nom: nouveauNom.value, lng: nouvelleLangue.value});
 };
-watchEffect(()=> {
-    if (nouvelleLangue.value !== props.langue) sauvegarder();
+watchEffect(() => {
+  if (nouvelleLangue.value !== props.langue) sauvegarder();
 });
 </script>

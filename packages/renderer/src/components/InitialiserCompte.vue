@@ -244,10 +244,10 @@ const créerCompte = async () => {
   enCréation.value = true;
   if (!constl) return;
   for (const [lng, nom] of Object.entries(noms.value)) {
-    await constl.profil?.sauvegarderNom({ langue: lng, nom });
+    await constl.profil?.sauvegarderNom({langue: lng, nom});
   }
   if (imageSélectionnée.value) {
-    await constl.profil?.sauvegarderImage({ image: imageSélectionnée.value });
+    await constl.profil?.sauvegarderImage({image: imageSélectionnée.value});
   }
 
   enCréation.value = false;

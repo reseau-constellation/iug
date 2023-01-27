@@ -106,7 +106,7 @@ const émettreChangements = () => {
   emit('ajusterNoms', nomsFinaux);
 };
 
-const changerNom = ({id, nom, lng}: {id: string; nom: string, lng: string}) => {
+const changerNom = ({id, nom, lng}: {id: string; nom: string; lng: string}) => {
   if (lng === nouvelleLangue.value) nouvelleLangue.value = undefined;
 
   const existant = listeNoms.value.find(nm => nm.lng === lng && nm.id !== id);
