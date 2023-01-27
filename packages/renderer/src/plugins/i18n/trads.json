@@ -14,6 +14,7 @@
         "titreImage": "Choisissez une image",
         "titrePersister": "Persister les données ?",
         "titreCestParti": "C'est tout !",
+        "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
         "textePersister": {
           "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
           "2": "Constellation, au contraire, est un logiciel local. Vos données demeurent sur votre appareil lui-même. (Eh oui, ça fonctionne même sans Internet !) Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment.",

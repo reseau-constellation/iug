@@ -13,10 +13,14 @@
       <v-card-title class="text-h5 justify-space-between">
         <span>{{ titreCarte }}</span>
       </v-card-title>
+      <v-card-subtitle> Le plus de langues, le mieux ! </v-card-subtitle>
       <v-window v-model="étape">
         <v-window-item :value="1">
-          <v-card-text class="d-flex justify-center align-center">
-            <span class="text-h2">Card 1</span>
+          <v-card-text class="justify-center align-center">
+            <ListeNoms
+              :noms="noms"
+              @ajusterNoms="ajusterNoms"
+            />
           </v-card-text>
         </v-window-item>
         <v-window-item :value="2">
@@ -27,9 +31,13 @@
               :img-defaut="imgDefaut"
               :max-taille-image="MAX_TAILLE_IMAGE"
               :taille-avatar="150"
-              @image-changee="(img: ArrayBuffer)=>imageChangée(img)"
+              @image-changee="(img?: ArrayBuffer)=>imageChangée(img)"
             />
-            <p class="mt-3 text-center">Image</p>
+            <p class="mt-3 text-center text-caption">
+              {{
+                $t('accueil.initialiserCompte.texteImage')
+              }}
+            </p>
           </v-card-text>
         </v-window-item>
         <v-window-item :value="3">
@@ -59,7 +67,7 @@
                 class="mt-3 mx-3"
                 color="primary"
                 variant="flat"
-                @click="()=>persisterDonnées()"
+                @click="() => persisterDonnées()"
               >
                 {{ $t('accueil.initialiserCompte.persister') }}
               </v-btn>
@@ -92,7 +100,7 @@
                 class="mt-3"
                 variant="outlined"
                 :loading="enCréation"
-                @click="()=>créerCompte()"
+                @click="() => créerCompte()"
               >
                 {{ $t('accueil.initialiserCompte.cestParti') }}
               </v-btn>
@@ -131,10 +139,14 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {useI18n} from 'vue-i18n';
 
-import ImageÉditable from '/@/components/communs/imageÉditable.vue';
+import {utiliserImagesDéco} from '/@/fonctions/images';
+
+import ImageÉditable from '/@/components/communs/imageEditable.vue';
+import ListeNoms from './communs/ListeNoms.vue';
 
 const {mdAndUp} = useDisplay();
 const {t} = useI18n();
+const {obtImageDéco} = utiliserImagesDéco();
 
 // Navigation générale
 const dialogue = ref(false);
@@ -155,8 +167,8 @@ const titreCarte = computed(() => {
   }
 });
 
-const retourActif = computed(()=>{
-    switch (étape.value) {
+const retourActif = computed(() => {
+  switch (étape.value) {
     case 2:
       return true;
     case 3:
@@ -168,10 +180,10 @@ const retourActif = computed(()=>{
   }
 });
 
-const suivantActif = computed(()=>{
-    switch (étape.value) {
+const suivantActif = computed(() => {
+  switch (étape.value) {
     case 1:
-      return true;
+      return Object.keys(noms.value).length > 0;
     case 2:
       return true;
     case 3:
@@ -180,6 +192,12 @@ const suivantActif = computed(()=>{
       return false;
   }
 });
+
+// Noms
+const noms = ref<{[lng: string]: string}>({});
+const ajusterNoms = (nms: {[lng: string]: string}) => {
+    noms.value = nms;
+};
 
 // Image
 const MAX_TAILLE_IMAGE = 500 * 1000; // 500 kilooctets
@@ -191,7 +209,9 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-const imgDefaut = ref('https://réseau-constellation.ca/img/logo.2a562100.svg');  // imagesDéco('profil');
+const imgDefaut = ref<string>();
+obtImageDéco('profil').then(x => (imgDefaut.value = x));
+
 const imageChangée = (img?: ArrayBuffer) => {
   imageSélectionnée.value = img;
 };
@@ -210,8 +230,8 @@ navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 // Création compte
 const enCréation = ref(false);
 const créerCompte = async () => {
-    enCréation.value = true;
-    
-    enCréation.value = false;
+  enCréation.value = true;
+
+  enCréation.value = false;
 };
 </script>

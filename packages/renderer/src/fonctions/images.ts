@@ -1,0 +1,63 @@
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+const imagesThème: {[key: string]: {[key: string]: string}} = {
+  constr: {
+    unDraw: '/@/assets/undraw/undraw_under_construction_46pa.svg',
+    வவவ: '/@/assets/வவவ/குயவர்.svg',
+  },
+  docs: {
+    unDraw: '/@/assets/undraw/undraw_book_lover_mkck.svg',
+    வவவ: '/@/assets/வவவ/சோதிடம்.svg',
+  },
+  recherche: {
+    unDraw: '/@/assets/undraw/undraw_not_found_60pq.svg',
+    வவவ: '/@/assets/வவவ/மீனவர்கள்.svg',
+  },
+  profilFemme: {
+    unDraw: '/@/assets/undraw/undraw_female_avatar_w3jk.svg',
+    வவவ: '/@/assets/வவவ/தஞ்சாவூர்_பொம்மை_பெண்.svg',
+  },
+  profilHomme: {
+    unDraw: '/@/assets/undraw/undraw_male_avatar_323b.svg',
+    வவவ: '/@/assets/வவவ/தஞ்சாவூர்_பொம்மை_ஆண்.svg',
+  },
+  automatisation: {
+    unDraw: '/@/assets/undraw/undraw_real-time_sync_o57k.svg',
+    // வவவ: "/@/assets/வவவ/பொங்கல்_வண்டி.svg",
+  },
+  problème: {
+    unDraw: '/@/assets/undraw/undraw_towing_6yy4.svg',
+    வவவ: '/@/assets/வவவ/ஜல்லிக்கட்டு.svg',
+  },
+  favoris: {
+    unDraw: '/@/assets/undraw/undraw_Appreciation_re_p6rl.svg',
+    வவவ: '/@/assets/வவவ/அஞ்சறைப்பெட்டி.svg',
+  },
+  conditions: {
+    unDraw: '/@/assets/undraw/undraw_Terms_re_6ak4.svg',
+    வவவ: '/@/assets/வவவ/கபடி_ஆட்டம்.svg',
+  },
+  logoBD: {
+    unDraw: '/@/assets/undraw/undraw_Projections_re_1mrh.svg',
+  },
+  dispositif: {
+    unDraw: '/@/assets/undraw/undraw_Mobile_re_q4nk.svg',
+  },
+  vide: {
+    unDraw: '/@/assets/undraw/undraw_adventure_map_hnin.svg',
+    வவவ: '/@/assets/வவவ/கிணறு.svg',
+  },
+};
+
+export const utiliserImagesDéco = function (thème = 'வவவ') {
+  const obtImageDéco = async (clef: string): Promise<string | undefined> => {
+    if (clef === 'profil') {
+      const options = ['profilFemme', 'profilHomme'];
+      // Dans le doute, on garde ça équitable :)
+      clef = options[Math.floor(Math.random() * options.length)];
+    }
+    return await (imagesThème[clef][thème] || Object.values(imagesThème[clef])[0]);
+  };
+  return {
+    obtImageDéco,
+  };
+};

@@ -17,9 +17,9 @@
     </v-snackbar>
     <v-col cols="12">
       <v-hover :disabled="!editable">
-        <template #default="{isHovering, props}">
+        <template #default="{isHovering, props: propsHover}">
           <v-avatar
-            v-bind="props"
+            v-bind="propsHover"
             class="mb-3"
             :size="tailleAvatar"
             :elevation="isHovering ? 12 : 2"
@@ -30,6 +30,7 @@
             >
               <v-row
                 :class="{
+                  'ma-0': true,
                   'on-hover': isHovering,
                   'align-self-center': true,
                   'fill-height': true,
@@ -50,7 +51,7 @@
                         class="align-self-center"
                         icon
                         large
-                        @click="()=>ouvrirFenêtreChoisirImage()"
+                        @click="() => ouvrirFenêtreChoisirImage()"
                       >
                         <v-icon
                           :class="{'show-btns': isHovering}"
@@ -67,7 +68,7 @@
                         class="align-self-center"
                         icon
                         large
-                        @click="()=>effacerImage()"
+                        @click="() => effacerImage()"
                       >
                         <v-icon
                           :class="{'show-btns': isHovering}"
@@ -95,7 +96,7 @@ import convert from 'image-file-resize';
 
 const props = defineProps<{
   srcImage?: string;
-  imgDefaut: string;
+  imgDefaut?: string;
   maxTailleImage: number;
   tailleAvatar: number;
   editable: boolean;

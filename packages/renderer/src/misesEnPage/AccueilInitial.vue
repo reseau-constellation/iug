@@ -16,9 +16,7 @@
             :debut="début"
           />
           <h1 :class="['mt-6', mdAndUp ? 'text-h1' : 'text-h3']">
-            {{
-              $t('communs.constellation')
-            }}
+            {{ $t('communs.constellation') }}
           </h1>
           <p class="text-subtitle-1 text-disabled">
             {{ $t('accueil.version', {version: VERSION_APPLI}) }}
