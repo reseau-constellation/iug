@@ -23,6 +23,7 @@ specifiers:
   electron: 22.0.3
   electron-builder: 23.6.0
   electron-updater: 5.3.0
+  ennikkai: ^1.2.8
   eslint: 8.32.0
   eslint-plugin-vue: 9.9.0
   events: ^3.3.0
@@ -31,6 +32,7 @@ specifiers:
   multiformats: 9.9.0
   nano-staged: 0.8.0
   node-gyp-build: ^4.6.0
+  nuchabal: ^2.0.8
   playwright: 1.30.0
   rollup-plugin-node-builtins: ^2.1.2
   rollup-plugin-node-globals: ^1.4.0
@@ -65,10 +67,12 @@ dependencies:
   core-js: 3.27.2
   crypto-browserify: 3.12.0
   electron-updater: 5.3.0
+  ennikkai: 1.2.8
   events: 3.3.0
   image-file-resize: 1.0.5
   multiformats: 9.9.0
   node-gyp-build: 4.6.0
+  nuchabal: 2.0.8
   rollup-plugin-node-polyfills: 0.2.1
   rollup-plugin-polyfill-node: 0.12.0
   semaphore-async-await: 1.5.1
@@ -4847,6 +4851,10 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
+  /ennikkai/1.2.8:
+    resolution: {integrity: sha512-ti6PSLEvmGQNLUMCwTfEE3X5ceQjxpe9HJBwpbJndxIA+nJjWrsJYNt26SuPMLPHpSciJ/8vzlY2SwM4M1d8Ww==}
+    dev: false
+
   /env-paths/2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
@@ -8408,6 +8416,10 @@ packages:
     dependencies:
       boolbase: 1.0.0
     dev: true
+
+  /nuchabal/2.0.8:
+    resolution: {integrity: sha512-c/h8lFsZkRYzi2qkJru7ooWklht3QsmrkxePIzZUzJYTWhRB6KMK2vYuvvwH+VA9lCph859yNXmjKwEJNbnmsg==}
+    dev: false
 
   /nugget/2.2.0:
     resolution: {integrity: sha512-I4Yt4dRPes82Tx/s7qDn8z1cA2pmZy2bOJiTdcb/BZJ1LJkEYd9GqunQD37unPUPjdmW6dkkVZmxN+8Gxt6Xlg==}

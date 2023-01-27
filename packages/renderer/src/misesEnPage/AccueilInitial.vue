@@ -97,6 +97,6 @@ onUnmounted(async () => {
 });
 
 watchEffect(() => {
-  if (nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();
+  if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();
 });
 </script>

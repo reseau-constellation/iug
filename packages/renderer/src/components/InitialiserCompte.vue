@@ -13,13 +13,15 @@
       <v-card-title class="text-h5 justify-space-between">
         <span>{{ titreCarte }}</span>
       </v-card-title>
-      <v-card-subtitle> Le plus de langues, le mieux ! </v-card-subtitle>
+      <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       <v-window v-model="étape">
         <v-window-item :value="1">
           <v-card-text class="justify-center align-center">
             <ListeNoms
-              :noms="noms"
-              @ajusterNoms="ajusterNoms"
+              :noms-initiaux="noms"
+              :indice-nom="$t('listeNomsProfil.indiceNom')"
+              :indice-langue="$t('listeNomsProfil.indiceLangue')"
+              @ajuster-noms="ajusterNoms"
             />
           </v-card-text>
         </v-window-item>
@@ -34,9 +36,7 @@
               @image-changee="(img?: ArrayBuffer)=>imageChangée(img)"
             />
             <p class="mt-3 text-center text-caption">
-              {{
-                $t('accueil.initialiserCompte.texteImage')
-              }}
+              {{ $t('accueil.initialiserCompte.texteImage') }}
             </p>
           </v-card-text>
         </v-window-item>
@@ -135,18 +135,21 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 import {useI18n} from 'vue-i18n';
+
+import type ClientConstellation from '@constl/ipa/dist/client';
 
 import {utiliserImagesDéco} from '/@/fonctions/images';
 
 import ImageÉditable from '/@/components/communs/imageEditable.vue';
-import ListeNoms from './communs/ListeNoms.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 
 const {mdAndUp} = useDisplay();
 const {t} = useI18n();
 const {obtImageDéco} = utiliserImagesDéco();
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation générale
 const dialogue = ref(false);
@@ -162,6 +165,14 @@ const titreCarte = computed(() => {
       return t('accueil.initialiserCompte.titrePersister');
     case 4:
       return t('accueil.initialiserCompte.titreCestParti');
+    default:
+      return '';
+  }
+});
+const sousTitreCarte = computed(() => {
+  switch (étape.value) {
+    case 1:
+      return t('accueil.initialiserCompte.sousTitreNoms');
     default:
       return '';
   }
@@ -196,7 +207,7 @@ const suivantActif = computed(() => {
 // Noms
 const noms = ref<{[lng: string]: string}>({});
 const ajusterNoms = (nms: {[lng: string]: string}) => {
-    noms.value = nms;
+  noms.value = nms;
 };
 
 // Image
@@ -231,6 +242,13 @@ navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 const enCréation = ref(false);
 const créerCompte = async () => {
   enCréation.value = true;
+  if (!constl) return;
+  for (const [lng, nom] of Object.entries(noms.value)) {
+    await constl.profil?.sauvegarderNom({ langue: lng, nom });
+  }
+  if (imageSélectionnée.value) {
+    await constl.profil?.sauvegarderImage({ image: imageSélectionnée.value });
+  }
 
   enCréation.value = false;
 };

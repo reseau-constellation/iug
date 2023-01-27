@@ -11,6 +11,7 @@
       "piedDePage": "Julien Malard-Adam",
       "initialiserCompte": {
         "titreNoms": "Choisissez votre nom",
+        "sousTitreNoms": "Le plus de langues, le mieux !",
         "titreImage": "Choisissez une image",
         "titrePersister": "Persister les données ?",
         "titreCestParti": "C'est tout !",
@@ -30,6 +31,10 @@
     },
     "imageÉditable": {
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
+    },
+    "listeNomsProfil": {
+      "indiceNom": "Votre nom",
+      "indiceLangue": "Langue"
     }
   }
 }
