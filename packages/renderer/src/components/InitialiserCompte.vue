@@ -143,7 +143,7 @@ import type ClientConstellation from '@constl/ipa/dist/client';
 
 import {utiliserImagesDéco} from '/@/fonctions/images';
 
-import ImageÉditable from '/@/components/communs/imageEditable.vue';
+import ImageÉditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 
 const {mdAndUp} = useDisplay();
