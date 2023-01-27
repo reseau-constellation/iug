@@ -11,32 +11,43 @@
       >
         <v-col>
           <LogoAnimé
-            :largeur="500"
+            :largeur="mdAndUp ? 500 : 250"
             :delai="délai"
             :debut="début"
           />
-          <h1 class="mt-6 text-h1">{{ $t('communs.constellation') }}</h1>
+          <h1 :class="['mt-6', mdAndUp ? 'text-h1' : 'text-h3']">
+            {{
+              $t('communs.constellation')
+            }}
+          </h1>
           <p class="text-subtitle-1 text-disabled">
-            {{ $t('accueil.version') }} {{ VERSION_APPLI }}
+            {{ $t('accueil.version', {version: VERSION_APPLI}) }}
           </p>
 
           <div
             class="my-6"
             style="height: 150px"
           >
-            <v-fade-transition leave-absolute>
-              <v-btn
-                v-show="animationTerminée"
-                variant="outlined"
-                @click="entrer"
-              >
-                {{ $t('accueil.démarrer') }}
-              </v-btn>
-            </v-fade-transition>
+            <InitialiserCompte>
+              <template #activator="{props}">
+                <v-fade-transition
+                  v-bind="props"
+                  leave-absolute
+                >
+                  <v-btn
+                    v-show="animationTerminée && constellationPrète"
+                    variant="outlined"
+                  >
+                    {{ $t('accueil.démarrer') }}
+                  </v-btn>
+                </v-fade-transition>
+              </template>
+            </InitialiserCompte>
           </div>
         </v-col>
       </v-row>
     </v-container>
+
     <v-footer>
       <v-container
         class="text-center"
@@ -51,9 +62,19 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from 'vue';
+import {onMounted, ref, inject, onUnmounted, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
+
+import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
+import type ClientConstellation from '@constl/ipa/dist/client';
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
+import InitialiserCompte from '/@/components/InitialiserCompte.vue';
+
+const {mdAndUp} = useDisplay();
+
+const constl = inject<ClientConstellation>('constl');
+const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const emit = defineEmits(['entrer']);
 const entrer = () => emit('entrer');
@@ -61,10 +82,23 @@ const entrer = () => emit('entrer');
 const délai = ref(3);
 const début = ref(2);
 const animationTerminée = ref(false);
-
-const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
-
 onMounted(() => {
   setTimeout(() => (animationTerminée.value = true), (délai.value + début.value) * 1000);
+});
+
+const constellationPrète = ref(false);
+constl?.obtIdCompte().then(() => (constellationPrète.value = true));
+
+const nomsProfil = ref<{[lng: string]: string}>();
+let oublierNomsProfil: schémaFonctionOublier | undefined;
+onMounted(async () => {
+  oublierNomsProfil = await constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)});
+});
+onUnmounted(async () => {
+  if (oublierNomsProfil) await oublierNomsProfil();
+});
+
+watchEffect(() => {
+  if (nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();
 });
 </script>
