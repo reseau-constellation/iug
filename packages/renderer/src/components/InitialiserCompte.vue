@@ -34,9 +34,7 @@
               @image-changee="(img?: ArrayBuffer)=>imageChangée(img)"
             />
             <p class="mt-3 text-center text-caption">
-              {{
-                $t('accueil.initialiserCompte.texteImage')
-              }}
+              {{ $t('accueil.initialiserCompte.texteImage') }}
             </p>
           </v-card-text>
         </v-window-item>
@@ -196,7 +194,7 @@ const suivantActif = computed(() => {
 // Noms
 const noms = ref<{[lng: string]: string}>({});
 const ajusterNoms = (nms: {[lng: string]: string}) => {
-    noms.value = nms;
+  noms.value = nms;
 };
 
 // Image

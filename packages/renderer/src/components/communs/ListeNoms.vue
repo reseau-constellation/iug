@@ -55,15 +55,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
-
+import {defineProps, defineEmits} from 'vue';
 
 defineProps<{
-    noms: {[lng: string]: string}
+  noms: {[lng: string]: string};
 }>();
 defineEmits<{
-    (é: 'ajusterNoms', noms: {[lng: string]: string}): void
+  (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
-
-
 </script>
