@@ -37,10 +37,9 @@ const {progrèsLangue} = utiliserProgrèsLangue({
   மொழி: props.code,
   வகை: 'சாபி',
 });
-const progrèsPourcentage = computed(()=>{
+const progrèsPourcentage = computed(() => {
   console.log(progrèsLangue.value);
-  return (progrèsLangue.value?.அங்கீகரிக்கப்பட்டவை || 0)/(progrèsLangue.value?.மொத்தம் || 0);
-  
+  return (progrèsLangue.value?.அங்கீகரிக்கப்பட்டவை || 0) / (progrèsLangue.value?.மொத்தம் || 0);
 });
 const {utiliserNomLangue, utiliserLangueSélectionnée} = utiliserLangues();
 const nomLangue = computed<string>(() => {
