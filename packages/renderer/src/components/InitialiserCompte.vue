@@ -21,6 +21,7 @@
               :noms-initiaux="noms"
               :indice-nom="$t('listeNomsProfil.indiceNom')"
               :indice-langue="$t('listeNomsProfil.indiceLangue')"
+              :texte-aucun-nom="$t('listeNomsProfil.texteAucunNom')"
               @ajuster-noms="ajusterNoms"
             />
           </v-card-text>
@@ -137,17 +138,18 @@
 <script setup lang="ts">
 import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
-import {useI18n} from 'vue-i18n';
-
 import type ClientConstellation from '@constl/ipa/dist/client';
 
-import {utiliserImagesDéco} from '/@/fonctions/images';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 import ImageÉditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t, $t} = useI18n();
 
 const {mdAndUp} = useDisplay();
-const {t} = useI18n();
+
 const {obtImageDéco} = utiliserImagesDéco();
 const constl = inject<ClientConstellation>('constl');
 

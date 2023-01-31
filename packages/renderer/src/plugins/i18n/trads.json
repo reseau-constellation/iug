@@ -18,7 +18,7 @@
         "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
         "textePersister": {
           "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
-          "2": "Constellation, au contraire, est un logiciel local. Vos données demeurent sur votre appareil lui-même. (Eh oui, ça fonctionne même sans Internet !) Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment.",
+          "2": "Constellation, au contraire, est un logiciel local. Vos données demeurent sur votre appareil lui-même. (Eh oui, ça fonctionne même sans Internet !) Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés et que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment.",
           "3": "Pour éviter tout risque de larmes plus tard, vous pouvez dire dès maintenant à votre navigateur de ne pas effacer vos données sans votre permission."
         },
         "persister": "Protéger",
@@ -34,7 +34,20 @@
     },
     "listeNomsProfil": {
       "indiceNom": "Votre nom",
-      "indiceLangue": "Langue"
+      "indiceLangue": "Langue",
+      "texteAucunNom": "Ajouter un nom ci-dessus"
+    }
+  },
+
+  "த": {
+    "communs": {
+      "constellation": "விண்மீன்",
+      "suivant": "அடுத்தது",
+      "retour": "பின்"
+    },
+    "accueil": {
+      "démarrer": "தொடக்கம்",
+      "version": "பதிப்பு {version}"
     }
   }
 }

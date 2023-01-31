@@ -3,6 +3,7 @@ import {ref} from 'vue';
 
 import PagePrincipale from './misesEnPage/PagePrincipale.vue';
 import AccueilInitial from './misesEnPage/AccueilInitial.vue';
+import MenuLangues from './components/langues/MenuLangues.vue';
 
 const initialisé = ref(false);
 </script>
@@ -10,6 +11,7 @@ const initialisé = ref(false);
 <template>
   <v-app>
     <v-main>
+      <MenuLangues />
       <v-fade-transition leave-absolute>
         <AccueilInitial
           v-if="!initialisé"

@@ -7,6 +7,7 @@ specifiers:
   '@constl/mandataire-electron-rendu': ^0.2.3
   '@constl/serveur': ^0.2.1
   '@esbuild-plugins/node-globals-polyfill': ^0.1.1
+  '@lassi-js/kili': ^0.0.1
   '@mdi/font': ^7.1.96
   '@rollup/plugin-node-resolve': ^15.0.1
   '@types/node': ^18.11.18
@@ -32,7 +33,7 @@ specifiers:
   multiformats: 9.9.0
   nano-staged: 0.8.0
   node-gyp-build: ^4.6.0
-  nuchabal: ^2.0.8
+  nuchabal: ^3.0.1
   playwright: 1.30.0
   rollup-plugin-node-builtins: ^2.1.2
   rollup-plugin-node-globals: ^1.4.0
@@ -62,6 +63,7 @@ dependencies:
   '@constl/mandataire-electron-rendu': 0.2.3_@constl+ipa@0.6.7
   '@constl/serveur': 0.2.1_@constl+ipa@0.6.7
   '@esbuild-plugins/node-globals-polyfill': 0.1.1
+  '@lassi-js/kili': 0.0.1_@constl+ipa@0.6.7
   '@mdi/font': 7.1.96
   assert: 2.0.0
   core-js: 3.27.2
@@ -72,7 +74,7 @@ dependencies:
   image-file-resize: 1.0.5
   multiformats: 9.9.0
   node-gyp-build: 4.6.0
-  nuchabal: 2.0.8
+  nuchabal: 3.0.1_@constl+ipa@0.6.7
   rollup-plugin-node-polyfills: 0.2.1
   rollup-plugin-polyfill-node: 0.12.0
   semaphore-async-await: 1.5.1
@@ -1232,6 +1234,22 @@ packages:
 
   /@jridgewell/sourcemap-codec/1.4.14:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
+    dev: false
+
+  /@lassi-js/kili/0.0.1_@constl+ipa@0.6.7:
+    resolution: {integrity: sha512-aDVwBmMoK2wzkrTzuzpG69yHidpZ9w5PdSvvb5CGRvEhLiPlT7HYFcz9XsHGJ5KM3LQmwj+A5jnsw3SG9K84/A==}
+    peerDependencies:
+      '@constl/ipa': ^0.6.7
+    dependencies:
+      '@constl/ipa': 0.6.7_electron@22.0.3
+    dev: false
+
+  /@lassi-js/kili/0.0.2_@constl+ipa@0.6.7:
+    resolution: {integrity: sha512-MechHzaY5rTmUfbFtRmcjhDA2fKR3PgArR9YINAeE61vSOQPpvKpTzykoswMxGHtjxCvb6FhM/tslUAo2XqpEA==}
+    peerDependencies:
+      '@constl/ipa': ^0.6.7
+    dependencies:
+      '@constl/ipa': 0.6.7_electron@22.0.3
     dev: false
 
   /@leichtgewicht/ip-codec/2.0.4:
@@ -4378,6 +4396,11 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
+
+  /deepmerge/4.3.0:
+    resolution: {integrity: sha512-z2wJZXrmeHdvYJp/Ux55wIjqo81G5Bp4c+oELTW+7ar6SogWHajt5a9gO3s3IDaGSAXjDk0vlQKN3rms8ab3og==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /default-gateway/6.0.3:
     resolution: {integrity: sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg==}
@@ -8417,8 +8440,15 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal/2.0.8:
-    resolution: {integrity: sha512-c/h8lFsZkRYzi2qkJru7ooWklht3QsmrkxePIzZUzJYTWhRB6KMK2vYuvvwH+VA9lCph859yNXmjKwEJNbnmsg==}
+  /nuchabal/3.0.1_@constl+ipa@0.6.7:
+    resolution: {integrity: sha512-9JAMz3qwz0doUfK9x9x+8Vo9RwR5kfYayBg4BAXJyRF99OYfZ9wvrlfcuCpkD1Syx5O3p9qe4fo37dOrX7PEHQ==}
+    peerDependencies:
+      '@constl/ipa': ^0.6.7
+    dependencies:
+      '@constl/ipa': 0.6.7_electron@22.0.3
+      '@lassi-js/kili': 0.0.2_@constl+ipa@0.6.7
+      deepmerge: 4.3.0
+      events: 3.3.0
     dev: false
 
   /nugget/2.2.0:

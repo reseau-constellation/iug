@@ -21,6 +21,8 @@
             density="compact"
             variant="outlined"
             :label="indiceNom"
+            @blur="ajouterNom"
+            @keydown.enter="ajouterNom"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -36,24 +38,35 @@
   </v-list>
   <v-list>
     <v-divider class="mb-2" />
-    <ItemNom
-      v-for="nom in listeNoms"
-      :id="nom.id"
-      :key="nom.id"
-      :langue="nom.lng"
-      :nom="nom.nom"
-      :indice-langue="indiceLangue"
-      :indice-nom="indiceNom"
-      @changer-nom="changerNom"
-      @effacer="effacerNom"
-    />
+    <v-scroll-y-transition
+      group
+      tag="ItemNom"
+    >
+      <ItemNom
+        v-for="nom in listeNoms"
+        :id="nom.id"
+        :key="nom.id"
+        :langue="nom.lng"
+        :nom="nom.nom"
+        :indice-langue="indiceLangue"
+        :indice-nom="indiceNom"
+        @changer-nom="changerNom"
+        @effacer="effacerNom"
+      />
+      <div
+        v-if="!listeNoms.length"
+        class="text-center mt-3 text-h6"
+      >
+        {{ texteAucunNom }}
+      </div>
+    </v-scroll-y-transition>
   </v-list>
 </template>
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
 
-import {utiliserLangues} from '/@/fonctions/langues';
+import {utiliserLangues} from '/@/composables/langues';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -63,12 +76,14 @@ const props = defineProps<{
   nomsInitiaux: {[lng: string]: string};
   indiceNom: string;
   indiceLangue: string;
+  texteAucunNom: string;
 }>();
 const emit = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
 
-const {listeLanguesEtCodes} = utiliserLangues();
+const {utiliserListeLanguesEtCodes} = utiliserLangues();
+const listeLanguesEtCodes = utiliserListeLanguesEtCodes();
 
 const noms = ref<{[lng: string]: string}>({});
 onMounted(() => {
@@ -93,7 +108,7 @@ watchEffect(() => {
 
 // Langues
 const languesDisponibles = computed(() => {
-  return listeLanguesEtCodes().filter(x => !listeNoms.value.some(n => n.lng === x.code));
+  return listeLanguesEtCodes.value.filter(x => !listeNoms.value.some(n => n.lng === x.code));
 });
 
 // Changements
@@ -109,20 +124,12 @@ const émettreChangements = () => {
 const changerNom = ({id, nom, lng}: {id: string; nom: string; lng: string}) => {
   if (lng === nouvelleLangue.value) nouvelleLangue.value = undefined;
 
-  const existant = listeNoms.value.find(nm => nm.lng === lng && nm.id !== id);
-  const item = listeNoms.value.find(nm => nm.id === id);
-  if (!item) throw new Error('Item non existant');
-
-  const nomsFinaux = listeNoms.value
+  listeNoms.value = listeNoms.value
+    .filter(nm => nm.lng !== lng)
     .map(nm => {
-      return nm.id === id ? {lng, nom: nom, id: nm.id} : nm;
-    })
-    .map(nm => {
-      return existant && nm.id == existant.id
-        ? {lng: item.id, nom: existant.nom, id: existant.id}
-        : nm;
+      return nm.id === id ? {lng, nom, id: nm.id} : nm;
     });
-  listeNoms.value = nomsFinaux;
+
   émettreChangements();
 };
 

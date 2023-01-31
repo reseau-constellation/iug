@@ -5,6 +5,6 @@ import {registerPlugins} from './communs';
 import type {App} from 'vue';
 
 export function inscrireExtentions(appli: App) {
-  registerPlugins(appli);
   appli.use(constellationNavigateur);
+  registerPlugins(appli);
 }

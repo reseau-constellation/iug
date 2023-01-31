@@ -69,7 +69,11 @@ import type ClientConstellation from '@constl/ipa/dist/client';
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
 const {mdAndUp} = useDisplay();
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {$t} = useI18n();
 
 const constl = inject<ClientConstellation>('constl');
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;

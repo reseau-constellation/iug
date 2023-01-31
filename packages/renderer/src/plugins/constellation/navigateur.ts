@@ -5,6 +5,7 @@ import {mandataire} from '@constl/ipa';
 export default {
   install: (app: App) => {
     const client = mandataire.ipa.générerMandataireProc();
+    app.config.globalProperties.$constl = client;
     app.provide('constl', client);
   },
 };

@@ -107,7 +107,6 @@ const emit = defineEmits<{
 
 const HTMLChoixFichier = ref<HTMLInputElement>();
 const ouvrirFenêtreChoisirImage = () => {
-  console.log('ici');
   HTMLChoixFichier.value?.click();
 };
 

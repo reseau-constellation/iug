@@ -10,7 +10,7 @@
             variant="outlined"
             item-title="lng"
             item-value="code"
-            :items="languesDisponibles"
+            :items="listeLanguesEtCodes"
             :label="indiceLangue"
           ></v-autocomplete>
         </v-col>
@@ -38,10 +38,11 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, ref, watchEffect} from 'vue';
-import {utiliserLangues} from '/@/fonctions/langues';
+import {onMounted, ref, watchEffect} from 'vue';
+import {utiliserLangues} from '/@/composables/langues';
 
-const {listeLanguesEtCodes} = utiliserLangues();
+const {utiliserListeLanguesEtCodes} = utiliserLangues();
+const listeLanguesEtCodes = utiliserListeLanguesEtCodes();
 
 const props = defineProps<{
   langue: string;
@@ -54,10 +55,6 @@ const emit = defineEmits<{
   (é: 'changerNom', info: {id: string; nom: string; lng: string}): void;
   (é: 'effacer', info: {id: string}): void;
 }>();
-
-const languesDisponibles = computed(() => {
-  return listeLanguesEtCodes();
-});
 
 // Initialisation
 const nouveauNom = ref<string>('');
