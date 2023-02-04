@@ -19,7 +19,7 @@
             {{ $t('communs.constellation') }}
           </h1>
           <p class="text-subtitle-1 text-disabled">
-            {{ $t('accueil.version', {version: VERSION_APPLI}) }}
+            {{ $t('accueil.version', {version: versionAppli}) }}
           </p>
 
           <div
@@ -70,6 +70,7 @@ import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {utiliserNumération} from '../plugins/localisation/localisation';
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -77,6 +78,9 @@ const {$t} = useI18n();
 
 const constl = inject<ClientConstellation>('constl');
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
+
+const {formatterVersion} = utiliserNumération();
+const versionAppli = formatterVersion(VERSION_APPLI);
 
 const emit = defineEmits(['entrer']);
 const entrer = () => emit('entrer');

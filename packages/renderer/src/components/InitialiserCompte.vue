@@ -15,6 +15,24 @@
       </v-card-title>
       <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       <v-window v-model="étape">
+        <v-window-item :value="0">
+          <v-card-text class="text-center">
+            <v-btn
+              class="ma-3"
+              variant="flat"
+              color="primary"
+              @click="étape = 1"
+            >
+              {{ $t('accueil.initialiserCompte.nouveauCompte') }}
+            </v-btn>
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+            >
+              {{ $t('accueil.initialiserCompte.connecter') }}
+            </v-btn>
+          </v-card-text>
+        </v-window-item>
         <v-window-item :value="1">
           <v-card-text class="justify-center align-center">
             <ListeNoms
@@ -113,7 +131,7 @@
 
       <v-card-actions>
         <v-btn
-          v-if="étape > 1"
+          v-if="étape > 0"
           variant="text"
           :disabled="!retourActif"
           @click="étape--"
@@ -159,6 +177,8 @@ const étape = ref(0);
 
 const titreCarte = computed(() => {
   switch (étape.value) {
+    case 0:
+      return t('accueil.initialiserCompte.titreDébut');
     case 1:
       return t('accueil.initialiserCompte.titreNoms');
     case 2:
@@ -182,6 +202,8 @@ const sousTitreCarte = computed(() => {
 
 const retourActif = computed(() => {
   switch (étape.value) {
+    case 1:
+      return true;
     case 2:
       return true;
     case 3:

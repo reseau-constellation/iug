@@ -66,11 +66,14 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
 
-import {utiliserLangues} from '/@/composables/langues';
-
 import {v4 as uuidv4} from 'uuid';
 
 import ItemNom from './ItemNom.vue';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
+const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
 const props = defineProps<{
   nomsInitiaux: {[lng: string]: string};
@@ -81,9 +84,6 @@ const props = defineProps<{
 const emit = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
-
-const {utiliserListeLanguesEtCodes} = utiliserLangues();
-const listeLanguesEtCodes = utiliserListeLanguesEtCodes();
 
 const noms = ref<{[lng: string]: string}>({});
 onMounted(() => {
@@ -108,7 +108,7 @@ watchEffect(() => {
 
 // Langues
 const languesDisponibles = computed(() => {
-  return listeLanguesEtCodes.value.filter(x => !listeNoms.value.some(n => n.lng === x.code));
+  return languesEtCodes.value.filter(x => !listeNoms.value.some(n => n.lng === x.code));
 });
 
 // Changements

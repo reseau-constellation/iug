@@ -1,0 +1,82 @@
+{
+  "fr": {
+    "communs": {
+      "constellation": "Constellation",
+      "suivant": "Suivant",
+      "retour": "Retour"
+    },
+    "accueil": {
+      "démarrer": "Démarrer",
+      "version": "Version {version}",
+      "piedDePage": "Julien Malard-Adam",
+      "initialiserCompte": {
+        "titreNoms": "Choisissez votre nom",
+        "sousTitreNoms": "Le plus de langues, le mieux !",
+        "titreImage": "Choisissez une image",
+        "titrePersister": "Persister les données ?",
+        "titreCestParti": "C'est tout !",
+        "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
+        "textePersister": {
+          "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
+          "2": "Constellation, au contraire, est un logiciel local. Vos données demeurent sur votre appareil lui-même. (Eh oui, ça fonctionne même sans Internet !) Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés et que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment.",
+          "3": "Pour éviter tout risque de larmes plus tard, vous pouvez dire dès maintenant à votre navigateur de ne pas effacer vos données sans votre permission."
+        },
+        "persister": "Protéger",
+        "pasPersister": "Peut-être plus tard",
+        "déjàPersistées": "Vos données sont déjà protégées !",
+        "bienvenu": "Bienvenu à Constellation",
+        "sousTitreBienvenu": "On est heureux de vous voir !",
+        "cestParti": "C'est parti !"
+      }
+    },
+    "imageÉditable": {
+      "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
+    },
+    "listeNomsProfil": {
+      "indiceNom": "Votre nom",
+      "indiceLangue": "Langue",
+      "texteAucunNom": "Ajouter un nom ci-dessus"
+    },
+    "languesInterface": {
+      "contribuer": "Contribuer"
+    }
+  },
+
+  "த": {
+    "communs": {
+      "constellation": "விண்மீன்",
+      "suivant": "அடுத்தது",
+      "retour": "பின்"
+    },
+    "accueil": {
+      "démarrer": "தொடக்கம்",
+      "version": "பதிப்பு {version}",
+      "initialiserCompte": {
+        "titreDébut": "கணக்கு ஏற்கனவே இருக்கிறதா?",
+        "titreNoms": "உங்கள் பெயரை உள்ளிடுங்கள்",
+        "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
+        "titreImage": "படத்தை உள்ளிடுங்கள்",
+        "titrePersister": "உங்கள் தரவுகளை பாதுகாக்கட்டுமா?",
+        "titreCestParti": "அவ்வளவு தான்!",
+        "nouveauCompte": "புது கணக்கு",
+        "connecter": "கணக்கை இணையு",
+        "texteImage": "நீங்கள் விரும்பினால், மேலே தொட்டு உங்கள் பயனாளர் படத்தை தேர்ந்தெடுகொங்கள்.",
+        "textePersister": {
+          "1": "விண்மீன் உங்கள் கூகல் ஆவணங்கள் அல்லது மின்னஞ்சல் கணக்கு மாதிரி ஒரு மையப்படுத்தப்பட்ட அமைப்பு இருந்தால், உங்கள் தரவுகள் எல்லாம் எங்கோ ஒரு மையப்படுத்தப்பட்ட வழங்கியில் சேமிக்கப்படும். தாங்களின் தரவுகளை திருத்தவும் அல்லது பார்க்கவும் என்றால், இந்த வழங்கியின் அனுமதி அவசியமாக வாங்கிவிட்டு தான் உங்களுக்கு சொந்த தரவுகளுக்கு அணுகல் அனுமதி கிடைக்கும்.",
+          "2": "ஆனால் விண்மீன் விநியோகிக்கப்பட்ட ஒரு மென்பொருள் ஆகும். உங்கள் தரவுகள் உங்கள் சாதனத்திலேயே சேமிக்கப்படும் என்பதால் இணையம் தொடர்பு கிடைக்காவிட்டாலும் விண்மீனை பயன்படுத்தலாம். Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés et que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment."
+        },
+        "persister": "இப்பொவே பாதுகாக்கு",
+        "pasPersister": "அப்புறமாக பார்க்கிறேன்",
+        "déjàPersistées": "உங்கள் தரவுகள் எற்கனவே பாதுகாக்கப்பட்டன",
+        "bienvenu": "விண்மீன்க்கு உங்களை வரவேற்கிறோம்",
+        "sousTitreBienvenu": "எங்களுக்கு மகிழ்ச்சி!",
+        "cestParti": "தொடக்கலாம்"
+      }
+    }
+  },
+  "kaq": {
+    "communs": {
+      "constellation": "Ch'umil"
+    }
+  }
+}

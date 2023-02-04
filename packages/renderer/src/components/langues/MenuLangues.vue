@@ -18,28 +18,26 @@
         max-height="500px"
         min-width="200px"
       >
+        <v-list-item>
+          <template #prepend>
+            <v-icon> mdi-plus </v-icon>
+          </template>
+          <v-list-item-title>
+            {{ $t('languesInterface.contribuer') }}
+          </v-list-item-title>
+        </v-list-item>
+        <v-divider />
         <item-langue
           v-for="code in codesLanguesDisponibles"
           :key="code"
           :code="code"
-          :selectionnee="code === langueSélectionnée"
+          :selectionnee="code === langue"
         />
       </v-list>
-      <v-divider />
       <!--<dialogue-traductions-interface>
-        <template v-slot:activator="{on, attrs}">
-          <v-list-item
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-list-item-icon>
-              <v-icon>mdi-pencil-outline</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              {{ $t('opsLangue.Contribuer') }}
-            </v-list-item-content>
-          </v-list-item>
-        </template>
+        <template v-slot:activator="{on, attrs}">-->
+
+      <!--</template>
       </dialogue-traductions-interface>-->
     </v-menu>
   </v-btn>
@@ -47,16 +45,19 @@
 
 <script setup lang="ts">
 import {useRtl} from 'vuetify';
-import {utiliserLangues} from '/@/composables/langues';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 // import dialogueTraductionsInterface from '@/components/commun/traductions/dialogueTraductionsInterface.vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
+const {$t} = useI18n();
 
 const {isRtl} = useRtl();
 
-const {utiliserCodesLanguesDisponibles, utiliserLangueSélectionnée} = utiliserLangues();
-const codesLanguesDisponibles = utiliserCodesLanguesDisponibles();
-const langueSélectionnée = utiliserLangueSélectionnée();
+const {langue} = utiliserLangues();
+const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 </script>
 
 <style></style>

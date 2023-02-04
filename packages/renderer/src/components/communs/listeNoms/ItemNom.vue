@@ -10,7 +10,7 @@
             variant="outlined"
             item-title="lng"
             item-value="code"
-            :items="listeLanguesEtCodes"
+            :items="languesEtCodes"
             :label="indiceLangue"
           ></v-autocomplete>
         </v-col>
@@ -39,10 +39,10 @@
 
 <script setup lang="ts">
 import {onMounted, ref, watchEffect} from 'vue';
-import {utiliserLangues} from '/@/composables/langues';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const {utiliserListeLanguesEtCodes} = utiliserLangues();
-const listeLanguesEtCodes = utiliserListeLanguesEtCodes();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
+const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
 const props = defineProps<{
   langue: string;

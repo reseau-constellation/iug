@@ -1,4 +1,4 @@
-import {computed, inject, onMounted, onUnmounted, ref} from 'vue';
+import {computed, inject, onMounted, onUnmounted, ref, watchEffect} from 'vue';
 import type {Ref} from 'vue';
 import type {App} from 'vue';
 import {
@@ -10,70 +10,124 @@ import type {முன்னேற்றம்_தகவல்கள்} from '.
 import type {மரம்_மொழிபெயர்ப்பு_அகராதி_வகை} from './கிளிமூக்கு';
 import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
 import {useI18n} from 'vue-i18n';
+import {utiliserLangues} from '../localisation/localisation';
+import type {Nuchabäl} from 'nuchabal';
 
-const utililiserLanguesDisponibles = (): {languesDisponibles: Ref<string[]>} => {
-  const kilimukku = inject<கிளிமூக்கு>('கிளிமூக்கு');
-  if (!kilimukku) throw new Error('Kilimukku non installé');
-  const languesDisponibles = ref<string[]>([]);
+const useI18n_ = computed(() => {
+  const செய்திகள் = inject<Ref<மரம்_மொழிபெயர்ப்பு_அகராதி_வகை>>('செய்திகள்');
+  const {langue, languesAlternatives} = utiliserLangues();
 
-  let fOublier: schémaFonctionOublier | undefined;
+  // Apparament il faut passer locale explicitement ici.
+  const i18n = useI18n({
+    locale: langue.value,
+    fallbackLocale: languesAlternatives.value,
+    messages: செய்திகள்?.value || {},
+  });
+  watchEffect(() => {
+    i18n.locale.value = langue.value;
+  });
+
+  return i18n;
+});
+
+const கிடைக்கும்_மொழிகளை_பயன்படுத்து = () => {
+  const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
+  const nuchabäl = inject<{"nuch'ab'äl": Nuchabäl}>('locales')?.["nuch'ab'äl"];
+  if (!கிளி) throw new Error('கிளிமூக்கு கிடைத்ததில்லை.');
+  if (!nuchabäl) throw new Error("Nuch'ab'äl கிடைத்ததில்லை.");
+  const கிடைக்கும்_மொழிகள் = ref<string[]>([]);
+
+  let செ_மறந்துவிடு: schémaFonctionOublier | undefined;
   onMounted(async () => {
-    console.log('onMounted');
-    fOublier = await kilimukku.மொழிகளை_கேள்ளு({
-      செ: இ => (languesDisponibles.value = இ),
+    செ_மறந்துவிடு = await கிளி.மொழிகளை_கேள்ளு({
+      செ: இ => (கிடைக்கும்_மொழிகள்.value = இ),
     });
   });
   onUnmounted(async () => {
-    console.log('onUnmounted');
-    if (fOublier) await fOublier();
+    if (செ_மறந்துவிடு) await செ_மறந்துவிடு();
   });
 
-  return {languesDisponibles};
+  // COdes langues disponibles
+  const fsOublier: (schémaFonctionOublier | (() => void))[] = [];
+
+  const kilimukku = inject<கிளிமூக்கு>('கிளிமூக்கு');
+
+  const codesLanguesKilimukku = ref<string[]>([]);
+  if (kilimukku) {
+    kilimukku
+      .மொழிகளை_கேள்ளு({
+        செ: மொழிகள் => (codesLanguesKilimukku.value = மொழிகள்),
+        பரிந்துரைகளும்: true,
+      })
+      .then(f => fsOublier.push(f));
+  }
+
+  const codesLanguesNuchabäl = ref<string[]>([]);
+
+  const fOublierCodesLanguesNuchabäl = nuchabäl.tatzeqelbejKonojelChabäl({
+    sm: codes => (codesLanguesNuchabäl.value = codes),
+  });
+  fsOublier.push(fOublierCodesLanguesNuchabäl);
+
+  onUnmounted(async () => {
+    await Promise.all(fsOublier.map(f => f()));
+  });
+
+  const codesLanguesDisponibles = computed(() => {
+    return [...new Set([...codesLanguesNuchabäl.value, ...codesLanguesKilimukku.value])];
+  });
+
+  const languesEtCodes = computed<{lng?: string; code: string}[]>(() => {
+    // On a pas besoin de lier les noms de langues de manière réactive parce que tatzeqelbejKonojelChabäl détectera
+    // tout changement aux noms de langues, pas juste à leurs codes.
+    return codesLanguesDisponibles.value
+      .map(code => {
+        return {
+          code,
+          lng: nuchabäl.rubiChabäl({runuk: code}),
+        };
+      })
+      .filter(x => x.lng) as {lng: string; code: string}[];
+  });
+
+  const nomLangue = (code: string) => {
+    return computed(() => {
+      return languesEtCodes.value.find(x => x.code === code)?.lng;
+    });
+  };
+
+  return {
+    codesLanguesDisponibles,
+    languesEtCodes,
+    nomLangue,
+    கிடைக்கும்_மொழிகள்,
+  };
 };
 
-const utiliserProgrèsLangue = ({
+const மொழி_முன்னேற்றத்தை_பயன்படுத்து = ({
   மொழி,
   வகை = 'வார்த்தை',
 }: {
   மொழி: string;
   வகை: 'வார்த்தை' | 'சாபி';
-}): {progrèsLangue: Ref<முன்னேற்றம்_தகவல்கள் | undefined>} => {
-  const kilimukku = inject<கிளிமூக்கு>('கிளிமூக்கு');
-  if (!kilimukku) throw new Error('Kilimukku non installé');
-  const progrèsLangue = ref<முன்னேற்றம்_தகவல்கள்>();
-  let fOublier: schémaFonctionOublier | undefined;
+}): {மொழி_முன்னேற்றம்: Ref<முன்னேற்றம்_தகவல்கள் | undefined>} => {
+  const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
+  if (!கிளி) throw new Error('கிளிமூக்கு கிடைத்ததில்லை.');
+
+  const மொழி_முன்னேற்றம் = ref<முன்னேற்றம்_தகவல்கள்>();
+
+  let செ_மறந்துவிடு: schémaFonctionOublier | undefined;
   onMounted(async () => {
-    fOublier = await kilimukku.முன்னேற்றத்தை_கேள்ளு({
+    செ_மறந்துவிடு = await கிளி.முன்னேற்றத்தை_கேள்ளு({
       மொழி,
       வகை,
-      செ: இ => (progrèsLangue.value = இ),
+      செ: இ => (மொழி_முன்னேற்றம்.value = இ),
     });
   });
   onUnmounted(async () => {
-    if (fOublier) await fOublier();
+    if (செ_மறந்துவிடு) await செ_மறந்துவிடு();
   });
-  return {progrèsLangue};
-};
-
-const useI18n_ = computed(() => {
-  const செய்திகள் = inject<Ref<மரம்_மொழிபெயர்ப்பு_அகராதி_வகை>>('செய்திகள்');
-  const {locale} = useI18n();
-
-  // Apparament il faut passer locale explicitement ici.
-  return useI18n({
-    locale: locale.value,
-    messages: செய்திகள்?.value || {},
-  });
-});
-
-export const கிளிமூக்கை_உபயோகி = () => {
-  return {
-    utililiserLanguesDisponibles,
-    utiliserProgrèsLangue,
-    useI18n: () => {
-      return {...useI18n_.value, $t: useI18n_.value.t};
-    },
-  };
+  return {மொழி_முன்னேற்றம்};
 };
 
 export const கிளிமூக்கு_உருவாக்கு = ({
@@ -104,6 +158,16 @@ export const கிளிமூக்கு_உருவாக்கு = ({
       செயலி.config.globalProperties.$கிளிமூக்கு = கிளி;
       செயலி.provide('செய்திகள்', செய்திகள்);
       செயலி.provide('கிளிமூக்கு', கிளி);
+    },
+  };
+};
+
+export const கிளிமூக்கை_உபயோகி = () => {
+  return {
+    கிடைக்கும்_மொழிகளை_பயன்படுத்து,
+    மொழி_முன்னேற்றத்தை_பயன்படுத்து,
+    useI18n: () => {
+      return {...useI18n_.value, $t: useI18n_.value.t};
     },
   };
 };
