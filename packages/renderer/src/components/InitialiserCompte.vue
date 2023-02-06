@@ -16,7 +16,7 @@
       <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       <v-window
         v-model="étape"
-        style="overflow-y: auto;"
+        style="overflow-y: auto"
       >
         <v-window-item :value="0">
           <v-card-text class="text-center">
@@ -99,7 +99,7 @@
                     (comptesEnLigne.length
                       ? $t('accueil.initialiserCompte.indiceComptePasVu')
                       : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                    $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -159,7 +159,7 @@
               >
                 {{ $t('accueil.initialiserCompte.pasPersister') }}
               </v-btn>
-            </div>            
+            </div>
           </v-card-text>
         </v-window-item>
         <v-window-item :value="6">
@@ -176,8 +176,7 @@
             <span class="text-caption text-grey">{{
               $t('accueil.initialiserCompte.sousTitreBienvenu')
             }}</span>
-            toi {{ compteÀRejoindre }}
-            moi {{ idCompte }}
+            toi {{ compteÀRejoindre }} moi {{ idCompte }}
             <p>
               <v-btn
                 class="mt-3"
@@ -454,5 +453,5 @@ const créerCompte = async () => {
 };
 
 const idCompte = ref();
-constl?.suivreIdBdCompte({f: id => idCompte.value = id});
+constl?.suivreIdBdCompte({f: id => (idCompte.value = id)});
 </script>
