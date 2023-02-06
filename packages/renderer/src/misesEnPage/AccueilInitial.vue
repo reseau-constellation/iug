@@ -63,8 +63,8 @@
 import {onMounted, ref, inject, onUnmounted, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
-import type ClientConstellation from '@constl/ipa/dist/client';
+import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';

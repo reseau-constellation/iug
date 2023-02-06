@@ -8,7 +8,7 @@ import {
 } from './கிளிமூக்கு';
 import type {முன்னேற்றம்_தகவல்கள்} from './கிளிமூக்கு';
 import type {மரம்_மொழிபெயர்ப்பு_அகராதி_வகை} from './கிளிமூக்கு';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
+import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import {useI18n} from 'vue-i18n';
 import {utiliserLangues} from '../localisation/localisation';
 import type {Nuchabäl} from 'nuchabal';
@@ -23,8 +23,10 @@ const useI18n_ = computed(() => {
     fallbackLocale: languesAlternatives.value,
     messages: செய்திகள்?.value || {},
   });
+  const { codesLanguesDisponibles: localesKilimukku } = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
   watchEffect(() => {
     i18n.locale.value = langue.value;
+    i18n.fallbackLocale.value = [...languesAlternatives.value, ...localesKilimukku.value.filter(l=>l !== langue.value && !languesAlternatives.value.includes(l))];
   });
 
   return i18n;
@@ -47,7 +49,7 @@ const கிடைக்கும்_மொழிகளை_பயன்படு
     if (செ_மறந்துவிடு) await செ_மறந்துவிடு();
   });
 
-  // COdes langues disponibles
+  // Codes langues disponibles
   const fsOublier: (schémaFonctionOublier | (() => void))[] = [];
 
   const kilimukku = inject<கிளிமூக்கு>('கிளிமூக்கு');

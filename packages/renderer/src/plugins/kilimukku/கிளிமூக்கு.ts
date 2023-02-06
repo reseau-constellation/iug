@@ -3,7 +3,7 @@ import type {
   schémaFonctionOublier,
   schémaFonctionSuivi,
   schémaRetourFonctionRechercheParProfondeur,
-} from '@constl/ipa/dist/utils';
+} from '@constl/ipa/dist/src/utils';
 import {
   சாபி_நெடுவரிசை_அடையாளம்,
   இலக்கு_மொழி_நெடுவரிசை_அடையாளம்,
@@ -425,9 +425,10 @@ export class கிளிமூக்கு extends கிளி<மொழிப
         const அளவு = Object.fromEntries(
           தகவல்கள்.சாபிகள்.map(சாபி => [
             சாபி,
-            தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி]?.[this.மூல்_மொழி]?.length || (
-              தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி]? Object.values(தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி])[0]?.length : 0
-              ),
+            தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி]?.[this.மூல்_மொழி]?.length ||
+              (தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி]
+                ? Object.values(தகவல்கள்.மொழிபெயர்ப்புகள்?.[சாபி])[0]?.length
+                : 0),
           ]),
         );
         const மொத்தம் = Object.values(அளவு).reduce((இ, ஈ) => இ + ஈ, 0);

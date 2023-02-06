@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import {inject, ref, onMounted, onUnmounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/utils';
+import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 
 const constl: ClientConstellation = inject('constl')!;
 const image = ref<Uint8Array | null>();
