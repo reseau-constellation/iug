@@ -1,5 +1,5 @@
 import type ClientConstellation from '@constl/ipa';
-import type {App, Ref} from 'vue';
+import type {App, Ref, ComputedRef} from 'vue';
 import {onUnmounted} from 'vue';
 import Cookies from 'js-cookie';
 import {Nuchabäl} from 'nuchabal';
@@ -63,10 +63,20 @@ export const utiliserLangues = () => {
     Cookies.set('paramètres.langue', JSON.stringify(langueEtAlternatives.value));
   };
 
+  const traduireNom = (noms: Ref<{[lng: string]: string}>): ComputedRef<string | undefined> => {
+    return computed(() => {
+      for (const lng of langueEtAlternatives.value) {
+        if (noms.value[lng]) return noms.value[lng];
+      }
+      return undefined;
+    });
+  };
+
   return {
     langue,
     languesAlternatives,
     choisirLangues,
+    traduireNom,
   };
 };
 
