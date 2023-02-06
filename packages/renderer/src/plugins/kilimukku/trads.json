@@ -52,10 +52,12 @@
       "démarrer": "தொடக்கம்",
       "version": "பதிப்பு {version}",
       "initialiserCompte": {
-        "titreDébut": "கணக்கு ஏற்கனவே இருக்கிறதா?",
+        "titreCheminement": "கணக்கு ஏற்கனவே இருக்கிறதா?",
+        "sousTitreCheminement": "புது கணக்கை உருவாக்கலாமா, ஏற்கனவே இருக்கும் கணக்கில் உள்ளிடலாமா?",
         "titreNoms": "உங்கள் பெயரை உள்ளிடுங்கள்",
         "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
         "titreImage": "படத்தை உள்ளிடுங்கள்",
+        "titreConnecter": "கணக்கில் உள்ளிடு",
         "titrePersister": "உங்கள் தரவுகளை பாதுகாக்கட்டுமா?",
         "titreCestParti": "அவ்வளவு தான்!",
         "nouveauCompte": "புது கணக்கு",
