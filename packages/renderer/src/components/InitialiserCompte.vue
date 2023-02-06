@@ -14,20 +14,24 @@
         <span>{{ titreCarte }}</span>
       </v-card-title>
       <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-      <v-window v-model="étape">
+      <v-window
+        v-model="étape"
+        style="overflow-y: auto;"
+      >
         <v-window-item :value="0">
           <v-card-text class="text-center">
             <v-btn
               class="ma-3"
               variant="flat"
               color="primary"
-              @click="étape = 1"
+              @click="suivreCheminementNouveauCompte"
             >
               {{ $t('accueil.initialiserCompte.nouveauCompte') }}
             </v-btn>
             <v-btn
               class="ma-3"
               variant="outlined"
+              @click="suivreCheminementConnecterCompte"
             >
               {{ $t('accueil.initialiserCompte.connecter') }}
             </v-btn>
@@ -60,6 +64,64 @@
           </v-card-text>
         </v-window-item>
         <v-window-item :value="3">
+          <v-card-text class="text-center">
+            <v-fade-transition>
+              <div v-show="connexionsSFIP.length">
+                <p class="mb-4">
+                  {{ $t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
+                </p>
+
+                <v-select
+                  v-model="compteÀRejoindre"
+                  :items="comptesEnLigne.map(x => x.idBdCompte)"
+                  :loading="!comptesEnLigne.length"
+                  :disabled="!comptesEnLigne.length"
+                  :label="$t('accueil.initialiserCompte.indiceCompte')"
+                  variant="outlined"
+                >
+                  <template #selection="{item, props}">
+                    <JetonMembre
+                      v-bind="props"
+                      :compte="item.value"
+                    />
+                  </template>
+                  <template #item="{item, props}">
+                    <ItemMembre
+                      v-bind="props"
+                      :compte="item.value"
+                      :montrer-anonymes="false"
+                      simple
+                    />
+                  </template>
+                </v-select>
+                <p class="my-3 text-disabled">
+                  {{
+                    (comptesEnLigne.length
+                      ? $t('accueil.initialiserCompte.indiceComptePasVu')
+                      : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
+                      $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                  }}
+                </p>
+              </div>
+            </v-fade-transition>
+            <v-fade-transition>
+              <div v-show="!connexionsSFIP.length">
+                {{ $t('accueil.initialiserCompte.texteEnConnexion') }}
+              </div>
+            </v-fade-transition>
+          </v-card-text>
+        </v-window-item>
+        <v-window-item :value="4">
+          <v-card-text class="text-center">
+            <p class="mb-4">{{ $t('accueil.initialiserCompte.texteCodeSecret') }}</p>
+            <v-text-field
+              v-model="codeSecret"
+              :label="$t('accueil.initialiserCompte.indiceCodeSecret')"
+              variant="outlined"
+            ></v-text-field>
+          </v-card-text>
+        </v-window-item>
+        <v-window-item :value="5">
           <v-card-text class="align-center">
             <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.1') }} </p>
             <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.2') }} </p>
@@ -97,10 +159,10 @@
               >
                 {{ $t('accueil.initialiserCompte.pasPersister') }}
               </v-btn>
-            </div>
+            </div>            
           </v-card-text>
         </v-window-item>
-        <v-window-item :value="4">
+        <v-window-item :value="6">
           <v-card-text class="pa-4 text-center">
             <v-img
               class="mb-4"
@@ -114,6 +176,8 @@
             <span class="text-caption text-grey">{{
               $t('accueil.initialiserCompte.sousTitreBienvenu')
             }}</span>
+            toi {{ compteÀRejoindre }}
+            moi {{ idCompte }}
             <p>
               <v-btn
                 class="mt-3"
@@ -131,20 +195,20 @@
 
       <v-card-actions>
         <v-btn
-          v-if="étape > 0"
+          v-show="retourActif.visible"
           variant="text"
-          :disabled="!retourActif"
-          @click="étape--"
+          :disabled="!retourActif.actif"
+          @click="retour"
         >
           {{ $t('communs.retour') }}
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn
-          v-if="étape < 4"
+          v-show="suivantActif.visible"
           color="primary"
           variant="flat"
-          :disabled="!suivantActif"
-          @click="étape++"
+          :disabled="!suivantActif.actif"
+          @click="suivant"
         >
           {{ $t('communs.suivant') }}
         </v-btn>
@@ -154,15 +218,21 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref, inject} from 'vue';
+import {computed, ref, inject, onMounted, onUnmounted} from 'vue';
 import {useDisplay} from 'vuetify';
-import type ClientConstellation from '@constl/ipa/dist/client';
+import {isBrowser} from 'wherearewe';
+import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import ImageÉditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import JetonMembre from './membres/JetonMembre.vue';
+
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t, $t} = useI18n();
 
@@ -174,57 +244,127 @@ const constl = inject<ClientConstellation>('constl');
 // Navigation générale
 const dialogue = ref(false);
 const étape = ref(0);
+const listeÉtapes = [
+  'cheminement',
+  'noms',
+  'image',
+  'compteÀRejoindre',
+  'motDePasse',
+  'persister',
+  'cestParti',
+];
+const cheminement = ref<'nouveau' | 'connecter'>();
+
+const suivant = () => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'image':
+      étape.value = listeÉtapes.indexOf(isBrowser ? 'persister' : 'cestParti');
+      break;
+
+    case 'motDePasse':
+      étape.value = listeÉtapes.indexOf(isBrowser ? 'persister' : 'cestParti');
+      break;
+
+    default:
+      étape.value++;
+      break;
+  }
+};
+
+const retour = () => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'compteÀRejoindre':
+      étape.value = listeÉtapes.indexOf('cheminement');
+      break;
+
+    case 'cestParti':
+      étape.value = listeÉtapes.indexOf(
+        isBrowser ? 'persister' : cheminement.value === 'connecter' ? 'motDePasse' : 'image',
+      );
+      break;
+
+    case 'persister':
+      étape.value = listeÉtapes.indexOf(cheminement.value === 'connecter' ? 'motDePasse' : 'image');
+      break;
+
+    default:
+      étape.value--;
+      break;
+  }
+};
+
+const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'cheminement':
+      return {actif: false, visible: false};
+    case 'noms':
+      return {actif: Object.keys(noms.value).length > 0, visible: true};
+    case 'compteÀRejoindre':
+      return {actif: !!compteÀRejoindre.value, visible: true};
+    case 'motDePasse':
+      return {actif: !!codeSecret.value, visible: true};
+    case 'cestParti':
+      return {actif: false, visible: false};
+    default:
+      return {actif: true, visible: true};
+  }
+});
+
+const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'cheminement':
+      return {actif: false, visible: false};
+    case 'cestParti':
+      return {actif: !enCréation.value, visible: true};
+    default:
+      return {actif: true, visible: true};
+  }
+});
+
+const suivreCheminementNouveauCompte = () => {
+  cheminement.value = 'nouveau';
+  étape.value = listeÉtapes.indexOf('noms');
+};
+const suivreCheminementConnecterCompte = () => {
+  cheminement.value = 'connecter';
+  étape.value = listeÉtapes.indexOf('compteÀRejoindre');
+};
 
 const titreCarte = computed(() => {
-  switch (étape.value) {
-    case 0:
-      return t('accueil.initialiserCompte.titreDébut');
-    case 1:
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'cheminement':
+      return t('accueil.initialiserCompte.titreCheminement');
+    case 'noms':
       return t('accueil.initialiserCompte.titreNoms');
-    case 2:
+    case 'image':
       return t('accueil.initialiserCompte.titreImage');
-    case 3:
+    case 'compteÀRejoindre':
+      return t('accueil.initialiserCompte.titreCompteÀRejoindre');
+    case 'motDePasse':
+      return t('accueil.initialiserCompte.titreMotDePasse');
+    case 'persister':
       return t('accueil.initialiserCompte.titrePersister');
-    case 4:
+    case 'cestParti':
       return t('accueil.initialiserCompte.titreCestParti');
     default:
       return '';
   }
 });
+
 const sousTitreCarte = computed(() => {
-  switch (étape.value) {
-    case 1:
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'cheminement':
+      return t('accueil.initialiserCompte.sousTitreCheminement');
+    case 'noms':
       return t('accueil.initialiserCompte.sousTitreNoms');
     default:
       return '';
-  }
-});
-
-const retourActif = computed(() => {
-  switch (étape.value) {
-    case 1:
-      return true;
-    case 2:
-      return true;
-    case 3:
-      return true;
-    case 4:
-      return !enCréation.value;
-    default:
-      return false;
-  }
-});
-
-const suivantActif = computed(() => {
-  switch (étape.value) {
-    case 1:
-      return Object.keys(noms.value).length > 0;
-    case 2:
-      return true;
-    case 3:
-      return true;
-    default:
-      return false;
   }
 });
 
@@ -251,29 +391,68 @@ const imageChangée = (img?: ArrayBuffer) => {
   imageSélectionnée.value = img;
 };
 
+// Rejoindre compte
+const codeSecret = ref<string>();
+const compteÀRejoindre = ref<string>();
+const comptesEnLigne = ref<infoMembreRéseau[]>([]);
+const connexionsSFIP = ref<
+  {
+    addr: string;
+    peer: string;
+  }[]
+>([]);
+const fsOublierComptes: schémaFonctionOublier[] = [];
+onMounted(async () => {
+  const monIdCompte = await constl?.obtIdCompte();
+  const retourComptes = await constl?.réseau?.suivreComptesRéseauEtEnLigne({
+    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idBdCompte !== monIdCompte)),
+    profondeur: Infinity,
+  });
+  if (retourComptes?.fOublier) fsOublierComptes.push(retourComptes.fOublier);
+
+  const fOublierConnexionsSFIP = await constl?.réseau?.suivreConnexionsPostesSFIP({
+    f: connexions => (connexionsSFIP.value = connexions),
+  });
+  if (fOublierConnexionsSFIP) fsOublierComptes.push(fOublierConnexionsSFIP);
+});
+onUnmounted(async () => {
+  await Promise.all(fsOublierComptes.map(f => f()));
+});
+
 // Persister les données
 const persisterDonnées = async () => {
   const persisté = await navigator.storage.persist();
   if (persisté) {
-    étape.value++;
+    suivant();
     donnéesPersistées.value = true;
   }
 };
 const donnéesPersistées = ref(false);
 navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 
-// Création compte
+// Création ou connexion compte
 const enCréation = ref(false);
 const créerCompte = async () => {
   enCréation.value = true;
   if (!constl) return;
-  for (const [lng, nom] of Object.entries(noms.value)) {
-    await constl.profil?.sauvegarderNom({langue: lng, nom});
-  }
-  if (imageSélectionnée.value) {
-    await constl.profil?.sauvegarderImage({image: imageSélectionnée.value});
+  if (cheminement.value === 'nouveau') {
+    for (const [lng, nom] of Object.entries(noms.value)) {
+      await constl.profil?.sauvegarderNom({langue: lng, nom});
+    }
+    if (imageSélectionnée.value) {
+      await constl.profil?.sauvegarderImage({image: imageSélectionnée.value});
+    }
+  } else {
+    if (!compteÀRejoindre.value || !codeSecret.value) return;
+    await constl.demanderEtPuisRejoindreCompte({
+      idCompte: compteÀRejoindre.value,
+      codeSecret: codeSecret.value,
+    });
   }
 
   enCréation.value = false;
 };
+
+const idCompte = ref();
+constl?.suivreIdBdCompte({f: id => idCompte.value = id});
 </script>

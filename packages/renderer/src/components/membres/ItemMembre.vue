@@ -1,0 +1,74 @@
+<template>
+  <v-list-item
+    v-show="visible"
+    class="text-start"
+    :prepend-avatar="srcImgProfil || imgDéfaut"
+    density="compact"
+  >
+    <template #title>
+      {{ nomTraduit || $t('communs.anonyme') }}
+    </template>
+  </v-list-item>
+</template>
+<script setup lang="ts">
+import type ClientConstellation from '@constl/ipa';
+import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import {ref, inject, onMounted, computed, onUnmounted} from 'vue';
+import {utiliserImagesDéco} from '/@/composables/images';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
+
+const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
+console.log();
+
+const constl = inject<ClientConstellation>('constl');
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {$t} = useI18n();
+
+// Nom d'utilisatrice
+const {traduireNom} = utiliserLangues();
+
+const noms = ref<{[lng: string]: string}>({});
+const nomTraduit = traduireNom(noms);
+
+let fOublierNoms: (() => Promise<void>) | undefined = undefined;
+onMounted(async () => {
+  fOublierNoms = await constl?.réseau?.suivreNomsMembre({
+    idCompte: props.compte,
+    f: x => (noms.value = x),
+  });
+});
+onMounted(async () => {
+  if (fOublierNoms) await fOublierNoms();
+});
+
+// Visibilité
+const visible = computed(() => {
+  return props.montrerAnonymes || nomTraduit.value;
+});
+
+// Image
+const imageProfil = ref<Uint8Array | null>();
+const srcImgProfil = computed(() => {
+  if (imageProfil.value) {
+    return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
+  } else {
+    return undefined;
+  }
+});
+let fOublierImageProfil: schémaFonctionOublier | undefined = undefined;
+onMounted(async () => {
+  fOublierImageProfil = await constl?.réseau?.suivreImageMembre({
+    idCompte: props.compte,
+    f: image => (imageProfil.value = image),
+  });
+});
+onUnmounted(async () => {
+  if (fOublierImageProfil) await fOublierImageProfil();
+});
+
+const {obtImageDéco} = utiliserImagesDéco();
+const imgDéfaut = ref<string>();
+obtImageDéco('profil').then(x => (imgDéfaut.value = x));
+</script>

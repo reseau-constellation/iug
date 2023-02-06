@@ -3,7 +3,8 @@
     "communs": {
       "constellation": "Constellation",
       "suivant": "Suivant",
-      "retour": "Retour"
+      "retour": "Retour",
+      "anonyme": "Anonyme"
     },
     "accueil": {
       "démarrer": "Démarrer",
@@ -13,8 +14,18 @@
         "titreNoms": "Choisissez votre nom",
         "sousTitreNoms": "Le plus de langues, le mieux !",
         "titreImage": "Choisissez une image",
+        "titreMotDePasse": "Code secret",
         "titrePersister": "Persister les données ?",
         "titreCestParti": "C'est tout !",
+        "texteEnConnexion": "Connection au réseau Constellation en cours. Assurez-vous que vous êtes bien en ligne.",
+        "texteCompteÀRejoindre": "Ouvrez votre compte Constellation sur un autre dispositif déjà connecté, puis choisissez votre compte ci-dessous.",
+        "indiceCompte": "Compte",
+        "texteCodeSecret": "Sur votre autre dispositif, choisissez « Connecter un dispositif » et puis entrez le mot de passe ci-dessous.",
+        "indiceCodeSecret": "Code secret",
+        "indiceComptePasVu": "Vous ne le voyez pas ?",
+        "indiceRechercheComptes": "On est en train de rechercher.",
+        "indiceEssaieDeConnecter": " Attendez un peu, puis assurez-vous qu'un dispositif déjà connecté à votre compte Constellation est bien en ligne.",
+        "indiceMotDePasse": "Code secret",
         "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
         "textePersister": {
           "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
@@ -57,7 +68,7 @@
         "titreNoms": "உங்கள் பெயரை உள்ளிடுங்கள்",
         "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
         "titreImage": "படத்தை உள்ளிடுங்கள்",
-        "titreConnecter": "கணக்கில் உள்ளிடு",
+        "titreCompteÀRejoindre": "கணக்கில் உள்ளிடு",
         "titrePersister": "உங்கள் தரவுகளை பாதுகாக்கட்டுமா?",
         "titreCestParti": "அவ்வளவு தான்!",
         "nouveauCompte": "புது கணக்கு",

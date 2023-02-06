@@ -23,10 +23,15 @@ const useI18n_ = computed(() => {
     fallbackLocale: languesAlternatives.value,
     messages: செய்திகள்?.value || {},
   });
-  const { codesLanguesDisponibles: localesKilimukku } = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+  const {codesLanguesDisponibles: localesKilimukku} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
   watchEffect(() => {
     i18n.locale.value = langue.value;
-    i18n.fallbackLocale.value = [...languesAlternatives.value, ...localesKilimukku.value.filter(l=>l !== langue.value && !languesAlternatives.value.includes(l))];
+    i18n.fallbackLocale.value = [
+      ...languesAlternatives.value,
+      ...localesKilimukku.value.filter(
+        l => l !== langue.value && !languesAlternatives.value.includes(l),
+      ),
+    ];
   });
 
   return i18n;
