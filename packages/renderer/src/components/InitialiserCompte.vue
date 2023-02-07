@@ -16,7 +16,7 @@
       <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       <v-window
         v-model="étape"
-        style="overflow-y: auto;"
+        style="overflow-y: auto"
       >
         <v-window-item :value="0">
           <v-card-text class="text-center">
@@ -159,7 +159,7 @@
               >
                 {{ $t('accueil.initialiserCompte.pasPersister') }}
               </v-btn>
-            </div>            
+            </div>
           </v-card-text>
         </v-window-item>
         <v-window-item :value="6">
@@ -452,5 +452,5 @@ const créerCompte = async () => {
 };
 
 const idCompte = ref();
-constl?.suivreIdBdCompte({f: id => idCompte.value = id});
+constl?.suivreIdBdCompte({f: id => (idCompte.value = id)});
 </script>
