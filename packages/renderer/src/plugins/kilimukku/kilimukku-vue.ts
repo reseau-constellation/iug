@@ -72,7 +72,7 @@ const கிடைக்கும்_மொழிகளை_பயன்படு
   const codesLanguesNuchabäl = ref<string[]>([]);
 
   const fOublierCodesLanguesNuchabäl = nuchabäl.tatzeqelbejKonojelChabäl({
-    sm: codes => (codesLanguesNuchabäl.value = codes),
+    sm: (codes: string[]) => (codesLanguesNuchabäl.value = codes),
   });
   fsOublier.push(fOublierCodesLanguesNuchabäl);
 

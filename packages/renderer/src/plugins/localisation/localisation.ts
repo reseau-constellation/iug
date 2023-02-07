@@ -99,7 +99,7 @@ export const utiliserNumération = () => {
     if (fOublier) fOublier();
     fOublier = nuchabäl?.tatzeqelbejRajilanïkChabäl({
       runuk: langue.value,
-      sm: nm => (numérationAuto.value = nm),
+      sm: (nm?: string) => (numérationAuto.value = nm),
     });
   });
 
@@ -116,7 +116,7 @@ export const utiliserNumération = () => {
     watchEffect(() => {
       fOublierNumérationNuchabäl = nuchabäl.tatzeqelbejRajilanïkChabäl({
         runuk: langue.value,
-        sm: num => (numérationAuto.value = num),
+        sm: (num?: string) => (numérationAuto.value = num),
       });
     });
     onUnmounted(() => {
