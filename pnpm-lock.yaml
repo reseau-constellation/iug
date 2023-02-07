@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@constl/ipa': 0.6.20
+  '@constl/ipa': 0.6.21
   '@constl/mandataire': ^0.1.4
   '@constl/mandataire-electron-principal': ^0.2.3
   '@constl/mandataire-electron-rendu': ^0.2.3
@@ -61,25 +61,25 @@ specifiers:
   wherearewe: ^2.0.1
 
 dependencies:
-  '@constl/ipa': 0.6.20_electron@22.0.3
-  '@constl/mandataire': 0.1.4_@constl+ipa@0.6.20
-  '@constl/mandataire-electron-principal': 0.2.3_bp55kagk2pn4lpauqt42a6zhoy
-  '@constl/mandataire-electron-rendu': 0.2.3_@constl+ipa@0.6.20
-  '@constl/serveur': 0.2.1_@constl+ipa@0.6.20
+  '@constl/ipa': 0.6.21_electron@22.0.3
+  '@constl/mandataire': 0.1.4_@constl+ipa@0.6.21
+  '@constl/mandataire-electron-principal': 0.2.3_z66uxnsqlkjqws2pasds3vrgvq
+  '@constl/mandataire-electron-rendu': 0.2.3_@constl+ipa@0.6.21
+  '@constl/serveur': 0.2.1_@constl+ipa@0.6.21
   '@esbuild-plugins/node-globals-polyfill': 0.1.1
-  '@lassi-js/kili': 0.0.4_@constl+ipa@0.6.20
+  '@lassi-js/kili': 0.0.4_@constl+ipa@0.6.21
   '@mdi/font': 7.1.96
   assert: 2.0.0
   core-js: 3.27.2
   crypto-browserify: 3.12.0
   electron-updater: 5.3.0
-  ennikkai: 2.0.0_@constl+ipa@0.6.20
+  ennikkai: 2.0.0_@constl+ipa@0.6.21
   events: 3.3.0
   image-file-resize: 1.0.5
   js-cookie: 3.0.1
   multiformats: 9.9.0
   node-gyp-build: 4.6.0
-  nuchabal: 3.0.1_@constl+ipa@0.6.20
+  nuchabal: 3.0.1_@constl+ipa@0.6.21
   rollup-plugin-node-polyfills: 0.2.1
   rollup-plugin-polyfill-node: 0.12.0
   semaphore-async-await: 1.5.1
@@ -257,8 +257,8 @@ packages:
     resolution: {integrity: sha512-eiR69JvgO4EGHbH8YOKIWioh6icP25boCKvDZeRZfWav6KFRbsJLVU/pHBrV4fne/eLXapKlijp9WXX1skp56A==}
     dev: false
 
-  /@constl/ipa/0.6.20_electron@22.0.3:
-    resolution: {integrity: sha512-56TPNNa9hko5XCWPtnSIwsj69ESCc6cqMXKEznCbPsueEqESwgPazUnWR2mNkTfRoczOCr2YwWf1BIu0zjl1ZQ==}
+  /@constl/ipa/0.6.21_electron@22.0.3:
+    resolution: {integrity: sha512-Gau9rFzT3tUv2Yu0bWpWpg+1B5fvBFH/J3xWchNussS/O7n/lIgOW/JviUrwykOhHo1YKin25OJtCEn8DPTQWw==}
     engines: {node: '>=16'}
     peerDependencies:
       electron: ^22.0.0
@@ -266,7 +266,7 @@ packages:
       '@chainsafe/libp2p-gossipsub': 6.1.0
       '@chainsafe/libp2p-noise': 11.0.0
       '@chriscdn/promise-semaphore': 1.0.9
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.20
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.21
       '@libp2p/kad-dht': 7.0.0
       '@libp2p/mplex': 7.1.1
       '@libp2p/tcp': 6.1.2
@@ -280,7 +280,6 @@ packages:
       chokidar: 3.5.3
       crypto-js: 4.1.1
       deep-equal: 2.2.0
-      deepmerge: 4.3.0
       electron: 22.0.3
       file-saver: 2.0.5
       genversion: 3.1.1
@@ -313,7 +312,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal/0.2.3_bp55kagk2pn4lpauqt42a6zhoy:
+  /@constl/mandataire-electron-principal/0.2.3_z66uxnsqlkjqws2pasds3vrgvq:
     resolution: {integrity: sha512-eIMzcHwQ0iRpKxtxn9bZXf5YtPkEznms12nrTVQncAgQW5fDXmfSOIkAToxpZZAxxTXXKZUOh9WQtqgK2gqhqg==}
     peerDependencies:
       '@constl/ipa': ^0.5.8
@@ -321,43 +320,43 @@ packages:
       '@constl/serveur': ^0.1.10
       electron: ^22.0.0
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.20
-      '@constl/serveur': 0.2.1_@constl+ipa@0.6.20
+      '@constl/ipa': 0.6.21_electron@22.0.3
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.21
+      '@constl/serveur': 0.2.1_@constl+ipa@0.6.21
       electron: 22.0.3
       semaphore-async-await: 1.5.1
       tslib: 2.5.0
       uuid: 9.0.0
     dev: false
 
-  /@constl/mandataire-electron-rendu/0.2.3_@constl+ipa@0.6.20:
+  /@constl/mandataire-electron-rendu/0.2.3_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-mZfD3mRhY0GZcOXunaNaUVRjKTD2Ttqc5lCraBLfD3qTBFL+IAT7ZwzUvjCCcFNNLljB25nrYZjSxKIaL4GATA==}
     dependencies:
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.20
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.21
       events: 3.3.0
     transitivePeerDependencies:
       - '@constl/ipa'
     dev: false
 
-  /@constl/mandataire/0.1.4_@constl+ipa@0.6.20:
+  /@constl/mandataire/0.1.4_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-oElwLw4m1JTIixPzl3xHWPljhAoJw7dYN5tJPjXvTU8M3jwidA7eLrLH7RVREHVj/5pJvwHG6TZ9tBFmd7rJEg==}
     peerDependencies:
       '@constl/ipa': ^0.5.8
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
+      '@constl/ipa': 0.6.21_electron@22.0.3
       events: 3.3.0
       uuid: 9.0.0
     dev: false
 
-  /@constl/serveur/0.2.1_@constl+ipa@0.6.20:
+  /@constl/serveur/0.2.1_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-3EVvHcmDwQIllZ7x5yAUBmkArqCS2W33WKQ7QNxNi1T0SyWnRbKy5g/7Oext1mSvIz9FJ18fPJbS6kvk1gvhMg==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
       '@constl/ipa': ^0.5.4
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.20
+      '@constl/ipa': 0.6.21_electron@22.0.3
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.21
       bufferutil: 4.0.7
       chalk: 5.2.0
       core-js: 3.27.2
@@ -381,8 +380,8 @@ packages:
       ajv-keywords: 3.5.2_ajv@6.12.6
     dev: true
 
-  /@didtools/cacao/1.1.0:
-    resolution: {integrity: sha512-7rTU6iUa5vXzwuNzC+awwnJ/4D15+AHV2ytQohL4t1QA/zNbHdkcPnF1Hq+6vRoMnVFlasSpsxlTatjOBqg1RA==}
+  /@didtools/cacao/1.2.0:
+    resolution: {integrity: sha512-y0nMgV8DL0jgHUq0uhjMqrW9p79PopQnugLWx02tss+iR0ahON2cfal20+eFx2p3kXtvaL8U+iByrjmyuokj+A==}
     engines: {node: '>=14.14'}
     dependencies:
       '@ipld/dag-cbor': 7.0.3
@@ -396,7 +395,7 @@ packages:
     resolution: {integrity: sha512-2hDt1f60WXUNWMVS9S9b0pmXl78ivkVxZJHeyBUkbz7O7To1rHvlgvJ0gFJ3sKVemI1llpClzwd3PEjZfGwiUw==}
     engines: {node: '>=14.14'}
     dependencies:
-      '@didtools/cacao': 1.1.0
+      '@didtools/cacao': 1.2.0
       '@ethersproject/wallet': 5.7.0
       '@stablelib/random': 1.0.2
       caip: 1.1.0
@@ -876,7 +875,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.4
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     dev: false
 
   /@grpc/proto-loader/0.7.4:
@@ -887,7 +886,7 @@ packages:
       '@types/long': 4.0.2
       lodash.camelcase: 4.3.0
       long: 4.0.0
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       yargs: 16.2.0
     dev: false
 
@@ -1235,20 +1234,20 @@ packages:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
     dev: false
 
-  /@lassi-js/kili/0.0.2_@constl+ipa@0.6.20:
+  /@lassi-js/kili/0.0.2_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-MechHzaY5rTmUfbFtRmcjhDA2fKR3PgArR9YINAeE61vSOQPpvKpTzykoswMxGHtjxCvb6FhM/tslUAo2XqpEA==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
+      '@constl/ipa': 0.6.21_electron@22.0.3
     dev: false
 
-  /@lassi-js/kili/0.0.4_@constl+ipa@0.6.20:
+  /@lassi-js/kili/0.0.4_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-7R2mkdZN+0gWNOzwhVy+R/B7CLb95R39qKqKL7fEnmHFG0PwFy5peex14E2IfIvbrkQRzgrc11ymWF+0upN8SQ==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
+      '@constl/ipa': 0.6.21_electron@22.0.3
       deepcopy: 2.1.0
     dev: false
 
@@ -1277,7 +1276,7 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
       '@libp2p/interface-keys': 1.0.7
-      '@noble/ed25519': 1.7.2
+      '@noble/ed25519': 1.7.3
       '@noble/secp256k1': 1.7.1
       err-code: 3.0.1
       multiformats: 11.0.1
@@ -1300,7 +1299,7 @@ packages:
       it-drain: 2.0.0
       multiformats: 11.0.1
       p-defer: 4.0.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1319,7 +1318,7 @@ packages:
       err-code: 3.0.1
       multiformats: 11.0.1
       p-defer: 4.0.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1611,7 +1610,7 @@ packages:
       k-bucket: 5.1.0
       multiformats: 11.0.1
       p-defer: 4.0.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       private-ip: 3.0.0
       protons-runtime: 4.0.2
       timeout-abort-controller: 3.0.0
@@ -1837,7 +1836,7 @@ packages:
       it-pipe: 2.0.5
       it-pushable: 3.1.2
       multiformats: 11.0.1
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       uint8arraylist: 2.4.3
       uint8arrays: 4.0.3
     transitivePeerDependencies:
@@ -1961,7 +1960,7 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
       '@multiformats/multiaddr': 11.4.0
-      socket.io-client: 4.5.4
+      socket.io-client: 4.6.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -1990,7 +1989,7 @@ packages:
       iso-random-stream: 2.0.2
       multiformats: 11.0.1
       p-defer: 4.0.0
-      socket.io-client: 4.5.4
+      socket.io-client: 4.6.0
       uint8arrays: 4.0.3
     transitivePeerDependencies:
       - bufferutil
@@ -2126,8 +2125,8 @@ packages:
       - supports-color
     dev: false
 
-  /@noble/ed25519/1.7.2:
-    resolution: {integrity: sha512-G0MeBXnCWDoFHrpytNcp32XQWlTzeplrTXKtZt24BjVehIh/D87Hs/ddj2+0vvvmxi/uvq+wz7oLgz9NnoW/1Q==}
+  /@noble/ed25519/1.7.3:
+    resolution: {integrity: sha512-iR8GBkDt0Q3GyaVcIu7mSsVIqnFbkbRzGLWlvhwunacoLwt4J3swfKhfaM6rN6WY+TBGoYT1GtT1mIh2/jGbRQ==}
     dev: false
 
   /@noble/secp256k1/1.7.1:
@@ -2480,7 +2479,7 @@ packages:
   /@types/dns-packet/5.2.4:
     resolution: {integrity: sha512-OAruArypdNxR/tzbmrtoyEuXeNTLaZCpO19BXaNC10T5ACIbvjmvhmV2RDEy2eLc3w8IjK7SY3cvUCcAW+sfoQ==}
     dependencies:
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     dev: false
 
   /@types/estree/1.0.0:
@@ -2542,7 +2541,7 @@ packages:
     resolution: {integrity: sha512-A2PmB8MRcNVEkw6wzGT5rtBHqyHOVjiRMkJH+zpJKXipSi+GGkHg6JjNFApDiYK9WefJqkVG0taln1VMl4TGfw==}
     dependencies:
       '@types/dns-packet': 5.2.4
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
     dev: false
 
   /@types/node/16.18.12:
@@ -2550,6 +2549,10 @@ packages:
 
   /@types/node/18.11.19:
     resolution: {integrity: sha512-YUgMWAQBWLObABqrvx8qKO1enAvBUdjZOAWQ5grBAkp5LQv45jBvYKZ3oFS9iKRCQyFjqw6iuEa1vmFqtxYLZw==}
+
+  /@types/node/18.13.0:
+    resolution: {integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==}
+    dev: false
 
   /@types/node/8.10.66:
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
@@ -3739,8 +3742,8 @@ packages:
     engines: {node: '>=14.16'}
     dev: false
 
-  /cacheable-request/10.2.6:
-    resolution: {integrity: sha512-fhVLoXIFHvTizxQkAVohKPToSzdwzjrhL5SsjHT0umeSCxWeqJOS0oPqHg+yO1FPFST3VE5rxaqUvseyH9JHtg==}
+  /cacheable-request/10.2.7:
+    resolution: {integrity: sha512-I4SA6mKgDxcxVbSt/UmIkb9Ny8qSkg6ReBHtAAXnZHk7KOSx5g3DTiAOaYzcHCs6oOdHn+bip9T48E6tMvK9hw==}
     engines: {node: '>=14.16'}
     dependencies:
       '@types/http-cache-semantics': 4.0.1
@@ -4537,7 +4540,7 @@ packages:
     resolution: {integrity: sha512-hXHkOTL9E5R4rbQwDVOktiiEq57Y6yWOEYjev1ojOpMr2Rkx9g8bw0v6BQIsbPB94aaYxUCtaejNl2FrublfiA==}
     engines: {node: '>=14.14'}
     dependencies:
-      '@didtools/cacao': 1.1.0
+      '@didtools/cacao': 1.2.0
       '@didtools/pkh-ethereum': 0.0.1
       '@stablelib/random': 1.0.2
       dag-jose-utils: 2.0.0
@@ -4875,13 +4878,13 @@ packages:
     dependencies:
       once: 1.4.0
 
-  /engine.io-client/6.2.3:
-    resolution: {integrity: sha512-aXPtgF1JS3RuuKcpSrBtimSjYvrbhKW9froICH4s0F3XQWLxsKNxqzG39nnvQZQnva4CMvUK63T7shevxRyYHw==}
+  /engine.io-client/6.4.0:
+    resolution: {integrity: sha512-GyKPDyoEha+XZ7iEqam49vz6auPnNJ9ZBfy89f+rMMas8AuiMWOZ9PVzu8xb9ZC6rafUqiGHSCfu22ih66E+1g==}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
       engine.io-parser: 5.0.6
-      ws: 8.2.3
+      ws: 8.11.0
       xmlhttprequest-ssl: 2.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -4894,13 +4897,13 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
-  /ennikkai/2.0.0_@constl+ipa@0.6.20:
+  /ennikkai/2.0.0_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-8lIF3CZS1TrI963u/Fm53iJOejzROKzkVjylkKfVUEY94+bFpe7YAo9idVBSMfRCQKxcgLMnNcKg2gVq9BHnaA==}
     peerDependencies:
       '@constl/ipa': ^0.6.8
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
-      '@lassi-js/kili': 0.0.2_@constl+ipa@0.6.20
+      '@constl/ipa': 0.6.21_electron@22.0.3
+      '@lassi-js/kili': 0.0.2_@constl+ipa@0.6.21
       deepmerge: 4.3.0
       events: 3.3.0
     dev: false
@@ -5162,8 +5165,8 @@ packages:
     resolution: {integrity: sha512-KGft0ldl31BZVV//jj+IAIGCxkvvUkkON+ScH6zfoX+l+omX6001ggyRSpI0Io2Hlro0ThXotswCtfzS8UkIiQ==}
     dev: false
 
-  /event-lite/0.1.2:
-    resolution: {integrity: sha512-HnSYx1BsJ87/p6swwzv+2v6B4X+uxUteoDfRxsAb1S1BePzQqOLevVmkdA15GHJVd9A9Ok6wygUR18Hu0YeV9g==}
+  /event-lite/0.1.3:
+    resolution: {integrity: sha512-8qz9nOz5VeD2z96elrEKD2U433+L3DWdUdDkOINLGOJvx1GsMBbMn0aCeu28y8/e85A6mCigBiFlYMnTBEGlSw==}
     dev: false
 
   /event-target-shim/5.0.1:
@@ -5783,7 +5786,7 @@ packages:
       '@sindresorhus/is': 5.3.0
       '@szmarczak/http-timer': 5.0.1
       cacheable-lookup: 7.0.0
-      cacheable-request: 10.2.6
+      cacheable-request: 10.2.7
       decompress-response: 6.0.0
       form-data-encoder: 2.1.4
       get-stream: 6.0.1
@@ -6180,7 +6183,7 @@ packages:
       it-pipe: 2.0.5
       just-debounce-it: 3.2.0
       multiformats: 11.0.1
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       readable-stream: 4.3.0
       timeout-abort-controller: 3.0.0
       uint8arrays: 4.0.3
@@ -6256,7 +6259,7 @@ packages:
       it-all: 2.0.0
       it-drain: 2.0.0
       it-foreach: 1.0.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       uint8arrays: 4.0.3
     transitivePeerDependencies:
       - bufferutil
@@ -6290,7 +6293,7 @@ packages:
       it-all: 2.0.0
       it-drain: 2.0.0
       it-foreach: 1.0.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       uint8arrays: 4.0.3
     transitivePeerDependencies:
       - bufferutil
@@ -6310,7 +6313,7 @@ packages:
       '@libp2p/interface-peer-info': 1.0.8
       '@libp2p/interface-pubsub': 3.0.6
       '@multiformats/multiaddr': 11.4.0
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       interface-datastore: 7.0.4
       ipfs-unixfs: 9.0.0
       multiformats: 11.0.1
@@ -6563,7 +6566,7 @@ packages:
       it-pipe: 2.0.5
       it-pushable: 3.1.2
       nanoid: 4.0.1
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       uint8arrays: 4.0.3
       ws: 8.12.0
     transitivePeerDependencies:
@@ -6727,7 +6730,7 @@ packages:
       interface-datastore: 7.0.4
       it-length: 2.0.0
       multiformats: 11.0.1
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       uint8arrays: 4.0.3
       varint: 6.0.0
     transitivePeerDependencies:
@@ -6760,7 +6763,7 @@ packages:
       merge-options: 3.0.4
       mortice: 3.0.1
       multiformats: 11.0.1
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       proper-lockfile: 4.1.2
       quick-lru: 6.1.1
       sort-keys: 5.0.0
@@ -6786,7 +6789,7 @@ packages:
       it-pipe: 2.0.5
       it-pushable: 3.1.2
       multiformats: 11.0.1
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       uint8arrays: 4.0.3
     dev: false
 
@@ -6819,7 +6822,7 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
       err-code: 3.0.1
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
     dev: false
 
   /ipfs-utils/9.0.14:
@@ -8249,7 +8252,7 @@ packages:
     dependencies:
       nanoid: 4.0.1
       observable-webworkers: 2.0.1
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       p-timeout: 6.1.0
     dev: false
 
@@ -8272,7 +8275,7 @@ packages:
     resolution: {integrity: sha512-SZ2IxeqZ1oRFGo0xFGbvBJWMp3yLIY9rlIJyxy8CGrwZn1f0ZK4r6jV/AM1r0FZMDUkWkglOk/eeKIL9g77Nxw==}
     hasBin: true
     dependencies:
-      event-lite: 0.1.2
+      event-lite: 0.1.3
       ieee754: 1.2.1
       int64-buffer: 0.1.10
       isarray: 1.0.0
@@ -8464,13 +8467,13 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal/3.0.1_@constl+ipa@0.6.20:
+  /nuchabal/3.0.1_@constl+ipa@0.6.21:
     resolution: {integrity: sha512-9JAMz3qwz0doUfK9x9x+8Vo9RwR5kfYayBg4BAXJyRF99OYfZ9wvrlfcuCpkD1Syx5O3p9qe4fo37dOrX7PEHQ==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.20_electron@22.0.3
-      '@lassi-js/kili': 0.0.2_@constl+ipa@0.6.20
+      '@constl/ipa': 0.6.21_electron@22.0.3
+      '@lassi-js/kili': 0.0.2_@constl+ipa@0.6.21
       deepmerge: 4.3.0
       events: 3.3.0
     dev: false
@@ -8734,7 +8737,7 @@ packages:
       orbit-db-io: 3.0.0_rkbavwgqlwz6cwyhpfbc5ee27q
       p-each-series: 3.0.0
       p-map: 5.5.0
-      p-queue: 7.3.3
+      p-queue: 7.3.4
       readable-stream: 4.3.0
     transitivePeerDependencies:
       - go-ipfs
@@ -8866,8 +8869,8 @@ packages:
       aggregate-error: 4.0.1
     dev: false
 
-  /p-queue/7.3.3:
-    resolution: {integrity: sha512-Mw83fkxHpLvc04DGfUHWP3dAtLIURFkQXPAUylm/pn/eokVVSf/kgp8ukZiwfXeO3J5uiFiPcOkSCvTiJujIBQ==}
+  /p-queue/7.3.4:
+    resolution: {integrity: sha512-esox8CWt0j9EZECFvkFl2WNPat8LN4t7WWeXq73D9ha0V96qPRufApZi4ZhPwXAln1uVVal429HVVKPa2X0yQg==}
     engines: {node: '>=12'}
     dependencies:
       eventemitter3: 4.0.7
@@ -9309,12 +9312,12 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       long: 4.0.0
     dev: false
 
-  /protobufjs/7.2.1:
-    resolution: {integrity: sha512-L3pCItypTnPK27+CS8nuhZMYtsY+i8dqdq2vZsYHlG17CnWp1DWPQ/sos0vOKrj1fHEAzo3GBqSHLaeZyKUCDA==}
+  /protobufjs/7.2.2:
+    resolution: {integrity: sha512-++PrQIjrom+bFDPpfmqXfAGSQs40116JRrqqyf53dymUMvvb5d/LMRyicRoF1AUKoXVS1/IgJXlEgcpr4gTF3Q==}
     engines: {node: '>=12.0.0'}
     requiresBuild: true
     dependencies:
@@ -9328,7 +9331,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.11.19
+      '@types/node': 18.13.0
       long: 5.2.1
     dev: false
 
@@ -9336,7 +9339,7 @@ packages:
     resolution: {integrity: sha512-R4N6qKHgz8T2Gl45CTcZfITzXPQY9ym8lbLb4VyFMS4ag1KusCRZwkQXTBRhxQ+93ck3K3aDhK1wIk98AMtNyw==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
-      protobufjs: 7.2.1
+      protobufjs: 7.2.2
       uint8arraylist: 2.4.3
     dev: false
 
@@ -10050,13 +10053,13 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /socket.io-client/4.5.4:
-    resolution: {integrity: sha512-ZpKteoA06RzkD32IbqILZ+Cnst4xewU7ZYK12aS1mzHftFFjpoMz69IuhP/nL25pJfao/amoPI527KnuhFm01g==}
+  /socket.io-client/4.6.0:
+    resolution: {integrity: sha512-2XOp18xnGghUICSd5ziUIS4rB0dhr6S8OvAps8y+HhOjFQlqGcf+FIh6fCIsKKZyWFxJeFPrZRNPGsHDTsz1Ug==}
     engines: {node: '>=10.0.0'}
     dependencies:
       '@socket.io/component-emitter': 3.1.0
       debug: 4.3.4
-      engine.io-client: 6.2.3
+      engine.io-client: 6.4.0
       socket.io-parser: 4.2.2
     transitivePeerDependencies:
       - bufferutil
@@ -11185,6 +11188,19 @@ packages:
     bundledDependencies:
       - node-pre-gyp
 
+  /ws/8.11.0:
+    resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
+
   /ws/8.12.0:
     resolution: {integrity: sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==}
     engines: {node: '>=10.0.0'}
@@ -11211,19 +11227,6 @@ packages:
         optional: true
     dependencies:
       bufferutil: 4.0.7
-    dev: false
-
-  /ws/8.2.3:
-    resolution: {integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
     dev: false
 
   /xdg-basedir/5.1.0:

@@ -34,7 +34,7 @@ const nomTraduit = traduireNom(noms);
 
 let fOublierNoms: (() => Promise<void>) | undefined = undefined;
 onMounted(async () => {
-  fOublierNoms = await constl?.réseau?.suivreNomsMembre({
+  fOublierNoms = await constl?.profil?.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
   });
@@ -59,7 +59,7 @@ const srcImgProfil = computed(() => {
 });
 let fOublierImageProfil: schémaFonctionOublier | undefined = undefined;
 onMounted(async () => {
-  fOublierImageProfil = await constl?.réseau?.suivreImageMembre({
+  fOublierImageProfil = await constl?.profil?.suivreImage({
     idCompte: props.compte,
     f: image => (imageProfil.value = image),
   });

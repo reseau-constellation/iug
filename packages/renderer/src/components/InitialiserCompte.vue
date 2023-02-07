@@ -176,8 +176,6 @@
             <span class="text-caption text-grey">{{
               $t('accueil.initialiserCompte.sousTitreBienvenu')
             }}</span>
-            toi {{ compteÀRejoindre }}
-            moi {{ idCompte }}
             <p>
               <v-btn
                 class="mt-3"
