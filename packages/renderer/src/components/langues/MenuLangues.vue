@@ -36,6 +36,7 @@
           :key="code"
           :code="code"
           :selectionnee="code === langue"
+          @click="() => choisirLangues(code)"
         />
       </v-list>
     </v-menu>
@@ -55,7 +56,7 @@ const {$t} = useI18n();
 
 const {isRtl} = useRtl();
 
-const {langue} = utiliserLangues();
+const {langue, choisirLangues} = utiliserLangues();
 const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 </script>
 

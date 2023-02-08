@@ -1,38 +1,31 @@
 <template>
-  <v-list-item>
-    <template #prepend>
-      <v-icon
-        v-if="selectionnee"
-        color="primary"
-      >
-        mdi-check-bold
-      </v-icon>
-    </template>
+  <v-chip variant="outlined">
+    {{ nom || code }}
 
-    <template #title>
-      {{ nom || code }}
-    </template>
-
-    <template #append>
-      <v-icon
-        v-if="progrèsPourcentage === 1"
-        color="primary"
-      >
-        mdi-check-circle
-      </v-icon>
+    <v-icon
+      v-if="progrèsPourcentage === 1"
+      end
+      color="primary"
+    >
+      mdi-check-circle
+    </v-icon>
+    <v-icon
+      v-else
+      end
+    >
       <v-progress-circular
-        v-else
         :model-value="progrèsPourcentage * 100"
-        size="20"
+        size="15"
         color="primary"
       ></v-progress-circular>
-    </template>
-  </v-list-item>
+    </v-icon>
+  </v-chip>
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-const props = defineProps<{code: string; selectionnee: boolean}>();
+
+const props = defineProps<{code: string}>();
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழி_முன்னேற்றத்தை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {nomLangue} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();

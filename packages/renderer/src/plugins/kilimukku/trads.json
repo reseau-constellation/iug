@@ -52,7 +52,13 @@
       "texteAucunNom": "Ajouter un nom ci-dessus"
     },
     "languesInterface": {
-      "contribuer": "Contribuer"
+      "contribuer": "Contribuer",
+      "dialogueContribuer": {
+        "titre": "Contribuer",
+        "sousTitre": "Ajoutez des traductions à Constellation",
+        "langueSource": "Langue source",
+        "langueCible": "Langue cible"
+      }
     }
   },
 
