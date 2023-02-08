@@ -13,7 +13,7 @@
     >
       <v-card-item>
         <v-card-title>{{ $t('languesInterface.dialogueContribuer.titre') }}</v-card-title>
-        <v-card-subtitle>{{ $t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>  
+        <v-card-subtitle>{{ $t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>
       </v-card-item>
 
       <v-card-text>
@@ -83,14 +83,13 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { ref } from 'vue';
+import {ref} from 'vue';
 // import type { கிளிமூக்கு } from '/@/plugins/kilimukku/கிளிமூக்கு';
 
 // const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
 const {langue} = utiliserLangues();
-
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து, சாபிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {$t} = useI18n();
@@ -101,5 +100,5 @@ const {codesLanguesDisponibles} = கிடைக்கும்_மொழிக
 const langueSource = ref(langue.value);
 const langueCible = ref<string>();
 
-const { சாபிகள்} = சாபிகளை_பயன்படுத்து();
+const {சாபிகள்} = சாபிகளை_பயன்படுத்து();
 </script>
