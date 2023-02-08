@@ -57,16 +57,15 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
-import { utiliserLangues }  from '/@/plugins/localisation/localisation';
-
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 const {mdAndUp} = useDisplay();
-const { langue } = utiliserLangues();
+const {langue} = utiliserLangues();
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {$t} = useI18n();
@@ -76,6 +75,4 @@ const {codesLanguesDisponibles} = கிடைக்கும்_மொழிக
 // Contrôles
 const langueSource = ref(langue.value);
 const langueCible = ref<string>();
-
-
 </script>
