@@ -11,9 +11,12 @@
       "version": "Version {version}",
       "piedDePage": "Julien Malard-Adam",
       "initialiserCompte": {
+        "titreCheminement": "Avez-vous déjà un compte ?",
+        "sousTitreCheminement": "Si oui, vous pouvez vous y connecter.",
         "titreNoms": "Choisissez votre nom",
         "sousTitreNoms": "Le plus de langues, le mieux !",
         "titreImage": "Choisissez une image",
+        "titreCompteÀRejoindre": "Connectez-vous",
         "titreMotDePasse": "Code secret",
         "titrePersister": "Persister les données ?",
         "titreCestParti": "C'est tout !",
@@ -26,6 +29,8 @@
         "indiceRechercheComptes": "On est en train de rechercher.",
         "indiceEssaieDeConnecter": " Attendez un peu, puis assurez-vous qu'un dispositif déjà connecté à votre compte Constellation est bien en ligne.",
         "indiceMotDePasse": "Code secret",
+        "nouveauCompte": "Nouveau compte",
+        "connecter": "Connecter compte",
         "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
         "textePersister": {
           "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
