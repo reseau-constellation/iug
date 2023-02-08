@@ -78,8 +78,7 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
-import { utiliserLangues }  from '/@/plugins/localisation/localisation';
-
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
@@ -90,7 +89,7 @@ import { ref } from 'vue';
 // const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
-const { langue } = utiliserLangues();
+const {langue} = utiliserLangues();
 
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து, சாபிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
