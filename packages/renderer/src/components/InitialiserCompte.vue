@@ -97,7 +97,7 @@
                     (comptesEnLigne.length
                       ? $t('accueil.initialiserCompte.indiceComptePasVu')
                       : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -160,7 +160,7 @@
               class="mb-4"
               contain
               height="128"
-              src="assets/logo.svg"
+              :src="srcImageLogo"
             ></v-img>
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
@@ -424,6 +424,7 @@ const donnéesPersistées = ref(false);
 navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 
 // Création ou connexion compte
+const srcImageLogo = (await import('/@/assets/logo.svg')).default;
 const enCréation = ref(false);
 const créerCompte = async () => {
   enCréation.value = true;
