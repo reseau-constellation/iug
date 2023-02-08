@@ -7,12 +7,6 @@ import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
 const constl: MandataireClientConstellation | undefined = inject('constl');
 const serveur = inject<GestionnaireServeur>('serveurConstl');
 
-const rawString = ref('Hello World');
-/**
- * window.nodeCrypto was exposed from {@link module:preload}
- */
-// const hashedString = computed(() => sha256sum(rawString.value));
-
 const idCompte = ref<string | undefined>();
 const portServeur = ref<number | undefined>();
 
@@ -23,16 +17,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <label>
-    Raw value
-    <input
-      v-model="rawString"
-      type="text"
-    />
-  </label>
-  <br />
-  <label> Hashed by node:crypto </label>
-  <br />
   <label>
     Id compte Constellation
     <input
@@ -50,6 +34,4 @@ onMounted(async () => {
       type="text"
     />
   </label>
-  <br /><br />
-  <code>packages/renderer/src/components/ReactiveHash.vue</code>
 </template>

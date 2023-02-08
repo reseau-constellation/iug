@@ -19,7 +19,6 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
-console.log();
 
 const constl = inject<ClientConstellation>('constl');
 

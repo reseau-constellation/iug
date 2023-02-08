@@ -6,6 +6,14 @@
       "retour": "Retour",
       "anonyme": "Anonyme"
     },
+    "navigation": {
+      "accueil": "Accueil",
+      "données": "Mes données",
+      "recherche": "Explorer",
+      "favoris": "Mes favoris",
+      "automatisations": "Automatisations",
+      "signalements": "Signaler un problème"
+    },
     "accueil": {
       "démarrer": "Démarrer",
       "version": "Version {version}",
@@ -73,6 +81,14 @@
       "suivant": "அடுத்தது",
       "retour": "பின்"
     },
+    "navigation": {
+      "accueil": "வரவேற்பு",
+      "données": "என் தரவுகள்",
+      "favoris": "என் பிடித்தவை",
+      "recherche": "ஆராயுங்கள்",
+      "automatisations": "தானியங்கல்",
+      "signalements": "சிக்கலைப் புகாரளிக்க"
+    },
     "accueil": {
       "démarrer": "தொடக்கம்",
       "version": "பதிப்பு {version}",
@@ -99,11 +115,32 @@
         "sousTitreBienvenu": "எங்களுக்கு மகிழ்ச்சி!",
         "cestParti": "தொடக்கலாம்"
       }
+    },
+    "pages": {
+      "compte": {
+        "titre": "கணக்கு"
+      }
     }
   },
+
   "kaq": {
     "communs": {
       "constellation": "Ch'umil"
+    }
+  },
+
+  "es": {
+    "communs": {
+      "constellation": "Constelación",
+      "suivant": "Siguiente",
+      "retour": "Regresar",
+      "anonyme": "Anónimo"
+    }
+  },
+
+  "ខ្មែរ" : {
+    "communs": {
+      "constellation": "តារានិករ"
     }
   }
 }
