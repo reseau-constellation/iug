@@ -10,35 +10,37 @@
       class="mx-auto"
       :width="mdAndUp ? 500 : 300"
     >
-      <v-card-title class="text-h5 justify-space-between">
-        <span>{{ titreCarte }}</span>
-      </v-card-title>
-      <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-      <v-window
-        v-model="étape"
-        style="overflow-y: auto"
-      >
-        <v-window-item :value="0">
-          <v-card-text class="text-center">
-            <v-btn
-              class="ma-3"
-              variant="flat"
-              color="primary"
-              @click="suivreCheminementNouveauCompte"
-            >
-              {{ $t('accueil.initialiserCompte.nouveauCompte') }}
-            </v-btn>
-            <v-btn
-              class="ma-3"
-              variant="outlined"
-              @click="suivreCheminementConnecterCompte"
-            >
-              {{ $t('accueil.initialiserCompte.connecter') }}
-            </v-btn>
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="1">
-          <v-card-text class="justify-center align-center">
+      <v-card-item>
+        <v-card-title class="text-h5 justify-space-between">
+          <span>{{ titreCarte }}</span>
+        </v-card-title>
+        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: auto"
+        >
+          <v-window-item :value="0">
+            <div class="text-center">
+              <v-btn
+                class="ma-3"
+                variant="flat"
+                color="primary"
+                @click="suivreCheminementNouveauCompte"
+              >
+                {{ $t('accueil.initialiserCompte.nouveauCompte') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="suivreCheminementConnecterCompte"
+              >
+                {{ $t('accueil.initialiserCompte.connecter') }}
+              </v-btn>
+            </div>
+          </v-window-item>
+          <v-window-item :value="1">
             <ListeNoms
               :noms-initiaux="noms"
               :indice-nom="$t('listeNomsProfil.indiceNom')"
@@ -46,10 +48,8 @@
               :texte-aucun-nom="$t('listeNomsProfil.texteAucunNom')"
               @ajuster-noms="ajusterNoms"
             />
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="2">
-          <v-card-text class="text-center">
+          </v-window-item>
+          <v-window-item :value="2">
             <ImageÉditable
               :editable="true"
               :src-image="srcImgProfil"
@@ -61,10 +61,8 @@
             <p class="mt-3 text-center text-caption">
               {{ $t('accueil.initialiserCompte.texteImage') }}
             </p>
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="3">
-          <v-card-text class="text-center">
+          </v-window-item>
+          <v-window-item :value="3">
             <v-fade-transition>
               <div v-show="connexionsSFIP.length">
                 <p class="mb-4">
@@ -109,20 +107,16 @@
                 {{ $t('accueil.initialiserCompte.texteEnConnexion') }}
               </div>
             </v-fade-transition>
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="4">
-          <v-card-text class="text-center">
+          </v-window-item>
+          <v-window-item :value="4">
             <p class="mb-4">{{ $t('accueil.initialiserCompte.texteCodeSecret') }}</p>
             <v-text-field
               v-model="codeSecret"
               :label="$t('accueil.initialiserCompte.indiceCodeSecret')"
               variant="outlined"
             ></v-text-field>
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="5">
-          <v-card-text class="align-center">
+          </v-window-item>
+          <v-window-item :value="5">
             <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.1') }} </p>
             <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.2') }} </p>
             <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.3') }} </p>
@@ -160,35 +154,36 @@
                 {{ $t('accueil.initialiserCompte.pasPersister') }}
               </v-btn>
             </div>
-          </v-card-text>
-        </v-window-item>
-        <v-window-item :value="6">
-          <v-card-text class="pa-4 text-center">
+          </v-window-item>
+          <v-window-item :value="6">
             <v-img
               class="mb-4"
               contain
               height="128"
               src="assets/logo.svg"
             ></v-img>
-            <h3 class="text-h6 font-weight-light mb-2">
-              {{ $t('accueil.initialiserCompte.bienvenu') }}
-            </h3>
-            <span class="text-caption text-grey">{{
-              $t('accueil.initialiserCompte.sousTitreBienvenu')
-            }}</span>
-            <p>
-              <v-btn
-                class="mt-3"
-                variant="outlined"
-                :loading="enCréation"
-                @click="() => créerCompte()"
-              >
-                {{ $t('accueil.initialiserCompte.cestParti') }}
-              </v-btn>
-            </p>
-          </v-card-text>
-        </v-window-item>
-      </v-window>
+            <div class="text-center">
+              <h3 class="text-h6 font-weight-light mb-2">
+                {{ $t('accueil.initialiserCompte.bienvenu') }}
+              </h3>
+              <span class="text-caption text-grey">{{
+                $t('accueil.initialiserCompte.sousTitreBienvenu')
+              }}</span>
+              <p>
+                <v-btn
+                  class="mt-3"
+                  variant="outlined"
+                  :loading="enCréation"
+                  @click="() => créerCompte()"
+                >
+                  {{ $t('accueil.initialiserCompte.cestParti') }}
+                </v-btn>
+              </p>
+            </div>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+
       <v-divider></v-divider>
 
       <v-card-actions>

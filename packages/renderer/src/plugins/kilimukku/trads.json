@@ -12,15 +12,15 @@
       "piedDePage": "Julien Malard-Adam",
       "initialiserCompte": {
         "titreNoms": "Choisissez votre nom",
-        "sousTitreNoms": "Le plus de langues, le mieux !",
+        "sousTitreNoms": "Le plus de langues, le mieux !",
         "titreImage": "Choisissez une image",
         "titreMotDePasse": "Code secret",
         "titrePersister": "Persister les données ?",
-        "titreCestParti": "C'est tout !",
+        "titreCestParti": "C'est tout !",
         "texteEnConnexion": "Connection au réseau Constellation en cours. Assurez-vous que vous êtes bien en ligne.",
         "texteCompteÀRejoindre": "Ouvrez votre compte Constellation sur un autre dispositif déjà connecté, puis choisissez votre compte ci-dessous.",
         "indiceCompte": "Compte",
-        "texteCodeSecret": "Sur votre autre dispositif, choisissez « Connecter un dispositif » et puis entrez le mot de passe ci-dessous.",
+        "texteCodeSecret": "Sur votre autre dispositif, choisissez « @:compte.ajouterDispositif » et puis entrez le mot de passe ci-dessous.",
         "indiceCodeSecret": "Code secret",
         "indiceComptePasVu": "Vous ne le voyez pas ?",
         "indiceRechercheComptes": "On est en train de rechercher.",
@@ -39,6 +39,9 @@
         "sousTitreBienvenu": "On est heureux de vous voir !",
         "cestParti": "C'est parti !"
       }
+    },
+    "compte": {
+      "ajouterDispositif": "Connecter un dispositif"
     },
     "imageÉditable": {
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."

@@ -161,7 +161,7 @@ export default ({
 }) => {
   return {
     install: (appli: App) => {
-      const constellation = inject<ClientConstellation>('constl');
+      const constellation = appli.config.globalProperties.$constl;
       const nuchabäl = créerNuchabäl({constellation});
       const ennikkai = créerEnnikai({constellation});
       appli.provide('locales', {

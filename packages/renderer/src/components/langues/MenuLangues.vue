@@ -18,14 +18,18 @@
         max-height="500px"
         min-width="200px"
       >
-        <v-list-item>
-          <template #prepend>
-            <v-icon> mdi-plus </v-icon>
+        <ContribuerTraductions>
+          <template #activator="{props}">
+            <v-list-item v-bind="props">
+              <template #prepend>
+                <v-icon> mdi-plus </v-icon>
+              </template>
+              <v-list-item-title>
+                {{ $t('languesInterface.contribuer') }}
+              </v-list-item-title>
+            </v-list-item>
           </template>
-          <v-list-item-title>
-            {{ $t('languesInterface.contribuer') }}
-          </v-list-item-title>
-        </v-list-item>
+        </ContribuerTraductions>
         <v-divider />
         <item-langue
           v-for="code in codesLanguesDisponibles"
@@ -34,11 +38,6 @@
           :selectionnee="code === langue"
         />
       </v-list>
-      <!--<dialogue-traductions-interface>
-        <template v-slot:activator="{on, attrs}">-->
-
-      <!--</template>
-      </dialogue-traductions-interface>-->
     </v-menu>
   </v-btn>
 </template>
@@ -48,8 +47,8 @@ import {useRtl} from 'vuetify';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
-// import dialogueTraductionsInterface from '@/components/commun/traductions/dialogueTraductionsInterface.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {$t} = useI18n();

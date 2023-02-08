@@ -1,4 +1,4 @@
-import {computed, inject, onMounted, onUnmounted, ref, watchEffect} from 'vue';
+import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 import type {Ref} from 'vue';
 import type {App} from 'vue';
 import {
@@ -19,20 +19,26 @@ const useI18n_ = computed(() => {
 
   // Apparament il faut passer locale explicitement ici.
   const i18n = useI18n({
-    locale: langue.value,
-    fallbackLocale: languesAlternatives.value,
     messages: செய்திகள்?.value || {},
   });
   const {codesLanguesDisponibles: localesKilimukku} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
   watchEffect(() => {
     i18n.locale.value = langue.value;
-    i18n.fallbackLocale.value = [
+  });
+
+  // Pour une drôle de raison, assigner un objet ou une liste à i18n.fallbackLocale mène à une récursion infinie si on le fait dans watchEffect().
+  const toutesLanguesAlternatives = computed(() => {
+    return [
       ...languesAlternatives.value,
       ...localesKilimukku.value.filter(
         l => l !== langue.value && !languesAlternatives.value.includes(l),
       ),
     ];
   });
+  watch([toutesLanguesAlternatives], () => {
+    i18n.fallbackLocale.value = toutesLanguesAlternatives.value;
+  });
+  i18n.fallbackLocale.value = toutesLanguesAlternatives.value;
 
   return i18n;
 });
