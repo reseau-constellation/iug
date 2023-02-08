@@ -9,7 +9,7 @@
         :prepend-avatar="srcImgProfil || imgDéfaut"
         :title="nomTraduit"
         subtitle="sandra_a88@gmailcom"
-        @click="$router.push({ path: '/compte' })"
+        @click="$router.push({path: '/compte'})"
       ></v-list-item>
     </v-list>
 
@@ -23,33 +23,33 @@
       <v-list-item
         prepend-icon="mdi-home"
         :title="$t('navigation.accueil')"
-        @click="$router.push({ path: '/' })"
+        @click="$router.push({path: '/'})"
       >
       </v-list-item>
       <v-list-item
         prepend-icon="mdi-database"
         :title="$t('navigation.données')"
-        @click="$router.push({ path: '/données' })"
+        @click="$router.push({path: '/données'})"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-pin"
         :title="$t('navigation.favoris')"
-        @click="$router.push({ path: '/favoris' })"
+        @click="$router.push({path: '/favoris'})"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-magnify"
         :title="$t('navigation.recherche')"
-        @click="$router.push({ path: '/recherche' })"
+        @click="$router.push({path: '/recherche'})"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-lightning-bolt"
         :title="$t('navigation.automatisations')"
-        @click="$router.push({ path: '/automatisations' })"
+        @click="$router.push({path: '/automatisations'})"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-bug"
         :title="$t('navigation.signalements')"
-        @click="$router.push({ path: '/signalements' })"
+        @click="$router.push({path: '/signalements'})"
       ></v-list-item>
     </v-list>
   </v-navigation-drawer>
@@ -59,8 +59,8 @@
 import {inject, ref, computed, onMounted, onUnmounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
 import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import { utiliserImagesDéco } from '/@/composables/images';
-import { utiliserLangues } from '/@/plugins/localisation/localisation';
+import {utiliserImagesDéco} from '/@/composables/images';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {$t} = useI18n();
@@ -107,5 +107,4 @@ onMounted(async () => {
 });
 
 // Liens navigation
-
 </script>
