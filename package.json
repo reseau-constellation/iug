@@ -22,7 +22,7 @@
     "test:renderer": "vitest run -r packages/renderer --passWithNoTests",
     "watch": "node scripts/watch.mjs",
     "watch:web": "cross-env WEB=true vite packages/renderer",
-    "preview:web": "cross-env WEB=true vite preview packages/renderer",
+    "preview:web": "cross-env WEB=true pnpm compile:web && vite preview packages/renderer",
     "lint": "eslint . --ext js,mjs,cjs,ts,mts,cts,vue",
     "typecheck:main": "tsc --noEmit -p packages/main/tsconfig.json",
     "typecheck:preload": "tsc --noEmit -p packages/preload/tsconfig.json",
