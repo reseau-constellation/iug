@@ -424,7 +424,9 @@ const donnéesPersistées = ref(false);
 navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 
 // Création ou connexion compte
-const srcImageLogo = (await import('/@/assets/logo.svg')).default;
+const srcImageLogo = ref<string>();
+import('/@/assets/logo.svg').then(x=>srcImageLogo.value = x.default);
+
 const enCréation = ref(false);
 const créerCompte = async () => {
   enCréation.value = true;
