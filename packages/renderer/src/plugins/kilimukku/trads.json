@@ -31,7 +31,7 @@
         "texteEnConnexion": "Connection au réseau Constellation en cours. Assurez-vous que vous êtes bien en ligne.",
         "texteCompteÀRejoindre": "Ouvrez votre compte Constellation sur un autre dispositif déjà connecté, puis choisissez votre compte ci-dessous.",
         "indiceCompte": "Compte",
-        "texteCodeSecret": "Sur votre autre dispositif, choisissez « @:compte.ajouterDispositif » et puis entrez le mot de passe ci-dessous.",
+        "texteCodeSecret": "Sur votre autre dispositif, choisissez « @:pages.compte.ajouterDispositif » et puis entrez le mot de passe ci-dessous.",
         "indiceCodeSecret": "Code secret",
         "indiceComptePasVu": "Vous ne le voyez pas ?",
         "indiceRechercheComptes": "On est en train de rechercher.",
@@ -53,9 +53,7 @@
         "cestParti": "C'est parti !"
       }
     },
-    "compte": {
-      "ajouterDispositif": "Connecter un dispositif"
-    },
+
     "imageÉditable": {
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
     },
@@ -68,10 +66,16 @@
       "contribuer": "Contribuer",
       "dialogueContribuer": {
         "titre": "Contribuer",
-        "sousTitre": "Ajoutez des traductions à Constellation",
+        "sousTitre": "Traduisez l'interface Constellation",
         "langueSource": "Langue source",
         "langueCible": "Langue cible"
       }
+    },
+    "pages": {
+      "compte": {
+        "ajouterDispositif": "Connecter un dispositif"
+      },
+      "signalements": {}
     }
   },
 
@@ -119,6 +123,17 @@
     "pages": {
       "compte": {
         "titre": "கணக்கு"
+      },
+      "signalements": {
+        "titre": "சிரமம் உள்ளதா?",
+        "sousTitre": "எங்களுக்கு சொல்லுங்கள், உங்களை மகிழ்ச்சியாக உதவிப்போம்.",
+        "bouton": "கிட்ஹபில் புகாரளி",
+        "boutonCourriel": "மின்னஞ்சல் அனுப்பு"
+      }
+    },
+    "languesInterface": {
+      "dialogueContribuer": {
+        "montrerTraduites": "மொழிபெயர்க்கப்பட்டவையை காண்க"
       }
     }
   },
@@ -138,7 +153,7 @@
     }
   },
 
-  "ខ្មែរ" : {
+  "ខ្មែរ": {
     "communs": {
       "constellation": "តារានិករ"
     }
