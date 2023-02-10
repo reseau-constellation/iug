@@ -1,3 +1,6 @@
+import {ref} from 'vue';
+import type {Ref} from 'vue';
+
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg')>}} = {
   constr: {
@@ -48,16 +51,24 @@ const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg
   },
 };
 
-export const utiliserImagesDéco = function (thème = 'வவவ') {
-  const obtImageDéco = async (clef: string): Promise<string | undefined> => {
+export const utiliserImagesDéco = function (thème = 'வவவ'): {
+  obtImageDéco: (clef: string) => Ref<string | undefined>;
+} {
+  const obtImageDéco = (clef: string): Ref<string | undefined> => {
+    const imageDéco = ref<string>();
     if (clef === 'profil') {
       const options = ['profilFemme', 'profilHomme'];
       // Dans le doute, on garde ça équitable :)
       clef = options[Math.floor(Math.random() * options.length)];
     }
-    const svg = await (imagesThème[clef][thème] || Object.values(imagesThème[clef])[0]);
-    return svg.default;
+    if (imagesThème[clef]){
+      (imagesThème[clef][thème] || Object.values(imagesThème[clef])[0]).then(
+        svg => (imageDéco.value = svg?.default),
+      );
+    }
+    return imageDéco;
   };
+
   return {
     obtImageDéco,
   };
