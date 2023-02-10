@@ -64,7 +64,7 @@ export const utiliserImagesDéco = function (thème = 'வவவ'): {
       // Dans le doute, on garde ça équitable :)
       clef = options[Math.floor(Math.random() * options.length)];
     }
-    if (imagesThème[clef]){
+    if (imagesThème[clef]) {
       (imagesThème[clef][thème] || Object.values(imagesThème[clef])[0]).then(
         svg => (imageDéco.value = svg?.default),
       );

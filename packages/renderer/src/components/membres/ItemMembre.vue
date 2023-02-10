@@ -68,6 +68,5 @@ onUnmounted(async () => {
 });
 
 const {obtImageDéco} = utiliserImagesDéco();
-const imgDéfaut = ref<string>();
-obtImageDéco('profil').then(x => (imgDéfaut.value = x));
+const imgDéfaut = obtImageDéco('profil');
 </script>

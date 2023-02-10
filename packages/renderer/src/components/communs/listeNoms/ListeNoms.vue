@@ -38,10 +38,7 @@
   </v-list>
   <v-list>
     <v-divider class="mb-2" />
-    <v-scroll-y-transition
-      group
-      tag="ItemNom"
-    >
+    <v-scroll-y-transition group>
       <ItemNom
         v-for="nom in listeNoms"
         :id="nom.id"

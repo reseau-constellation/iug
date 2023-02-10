@@ -20,7 +20,10 @@
       >
         <ContribuerTraductions>
           <template #activator="{props}">
-            <v-list-item v-bind="props">
+            <v-list-item
+              v-bind="props"
+              :disabled="!constellationPrète"
+            >
               <template #prepend>
                 <v-icon> mdi-plus </v-icon>
               </template>
@@ -30,7 +33,13 @@
             </v-list-item>
           </template>
         </ContribuerTraductions>
-        <v-divider />
+        <v-progress-linear
+          v-if="!constellationPrète"
+          height="1"
+          color="primary"
+          :indeterminate="!constellationPrète"
+        ></v-progress-linear>
+        <v-divider v-else />
         <item-langue
           v-for="code in codesLanguesDisponibles"
           :key="code"
@@ -47,9 +56,17 @@
 import {useRtl} from 'vuetify';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
+import type ClientConstellation from '@constl/ipa';
+
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
+import {inject, ref} from 'vue';
+
+const constl = inject<ClientConstellation>('constl');
+
+const constellationPrète = ref(false);
+constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {$t} = useI18n();

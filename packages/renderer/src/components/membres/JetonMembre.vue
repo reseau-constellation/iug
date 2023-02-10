@@ -1,5 +1,5 @@
 <template>
-  <v-chip variant="flat">
+  <v-chip variant="outlined">
     <v-avatar start>
       <v-img :src="srcImgProfil || imgDéfaut"></v-img>
     </v-avatar>
@@ -60,6 +60,5 @@ onUnmounted(async () => {
 });
 
 const {obtImageDéco} = utiliserImagesDéco();
-const imgDéfaut = ref<string>();
-obtImageDéco('profil').then(x => (imgDéfaut.value = x));
+const imgDéfaut = obtImageDéco('profil');
 </script>

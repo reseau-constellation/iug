@@ -97,7 +97,7 @@
                     (comptesEnLigne.length
                       ? $t('accueil.initialiserCompte.indiceComptePasVu')
                       : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -377,8 +377,7 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-const imgDefaut = ref<string>();
-obtImageDéco('profil').then(x => (imgDefaut.value = x));
+const imgDefaut = obtImageDéco('profil');
 
 const imageChangée = (img?: ArrayBuffer) => {
   imageSélectionnée.value = img;
