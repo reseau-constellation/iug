@@ -15,6 +15,9 @@ const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg
     unDraw: import('/@/assets/undraw/undraw_not_found_60pq.svg'),
     வவவ: import('/@/assets/வவவ/மீனவர்கள்.svg'),
   },
+  message: {
+    வவவ: import('/@/assets/வவவ/செய்தி_வள்ளுவன்.svg'),
+  },
   profilFemme: {
     unDraw: import('/@/assets/undraw/undraw_female_avatar_w3jk.svg'),
     வவவ: import('/@/assets/வவவ/தஞ்சாவூர்_பொம்மை_பெண்.svg'),
