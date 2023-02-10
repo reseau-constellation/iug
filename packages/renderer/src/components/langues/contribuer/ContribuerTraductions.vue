@@ -119,9 +119,7 @@
                     </v-badge>
                   </template>
                   <v-list-item-title>
-                    {{
-                      traductionsApprouvées[clef][langueSource] || '[Aucune traduction]'
-                    }}
+                    {{ traductionsApprouvées[clef][langueSource] || '[Aucune traduction]' }}
                   </v-list-item-title>
                   <v-list-item-subtitle>{{ clef }}</v-list-item-subtitle>
                 </v-list-item>
