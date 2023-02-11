@@ -83,7 +83,7 @@ const générerAliasRésolution = () => {
     '/@/': join(PACKAGE_ROOT, 'src') + '/',
   };
   if (pourÉlectron) {
-    return commun;
+    return Object.assign({}, commun, {'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js'});
   } else {
     return Object.assign({}, commun, {
       assert: 'rollup-plugin-node-polyfills/polyfills/assert',
