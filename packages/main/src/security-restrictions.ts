@@ -14,7 +14,9 @@ type Permissions =
   | 'fullscreen'
   | 'openExternal'
   | 'unknown'
-  | 'window-placement';
+  | 'window-placement'
+  | 'window-management'
+  ;
 
 /**
  * A list of origins that you allow open INSIDE the application and permissions for them.
