@@ -58,11 +58,10 @@ export async function restoreOrCreateWindow() {
 
     // Nécessaire pour que les liens mailto fonctionnent
     // Voir : https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
-    window.webContents.setWindowOpenHandler(({ url }) => {
+    window.webContents.setWindowOpenHandler(({url}) => {
       shell.openExternal(url);
-      return { action: 'deny' };
+      return {action: 'deny'};
     });
-    
   }
 
   if (window.isMinimized()) {

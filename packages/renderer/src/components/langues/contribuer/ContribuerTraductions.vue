@@ -135,7 +135,7 @@
               <template #item="{item, props}">
                 <v-list-item
                   v-bind="props"
-                  :active="item.value===clefSélectionnée"
+                  :active="item.value === clefSélectionnée"
                 >
                   <template #title>
                     {{ traductionsApprouvées[item.value][langueSource] || '[Aucune traduction]' }}
@@ -146,7 +146,10 @@
                 </v-list-item>
               </template>
               <template #selection="{item}">
-                {{ (traductionsApprouvées[item.value][langueSource]|| item.value).slice(0, 20) + "..." }}
+                {{
+                  (traductionsApprouvées[item.value][langueSource] || item.value).slice(0, 20) +
+                    '...'
+                }}
               </template>
             </v-select>
           </v-col>

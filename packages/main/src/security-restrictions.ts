@@ -15,8 +15,7 @@ type Permissions =
   | 'openExternal'
   | 'unknown'
   | 'window-placement'
-  | 'window-management'
-  ;
+  | 'window-management';
 
 /**
  * A list of origins that you allow open INSIDE the application and permissions for them.
