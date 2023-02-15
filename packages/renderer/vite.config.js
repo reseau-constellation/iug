@@ -83,7 +83,7 @@ const générerAliasRésolution = () => {
     '/@/': join(PACKAGE_ROOT, 'src') + '/',
   };
   if (pourÉlectron) {
-    return Object.assign({}, commun, {'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js'});
+    return Object.assign({}, commun, {});
   } else {
     return Object.assign({}, commun, {
       assert: 'rollup-plugin-node-polyfills/polyfills/assert',
@@ -120,24 +120,19 @@ const config = {
     assetsDir: '.',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: pourÉlectron ? undefined : ['chokidar'],
+      external: pourÉlectron ? undefined : ['chokidar', 'wrtc'],
       plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    exclude: pourÉlectron ? undefined : ['chokidar'],
+    exclude: pourÉlectron ? undefined : ['chokidar', 'wrtc'],
   },
   test: {
     environment: 'happy-dom',
   },
   plugins: générerExtentions(),
-  /*define: pourÉlectron || process.env.PROD
-    ? undefined
-    : {
-        global: ({}),
-      },*/
 };
 
 export default config;
