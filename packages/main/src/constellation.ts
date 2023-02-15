@@ -9,4 +9,5 @@ export const gestionnaireFenêtres = new GestionnaireFenêtres({
   enDéveloppement,
   importationIPA,
   importationServeur,
+  journal: enDéveloppement ? console.log : undefined,
 });
