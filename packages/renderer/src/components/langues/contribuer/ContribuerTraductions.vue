@@ -17,7 +17,7 @@
         <v-divider class="my-3" />
       </v-card-item>
 
-      <v-card-text>
+      <v-card-text class="overflow-auto">
         <v-row>
           <v-col :cols="mdAndUp ? 5 : 12">
             <v-select
@@ -119,9 +119,7 @@
                     </v-badge>
                   </template>
                   <v-list-item-title>
-                    {{
-                      traductionsApprouvées[clef][langueSource] || '[Aucune traduction]'
-                    }}
+                    {{ traductionsApprouvées[clef][langueSource] || '[Aucune traduction]' }}
                   </v-list-item-title>
                   <v-list-item-subtitle>{{ clef }}</v-list-item-subtitle>
                 </v-list-item>
@@ -131,13 +129,30 @@
               v-else
               v-model="clefSélectionnée"
               :items="clefsPourListe"
+              label="Message"
               variant="outlined"
             >
+              <template #item="{item, props}">
+                <v-list-item
+                  v-bind="props"
+                  :active="item.value===clefSélectionnée"
+                >
+                  <template #title>
+                    {{ traductionsApprouvées[item.value][langueSource] || '[Aucune traduction]' }}
+                  </template>
+                  <template #subtitle>
+                    {{ item.value }}
+                  </template>
+                </v-list-item>
+              </template>
+              <template #selection="{item}">
+                {{ (traductionsApprouvées[item.value][langueSource]|| item.value).slice(0, 20) + "..." }}
+              </template>
             </v-select>
           </v-col>
 
           <v-col
-            :cols="mdAndUp ? 5 : 12"
+            :cols="mdAndUp ? (clefSélectionnée ? 5 : 9) : 12"
             class="pt-6"
           >
             <div v-if="clefSélectionnée">
@@ -192,11 +207,19 @@
             </div>
           </v-col>
           <v-col
+            v-if="clefSélectionnée"
             :cols="mdAndUp ? 4 : 12"
             class="pt-6"
           >
-            <h2 class="text-h4">Suggestions</h2>
-            <div v-if="suggestionsLangueCible.length">
+            <div class="text-center"><h2 class="text-h4">Suggestions</h2></div>
+            <v-list v-if="texteOriginal">
+              <v-list-item>
+                <v-list-item-title>
+                  {{ texteOriginal }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+            <div v-if="!suggestionsLangueCible.length">
               <v-list max-height="350px">
                 <v-list-item
                   v-for="i in [1, 2, 3, 4, 5]"

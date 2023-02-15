@@ -17,7 +17,7 @@
     <v-btn
       class="mx-2 my-2"
       variant="outlined"
-      :href="`mailto:${COURRIEL_SIGNALEMENTS}`"
+      @click="ouvrirLien(`mailto:${COURRIEL_SIGNALEMENTS}`)"
     >
       {{ $t('pages.signalements.boutonCourriel') }}
       <v-icon end> mdi-email </v-icon>

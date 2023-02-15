@@ -389,8 +389,8 @@ const compteÀRejoindre = ref<string>();
 const comptesEnLigne = ref<infoMembreRéseau[]>([]);
 const connexionsSFIP = ref<
   {
-    addr: string;
-    peer: string;
+    adresse: string;
+    pair: string;
   }[]
 >([]);
 const fsOublierComptes: schémaFonctionOublier[] = [];
