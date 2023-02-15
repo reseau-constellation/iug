@@ -2,8 +2,8 @@
  * @module preload
  */
 
-export {sha256sum} from './nodeCrypto';
-export {versions} from './versions';
+export {surLinux, surMac, surWindows} from './so.js';
+
 export {
   envoyerMessageÀConstellation,
   écouterMessagesDeConstellation,
