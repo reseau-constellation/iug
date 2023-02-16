@@ -50,7 +50,7 @@ async function createWindow() {
  * Restore an existing BrowserWindow or Create a new BrowserWindow.
  */
 export async function restoreOrCreateWindow() {
-  let window = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
+  let window = BrowserWindow.getAllWindows().find(w => !w.isDestroyed() && w.title !== 'WRTC Relay');
 
   if (window === undefined) {
     window = await createWindow();
