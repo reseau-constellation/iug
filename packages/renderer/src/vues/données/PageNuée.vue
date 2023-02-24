@@ -1,1 +1,6 @@
-<template><h1></h1></template>
+<template>
+  <v-container>
+    <v-btn> Générer code </v-btn>
+  </v-container>
+</template>
+<script setup lang="ts"></script>
