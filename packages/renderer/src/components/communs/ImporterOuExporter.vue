@@ -64,7 +64,7 @@
             <v-window-item :value="11">
               <div class="text-center">
                 <h3 class="text-h6 font-weight-light mb-2">
-                  {{ $t('communs.importerOuExporter.confirmer') }}
+                  {{ $t('communs.importerOuExporter.messageConfirmer') }}
                 </h3>
                 <p>
                   <v-btn
@@ -73,7 +73,7 @@
                     :loading="enConfirmation"
                     @click="() => confirmer()"
                   >
-                    {{ $t('accueil.initialiserCompte.cestParti') }}
+                    {{ $t('communs.importerOuExporter.confirmer') }}
                   </v-btn>
                 </p>
               </div>
