@@ -15,6 +15,8 @@
   "rules": {
     /** These rules are disabled because they are incompatible with prettier */
     "vue/html-self-closing": "off",
-    "vue/singleline-html-element-content-newline": "off"
+    "vue/singleline-html-element-content-newline": "off",
+    /** Désactivée pour incompatibilité internationale*/
+    "vue/multi-word-component-names": "off"
   }
 }
