@@ -2,7 +2,7 @@
   <v-container class="text-center">
     <TitrePage
       :titre="$t('pages.compte.titre')"
-      :image="srcImgProfil"
+      :image="srcImgProfil || imgDéfaut"
     />
   </v-container>
 </template>
@@ -12,6 +12,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import type ClientConstellation from '@constl/ipa';
 import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import TitrePage from '../components/TitrePage.vue';
+import {utiliserImagesDéco} from '../composables/images';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -36,4 +37,6 @@ onMounted(async () => {
 onUnmounted(async () => {
   if (fOublierImageProfil) await fOublierImageProfil();
 });
+const {obtImageDéco} = utiliserImagesDéco();
+const imgDéfaut = obtImageDéco('profil');
 </script>
