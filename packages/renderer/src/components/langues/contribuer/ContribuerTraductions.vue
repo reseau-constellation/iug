@@ -222,6 +222,7 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list>
+            ici {{ suggestions }}
             <div v-if="!suggestionsLangueCible.length">
               <v-list max-height="350px">
                 <v-list-item
@@ -393,8 +394,6 @@ const suggestionsLangueCible = computed(() => {
   const {value: lngCible} = langueCible;
   return (lngCible && suggestions.value.filter(s => s.பரிந்துரை.இலக்கு_மொழி === lngCible)) || [];
 });
-//const traductions
-// const suggestions =
 
 // Panneau traduire
 const {obtImageDéco} = utiliserImagesDéco();
