@@ -148,7 +148,7 @@
               <template #selection="{item}">
                 {{
                   (traductionsApprouvées[item.value][langueSource] || item.value).slice(0, 20) +
-                    '...'
+                  '...'
                 }}
               </template>
             </v-select>
