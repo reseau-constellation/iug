@@ -3,7 +3,7 @@
     <v-list-item>
       <v-row>
         <v-col cols="4">
-          <v-autocomplete
+          <v-select
             v-model="nouvelleLangue"
             hide-details
             density="compact"
@@ -12,7 +12,7 @@
             item-value="code"
             :items="languesDisponibles"
             :label="indiceLangue"
-          ></v-autocomplete>
+          ></v-select>
         </v-col>
         <v-col cols="8">
           <v-text-field
@@ -122,7 +122,7 @@ const changerNom = ({id, nom, lng}: {id: string; nom: string; lng: string}) => {
   if (lng === nouvelleLangue.value) nouvelleLangue.value = undefined;
 
   listeNoms.value = listeNoms.value
-    .filter(nm => nm.lng !== lng)
+    .filter(nm => nm.lng !== lng || nm.id === id)
     .map(nm => {
       return nm.id === id ? {lng, nom, id: nm.id} : nm;
     });
