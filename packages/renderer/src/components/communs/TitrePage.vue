@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-3 text-center">
+  <v-container :class="{'mt-3': true, 'pb-0': !!image, 'text-center': true}">
     <h1 class="text-h2">
       {{ titre }}
     </h1>
@@ -7,14 +7,12 @@
     <v-avatar
       v-if="image && imageRonde"
       :size="mdAndUp ? 275 : 175"
-      class="mb-3"
     >
       <v-img :src="image" />
     </v-avatar>
     <v-img
       v-else-if="image"
       :src="image"
-      class="mb-3"
       contain
       height="175"
     />
