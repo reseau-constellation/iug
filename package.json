@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@types/deep-equal": "^1.0.1",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.14.0",
@@ -62,7 +63,7 @@
     "vue-tsc": "1.0.24"
   },
   "dependencies": {
-    "@constl/ipa": "0.6.35",
+    "@constl/ipa": "0.6.36",
     "@constl/mandataire": "^0.1.4",
     "@constl/mandataire-electron-principal": "^0.2.7",
     "@constl/mandataire-electron-rendu": "^0.2.7",
@@ -74,6 +75,7 @@
     "core-js": "^3.28.0",
     "crypto-browserify": "^3.12.0",
     "crypto-js": "^4.1.1",
+    "deep-equal": "^2.2.0",
     "electron-updater": "5.3.0",
     "ennikkai": "^2.0.2",
     "events": "^3.3.0",

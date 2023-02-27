@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@constl/ipa': 0.6.35
+  '@constl/ipa': 0.6.36
   '@constl/mandataire': ^0.1.4
   '@constl/mandataire-electron-principal': ^0.2.7
   '@constl/mandataire-electron-rendu': ^0.2.7
@@ -10,6 +10,7 @@ specifiers:
   '@lassi-js/kili': ^0.0.5
   '@mdi/font': ^7.1.96
   '@rollup/plugin-node-resolve': ^15.0.1
+  '@types/deep-equal': ^1.0.1
   '@types/js-cookie': ^3.0.3
   '@types/lodash': ^4.14.191
   '@types/node': ^18.14.0
@@ -24,6 +25,7 @@ specifiers:
   cross-env: 7.0.3
   crypto-browserify: ^3.12.0
   crypto-js: ^4.1.1
+  deep-equal: ^2.2.0
   electron: 23.0.0
   electron-builder: 23.6.0
   electron-updater: 5.3.0
@@ -62,26 +64,27 @@ specifiers:
   wherearewe: ^2.0.1
 
 dependencies:
-  '@constl/ipa': 0.6.35_electron@23.0.0
-  '@constl/mandataire': 0.1.4_@constl+ipa@0.6.35
-  '@constl/mandataire-electron-principal': 0.2.7_ydhimnerbuv7fbxprastosqaum
-  '@constl/mandataire-electron-rendu': 0.2.7_@constl+ipa@0.6.35
-  '@constl/serveur': 0.2.1_@constl+ipa@0.6.35
+  '@constl/ipa': 0.6.36_electron@23.0.0
+  '@constl/mandataire': 0.1.4_@constl+ipa@0.6.36
+  '@constl/mandataire-electron-principal': 0.2.7_3tuktoltidujsw5va33flnyqda
+  '@constl/mandataire-electron-rendu': 0.2.7_@constl+ipa@0.6.36
+  '@constl/serveur': 0.2.1_@constl+ipa@0.6.36
   '@esbuild-plugins/node-globals-polyfill': 0.1.1
-  '@lassi-js/kili': 0.0.5_@constl+ipa@0.6.35
+  '@lassi-js/kili': 0.0.5_@constl+ipa@0.6.36
   '@mdi/font': 7.1.96
   assert: 2.0.0
   core-js: 3.28.0
   crypto-browserify: 3.12.0
   crypto-js: 4.1.1
+  deep-equal: 2.2.0
   electron-updater: 5.3.0
-  ennikkai: 2.0.2_@constl+ipa@0.6.35
+  ennikkai: 2.0.2_@constl+ipa@0.6.36
   events: 3.3.0
   image-file-resize: 1.0.5
   js-cookie: 3.0.1
   multiformats: 9.9.0
   node-gyp-build: 4.6.0
-  nuchabal: 3.1.0_@constl+ipa@0.6.35
+  nuchabal: 3.1.0_@constl+ipa@0.6.36
   rollup-plugin-node-polyfills: 0.2.1
   rollup-plugin-polyfill-node: 0.12.0
   semaphore-async-await: 1.5.1
@@ -96,6 +99,7 @@ dependencies:
 
 devDependencies:
   '@rollup/plugin-node-resolve': 15.0.1
+  '@types/deep-equal': 1.0.1
   '@types/js-cookie': 3.0.3
   '@types/lodash': 4.14.191
   '@types/node': 18.14.0
@@ -269,8 +273,8 @@ packages:
       - supports-color
     dev: false
 
-  /@constl/ipa/0.6.35_electron@23.0.0:
-    resolution: {integrity: sha512-y1DKaUDdxDm+KexT5tjaZ0CGW7RfbCouK6INJAZa8onCoMResMO9G+qY4qum6rdZd/4mbJMxGbGXRPmgkiACsQ==}
+  /@constl/ipa/0.6.36_electron@23.0.0:
+    resolution: {integrity: sha512-bgz5lVyrFj4elVl5uQ/nn3MD0N0wSZQrw0AVnJqI378UXGtPvxrp1BTdKyE1+qkDcvfN+21Gq8t5wVwwa5uoxA==}
     engines: {node: '>=16'}
     peerDependencies:
       electron: ^23.0.0
@@ -280,7 +284,7 @@ packages:
       '@chainsafe/libp2p-noise': 11.0.1
       '@chriscdn/promise-semaphore': 1.0.9
       '@constl/electron-webrtc-relay': 0.2.1
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.35
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.36
       '@libp2p/kad-dht': 7.0.0
       '@libp2p/mplex': 7.1.1
       '@libp2p/tcp': 6.1.2
@@ -328,7 +332,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal/0.2.7_ydhimnerbuv7fbxprastosqaum:
+  /@constl/mandataire-electron-principal/0.2.7_3tuktoltidujsw5va33flnyqda:
     resolution: {integrity: sha512-TeE7dNfBEg0p7kIDZ4n/n5iX4rmWj0Ez7lfcTcyh5q2z5XNCKyk7JgVa8sPwkGyQsC4VQXz3x2CQvgAPmIOD8Q==}
     peerDependencies:
       '@constl/ipa': ^0.5.8
@@ -336,43 +340,43 @@ packages:
       '@constl/serveur': ^0.1.10
       electron: ^22.0.0
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.35
-      '@constl/serveur': 0.2.1_@constl+ipa@0.6.35
+      '@constl/ipa': 0.6.36_electron@23.0.0
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.36
+      '@constl/serveur': 0.2.1_@constl+ipa@0.6.36
       electron: 23.0.0
       semaphore-async-await: 1.5.1
       tslib: 2.5.0
       uuid: 9.0.0
     dev: false
 
-  /@constl/mandataire-electron-rendu/0.2.7_@constl+ipa@0.6.35:
+  /@constl/mandataire-electron-rendu/0.2.7_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-WBb/qKSMggBt09y/UlzrJKyud13Gv6E2qAHbheYymk+mCTGGZaIGzpr4oUjVXTb4X0ewNdSKvQgLMi7UZCOH9g==}
     dependencies:
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.35
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.36
       events: 3.3.0
     transitivePeerDependencies:
       - '@constl/ipa'
     dev: false
 
-  /@constl/mandataire/0.1.4_@constl+ipa@0.6.35:
+  /@constl/mandataire/0.1.4_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-oElwLw4m1JTIixPzl3xHWPljhAoJw7dYN5tJPjXvTU8M3jwidA7eLrLH7RVREHVj/5pJvwHG6TZ9tBFmd7rJEg==}
     peerDependencies:
       '@constl/ipa': ^0.5.8
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
+      '@constl/ipa': 0.6.36_electron@23.0.0
       events: 3.3.0
       uuid: 9.0.0
     dev: false
 
-  /@constl/serveur/0.2.1_@constl+ipa@0.6.35:
+  /@constl/serveur/0.2.1_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-3EVvHcmDwQIllZ7x5yAUBmkArqCS2W33WKQ7QNxNi1T0SyWnRbKy5g/7Oext1mSvIz9FJ18fPJbS6kvk1gvhMg==}
     engines: {node: '>=16'}
     hasBin: true
     peerDependencies:
       '@constl/ipa': ^0.5.4
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
-      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.35
+      '@constl/ipa': 0.6.36_electron@23.0.0
+      '@constl/mandataire': 0.1.4_@constl+ipa@0.6.36
       bufferutil: 4.0.7
       chalk: 5.2.0
       core-js: 3.28.0
@@ -995,21 +999,21 @@ packages:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
     dev: false
 
-  /@lassi-js/kili/0.0.4_@constl+ipa@0.6.35:
+  /@lassi-js/kili/0.0.4_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-7R2mkdZN+0gWNOzwhVy+R/B7CLb95R39qKqKL7fEnmHFG0PwFy5peex14E2IfIvbrkQRzgrc11ymWF+0upN8SQ==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
+      '@constl/ipa': 0.6.36_electron@23.0.0
       deepcopy: 2.1.0
     dev: false
 
-  /@lassi-js/kili/0.0.5_@constl+ipa@0.6.35:
+  /@lassi-js/kili/0.0.5_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-UIWOLv6mjn45+fd7PEC2QY/PBgLlN3SfpztvsxNH8pm9Ojn41QhakcjaP7tSRmQ9P1xCtFFN7weJi30hSHUdQA==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
+      '@constl/ipa': 0.6.36_electron@23.0.0
       deepcopy: 2.1.0
     dev: false
 
@@ -1787,7 +1791,7 @@ packages:
       fast-memoize: 2.5.2
       msgpack-lite: 0.1.26
       ramda: 0.28.0
-      xstate: 4.36.0
+      xstate: 4.37.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -2159,6 +2163,10 @@ packages:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
       '@types/ms': 0.7.31
+    dev: true
+
+  /@types/deep-equal/1.0.1:
+    resolution: {integrity: sha512-mMUu4nWHLBlHtxXY17Fg6+ucS/MnndyOWyOe7MmwkoMYxvfQU2ajtRaEvqSUv+aVkMqH/C0NCI8UoVfRNQ10yg==}
     dev: true
 
   /@types/dns-packet/5.2.4:
@@ -4192,13 +4200,13 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
-  /ennikkai/2.0.2_@constl+ipa@0.6.35:
+  /ennikkai/2.0.2_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-CwInKByFgCFmONl5WLEjng8fpUYZKuR2d76qTp99f4BvsxWaeAS+WuCdoXpj4///RILy4yskFS5m//hdHGTFEw==}
     peerDependencies:
       '@constl/ipa': ^0.6.8
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
-      '@lassi-js/kili': 0.0.5_@constl+ipa@0.6.35
+      '@constl/ipa': 0.6.36_electron@23.0.0
+      '@lassi-js/kili': 0.0.5_@constl+ipa@0.6.36
       deepmerge: 4.3.0
       events: 3.3.0
     dev: false
@@ -6894,13 +6902,13 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal/3.1.0_@constl+ipa@0.6.35:
+  /nuchabal/3.1.0_@constl+ipa@0.6.36:
     resolution: {integrity: sha512-to7HzpTjrAjcw7dQPYI8Tz/q1T5ke5QzgUk6JbZmqqSu4wK4HCVt7vy/jGgncMBIHI1E+ybEh29OoO1BTiu88Q==}
     peerDependencies:
       '@constl/ipa': ^0.6.7
     dependencies:
-      '@constl/ipa': 0.6.35_electron@23.0.0
-      '@lassi-js/kili': 0.0.4_@constl+ipa@0.6.35
+      '@constl/ipa': 0.6.36_electron@23.0.0
+      '@lassi-js/kili': 0.0.4_@constl+ipa@0.6.36
       deepmerge: 4.3.0
       events: 3.3.0
     dev: false
@@ -9074,8 +9082,8 @@ packages:
     resolution: {integrity: sha512-FIr/DEeoHfj7ftfylnoFt3rAIRoWXpx2AoDfrT2qD2wtp7Dp+COajvs/Icb7uHqRW9m60f5iXZwdsJJO3kvb7w==}
     dev: false
 
-  /xstate/4.36.0:
-    resolution: {integrity: sha512-AUI+KPgyy3g4PDpZWzUy/5ubd8VymbqikNmrJx5AQfqh+AQnemkBiabGROno+am1wUl2yeuT3UDrzUTSidfa6g==}
+  /xstate/4.37.0:
+    resolution: {integrity: sha512-YC+JCerRclKS9ixQTuw8l3vs3iFqWzNzOGR0ID5XsSlieMXIV9nNPE43h9CGr7VdxA1QYhMwhCZA0EdpOd17Bg==}
     dev: false
 
   /xtend/2.0.6:
