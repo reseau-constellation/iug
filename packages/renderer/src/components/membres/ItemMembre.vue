@@ -38,7 +38,7 @@ onMounted(async () => {
     f: x => (noms.value = x),
   });
 });
-onMounted(async () => {
+onUnmounted(async () => {
   if (fOublierNoms) await fOublierNoms();
 });
 
