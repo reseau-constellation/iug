@@ -19,7 +19,7 @@
       density="compact"
       class="align-start"
       nav
-    > 
+    >
       <v-list-item
         v-for="lien in liens"
         :key="lien.chemin"
@@ -88,36 +88,41 @@ onMounted(async () => {
 });
 
 // Liens navigation
-const liens: {icône: string, chemin: string, texte: string}[] = [
-{
-        icône: 'mdi-home',
-        texte: t('navigation.accueil'),
-        chemin: '/'},
+const liens: {icône: string; chemin: string; texte: string}[] = [
+  {
+    icône: 'mdi-home',
+    texte: t('navigation.accueil'),
+    chemin: '/',
+  },
 
-      {
-        icône: 'mdi-database',
-        texte: t('navigation.données'),
-        chemin: '/données'},
+  {
+    icône: 'mdi-database',
+    texte: t('navigation.données'),
+    chemin: '/données',
+  },
 
-      {
-        icône: 'mdi-pin',
-        texte: t('navigation.favoris'),
-        chemin: '/favoris'},
+  {
+    icône: 'mdi-pin',
+    texte: t('navigation.favoris'),
+    chemin: '/favoris',
+  },
 
-      {
-        icône: 'mdi-magnify',
-        texte: t('navigation.recherche'),
-        chemin: '/recherche'},
+  {
+    icône: 'mdi-magnify',
+    texte: t('navigation.recherche'),
+    chemin: '/recherche',
+  },
 
-      {
-        icône: 'mdi-lightning-bolt',
-        texte: t('navigation.automatisations'),
-        chemin: '/automatisations'},
+  {
+    icône: 'mdi-lightning-bolt',
+    texte: t('navigation.automatisations'),
+    chemin: '/automatisations',
+  },
 
-      {
-        icône: 'mdi-bug',
-        texte: t('navigation.signalements'),
-        chemin: '/signalements'},
-
+  {
+    icône: 'mdi-bug',
+    texte: t('navigation.signalements'),
+    chemin: '/signalements',
+  },
 ];
 </script>
