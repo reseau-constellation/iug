@@ -3,3 +3,5 @@ export const URL_TÉLÉCHARGEMENTS = 'https://github.com/reseau-constellation/iu
 export const IPA_TÉLÉCHARGEMENTS = 'https://api.github.com/repos/reseau-constellation/iug/releases';
 
 export const COURRIEL_SIGNALEMENTS = 'julien.malard@mail.mcgill.ca';
+
+export const MAX_TAILLE_IMAGE = 500 * 1000; // 500 kilooctets
