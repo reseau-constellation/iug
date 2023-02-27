@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import TitrePage from '../components/communs/TitrePage.vue';
-import ServeurWS from '../components/ServeurWS.vue';
+import TitrePage from '/@/components/communs/TitrePage.vue';
+import ServeurWS from '/@/components/accueil/ServeurWS.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import { isElectron } from 'wherearewe';
