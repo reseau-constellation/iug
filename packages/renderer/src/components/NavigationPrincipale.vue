@@ -8,7 +8,7 @@
       <v-list-item
         :prepend-avatar="srcImgProfil || imgDéfaut"
         :title="nomTraduit"
-        subtitle="sandra_a88@gmailcom"
+        :subtitle="idDispositif"
         @click="$router.push({path: '/compte'})"
       ></v-list-item>
     </v-list>
@@ -19,38 +19,14 @@
       density="compact"
       class="align-start"
       nav
-    >
+    > 
       <v-list-item
-        prepend-icon="mdi-home"
-        :title="$t('navigation.accueil')"
-        @click="$router.push({path: '/'})"
-      >
-      </v-list-item>
-      <v-list-item
-        prepend-icon="mdi-database"
-        :title="$t('navigation.données')"
-        @click="$router.push({path: '/données'})"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-pin"
-        :title="$t('navigation.favoris')"
-        @click="$router.push({path: '/favoris'})"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-magnify"
-        :title="$t('navigation.recherche')"
-        @click="$router.push({path: '/recherche'})"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-lightning-bolt"
-        :title="$t('navigation.automatisations')"
-        @click="$router.push({path: '/automatisations'})"
-      ></v-list-item>
-      <v-list-item
-        prepend-icon="mdi-bug"
-        :title="$t('navigation.signalements')"
-        @click="$router.push({path: '/signalements'})"
-      ></v-list-item>
+        v-for="lien in liens"
+        :key="lien.chemin"
+        :prepend-icon="lien.icône"
+        :title="lien.texte"
+        @click="$router.push({path: lien.chemin})"
+      />
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -63,7 +39,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -101,9 +77,47 @@ onMounted(async () => {
     f: x => (noms.value = x),
   });
 });
-onMounted(async () => {
+onUnmounted(async () => {
   if (fOublierNoms) await fOublierNoms();
 });
 
+// Dispositif
+const idDispositif = ref<string>();
+onMounted(async () => {
+  idDispositif.value = await constl?.obtIdOrbite();
+});
+
 // Liens navigation
+const liens: {icône: string, chemin: string, texte: string}[] = [
+{
+        icône: 'mdi-home',
+        texte: t('navigation.accueil'),
+        chemin: '/'},
+
+      {
+        icône: 'mdi-database',
+        texte: t('navigation.données'),
+        chemin: '/données'},
+
+      {
+        icône: 'mdi-pin',
+        texte: t('navigation.favoris'),
+        chemin: '/favoris'},
+
+      {
+        icône: 'mdi-magnify',
+        texte: t('navigation.recherche'),
+        chemin: '/recherche'},
+
+      {
+        icône: 'mdi-lightning-bolt',
+        texte: t('navigation.automatisations'),
+        chemin: '/automatisations'},
+
+      {
+        icône: 'mdi-bug',
+        texte: t('navigation.signalements'),
+        chemin: '/signalements'},
+
+];
 </script>
