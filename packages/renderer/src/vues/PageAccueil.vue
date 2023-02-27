@@ -1,13 +1,18 @@
 <template>
   <div class="text-center">
-    <h1>{{ $t('communs.constellation') }}</h1>
-    <ReactiveHash />
+    <TitrePage :titre="t('communs.constellation')" />
+    <ServeurWS v-if="isElectron" />
   </div>
 </template>
 
 <script setup lang="ts">
-import ReactiveHash from '../components/ReactiveHash.vue';
+import TitrePage from '../components/communs/TitrePage.vue';
+import ServeurWS from '../components/ServeurWS.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+import { isElectron } from 'wherearewe';
+
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
+
 </script>
