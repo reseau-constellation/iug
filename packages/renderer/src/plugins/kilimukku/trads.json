@@ -4,7 +4,10 @@
       "constellation": "Constellation",
       "suivant": "Suivant",
       "retour": "Retour",
-      "anonyme": "Anonyme"
+      "anonyme": "Anonyme",
+      "indiceNom": "Nom",
+      "indiceLangue": "Langue",
+      "texteAucunNom": "Ajouter un nom ci-dessus"
     },
     "navigation": {
       "accueil": "Accueil",
@@ -58,9 +61,7 @@
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
     },
     "listeNomsProfil": {
-      "indiceNom": "Votre nom",
-      "indiceLangue": "Langue",
-      "texteAucunNom": "Ajouter un nom ci-dessus"
+      "indiceNom": "Votre nom"
     },
     "languesInterface": {
       "contribuer": "Contribuer",
@@ -83,7 +84,9 @@
     "communs": {
       "constellation": "விண்மீன்",
       "suivant": "அடுத்தது",
-      "retour": "பின்"
+      "retour": "பின்",
+      "fermer": "முடி",
+      "sauvegarder": "சேமி"
     },
     "navigation": {
       "accueil": "வரவேற்பு",
@@ -122,7 +125,22 @@
     },
     "pages": {
       "compte": {
-        "titre": "கணக்கு"
+        "titre": "கணக்கு",
+        "titreDialogueNoms": "பெயரை உள்ளிடுங்கள்",
+        "sousTitreDialogueNoms": "எத்தனை மொழி அவ்வளவு நல்லது"
+      },
+      "mesDonnées": {
+        "titre": "என் தரவுகள்",
+        "motsClefs": "சிறப்பு சொற்கள்",
+        "variables": "மாறிகள்",
+        "bds": "தரவு தளங்கள்",
+        "projets": "திட்டங்கள்",
+        "nuées": "குழுகள்",
+        "nouveauMotClef": "புது சிறப்பு சொல்",
+        "nouvelleVariable": "புது மாறி",
+        "nouvelleBd": "புது தரவு தளம்",
+        "nouvelleProjet": "புது திட்டம்",
+        "nouvelleNuée": "புது குழு"
       },
       "signalements": {
         "titre": "சிரமம் உள்ளதா?",
@@ -134,6 +152,11 @@
     "languesInterface": {
       "dialogueContribuer": {
         "montrerTraduites": "மொழிபெயர்க்கப்பட்டவையை காண்க"
+      }
+    },
+    "motsClefs": {
+      "nouveau": {
+        "titreNoms": "சிறப்பு சொலின் பெயர்"
       }
     }
   },
