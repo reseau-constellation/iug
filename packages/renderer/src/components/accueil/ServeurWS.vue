@@ -9,8 +9,8 @@ const dialogue = ref(false);
 
 const serveurConnecté = ref(false);
 const portServeurSpécifié = ref<number | undefined>();
-const portServeur  = ref<number | undefined>();
-watchEffect(async ()=>{
+const portServeur = ref<number | undefined>();
+watchEffect(async () => {
   if (serveurConnecté.value) {
     portServeur.value = await serveur?.initialiser(portServeurSpécifié.value);
   } else {
@@ -33,7 +33,7 @@ watchEffect(async ()=>{
           text="Ouvrir un nœud local pour connecter d'autres applications."
           location="bottom"
         >
-          <template #activator="{ props }">
+          <template #activator="{props}">
             <v-icon
               size="xsmall"
               v-bind="props"
@@ -51,7 +51,7 @@ watchEffect(async ()=>{
         color="primary"
         inset
         hide-details
-        :prepend-icon="serveurConnecté ? 'mdi-server':'mdi-server-off'"
+        :prepend-icon="serveurConnecté ? 'mdi-server' : 'mdi-server-off'"
         :loading="serveurConnecté && !portServeur"
       >
         <template #label>
