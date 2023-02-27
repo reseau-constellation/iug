@@ -25,7 +25,7 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import TitrePage from '/@/components/TitrePage.vue';
+import TitrePage from '../components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ouvrirLien} from '/@/utils';
 import {URL_SIGNALEMENTS, COURRIEL_SIGNALEMENTS} from '/@/consts';

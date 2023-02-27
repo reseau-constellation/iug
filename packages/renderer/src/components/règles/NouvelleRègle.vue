@@ -27,21 +27,21 @@
                   class="ma-3"
                   variant="flat"
                   color="primary"
-                  @click="()=>suivreCheminementRègleExiste()"
+                  @click="() => suivreCheminementRègleExiste()"
                 >
                   {{ $t('règles.nouvelleRègle.règleExiste') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
-                  @click="()=>suivreCheminementRègleBorne()"
+                  @click="() => suivreCheminementRègleBorne()"
                 >
                   {{ $t('règles.nouvelleRègle.règleBorne') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
-                  @click="()=>suivreCheminementRègleCatégorique()"
+                  @click="() => suivreCheminementRègleCatégorique()"
                 >
                   {{ $t('règles.nouvelleRègle.règleCatégorique') }}
                 </v-btn>
@@ -252,7 +252,6 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
       return {actif: true, visible: true};
   }
 });
-//
 
 // Règle bornes
 const typeBornes = ref<'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe'>();
