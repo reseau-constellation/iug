@@ -156,7 +156,7 @@ watchEffect(async () => {
       const {hauteur, largeur} = await calculerTailleImage(fichier.value);
       const ratio = (hauteur * largeur * 16) / (8 * 1024) / props.maxTailleImage;
       try {
-        fichierRecoupé.value = await convert({
+        fichierRecoupé.value = convert({
           file: fichier.value,
           height: ratio * hauteur,
           width: ratio * largeur,
@@ -178,8 +178,6 @@ watchEffect(async () => {
     if (!imageTropGrande.value) {
       emit('imageChangee', image.value);
     }
-  } else {
-    emit('imageChangee', image.value);
   }
 });
 </script>
