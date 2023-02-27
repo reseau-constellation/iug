@@ -44,8 +44,8 @@
             <ListeNoms
               :noms-initiaux="noms"
               :indice-nom="$t('listeNomsProfil.indiceNom')"
-              :indice-langue="$t('listeNomsProfil.indiceLangue')"
-              :texte-aucun-nom="$t('listeNomsProfil.texteAucunNom')"
+              :indice-langue="$t('communs.indiceLangue')"
+              :texte-aucun-nom="$t('communs.texteAucunNom')"
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
@@ -97,7 +97,7 @@
                     (comptesEnLigne.length
                       ? $t('accueil.initialiserCompte.indiceComptePasVu')
                       : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -216,6 +216,8 @@ import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
+
+import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 
@@ -368,7 +370,6 @@ const ajusterNoms = (nms: {[lng: string]: string}) => {
 };
 
 // Image
-const MAX_TAILLE_IMAGE = 500 * 1000; // 500 kilooctets
 const imageSélectionnée = ref<ArrayBuffer>();
 const srcImgProfil = computed(() => {
   if (imageSélectionnée.value) {
