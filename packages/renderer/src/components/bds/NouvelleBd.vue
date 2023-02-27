@@ -5,26 +5,26 @@
         name="activator"
         v-bind="{props}"
       ></slot>
-
-      <v-card
-        class="mx-auto"
-        :width="mdAndUp ? 500 : 300"
-      >
-        <v-card-item>
-          <v-card-title class="text-h5 justify-space-between">
-            <span>{{ titreCarte }}</span>
-          </v-card-title>
-          <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-        </v-card-item>
-        <v-card-text>
-          <v-window
-            v-model="étape"
-            style="overflow-y: auto"
-          >
-          </v-window>
-        </v-card-text>
-      </v-card>
     </template>
+
+    <v-card
+      class="mx-auto"
+      :width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="text-h5 justify-space-between">
+          <span>{{ titreCarte }}</span>
+        </v-card-title>
+        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: auto"
+        >
+        </v-window>
+      </v-card-text>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
