@@ -6,7 +6,7 @@
     density="compact"
   >
     <template #title>
-      {{ nomTraduit || $t('communs.anonyme') }}
+      {{ nomTraduit || t('communs.anonyme') }}
     </template>
   </v-list-item>
 </template>
@@ -23,7 +23,7 @@ const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 // Nom d'utilisatrice
 const {traduireNom} = utiliserLangues();

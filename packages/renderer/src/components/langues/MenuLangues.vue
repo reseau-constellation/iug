@@ -28,7 +28,7 @@
                 <v-icon> mdi-plus </v-icon>
               </template>
               <v-list-item-title>
-                {{ $t('languesInterface.contribuer') }}
+                {{ t('languesInterface.contribuer') }}
               </v-list-item-title>
             </v-list-item>
           </template>
@@ -69,7 +69,7 @@ const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 const {isRtl} = useRtl();
 

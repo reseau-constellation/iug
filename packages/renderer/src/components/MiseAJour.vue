@@ -5,7 +5,7 @@
     closable
   >
     {{
-      $t('avertissements.miseÀJour.texte', {
+      t('avertissements.miseÀJour.texte', {
         versionCourante: versionAppliFormattée,
         nouvelleVersion: nouvelleVersionFormattée,
       })
@@ -16,7 +16,7 @@
       color="primary"
       @click="ouvrirLien(urlTéléchargement)"
     >
-      {{ $t('avertissements.miseÀJour.télécharcher') }}
+      {{ t('avertissements.miseÀJour.télécharcher') }}
       <v-icon end>mdi-download</v-icon>
     </v-btn>
   </v-alert>
@@ -32,6 +32,9 @@ import {surLinux, surMac, surWindows} from '#preload';
 import {ouvrirLien, type publicationGitHub} from '/@/utils';
 import {IPA_TÉLÉCHARGEMENTS, URL_TÉLÉCHARGEMENTS} from '/@/consts';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import {useI18n} from 'vue-i18n';
+
+const {t} = useI18n();
 
 const extentionCompatible = (ext: string): boolean => {
   if (surLinux) {

@@ -29,14 +29,14 @@
                   color="primary"
                   @click="suivreCheminementImportation"
                 >
-                  {{ $t('communs.importerOuExporter.importer') }}
+                  {{ t('communs.importerOuExporter.importer') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
                   @click="suivreCheminementExportation"
                 >
-                  {{ $t('communs.importerOuExporter.exporter') }}
+                  {{ t('communs.importerOuExporter.exporter') }}
                 </v-btn>
               </div>
             </v-window-item>
@@ -48,23 +48,23 @@
                   color="primary"
                   :disabled="
                     surNavigateur &&
-                    (cheminement === 'exportation' || origineImportation === 'fichier')
+                      (cheminement === 'exportation' || origineImportation === 'fichier')
                   "
                 >
-                  {{ $t('communs.importerOuExporter.automatiser') }}
+                  {{ t('communs.importerOuExporter.automatiser') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
                 >
-                  {{ $t('communs.importerOuExporter.nePasAutomatiser') }}
+                  {{ t('communs.importerOuExporter.nePasAutomatiser') }}
                 </v-btn>
               </div>
             </v-window-item>
             <v-window-item :value="11">
               <div class="text-center">
                 <h3 class="text-h6 font-weight-light mb-2">
-                  {{ $t('communs.importerOuExporter.messageConfirmer') }}
+                  {{ t('communs.importerOuExporter.messageConfirmer') }}
                 </h3>
                 <p>
                   <v-btn
@@ -73,7 +73,7 @@
                     :loading="enConfirmation"
                     @click="() => confirmer()"
                   >
-                    {{ $t('communs.importerOuExporter.confirmer') }}
+                    {{ t('communs.importerOuExporter.confirmer') }}
                   </v-btn>
                 </p>
               </div>
@@ -89,7 +89,7 @@
             :disabled="!retourActif.actif"
             @click="retour"
           >
-            {{ $t('communs.retour') }}
+            {{ t('communs.retour') }}
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
@@ -99,7 +99,7 @@
             :disabled="!suivantActif.actif"
             @click="suivant"
           >
-            {{ $t('communs.suivant') }}
+            {{ t('communs.suivant') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -128,7 +128,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {useDisplay} from 'vuetify';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t, $t} = useI18n();
+const {t} = useI18n();
 
 const {mdAndUp} = useDisplay();
 

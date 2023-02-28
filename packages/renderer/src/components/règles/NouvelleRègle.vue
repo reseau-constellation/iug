@@ -29,28 +29,28 @@
                   color="primary"
                   @click="() => suivreCheminementRègleExiste()"
                 >
-                  {{ $t('règles.nouvelleRègle.règleExiste') }}
+                  {{ t('règles.nouvelleRègle.règleExiste') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
                   @click="() => suivreCheminementRègleBorne()"
                 >
-                  {{ $t('règles.nouvelleRègle.règleBorne') }}
+                  {{ t('règles.nouvelleRègle.règleBorne') }}
                 </v-btn>
                 <v-btn
                   class="ma-3"
                   variant="outlined"
                   @click="() => suivreCheminementRègleCatégorique()"
                 >
-                  {{ $t('règles.nouvelleRègle.règleCatégorique') }}
+                  {{ t('règles.nouvelleRègle.règleCatégorique') }}
                 </v-btn>
               </div>
             </v-window-item>
             <v-window-item :value="5">
               <div class="text-center">
                 <h3 class="text-h6 font-weight-light mb-2">
-                  {{ $t('règles.nouvelleRègle.messageConfirmer') }}
+                  {{ t('règles.nouvelleRègle.messageConfirmer') }}
                 </h3>
                 <p>
                   <v-btn
@@ -59,7 +59,7 @@
                     :loading="enCréation"
                     @click="() => confirmer()"
                   >
-                    {{ $t('règles.nouvelleRègle.confirmer') }}
+                    {{ t('règles.nouvelleRègle.confirmer') }}
                   </v-btn>
                 </p>
               </div>
@@ -75,7 +75,7 @@
             :disabled="!retourActif.actif"
             @click="retour"
           >
-            {{ $t('communs.retour') }}
+            {{ t('communs.retour') }}
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn
@@ -85,7 +85,7 @@
             :disabled="!suivantActif.actif"
             @click="suivant"
           >
-            {{ $t('communs.suivant') }}
+            {{ t('communs.suivant') }}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -111,6 +111,7 @@ import type {
 } from '@constl/ipa/dist/src/valid';
 import {computed, inject, ref} from 'vue';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
+import {useI18n} from 'vue-i18n';
 
 const props = defineProps<{
   source:
@@ -120,6 +121,7 @@ const props = defineProps<{
 
 const constl = inject<ClientConstellation>('constl');
 
+const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 // Navigation

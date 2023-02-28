@@ -13,7 +13,7 @@
       color="error"
       outlined
     >
-      {{ $t('imageÉditable.imageTropGrande', {tailleMaxKO: maxTailleImage / 1000}) }}
+      {{ t('imageÉditable.imageTropGrande', {tailleMaxKO: maxTailleImage / 1000}) }}
     </v-snackbar>
     <v-col cols="12">
       <v-hover :disabled="!editable">
@@ -93,6 +93,7 @@
 <script setup lang="ts">
 import {computed, ref, watchEffect} from 'vue';
 import convert from 'image-file-resize';
+import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
   srcImage?: string;
@@ -105,6 +106,10 @@ const emit = defineEmits<{
   (é: 'imageChangee', image?: ArrayBuffer): void;
 }>();
 
+const {useI18n } = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
+
+// Actions fichier
 const HTMLChoixFichier = ref<HTMLInputElement>();
 const ouvrirFenêtreChoisirImage = () => {
   HTMLChoixFichier.value?.click();

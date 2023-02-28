@@ -29,23 +29,23 @@
                 color="primary"
                 @click="suivreCheminementNouveauCompte"
               >
-                {{ $t('accueil.initialiserCompte.nouveauCompte') }}
+                {{ t('accueil.initialiserCompte.nouveauCompte') }}
               </v-btn>
               <v-btn
                 class="ma-3"
                 variant="outlined"
                 @click="suivreCheminementConnecterCompte"
               >
-                {{ $t('accueil.initialiserCompte.connecter') }}
+                {{ t('accueil.initialiserCompte.connecter') }}
               </v-btn>
             </div>
           </v-window-item>
           <v-window-item :value="1">
             <ListeNoms
               :noms-initiaux="noms"
-              :indice-nom="$t('listeNomsProfil.indiceNom')"
-              :indice-langue="$t('communs.indiceLangue')"
-              :texte-aucun-nom="$t('communs.texteAucunNom')"
+              :indice-nom="t('listeNomsProfil.indiceNom')"
+              :indice-langue="t('communs.indiceLangue')"
+              :texte-aucun-nom="t('communs.texteAucunNom')"
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
@@ -59,14 +59,14 @@
               @image-changee="(img?: ArrayBuffer)=>imageChangée(img)"
             />
             <p class="mt-3 text-center text-caption">
-              {{ $t('accueil.initialiserCompte.texteImage') }}
+              {{ t('accueil.initialiserCompte.texteImage') }}
             </p>
           </v-window-item>
           <v-window-item :value="3">
             <v-fade-transition>
               <div v-show="connexionsSFIP.length">
                 <p class="mb-4">
-                  {{ $t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
+                  {{ t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
                 </p>
 
                 <v-select
@@ -74,7 +74,7 @@
                   :items="comptesEnLigne.map(x => x.idBdCompte)"
                   :loading="!comptesEnLigne.length"
                   :disabled="!comptesEnLigne.length"
-                  :label="$t('accueil.initialiserCompte.indiceCompte')"
+                  :label="t('accueil.initialiserCompte.indiceCompte')"
                   variant="outlined"
                 >
                   <template #selection="{item, props}">
@@ -95,31 +95,31 @@
                 <p class="my-3 text-disabled">
                   {{
                     (comptesEnLigne.length
-                      ? $t('accueil.initialiserCompte.indiceComptePasVu')
-                      : $t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    $t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      ? t('accueil.initialiserCompte.indiceComptePasVu')
+                      : t('accueil.initialiserCompte.indiceRechercheComptes')) +
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
             </v-fade-transition>
             <v-fade-transition>
               <div v-show="!connexionsSFIP.length">
-                {{ $t('accueil.initialiserCompte.texteEnConnexion') }}
+                {{ t('accueil.initialiserCompte.texteEnConnexion') }}
               </div>
             </v-fade-transition>
           </v-window-item>
           <v-window-item :value="4">
-            <p class="mb-4">{{ $t('accueil.initialiserCompte.texteCodeSecret') }}</p>
+            <p class="mb-4">{{ t('accueil.initialiserCompte.texteCodeSecret') }}</p>
             <v-text-field
               v-model="codeSecret"
-              :label="$t('accueil.initialiserCompte.indiceCodeSecret')"
+              :label="t('accueil.initialiserCompte.indiceCodeSecret')"
               variant="outlined"
             ></v-text-field>
           </v-window-item>
           <v-window-item :value="5">
-            <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.1') }} </p>
-            <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.2') }} </p>
-            <p class="mb-4"> {{ $t('accueil.initialiserCompte.textePersister.3') }} </p>
+            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.1') }} </p>
+            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.2') }} </p>
+            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.3') }} </p>
 
             <div
               v-if="donnéesPersistées"
@@ -131,7 +131,7 @@
                 @click="étape++"
               >
                 <v-icon start>mdi-check</v-icon>
-                {{ $t('accueil.initialiserCompte.déjàPersistées') }}
+                {{ t('accueil.initialiserCompte.déjàPersistées') }}
               </v-btn>
             </div>
             <div
@@ -144,14 +144,14 @@
                 variant="flat"
                 @click="() => persisterDonnées()"
               >
-                {{ $t('accueil.initialiserCompte.persister') }}
+                {{ t('accueil.initialiserCompte.persister') }}
               </v-btn>
               <v-btn
                 class="mt-3 mx-3"
                 variant="outlined"
                 @click="étape++"
               >
-                {{ $t('accueil.initialiserCompte.pasPersister') }}
+                {{ t('accueil.initialiserCompte.pasPersister') }}
               </v-btn>
             </div>
           </v-window-item>
@@ -164,10 +164,10 @@
             ></v-img>
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
-                {{ $t('accueil.initialiserCompte.bienvenu') }}
+                {{ t('accueil.initialiserCompte.bienvenu') }}
               </h3>
               <span class="text-caption text-grey">{{
-                $t('accueil.initialiserCompte.sousTitreBienvenu')
+                t('accueil.initialiserCompte.sousTitreBienvenu')
               }}</span>
               <p>
                 <v-btn
@@ -176,7 +176,7 @@
                   :loading="enCréation"
                   @click="() => créerCompte()"
                 >
-                  {{ $t('accueil.initialiserCompte.cestParti') }}
+                  {{ t('accueil.initialiserCompte.cestParti') }}
                 </v-btn>
               </p>
             </div>
@@ -193,7 +193,7 @@
           :disabled="!retourActif.actif"
           @click="retour"
         >
-          {{ $t('communs.retour') }}
+          {{ t('communs.retour') }}
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn
@@ -203,7 +203,7 @@
           :disabled="!suivantActif.actif"
           @click="suivant"
         >
-          {{ $t('communs.suivant') }}
+          {{ t('communs.suivant') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -229,7 +229,7 @@ import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import JetonMembre from './membres/JetonMembre.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t, $t} = useI18n();
+const {t} = useI18n();
 
 const {mdAndUp} = useDisplay();
 

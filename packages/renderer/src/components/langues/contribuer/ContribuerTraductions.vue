@@ -12,8 +12,8 @@
       :width="mdAndUp ? 1500 : 300"
     >
       <v-card-item>
-        <v-card-title>{{ $t('languesInterface.dialogueContribuer.titre') }}</v-card-title>
-        <v-card-subtitle>{{ $t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>
+        <v-card-title>{{ t('languesInterface.dialogueContribuer.titre') }}</v-card-title>
+        <v-card-subtitle>{{ t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>
         <v-divider class="my-3" />
       </v-card-item>
 
@@ -25,7 +25,7 @@
               variant="outlined"
               hide-details
               :items="codesLanguesDisponibles"
-              :label="$t('languesInterface.dialogueContribuer.langueSource')"
+              :label="t('languesInterface.dialogueContribuer.langueSource')"
             >
               <template #item="{item, props}">
                 <ItemLangueProgrès
@@ -45,7 +45,7 @@
               variant="outlined"
               hide-details
               :items="codesLanguesDisponibles"
-              :label="$t('languesInterface.dialogueContribuer.langueCible')"
+              :label="t('languesInterface.dialogueContribuer.langueCible')"
             >
               <template #item="{item, props}">
                 <ItemLangueProgrès
@@ -64,7 +64,7 @@
               v-model="montrerTraduites"
               color="primary"
               hide-details
-              :label="$t('languesInterface.dialogueContribuer.montrerTraduites')"
+              :label="t('languesInterface.dialogueContribuer.montrerTraduites')"
             ></v-switch>
           </v-col>
         </v-row>
@@ -148,7 +148,7 @@
               <template #selection="{item}">
                 {{
                   (traductionsApprouvées[item.value][langueSource] || item.value).slice(0, 20) +
-                  '...'
+                    '...'
                 }}
               </template>
             </v-select>
@@ -317,7 +317,7 @@ const {
   மொழிபெயர்ப்புகளை_பயன்படுத்து,
   பரிந்துரைகளை_பயன்படுத்து,
 } = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 

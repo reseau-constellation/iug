@@ -16,10 +16,10 @@
             :debut="début"
           />
           <h1 :class="['mt-6', mdAndUp ? 'text-h1' : 'text-h3']">
-            {{ $t('communs.constellation') }}
+            {{ t('communs.constellation') }}
           </h1>
           <p class="text-subtitle-1 text-disabled">
-            {{ $t('accueil.version', {version: versionAppli}) }}
+            {{ t('accueil.version', {version: versionAppli}) }}
           </p>
 
           <div
@@ -36,7 +36,7 @@
                     v-show="animationTerminée && constellationPrète"
                     variant="outlined"
                   >
-                    {{ $t('accueil.démarrer') }}
+                    {{ t('accueil.démarrer') }}
                   </v-btn>
                 </v-fade-transition>
               </template>
@@ -52,7 +52,7 @@
         style="height: 100%"
       >
         <p class="text-disabled">
-          {{ $t('accueil.piedDePage') }}
+          {{ t('accueil.piedDePage') }}
         </p>
       </v-container>
     </v-footer>
@@ -74,7 +74,7 @@ import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 const constl = inject<ClientConstellation>('constl');
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;

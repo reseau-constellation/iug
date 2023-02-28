@@ -43,7 +43,7 @@
           <v-window-item :key="2">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
-                {{ $t('motsClefs.nouveau.texteCréer') }}
+                {{ t('motsClefs.nouveau.texteCréer') }}
               </h3>
               <p>
                 <v-btn
@@ -52,7 +52,7 @@
                   :loading="enCréation"
                   @click="() => créerMotClef()"
                 >
-                  {{ $t('motsClefs.nouveau.texteBtnCréation') }}
+                  {{ t('motsClefs.nouveau.texteBtnCréation') }}
                 </v-btn>
               </p>
             </div>

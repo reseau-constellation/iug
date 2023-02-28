@@ -18,7 +18,7 @@ import {computed, ref, onMounted, onUnmounted} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
@@ -39,18 +39,18 @@ onUnmounted(() => {
 const texteJetonÉtat = computed(() => {
   switch (props.état.type) {
     case 'écoute':
-      return $t('auto.jetonÉtat.écoute');
+      return t('auto.jetonÉtat.écoute');
     case 'sync':
-      return $t('auto.jetonÉtat.sync');
+      return t('auto.jetonÉtat.sync');
     case 'programmée':
-      return $t('auto.jetonÉtat.programmée', {dans: props.état.à - maintenant.value});
+      return t('auto.jetonÉtat.programmée', {dans: props.état.à - maintenant.value});
     case 'erreur':
       if (props.état.prochaineProgramméeÀ) {
-        return $t('auto.jetonÉtat.erreurRéssayer', {
+        return t('auto.jetonÉtat.erreurRéssayer', {
           dans: props.état.prochaineProgramméeÀ - maintenant.value,
         });
       } else {
-        return $t('auto.jetonÉtat.erreur');
+        return t('auto.jetonÉtat.erreur');
       }
     default:
       throw new Error(props.état);

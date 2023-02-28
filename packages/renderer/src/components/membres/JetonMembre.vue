@@ -3,7 +3,7 @@
     <v-avatar start>
       <v-img :src="srcImgProfil || imgDéfaut"></v-img>
     </v-avatar>
-    {{ nomTraduit || $t('communs.anonyme') }}
+    {{ nomTraduit || t('communs.anonyme') }}
   </v-chip>
 </template>
 
@@ -20,7 +20,7 @@ const props = defineProps<{compte: string}>();
 const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 
 // Nom d'utilisatrice
 const {traduireNom} = utiliserLangues();

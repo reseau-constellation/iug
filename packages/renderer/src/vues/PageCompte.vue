@@ -1,6 +1,6 @@
 <template>
   <v-container class="text-center">
-    <TitrePage :titre="$t('pages.compte.titre')" />
+    <TitrePage :titre="t('pages.compte.titre')" />
     <ImageEditable
       :src-image="srcImgProfil"
       :img-defaut="imgDéfaut"
@@ -10,14 +10,14 @@
       @image-changee="image => sauvegarderImage(image)"
     />
     <h1>
-      <span :class="{'text-disabled': !nomTraduit}">{{ nomTraduit || $t('communs.anonyme') }}</span>
+      <span :class="{'text-disabled': !nomTraduit}">{{ nomTraduit || t('communs.anonyme') }}</span>
       <DialogueNoms
-        :indice-nom="$t('listeNomsProfil.indiceNom')"
-        :indice-langue="$t('listeNomsProfil.indiceLangue')"
-        :texte-aucun-nom="$t('listeNomsProfil.texteAucunNom')"
+        :indice-nom="t('listeNomsProfil.indiceNom')"
+        :indice-langue="t('listeNomsProfil.indiceLangue')"
+        :texte-aucun-nom="t('listeNomsProfil.texteAucunNom')"
         :noms-initiaux="noms"
-        :titre="$t('pages.compte.titreDialogueNoms')"
-        :sous-titre="$t('pages.compte.sousTitreDialogueNoms')"
+        :titre="t('pages.compte.titreDialogueNoms')"
+        :sous-titre="t('pages.compte.sousTitreDialogueNoms')"
         @ajuster-noms="nms => ajusterNoms(nms)"
       >
         <template #activator="{props}">
@@ -49,7 +49,7 @@ import DialogueNoms from '../components/communs/listeNoms/DialogueNoms.vue';
 const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {$t} = useI18n();
+const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 // Image profil
@@ -99,7 +99,7 @@ onMounted(async () => {
 });
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(lng=>!nms[lng]);
+  const àEffacer = Object.keys(noms.value).filter(lng => !nms[lng]);
   for (const [langue, nom] of Object.entries(nms)) {
     await constl?.profil?.sauvegarderNom({langue, nom});
   }
