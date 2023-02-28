@@ -31,11 +31,11 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-type TypeItemSérie = {[clef: string]: unknown} & {id: string}
-const props = defineProps<{nMax: number; items: (TypeItemSérie|string)[]}>();
+type TypeItemSérie = {[clef: string]: unknown} & {id: string};
+const props = defineProps<{nMax: number; items: (TypeItemSérie | string)[]}>();
 
 const itemiser = (item: string | TypeItemSérie): TypeItemSérie => {
-    return typeof item === 'string' ? {id: item} : item;
+  return typeof item === 'string' ? {id: item} : item;
 };
 
 // https://vuejs.org/guide/components/slots.html#fancy-list-example

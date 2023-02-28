@@ -48,7 +48,7 @@
                   color="primary"
                   :disabled="
                     surNavigateur &&
-                      (cheminement === 'exportation' || origineImportation === 'fichier')
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
                   "
                 >
                   {{ t('communs.importerOuExporter.automatiser') }}

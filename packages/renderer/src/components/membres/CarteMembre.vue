@@ -28,7 +28,6 @@ import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import ItemBd from '/@/components/bds/ItemBd.vue';
 import JetonBd from '/@/components/bds/JetonBd.vue';
 
-
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
