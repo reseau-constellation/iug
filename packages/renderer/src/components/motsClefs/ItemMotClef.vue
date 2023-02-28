@@ -49,7 +49,7 @@ onUnmounted(async () => {
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
-const descriptionTraduite = traduireNom(noms);
+const descriptionTraduite = traduireNom(descriptions);
 
 let fOublierDescriptions: schémaFonctionOublier | undefined = undefined;
 onMounted(async () => {
