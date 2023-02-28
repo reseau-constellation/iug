@@ -10,7 +10,7 @@
       @image-changee="image => sauvegarderImage(image)"
     />
     <h1>
-      {{ nomTraduit || $t('communs.anonyme') }}
+      <span :class="{'text-disabled': !nomTraduit}">{{ nomTraduit || $t('communs.anonyme') }}</span>
       <DialogueNoms
         :indice-nom="$t('listeNomsProfil.indiceNom')"
         :indice-langue="$t('listeNomsProfil.indiceLangue')"
@@ -18,7 +18,7 @@
         :noms-initiaux="noms"
         :titre="$t('pages.compte.titreDialogueNoms')"
         :sous-titre="$t('pages.compte.sousTitreDialogueNoms')"
-        @ajuster-noms="noms => ajusterNoms(noms)"
+        @ajuster-noms="nms => ajusterNoms(nms)"
       >
         <template #activator="{props}">
           <v-btn
@@ -98,9 +98,13 @@ onMounted(async () => {
   if (fOublierNoms) await fOublierNoms();
 });
 
-const ajusterNoms = async (noms: {[langue: string]: string}) => {
-  for (const [langue, nom] of Object.entries(noms)) {
+const ajusterNoms = async (nms: {[langue: string]: string}) => {
+  const àEffacer = Object.keys(noms.value).filter(lng=>!nms[lng]);
+  for (const [langue, nom] of Object.entries(nms)) {
     await constl?.profil?.sauvegarderNom({langue, nom});
+  }
+  for (const langue of àEffacer) {
+    await constl?.profil?.effacerNom({langue});
   }
 };
 </script>
