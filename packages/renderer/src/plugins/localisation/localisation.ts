@@ -68,7 +68,7 @@ export const utiliserLangues = () => {
       for (const lng of langueEtAlternatives.value) {
         if (noms.value[lng]) return noms.value[lng];
       }
-      return undefined;
+      return Object.values(noms.value)[0];
     });
   };
 
