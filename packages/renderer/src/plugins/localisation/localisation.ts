@@ -124,9 +124,9 @@ export const utiliserNumération = () => {
     });
   }
 
-  const formatterChiffre = (chiffre: number): Ref<string> => {
-    const chiffreFormatté = computed(() =>
-      ennikkai.உரைக்கு({எண்: chiffre, மொழி: numération.value}),
+  const formatterChiffre = (chiffre: number|Ref<number>): Ref<string> => {
+    const chiffreFormatté = computed<string>(() =>
+      ennikkai.உரைக்கு({எண்: typeof chiffre === 'number' ? chiffre: chiffre.value, மொழி: numération.value}),
     );
     return chiffreFormatté;
   };

@@ -1,66 +1,113 @@
 <template>
-  <v-card>
+  <v-card
+    :width="mdAndUp ? 500 : 300"
+    class="mx-auto"
+  >
     <v-card-item>
-      <v-card-title>{{ nom || t('motsClefs.sansNom') }}</v-card-title>
+      <v-card-title>
+        {{ nom || t('motsClefs.sansNom') }}
+        
+        <lien-objet :id="id" />
+      </v-card-title>
     </v-card-item>
     <v-card-text>
-      <p>{{ descriptions || t('motsClefs.sansDescription') }}</p>
+      <p class="text-overline">{{ t('motsClefs.description') }}</p>
+      <v-divider class="mb-2" />
+      <p>{{ description || t('motsClefs.sansDescription') }}</p>
+
+      <p class="text-overline">{{ t('motsClefs.auteurs') }}</p>
+      <v-divider class="mb-2" />
+      <auteurs-objet :auteurs="auteurs" />
+      <p
+        v-if="monAutorisation"
+        class="text-center mt-4"
+      >
+        <v-btn
+          class="mx-auto"
+          variant="outlined"
+        >
+          {{ t('motsClefs.ajouterAuteur') }}
+        </v-btn>
+      </p>
     </v-card-text>
-    <v-card-actions> </v-card-actions>
+    <v-divider />
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        v-if="monAutorisation"
+        variant="flat"
+        color="primary"
+      >
+        {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import {inject, onMounted, onUnmounted, ref} from 'vue';
-import {useI18n} from 'vue-i18n';
+import type {infoAuteur} from '@constl/ipa/dist/src/utils';
+import {inject, ref} from 'vue';
+import AuteursObjet from '../communs/AuteursObjet.vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {enregistrerÉcoute} from '/@/composables/utils';
+import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import LienObjet from '../communs/LienObjet.vue';
+import { useDisplay } from 'vuetify';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {mdAndUp} = useDisplay();
 const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
 
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
-let fOublierMonAutorisation: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierMonAutorisation = await constl?.suivrePermission({
+enregistrerÉcoute(
+  constl?.suivrePermission({
     idObjet: props.id,
     f: x => (monAutorisation.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierMonAutorisation) await fOublierMonAutorisation();
-});
+  }),
+);
 
 // Nom mot-clef
 const noms = ref<{[langue: string]: string}>({});
-let fOublierNoms: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierNoms = await constl?.motsClefs?.suivreNomsMotClef({
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreNomsMotClef({
     id: props.id,
     f: x => (noms.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierNoms) await fOublierNoms();
-});
+  }),
+);
 const nom = traduireNom(noms);
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
 
-let fOublierDescriptions: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierDescriptions = await constl?.motsClefs?.suivreDescriptionsMotClef({
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreDescriptionsMotClef({
     id: props.id,
     f: x => (descriptions.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierDescriptions) await fOublierDescriptions();
-});
+  }),
+);
+const description = traduireNom(descriptions);
+
+// Permissions
+const maPermission = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
+enregistrerÉcoute(
+  constl?.suivrePermission({
+    idObjet: props.id,
+    f: x => (maPermission.value = x),
+  }),
+);
+
+// Auteurs
+const auteurs = ref<infoAuteur[]>();
+enregistrerÉcoute(
+  constl?.réseau?.suivreAuteursMotClef({
+    idMotClef: props.id,
+    f: x => (auteurs.value = x),
+  }),
+);
 </script>

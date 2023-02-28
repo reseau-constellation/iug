@@ -23,9 +23,9 @@
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import {enregistrerÉcoute} from '/@/composables/utils';
 
-import {ref, inject, onMounted, onUnmounted} from 'vue';
+import {ref, inject} from 'vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteMotClef from './CarteMotClef.vue';
@@ -47,29 +47,21 @@ const dialogue = ref(false);
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
-let fOublierNoms: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierNoms = await constl?.motsClefs?.suivreNomsMotClef({
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreNomsMotClef({
     id: props.id,
     f: x => (noms.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierNoms) await fOublierNoms();
-});
+  }),
+);
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
 const descriptionTraduite = traduireNom(descriptions);
 
-let fOublierDescriptions: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierDescriptions = await constl?.motsClefs?.suivreDescriptionsMotClef({
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreDescriptionsMotClef({
     id: props.id,
     f: x => (descriptions.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierDescriptions) await fOublierDescriptions();
-});
+  }),
+);
 </script>

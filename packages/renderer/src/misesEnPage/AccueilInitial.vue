@@ -60,10 +60,9 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, inject, onUnmounted, watchEffect} from 'vue';
+import {onMounted, ref, inject, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
@@ -71,6 +70,7 @@ import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { enregistrerÉcoute } from '../composables/utils';
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -96,13 +96,9 @@ const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const nomsProfil = ref<{[lng: string]: string}>();
-let oublierNomsProfil: schémaFonctionOublier | undefined;
-onMounted(async () => {
-  oublierNomsProfil = await constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)});
-});
-onUnmounted(async () => {
-  if (oublierNomsProfil) await oublierNomsProfil();
-});
+enregistrerÉcoute(
+  constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)}),
+);
 
 watchEffect(() => {
   if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();

@@ -1,6 +1,6 @@
 <template>
   <span>
-    <li
+    <span
       v-for="item in visibles"
       :key="item.id"
     >
@@ -8,11 +8,14 @@
         name="jeton"
         v-bind="item"
       ></slot>
-    </li>
+    </span>
 
     <v-menu v-if="extras.length">
       <template #activator="{props}">
-        <v-chip v-bind="props"><v-icon>mdi-plus</v-icon></v-chip>
+        <v-chip
+          v-bind="props"
+          variant="outlined"
+        ><v-icon start>mdi-plus</v-icon>{{ nExtrasFormatté }}</v-chip>
       </template>
       <v-list>
         <li
@@ -30,19 +33,26 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
+import { utiliserNumération } from '/@/plugins/localisation/localisation';
 
-type TypeItemSérie = {[clef: string]: unknown} & {id: string}
-const props = defineProps<{nMax: number; items: (TypeItemSérie|string)[]}>();
+type TypeItemSérie = {[clef: string]: unknown} & {id: string};
+const props = defineProps<{nMax: number; items?: (TypeItemSérie | string)[]}>();
 
+const {formatterChiffre} = utiliserNumération();
+
+// Logique générale
 const itemiser = (item: string | TypeItemSérie): TypeItemSérie => {
-    return typeof item === 'string' ? {id: item} : item;
+  return typeof item === 'string' ? {id: item} : item;
 };
 
 // https://vuejs.org/guide/components/slots.html#fancy-list-example
 const visibles = computed<TypeItemSérie[]>(() => {
-  return props.items.slice(0, props.nMax).map(itemiser);
+  return props.items?.slice(0, props.nMax).map(itemiser) || [];
 });
 const extras = computed<TypeItemSérie[]>(() => {
-  return props.items.slice(props.nMax).map(itemiser);
+  return props.items?.slice(props.nMax).map(itemiser) || [];
 });
+
+const nExtrasFormatté = formatterChiffre(extras.value.length);
+
 </script>

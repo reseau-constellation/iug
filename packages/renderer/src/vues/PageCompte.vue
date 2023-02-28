@@ -32,19 +32,19 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import {computed, inject, onMounted, onUnmounted, ref} from 'vue';
+import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import type ClientConstellation from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 
 import TitrePage from '../components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import DialogueNoms from '../components/communs/listeNoms/DialogueNoms.vue';
+import { enregistrerÉcoute } from '../composables/utils';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -61,15 +61,12 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-let fOublierImageProfil: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierImageProfil = await constl?.profil?.suivreImage({
+enregistrerÉcoute(
+  constl?.profil?.suivreImage({
     f: image => (imageProfil.value = image),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierImageProfil) await fOublierImageProfil();
-});
+  }),
+);
+
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
 
@@ -88,15 +85,11 @@ const {traduireNom} = utiliserLangues();
 
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
-let fOublierNoms: (() => Promise<void>) | undefined = undefined;
-onMounted(async () => {
-  fOublierNoms = await constl?.profil?.suivreNoms({
+enregistrerÉcoute(
+  constl?.profil?.suivreNoms({
     f: x => (noms.value = x),
-  });
-});
-onMounted(async () => {
-  if (fOublierNoms) await fOublierNoms();
-});
+  }),
+);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const àEffacer = Object.keys(noms.value).filter(lng => !nms[lng]);

@@ -22,12 +22,12 @@
 
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import {ref, inject, onMounted, onUnmounted} from 'vue';
+import {enregistrerÉcoute} from '/@/composables/utils';
+
+import {ref, inject} from 'vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import ItemBd from '/@/components/bds/ItemBd.vue';
 import JetonBd from '/@/components/bds/JetonBd.vue';
-
 
 const props = defineProps<{id: string}>();
 
@@ -35,14 +35,10 @@ const constl = inject<ClientConstellation>('constl');
 
 // Bds
 const bdsMembre = ref<string[]>();
-let fOublierBdsMembre: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierBdsMembre = await constl?.réseau?.suivreBdsMembre({
+enregistrerÉcoute(
+  constl?.réseau?.suivreBdsMembre({
     idCompte: props.id,
     f: bds => (bdsMembre.value = bds),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierBdsMembre) fOublierBdsMembre();
-});
+  }),
+);
 </script>

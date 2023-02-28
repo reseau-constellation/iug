@@ -136,10 +136,9 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject, onMounted, onUnmounted} from 'vue';
+import {ref, inject} from 'vue';
 
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
@@ -150,6 +149,7 @@ import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
 import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
+import { enregistrerÉcoute } from '/@/composables/utils';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -192,13 +192,9 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
 
 // Mots-clefs
 const mesMotsClefs = ref<string[]>();
-let oublierMesMotsClefs: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  oublierMesMotsClefs = await constl?.motsClefs?.suivreMotsClefs({
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreMotsClefs({
     f: x => (mesMotsClefs.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (oublierMesMotsClefs) await oublierMesMotsClefs();
-});
+  }),
+);
 </script>

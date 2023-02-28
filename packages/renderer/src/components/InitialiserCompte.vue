@@ -211,11 +211,12 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref, inject, onMounted, onUnmounted} from 'vue';
+import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
+import {enregistrerÉcoute} from '/@/composables/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -225,7 +226,6 @@ import ImageÉditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import JetonMembre from './membres/JetonMembre.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -394,23 +394,20 @@ const connexionsSFIP = ref<
     pair: string;
   }[]
 >([]);
-const fsOublierComptes: schémaFonctionOublier[] = [];
-onMounted(async () => {
-  const monIdCompte = await constl?.obtIdCompte();
-  const retourComptes = await constl?.réseau?.suivreComptesRéseauEtEnLigne({
-    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idBdCompte !== monIdCompte)),
-    profondeur: Infinity,
-  });
-  if (retourComptes?.fOublier) fsOublierComptes.push(retourComptes.fOublier);
+const monIdCompte = ref<string>();
 
-  const fOublierConnexionsSFIP = await constl?.réseau?.suivreConnexionsPostesSFIP({
+enregistrerÉcoute(
+  constl?.réseau?.suivreConnexionsPostesSFIP({
     f: connexions => (connexionsSFIP.value = connexions),
-  });
-  if (fOublierConnexionsSFIP) fsOublierComptes.push(fOublierConnexionsSFIP);
-});
-onUnmounted(async () => {
-  await Promise.all(fsOublierComptes.map(f => f()));
-});
+  }),
+);
+enregistrerÉcoute(constl?.suivreIdBdCompte({f: idCompte => (monIdCompte.value = idCompte)}));
+enregistrerÉcoute(
+  constl?.réseau?.suivreComptesRéseauEtEnLigne({
+    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idBdCompte !== monIdCompte.value)),
+    profondeur: Infinity,
+  }),
+);
 
 // Persister les données
 const persisterDonnées = async () => {

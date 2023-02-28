@@ -93,7 +93,7 @@
 <script setup lang="ts">
 import {computed, ref, watchEffect} from 'vue';
 import convert from 'image-file-resize';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
   srcImage?: string;
@@ -106,7 +106,7 @@ const emit = defineEmits<{
   (é: 'imageChangee', image?: ArrayBuffer): void;
 }>();
 
-const {useI18n } = கிளிமூக்கை_உபயோகி();
+const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Actions fichier

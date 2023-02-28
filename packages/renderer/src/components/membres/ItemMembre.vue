@@ -12,11 +12,11 @@
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import {ref, inject, onMounted, computed, onUnmounted} from 'vue';
+import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {enregistrerÉcoute} from '/@/composables/utils';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 
@@ -31,16 +31,11 @@ const {traduireNom} = utiliserLangues();
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
-let fOublierNoms: (() => Promise<void>) | undefined = undefined;
-onMounted(async () => {
-  fOublierNoms = await constl?.profil?.suivreNoms({
+enregistrerÉcoute( 
+  constl?.profil?.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierNoms) await fOublierNoms();
-});
+  }));
 
 // Visibilité
 const visible = computed(() => {
@@ -56,17 +51,14 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-let fOublierImageProfil: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierImageProfil = await constl?.profil?.suivreImage({
+enregistrerÉcoute(
+  constl?.profil?.suivreImage({
     idCompte: props.compte,
     f: image => (imageProfil.value = image),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierImageProfil) await fOublierImageProfil();
-});
+  }),
+);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
+
 </script>

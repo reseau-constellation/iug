@@ -32,12 +32,13 @@
 </template>
 
 <script setup lang="ts">
-import {inject, ref, computed, onMounted, onUnmounted} from 'vue';
+import {inject, ref, computed, onMounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {enregistrerÉcoute} from '/@/composables/utils';
+
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
@@ -52,15 +53,11 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-let fOublierImageProfil: schémaFonctionOublier | undefined = undefined;
-onMounted(async () => {
-  fOublierImageProfil = await constl?.profil?.suivreImage({
+enregistrerÉcoute(
+  constl?.profil?.suivreImage({
     f: image => (imageProfil.value = image),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierImageProfil) await fOublierImageProfil();
-});
+  }),
+);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
@@ -71,15 +68,11 @@ const {traduireNom} = utiliserLangues();
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
-let fOublierNoms: (() => Promise<void>) | undefined = undefined;
-onMounted(async () => {
-  fOublierNoms = await constl?.profil?.suivreNoms({
+enregistrerÉcoute(
+  constl?.profil?.suivreNoms({
     f: x => (noms.value = x),
-  });
-});
-onUnmounted(async () => {
-  if (fOublierNoms) await fOublierNoms();
-});
+  }),
+);
 
 // Dispositif
 const idDispositif = ref<string>();
