@@ -99,7 +99,7 @@ onMounted(async () => {
 });
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(lng=>!nms[lng]);
+  const àEffacer = Object.keys(noms.value).filter(lng => !nms[lng]);
   for (const [langue, nom] of Object.entries(nms)) {
     await constl?.profil?.sauvegarderNom({langue, nom});
   }
