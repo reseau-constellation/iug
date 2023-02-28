@@ -25,7 +25,7 @@
         :key="lien.chemin"
         :prepend-icon="lien.icône"
         :title="lien.texte"
-        @click="$router.push({path: lien.chemin})"
+        @click="$router.push(encodeURI(lien.chemin))"
       />
     </v-list>
   </v-navigation-drawer>
