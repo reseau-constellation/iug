@@ -7,17 +7,20 @@ import EventEmitter, {once} from 'events';
 import {onMounted, onUnmounted} from 'vue';
 
 export const enregistrerÉcoute = <
-  T extends (schémaFonctionOublier | schémaRetourFonctionRechercheParProfondeur | schémaRetourFonctionRechercheParN),
+  T extends
+    | schémaFonctionOublier
+    | schémaRetourFonctionRechercheParProfondeur
+    | schémaRetourFonctionRechercheParN,
 >(
   promesseÉcoute?: Promise<T>,
-): Promise<T|undefined> => {
+): Promise<T | undefined> => {
   let fOublier: schémaFonctionOublier | undefined = undefined;
 
   const événements = new EventEmitter();
   let résultat: T | undefined;
-  const promesseRetour = new Promise<T|undefined>(résoudre => {
+  const promesseRetour = new Promise<T | undefined>(résoudre => {
     once(événements, 'prêt').then(() => {
-        résoudre(résultat);
+      résoudre(résultat);
     });
   });
 

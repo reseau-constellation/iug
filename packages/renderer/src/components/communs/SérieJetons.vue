@@ -15,7 +15,8 @@
         <v-chip
           v-bind="props"
           variant="outlined"
-        ><v-icon start>mdi-plus</v-icon>{{ nExtrasFormatté }}</v-chip>
+          ><v-icon start>mdi-plus</v-icon>{{ nExtrasFormatté }}</v-chip
+        >
       </template>
       <v-list>
         <li
@@ -33,7 +34,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import { utiliserNumération } from '/@/plugins/localisation/localisation';
+import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
 type TypeItemSérie = {[clef: string]: unknown} & {id: string};
 const props = defineProps<{nMax: number; items?: (TypeItemSérie | string)[]}>();
@@ -54,5 +55,4 @@ const extras = computed<TypeItemSérie[]>(() => {
 });
 
 const nExtrasFormatté = formatterChiffre(extras.value.length);
-
 </script>

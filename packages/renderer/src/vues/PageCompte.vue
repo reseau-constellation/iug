@@ -44,7 +44,7 @@ import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import DialogueNoms from '../components/communs/listeNoms/DialogueNoms.vue';
-import { enregistrerÉcoute } from '../composables/utils';
+import {enregistrerÉcoute} from '../composables/utils';
 
 const constl = inject<ClientConstellation>('constl');
 

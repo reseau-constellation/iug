@@ -6,7 +6,7 @@
     <v-card-item>
       <v-card-title>
         {{ nom || t('motsClefs.sansNom') }}
-        
+
         <lien-objet :id="id" />
       </v-card-title>
     </v-card-item>
@@ -50,9 +50,9 @@ import {inject, ref} from 'vue';
 import AuteursObjet from '../communs/AuteursObjet.vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
-import { useDisplay } from 'vuetify';
+import {useDisplay} from 'vuetify';
 
 const props = defineProps<{id: string}>();
 

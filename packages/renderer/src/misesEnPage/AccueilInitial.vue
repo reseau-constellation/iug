@@ -70,7 +70,7 @@ import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';
-import { enregistrerÉcoute } from '../composables/utils';
+import {enregistrerÉcoute} from '../composables/utils';
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -96,9 +96,7 @@ const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const nomsProfil = ref<{[lng: string]: string}>();
-enregistrerÉcoute(
-  constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)}),
-);
+enregistrerÉcoute(constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)}));
 
 watchEffect(() => {
   if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();
