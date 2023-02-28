@@ -1,25 +1,34 @@
 <template>
-  <v-list-item
-    class="text-start"
-    prepend-icon="mdi-key"
-    density="compact"
-  >
-    <template #title>
-      {{ nomTraduit || t('motsClefs.sansNom') }}
+  <v-dialog v-mode="dialogue">
+    <template #activator="{props}">
+      <v-list-item
+        v-bind="props"
+        class="text-start"
+        prepend-icon="mdi-key"
+        density="compact"
+      >
+        <template #title>
+          {{ nomTraduit || t('motsClefs.sansNom') }}
+        </template>
+        <template #subtitle>
+          {{ descriptionTraduite || t('motsClefs.sansDescription') }}
+        </template>
+        <template #append>
+          <lien-objet :id="id"></lien-objet>
+        </template>
+      </v-list-item>
     </template>
-    <template #subtitle>
-      {{ descriptionTraduite || t('motsClefs.sansDescription') }}
-    </template>
-    <template #append>
-      <lien-objet :id="id"></lien-objet>
-    </template>
-  </v-list-item>
+    <carte-mot-clef :id="id" />
+  </v-dialog>
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa';
 import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+
 import {ref, inject, onMounted, onUnmounted} from 'vue';
-import LienObjet from '../communs/LienObjet.vue';
+
+import LienObjet from '/@/components/communs/LienObjet.vue';
+import CarteMotClef from './CarteMotClef.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -31,6 +40,8 @@ const constl = inject<ClientConstellation>('constl');
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
+
+const dialogue = ref(false);
 
 // Nom du mot-clef
 const noms = ref<{[lng: string]: string}>({});
