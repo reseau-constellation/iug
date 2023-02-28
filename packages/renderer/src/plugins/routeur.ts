@@ -1,53 +1,61 @@
 import {createRouter, createWebHashHistory, type RouteRecordRaw} from 'vue-router';
-
+import PageAccueil from '/@/vues/PageAccueil.vue';
+import PageCompte from '/@/vues/PageCompte.vue';
+import MesDonnées from '/@/vues/données/MesDonnées.vue';
+import PageBD from '/@/vues/données/PageBD.vue';
+import PageTableau from '/@/vues/données/PageTableau.vue';
+import PageRecherche from '/@/vues/PageRecherche.vue';
+import PageFavoris from '/@/vues/PageFavoris.vue';
+import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
+import PageSignalements from '/@/vues/PageSignalements.vue';
+import PageTéléchargements from '/@/vues/PageTéléchargements.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Accueil',
-    component: () => import('/@/vues/PageAccueil.vue'),
+    component: PageAccueil,
   },
   {
     path: '/compte',
     name: 'Compte',
-    component: () => import('/@/vues/PageCompte.vue'),
+    component: PageCompte,
   },
   {
-    path: '/données',
+    path: encodeURI('/données'),
     name: 'Données',
-    component: () => import('/@/vues/données/MesDonnées.vue'),
+    component: MesDonnées,
   },
   {
-    path: '/données/bd/:id',
-    component: () => import('/@/vues/données/PageBD.vue'),
+    path: encodeURI('/données/bd/:id'),
+    component: PageBD,
   },
   {
-    path: '/données/bd/:id/tableau/:idTableau',
-    component: () => import('/@/vues/données/PageTableau.vue'),
+    path: encodeURI('/données/bd/:id/tableau/:idTableau'),
+    component: PageTableau,
   },
   {
     path: '/recherche',
     name: 'Recherche',
-    component: () => import('/@/vues/PageRecherche.vue'),
+    component: PageRecherche,
   },
   {
     path: '/favoris',
     name: 'Favoris',
-    component: () => import('/@/vues/PageFavoris.vue'),
+    component: PageFavoris,
   },
   {
     path: '/automatisations',
     name: 'Automatisations',
-    component: () => import('/@/vues/PageAutomatisations.vue'),
+    component: PageAutomatisations,
   },
   {
     path: '/signalements',
     name: 'Signalements',
-    component: () => import('/@/vues/PageSignalements.vue'),
+    component: PageSignalements,
   },
   {
     path: encodeURI('/téléchargements'),
     name: 'Téléchargements',
-    component: () => import('/@/vues/PageTéléchargements.vue'),
+    component: PageTéléchargements,
   },
 ];
 
