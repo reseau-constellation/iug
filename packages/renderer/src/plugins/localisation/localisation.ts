@@ -43,7 +43,7 @@ const créerLocales = ({
 
 export const utiliserLangues = () => {
   const locales = inject<{
-    "nuch'ab'äl": Nuchabäl;
+    nuchabäl: Nuchabäl;
     எண்ணிக்கை: எண்ணிக்கை;
     locales: ReturnType<typeof créerLocales>;
   }>('locales');
@@ -64,9 +64,23 @@ export const utiliserLangues = () => {
   };
 
   const traduireNom = (noms: Ref<{[lng: string]: string}>): ComputedRef<string | undefined> => {
+    const locales = inject<{
+      nuchabäl: Nuchabäl;
+      எண்ணிக்கை: எண்ணிக்கை;
+      locales: ReturnType<typeof créerLocales>;
+    }>('locales');
+    const nuchabäl = locales?.nuchabäl;
     return computed(() => {
       for (const lng of langueEtAlternatives.value) {
         if (noms.value[lng]) return noms.value[lng];
+      }
+      const écritureLanguePréférée = nuchabäl?.rutzibChabäl({runuk: langueEtAlternatives.value[0]});
+      for (const lng of langueEtAlternatives.value) {
+        if (
+          écritureLanguePréférée &&
+          écritureLanguePréférée === nuchabäl?.rutzibChabäl({runuk: lng})
+        )
+          return noms.value[lng];
       }
       return Object.values(noms.value)[0];
     });
@@ -82,12 +96,12 @@ export const utiliserLangues = () => {
 
 export const utiliserNumération = () => {
   const locales = inject<{
-    "nuch'ab'äl": Nuchabäl;
+    nuchabäl: Nuchabäl;
     எண்ணிக்கை: எண்ணிக்கை;
     locales: ReturnType<typeof créerLocales>;
   }>('locales');
   if (!locales) throw new Error('Locales non installées');
-  const nuchabäl = locales["nuch'ab'äl"];
+  const nuchabäl = locales['nuchabäl'];
   const ennikkai = locales.எண்ணிக்கை;
 
   const {langue} = utiliserLangues();
@@ -124,9 +138,12 @@ export const utiliserNumération = () => {
     });
   }
 
-  const formatterChiffre = (chiffre: number|Ref<number>): Ref<string> => {
+  const formatterChiffre = (chiffre: number | Ref<number>): Ref<string> => {
     const chiffreFormatté = computed<string>(() =>
-      ennikkai.உரைக்கு({எண்: typeof chiffre === 'number' ? chiffre: chiffre.value, மொழி: numération.value}),
+      ennikkai.உரைக்கு({
+        எண்: typeof chiffre === 'number' ? chiffre : chiffre.value,
+        மொழி: numération.value,
+      }),
     );
     return chiffreFormatté;
   };
@@ -165,7 +182,7 @@ export default ({
       const nuchabäl = créerNuchabäl({constellation});
       const ennikkai = créerEnnikai({constellation});
       appli.provide('locales', {
-        "nuch'ab'äl": nuchabäl,
+        nuchabäl: nuchabäl,
         எண்ணிக்கை: ennikkai,
         locales: créerLocales({
           langue,
