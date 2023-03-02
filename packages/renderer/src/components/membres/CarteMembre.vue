@@ -9,10 +9,10 @@
         <template #jeton="{id: idBd}">
           <JetonBd :id="idBd" />
         </template>
-        <template #itemListe="{idBd}">
+        <template #itemListe="{id: idBd}">
           <ItemBd
-            :compte="idBd"
-            :montrer-anonymes="true"
+            :id="idBd"
+            :montrer-anonymes="true" 
           />
         </template>
       </SérieJetons>
