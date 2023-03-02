@@ -1,0 +1,135 @@
+<template>
+  <v-dialog v-model="dialogue">
+    <template #activator="{props: propsActivateur}">
+      <v-chip
+        v-bind="propsActivateur"
+        variant="outlined"
+        prepend-icon="mdi-plus"
+      >
+        {{ t('motsClefs.gérerMotsClefsObjet') }}
+      </v-chip>
+    </template>
+    <v-card>
+      <v-card-item>
+        <v-card-title></v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <v-dialog v-model="dialogueAjout">
+          <template #activator="{props: propsActivateurAjout}">
+            <v-chip
+              v-bind="propsActivateurAjout"
+              variant="outlined"
+              prepend-icon="mdi-plus"
+            >
+              {{ t('motsClefs.ajouterÀObjet') }}
+            </v-chip>
+          </template>
+          <v-card>
+            <v-card-text>
+              <v-text-field v-model="requèteRecherche"> </v-text-field>
+              <v-select
+                v-model="motClefSélectionné"
+                :items="résultatRechercheMotsClefs"
+              >
+                <template #selection="{item, propsSélectionSelect}">
+                  <jeton-mot-clef
+                    v-bind="propsSélectionSelect"
+                    :id="item.value"
+                  />
+                </template>
+                <template #item="{item, props: propsItemSelect}">
+                  <item-mot-clef
+                    v-bind="propsItemSelect"
+                    :id="item.value"
+                  />
+                </template>
+              </v-select>
+              <nouveau-mot-clef>
+                <v-btn> {{ t('motsClefs.nouveauMotClef') }} </v-btn>
+              </nouveau-mot-clef>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn @click="() => ajouter(motClefSélectionné)">
+                {{ t('communs.sauvegarder') }}
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <item-mot-clef
+          v-for="m in finaux"
+          :id="m"
+          :key="m"
+          :effacable="true"
+          @effacer="effacer"
+        ></item-mot-clef>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn @click="sauvegarder"></v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+<script setup lang="ts">
+import {inject, onUnmounted, ref, watchEffect} from 'vue';
+
+import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {infoRésultatTexte, résultatRecherche, schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+
+import ItemMotClef from './ItemMotClef.vue';
+import JetonMotClef from './JetonMotClef.vue';
+import NouveauMotClef from './NouveauMotClef.vue';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
+
+const props = defineProps<{originaux: string[]}>();
+const émettre = defineEmits<{sauvegarder: (motsClefs: string[]) => void}>();
+
+const constl = inject<ClientConstellation>('constl');
+
+// Navigation
+const dialogue = ref(false);
+const dialogueAjout = ref(false);
+
+// Logique générale
+const finaux = ref(props.originaux);
+const effacer = (idMotClef: string) => {
+  finaux.value = finaux.value.filter(m => m !== idMotClef);
+};
+const ajouter = (idMotClef?: string) => {
+  if (idMotClef) finaux.value.push(idMotClef);
+};
+const sauvegarder = () => {
+  émettre.sauvegarder(finaux.value);
+};
+
+// Ajout de mots-clef
+const motClefSélectionné = ref<string>();
+const requèteRecherche = ref<string>();
+const résultatRechercheMotsClefs = ref<résultatRecherche<infoRésultatTexte>[]>();
+
+let fOublierRecherche: schémaFonctionOublier|undefined = undefined;
+
+watchEffect(async ()=>{
+  if (fOublierRecherche) await fOublierRecherche();
+
+  if (requèteRecherche.value) {
+    const retour = await constl?.recherche?.rechercherMotClefSelonTexte({
+      texte: requèteRecherche.value,
+      f: x => (résultatRechercheMotsClefs.value = x),
+      nRésultatsDésirés: 10,
+    });
+    
+    if (retour) fOublierRecherche = retour.fOublier;
+  } else {
+    résultatRechercheMotsClefs.value = [];
+  }
+});
+
+onUnmounted(async ()=>{
+  if (fOublierRecherche) await fOublierRecherche();
+});
+
+</script>
