@@ -31,11 +31,12 @@ const {traduireNom} = utiliserLangues();
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
-enregistrerÉcoute( 
+enregistrerÉcoute(
   constl?.profil?.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
-  }));
+  }),
+);
 
 // Visibilité
 const visible = computed(() => {
@@ -60,5 +61,4 @@ enregistrerÉcoute(
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
-
 </script>
