@@ -77,7 +77,7 @@
     "crypto-js": "^4.1.1",
     "deep-equal": "^2.2.0",
     "electron-updater": "5.3.0",
-    "ennikkai": "^2.0.2",
+    "ennikkai": "^2.0.3",
     "events": "^3.3.0",
     "image-file-resize": "^1.0.5",
     "js-cookie": "^3.0.1",

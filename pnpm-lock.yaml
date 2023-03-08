@@ -29,7 +29,7 @@ specifiers:
   electron: 23.0.0
   electron-builder: 23.6.0
   electron-updater: 5.3.0
-  ennikkai: ^2.0.2
+  ennikkai: ^2.0.3
   eslint: 8.35.0
   eslint-plugin-vue: 9.9.0
   events: ^3.3.0
@@ -78,7 +78,7 @@ dependencies:
   crypto-js: 4.1.1
   deep-equal: 2.2.0
   electron-updater: 5.3.0
-  ennikkai: 2.0.2_@constl+ipa@0.6.37
+  ennikkai: 2.0.3_@constl+ipa@0.6.37
   events: 3.3.0
   image-file-resize: 1.0.5
   js-cookie: 3.0.1
@@ -4148,8 +4148,8 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
-  /ennikkai/2.0.2_@constl+ipa@0.6.37:
-    resolution: {integrity: sha512-CwInKByFgCFmONl5WLEjng8fpUYZKuR2d76qTp99f4BvsxWaeAS+WuCdoXpj4///RILy4yskFS5m//hdHGTFEw==}
+  /ennikkai/2.0.3_@constl+ipa@0.6.37:
+    resolution: {integrity: sha512-ffcR9Wl496+S4Y3+07IY0Rc+sqzFu+DqpbwvIMDjBkE2DRS3vOSkt1qHzv2z7uzr6Px5p15EDg+aX2sqEQ79Fw==}
     peerDependencies:
       '@constl/ipa': ^0.6.8
     dependencies:
