@@ -5,7 +5,7 @@
     :description="description"
     :auteurs="auteurs"
   >
-    <p class="text-overline">{{ t('bds.carteBd.infos') }}</p>
+    <division-carte :titre="t('bds.carteBd.infos')" />
     <JetonLicence
       :originale="licence"
       @changer="changerLicence"
@@ -13,8 +13,7 @@
     <JetonQualité />
     <JetonRéplications />
 
-    <p class="text-overline">{{ t('bds.carteBd.variables') }}</p>
-    <v-divider class="mb-2" />
+    <division-carte :titre="t('bds.carteBd.variables')" />
     <SérieJetons
       :n-max="5"
       :items="motsClefs"
@@ -27,8 +26,7 @@
       </template>
     </SérieJetons>
 
-    <p class="text-overline">{{ t('bds.carteBd.motsClefs') }}</p>
-    <v-divider class="mb-2" />
+    <division-carte :titre="t('bds.carteBd.motsClefs')" />
     <SérieJetons
       :n-max="5"
       :items="motsClefs"
@@ -46,9 +44,7 @@
       @sauvegarder="x => sauvegarderMotsClefs(x)"
     />
 
-    <p class="text-overline">{{ t('bds.carteBd.tableaux') }}</p>
-    <v-divider class="mb-2" />
-
+    <division-carte :titre="t('bds.carteBd.tableaux')" />
     <ItemTableau
       v-for="tableau in tableaux"
       :id="tableau.id"
@@ -80,6 +76,7 @@ import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
 import GérerMotsClefsObjet from '../motsClefs/GérerMotsClefsObjet.vue';
+import DivisionCarte from '../communs/DivisionCarte.vue';
 
 const props = defineProps<{id: string}>();
 

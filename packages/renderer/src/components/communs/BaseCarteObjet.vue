@@ -11,12 +11,10 @@
       </v-card-title>
     </v-card-item>
     <v-card-text>
-      <p class="text-overline">{{ t('communs.baseCarteObjet.description') }}</p>
-      <v-divider class="mb-2" />
+      <division-carte :titre="t('communs.baseCarteObjet.description')" />
       <p>{{ description || t('communs.baseCarteObjet.sansDescription') }}</p>
 
-      <p class="text-overline">{{ t('communs.baseCarteObjet.auteurs') }}</p>
-      <v-divider class="mb-2" />
+      <division-carte :titre="t('communs.baseCarteObjet.auteurs')" />
       <auteurs-objet :auteurs="auteurs" />
       <GérerAuteurs>
         <v-chip
@@ -51,6 +49,7 @@ import {enregistrerÉcoute} from '/@/composables/utils';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
+import DivisionCarte from './DivisionCarte.vue';
 
 const props = defineProps<{
   id: string;
