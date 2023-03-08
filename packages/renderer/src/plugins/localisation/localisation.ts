@@ -148,6 +148,24 @@ export const utiliserNumération = () => {
     return chiffreFormatté;
   };
 
+  const formatterNuméro = (numéro: string | Ref<string>): Ref<string> => {
+    const numéroFormatté = computed<string>(() => {
+      const num = typeof numéro === 'string' ? numéro : numéro.value;
+
+      return [...num]
+        .map(n => {
+          try {
+            const எண் = ennikkai.எண்ணுக்கு({உரை: n});
+            return ennikkai.உரைக்கு({எண், மொழி: numération.value});
+          } catch {
+            return n;
+          }
+        })
+        .join('');
+    });
+    return numéroFormatté;
+  };
+
   const formatterVersion = (version: string): Ref<string | undefined> => {
     const versionTraduite = computed(() => {
       return numération.value
@@ -165,6 +183,7 @@ export const utiliserNumération = () => {
     numération,
     sélectionNumération: locales?.locales.sélectionNumération,
     formatterChiffre,
+    formatterNuméro,
     formatterVersion,
   };
 };
