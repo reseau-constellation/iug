@@ -5,14 +5,14 @@
         v-if="source === 'nom'"
         :info="résultat.résultatObjectif.info"
       />
-      <span v-else>{{ nomTraduit }}</span>
+      <span v-else>{{ nomTraduit || t('motsClefs.aucunNom') }}</span>
     </v-list-item-title>
     <v-list-item-subtitle>
       <TexteSurlignéRecherche
         v-if="source === 'descr'"
         :info="résultat.résultatObjectif.info"
       />
-      <span v-else>{{ descriptionTraduite }}</span>
+      <span v-else>{{ descriptionTraduite || t('motsClefs.aucunNom') }}</span>
     </v-list-item-subtitle>
     <AuteursObjet
       :auteurs="auteurs"
@@ -38,12 +38,15 @@ import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
 import {enregistrerÉcoute} from '/@/composables/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
 
 const constl = inject<ClientConstellation>('constl');
 
+const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();
+const {t} = useI18n();
 
 // Source résultat
 const source = computed(() => {

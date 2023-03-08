@@ -20,20 +20,55 @@ const {t} = useI18n();
 
 const TAILLE_MIN_TEXTE_AVANT = 4;
 
-const texteProcessé = computed((): {
-  texteAvant: string;
-  texteSurligné: string;
-  texteAprès: string;
-  coupéAvant: boolean;
-  coupéAprès: boolean;
-} => {
-  const {texte, début, fin} = props.info;
-  const texteDIntérêt = texte.slice(début, fin);
-  const préTexte = texte.slice(0, props.info.début);
-  const postTexte = texte.slice(fin);
-  if (props.maxTaille) {
-    const différenceTaille = props.maxTaille - texteDIntérêt.length;
-    if (différenceTaille >= 0) {
+const texteProcessé = computed(
+  (): {
+    texteAvant: string;
+    texteSurligné: string;
+    texteAprès: string;
+    coupéAvant: boolean;
+    coupéAprès: boolean;
+  } => {
+    const {texte, début, fin} = props.info;
+    const texteDIntérêt = texte.slice(début, fin);
+    const préTexte = texte.slice(0, props.info.début);
+    const postTexte = texte.slice(fin);
+    if (props.maxTaille) {
+      const différenceTaille = props.maxTaille - texteDIntérêt.length;
+      if (différenceTaille >= 0) {
+        return {
+          texteAvant: préTexte,
+          texteSurligné: texteDIntérêt,
+          texteAprès: postTexte,
+          coupéAvant: false,
+          coupéAprès: false,
+        };
+      } else {
+        const tailleTexteSurligné = Math.min(
+          texteDIntérêt.length,
+          props.maxTaille - TAILLE_MIN_TEXTE_AVANT,
+        );
+
+        const tailleMaxTexteAvant = Math.max(
+          TAILLE_MIN_TEXTE_AVANT,
+          props.maxTaille - tailleTexteSurligné,
+        );
+        const tailleMaxTexteAprès = Math.max(
+          0,
+          props.maxTaille - tailleMaxTexteAvant - tailleTexteSurligné,
+        );
+
+        const coupéAprès =
+          texteDIntérêt.length > tailleTexteSurligné || postTexte.length > tailleMaxTexteAprès;
+
+        return {
+          texteAvant: préTexte.slice(0, tailleMaxTexteAvant),
+          texteSurligné: texteDIntérêt.slice(0, tailleTexteSurligné),
+          texteAprès: postTexte.slice(0, tailleMaxTexteAprès),
+          coupéAvant: préTexte.length > tailleMaxTexteAvant,
+          coupéAprès,
+        };
+      }
+    } else {
       return {
         texteAvant: préTexte,
         texteSurligné: texteDIntérêt,
@@ -41,33 +76,11 @@ const texteProcessé = computed((): {
         coupéAvant: false,
         coupéAprès: false,
       };
-    } else {
-        const tailleTexteSurligné = Math.min(texteDIntérêt.length, props.maxTaille - TAILLE_MIN_TEXTE_AVANT);
-
-        const tailleMaxTexteAvant = Math.max(TAILLE_MIN_TEXTE_AVANT, props.maxTaille - tailleTexteSurligné );
-        const tailleMaxTexteAprès = Math.max(0, props.maxTaille - tailleMaxTexteAvant - tailleTexteSurligné);
-
-        const coupéAprès = (texteDIntérêt.length > tailleTexteSurligné) || (postTexte.length > tailleMaxTexteAprès);
-        
-        return {
-            texteAvant: préTexte.slice(0, tailleMaxTexteAvant),
-            texteSurligné: texteDIntérêt.slice(0, tailleTexteSurligné),
-            texteAprès: postTexte.slice(0, tailleMaxTexteAprès),
-            coupéAvant: préTexte.length > tailleMaxTexteAvant,
-            coupéAprès,
-        };
     }
-  } else {
-    return {
-      texteAvant: préTexte,
-      texteSurligné: texteDIntérêt,
-      texteAprès: postTexte,
-      coupéAvant: false,
-      coupéAprès: false,
-    };
-  }
-});
+  },
+);
 </script>
+
 <style>
 .highlight-yellow {
   border-radius: 1em 0 1em 0;

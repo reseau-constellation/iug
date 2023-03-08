@@ -1,0 +1,63 @@
+<template>
+  <v-list-item>
+    <template #prepend>
+      <ImageProfil
+        :id="résultat.id"
+        start
+      />
+    </template>
+    <v-list-item-title>
+      <TexteSurlignéRecherche
+        v-if="source === 'nom'"
+        :info="résultat.résultatObjectif.info"
+      />
+      <span v-else>{{ nomTraduit || t('communs.anonyme') }}</span>
+    </v-list-item-title>
+    <JetonContactMembre
+      v-if="source === 'contact' && résultat.résultatObjectif.clef"
+      :contact="résultat.résultatObjectif.info.texte"
+      :type="résultat.résultatObjectif.clef"
+    >
+      <TexteSurlignéRecherche :info="résultat.résultatObjectif.info"></TexteSurlignéRecherche>
+    </JetonContactMembre>
+  </v-list-item>
+</template>
+<script setup lang="ts">
+import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+
+import {computed, inject, ref} from 'vue';
+
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
+
+import {enregistrerÉcoute} from '/@/composables/utils';
+
+import ImageProfil from '/@/components/communs/ImageProfil.vue';
+import JetonContactMembre from '../membres/JetonContactMembre.vue';
+import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
+
+const constl = inject<ClientConstellation>('constl');
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {traduireNom} = utiliserLangues();
+const {t} = useI18n();
+
+// Source résultat
+const source = computed(() => {
+  return props.résultat.résultatObjectif.de;
+});
+
+// Nom
+const noms = ref<{[lng: string]: string}>({});
+const nomTraduit = traduireNom(noms);
+
+enregistrerÉcoute(
+  constl?.motsClefs?.suivreNomsMotClef({
+    id: props.résultat.id,
+    f: x => (noms.value = x),
+  }),
+);
+</script>
