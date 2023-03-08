@@ -73,13 +73,17 @@
 import {inject, onUnmounted, ref, watchEffect} from 'vue';
 
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type {infoRésultatTexte, résultatRecherche, schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import type {
+  infoRésultatTexte,
+  résultatRecherche,
+  schémaFonctionOublier,
+} from '@constl/ipa/dist/src/utils';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import ItemMotClef from './ItemMotClef.vue';
 import JetonMotClef from './JetonMotClef.vue';
 import NouveauMotClef from './NouveauMotClef.vue';
-
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -110,9 +114,9 @@ const motClefSélectionné = ref<string>();
 const requèteRecherche = ref<string>();
 const résultatRechercheMotsClefs = ref<résultatRecherche<infoRésultatTexte>[]>();
 
-let fOublierRecherche: schémaFonctionOublier|undefined = undefined;
+let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
 
-watchEffect(async ()=>{
+watchEffect(async () => {
   if (fOublierRecherche) await fOublierRecherche();
 
   if (requèteRecherche.value) {
@@ -121,15 +125,14 @@ watchEffect(async ()=>{
       f: x => (résultatRechercheMotsClefs.value = x),
       nRésultatsDésirés: 10,
     });
-    
+
     if (retour) fOublierRecherche = retour.fOublier;
   } else {
     résultatRechercheMotsClefs.value = [];
   }
 });
 
-onUnmounted(async ()=>{
+onUnmounted(async () => {
   if (fOublierRecherche) await fOublierRecherche();
 });
-
 </script>
