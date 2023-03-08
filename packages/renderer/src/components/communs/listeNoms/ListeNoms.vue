@@ -20,6 +20,7 @@
             hide-details
             density="compact"
             variant="outlined"
+            :rules="règlesNouveauNom"
             :label="indiceNom"
             @blur="ajouterNom"
             @keydown.enter="ajouterNom"
@@ -68,9 +69,13 @@ import {v4 as uuidv4} from 'uuid';
 import ItemNom from './ItemNom.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {Nuchabäl} from 'nuchabal';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
+
+const {t} = useI18n();
 const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
   nomsInitiaux: {[lng: string]: string};
@@ -139,12 +144,22 @@ const effacerNom = ({id}: {id: string}) => {
 const nouveauNom = ref<string>();
 const nouvelleLangue = ref<string>();
 
+const règlesNouveauNom = computed<string[] | undefined>(() => {
+  if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;
+  const exprégÉcriture = nuchabäl.rutzibTzibanem({runuk: nouvelleLangue.value});
+  if (!exprégÉcriture) return;
+  const erreurLangue = !nouveauNom.value.match(new RegExp(exprégÉcriture, 'g'));
+
+  return erreurLangue ? [t('communs.erreurLangue', {langue: nouvelleLangue.value})] : undefined;
+});
+
 const ajoutPrêt = computed(() => {
-  return !!(nouvelleLangue.value && nouveauNom.value);
+  return !!(nouvelleLangue.value && nouveauNom.value) && !règlesNouveauNom.value?.length;
 });
 
 const ajouterNom = () => {
   if (!(nouvelleLangue.value && nouveauNom.value)) return;
+  if (règlesNouveauNom.value?.length) return;
 
   listeNoms.value = [
     {

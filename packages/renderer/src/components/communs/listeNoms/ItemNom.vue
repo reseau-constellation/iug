@@ -20,6 +20,7 @@
             hide-details
             density="compact"
             variant="outlined"
+            :rules="règlesNouveauNom"
             :label="indiceNom"
             @blur="sauvegarder"
           ></v-text-field>
@@ -38,11 +39,15 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, watchEffect} from 'vue';
+import {computed, onMounted, ref, watchEffect} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {Nuchabäl} from 'nuchabal';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
 const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {t} = useI18n();
+
+const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
   langue: string;
@@ -65,11 +70,22 @@ onMounted(() => {
 });
 
 // Changements
+const règlesNouveauNom = computed<string[] | undefined>(() => {
+  if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;
+  const exprégÉcriture = nuchabäl.rutzibTzibanem({runuk: nouvelleLangue.value});
+  if (!exprégÉcriture) return;
+  const erreurLangue = !nouveauNom.value.match(new RegExp(exprégÉcriture, 'g'));
+
+  return erreurLangue ? [t('communs.erreurLangue', {langue: nouvelleLangue.value})] : undefined;
+});
+
 const effacer = () => {
   emit('effacer', {id: props.id});
 };
 const sauvegarder = () => {
   if (!nouvelleLangue.value || !nouveauNom.value) return;
+  if (règlesNouveauNom.value?.length) return;
+
   const nom = nouveauNom.value.trim();
   if (nom === props.nom.trim() && nouvelleLangue.value === props.langue) return;
   emit('changerNom', {id: props.id, nom: nouveauNom.value, lng: nouvelleLangue.value});
