@@ -4,56 +4,103 @@
       <v-icon>{{ spécification.type === 'exportation' ? 'mdi-export' : 'mdi-import' }}</v-icon>
     </template>
     <v-list-item-title>
-      <v-icon>icôneTypeObjet</v-icon>
+      <v-icon>{{ icôneTypeObjet }}</v-icon>
+      {{ nom }}
     </v-list-item-title>
-    <v-chip>
-      <v-icon></v-icon>
-      {{ texteJetonÉtat }}
-    </v-chip>
+    <jeton-statut-automatisation :statut="props.statut" />
   </v-list-item>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import {computed, ref, onMounted, onUnmounted} from 'vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+import type ClientConstellation from '@constl/ipa/dist/src/client';
+import {computed, inject, ref, onMounted} from 'vue';
+import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
+import {enregistrerÉcoute} from '/@/composables/utils';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
-  état: automatisation.ÉtatAutomatisation;
+  statut: automatisation.ÉtatAutomatisation;
 }>();
 
-// Chronomètre
-const maintenant = ref(new Date().getTime());
-let oublierChronomètre: number | undefined;
+const constl = inject<ClientConstellation>('constl');
+
+if (props.spécification.type === 'importation') {
+  props.spécification.idTableau;
+}
+
+// Nom
+const {traduireNom} = utiliserLangues();
+
+const noms = ref<{[langue: string]: string}>({});
+
 onMounted(() => {
-  oublierChronomètre = window.setInterval(() => (maintenant.value = new Date().getTime()), 1000);
-});
-onUnmounted(() => {
-  if (oublierChronomètre) clearInterval(oublierChronomètre);
+  if (props.spécification.type === 'importation') {
+    enregistrerÉcoute(
+      constl?.tableaux?.suivreNomsTableau({
+        idTableau: props.spécification.idTableau,
+        f: x => (noms.value = x),
+      }),
+    );
+  } else {
+    switch (props.spécification.typeObjet) {
+      case 'tableau':
+        enregistrerÉcoute(
+          constl?.tableaux?.suivreNomsTableau({
+            idTableau: props.spécification.idObjet,
+            f: x => (noms.value = x),
+          }),
+        );
+        break;
+      case 'projet':
+        enregistrerÉcoute(
+          constl?.projets?.suivreNomsProjet({
+            id: props.spécification.idObjet,
+            f: x => (noms.value = x),
+          }),
+        );
+        break;
+      case 'bd':
+        enregistrerÉcoute(
+          constl?.bds?.suivreNomsBd({
+            id: props.spécification.idObjet,
+            f: x => (noms.value = x),
+          }),
+        );
+        break;
+      case 'nuée':
+        enregistrerÉcoute(
+          constl?.nuées?.suivreNomsNuée({
+            idNuée: props.spécification.idObjet,
+            f: x => (noms.value = x),
+          }),
+        );
+        break;
+      default:
+        throw new Error(JSON.stringify(props.spécification));
+    }
+  }
 });
 
-// État automatisation
-const texteJetonÉtat = computed(() => {
-  switch (props.état.type) {
-    case 'écoute':
-      return t('auto.jetonÉtat.écoute');
-    case 'sync':
-      return t('auto.jetonÉtat.sync');
-    case 'programmée':
-      return t('auto.jetonÉtat.programmée', {dans: props.état.à - maintenant.value});
-    case 'erreur':
-      if (props.état.prochaineProgramméeÀ) {
-        return t('auto.jetonÉtat.erreurRéssayer', {
-          dans: props.état.prochaineProgramméeÀ - maintenant.value,
-        });
-      } else {
-        return t('auto.jetonÉtat.erreur');
-      }
-    default:
-      throw new Error(props.état);
+const nom = traduireNom(noms);
+
+// Icône
+const icôneTypeObjet = computed(() => {
+  if (props.spécification.type === 'importation') {
+    return 'mdi-table';
+  } else {
+    switch (props.spécification.typeObjet) {
+      case 'tableau':
+        return 'mdi-table';
+      case 'bd':
+        return 'mdi-database-outline';
+      case 'projet':
+        return 'mdi-folder-outline';
+      case 'nuée':
+        return 'mdi-bird';
+      default:
+        throw new Error(JSON.stringify(props.spécification));
+    }
   }
 });
 </script>
