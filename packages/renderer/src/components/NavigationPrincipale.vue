@@ -6,11 +6,14 @@
   >
     <v-list>
       <v-list-item
-        :prepend-avatar="srcImgProfil || imgDéfaut"
         :title="nomTraduit"
         :subtitle="idDispositif"
         @click="$router.push({path: '/compte'})"
-      ></v-list-item>
+      >
+        <template #prepend>
+          <image-profil />
+        </template>
+      </v-list-item>
     </v-list>
 
     <v-divider></v-divider>
@@ -32,35 +35,17 @@
 </template>
 
 <script setup lang="ts">
-import {inject, ref, computed, onMounted} from 'vue';
+import {inject, ref, onMounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
-import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
+import ImageProfil from './communs/ImageProfil.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 const constl = inject<ClientConstellation>('constl');
-
-// Image profil
-const imageProfil = ref<Uint8Array | null>();
-const srcImgProfil = computed(() => {
-  if (imageProfil.value) {
-    return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
-enregistrerÉcoute(
-  constl?.profil?.suivreImage({
-    f: image => (imageProfil.value = image),
-  }),
-);
-
-const {obtImageDéco} = utiliserImagesDéco();
-const imgDéfaut = obtImageDéco('profil');
 
 // Nom d'utilisatrice
 const {traduireNom} = utiliserLangues();
