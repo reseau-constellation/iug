@@ -1,9 +1,11 @@
+import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
+
 export const ouvrirLien = (lien: string) => {
   window.open(lien); // À faire : tester sous Électron
 };
 
 export async function copier(texte: string): Promise<void> {
-  await navigator.clipboard?.writeText(texte);
+  await navigator.clipboard?.writeText(texte); // À faire : ça fonctionne pas avec Électron
 }
 
 export type fichierPublicationGitHub = {
@@ -63,4 +65,37 @@ export type publicationGitHub = {
   published_at: string;
   author: auteurGitHub;
   assets: fichierPublicationGitHub[];
+};
+
+export const icôneCatégorieVariable = (catégorie: catégorieVariables): string => {
+  if (typeof catégorie === 'string') {
+    switch (catégorie) {
+      case 'numérique':
+        return 'mdi-numeric';
+      case 'chaîne':
+        return 'mdi-text-short';
+      case 'catégorique':
+        return 'mdi-view-list';
+      case 'booléen':
+        return 'mdi-order-bool-ascending-variant';
+      case 'géojson':
+        return 'mdi-map-marker';
+      case 'fichier':
+        return 'mdi-file';
+      case 'vidéo':
+        return 'mdi-play-box-outline';
+      case 'audio':
+        return 'mdi-waveform';
+      case 'image':
+        return 'mdi-image';
+      case 'intervaleTemps':
+        return 'mdi-calendar-range-outline';
+      case 'horoDatage':
+        return 'mdi-calendar-clock';
+      default:
+        return '';
+    }
+  } else {
+    return 'mdi-list';
+  }
 };
