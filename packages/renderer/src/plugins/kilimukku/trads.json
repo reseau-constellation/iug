@@ -7,7 +7,8 @@
       "anonyme": "Anonyme",
       "indiceNom": "Nom",
       "indiceLangue": "Langue",
-      "texteAucunNom": "Ajouter un nom ci-dessus"
+      "texteAucunNom": "Ajouter un nom ci-dessus",
+      "erreurLangue": "Ce texte doit être en {langue}."
     },
     "navigation": {
       "accueil": "Accueil",
@@ -86,7 +87,8 @@
       "suivant": "அடுத்தது",
       "retour": "பின்",
       "fermer": "முடி",
-      "sauvegarder": "சேமி"
+      "sauvegarder": "சேமி",
+      "erreurLangue": "இந்த உரை {langue} மொழியில் இருக்கவும்."
     },
     "navigation": {
       "accueil": "வரவேற்பு",
