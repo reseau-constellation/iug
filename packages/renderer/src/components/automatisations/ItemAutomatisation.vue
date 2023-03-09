@@ -7,13 +7,19 @@
       <v-icon>{{ icôneTypeObjet }}</v-icon>
       {{ nom }}
     </v-list-item-title>
+    <jeton-fichier-importation
+      v-if="spécification.type === 'importation'"
+      :spécification="spécification"
+    />
     <jeton-statut-automatisation :statut="props.statut" />
   </v-list-item>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
+
 import {computed, inject, ref, onMounted} from 'vue';
+import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -24,10 +30,6 @@ const props = defineProps<{
 }>();
 
 const constl = inject<ClientConstellation>('constl');
-
-if (props.spécification.type === 'importation') {
-  props.spécification.idTableau;
-}
 
 // Nom
 const {traduireNom} = utiliserLangues();
