@@ -13,7 +13,7 @@
       <jeton-fichier-exportation
         v-else
         :spécification="spécification"
-      /> 
+      />
     </v-card-text>
   </v-card>
 </template>
