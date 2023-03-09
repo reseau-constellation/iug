@@ -32,8 +32,9 @@ import {surLinux, surMac, surWindows} from '#preload';
 import {ouvrirLien, type publicationGitHub} from '/@/utils';
 import {IPA_TÉLÉCHARGEMENTS, URL_TÉLÉCHARGEMENTS} from '/@/consts';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';
-import {useI18n} from 'vue-i18n';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
+const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 const extentionCompatible = (ext: string): boolean => {
