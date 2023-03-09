@@ -16,7 +16,8 @@
           v-bind="propsMenu"
           variant="outlined"
         >
-          <v-icon start>mdi-plus</v-icon>{{ nExtrasFormatté }}
+          <v-icon start>mdi-plus</v-icon>
+          {{ nExtrasFormatté }}
         </v-chip>
       </template>
       <v-list>

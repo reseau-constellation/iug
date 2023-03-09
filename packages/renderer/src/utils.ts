@@ -86,7 +86,7 @@ export const icôneCatégorieVariable = (catégorie: catégorieVariables): strin
         return 'mdi-play-box-outline';
       case 'audio':
         return 'mdi-waveform';
-      case 'image':
+      case 'photo':
         return 'mdi-image';
       case 'intervaleTemps':
         return 'mdi-calendar-range-outline';
