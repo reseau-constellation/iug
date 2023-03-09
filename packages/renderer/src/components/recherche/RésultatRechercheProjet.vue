@@ -104,20 +104,24 @@ const infoSourcDescr = sourceDirecte('descr');
 const infoSourceId = sourceDirecte('id');
 
 // Source BD directe
-const infoSourceBdIndirecte = computed((): {
-    id: string;
-    info: infoRésultatRecherche<infoRésultatTexte>;
-}|undefined=>{
+const infoSourceBdIndirecte = computed(
+  ():
+    | {
+        id: string;
+        info: infoRésultatRecherche<infoRésultatTexte>;
+      }
+    | undefined => {
     const {de, clef, info} = props.résultat.résultatObjectif;
-    if (info.type === 'résultat' && de === 'bd' && clef && info.info.type==='résultat') {
-       return {
-            id: clef,
-            info: info.info,
-       };
+    if (info.type === 'résultat' && de === 'bd' && clef && info.info.type === 'résultat') {
+      return {
+        id: clef,
+        info: info.info,
+      };
     } else {
-        return undefined;
+      return undefined;
     }
-});
+  },
+);
 
 // Sources objets connexes
 const sourceObjetConnexe = (
@@ -131,7 +135,7 @@ const sourceObjetConnexe = (
 > => {
   return computed(() => {
     const {de: sourceRésultat, clef, info} = props.résultat.résultatObjectif;
-    if (info.type === 'résultat' && sourceRésultat === de && clef && info.info.type==='texte') {
+    if (info.type === 'résultat' && sourceRésultat === de && clef && info.info.type === 'texte') {
       return {
         id: clef,
         info: info as infoRésultatRecherche<infoRésultatTexte>,
