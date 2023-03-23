@@ -1,6 +1,6 @@
 <template>
   <v-avatar
-    :img="srcImgProfil || imgDéfaut"
+    :image="srcImgProfil || imgDéfaut"
     v-bind="props"
   />
 </template>
