@@ -46,6 +46,7 @@
               :indice-nom="t('listeNomsProfil.indiceNom')"
               :indice-langue="t('communs.indiceLangue')"
               :texte-aucun-nom="t('communs.texteAucunNom')"
+              autorisation-modification
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>

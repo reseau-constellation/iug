@@ -4,7 +4,10 @@
       <v-card-title>{{ nom }}</v-card-title>
     </v-card-item>
     <v-card-text>
-      <division-carte :titre="t('automatisations.statut')" />
+      <division-carte
+        :titre="t('automatisations.statut')"
+        :en-attente="false"
+      />
       <jeton-statut-automatisation :statut="statut" />
       <jeton-fichier-importation
         v-if="spécification.type === 'importation'"
@@ -13,7 +16,7 @@
       <jeton-fichier-exportation
         v-else
         :spécification="spécification"
-      /> 
+      />
     </v-card-text>
   </v-card>
 </template>
