@@ -1,5 +1,8 @@
 <template>
-  <v-chip variant="outlined">
+  <v-chip
+    variant="outlined"
+    class="me-2 mb-2"
+  >
     <v-avatar start>
       <v-img :src="srcImgBd || imgDéfaut"></v-img>
     </v-avatar>

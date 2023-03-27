@@ -36,11 +36,13 @@ const constl = inject<ClientConstellation>('constl');
 const dispositifPrésent = ref<string>();
 
 // Dispositifs
-onMounted(async ()=>{
+onMounted(async () => {
   dispositifPrésent.value = await constl?.obtIdOrbite();
 });
-const surCeDispositif = computed<boolean>(()=>{
-  return !!dispositifPrésent.value && props.spécification.dispositifs.includes(dispositifPrésent.value);
+const surCeDispositif = computed<boolean>(() => {
+  return (
+    !!dispositifPrésent.value && props.spécification.dispositifs.includes(dispositifPrésent.value)
+  );
 });
 
 // Fichier décodé
@@ -50,11 +52,10 @@ const enProgrès = computed<boolean>(() => {
 });
 watchEffect(async () => {
   fichier.value = await constl?.automatisations?.résoudreAdressePrivéeFichier({
-      clef: props.spécification.dossier,
-    });
-  },
-);
-const fichierRésolu = computed(()=>{
+    clef: props.spécification.dossier,
+  });
+});
+const fichierRésolu = computed(() => {
   return typeof fichier.value === 'string';
 });
 
