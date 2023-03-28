@@ -1,41 +1,87 @@
 <template>
   <base-carte-objet
     :id="id"
-    :nom="nom"
-    :description="description"
+    :noms="noms"
+    :descriptions="descriptions"
     :auteurs="auteurs"
+    @ajuster-noms="ajusterNoms"
+    @ajuster-descriptions="ajusterDescriptions"
   >
-    <division-carte :titre="t('bds.carteBd.infos')" />
+    <template #activator="{props}">
+      <slot
+        name="activator"
+        v-bind="{props}"
+      ></slot>
+    </template>
+
+    <division-carte
+      :titre="t('bds.carteBd.infos')"
+      :en-attente="false"
+    />
     <JetonLicence
-      :originale="licence"
+      :licence="licence"
       @changer="changerLicence"
     />
-    <JetonQualité />
-    <JetonRéplications />
+    <JetonQualité :id="id" />
+    <JetonRéplications :id="id" />
 
-    <division-carte :titre="t('bds.carteBd.variables')" />
+    <division-carte
+      :titre="t('bds.carteBd.variables')"
+      :en-attente="!variables"
+    />
     <SérieJetons
       :n-max="5"
-      :items="motsClefs"
+      :items="variables"
     >
       <template #jeton="{id: idVariable}">
-        <JetonVariable :id="idVariable" />
+        <carte-variable :id="idVariable">
+          <template #activator="{props}">
+            <JetonVariable
+              v-bind="props"
+              :id="idVariable"
+            />
+          </template>
+        </carte-variable>
       </template>
       <template #itemListe="{id: idVariable}">
-        <ItemVariable :id="idVariable" />
+        <carte-variable :id="idVariable">
+          <template #activator="{props}">
+            <ItemVariable
+              v-bind="props"
+              :id="idVariable"
+            />
+          </template>
+        </carte-variable>
       </template>
     </SérieJetons>
 
-    <division-carte :titre="t('bds.carteBd.motsClefs')" />
+    <division-carte
+      :titre="t('bds.carteBd.motsClefs')"
+      :en-attente="!motsClefs"
+    />
     <SérieJetons
       :n-max="5"
       :items="motsClefs"
     >
-      <template #jeton="{id: idMotsClefs}">
-        <JetonMotClef :id="idMotsClefs" />
+      <template #jeton="{id: idMotClef}">
+        <carte-mot-clef :id="idMotClef">
+          <template #activator="{props}">
+            <JetonMotClef
+              v-bind="props"
+              :id="idMotClef"
+            />
+          </template>
+        </carte-mot-clef>
       </template>
-      <template #itemListe="{id: idMotsClefs}">
-        <ItemMotClef :id="idMotsClefs" />
+      <template #itemListe="{id: idMotClef}">
+        <carte-mot-clef :id="idMotClef">
+          <template #activator="{props}">
+            <ItemMotClef
+              v-bind="props"
+              :id="idMotClef"
+            />
+          </template>
+        </carte-mot-clef>
       </template>
     </SérieJetons>
     <GérerMotsClefsObjet
@@ -44,30 +90,43 @@
       @sauvegarder="x => sauvegarderMotsClefs(x)"
     />
 
-    <division-carte :titre="t('bds.carteBd.tableaux')" />
+    <division-carte
+      :titre="t('bds.carteBd.tableaux')"
+      :en-attente="!tableaux"
+    />
     <ItemTableau
-      v-for="tableau in tableaux"
+      v-for="tableau in tableauxOrdonnés"
       :id="tableau.id"
       :key="tableau.clef"
     />
     <p v-if="!tableaux">En attente</p>
     <p v-else-if="!tableaux.length">{{ t('bds.carteBd.aucunTableaux') }}</p>
+
+    <v-divider class="mb-2" />
+    <div class="text-center">
+      <v-btn
+        variant="outlined"
+        append-icon="mdi-open-in-new"
+      >
+        {{ t('bds.carteBd.ouvrirBd') }}
+      </v-btn>
+    </div>
   </base-carte-objet>
 </template>
+
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
 
-import {inject, ref} from 'vue';
+import {computed, inject, ref} from 'vue';
 
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
-import JetonLicence from '/@/components/licence/JetonLicence.vue';
+import JetonLicence from '/@/components/licences/JetonLicence.vue';
 
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
@@ -77,6 +136,10 @@ import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
 import GérerMotsClefsObjet from '../motsClefs/GérerMotsClefsObjet.vue';
 import DivisionCarte from '../communs/DivisionCarte.vue';
+import JetonRéplications from '../communs/JetonRéplications.vue';
+import JetonQualité from './JetonQualité.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -84,8 +147,6 @@ const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-
-const {traduireNom} = utiliserLangues();
 
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
@@ -104,7 +165,17 @@ enregistrerÉcoute(
     f: x => (noms.value = x),
   }),
 );
-const nom = traduireNom(noms);
+
+const ajusterNoms = async (nms: {[langue: string]: string}) => {
+  const àEffacer = Object.keys(noms.value).filter(langue => !nms[langue]);
+  for (const langue of àEffacer) {
+    await constl?.bds?.effacerNomBd({id: props.id, langue});
+  }
+  await constl?.bds?.ajouterNomsBd({
+    id: props.id,
+    noms: nms,
+  });
+};
 
 // Descriptions mot-clef
 const descriptions = ref<{[lng: string]: string}>({});
@@ -115,7 +186,17 @@ enregistrerÉcoute(
     f: x => (descriptions.value = x),
   }),
 );
-const description = traduireNom(descriptions);
+
+const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
+  const àEffacer = Object.keys(descriptions.value).filter(langue => !descrs[langue]);
+  for (const langue of àEffacer) {
+    await constl?.bds?.effacerDescrBd({id: props.id, langue});
+  }
+  await constl?.bds?.ajouterDescriptionsBd({
+    id: props.id,
+    descriptions: descrs,
+  });
+};
 
 // Auteurs
 const auteurs = ref<infoAuteur[]>();
@@ -175,4 +256,9 @@ enregistrerÉcoute(
     f: x => (tableaux.value = x.sort((a, b) => (a.position < b.position ? -1 : 1))),
   }),
 );
+const tableauxOrdonnés = computed(()=>{ 
+  const listeTableaux = tableaux.value;
+  listeTableaux?.sort((a,b)=> (a.position && b.position) ? (a.position>b.position ? 1 : -1) : 0 );
+  return listeTableaux || [];
+});
 </script>

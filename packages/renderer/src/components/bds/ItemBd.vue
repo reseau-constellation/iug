@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     :prepend-avatar="srcImgBd || imgDéfaut"
-    :title="nomTraduit"
+    :title="nomTraduit || t('bds.sansNom')"
     :subtitle="descrTraduite"
   >
   </v-list-item>
@@ -12,10 +12,14 @@ import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
 
 // Nom de la Bd
 const {traduireNom} = utiliserLangues();
@@ -31,7 +35,6 @@ enregistrerÉcoute(
 );
 
 // Description de la Bd
-
 const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = traduireNom(descriptions);
 
