@@ -86,7 +86,7 @@ export const icôneCatégorieVariable = (catégorie: catégorieVariables): strin
         return 'mdi-play-box-outline';
       case 'audio':
         return 'mdi-waveform';
-      case 'photo':
+      case 'image':
         return 'mdi-image';
       case 'intervaleTemps':
         return 'mdi-calendar-range-outline';
@@ -99,3 +99,30 @@ export const icôneCatégorieVariable = (catégorie: catégorieVariables): strin
     return 'mdi-list';
   }
 };
+
+export interface interfaceCouleurScore {
+  couleur: string;
+  note: string;
+}
+
+export function couleurScore(score: number | null): interfaceCouleurScore {
+  if (score === null) return {couleur: '#666666', note: '?'};
+  score *= 100;
+  if (score >= 95) {
+    return {couleur: '#1e7145', note: 'A'};
+  } else if (score >= 90) {
+    return {couleur: '#00a300', note: 'A-'};
+  } else if (score >= 85) {
+    return {couleur: '#99b433', note: 'B'};
+  } else if (score >= 80) {
+    return {couleur: '#ffc40d', note: 'B-'};
+  } else if (score >= 70) {
+    return {couleur: '#e3a21a', note: 'C+'};
+  } else if (score >= 60) {
+    return {couleur: '#da532c', note: 'C'};
+  } else if (score >= 55) {
+    return {couleur: '#ee1111', note: 'D'};
+  } else {
+    return {couleur: '#b91d47', note: 'F'};
+  }
+}
