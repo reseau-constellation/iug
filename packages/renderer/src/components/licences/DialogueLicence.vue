@@ -32,9 +32,7 @@
               </template>
               <template #title>
                 <v-list-item-title :class="{'font-weight-bold': item.value === licenceChoisie}">
-                  {{
-                    obtNomLicence(item.value)
-                  }}
+                  {{ obtNomLicence(item.value) }}
                 </v-list-item-title>
               </template>
               <template #subtitle>{{ obtAbrLicence(item.value) }}</template>
