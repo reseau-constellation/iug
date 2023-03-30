@@ -4,12 +4,12 @@ import {ref} from 'vue';
 import PagePrincipale from './misesEnPage/PagePrincipale.vue';
 import AccueilInitial from './misesEnPage/AccueilInitial.vue';
 import MenuLangues from './components/langues/MenuLangues.vue';
-import { utiliserLangues } from './plugins/localisation/localisation';
+import {utiliserLangues} from './plugins/localisation/localisation';
 
 const initialisé = ref(false);
 
 // Direction texte
-const { langueDroiteÀGauche }= utiliserLangues();
+const {langueDroiteÀGauche} = utiliserLangues();
 const dàg = langueDroiteÀGauche();
 </script>
 
