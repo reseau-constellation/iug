@@ -1,11 +1,16 @@
 <template>
-  <v-list>
+  <v-list
+    v-if="autorisationModification"
+    class="pb-0"
+  >
     <v-list-item>
       <v-row>
-        <v-col cols="4">
+        <v-col
+          cols="4"
+          class="pb-0"
+        >
           <v-select
             v-model="nouvelleLangue"
-            hide-details
             density="compact"
             variant="outlined"
             item-title="lng"
@@ -14,10 +19,12 @@
             :label="indiceLangue"
           ></v-select>
         </v-col>
-        <v-col cols="8">
+        <v-col
+          cols="8"
+          class="pb-0"
+        >
           <v-text-field
             v-model="nouveauNom"
-            hide-details
             density="compact"
             variant="outlined"
             :rules="règlesNouveauNom"
@@ -31,13 +38,17 @@
         <v-btn
           icon="mdi-plus"
           variant="text"
+          class="mb-2"
           :disabled="!ajoutPrêt"
           @click="ajouterNom"
         ></v-btn>
       </template>
     </v-list-item>
   </v-list>
-  <v-list>
+  <v-list
+    max-height="200"
+    style="overflow-y: auto"
+  >
     <v-divider class="mb-2" />
     <v-scroll-y-transition group>
       <ItemNom
@@ -48,6 +59,7 @@
         :nom="nom.nom"
         :indice-langue="indiceLangue"
         :indice-nom="indiceNom"
+        :autorisation-modification="autorisationModification"
         @changer-nom="changerNom"
         @effacer="effacerNom"
       />
@@ -74,7 +86,7 @@ import {Nuchabäl} from 'nuchabal';
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
 
 const {t} = useI18n();
-const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {languesEtCodes, nomLangue} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
@@ -82,8 +94,9 @@ const props = defineProps<{
   indiceNom: string;
   indiceLangue: string;
   texteAucunNom: string;
+  autorisationModification: boolean;
 }>();
-const emit = defineEmits<{
+const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
 
@@ -120,7 +133,7 @@ const émettreChangements = () => {
       return [nom.lng, nom.nom];
     }),
   );
-  emit('ajusterNoms', nomsFinaux);
+  émettre('ajusterNoms', nomsFinaux);
 };
 
 const changerNom = ({id, nom, lng}: {id: string; nom: string; lng: string}) => {
@@ -143,6 +156,7 @@ const effacerNom = ({id}: {id: string}) => {
 // Ajouts
 const nouveauNom = ref<string>();
 const nouvelleLangue = ref<string>();
+const nomNouvelleLangue = nomLangue(nouvelleLangue);
 
 const règlesNouveauNom = computed<string[] | undefined>(() => {
   if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;
@@ -150,7 +164,7 @@ const règlesNouveauNom = computed<string[] | undefined>(() => {
   if (!exprégÉcriture) return;
   const erreurLangue = !nouveauNom.value.match(new RegExp(exprégÉcriture, 'g'));
 
-  return erreurLangue ? [t('communs.erreurLangue', {langue: nouvelleLangue.value})] : undefined;
+  return erreurLangue ? [t('communs.erreurLangue', {langue: nomNouvelleLangue.value})] : undefined;
 });
 
 const ajoutPrêt = computed(() => {

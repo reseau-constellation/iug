@@ -1,12 +1,15 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
-    <v-card>
+    <v-card
+      :width="mdAndUp ? 500 : 300"
+      class="mx-auto"
+    >
       <v-card-item>
         <v-card-title>
           {{ titre }}
@@ -21,6 +24,7 @@
           :texte-aucun-nom="texteAucunNom"
           :indice-langue="indiceLangue"
           :indice-nom="indiceNom"
+          :autorisation-modification="autorisationModification"
           @ajuster-noms="ajusterNoms"
         ></ListeNoms>
       </v-card-text>
@@ -28,14 +32,17 @@
         <v-spacer></v-spacer>
         <v-btn
           variant="text"
+          append-icon="mdi-close"
           @click="fermer"
         >
           {{ t('communs.fermer') }}
         </v-btn>
 
         <v-btn
+          v-if="autorisationModification"
           color="primary"
-          variant="flat"
+          variant="outlined"
+          append-icon="mdi-check"
           :disabled="!nomsChangés"
           @click="sauvegarder"
         >
@@ -47,12 +54,14 @@
 </template>
 <script setup lang="ts">
 import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 import ListeNoms from './ListeNoms.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import deepEqual from 'deep-equal';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+const {mdAndUp} = useDisplay();
 
 const props = defineProps<{
   titre: string;
@@ -61,8 +70,9 @@ const props = defineProps<{
   indiceNom: string;
   indiceLangue: string;
   texteAucunNom: string;
+  autorisationModification: boolean;
 }>();
-const emit = defineEmits<{
+const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
 
@@ -73,7 +83,7 @@ const fermer = () => {
   nomsChoisis.value = props.nomsInitiaux;
 };
 const sauvegarder = () => {
-  emit('ajusterNoms', nomsChoisis.value);
+  émettre('ajusterNoms', nomsChoisis.value);
   dialogue.value = false;
 };
 

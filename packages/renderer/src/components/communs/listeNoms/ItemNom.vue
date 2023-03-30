@@ -2,24 +2,30 @@
   <v-list-item>
     <v-list-item-title>
       <v-row>
-        <v-col cols="4">
+        <v-col
+          cols="4"
+          class="pb-0"
+        >
           <v-autocomplete
             v-model="nouvelleLangue"
-            hide-details
             density="compact"
             variant="outlined"
             item-title="lng"
             item-value="code"
+            :readonly="!autorisationModification"
             :items="languesEtCodes"
             :label="indiceLangue"
           ></v-autocomplete>
         </v-col>
-        <v-col cols="8">
+        <v-col
+          cols="8"
+          class="pb-0"
+        >
           <v-text-field
             v-model="nouveauNom"
-            hide-details
             density="compact"
             variant="outlined"
+            :readonly="!autorisationModification"
             :rules="règlesNouveauNom"
             :label="indiceNom"
             @blur="sauvegarder"
@@ -30,6 +36,8 @@
 
     <template #append>
       <v-btn
+        v-if="autorisationModification"
+        class="mb-3"
         icon="mdi-delete"
         variant="text"
         @click="effacer"
@@ -44,7 +52,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {Nuchabäl} from 'nuchabal';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
-const {languesEtCodes} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {languesEtCodes, nomLangue} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 const {t} = useI18n();
 
 const nuchabäl = new Nuchabäl({});
@@ -55,8 +63,9 @@ const props = defineProps<{
   id: string;
   indiceNom: string;
   indiceLangue: string;
+  autorisationModification: boolean;
 }>();
-const emit = defineEmits<{
+const émettre = defineEmits<{
   (é: 'changerNom', info: {id: string; nom: string; lng: string}): void;
   (é: 'effacer', info: {id: string}): void;
 }>();
@@ -70,17 +79,19 @@ onMounted(() => {
 });
 
 // Changements
+const nomNouvelleLangue = nomLangue(nouvelleLangue);
+
 const règlesNouveauNom = computed<string[] | undefined>(() => {
   if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;
   const exprégÉcriture = nuchabäl.rutzibTzibanem({runuk: nouvelleLangue.value});
   if (!exprégÉcriture) return;
   const erreurLangue = !nouveauNom.value.match(new RegExp(exprégÉcriture, 'g'));
 
-  return erreurLangue ? [t('communs.erreurLangue', {langue: nouvelleLangue.value})] : undefined;
+  return erreurLangue ? [t('communs.erreurLangue', {langue: nomNouvelleLangue.value})] : undefined;
 });
 
 const effacer = () => {
-  emit('effacer', {id: props.id});
+  émettre('effacer', {id: props.id});
 };
 const sauvegarder = () => {
   if (!nouvelleLangue.value || !nouveauNom.value) return;
@@ -88,7 +99,7 @@ const sauvegarder = () => {
 
   const nom = nouveauNom.value.trim();
   if (nom === props.nom.trim() && nouvelleLangue.value === props.langue) return;
-  emit('changerNom', {id: props.id, nom: nouveauNom.value, lng: nouvelleLangue.value});
+  émettre('changerNom', {id: props.id, nom: nouveauNom.value, lng: nouvelleLangue.value});
 };
 watchEffect(() => {
   if (nouvelleLangue.value !== props.langue) sauvegarder();

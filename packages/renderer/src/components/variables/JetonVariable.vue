@@ -1,10 +1,15 @@
 <template>
-  <v-chip :prepend-icon="icône">
+  <v-chip
+    class="mb-2 me-2"
+    :prepend-icon="icône"
+    variant="outlined"
+  >
     <slot>
-      {{ nomTraduit }}
+      {{ nomTraduit || t('variables.sansNom') }}
     </slot>
   </v-chip>
 </template>
+
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
@@ -12,6 +17,7 @@ import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
 import {computed, inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/composables/utils';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {icôneCatégorieVariable} from '/@/utils';
 
@@ -19,6 +25,8 @@ const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
 
 // Icône

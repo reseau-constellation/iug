@@ -18,6 +18,7 @@
         :noms-initiaux="noms"
         :titre="t('pages.compte.titreDialogueNoms')"
         :sous-titre="t('pages.compte.sousTitreDialogueNoms')"
+        autorisation-modification
         @ajuster-noms="nms => ajusterNoms(nms)"
       >
         <template #activator="{props}">

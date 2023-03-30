@@ -1,16 +1,27 @@
 <template>
-  <v-chip variant="outlined">
+  <v-chip
+    variant="outlined"
+    class="me-2 mb-2"
+  >
     <image-profil
       :id="compte"
       start
     />
     {{ nomTraduit || t('communs.anonyme') }}
+    <template #append>
+      <v-icon
+        :color="couleurIcône"
+        size="small"
+      >
+        {{ icône }}
+      </v-icon>
+    </template>
   </v-chip>
 </template>
 
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa';
-import {ref, inject} from 'vue';
+import {ref, inject, computed} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -36,4 +47,36 @@ enregistrerÉcoute(
     f: x => (noms.value = x),
   }),
 );
+
+// Mon compte
+const monCompte = ref<string>();
+enregistrerÉcoute(constl?.suivreIdBdCompte({f: id => (monCompte.value = id)}));
+
+// Confiance
+const confiance = ref(0);
+enregistrerÉcoute(
+  constl?.réseau?.suivreConfianceMonRéseauPourMembre({
+    idBdCompte: props.compte,
+    f: x => (confiance.value = x),
+    profondeur: 5,
+  }),
+);
+
+// Icône
+const icône = computed(() => {
+  if (confiance.value < 0) {
+    return 'mdi-cancel';
+  } else {
+    return props.compte === monCompte.value ? 'mdi-check' : 'mdi-hands-pray';
+  }
+});
+const couleurIcône = computed(() => {
+  if (confiance.value < 0) {
+    return 'error';
+  } else if (confiance.value === 1) {
+    return 'success';
+  } else {
+    return `rgba(22, 151, 246, ${0.1 + confiance.value * 0.9})`;
+  }
+});
 </script>

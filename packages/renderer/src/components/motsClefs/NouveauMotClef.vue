@@ -28,6 +28,7 @@
               :indice-langue="t('communs.indiceLangue')"
               :indice-nom="t('communs.indiceNom')"
               :noms-initiaux="noms"
+              :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
@@ -37,6 +38,7 @@
               :indice-langue="t('communs.indiceLangue')"
               :indice-nom="t('motsClefs.nouveau.texteIndiceDescription')"
               :noms-initiaux="descriptions"
+              :autorisation-modification="true"
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>

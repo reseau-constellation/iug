@@ -46,7 +46,7 @@ const useI18n_ = computed(() => {
 
 const கிடைக்கும்_மொழிகளை_பயன்படுத்து = () => {
   const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
-  const nuchabäl = inject<{"nuch'ab'äl": Nuchabäl}>('locales')?.["nuch'ab'äl"];
+  const nuchabäl = inject<{nuchabäl: Nuchabäl}>('locales')?.nuchabäl;
   if (!கிளி) throw new Error('கிளிமூக்கு கிடைத்ததில்லை.');
   if (!nuchabäl) throw new Error("Nuch'ab'äl கிடைத்ததில்லை.");
   const கிடைக்கும்_மொழிகள் = ref<string[]>([]);
@@ -104,9 +104,11 @@ const கிடைக்கும்_மொழிகளை_பயன்படு
       .filter(x => x.lng) as {lng: string; code: string}[];
   });
 
-  const nomLangue = (code: string) => {
+  const nomLangue = (code: string | Ref<string | undefined>) => {
     return computed(() => {
-      return languesEtCodes.value.find(x => x.code === code)?.lng;
+      const valeur_code = typeof code === 'string' ? code : code.value;
+      if (!code) return undefined;
+      return languesEtCodes.value.find(x => x.code === valeur_code)?.lng;
     });
   };
 

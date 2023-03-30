@@ -1,62 +1,133 @@
 <template>
-  <v-card>
-    <ImageProfil :id="id" />
-    <v-card-item>
-      <v-card-title>{{ nomTraduit || t('communs.anonyme') }}</v-card-title>
-    </v-card-item>
-    <v-card-text>
-      <division-carte :titre="t('membres.bds')" />
-      <SérieJetons
-        v-if="bdsMembre"
-        :items="bdsMembre"
-        :n-max="5"
-      >
-        <template #jeton="{id: idBd}">
-          <JetonBd :id="idBd" />
-        </template>
-        <template #itemListe="{id: idBd}">
-          <ItemBd
-            :id="idBd"
-            :montrer-anonymes="true"
+  <v-dialog
+    v-model="dialogue"
+    :width="mdAndUp ? 500 : 300"
+  >
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+    <v-card>
+      <v-card-item>
+        <v-card-title>
+          <ImageProfil :id="id" />
+          <span class="mx-4">{{ nomTraduit || t('communs.anonyme') }}</span>
+          <JetonConfiance
+            v-if="mdAndUp"
+            :id="id"
           />
-        </template>
-      </SérieJetons>
+        </v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <JetonConfiance
+          v-if="!mdAndUp"
+          :id="id"
+        />
+        <division-carte
+          :titre="t('membres.bds')"
+          :en-attente="!bdsMembre"
+        />
+        <SérieJetons
+          v-if="bdsMembre"
+          :items="bdsMembre"
+          :n-max="2"
+        >
+          <template #jeton="{id: idBd}">
+            <CarteBd :id="idBd">
+              <template #activator="{props: propsActivateur}">
+                <JetonBd
+                  v-bind="propsActivateur"
+                  :id="idBd"
+                />
+              </template>
+            </CarteBd>
+          </template>
+          <template #itemListe="{id: idBd}">
+            <CarteBd :id="idBd">
+              <template #activator="{props: propsActivateur}">
+                <ItemBd
+                  v-bind="propsActivateur"
+                  :id="idBd"
+                  :montrer-anonymes="true"
+                />
+              </template>
+            </CarteBd>
+          </template>
+        </SérieJetons>
+        <p
+          v-else
+          class="text-disabled"
+        >
+          {{ t('membres.aucuneBd') }}
+        </p>
 
-      <division-carte :titre="t('membres.projets')" />
-      <SérieJetons
-        v-if="projetsMembre"
-        :items="projetsMembre"
-        :n-max="5"
-      >
-        <template #jeton="{id: idProjet}">
-          <JetonProjet :id="idProjet" />
-        </template>
-        <template #itemListe="{id: idProjet}">
-          <ItemProjet
-            :id="idProjet"
-            :montrer-anonymes="true"
-          />
-        </template>
-      </SérieJetons>
+        <division-carte
+          :titre="t('membres.projets')"
+          :en-attente="!projetsMembre"
+        />
+        <SérieJetons
+          v-if="projetsMembre?.length"
+          :items="projetsMembre"
+          :n-max="5"
+        >
+          <template #jeton="{id: idProjet}">
+            <JetonProjet :id="idProjet" />
+          </template>
+          <template #itemListe="{id: idProjet}">
+            <ItemProjet
+              :id="idProjet"
+              :montrer-anonymes="true"
+            />
+          </template>
+        </SérieJetons>
+        <p
+          v-else
+          class="text-disabled"
+        >
+          {{ t('membres.aucunProjet') }}
+        </p>
 
-      <division-carte :titre="t('membres.nuées')" />
-      <SérieJetons
-        v-if="nuéesMembre"
-        :items="nuéesMembre"
-        :n-max="5"
-      >
-        <template #jeton="{id: idNuée}">
-          <JetonNuée :id="idNuée" />
-        </template>
-        <template #itemListe="{id: idNuée}">
-          <ItemNuée
-            :id="idNuée"
-            :montrer-anonymes="true"
-          />
-        </template>
-      </SérieJetons>
-    </v-card-text>
-  </v-card>
+        <division-carte
+          :titre="t('membres.nuées')"
+          :en-attente="!nuéesMembre"
+        />
+        <SérieJetons
+          v-if="nuéesMembre"
+          :items="nuéesMembre"
+          :n-max="5"
+        >
+          <template #jeton="{id: idNuée}">
+            <JetonNuée :id="idNuée" />
+          </template>
+          <template #itemListe="{id: idNuée}">
+            <ItemNuée
+              :id="idNuée"
+              :montrer-anonymes="true"
+            />
+          </template>
+        </SérieJetons>
+        <p
+          v-else
+          class="text-disabled"
+        >
+          {{ t('membres.aucuneNuée') }}
+        </p>
+      </v-card-text>
+      <v-divider />
+
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          variant="flat"
+          @click="dialogue = false"
+        >
+          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup lang="ts">
@@ -76,6 +147,10 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import JetonNuée from '/@/components/nuées/JetonNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 import ImageProfil from '../communs/ImageProfil.vue';
+import {useDisplay} from 'vuetify/lib/framework.mjs';
+import DivisionCarte from '../communs/DivisionCarte.vue';
+import JetonConfiance from './JetonConfiance.vue';
+import CarteBd from '../bds/CarteBd.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -83,6 +158,10 @@ const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+const {mdAndUp} = useDisplay();
+
+// Navigation
+const dialogue = ref(false);
 
 // Nom
 const {traduireNom} = utiliserLangues();

@@ -88,6 +88,9 @@
         "beaucoupDinteraction": "Beaucoup d'interaction",
         "connaissance": "Connaissance"
       }
+    },
+    "bds": {
+      "qualité": "Qualité "
     }
   },
 
@@ -99,6 +102,7 @@
       "fermer": "முடி",
       "sauvegarder": "சேமி",
       "erreurLangue": "இந்த உரை {langue} மொழியில் இருக்கவும்.",
+      "pointInterrogation": "?",
       "baseCarteObjet": {
         "description": "விளக்கம்",
         "sansNom": "பெயர் இல்லாதது",
@@ -187,12 +191,39 @@
         "variables": "மாறிகள்",
         "motsClefs": "சிறப்பு சொற்கள்",
         "tableaux": "அட்டவணைகள்",
-        "ouvrirBd": "திற"
+        "ouvrirBd": "தரவுத்தளத்தைத் திற"
+      },
+      "qualité": "தரம்",
+      "note": {
+        "A": "அ",
+        "A-": "அ-",
+        "B": "ஆ",
+        "B-": "ஆ-",
+        "C+": "இ+",
+        "C": "இ",
+        "D": "ஈ",
+        "F": "உ"
       }
     },
     "variables": {
       "sansNom": "பெயர் இல்லாத மாறி",
-      "catégorie": "வகை"
+      "catégorie": "வகை",
+      "catégories": {
+        "chaîne": "சரம்"
+      },
+      "règles": "விதிகள்"
+    },
+    "règles": {
+      "types": {
+        "catégorie": "மதிப்பின் வகை"
+      },
+      "infos": {
+        "catégorie": "இந்த மாறியின் மதிப்பு {categorie} வகை இருக்கவும்."
+      }
+    },
+    "réplications": {
+      "réplications": "நகல்|நகல்கள்",
+      "réplicationsEnLigne": "(இணையத்தில் {0})"
     },
     "membres": {
       "bds": "தரவு தளங்கள்",

@@ -1,24 +1,30 @@
 <template>
   <base-carte-objet
     :id="id"
-    :nom="nom"
-    :description="description"
+    :noms="noms"
+    :descriptions="descriptions"
     :auteurs="auteurs"
-  ></base-carte-objet>
+    @ajuster-noms="nms => ajusterNoms(nms)"
+    @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
+  >
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+  </base-carte-objet>
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {inject, ref} from 'vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
-
-const {traduireNom} = utiliserLangues();
 
 // Nom mot-clef
 const noms = ref<{[langue: string]: string}>({});
@@ -28,7 +34,19 @@ enregistrerÉcoute(
     f: x => (noms.value = x),
   }),
 );
-const nom = traduireNom(noms);
+const ajusterNoms = async (nms: {[langue: string]: string}) => {
+  const àEffacer = Object.keys(noms.value).filter(lng => !Object.keys(nms).includes(lng));
+  for (const langue of àEffacer) {
+    await constl?.motsClefs?.effacerNomMotClef({
+      id: props.id,
+      langue,
+    });
+  }
+  return await constl?.motsClefs?.ajouterNomsMotClef({
+    id: props.id,
+    noms: nms,
+  });
+};
 
 // Descriptions mot-clef
 const descriptions = ref<{[lng: string]: string}>({});
@@ -39,7 +57,20 @@ enregistrerÉcoute(
     f: x => (descriptions.value = x),
   }),
 );
-const description = traduireNom(descriptions);
+
+const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
+  const àEffacer = Object.keys(noms.value).filter(lng => !Object.keys(descrs).includes(lng));
+  for (const langue of àEffacer) {
+    await constl?.motsClefs?.effacerDescriptionMotClef({
+      id: props.id,
+      langue,
+    });
+  }
+  return await constl?.motsClefs?.ajouterDescriptionsMotClef({
+    id: props.id,
+    descriptions: descrs,
+  });
+};
 
 // Auteurs
 const auteurs = ref<infoAuteur[]>();

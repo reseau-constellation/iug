@@ -38,11 +38,18 @@
                   <v-divider class="mb-2" />
                 </template>
               </NouveauMotClef>
-              <ItemMotClef
+              <CarteMotClef
                 v-for="motClef in mesMotsClefs"
                 :id="motClef"
                 :key="motClef"
-              />
+              >
+                <template #activator="{props}">
+                  <ItemMotClef
+                    v-bind="props"
+                    :id="motClef"
+                  />
+                </template>
+              </CarteMotClef>
             </v-list>
           </v-card-text>
         </v-card>
@@ -150,6 +157,7 @@ import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -184,7 +192,7 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
     clef: 'projets',
   },
   {
-    icône: 'mdi-bird',
+    icône: 'mdi-account-group-outline',
     texte: t('pages.mesDonnées.nuées'),
     clef: 'nuées',
   },

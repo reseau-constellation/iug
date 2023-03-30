@@ -102,7 +102,7 @@ const props = defineProps<{
   tailleAvatar: number;
   editable: boolean;
 }>();
-const emit = defineEmits<{
+const émettre = defineEmits<{
   (é: 'imageChangee', image?: ArrayBuffer): void;
 }>();
 
@@ -128,7 +128,7 @@ const imageTropGrande = computed(() => {
 });
 
 const effacerImage = () => {
-  emit('imageChangee', undefined);
+  émettre('imageChangee', undefined);
 };
 
 const imageChangee = async (): Promise<void> => {
@@ -181,7 +181,7 @@ watchEffect(async () => {
 watchEffect(async () => {
   if (image.value) {
     if (!imageTropGrande.value) {
-      emit('imageChangee', image.value);
+      émettre('imageChangee', image.value);
     }
   }
 });

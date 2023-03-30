@@ -70,6 +70,7 @@ export const utiliserLangues = () => {
       locales: ReturnType<typeof créerLocales>;
     }>('locales');
     const nuchabäl = locales?.nuchabäl;
+
     return computed(() => {
       for (const lng of langueEtAlternatives.value) {
         if (noms.value[lng]) return noms.value[lng];

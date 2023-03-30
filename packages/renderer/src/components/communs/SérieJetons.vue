@@ -15,6 +15,7 @@
         <v-chip
           v-bind="propsMenu"
           variant="outlined"
+          class="me-2 mb-2"
         >
           <v-icon start>mdi-plus</v-icon>
           {{ nExtrasFormatté }}

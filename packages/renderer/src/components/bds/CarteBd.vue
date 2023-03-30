@@ -7,10 +7,10 @@
     @ajuster-noms="ajusterNoms"
     @ajuster-descriptions="ajusterDescriptions"
   >
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
@@ -35,9 +35,9 @@
     >
       <template #jeton="{id: idVariable}">
         <carte-variable :id="idVariable">
-          <template #activator="{props}">
+          <template #activator="{props: propsActivateur}">
             <JetonVariable
-              v-bind="props"
+              v-bind="propsActivateur"
               :id="idVariable"
             />
           </template>
@@ -45,9 +45,9 @@
       </template>
       <template #itemListe="{id: idVariable}">
         <carte-variable :id="idVariable">
-          <template #activator="{props}">
+          <template #activator="{props: propsActivateur}">
             <ItemVariable
-              v-bind="props"
+              v-bind="propsActivateur"
               :id="idVariable"
             />
           </template>
@@ -65,9 +65,9 @@
     >
       <template #jeton="{id: idMotClef}">
         <carte-mot-clef :id="idMotClef">
-          <template #activator="{props}">
+          <template #activator="{props: propsActivateur}">
             <JetonMotClef
-              v-bind="props"
+              v-bind="propsActivateur"
               :id="idMotClef"
             />
           </template>
@@ -75,9 +75,9 @@
       </template>
       <template #itemListe="{id: idMotClef}">
         <carte-mot-clef :id="idMotClef">
-          <template #activator="{props}">
+          <template #activator="{props: propsActivateur}">
             <ItemMotClef
-              v-bind="props"
+              v-bind="propsActivateur"
               :id="idMotClef"
             />
           </template>

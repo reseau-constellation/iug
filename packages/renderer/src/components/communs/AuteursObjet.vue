@@ -4,13 +4,25 @@
     :n-max="nMax"
   >
     <template #jeton="{idBdCompte}">
-      <JetonMembre :compte="idBdCompte as string" />
+      <CarteMembre :id="idBdCompte as string">
+        <template #activator="{props: propsActivateurJetonMembre}">
+          <JetonMembre
+            v-bind="propsActivateurJetonMembre"
+            :compte="idBdCompte as string"
+          />
+        </template>
+      </CarteMembre>
     </template>
     <template #itemListe="{id}">
-      <ItemMembre
-        :compte="id"
-        :montrer-anonymes="true"
-      ></ItemMembre>
+      <CarteMembre :id="id">
+        <template #activator="{props: propsActivateurItemMembre}">
+          <ItemMembre
+            v-bind="propsActivateurItemMembre"
+            :compte="id"
+            :montrer-anonymes="true"
+          ></ItemMembre>
+        </template>
+      </CarteMembre>
     </template>
   </SérieJetons>
 </template>
@@ -23,6 +35,7 @@ import type {PropType} from 'vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import SérieJetons from './SérieJetons.vue';
+import CarteMembre from '../membres/CarteMembre.vue';
 
 const props = defineProps({
   auteurs: {
