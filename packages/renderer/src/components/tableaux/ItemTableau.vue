@@ -1,5 +1,8 @@
 <template>
   <v-list-item>
+    <template #prepend>
+      <v-icon>mdi-table</v-icon>
+    </template>
     <v-list-item-title>
       {{ nomTableau || t('tableaux.sansNom') }}
     </v-list-item-title>
