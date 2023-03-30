@@ -87,11 +87,27 @@ export const utiliserLangues = () => {
     });
   };
 
+  const langueDroiteÀGauche = (): ComputedRef<boolean> => {
+    const locales = inject<{
+      nuchabäl: Nuchabäl;
+      எண்ணிக்கை: எண்ணிக்கை;
+      locales: ReturnType<typeof créerLocales>;
+    }>('locales');
+    const nuchabäl = locales?.nuchabäl;
+    return computed(()=>{
+      const écriture = nuchabäl?.rutzibChabäl({runuk: langue.value});
+      if (!écriture) return false;
+      const direction = nuchabäl?.rucholanemTzibanem({runuk: écriture});
+      return direction ? direction === '←↓' : false;
+    });
+  };
+
   return {
     langue,
     languesAlternatives,
     choisirLangues,
     traduireNom,
+    langueDroiteÀGauche,
   };
 };
 
