@@ -71,6 +71,18 @@
                   <v-divider />
                 </template>
               </NouvelleVariable>
+              <CarteVariable
+                v-for="variable in mesVariables"
+                :id="variable"
+                :key="variable"
+              >
+                <template #activator="{props}">
+                  <ItemVariable
+                    v-bind="props"
+                    :id="variable"
+                  />
+                </template>
+              </CarteVariable>
             </v-list>
           </v-card-text>
         </v-card>
@@ -92,6 +104,18 @@
                   <v-divider />
                 </template>
               </NouvelleBd>
+              <CarteBd
+                v-for="bd in mesBds"
+                :id="bd"
+                :key="bd"
+              >
+                <template #activator="{props}">
+                  <ItemBd
+                    v-bind="props"
+                    :id="bd"
+                  />
+                </template>
+              </CarteBd>
             </v-list>
           </v-card-text>
         </v-card>
@@ -113,6 +137,18 @@
                   <v-divider />
                 </template>
               </NouveauProjet>
+              <CarteProjet
+                v-for="projet in mesProjets"
+                :id="projet"
+                :key="projet"
+              >
+                <template #activator="{props}">
+                  <ItemProjet
+                    v-bind="props"
+                    :id="projet"
+                  />
+                </template>
+              </CarteProjet>
             </v-list>
           </v-card-text>
         </v-card>
@@ -134,6 +170,18 @@
                   <v-divider />
                 </template>
               </NouvelleNuée>
+              <CarteNuée
+                v-for="nuée in mesNuées"
+                :id="nuée"
+                :key="nuée"
+              >
+                <template #activator="{props}">
+                  <ItemNuée
+                    v-bind="props"
+                    :id="nuée"
+                  />
+                </template>
+              </CarteNuée>
             </v-list>
           </v-card-text>
         </v-card>
@@ -158,6 +206,13 @@ import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
+import CarteBd from '/@/components/bds/CarteBd.vue';
+import ItemBd from '/@/components/bds/ItemBd.vue';
+import CarteProjet from '/@/components/projets/CarteProjet.vue';
+import ItemProjet from '/@/components/projets/ItemProjet.vue';
+import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -203,6 +258,38 @@ const mesMotsClefs = ref<string[]>();
 enregistrerÉcoute(
   constl?.motsClefs?.suivreMotsClefs({
     f: x => (mesMotsClefs.value = x),
+  }),
+);
+
+// Variables
+const mesVariables = ref<string[]>();
+enregistrerÉcoute(
+  constl?.variables?.suivreVariables({
+    f: x => (mesVariables.value = x),
+  }),
+);
+
+// Bds
+const mesBds = ref<string[]>();
+enregistrerÉcoute(
+  constl?.bds?.suivreBds({
+    f: x => (mesBds.value = x),
+  }),
+);
+
+// Projets
+const mesProjets = ref<string[]>();
+enregistrerÉcoute(
+  constl?.projets?.suivreProjets({
+    f: x => (mesProjets.value = x),
+  }),
+);
+
+// Nuées
+const mesNuées = ref<string[]>();
+enregistrerÉcoute(
+  constl?.nuées?.suivreNuées({
+    f: x => (mesNuées.value = x),
   }),
 );
 </script>
