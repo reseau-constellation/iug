@@ -177,6 +177,12 @@
         "montrerTraduites": "மொழிபெயர்க்கப்பட்டவையை காண்க"
       }
     },
+    "auteurs": {
+      "carteGérer": {
+        "titre": "பங்களிப்பாளர் சேர்தல்",
+        "sousTitre": "இந்த பங்களிப்பாளர்களுக்கு திருத்தம் அங்கீகாரம் உள்ளது"
+      }
+    },
     "motsClefs": {
       "nouveau": {
         "titreNoms": "சிறப்பு சொலின் பெயர்"
@@ -191,7 +197,8 @@
         "variables": "மாறிகள்",
         "motsClefs": "சிறப்பு சொற்கள்",
         "tableaux": "அட்டவணைகள்",
-        "ouvrirBd": "தரவுத்தளத்தைத் திற"
+        "ouvrirBd": "தரவுத்தளத்தைத் திற",
+        "attenteTableaux": "தேடித்து கொண்டு இருக்கிறோம்..."
       },
       "qualité": "தரம்",
       "note": {
@@ -204,6 +211,9 @@
         "D": "ஈ",
         "F": "உ"
       }
+    },
+    "tableaux": {
+      "sansNom": "பெயர் இல்லாத அட்டவணை"
     },
     "variables": {
       "sansNom": "பெயர் இல்லாத மாறி",
@@ -490,6 +500,64 @@
           "nom": "உரிமம் கிடைக்கவில்லை",
           "abr": "கிடைக்கவில்லை"
         }
+      },
+      "détails": {
+        "droits": {
+          "partager": "Vous pouvez distribuer ces données",
+          "adapter": "Vous pouvez modifier ces données",
+          "usageComercial": "Vous pouvez utiliser ces données à des fins commerciales",
+          "usagePrivé": "Vous pouvez modifier et utiliser les données à des fins d'utilisation privée",
+          "usageBrevets": "Les contributeurs vous offrent explicitement des droits au brevets"
+        },
+        "limitations": {
+          "aucuneResponsabilité": "Limite la resposabilité des auteurs",
+          "aucuneGarantie": "Mentionne qu'aucune garantie n'est offerte ",
+          "marqueCommerce": "Exclut explicitement les marques de commerce des permissions octroyées par la licence",
+          "brevetExclu": "Exclut explicitement les brevets des permissions octroyées par la licence",
+          "sousLicence": "N'autorise pas la concession de sous-licences"
+        },
+        "conditions": {
+          "attribution": "Les auteurs originaux du matériel doivent être mentionnés dans les redistributions",
+          "partageÉgal": "Les modifications doivent être partagés sous la même licence",
+          "inclureDroitDauteur": "Une notice de droit d'auteur doit être incluse avec le matériel s'il est distribué",
+          "indiquerChangements": "Les modifications au matériel doivent être indiquées lorsqu'il est redistribué",
+          "partagerCodeSource": "Le code source doit être partagé avec les distributions du matériel",
+          "usageRéseau": "L'utilisation du matériel pour offrir des services en ligne est considérée en tant que distribution"
+        }
+      },
+      "droits": {
+        "sousTitre": "உரிமைகள்",
+        "aucune": "உரிமை இல்லை",
+        "partager": "பகிர்ந்து கொள்ள",
+        "adapter": "தகவமைத்துக்கொள்க",
+        "usageComercial": "வணிக பயன்பாடு",
+        "usagePrivé": "தனிப்பட்ட பயன்பாடு",
+        "usageBrevets": "காப்புரிமைகள்"
+      },
+      "conditions": {
+        "sousTitre": "விதிமுறை",
+        "aucune": "நிபந்தனைகள் இல்லை",
+        "attribution": "விருது",
+        "partageÉgal": "அதே உரிமம்",
+        "inclureDroitDauteur": "காப்புரிமை",
+        "indiquerChangements": "மாற்றங்களைக் குறிக்கவும்",
+        "partagerCodeSource": "மூலக் குறியீடு",
+        "usageRéseau": "இணையம் பயன்பாடு சேர்க்கப்பட்டுள்ளது"
+      },
+      "limitations": {
+        "sousTitre": "கட்டுப்பாடுகள்",
+        "aucune": "வரம்புகள் இல்லை",
+        "aucuneResponsabilité": "பொறுப்பு இல்லை",
+        "aucuneGarantie": "உத்தரவாதம் இல்லை",
+        "marqueCommerce": "வர்த்தக முத்திரைகள்",
+        "brevetExclu": "காப்புரிமைகள்",
+        "sousLicence": "உரிமம் பெற்றது"
+      },
+      "avertissement": "கீழே உள்ள தகவல் உரிமச் சுருக்கம் மட்டுமே என்பதால் தகவல்களில் பிழைகள் இருக்கலாம். இது சட்ட ஆலோசனை அல்ல. முழு உரிமத்தையும் படிக்குமாறு நாங்கள் பரிந்துரைக்கிறோம்.",
+      "lire": "உரிமத்தைப் படி",
+      "aucunLien": "இணைப்பு இல்லை",
+      "carte": {
+        "titre": "உரிமம்"
       }
     }
   },
