@@ -4,6 +4,32 @@
     :title="nomTraduit || t('bds.sansNom')"
     :subtitle="descrTraduite"
   >
+    <série-jetons
+      :n-max="3"
+      :items="variables"
+    >
+      <template #jeton="{id: idVariable}">
+        <carte-variable :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <JetonVariable
+              v-bind="propsActivateur"
+              :id="idVariable"
+              size="small"
+            />
+          </template>
+        </carte-variable>
+      </template>
+      <template #itemListe="{id: idVariable}">
+        <carte-variable :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <ItemVariable
+              v-bind="propsActivateur"
+              :id="idVariable"
+            />
+          </template>
+        </carte-variable>
+      </template>
+    </série-jetons>
   </v-list-item>
 </template>
 <script setup lang="ts">
@@ -13,6 +39,10 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemVariable from '../variables/ItemVariable.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -63,4 +93,13 @@ enregistrerÉcoute(
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
+
+// Variables
+const variables = ref<string[]>();
+enregistrerÉcoute(
+  constl?.bds?.suivreVariablesBd({
+    id: props.id,
+    f: vars =>variables.value = vars,
+  }),
+);
 </script>
