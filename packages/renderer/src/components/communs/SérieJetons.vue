@@ -56,6 +56,8 @@ const visibles = computed<TypeItemSérie[]>(() => {
 const extras = computed<TypeItemSérie[]>(() => {
   return props.items?.slice(props.nMax).map(itemiser) || [];
 });
-
-const nExtrasFormatté = formatterChiffre(extras.value.length);
+const nExtras = computed(()=>{
+  return extras.value.length;
+});
+const nExtrasFormatté = formatterChiffre(nExtras);
 </script>
