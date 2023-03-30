@@ -10,8 +10,8 @@
         {{ t('motsClefs.gérerMotsClefsObjet') }}
       </v-chip>
     </template>
-    <v-card 
-      class="mx-auto" 
+    <v-card
+      class="mx-auto"
       :width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
@@ -75,7 +75,7 @@
 </template>
 <script setup lang="ts">
 import {inject, onUnmounted, ref, watchEffect} from 'vue';
-import { useDisplay } from 'vuetify';
+import {useDisplay} from 'vuetify';
 
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {
@@ -92,7 +92,7 @@ import NouveauMotClef from './NouveauMotClef.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const { mdAndUp } = useDisplay();
+const {mdAndUp} = useDisplay();
 
 const props = defineProps<{originaux: string[]}>();
 const émettre = defineEmits<{sauvegarder: (motsClefs: string[]) => void}>();

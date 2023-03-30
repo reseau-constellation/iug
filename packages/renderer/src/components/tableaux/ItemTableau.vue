@@ -11,11 +11,10 @@
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {inject, ref} from 'vue';
-import { enregistrerÉcoute } from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/composables/utils';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { utiliserLangues } from '/@/plugins/localisation/localisation';
-
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{id: string}>();
 
@@ -30,7 +29,7 @@ const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
   constl?.tableaux?.suivreNomsTableau({
     idTableau: props.id,
-    f: x=>noms.value = x,
+    f: x => (noms.value = x),
   }),
 );
 const nomTableau = traduireNom(noms);

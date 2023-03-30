@@ -6,7 +6,9 @@
   >
     {{ nRéplicationsDispositifsFormatté }}
     {{ t('réplications.réplications', nRéplicationsDispositifs) }}
-    <span v-if="nRéplicationsDispositifs > 0">{{ t('réplications.réplicationsEnLigne', [nRéplicationsEnLigneFormatté]) }}</span>
+    <span v-if="nRéplicationsDispositifs > 0">{{
+      t('réplications.réplicationsEnLigne', [nRéplicationsEnLigneFormatté])
+    }}</span>
   </v-chip>
 </template>
 <script setup lang="ts">

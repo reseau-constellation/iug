@@ -94,7 +94,7 @@ export const utiliserLangues = () => {
       locales: ReturnType<typeof créerLocales>;
     }>('locales');
     const nuchabäl = locales?.nuchabäl;
-    return computed(()=>{
+    return computed(() => {
       const écriture = nuchabäl?.rutzibChabäl({runuk: langue.value});
       if (!écriture) return false;
       const direction = nuchabäl?.rucholanemTzibanem({runuk: écriture});
