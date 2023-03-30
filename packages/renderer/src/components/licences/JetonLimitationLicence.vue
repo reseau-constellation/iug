@@ -1,10 +1,10 @@
 <template>
-  <v-tooltip>
+  <v-tooltip location="bottom">
     <template #activator="{props}">
       <v-chip
         v-bind="props"
         variant="outlined"
-        size="smal"
+        size="small"
         label
         class="ma-1 my-1"
       >
@@ -18,7 +18,7 @@
         {{ t(`licences.limitations.${limitation}`) }}
       </v-chip>
     </template>
-    <span>{{ t(`licences.limitations.détails.${limitation}`) }}</span>
+    <span>{{ t(`licences.détails.limitations.${limitation}`) }}</span>
   </v-tooltip>
 </template>
 

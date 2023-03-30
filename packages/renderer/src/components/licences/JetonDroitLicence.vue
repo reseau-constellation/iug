@@ -1,5 +1,5 @@
 <template>
-  <v-tooltip>
+  <v-tooltip location="bottom">
     <template #activator="{props}">
       <v-chip
         v-bind="props"
@@ -18,7 +18,7 @@
         {{ t(`licences.droits.${droit}`) }}
       </v-chip>
     </template>
-    <span>{{ t(`licences.droits.détails.${droit}`) }}</span>
+    <span>{{ t(`licences.détails.droits.${droit}`) }}</span>
   </v-tooltip>
 </template>
 

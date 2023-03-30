@@ -5,10 +5,11 @@
     label
   >
     <template #prepend>
-      <v-icon :color="licenceApprouvée ? 'primary' : 'error'">
-        {{
-          licenceApprouvée ? 'mdi-scale-balance' : 'mdi-alert'
-        }}
+      <v-icon
+        start
+        :color="licenceApprouvée ? 'primary' : 'error'"
+      >
+        {{ licenceApprouvée ? 'mdi-scale-balance' : 'mdi-alert' }}
       </v-icon>
     </template>
     {{ licenceApprouvée ? t(`licences.info.${licence}.abr`) : licence }}

@@ -18,10 +18,20 @@
       :titre="t('bds.carteBd.infos')"
       :en-attente="false"
     />
-    <JetonLicence
+
+    <dialogue-licence
       :licence="licence"
-      @changer="changerLicence"
-    />
+      :permission-modifier="!!monAutorisation"
+      @changer-licence="changerLicence"
+    >
+      <template #activator="{props: propsActivateur}">
+        <JetonLicence
+          v-bind="propsActivateur"
+          :licence="licence"
+        />
+      </template>
+    </dialogue-licence>
+
     <JetonQualité :id="id" />
     <JetonRéplications :id="id" />
 
@@ -99,7 +109,7 @@
       :id="tableau.id"
       :key="tableau.clef"
     />
-    <p v-if="!tableaux">En attente</p>
+    <p v-if="!tableaux">{{ t('bds.carteBd.attenteTableaux') }}</p>
     <p v-else-if="!tableaux.length">{{ t('bds.carteBd.aucunTableaux') }}</p>
 
     <v-divider class="mb-2" />
@@ -140,6 +150,7 @@ import JetonRéplications from '../communs/JetonRéplications.vue';
 import JetonQualité from './JetonQualité.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import DialogueLicence from '../licences/DialogueLicence.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -256,9 +267,11 @@ enregistrerÉcoute(
     f: x => (tableaux.value = x.sort((a, b) => (a.position < b.position ? -1 : 1))),
   }),
 );
-const tableauxOrdonnés = computed(()=>{ 
+const tableauxOrdonnés = computed(() => {
   const listeTableaux = tableaux.value;
-  listeTableaux?.sort((a,b)=> (a.position && b.position) ? (a.position>b.position ? 1 : -1) : 0 );
+  listeTableaux?.sort((a, b) =>
+    a.position && b.position ? (a.position > b.position ? 1 : -1) : 0,
+  );
   return listeTableaux || [];
 });
 </script>
