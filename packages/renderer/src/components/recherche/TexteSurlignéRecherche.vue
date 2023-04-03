@@ -47,7 +47,7 @@ const texteProcessé = computed(
           texteDIntérêt.length,
           props.maxTaille - Math.min(TAILLE_MIN_TEXTE_AVANT, préTexte.length),
         );
-        
+
         const tailleMaxTexteAvant = Math.max(
           TAILLE_MIN_TEXTE_AVANT,
           props.maxTaille - tailleTexteSurligné,
@@ -56,12 +56,15 @@ const texteProcessé = computed(
           0,
           props.maxTaille - Math.min(tailleMaxTexteAvant, préTexte.length) - tailleTexteSurligné,
         );
-            
+
         const coupéAprès =
           texteDIntérêt.length > tailleTexteSurligné || postTexte.length > tailleMaxTexteAprès;
 
         return {
-          texteAvant: préTexte.slice(Math.max(0, préTexte.length - tailleMaxTexteAvant), préTexte.length),
+          texteAvant: préTexte.slice(
+            Math.max(0, préTexte.length - tailleMaxTexteAvant),
+            préTexte.length,
+          ),
           texteSurligné: texteDIntérêt.slice(0, tailleTexteSurligné),
           texteAprès: postTexte.slice(0, tailleMaxTexteAprès),
           coupéAvant: préTexte.length > tailleMaxTexteAvant,
