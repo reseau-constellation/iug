@@ -6,13 +6,25 @@
         start
       />
     </template>
-    <v-list-item-title>
+    <template #title>
       <TexteSurlignéRecherche
         v-if="source === 'nom'"
         :info="résultat.résultatObjectif.info"
       />
       <span v-else>{{ nomTraduit || t('communs.anonyme') }}</span>
-    </v-list-item-title>
+    </template>
+    <v-chip
+      v-if="source==='id'"
+      variant="outlined"
+      label
+      size="small"
+      prepend-icon="mdi-link"
+    >
+      <TexteSurlignéRecherche
+        :info="résultat.résultatObjectif.info"
+        :max-taille="25"
+      ></TexteSurlignéRecherche>
+    </v-chip>
     <JetonContactMembre
       v-if="source === 'contact' && résultat.résultatObjectif.clef"
       :contact="résultat.résultatObjectif.info.texte"
@@ -55,8 +67,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.motsClefs?.suivreNomsMotClef({
-    id: props.résultat.id,
+  constl?.profil?.suivreNoms({
+    idCompte: props.résultat.id,
     f: x => (noms.value = x),
   }),
 );
