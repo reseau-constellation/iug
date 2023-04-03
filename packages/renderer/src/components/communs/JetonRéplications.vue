@@ -4,6 +4,7 @@
     variant="outlined"
     label
   >
+    <v-icon start>mdi-pin-outline</v-icon>
     {{ nRéplicationsDispositifsFormatté }}
     {{ t('réplications.réplications', nRéplicationsDispositifs) }}
     <span v-if="nRéplicationsDispositifs > 0">{{
