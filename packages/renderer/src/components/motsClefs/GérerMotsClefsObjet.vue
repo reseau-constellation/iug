@@ -15,7 +15,7 @@
       :width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title></v-card-title>
+        <v-card-title>{{ t('motsClefs.gérerMotsClefsObjet.titreCarte') }}</v-card-title>
       </v-card-item>
       <v-card-text>
         <v-dialog v-model="dialogueAjout">
@@ -28,12 +28,20 @@
               {{ t('motsClefs.ajouterÀObjet') }}
             </v-chip>
           </template>
-          <v-card>
+          <v-card
+            class="mx-auto"
+            :width="mdAndUp ? 500 : 300"
+          >
             <v-card-text>
-              <v-text-field v-model="requèteRecherche"> </v-text-field>
+              <v-text-field
+                v-model="requèteRecherche"
+                variant="outlined"
+              >
+              </v-text-field>
               <v-select
                 v-model="motClefSélectionné"
                 :items="résultatRechercheMotsClefs"
+                variant="outlined"
               >
                 <template #selection="{item, propsSélectionSelect}">
                   <jeton-mot-clef
