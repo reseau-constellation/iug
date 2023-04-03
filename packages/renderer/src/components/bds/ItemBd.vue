@@ -99,7 +99,7 @@ const variables = ref<string[]>();
 enregistrerÉcoute(
   constl?.bds?.suivreVariablesBd({
     id: props.id,
-    f: vars =>variables.value = vars,
+    f: vars => (variables.value = vars),
   }),
 );
 </script>
