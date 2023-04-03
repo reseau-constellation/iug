@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :width="mdAndUp ? 500 : 300"
+      :width="mdAndUp ? 700 : 300"
       class="mx-auto"
     >
       <v-card-item>
