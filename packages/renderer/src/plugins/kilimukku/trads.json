@@ -8,7 +8,8 @@
       "indiceNom": "Nom",
       "indiceLangue": "Langue",
       "texteAucunNom": "Ajouter un nom ci-dessus",
-      "erreurLangue": "Ce texte doit être en {langue}."
+      "erreurLangue": "Ce texte doit être en {langue}.",
+      "troisPetitsPoints": "..."
     },
     "navigation": {
       "accueil": "Accueil",
@@ -180,7 +181,10 @@
     "auteurs": {
       "carteGérer": {
         "titre": "பங்களிப்பாளர் சேர்தல்",
-        "sousTitre": "இந்த பங்களிப்பாளர்களுக்கு திருத்தம் அங்கீகாரம் உள்ளது"
+        "sousTitre": "இந்த பங்களிப்பாளர்களுக்கு திருத்தம் அங்கீகாரம் உள்ளது",
+        "aucunRésultat": "கோரிக்கை படி எந்த பயனாளரும் இல்லை",
+        "nouveaux": "சேர்க்கபடும் பங்களிப்பாளர்கள்",
+        "ajouterCommeModérateur": "மதிப்பீட்டாளராக சேரு"
       }
     },
     "motsClefs": {
@@ -219,7 +223,8 @@
       "sansNom": "பெயர் இல்லாத மாறி",
       "catégorie": "வகை",
       "catégories": {
-        "chaîne": "சரம்"
+        "chaîne": "சரம்",
+        "chaîneNonTraductible": "மொழிபெயர்க்க முடியாத சரம்"
       },
       "règles": "விதிகள்"
     },
