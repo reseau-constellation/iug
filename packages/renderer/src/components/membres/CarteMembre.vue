@@ -94,7 +94,7 @@
           :en-attente="!nuéesMembre"
         />
         <SérieJetons
-          v-if="nuéesMembre"
+          v-if="nuéesMembre?.length"
           :items="nuéesMembre"
           :n-max="5"
         >
@@ -195,11 +195,10 @@ enregistrerÉcoute(
 
 // Nuées
 const nuéesMembre = ref<string[]>();
-/*enregistrerÉcoute(
+enregistrerÉcoute(
   constl?.réseau?.suivreNuéesMembre({
     idCompte: props.id,
     f: nuées => (nuéesMembre.value = nuées),
   }),
 );
-*/
 </script>
