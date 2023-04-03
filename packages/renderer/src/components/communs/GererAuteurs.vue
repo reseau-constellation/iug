@@ -18,18 +18,67 @@
           {{ t('auteurs.carteGérer.sousTitre') }}
         </v-card-subtitle>
       </v-card-item>
-      <v-card-text> </v-card-text>
+      <v-card-text>
+        <v-menu>
+          <template #activator="{ props }">
+            <v-text-field
+              v-bind="props"
+              v-model="requèteRecherche"
+              hide-details
+              variant="outlined"
+              density="compact"
+            ></v-text-field>
+          </template>
+          <v-list>
+            <v-list-item v-if="!membresDisponibles?.length">
+              <v-list-item-title>
+                {{ t('auteurs.carteGérer.aucunRésultat') }}
+              </v-list-item-title>
+            </v-list-item>
+            <résultat-recherche-profil
+              v-for="m in membresDisponibles"
+              :key="m.id"
+              :résultat="m"
+              @click="()=>sélectionner(m.id)"
+            />
+          </v-list>
+        </v-menu>
+        <division-carte
+          :titre="t('auteurs.carteGérer.nouveaux')"
+          :en-attente="false"
+        />
+        <jeton-membre
+          v-for="s in sélectionnés"
+          :key="s"
+          :compte="s"
+        >
+          <template #post>
+            <v-btn
+              icon="mdi-close"
+              variant="flat"
+              size="x-small"
+              @click="()=>désélectionner(s)"
+            ></v-btn>
+          </template>
+        </jeton-membre>
+        <v-checkbox
+          v-model="ajouterCommeModérateur"
+          color="primary"
+          :label="t('auteurs.carteGérer.ajouterCommeModérateur')"
+        ></v-checkbox>
+      </v-card-text>
       <v-card-actions>
         <v-spacer />
         <v-btn
           variant="flat"
-          @click="dialogue = false"
+          @click="fermer"
         >
           {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
         </v-btn>
         <v-btn
           variant="outlined"
           color="primary"
+          :disabled="!sélectionnés.length"
           @click="() => émettre('sauvegarder')"
         >
           {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
@@ -39,12 +88,20 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
-import {useDisplay} from 'vuetify';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {infoAuteur, infoRésultat, infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+import type {Ref} from 'vue';
 
-defineProps<{auteurs: infoAuteur[] | undefined}>();
+import {inject, ref, computed} from 'vue';
+import {useDisplay} from 'vuetify';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { enregistrerRecherche } from '/@/composables/utils';
+
+import JetonMembre from '/@/components/membres/JetonMembre.vue';
+import DivisionCarte from './DivisionCarte.vue';
+import RésultatRechercheProfil from '../recherche/RésultatRechercheProfil.vue';
+
+const props = defineProps<{auteurs: infoAuteur[] | undefined}>();
 const émettre = defineEmits<{
   (é: 'sauvegarder'): void;
 }>();
@@ -54,6 +111,53 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
+const constl = inject<ClientConstellation>('constl');
+
 // Navigation
 const dialogue = ref(false);
+const fermer = () => {
+  dialogue.value = false;
+};
+
+// Options
+const ajouterCommeModérateur = ref(false);
+
+// Membres
+const membres = ref<résultatRecherche<infoRésultatTexte>[]>();
+const requèteRecherche = ref<string>();
+enregistrerRecherche({
+  requète: requèteRecherche,
+  réfRésultat: membres,
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}: {requète: string, nOuProfondeur: number, réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>}) => constl?.recherche?.rechercherProfilSelonTexte({
+    texte: requète,
+    nRésultatsDésirés: nOuProfondeur,
+    f: x => réfRésultat.value = x.sort((a, b) => a.résultatObjectif.score > b.résultatObjectif.score ? -1 : (a.résultatObjectif.score < b.résultatObjectif.score ? 1 : 0)),
+  }),
+  fRechercheDéfaut: async ({ nOuProfondeur, réfRésultat }: {nOuProfondeur: number, réfRésultat: Ref<résultatRecherche<infoRésultat>[]>}) => constl?.réseau?.rechercherMembres({
+    nRésultatsDésirés: nOuProfondeur,
+    f: x => réfRésultat.value = x.sort((a, b) => a.résultatObjectif.score > b.résultatObjectif.score ? -1 : (a.résultatObjectif.score < b.résultatObjectif.score ? 1 : 0)),
+  }),
+});
+const membresDisponibles = computed(()=>{
+  return membres.value?.filter(m=>{
+    if (sélectionnés.value.includes(m.id)) return false;
+
+    if (ajouterCommeModérateur.value) {
+      return !(props.auteurs?.find(x=>x.idBdCompte === m.id)?.rôle === 'MODÉRATEUR');
+    } else {
+      return !props.auteurs?.map(a=>a.idBdCompte).includes(m.id);
+    }
+  });
+});
+
+// Ajouts
+const sélectionnés = ref<string[]>([]);
+const sélectionner = (id: string) => {
+  sélectionnés.value = [...sélectionnés.value, id];
+};
+const désélectionner = (id: string) => {
+  sélectionnés.value = sélectionnés.value.filter(x=>x !== id);
+};
+
+
 </script>
