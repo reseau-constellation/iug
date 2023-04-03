@@ -22,7 +22,13 @@
       variant="outlined"
       :prepend-icon="icône"
     >
-      {{ t(`variables.catégories.${catégorie}`) }}
+      {{
+        t(
+          `variables.catégories.${
+            catégorie.type === 'simple' ? catégorie.catégorie : catégorie.catégorieBase
+          }`,
+        )
+      }}
     </v-chip>
 
     <division-carte
