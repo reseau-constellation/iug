@@ -9,12 +9,23 @@
     />
     {{ nomTraduit || t('communs.anonyme') }}
     <template #append>
-      <v-icon
-        :color="couleurIcône"
-        size="small"
+      <v-tooltip
+        :text="messageConfiance"
+        location="bottom"
       >
-        {{ icône }}
-      </v-icon>
+        <template #activator="{props: propsActivateur}">
+          <v-icon
+            v-bind="propsActivateur"
+            :color="couleurIcône"
+            size="small"
+            end
+          >
+            {{ icône }}
+          </v-icon>
+        </template>
+      </v-tooltip>
+      
+      <slot name="post"></slot>
     </template>
   </v-chip>
 </template>
@@ -61,6 +72,24 @@ enregistrerÉcoute(
     profondeur: 5,
   }),
 );
+
+const messageConfiance = computed(() => {
+  if (confiance.value < 0) {
+    return t('membres.confiance.bloqué');
+  } else if (confiance.value === 0) {
+    return t('membres.confiance.inconnu');
+  } else if (confiance.value < 0.33) {
+    return t('membres.confiance.peuDinteraction');
+  } else if (confiance.value < 0.67) {
+    return t('membres.confiance.interactionMoyenne');
+  } else if (confiance.value < 1) {
+    return t('membres.confiance.beaucoupDinteraction');
+  } else if (confiance.value === 1) {
+    return props.compte  === monCompte.value ? t('membres.moi') : t('membres.confiance.connaissance');
+  } else {
+    return '';
+  }
+});
 
 // Icône
 const icône = computed(() => {
