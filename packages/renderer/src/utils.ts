@@ -68,10 +68,11 @@ export type publicationGitHub = {
 };
 
 export const icôneCatégorieVariable = (catégorie: catégorieVariables): string => {
-  if (typeof catégorie === 'string') {
-    switch (catégorie) {
+  if (catégorie.type === 'simple') {
+    switch (catégorie.catégorie) {
       case 'numérique':
         return 'mdi-numeric';
+      case 'chaîneNonTraductible':
       case 'chaîne':
         return 'mdi-text-short';
       case 'catégorique':
