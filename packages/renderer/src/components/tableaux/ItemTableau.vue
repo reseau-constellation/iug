@@ -3,14 +3,46 @@
     <template #prepend>
       <v-icon>mdi-table</v-icon>
     </template>
-    <v-list-item-title>
+    <v-list-item-title class="mb-2">
       {{ nomTableau || t('tableaux.sansNom') }}
     </v-list-item-title>
+    <v-list-item-subtitle>
+      <série-jetons
+        :items="variables"
+        :n-max="3"
+      >
+        <template #jeton="{id: idVariable}">
+          <carte-variable :id="idVariable">
+            <template #activator="{props: propsActivateur}">
+              <JetonVariable
+                v-bind="propsActivateur"
+                :id="idVariable"
+                size="small"
+              />
+            </template>
+          </carte-variable>
+        </template>
+        <template #itemListe="{id: idVariable}">
+          <carte-variable :id="idVariable">
+            <template #activator="{props: propsActivateur}">
+              <item-variable
+                v-bind="propsActivateur"
+                :id="idVariable"
+              />
+            </template>
+          </carte-variable>
+        </template>
+      </série-jetons>
+    </v-list-item-subtitle>
   </v-list-item>
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {inject, ref} from 'vue';
+import SérieJetons from '../communs/SérieJetons.vue';
+import CarteVariable from '../variables/CarteVariable.vue';
+import ItemVariable from '../variables/ItemVariable.vue';
+import JetonVariable from '../variables/JetonVariable.vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -33,4 +65,13 @@ enregistrerÉcoute(
   }),
 );
 const nomTableau = traduireNom(noms);
+
+// Variables
+const variables = ref<string[]>();
+enregistrerÉcoute(
+  constl?.tableaux?.suivreVariables({
+    idTableau: props.id,
+    f: x => (variables.value = x),
+  }),
+);
 </script>
