@@ -29,9 +29,25 @@
           ></v-btn>
         </template>
       </DialogueNoms>
+      <lien-objet
+        v-if="idCompte"
+        :id="idCompte"
+      />
     </h1>
+    <v-tabs v-model="onglet">
+      <v-tab value="thème">{{ t('pages.compte.ongletThème') }}</v-tab>
+      <v-tab value="connexions">{{ t('pages.compte.ongletConnexions') }}</v-tab>
+    </v-tabs>
+    <v-window v-model="onglet">
+      <v-window-item value="thème">
+      </v-window-item>
+      <v-window-item value="connexions">
+        <OngletConnexions />
+      </v-window-item>
+    </v-window>
   </v-container>
 </template>
+
 <script setup lang="ts">
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -46,12 +62,22 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import DialogueNoms from '../components/communs/listeNoms/DialogueNoms.vue';
 import {enregistrerÉcoute} from '../composables/utils';
+import OngletConnexions from '../components/compte/OngletConnexions.vue';
+import LienObjet from '../components/communs/LienObjet.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {mdAndUp} = useDisplay();
+
+// Mon ID compte
+const idCompte = ref<string>();
+enregistrerÉcoute(
+  constl?.suivreIdBdCompte({
+    f: id => idCompte.value = id,
+  }),
+);
 
 // Image profil
 const imageProfil = ref<Uint8Array | null>();
@@ -101,4 +127,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
     await constl?.profil?.effacerNom({langue});
   }
 };
+
+// Onglets
+const onglet = ref('thème');
 </script>
