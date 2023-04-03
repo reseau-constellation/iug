@@ -213,6 +213,7 @@ import ItemBd from '/@/components/bds/ItemBd.vue';
 import CarteProjet from '/@/components/projets/CarteProjet.vue';
 import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
+import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
