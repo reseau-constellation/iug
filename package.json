@@ -63,7 +63,7 @@
     "vue-tsc": "1.2.0"
   },
   "dependencies": {
-    "@constl/ipa": "0.6.39",
+    "@constl/ipa": "0.6.43",
     "@constl/mandataire": "^0.1.4",
     "@constl/mandataire-electron-principal": "^0.2.7",
     "@constl/mandataire-electron-rendu": "^0.2.7",
