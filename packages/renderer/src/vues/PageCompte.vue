@@ -39,8 +39,7 @@
       <v-tab value="connexions">{{ t('pages.compte.ongletConnexions') }}</v-tab>
     </v-tabs>
     <v-window v-model="onglet">
-      <v-window-item value="thème">
-      </v-window-item>
+      <v-window-item value="thème"> </v-window-item>
       <v-window-item value="connexions">
         <OngletConnexions />
       </v-window-item>
@@ -75,7 +74,7 @@ const {mdAndUp} = useDisplay();
 const idCompte = ref<string>();
 enregistrerÉcoute(
   constl?.suivreIdBdCompte({
-    f: id => idCompte.value = id,
+    f: id => (idCompte.value = id),
   }),
 );
 

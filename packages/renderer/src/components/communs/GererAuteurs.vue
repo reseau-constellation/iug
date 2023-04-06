@@ -20,7 +20,7 @@
       </v-card-item>
       <v-card-text>
         <v-menu>
-          <template #activator="{ props }">
+          <template #activator="{props}">
             <v-text-field
               v-bind="props"
               v-model="requèteRecherche"
@@ -39,7 +39,7 @@
               v-for="m in membresDisponibles"
               :key="m.id"
               :résultat="m"
-              @click="()=>sélectionner(m.id)"
+              @click="() => sélectionner(m.id)"
             />
           </v-list>
         </v-menu>
@@ -57,7 +57,7 @@
               icon="mdi-close"
               variant="flat"
               size="x-small"
-              @click="()=>désélectionner(s)"
+              @click="() => désélectionner(s)"
             ></v-btn>
           </template>
         </jeton-membre>
@@ -89,13 +89,18 @@
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type {infoAuteur, infoRésultat, infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+import type {
+  infoAuteur,
+  infoRésultat,
+  infoRésultatTexte,
+  résultatRecherche,
+} from '@constl/ipa/dist/src/utils';
 import type {Ref} from 'vue';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { enregistrerRecherche } from '/@/composables/utils';
+import {enregistrerRecherche} from '/@/composables/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
@@ -128,24 +133,54 @@ const requèteRecherche = ref<string>();
 enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: membres,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}: {requète: string, nOuProfondeur: number, réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>}) => constl?.recherche?.rechercherProfilSelonTexte({
-    texte: requète,
-    nRésultatsDésirés: nOuProfondeur,
-    f: x => réfRésultat.value = x.sort((a, b) => a.résultatObjectif.score > b.résultatObjectif.score ? -1 : (a.résultatObjectif.score < b.résultatObjectif.score ? 1 : 0)),
-  }),
-  fRechercheDéfaut: async ({ nOuProfondeur, réfRésultat }: {nOuProfondeur: number, réfRésultat: Ref<résultatRecherche<infoRésultat>[]>}) => constl?.réseau?.rechercherMembres({
-    nRésultatsDésirés: nOuProfondeur,
-    f: x => réfRésultat.value = x.sort((a, b) => a.résultatObjectif.score > b.résultatObjectif.score ? -1 : (a.résultatObjectif.score < b.résultatObjectif.score ? 1 : 0)),
-  }),
+  fRecherche: async ({
+    requète,
+    nOuProfondeur,
+    réfRésultat,
+  }: {
+    requète: string;
+    nOuProfondeur: number;
+    réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+  }) =>
+    constl?.recherche?.rechercherProfilSelonTexte({
+      texte: requète,
+      nRésultatsDésirés: nOuProfondeur,
+      f: x =>
+        (réfRésultat.value = x.sort((a, b) =>
+          a.résultatObjectif.score > b.résultatObjectif.score
+            ? -1
+            : a.résultatObjectif.score < b.résultatObjectif.score
+            ? 1
+            : 0,
+        )),
+    }),
+  fRechercheDéfaut: async ({
+    nOuProfondeur,
+    réfRésultat,
+  }: {
+    nOuProfondeur: number;
+    réfRésultat: Ref<résultatRecherche<infoRésultat>[]>;
+  }) =>
+    constl?.réseau?.rechercherMembres({
+      nRésultatsDésirés: nOuProfondeur,
+      f: x =>
+        (réfRésultat.value = x.sort((a, b) =>
+          a.résultatObjectif.score > b.résultatObjectif.score
+            ? -1
+            : a.résultatObjectif.score < b.résultatObjectif.score
+            ? 1
+            : 0,
+        )),
+    }),
 });
-const membresDisponibles = computed(()=>{
-  return membres.value?.filter(m=>{
+const membresDisponibles = computed(() => {
+  return membres.value?.filter(m => {
     if (sélectionnés.value.includes(m.id)) return false;
 
     if (ajouterCommeModérateur.value) {
-      return !(props.auteurs?.find(x=>x.idBdCompte === m.id)?.rôle === 'MODÉRATEUR');
+      return !(props.auteurs?.find(x => x.idBdCompte === m.id)?.rôle === 'MODÉRATEUR');
     } else {
-      return !props.auteurs?.map(a=>a.idBdCompte).includes(m.id);
+      return !props.auteurs?.map(a => a.idBdCompte).includes(m.id);
     }
   });
 });
@@ -156,8 +191,6 @@ const sélectionner = (id: string) => {
   sélectionnés.value = [...sélectionnés.value, id];
 };
 const désélectionner = (id: string) => {
-  sélectionnés.value = sélectionnés.value.filter(x=>x !== id);
+  sélectionnés.value = sélectionnés.value.filter(x => x !== id);
 };
-
-
 </script>

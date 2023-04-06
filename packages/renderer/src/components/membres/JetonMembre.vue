@@ -24,7 +24,7 @@
           </v-icon>
         </template>
       </v-tooltip>
-      
+
       <slot name="post"></slot>
     </template>
   </v-chip>
@@ -85,7 +85,9 @@ const messageConfiance = computed(() => {
   } else if (confiance.value < 1) {
     return t('membres.confiance.beaucoupDinteraction');
   } else if (confiance.value === 1) {
-    return props.compte  === monCompte.value ? t('membres.moi') : t('membres.confiance.connaissance');
+    return props.compte === monCompte.value
+      ? t('membres.moi')
+      : t('membres.confiance.connaissance');
   } else {
     return '';
   }

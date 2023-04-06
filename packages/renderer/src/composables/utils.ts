@@ -47,37 +47,68 @@ export const enregistrerRecherche = <T>({
   fRecherche,
   fRechercheDéfaut,
 }: {
-  requète: Ref<T|undefined>;
+  requète: Ref<T | undefined>;
   réfRésultat: Ref;
-  fRecherche: ({requète, nOuProfondeur, réfRésultat}: {requète: T, nOuProfondeur: number, réfRésultat: Ref}) => Promise<schémaRetourFonctionRechercheParN|schémaRetourFonctionRechercheParProfondeur|undefined>;
-  fRechercheDéfaut?: ({nOuProfondeur, réfRésultat}: {nOuProfondeur: number, réfRésultat: Ref}) => Promise<schémaRetourFonctionRechercheParN|schémaRetourFonctionRechercheParProfondeur|undefined>
+  fRecherche: ({
+    requète,
+    nOuProfondeur,
+    réfRésultat,
+  }: {
+    requète: T;
+    nOuProfondeur: number;
+    réfRésultat: Ref;
+  }) => Promise<
+    schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+  >;
+  fRechercheDéfaut?: ({
+    nOuProfondeur,
+    réfRésultat,
+  }: {
+    nOuProfondeur: number;
+    réfRésultat: Ref;
+  }) => Promise<
+    schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+  >;
 }): Ref<number> => {
   let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
-  let fChangerNOuProfondeur: ((n: number) => Promise<void>);
+  let fChangerNOuProfondeur: (n: number) => Promise<void>;
 
   const nOuProfondeurRésultats = ref(10);
 
-  const vérifierSiParProfondeur = (x: schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur): x is schémaRetourFonctionRechercheParProfondeur => {
-      // @ts-expect-error Je ne sais pas comment faire ça
-      return !!x['fChangerProfondeur'];
+  const vérifierSiParProfondeur = (
+    x: schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur,
+  ): x is schémaRetourFonctionRechercheParProfondeur => {
+    // @ts-expect-error Je ne sais pas comment faire ça
+    return !!x['fChangerProfondeur'];
   };
 
   const lancerRecherche = async () => {
     if (fOublierRecherche) await fOublierRecherche();
     if (requète.value) {
-      const retour = await fRecherche({requète: requète.value, nOuProfondeur: nOuProfondeurRésultats.value, réfRésultat});
+      const retour = await fRecherche({
+        requète: requète.value,
+        nOuProfondeur: nOuProfondeurRésultats.value,
+        réfRésultat,
+      });
 
       if (retour) {
         fOublierRecherche = retour.fOublier;
-        fChangerNOuProfondeur = vérifierSiParProfondeur(retour) ? retour.fChangerProfondeur : retour.fChangerN;
+        fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
+          ? retour.fChangerProfondeur
+          : retour.fChangerN;
       }
     } else {
       if (fRechercheDéfaut) {
-        const retour = await fRechercheDéfaut({nOuProfondeur: nOuProfondeurRésultats.value, réfRésultat});
+        const retour = await fRechercheDéfaut({
+          nOuProfondeur: nOuProfondeurRésultats.value,
+          réfRésultat,
+        });
 
         if (retour) {
           fOublierRecherche = retour.fOublier;
-          fChangerNOuProfondeur = vérifierSiParProfondeur(retour) ? retour.fChangerProfondeur : retour.fChangerN;
+          fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
+            ? retour.fChangerProfondeur
+            : retour.fChangerN;
         }
       } else {
         réfRésultat.value = [];
@@ -87,9 +118,8 @@ export const enregistrerRecherche = <T>({
 
   watch(requète, lancerRecherche);
   lancerRecherche();
-  watchEffect(async ()=> {
-    if (fChangerNOuProfondeur)
-      fChangerNOuProfondeur(nOuProfondeurRésultats.value);
+  watchEffect(async () => {
+    if (fChangerNOuProfondeur) fChangerNOuProfondeur(nOuProfondeurRésultats.value);
   });
   return nOuProfondeurRésultats;
 };

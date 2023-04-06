@@ -11,7 +11,10 @@
         size="small"
       >
         <template #prepend>
-          <v-icon :color="couleurIcône">
+          <v-icon
+            :color="couleurIcône"
+            start
+          >
             {{ icône }}
           </v-icon>
         </template>
@@ -115,7 +118,10 @@
     size="small"
   >
     <template #prepend>
-      <v-icon :color="couleurIcône">
+      <v-icon
+        :color="couleurIcône"
+        start
+      >
         {{ icône }}
       </v-icon>
     </template>

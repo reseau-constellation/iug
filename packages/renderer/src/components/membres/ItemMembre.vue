@@ -19,7 +19,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
 
-import ImageProfil from '../communs/ImageProfil.vue';
+import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 

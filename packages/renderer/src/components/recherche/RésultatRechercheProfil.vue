@@ -14,7 +14,7 @@
       <span v-else>{{ nomTraduit || t('communs.anonyme') }}</span>
     </template>
     <v-chip
-      v-if="source==='id'"
+      v-if="source === 'id'"
       variant="outlined"
       label
       size="small"
