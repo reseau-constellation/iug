@@ -48,7 +48,7 @@
                   color="primary"
                   :disabled="
                     surNavigateur &&
-                    (cheminement === 'exportation' || origineImportation === 'fichier')
+                      (cheminement === 'exportation' || origineImportation === 'fichier')
                   "
                 >
                   {{ t('communs.importerOuExporter.automatiser') }}
@@ -597,6 +597,7 @@ const confirmer = async () => {
           const données = await constl?.nuées?.exporterDonnéesNuée({
             idNuée: idObjet.value,
             langues: languesExportation.value,
+            nRésultatsDésirés: 1000,
           });
           if (!données) throw new Error('Constellation non définie.');
           await constl?.bds?.exporterDocumentDonnées({
