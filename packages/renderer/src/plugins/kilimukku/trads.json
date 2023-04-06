@@ -151,7 +151,16 @@
       "compte": {
         "titre": "கணக்கு",
         "titreDialogueNoms": "பெயரை உள்ளிடுங்கள்",
-        "sousTitreDialogueNoms": "எத்தனை மொழி அவ்வளவு நல்லது"
+        "sousTitreDialogueNoms": "எத்தனை மொழி அவ்வளவு நல்லது",
+        "ongletConnexions": "இணைப்புகள்",
+        "ongletThème": "விருப்பங்கள்",
+        "connexions": {
+          "Constellation": "விண்மீன்",
+          "SFIP": "ச. க. மு.",
+          "titreSFIP": "ச. க. மு இணைப்புகள்",
+          "titreConstellation": "விண்மீன் இணைப்புகள்",
+          "dispositifs": "{nDispositifs} சாதனங்கள், இணையத்தில் {nDispositifsEnLigne}"
+        }
       },
       "mesDonnées": {
         "titre": "என் தரவுகள்",

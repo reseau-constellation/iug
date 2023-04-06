@@ -6,12 +6,12 @@
         inline
       >
         <v-radio
-          :label="t('compte.connexions.Constellation')"
-          value="SFIP"
+          :label="t('pages.compte.connexions.Constellation')"
+          value="Constellation"
         />
         <v-radio
-          :label="t('compte.connexions.SFIP')"
-          value="Constellation"
+          :label="t('pages.compte.connexions.SFIP')"
+          value="SFIP"
         />
       </v-radio-group>
       <division-carte
@@ -22,36 +22,35 @@
         <v-list
           v-if="connexionsConstellation"
           max-height="500"
-          style="overflow-y: scroll;"
+          style="overflow-y: scroll"
         >
-          <v-list-item
-            v-for="c in connexionsConstellation"
-            :key="c.infoDispositif.idOrbite"
+          <carte-membre
+            v-for="membre in connexionsMembres"
+            :id="membre.idCompte"
+            :key="membre.idCompte"
           >
-            <template #prepend>
-              <v-icon>mdi-web</v-icon>
+            <template #activator="{props}">
+              <item-connexion-constellation
+                v-bind="props"
+                :compte="membre.idCompte"
+                :dispositifs="membre.dispositifs"
+              />
             </template>
-            <v-list-item-title>{{ c.infoDispositif.idCompte }}</v-list-item-title>
-            <v-list-item-subtitle>{{ c.vuÀ }}</v-list-item-subtitle>
-          </v-list-item>
+          </carte-membre>
         </v-list>
       </div>
       <div v-else>
         <v-list
           v-if="connexionsSFIP"
           max-height="500"
-          style="overflow-y: scroll;"
+          style="overflow-y: scroll"
         >
-          <v-list-item
+          <ItemConnexionSFIP
             v-for="c in connexionsSFIP"
             :key="c.adresse"
-          >
-            <template #prepend>
-              <v-icon>mdi-web</v-icon>
-            </template>
-            <v-list-item-title>{{ c.adresse }}</v-list-item-title>
-            <v-list-item-subtitle>{{ c.pair }}</v-list-item-subtitle>
-          </v-list-item>
+            :pair="c.pair"
+            :adresse="c.adresse"
+          />
         </v-list>
       </div>
     </v-card-text>
@@ -59,12 +58,15 @@
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
-import type { statutDispositif } from '@constl/ipa/dist/src/reseau';
+import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
 
-import { computed, inject, ref } from 'vue';
-import { enregistrerÉcoute } from '/@/composables/utils';
+import {computed, inject, ref} from 'vue';
+import {enregistrerÉcoute} from '/@/composables/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
+import ItemConnexionSFIP from './ItemConnexionSFIP.vue';
+import CarteMembre from '../membres/CarteMembre.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -73,35 +75,44 @@ const {t} = useI18n();
 
 // Navigation
 const typeConnexions = ref<'SFIP' | 'Constellation'>('Constellation');
-const titreDivision = computed(()=>{
-    switch (typeConnexions.value) {
-        case 'SFIP':
-            return t('compte.connexions.titreSFIP');
-        case 'Constellation':
-            return t('compte.connexions.titreConstellation');
-        default:
-            return '';
-    }
+const titreDivision = computed(() => {
+  switch (typeConnexions.value) {
+    case 'SFIP':
+      return t('pages.compte.connexions.titreSFIP');
+    case 'Constellation':
+      return t('pages.compte.connexions.titreConstellation');
+    default:
+      return '';
+  }
 });
 
 // Connexions SFIP
-const connexionsSFIP = ref<{
+const connexionsSFIP = ref<
+  {
     adresse: string;
     pair: string;
-}[]>();
+  }[]
+>();
 enregistrerÉcoute(
-    constl?.réseau?.suivreConnexionsPostesSFIP({
-        f: x=>connexionsSFIP.value = x,
-    }),
+  constl?.réseau?.suivreConnexionsPostesSFIP({
+    f: x => (connexionsSFIP.value = x),
+  }),
 );
 
 // Connexions Constellation
 const connexionsConstellation = ref<statutDispositif[]>();
 enregistrerÉcoute(
-    constl?.réseau?.suivreConnexionsDispositifs({
-        f: x=>connexionsConstellation.value = x,
-    }),
+  constl?.réseau?.suivreConnexionsDispositifs({
+    f: x => (connexionsConstellation.value = x),
+  }),
 );
-
-
+const connexionsMembres = computed<{idCompte: string; dispositifs: statutDispositif[]}[]>(() => {
+  const membres = [
+    ...(new Set(connexionsConstellation.value?.map(c => c.infoDispositif.idCompte)) || []),
+  ];
+  return membres.map(m => ({
+    idCompte: m,
+    dispositifs: connexionsConstellation.value?.filter(c => c.infoDispositif.idCompte === m) || [],
+  }));
+});
 </script>
