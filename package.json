@@ -63,13 +63,13 @@
     "vue-tsc": "1.2.0"
   },
   "dependencies": {
-    "@constl/ipa": "0.6.45",
+    "@constl/ipa": "0.6.50",
     "@constl/mandataire": "^0.1.5",
     "@constl/mandataire-electron-principal": "^0.2.8",
     "@constl/mandataire-electron-rendu": "^0.2.8",
     "@constl/serveur": "^0.2.1",
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
-    "@lassi-js/kili": "^0.0.5",
+    "@lassi-js/kili": "^0.1.1",
     "@mdi/font": "^7.2.96",
     "assert": "^2.0.0",
     "core-js": "^3.30.0",
