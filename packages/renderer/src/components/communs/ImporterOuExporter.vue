@@ -164,7 +164,7 @@ const listeÉtapes = [
   'dispositif',
 
   'confirmation',
-];
+] as const;
 
 const étape = ref(
   listeÉtapes.indexOf(
