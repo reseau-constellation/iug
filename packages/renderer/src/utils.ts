@@ -127,3 +127,22 @@ export function couleurScore(score: number | null): interfaceCouleurScore {
     return {couleur: '#b91d47', note: 'F'};
   }
 }
+
+export const couper = (texte: string, nMax: number, troisPetitsPoints: string) => {
+  if (texte.length <= nMax) return texte;
+  else return texte.slice(0, 20) + troisPetitsPoints;
+};
+
+export const ajusterTexteTraductible = ({
+  anciennes,
+  nouvelles,
+}: {
+  anciennes: {[lng: string]: string};
+  nouvelles: {[lng: string]: string};
+}): {àEffacer: string[]; àAjouter: {[lng: string]: string}} => {
+  const àEffacer = Object.keys(anciennes).filter(lng => !Object.keys(nouvelles).includes(lng));
+  const àAjouter = Object.fromEntries(
+    Object.entries(nouvelles).filter(([lng, val]) => anciennes[lng] !== val),
+  );
+  return {àEffacer, àAjouter};
+};
