@@ -117,6 +117,7 @@
       <v-btn
         variant="outlined"
         append-icon="mdi-open-in-new"
+        @click="$router.push(encodeURI(`/données/bd/${encodeURIComponent(id)}`))"
       >
         {{ t('bds.carteBd.ouvrirBd') }}
       </v-btn>
@@ -151,6 +152,7 @@ import JetonQualité from './JetonQualité.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import DialogueLicence from '../licences/DialogueLicence.vue';
+import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -178,13 +180,13 @@ enregistrerÉcoute(
 );
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(langue => !nms[langue]);
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
     await constl?.bds?.effacerNomBd({id: props.id, langue});
   }
   await constl?.bds?.ajouterNomsBd({
     id: props.id,
-    noms: nms,
+    noms: àAjouter,
   });
 };
 
@@ -199,13 +201,16 @@ enregistrerÉcoute(
 );
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(descriptions.value).filter(langue => !descrs[langue]);
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: descriptions.value,
+    nouvelles: descrs,
+  });
   for (const langue of àEffacer) {
     await constl?.bds?.effacerDescrBd({id: props.id, langue});
   }
   await constl?.bds?.ajouterDescriptionsBd({
     id: props.id,
-    descriptions: descrs,
+    descriptions: àAjouter,
   });
 };
 
