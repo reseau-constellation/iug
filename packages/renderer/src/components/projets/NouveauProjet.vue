@@ -36,7 +36,7 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['Noms', 'Descriptions', 'MotsClefs', 'AjouterBds', 'Confirmation'];
+const listeÉtapes = ['Noms', 'Descriptions', 'MotsClefs', 'AjouterBds', 'Confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];

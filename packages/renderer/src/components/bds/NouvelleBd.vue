@@ -46,7 +46,7 @@ const listeÉtapes = [
   'Licence',
   'ImporterDonnées',
   'Confirmation',
-];
+] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];

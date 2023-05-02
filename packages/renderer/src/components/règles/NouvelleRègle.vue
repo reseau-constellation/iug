@@ -151,7 +151,7 @@ const listeÉtapes = [
   'CatégorieFixeOuDynamique',
   'ValeurCatégorie',
   'Confirmer',
-];
+] as const;
 const cheminement = ref<'existe' | 'borne' | 'catégorique'>();
 const suivreCheminementRègleExiste = () => {
   cheminement.value = 'existe';
@@ -248,7 +248,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   switch (é) {
     case 'TypeRègle':
       return {actif: false, visible: false};
-    case 'Confirmation':
+    case 'Confirmer':
       return {actif: !enCréation.value, visible: true};
     default:
       return {actif: true, visible: true};
