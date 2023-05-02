@@ -8,6 +8,7 @@
         >
           <v-autocomplete
             v-model="nouvelleLangue"
+            class="pt-1"
             density="compact"
             variant="outlined"
             item-title="lng"
@@ -23,6 +24,7 @@
         >
           <v-text-field
             v-model="nouveauNom"
+            class="pt-1"
             density="compact"
             variant="outlined"
             :readonly="!autorisationModification"
