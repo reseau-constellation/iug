@@ -17,7 +17,10 @@
       height="175"
     />
 
-    <h2 class="text-h4 mb-5">
+    <h2
+      v-if="sousTitre"
+      class="text-h4 mb-5"
+    >
       {{ sousTitre }}
     </h2>
   </v-container>
