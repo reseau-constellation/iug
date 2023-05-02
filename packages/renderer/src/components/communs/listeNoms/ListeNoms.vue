@@ -5,12 +5,10 @@
   >
     <v-list-item>
       <v-row>
-        <v-col
-          cols="4"
-          class="pb-0"
-        >
+        <v-col cols="4">
           <v-select
             v-model="nouvelleLangue"
+            class="pt-1"
             density="compact"
             variant="outlined"
             item-title="lng"
@@ -19,12 +17,10 @@
             :label="indiceLangue"
           ></v-select>
         </v-col>
-        <v-col
-          cols="8"
-          class="pb-0"
-        >
+        <v-col cols="8">
           <v-text-field
             v-model="nouveauNom"
+            class="pt-1"
             density="compact"
             variant="outlined"
             :rules="règlesNouveauNom"
