@@ -121,5 +121,109 @@ export const enregistrerRecherche = <T>({
   watchEffect(async () => {
     if (fChangerNOuProfondeur) fChangerNOuProfondeur(nOuProfondeurRésultats.value);
   });
+
+  onUnmounted(async () => {
+    if (fOublierRecherche) await fOublierRecherche();
+  });
+
+
   return nOuProfondeurRésultats;
 };
+
+export class MultiChercheur {
+  nOuProfondeur: Ref<number>;
+  fOublierRecherche?: schémaFonctionOublier;
+
+  constructor () {
+    this.nOuProfondeur = ref(10);
+    onUnmounted(async () => {
+      if (this.fOublierRecherche) await this.fOublierRecherche();
+    });
+  }
+  async lancerRecherche<T>({
+    requète,
+    réfRésultat,
+    fRecherche,
+    fRechercheDéfaut,
+  }: {
+    requète: Ref<T | undefined>;
+    réfRésultat: Ref;
+    fRecherche: ({
+      requète,
+      nOuProfondeur,
+      réfRésultat,
+    }: {
+      requète: T;
+      nOuProfondeur: number;
+      réfRésultat: Ref;
+    }) => Promise<
+      schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+    >;
+    fRechercheDéfaut?: ({
+      nOuProfondeur,
+      réfRésultat,
+    }: {
+      nOuProfondeur: number;
+      réfRésultat: Ref;
+    }) => Promise<
+      schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+    >;
+  }): Promise<void> {
+    if (this.fOublierRecherche) {
+      await this.fOublierRecherche();
+      this.fOublierRecherche = undefined;
+    }
+    
+    let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
+    let fChangerNOuProfondeur: (n: number) => Promise<void>;
+
+    const vérifierSiParProfondeur = (
+      x: schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur,
+    ): x is schémaRetourFonctionRechercheParProfondeur => {
+      // @ts-expect-error Je ne sais pas comment faire ça
+      return !!x['fChangerProfondeur'];
+    };
+
+    const lancerRecherche = async () => {
+      if (fOublierRecherche) await fOublierRecherche();
+      if (requète.value) {
+        const retour = await fRecherche({
+          requète: requète.value,
+          nOuProfondeur: this.nOuProfondeur.value,
+          réfRésultat,
+        });
+
+        if (retour) {
+          fOublierRecherche = retour.fOublier;
+          fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
+            ? retour.fChangerProfondeur
+            : retour.fChangerN;
+        }
+      } else {
+        if (fRechercheDéfaut) {
+          const retour = await fRechercheDéfaut({
+            nOuProfondeur: this.nOuProfondeur.value,
+            réfRésultat,
+          });
+
+          if (retour) {
+            fOublierRecherche = retour.fOublier;
+            fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
+              ? retour.fChangerProfondeur
+              : retour.fChangerN;
+          }
+        } else {
+          réfRésultat.value = [];
+        }
+      }
+    };
+
+    watch(requète, lancerRecherche);
+    lancerRecherche();
+    watchEffect(async () => {
+      if (fChangerNOuProfondeur) fChangerNOuProfondeur(this.nOuProfondeur.value);
+    });
+
+    this.fOublierRecherche = fOublierRecherche;
+  }
+}
