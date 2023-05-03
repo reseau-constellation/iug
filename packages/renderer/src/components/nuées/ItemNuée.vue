@@ -1,9 +1,12 @@
 <template>
   <v-list-item
     :prepend-avatar="srcImgNuée || imgDéfaut"
-    :title="nomTraduit"
-    :subtitle="descrTraduite"
+    :title="nomTraduit || t('nuées.sansNom')"
+    :subtitle="descrTraduite || t('communs.baseCarteObjet.sansDescription')"
   >
+    <template #append>
+      <lien-objet :id="id"></lien-objet>
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
@@ -12,13 +15,18 @@ import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/composables/utils';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-// Nom de la nuée
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
+
+// Nom de la nuée
 
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
@@ -37,7 +45,7 @@ const descrTraduite = traduireNom(descriptions);
 enregistrerÉcoute(
   constl?.nuées?.suivreDescriptionsNuée({
     idNuée: props.id,
-    f: x => (noms.value = x),
+    f: x => (descriptions.value = x),
   }),
 );
 
