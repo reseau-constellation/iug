@@ -3,12 +3,14 @@ import PageAccueil from '/@/vues/PageAccueil.vue';
 import PageCompte from '/@/vues/PageCompte.vue';
 import MesDonnées from '/@/vues/données/MesDonnées.vue';
 import PageBD from '/@/vues/données/PageBD.vue';
+import PageNuée from '/@/vues/données/PageNuée.vue';
 import PageTableau from '/@/vues/données/PageTableau.vue';
 import PageRecherche from '/@/vues/PageRecherche.vue';
 import PageFavoris from '/@/vues/PageFavoris.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
 import PageSignalements from '/@/vues/PageSignalements.vue';
 import PageTéléchargements from '/@/vues/PageTéléchargements.vue';
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -27,10 +29,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: encodeURI('/données/bd/:id'),
     component: PageBD,
+    props: route => {
+      const {id} = route.params;
+      if (typeof id === 'string') return {id: decodeURIComponent(id)};
+    },
   },
   {
     path: encodeURI('/données/bd/:id/tableau/:idTableau'),
     component: PageTableau,
+  },
+  {
+    path: encodeURI('/données/nuées/:id'),
+    component: PageNuée,
+    props: route => {
+      const {id} = route.params;
+      if (typeof id === 'string') return {id: decodeURIComponent(id)};
+    },
   },
   {
     path: '/recherche',
