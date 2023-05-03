@@ -19,7 +19,7 @@
 
       <v-card-text class="overflow-auto">
         <v-row>
-          <v-col :cols="mdAndUp ? 5 : 12">
+          <v-col :cols="mdAndUp ? 4 : 12">
             <v-select
               v-model="langueSource"
               variant="outlined"
@@ -39,7 +39,18 @@
               </template>
             </v-select>
           </v-col>
-          <v-col :cols="mdAndUp ? 5 : 12">
+          <v-col
+            v-if="mdAndUp"
+            :cols="1"
+            class="text-center"
+          >
+            <v-btn
+              icon="mdi-swap-horizontal"
+              variant="flat"
+              @click="() => échangerLangues()"
+            />
+          </v-col>
+          <v-col :cols="mdAndUp ? 4 : 12">
             <v-select
               v-model="langueCible"
               variant="outlined"
@@ -97,32 +108,20 @@
               max-height="350px"
             >
               <v-fade-transition group>
-                <v-list-item
+                <item-message-traduction
                   v-for="clef in clefsPourListe"
                   :key="clef"
-                  :active="clef === clefSélectionnée"
+                  :actif="clef === clefSélectionnée"
+                  :clef="clef"
+                  :traduction-approuvee="traductionsApprouvées[clef]?.[langueCible]"
+                  :traduction-langue-source="traductionsApprouvées[clef]?.[langueSource]"
+                  :suggestions="
+                    suggestions.filter(
+                      s => s.பரிந்துரை.சாபி === clef && s.பரிந்துரை.இலக்கு_மொழி === langueCible,
+                    )
+                  "
                   @click="clefSélectionnée = clef === clefSélectionnée ? undefined : clef"
-                >
-                  <template #append>
-                    <v-icon
-                      v-if="traductionsApprouvées[clef]?.[langueCible]"
-                      color="primary"
-                      icon="mdi-check"
-                    ></v-icon>
-                    <v-badge
-                      v-else-if="suggestionsClefLangueCible.length"
-                      :content="suggestionsClefLangueCible.length"
-                      color="primary"
-                      location="bottom end"
-                    >
-                      <v-icon>mdi-hand-pointing-up</v-icon>
-                    </v-badge>
-                  </template>
-                  <v-list-item-title>
-                    {{ traductionsApprouvées[clef][langueSource] || '[Aucune traduction]' }}
-                  </v-list-item-title>
-                  <v-list-item-subtitle>{{ clef }}</v-list-item-subtitle>
-                </v-list-item>
+                />
               </v-fade-transition>
             </v-list>
             <v-select
@@ -147,8 +146,11 @@
               </template>
               <template #selection="{item}">
                 {{
-                  (traductionsApprouvées[item.value][langueSource] || item.value).slice(0, 20) +
-                  '...'
+                  couper(
+                    traductionsApprouvées[item.value][langueSource] || item.value,
+                    20,
+                    t('communs.troisPetitsPoints'),
+                  )
                 }}
               </template>
             </v-select>
@@ -214,59 +216,88 @@
             :cols="mdAndUp ? 4 : 12"
             class="pt-6"
           >
-            <div class="text-center"><h2 class="text-h4">Suggestions</h2></div>
-            <v-list v-if="texteOriginal">
-              <v-list-item>
-                <v-list-item-title>
-                  {{ texteOriginal }}
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-            ici {{ suggestions }}
-            <div v-if="!suggestionsLangueCible.length">
+            <div class="text-center">
+              <h2 class="text-h4">
+                {{ t('languesInterface.dialogueContribuer.titreSuggestions') }}
+              </h2>
+            </div>
+            <div v-if="suggestionsLangueCibleClef.length || traductionsClefAutresLangues?.length">
               <v-list max-height="350px">
                 <v-list-item
-                  v-for="i in [1, 2, 3, 4, 5]"
-                  :key="i"
+                  v-if="traductionApprouvée"
+                  @click="suggestion = traductionApprouvée"
                 >
-                  <template #prepend> </template>
-                  <v-list-item-subtitle> Date: aujourd'hui </v-list-item-subtitle>
-                  <v-list-item-title>
-                    <v-textarea
-                      readonly
-                      variant="plain"
-                      no-resize
-                      rows="3"
-                      hide-details
-                      value="Texte de la suggestion. Ça peut être un assez long texte. Peut-être qu'on devrait le mettre dans un v-textarea."
-                    />
-                  </v-list-item-title>
-                  <v-row>
-                    <v-col>
-                      <JetonMembre
-                        v-if="monCompte"
-                        :compte="monCompte"
-                      />
-                    </v-col>
-                    <v-col class="text-end">
-                      <v-btn
-                        text
-                        variant="outlined"
-                        size="small"
-                        @click="suggestion = 'texte de la suggestion'"
-                      >
-                        Utiliser
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                  <v-divider class="mt-2" />
+                  <v-list-item-title> அங்கீகரிக்கப்பட்ட மொழிபெயர்ப்பு </v-list-item-title>
+                  {{ traductionApprouvée }}
                 </v-list-item>
-                <v-list-item
-                  v-for="sugg in suggestionsLangueCible"
-                  :key="sugg.கைரேகை"
-                >
-                  <v-list-item-title>{{ sugg.கைரேகை }}</v-list-item-title>
-                </v-list-item>
+
+                <v-list-group v-if="suggestionsLangueCibleClef.length">
+                  <template #activator="{props}">
+                    <v-list-item v-bind="props">
+                      <v-list-item-title>
+                        சமூக பரிந்துரைகள்
+                        <v-avatar
+                          class="mx-2"
+                          color="primary"
+                          size="20"
+                        >
+                          {{ nSuggestionsClefLangueFormattée }}
+                        </v-avatar>
+                      </v-list-item-title>
+                    </v-list-item>
+                  </template>
+                  <item-suggestion-traduction
+                    v-for="sugg in suggestionsLangueCibleClef"
+                    :key="sugg.கைரேகை"
+                    :suggestion="sugg"
+                    :compte="sugg.பங்கேற்பாளர்"
+                    @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
+                    @effacer="effacerSuggestion(sugg.கைரேகை)"
+                  />
+                </v-list-group>
+
+                <v-list-group>
+                  <template #activator="{props}">
+                    <v-list-item v-bind="props">
+                      <v-list-item-title>
+                        தானாக பரிந்துரைகள்
+                        <v-avatar
+                          class="mx-2"
+                          color="primary"
+                          size="20"
+                        >
+                          {{ nSuggestionsClefLangueFormattée }}
+                        </v-avatar>
+                      </v-list-item-title>
+                    </v-list-item>
+                  </template>
+                </v-list-group>
+
+                <v-list-group>
+                  <template #activator="{props}">
+                    <v-list-item v-bind="props">
+                      <v-list-item-title>
+                        வேறு மொழிகள்
+                        <v-avatar
+                          class="mx-2"
+                          color="primary"
+                          size="20"
+                        >
+                          {{ nTraductionsClefsAutresLanguesFormattée }}
+                        </v-avatar>
+                      </v-list-item-title>
+                    </v-list-item>
+                  </template>
+                  <v-list-item
+                    v-for="{lng, traduc} in traductionsClefAutresLangues"
+                    :key="lng"
+                  >
+                    {{ traduc }}
+                    <v-list-item-subtitle>
+                      {{ lng }}
+                    </v-list-item-subtitle>
+                  </v-list-item>
+                </v-list-group>
               </v-list>
             </div>
             <div
@@ -292,23 +323,29 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {computed, inject, onMounted, ref, watch} from 'vue';
 import {useDisplay} from 'vuetify';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
+
+import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
+import type ClientConstellation from '@constl/ipa';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {utiliserImagesDéco} from '/@/composables/images';
+import {couper} from '/@/utils';
 
 import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {computed, inject, onMounted, ref, watch} from 'vue';
-import type {கிளிமூக்கு} from '/@/plugins/kilimukku/கிளிமூக்கு';
-import {utiliserImagesDéco} from '/@/composables/images';
-import JetonMembre from '../../membres/JetonMembre.vue';
-import type ClientConstellation from '@constl/ipa';
+import ItemMessageTraduction from './ItemMessageTraduction.vue';
+import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
+import {enregistrerÉcoute} from '/@/composables/utils';
 
 const constl = inject<ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
 const {langue, languesAlternatives} = utiliserLangues();
+const {formatterChiffre} = utiliserNumération();
 
 const {
   useI18n,
@@ -332,6 +369,12 @@ const langueSource = ref(langue.value);
 const langueCible = ref<string>(languesAlternatives.value[0]);
 const montrerTraduites = ref(false);
 const rechercher = ref('');
+
+const échangerLangues = () => {
+  const langueCibleAvant = langueCible.value;
+  langueCible.value = langueSource.value;
+  langueSource.value = langueCibleAvant;
+};
 
 // Ligne de progrès
 const {மொழி_முன்னேற்றத்தை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
@@ -389,10 +432,9 @@ const traductionsApprouvéesLangueCible = computed(() => {
   );
 });
 
-const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து();
-const suggestionsLangueCible = computed(() => {
-  const {value: lngCible} = langueCible;
-  return (lngCible && suggestions.value.filter(s => s.பரிந்துரை.இலக்கு_மொழி === lngCible)) || [];
+const traductionApprouvée = computed(() => {
+  if (clefSélectionnée.value) return traductionsApprouvéesLangueCible.value[clefSélectionnée.value];
+  else return undefined;
 });
 
 // Panneau traduire
@@ -426,13 +468,50 @@ const suggérer = async () => {
 };
 
 // Suggestions
-
 const imgVide = obtImageDéco('vide');
-
-const suggestionsClefLangueCible = computed(() => {
-  return suggestions.value.map(
-    s =>
-      s.பரிந்துரை.சாபி === clefSélectionnée.value && s.பரிந்துரை.இலக்கு_மொழி === langueCible.value,
+const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து();
+const suggestionsLangueCibleClef = computed(() => {
+  const {value: lngCible} = langueCible;
+  return (
+    (lngCible &&
+      suggestions.value.filter(
+        s => s.பரிந்துரை.இலக்கு_மொழி === lngCible && s.பரிந்துரை.சாபி === clefSélectionnée.value,
+      )) ||
+    []
   );
 });
+const effacerSuggestion = async (empreinte: string) => {
+  await கிளி?.பரிந்துரையை_நீக்கு({
+    கைரேகை: empreinte,
+  });
+};
+const nSuggestionsClefLangue = computed(() => {
+  return suggestionsLangueCibleClef.value.length;
+});
+const nSuggestionsClefLangueFormattée = formatterChiffre(nSuggestionsClefLangue);
+
+const traductionsClefToutesLangues = ref<மொழி_மொழிபெயர்ப்பு_அகராதி_வகை>();
+enregistrerÉcoute(
+  கிளி?.மொழிபெயர்ப்புகளை_கேள்ளு({
+    செ: trads => {
+      if (clefSélectionnée.value)
+        traductionsClefToutesLangues.value = trads[clefSélectionnée.value];
+    },
+  }),
+);
+
+const traductionsClefAutresLangues = computed(() => {
+  if (traductionsClefToutesLangues.value)
+    return Object.entries(traductionsClefToutesLangues.value).map(([lng, traduc]) => ({
+      lng,
+      traduc,
+    }));
+  else return undefined;
+});
+
+const nTraductionsClefsAutresLanguesFormattée = formatterChiffre(
+  computed(() => {
+    return traductionsClefAutresLangues.value ? traductionsClefAutresLangues.value.length : 0;
+  }),
+);
 </script>
