@@ -22,7 +22,7 @@
     "accueil": {
       "démarrer": "Démarrer",
       "version": "Version {version}",
-      "piedDePage": "Julien Malard-Adam",
+      "piedDePage": "Contributeurs Constellation",
       "initialiserCompte": {
         "titreCheminement": "Avez-vous déjà un compte ?",
         "sousTitreCheminement": "Si oui, vous pouvez vous y connecter.",
@@ -71,7 +71,10 @@
         "titre": "Contribuer",
         "sousTitre": "Traduisez l'interface Constellation",
         "langueSource": "Langue source",
-        "langueCible": "Langue cible"
+        "langueCible": "Langue cible",
+        "aucuneTraduction": "[Aucune traduction]",
+        "titreSuggestions": "Suggestions",
+        "aucuneSuggestion": "Nous n'avons trouvé aucune suggestion communautaire pour ce message."
       }
     },
     "pages": {
@@ -184,7 +187,9 @@
     },
     "languesInterface": {
       "dialogueContribuer": {
-        "montrerTraduites": "மொழிபெயர்க்கப்பட்டவையை காண்க"
+        "montrerTraduites": "மொழிபெயர்க்கப்பட்டவையை காண்க",
+        "aucuneTraduction": "[மொழிபெயர்ப்பு இல்லை]",
+        "titreSuggestions": "பரிந்துரைகள்"
       }
     },
     "auteurs": {
@@ -198,7 +203,14 @@
     },
     "motsClefs": {
       "nouveau": {
-        "titreNoms": "சிறப்பு சொலின் பெயர்"
+        "titreNoms": "சிறப்பு சொலின் பெயர்",
+        "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
+        "titreConfirmation": "உருவாக்க்ம",
+        "texteBtnCréation": "உருவாக்கு",
+        "sousTitreConfirmation": "சிறப்பு சொலின் தகவல்கள் அப்புறமாகவும் திரத்தலாம்",
+        "texteCréer": "சிறப்பு சொல் உருவாக்கிறதற்கு கீழே அழுத்தவும்",
+        "texteIndiceDescription": "சொலின் விளக்கம்",
+        "texteAucuneDescription": "இந்த சிறப்பு சொற்கு மேலே ஒரு விளக்கத்தை உள்ளளிடலாம்"
       },
       "gérerMotsClefsObjet": "சிறப்பு சொல் மேலாண்மை",
       "sansNom": "பெயர் இல்லாத சிறப்பு சொல்"
@@ -223,6 +235,26 @@
         "C": "இ",
         "D": "ஈ",
         "F": "உ"
+      }
+    },
+    "nuées": {
+      "sansNom": "பெயர் இல்லாத குழு",
+      "carteNuée": {
+        "ouvrirNuée": "குழுவை திற"
+      },
+      "nouvelle": {
+        "titreNoms": "குழுவின் பெயர்",
+        "sousTitreNoms": "நீங்கள் வேலை செய்யும் இடத்தின் மொழிகளுக்கு முன்னுரிமை கொடுங்கள்",
+        "titreDescriptions": "குழுவின் விளக்கம்",
+        "sousTitreDescriptions": "குழுவின் நோக்கம் விள்ளக்கும் உரை உள்ளிடுங்கள்",
+        "texteIndiceDescription": "விளக்கத்தை உள்ளிடுங்கள்",
+        "texteAucuneDescription": "மேலே விளக்கத்தை உள்ளிடுங்கள்",
+        "titreAutorisation": "குழுவின் அங்கீகாரம்",
+        "sousTitreAutorisation": "யாருக்கும் பரிகும் அனுமதி இருக்கும் என்று குறிப்பிடவும்",
+        "parInvitation": "அழைக்கப்பட்ட நபர்கள் மட்டுமே",
+        "indiceParInvitation": "நீங்கள் அனுமத்த நபர்களால் மட்டுமே குழுவில் பங்களிக்க முடியும்.",
+        "ouverteÀTous": "திறந்த அணுகல்",
+        "indiceOuverteÀTous": "அனைவரும் குழுவில் பங்கேற்கலாம். வேண்டும் என்றால், குறிப்பான பயனாளர்களை நீங்கள் தடைக்கலாம்."
       }
     },
     "tableaux": {
