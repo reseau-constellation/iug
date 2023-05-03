@@ -63,6 +63,7 @@ import DialogueNoms from '../components/communs/listeNoms/DialogueNoms.vue';
 import {enregistrerÉcoute} from '../composables/utils';
 import OngletConnexions from '../components/compte/OngletConnexions.vue';
 import LienObjet from '../components/communs/LienObjet.vue';
+import {ajusterTexteTraductible} from '../utils';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -98,10 +99,8 @@ const imgDéfaut = obtImageDéco('profil');
 
 const sauvegarderImage = async (image?: ArrayBuffer) => {
   if (image) {
-    console.log('ici', {image});
     await constl?.profil?.sauvegarderImage({image});
   } else {
-    console.log('là', {image});
     await constl?.profil?.effacerImage();
   }
 };
@@ -118,8 +117,8 @@ enregistrerÉcoute(
 );
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(lng => !nms[lng]);
-  for (const [langue, nom] of Object.entries(nms)) {
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
+  for (const [langue, nom] of Object.entries(àAjouter)) {
     await constl?.profil?.sauvegarderNom({langue, nom});
   }
   for (const langue of àEffacer) {

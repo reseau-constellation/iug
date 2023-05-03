@@ -15,12 +15,14 @@
     </template>
   </base-carte-objet>
 </template>
+
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
-import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
+import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
+import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -34,8 +36,11 @@ enregistrerÉcoute(
     f: x => (noms.value = x),
   }),
 );
-const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(lng => !Object.keys(nms).includes(lng));
+const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: noms.value,
+    nouvelles: nouveauxNoms,
+  });
   for (const langue of àEffacer) {
     await constl?.motsClefs?.effacerNomMotClef({
       id: props.id,
@@ -44,7 +49,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
   }
   return await constl?.motsClefs?.ajouterNomsMotClef({
     id: props.id,
-    noms: nms,
+    noms: àAjouter,
   });
 };
 
@@ -59,7 +64,10 @@ enregistrerÉcoute(
 );
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(lng => !Object.keys(descrs).includes(lng));
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: descriptions.value,
+    nouvelles: descrs,
+  });
   for (const langue of àEffacer) {
     await constl?.motsClefs?.effacerDescriptionMotClef({
       id: props.id,
@@ -68,7 +76,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   }
   return await constl?.motsClefs?.ajouterDescriptionsMotClef({
     id: props.id,
-    descriptions: descrs,
+    descriptions: àAjouter,
   });
 };
 

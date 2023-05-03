@@ -15,6 +15,7 @@ import {inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/composables/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
+import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -29,13 +30,13 @@ enregistrerÉcoute(
   }),
 );
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(noms.value).filter(langue => !nms[langue]);
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
     await constl?.projets?.effacerNomProjet({id: props.id, langue});
   }
   await constl?.projets?.ajouterNomsProjet({
     id: props.id,
-    noms: nms,
+    noms: àAjouter,
   });
 };
 
@@ -50,13 +51,16 @@ enregistrerÉcoute(
 );
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
-  const àEffacer = Object.keys(descriptions.value).filter(langue => !descrs[langue]);
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: descriptions.value,
+    nouvelles: descrs,
+  });
   for (const langue of àEffacer) {
     await constl?.projets?.effacerDescrProjet({id: props.id, langue});
   }
   await constl?.projets?.ajouterDescriptionsProjet({
     id: props.id,
-    descriptions: descrs,
+    descriptions: àAjouter,
   });
 };
 
