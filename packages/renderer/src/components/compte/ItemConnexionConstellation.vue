@@ -52,13 +52,9 @@ enregistrerÉcoute(
 );
 
 // Nombre de dispositifs
-const nDispositifsFormatté = formatterChiffre(
-  computed(() => props.dispositifs.length),
-);
+const nDispositifsFormatté = formatterChiffre(computed(() => props.dispositifs.length));
 const nDispositifsEnLigne = computed(() => {
   return props.dispositifs.filter(d => !d.vuÀ).length;
 });
 const nDispositifsEnLigneFormatté = formatterChiffre(nDispositifsEnLigne);
-
-
 </script>

@@ -8,7 +8,5 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-
-defineProps<{adresse: string, pair: string}>();
-
+defineProps<{adresse: string; pair: string}>();
 </script>

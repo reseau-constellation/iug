@@ -126,7 +126,6 @@ export const enregistrerRecherche = <T>({
     if (fOublierRecherche) await fOublierRecherche();
   });
 
-
   return nOuProfondeurRésultats;
 };
 
@@ -134,7 +133,7 @@ export class MultiChercheur {
   nOuProfondeur: Ref<number>;
   fOublierRecherche?: schémaFonctionOublier;
 
-  constructor () {
+  constructor() {
     this.nOuProfondeur = ref(10);
     onUnmounted(async () => {
       if (this.fOublierRecherche) await this.fOublierRecherche();
@@ -173,7 +172,7 @@ export class MultiChercheur {
       await this.fOublierRecherche();
       this.fOublierRecherche = undefined;
     }
-    
+
     let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
     let fChangerNOuProfondeur: (n: number) => Promise<void>;
 

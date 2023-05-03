@@ -110,9 +110,7 @@
           </template>
         </carte-bd>
         <v-list-item @click="augmenterN">
-          <v-list-item-title>
-            t('Augementer N')
-          </v-list-item-title>
+          <v-list-item-title> t('Augementer N') </v-list-item-title>
         </v-list-item>
       </v-list>
     </v-container>
@@ -151,7 +149,11 @@ const imageTitre = obtImageDéco('recherche');
 const texteRecherche = ref<string>();
 
 const typeDonnées = ref(2);
-const itemsTypesDonnées: {icône: string; texte: string; clef: 'motsClefs' | 'variables' | 'bds' | 'projets' | 'nuées' }[] = [
+const itemsTypesDonnées: {
+  icône: string;
+  texte: string;
+  clef: 'motsClefs' | 'variables' | 'bds' | 'projets' | 'nuées';
+}[] = [
   {
     icône: 'mdi-key',
     texte: t('pages.mesDonnées.motsClefs'),
@@ -180,147 +182,151 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: 'motsClefs' | 'v
 ];
 
 const résultatsRechercheBd =
-    ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
+  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
 const résultatsRechercheMotsClefs = ref<résultatRecherche<infoRésultatTexte>[]>();
 const résultatsRechercheVariables = ref<résultatRecherche<infoRésultatTexte>[]>();
-const résultatsRechercheProjets = ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>>[]>();
-const résultatsRechercheNuée = ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
-
+const résultatsRechercheProjets =
+  ref<
+    résultatRecherche<
+      | infoRésultatTexte
+      | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>
+    >[]
+  >();
+const résultatsRechercheNuée =
+  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
 
 const chercheur = new MultiChercheur();
-const { nOuProfondeur } = chercheur;
+const {nOuProfondeur} = chercheur;
 
 const augmenterN = () => {
   nOuProfondeur.value++;
 };
 
-watchEffect(async ()=>{
-    const étiquetteTypeDonnées = itemsTypesDonnées[typeDonnées.value].clef;
+watchEffect(async () => {
+  const étiquetteTypeDonnées = itemsTypesDonnées[typeDonnées.value].clef;
 
-    switch (étiquetteTypeDonnées) {
-        case 'motsClefs': {
-            await chercheur.lancerRecherche({
-                requète: texteRecherche,
-                réfRésultat: résultatsRechercheMotsClefs,
-                fRecherche: async ({
-                    requète,
-                    nOuProfondeur,
-                    réfRésultat,
-                }: {
-                    requète: string;
-                    nOuProfondeur: number;
-                    réfRésultat: Ref<
-                    résultatRecherche<infoRésultatTexte>[]
-                    >;
-                }) => {
-                    return await constl?.recherche?.rechercherMotClefSelonTexte({
-                        texte: requète,
-                        f: x => (réfRésultat.value = x),
-                        nRésultatsDésirés: nOuProfondeur,
-                    });
-                },
-            });
-            break;
-        }
-        case 'variables': {
-            await chercheur.lancerRecherche({
-                requète: texteRecherche,
-                réfRésultat: résultatsRechercheVariables,
-                fRecherche: async ({
-                    requète,
-                    nOuProfondeur,
-                    réfRésultat,
-                }: {
-                    requète: string;
-                    nOuProfondeur: number;
-                    réfRésultat: Ref<
-                    résultatRecherche<infoRésultatTexte>[]
-                    >;
-                }) => {
-                    return await constl?.recherche?.rechercherVariableSelonTexte({
-                        texte: requète,
-                        f: x => (réfRésultat.value = x),
-                        nRésultatsDésirés: nOuProfondeur,
-                    });
-                },
-            });
-            break;
-        }
-        case 'bds': {
-            await chercheur.lancerRecherche({
-                requète: texteRecherche,
-                réfRésultat: résultatsRechercheBd,
-                fRecherche: async ({
-                    requète,
-                    nOuProfondeur,
-                    réfRésultat,
-                }: {
-                    requète: string;
-                    nOuProfondeur: number;
-                    réfRésultat: Ref<
-                    résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
-                    >;
-                }) => {
-                    return await constl?.recherche?.rechercherBdSelonTexte({
-                    texte: requète,
-                    f: x => (réfRésultat.value = x),
-                    nRésultatsDésirés: nOuProfondeur,
-                    });
-                },
-            });
-            break;
-        }
-        case 'projets': {
-            await chercheur.lancerRecherche({
-                requète: texteRecherche,
-                réfRésultat: résultatsRechercheProjets,
-                fRecherche: async ({
-                    requète,
-                    nOuProfondeur,
-                    réfRésultat,
-                }: {
-                    requète: string;
-                    nOuProfondeur: number;
-                    réfRésultat: Ref<
-                    résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>>[]
-                    >;
-                }) => {
-                    return await constl?.recherche?.rechercherProjetSelonTexte({
-                    texte: requète,
-                    f: x => (réfRésultat.value = x),
-                    nRésultatsDésirés: nOuProfondeur,
-                    });
-                },
-            });
-            break;
-        }
-        case 'nuées': {
-            await chercheur.lancerRecherche({
-                requète: texteRecherche,
-                réfRésultat: résultatsRechercheNuée,
-                fRecherche: async ({
-                    requète,
-                    nOuProfondeur,
-                    réfRésultat,
-                }: {
-                    requète: string;
-                    nOuProfondeur: number;
-                    réfRésultat: Ref<
-                    résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
-                    >;
-                }) => {
-                    return await constl?.recherche?.rechercherNuéeSelonTexte({
-                    texte: requète,
-                    f: x => (réfRésultat.value = x),
-                    nRésultatsDésirés: nOuProfondeur,
-                    });
-                },
-            });
-            break;
-        }
-        default:
-            break;
+  switch (étiquetteTypeDonnées) {
+    case 'motsClefs': {
+      await chercheur.lancerRecherche({
+        requète: texteRecherche,
+        réfRésultat: résultatsRechercheMotsClefs,
+        fRecherche: async ({
+          requète,
+          nOuProfondeur,
+          réfRésultat,
+        }: {
+          requète: string;
+          nOuProfondeur: number;
+          réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+        }) => {
+          return await constl?.recherche?.rechercherMotClefSelonTexte({
+            texte: requète,
+            f: x => (réfRésultat.value = x),
+            nRésultatsDésirés: nOuProfondeur,
+          });
+        },
+      });
+      break;
     }
+    case 'variables': {
+      await chercheur.lancerRecherche({
+        requète: texteRecherche,
+        réfRésultat: résultatsRechercheVariables,
+        fRecherche: async ({
+          requète,
+          nOuProfondeur,
+          réfRésultat,
+        }: {
+          requète: string;
+          nOuProfondeur: number;
+          réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+        }) => {
+          return await constl?.recherche?.rechercherVariableSelonTexte({
+            texte: requète,
+            f: x => (réfRésultat.value = x),
+            nRésultatsDésirés: nOuProfondeur,
+          });
+        },
+      });
+      break;
+    }
+    case 'bds': {
+      await chercheur.lancerRecherche({
+        requète: texteRecherche,
+        réfRésultat: résultatsRechercheBd,
+        fRecherche: async ({
+          requète,
+          nOuProfondeur,
+          réfRésultat,
+        }: {
+          requète: string;
+          nOuProfondeur: number;
+          réfRésultat: Ref<
+            résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+          >;
+        }) => {
+          return await constl?.recherche?.rechercherBdSelonTexte({
+            texte: requète,
+            f: x => (réfRésultat.value = x),
+            nRésultatsDésirés: nOuProfondeur,
+          });
+        },
+      });
+      break;
+    }
+    case 'projets': {
+      await chercheur.lancerRecherche({
+        requète: texteRecherche,
+        réfRésultat: résultatsRechercheProjets,
+        fRecherche: async ({
+          requète,
+          nOuProfondeur,
+          réfRésultat,
+        }: {
+          requète: string;
+          nOuProfondeur: number;
+          réfRésultat: Ref<
+            résultatRecherche<
+              | infoRésultatTexte
+              | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>
+            >[]
+          >;
+        }) => {
+          return await constl?.recherche?.rechercherProjetSelonTexte({
+            texte: requète,
+            f: x => (réfRésultat.value = x),
+            nRésultatsDésirés: nOuProfondeur,
+          });
+        },
+      });
+      break;
+    }
+    case 'nuées': {
+      await chercheur.lancerRecherche({
+        requète: texteRecherche,
+        réfRésultat: résultatsRechercheNuée,
+        fRecherche: async ({
+          requète,
+          nOuProfondeur,
+          réfRésultat,
+        }: {
+          requète: string;
+          nOuProfondeur: number;
+          réfRésultat: Ref<
+            résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+          >;
+        }) => {
+          return await constl?.recherche?.rechercherNuéeSelonTexte({
+            texte: requète,
+            f: x => (réfRésultat.value = x),
+            nRésultatsDésirés: nOuProfondeur,
+          });
+        },
+      });
+      break;
+    }
+    default:
+      break;
+  }
 });
-
 </script>
