@@ -95,18 +95,11 @@
         >
           {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
         </v-btn>
-        <v-btn
-          v-if="monAutorisation"
-          variant="outlined"
-          color="primary"
-          @click="() => émettre('sauvegarder')"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
+
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
@@ -114,10 +107,10 @@ import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
 
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
-
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
 import DivisionCarte from './DivisionCarte.vue';
 import GererAuteurs from './GererAuteurs.vue';
 import AuteursObjet from './AuteursObjet.vue';
@@ -133,7 +126,6 @@ const props = defineProps<{
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
   (é: 'ajusterDescriptions', noms: {[lng: string]: string}): void;
-  (é: 'sauvegarder'): void;
 }>();
 
 const constl = inject<ClientConstellation>('constl');
