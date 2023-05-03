@@ -9,7 +9,6 @@
         class="ma-1 my-1"
       >
         <v-icon
-          small
           start
           color="error"
         >

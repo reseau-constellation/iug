@@ -86,10 +86,6 @@
           v-for="d in droits"
           :key="d"
           :droit="d"
-          outlined
-          small
-          label
-          class="ma-1 my-1"
         />
         <p class="mb-0 text-overline">
           {{ t('licences.conditions.sousTitre') }}
@@ -108,10 +104,6 @@
           v-for="c in conditions"
           :key="c"
           :condition="c"
-          outlined
-          small
-          label
-          class="ma-1 my-1"
         />
         <p class="mb-0 text-overline">
           {{ t('licences.limitations.sousTitre') }}
@@ -130,10 +122,6 @@
           v-for="l in limitations"
           :key="l"
           :limitation="l"
-          outlined
-          small
-          label
-          class="ma-1 my-1"
         />
       </v-card-text>
       <v-divider></v-divider>
@@ -141,7 +129,6 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
-          text
           variant="outlined"
           @click="fermer"
         >
@@ -150,7 +137,6 @@
         </v-btn>
         <v-btn
           color="primary"
-          text
           variant="outlined"
           @click="sauvegarderLicence"
         >
