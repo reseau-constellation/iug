@@ -6,34 +6,32 @@
     <v-list-item-title class="mb-2">
       {{ nomTableau || t('tableaux.sansNom') }}
     </v-list-item-title>
-    <v-list-item-subtitle>
-      <série-jetons
-        :items="variables"
-        :n-max="3"
-      >
-        <template #jeton="{id: idVariable}">
-          <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
-              <JetonVariable
-                v-bind="propsActivateur"
-                :id="idVariable"
-                size="small"
-              />
-            </template>
-          </carte-variable>
-        </template>
-        <template #itemListe="{id: idVariable}">
-          <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
-              <item-variable
-                v-bind="propsActivateur"
-                :id="idVariable"
-              />
-            </template>
-          </carte-variable>
-        </template>
-      </série-jetons>
-    </v-list-item-subtitle>
+    <série-jetons
+      :items="variables"
+      :n-max="3"
+    >
+      <template #jeton="{id: idVariable}">
+        <carte-variable :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <JetonVariable
+              v-bind="propsActivateur"
+              :id="idVariable"
+              size="small"
+            />
+          </template>
+        </carte-variable>
+      </template>
+      <template #itemListe="{id: idVariable}">
+        <carte-variable :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <item-variable
+              v-bind="propsActivateur"
+              :id="idVariable"
+            />
+          </template>
+        </carte-variable>
+      </template>
+    </série-jetons>
   </v-list-item>
 </template>
 <script setup lang="ts">
