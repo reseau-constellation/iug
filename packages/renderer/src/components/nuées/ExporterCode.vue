@@ -21,15 +21,44 @@
             v-model="étape"
             style="overflow-y: auto"
           >
-            <v-window-item :value="0"> </v-window-item>
-            <v-window-item :value="1"> </v-window-item>
-            <v-window-item :value="2"> </v-window-item>
+            <v-window-item :value="0">
+              <v-select
+                v-model="langage"
+                :items="itemsLangages"
+              />
+            </v-window-item>
+            <v-window-item :value="1">
+              <dialogue-licence>
+                <v-btn></v-btn>
+              </dialogue-licence>
+            </v-window-item>
+            <v-window-item :value="2">
+              <v-radio-group>
+                <v-radio></v-radio>
+                <v-radio></v-radio>
+              </v-radio-group>
+            </v-window-item>
             <v-window-item :value="3">
-              {{ code }}
-              {{ installation }}
+              <v-btn-toggle
+                v-model="langage"
+                mandatory
+              >
+                <v-btn
+                  v-for="l in langagesSupportés"
+                  :key="l"
+                  :value="l"
+                >
+                  {{ t(`communs.langagesInformatiques.${l}.abr`) }}
+                </v-btn>
+              </v-btn-toggle>
+              <v-select v-model="langueCode" />
+
+              <v-text-field readonly>{{ installation }}</v-text-field>
+              <v-textarea readonly>{{ code }}</v-textarea>
             </v-window-item>
           </v-window>
         </v-card-text>
+        <v-card-actions> </v-card-actions>
       </v-card>
     </template>
   </v-dialog>
@@ -41,10 +70,13 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import type {bds} from '@constl/ipa';
+import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {langue} = utiliserLangues();
 const {t} = useI18n();
 
 const props = defineProps<{idNuee: string}>();
@@ -54,13 +86,18 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['languageInformatique', 'licenceParDéfaut', 'bdPrincipale', 'codeGénéré'];
+const listeÉtapes = [
+  'langageInformatique',
+  'licenceParDéfaut',
+  'bdPrincipale',
+  'codeGénéré',
+] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'languageInformatique':
-      return t('nuées.générerCode.titreLanguageInformatique');
+    case 'langageInformatique':
+      return t('nuées.générerCode.titrelangageInformatique');
     case 'licenceParDéfaut':
       return t('nuées.générerCode.titreLicenceParDéfaut');
     case 'bdPrincipale':
@@ -75,8 +112,8 @@ const titreCarte = computed(() => {
 const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'languageInformatique':
-      return t('nuées.générerCode.sousTitreLanguageInformatique');
+    case 'langageInformatique':
+      return t('nuées.générerCode.sousTitrelangageInformatique');
     case 'licenceParDéfaut':
       return t('nuées.générerCode.sousTitreLicenceParDéfaut');
     case 'bdPrincipale':
@@ -104,20 +141,29 @@ const tableaux = computed(() => {
 });
 
 // Options
-const language = ref<'ts' | 'js'>('ts');
+const langagesSupportés = ['ts', 'js'] as const;
+const langage = ref<typeof langagesSupportés[number]>('ts');
+const itemsLangages = computed(() => {
+  return langagesSupportés.map(l => ({
+    value: l,
+    title: t(`communs.langagesInformatiques.${l}.abr`),
+  }));
+});
+const langueCode = ref<string>(langue.value);
+
 const licenceDéfaut = ref('ODbl-1_0');
 const motsClefNuée = ref<string[]>([]);
 const bdPrincipale = ref<string>();
 
 // Code
 const code = computed(() => {
-  switch (language.value) {
+  switch (langage.value) {
     case 'ts':
       return codeNuéeTs.value;
     case 'js':
       return codeNuéeJs.value;
     default:
-      throw new Error(language.value);
+      throw new Error(langage.value);
   }
 });
 const installation = computed(() => {
@@ -170,7 +216,7 @@ const codeSchémaBdTsJs = computed(() => {
 export const clefTableauNuée = ${clefTableauNuée.value};
 ${bdPrincipale.value ? 'const idBd = ' + bdPrincipale.value : ''}
 export const idNuée = ${props.idNuee}
-export const schéma ${language.value === 'ts' ? ': bds.schémaSpécificationBd' : ''} = {
+export const schéma ${langage.value === 'ts' ? ': bds.schémaSpécificationBd' : ''} = {
   licence: ${licenceDéfaut.value},
   motsClefs: [${motsClefNuée.value.toString()}],
   tableaux: [
@@ -226,7 +272,7 @@ export type KiliMonProjet = கிளி<entréeDonnéesMonProjet>;
 const codeFonctionGénérationTsJs = computed(() => {
   if (!bdPrincipale.value) return '';
 
-  const ts = language.value === 'ts';
+  const ts = langage.value === 'ts';
   return `
 export const générerKili = ({
   constl,
