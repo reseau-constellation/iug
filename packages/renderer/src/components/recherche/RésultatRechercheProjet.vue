@@ -66,7 +66,7 @@ import type {ComputedRef} from 'vue';
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import JetonMotClef from '/@/componentes /motsClefs/JetonMotClef.vue';
+import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
 
 import {enregistrerÉcoute} from '/@/composables/utils';
