@@ -5,7 +5,10 @@
     </template>
     <v-list-item-title>
       {{ nomTraduit || t('communs.anonyme') }}
-      <jeton-confiance :id="compte" />
+      <jeton-confiance
+        :id="compte"
+        style-jeton="icône"
+      />
     </v-list-item-title>
     <v-list-item-subtitle>
       {{
