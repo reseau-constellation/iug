@@ -9,10 +9,20 @@
           :label="t('pages.compte.connexions.Constellation')"
           value="Constellation"
         />
-        <v-radio
-          :label="t('pages.compte.connexions.SFIP')"
-          value="SFIP"
-        />
+        <v-radio value="SFIP">
+          <template #label>
+            <div>
+              <v-tooltip
+                :text="t('pages.compte.connexions.indiceSFIP')"
+                location="bottom"
+              >
+                <template #activator="{props: propsActivateur}">
+                  <p v-bind="propsActivateur">{{ t('pages.compte.connexions.SFIP') }}</p>
+                </template>
+              </v-tooltip>
+            </div>
+          </template>
+        </v-radio>
       </v-radio-group>
       <division-carte
         :titre="titreDivision"
