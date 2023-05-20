@@ -1,8 +1,9 @@
 <template>
   <v-chip
+    class="mx-2"
     variant="outlined"
+    label
     :prepend-icon="icône"
-    @click="copierContact"
   >
     {{ contactFormatté }}
   </v-chip>
@@ -11,25 +12,14 @@
 import {computed} from 'vue';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
-import {copier} from '/@/utils';
+import {obtIcôneContact} from './utils';
 
 const props = defineProps<{type: string; contact: string}>();
 
 const {formatterNuméro} = utiliserNumération();
 
 const icône = computed(() => {
-  switch (props.type) {
-    case 'courriel':
-      return 'mdi-email-outline';
-    case 'téléphone':
-      return 'mdi-phone';
-    case 'whatsapp':
-      return 'mdi-whatsapp';
-    case 'telegram':
-      return 'mdi-send';
-    default:
-      return 'mdi-account';
-  }
+  return obtIcôneContact({type: props.type});
 });
 const numéroFormatté = formatterNuméro(props.contact);
 const contactFormatté = computed(() => {
@@ -42,8 +32,4 @@ const contactFormatté = computed(() => {
       return props.contact;
   }
 });
-
-const copierContact = async () => {
-  await copier(props.contact);
-};
 </script>
