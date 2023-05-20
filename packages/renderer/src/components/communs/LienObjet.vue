@@ -1,13 +1,17 @@
 <template>
   <v-menu>
-    <template #activator="{props}">
-      <v-btn
-        v-bind="props"
-        icon="mdi-link"
-        size="small"
-        variant="flat"
-      >
-      </v-btn>
+    <template #activator="{props: propsMenu}">
+      <v-tooltip :text="t('lienObjet.indice')">
+        <template #activator="{props: propsIndice}">
+          <v-btn
+            v-bind="mergeProps(propsMenu, propsIndice)"
+            icon="mdi-link"
+            size="small"
+            variant="flat"
+          >
+          </v-btn>
+        </template>
+      </v-tooltip>
     </template>
     <v-list @click.stop>
       <v-list-item>
@@ -28,6 +32,11 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {copier} from '/@/utils';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {mergeProps} from 'vue';
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
 
 const props = defineProps<{id: string}>();
 
