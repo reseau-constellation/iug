@@ -17,20 +17,49 @@
           <JetonConfiance
             v-if="mdAndUp"
             :id="id"
+            style-jeton="jeton"
           />
         </v-card-title>
       </v-card-item>
-      <v-card-text>
+      <v-card-text style="overflow-y: auto">
         <JetonConfiance
           v-if="!mdAndUp"
           :id="id"
+          style-jeton="jeton"
         />
+        <division-carte
+          :titre="t('membres.contacts')"
+          :en-attente="!contacts"
+        />
+        <span v-if="contacts">
+          <menu-contact-membre
+            v-for="[type, contact] in Object.entries(contacts)"
+            :key="type"
+            :type="type"
+            :contact="contact"
+          >
+            <template #activator="{props: propsActivateur}">
+              <jeton-contact-membre
+                v-bind="propsActivateur"
+                :type="type"
+                :contact="contact"
+                size="small"
+              />
+            </template>
+          </menu-contact-membre>
+        </span>
+        <p
+          v-else
+          class="text-disabled"
+        >
+          {{ t('membres.aucunContact') }}
+        </p>
         <division-carte
           :titre="t('membres.bds')"
           :en-attente="!bdsMembre"
         />
         <SérieJetons
-          v-if="bdsMembre"
+          v-if="bdsMembre?.length"
           :items="bdsMembre"
           :n-max="2"
         >
@@ -151,6 +180,8 @@ import {useDisplay} from 'vuetify/lib/framework.mjs';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonConfiance from './JetonConfiance.vue';
 import CarteBd from '../bds/CarteBd.vue';
+import JetonContactMembre from './JetonContactMembre.vue';
+import MenuContactMembre from './MenuContactMembre.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -172,6 +203,14 @@ const nomTraduit = traduireNom(noms);
 enregistrerÉcoute(
   constl?.profil?.suivreNoms({
     f: x => (noms.value = x),
+  }),
+);
+
+// Contacts
+const contacts = ref<{[type: string]: string}>();
+enregistrerÉcoute(
+  constl?.profil?.suivreContacts({
+    f: x => (contacts.value = x),
   }),
 );
 
