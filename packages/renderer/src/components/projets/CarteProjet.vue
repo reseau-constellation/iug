@@ -6,6 +6,7 @@
     :auteurs="auteurs"
     @ajuster-noms="ajusterNoms"
     @ajuster-descriptions="ajusterDescriptions"
+    @effacer="effacerProjet"
   ></base-carte-objet>
 </template>
 <script setup lang="ts">
@@ -72,4 +73,9 @@ enregistrerÉcoute(
     f: x => (auteurs.value = x),
   }),
 );
+
+// Effacer
+const effacerProjet = async () => {
+  await constl?.projets?.effacerProjet({id: props.id});
+};
 </script>

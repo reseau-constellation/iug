@@ -6,6 +6,7 @@
     :auteurs="auteurs"
     @ajuster-noms="ajusterNoms"
     @ajuster-descriptions="ajusterDescriptions"
+    @effacer="effacerBd"
   >
     <template #activator="{props: propsActivateur}">
       <slot
@@ -279,4 +280,9 @@ const tableauxOrdonnés = computed(() => {
   );
   return listeTableaux || [];
 });
+
+// Effacer
+const effacerBd = async () => {
+  await constl?.bds?.effacerBd({id: props.id});
+};
 </script>

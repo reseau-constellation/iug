@@ -6,6 +6,7 @@
     :auteurs="auteurs"
     @ajuster-noms="nms => ajusterNoms(nms)"
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
+    @effacer="effacerMotClef"
   >
     <template #activator="{props: propsActivateur}">
       <slot
@@ -88,4 +89,9 @@ enregistrerÉcoute(
     f: x => (auteurs.value = x),
   }),
 );
+
+// Effacer
+const effacerMotClef = async () => {
+  await constl?.motsClefs?.effacerMotClef({id: props.id});
+};
 </script>

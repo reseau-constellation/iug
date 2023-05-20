@@ -4,6 +4,9 @@
     :noms="noms"
     :descriptions="descriptions"
     :auteurs="auteurs"
+    @effacer="effacerVariable"
+    @ajuster-noms="nms => ajusterNoms(nms)"
+    @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
   >
     <template #activator="{props: propsActivateur}">
       <slot
@@ -54,7 +57,7 @@ import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/composables/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {icôneCatégorieVariable} from '/@/utils';
+import {ajusterTexteTraductible, icôneCatégorieVariable} from '/@/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import ItemRègle from '/@/components/règles/ItemRègle.vue';
 
@@ -82,6 +85,22 @@ enregistrerÉcoute(
     f: x => (noms.value = x),
   }),
 );
+const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: noms.value,
+    nouvelles: nouveauxNoms,
+  });
+  for (const langue of àEffacer) {
+    await constl?.variables?.effacerNomVariable({
+      id: props.id,
+      langue,
+    });
+  }
+  return await constl?.variables?.ajouterNomsVariable({
+    id: props.id,
+    noms: àAjouter,
+  });
+};
 
 // Descriptions variable
 const descriptions = ref<{[lng: string]: string}>({});
@@ -92,6 +111,24 @@ enregistrerÉcoute(
     f: x => (descriptions.value = x),
   }),
 );
+
+const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({
+    anciennes: descriptions.value,
+    nouvelles: descrs,
+  });
+  for (const langue of àEffacer) {
+    await constl?.variables?.effacerDescrVariable({
+      id: props.id,
+      langue,
+    });
+  }
+  return await constl?.variables?.ajouterDescriptionsVariable({
+    id: props.id,
+    descriptions: àAjouter,
+  });
+};
+
 
 // Catégorie
 const icône = computed(() =>
@@ -122,4 +159,9 @@ enregistrerÉcoute(
     f: x => (règles.value = x),
   }),
 );
+
+// Effacer
+const effacerVariable = async () => {
+  await constl?.variables?.effacerVariable({id: props.id});
+};
 </script>

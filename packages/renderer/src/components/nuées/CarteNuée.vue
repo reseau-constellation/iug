@@ -6,6 +6,7 @@
     :auteurs="auteurs"
     @ajuster-noms="nms => ajusterNoms(nms)"
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
+    @effacer="effacerNuée"
   >
     <template #activator="{props: propsActivateur}">
       <slot
@@ -97,4 +98,9 @@ enregistrerÉcoute(
     f: x => (auteurs.value = x),
   }),
 );
+
+// Effacer
+const effacerNuée = async () => {
+  await constl?.nuées?.effacerNuée({id: props.id});
+};
 </script>
