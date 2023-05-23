@@ -19,7 +19,7 @@
         <v-card-text>
           <v-window
             v-model="étape"
-            style="overflow-y: auto"
+            style="overflow-y: scroll"
           >
             <v-window-item :value="0">
               <div class="text-center">
@@ -48,7 +48,7 @@
                   color="primary"
                   :disabled="
                     surNavigateur &&
-                    (cheminement === 'exportation' || origineImportation === 'fichier')
+                      (cheminement === 'exportation' || origineImportation === 'fichier')
                   "
                 >
                   {{ t('communs.importerOuExporter.automatiser') }}

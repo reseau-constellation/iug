@@ -165,15 +165,16 @@ export const utiliserNumération = () => {
     return chiffreFormatté;
   };
 
-  const formatterNuméro = (numéro: string | Ref<string>): Ref<string> => {
+  const formatterNuméro = (numéro: string | Ref<string>, système?: string): Ref<string> => {
     const numéroFormatté = computed<string>(() => {
       const num = typeof numéro === 'string' ? numéro : numéro.value;
 
       return [...num]
         .map(n => {
+          if (n === ' ' || n === '' || n === '+') return n;
           try {
             const எண் = ennikkai.எண்ணுக்கு({உரை: n});
-            return ennikkai.உரைக்கு({எண், மொழி: numération.value});
+            return ennikkai.உரைக்கு({எண், மொழி: système || numération.value});
           } catch {
             return n;
           }

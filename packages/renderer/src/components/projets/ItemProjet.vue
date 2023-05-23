@@ -11,7 +11,7 @@ import type ClientConstellation from '@constl/ipa';
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 

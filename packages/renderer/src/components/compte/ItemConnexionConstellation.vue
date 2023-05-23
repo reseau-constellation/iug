@@ -26,7 +26,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
 
 import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

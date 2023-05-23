@@ -338,7 +338,7 @@ import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 const constl = inject<ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');

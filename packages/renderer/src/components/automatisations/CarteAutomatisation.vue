@@ -29,7 +29,7 @@ import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 

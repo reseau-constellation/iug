@@ -10,7 +10,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {computed, inject, ref} from 'vue';
 
 import {utiliserImagesDéco} from '/@/composables/images';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 

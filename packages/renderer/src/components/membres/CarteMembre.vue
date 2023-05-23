@@ -21,7 +21,7 @@
           />
         </v-card-title>
       </v-card-item>
-      <v-card-text style="overflow-y: auto">
+      <v-card-text style="overflow-y: scroll">
         <JetonConfiance
           v-if="!mdAndUp"
           :id="id"
@@ -165,7 +165,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {ref, inject} from 'vue';
 
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';

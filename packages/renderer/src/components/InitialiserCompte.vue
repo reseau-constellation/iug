@@ -19,7 +19,7 @@
       <v-card-text>
         <v-window
           v-model="étape"
-          style="overflow-y: auto"
+          style="overflow-y: scroll"
         >
           <v-window-item :value="0">
             <div class="text-center">
@@ -78,9 +78,8 @@
                   :label="t('accueil.initialiserCompte.indiceCompte')"
                   variant="outlined"
                 >
-                  <template #selection="{item, props}">
+                  <template #selection="{item}">
                     <JetonMembre
-                      v-bind="props"
                       :compte="item.value"
                     />
                   </template>
@@ -98,7 +97,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -217,7 +216,7 @@ import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 

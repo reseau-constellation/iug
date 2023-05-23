@@ -43,7 +43,7 @@
   </v-list>
   <v-list
     max-height="200"
-    style="overflow-y: auto"
+    style="overflow-y: scroll"
   >
     <v-divider class="mb-2" />
     <v-scroll-y-transition group>

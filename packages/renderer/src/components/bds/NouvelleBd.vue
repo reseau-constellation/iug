@@ -20,8 +20,9 @@
       <v-card-text>
         <v-window
           v-model="étape"
-          style="overflow-y: auto"
+          style="overflow-y: scroll"
         >
+          <v-window-item :key="0"> </v-window-item>
         </v-window>
       </v-card-text>
     </v-card>
@@ -44,6 +45,7 @@ const listeÉtapes = [
   'Descriptions',
   'MotsClefs',
   'Licence',
+  'Tableaux',
   'ImporterDonnées',
   'Confirmation',
 ] as const;

@@ -5,9 +5,9 @@
   >
     <template #prepend>
       <carte-membre :id="compte">
-        <template #activator="{props}">
+        <template #activator="{props: propsActivateur}">
           <image-profil
-            v-bind="props"
+            v-bind="propsActivateur"
             :id="compte"
           />
         </template>
@@ -38,7 +38,7 @@ import type {பிணையம்_மொழிபெயர்ப்பு_ப�
 
 import {computed, inject, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from '../../communs/ImageProfil.vue';
 import CarteMembre from '../../membres/CarteMembre.vue';
 

@@ -21,7 +21,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {computed, inject, ref, onMounted} from 'vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{

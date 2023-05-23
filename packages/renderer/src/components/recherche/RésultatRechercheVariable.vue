@@ -39,7 +39,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

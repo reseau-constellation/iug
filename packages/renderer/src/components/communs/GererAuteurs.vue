@@ -3,10 +3,10 @@
     v-model="dialogue"
     :width="mdAndUp ? 500 : 300"
   >
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <v-card>
@@ -20,9 +20,9 @@
       </v-card-item>
       <v-card-text>
         <v-menu>
-          <template #activator="{props}">
+          <template #activator="{props: propsActivateur}">
             <v-text-field
-              v-bind="props"
+              v-bind="propsActivateur"
               v-model="requèteRecherche"
               hide-details
               variant="outlined"
@@ -100,7 +100,7 @@ import type {Ref} from 'vue';
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {enregistrerRecherche} from '/@/composables/utils';
+import {enregistrerRecherche} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';

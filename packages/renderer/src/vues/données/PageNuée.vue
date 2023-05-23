@@ -10,7 +10,7 @@
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import {inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';

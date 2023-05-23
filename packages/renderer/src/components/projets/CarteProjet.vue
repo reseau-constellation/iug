@@ -14,7 +14,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {inject, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 

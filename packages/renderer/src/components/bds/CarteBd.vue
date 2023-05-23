@@ -133,7 +133,7 @@ import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
 
 import {computed, inject, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

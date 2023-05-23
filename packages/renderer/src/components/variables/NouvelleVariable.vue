@@ -20,7 +20,7 @@
       <v-card-text>
         <v-window
           v-model="étape"
-          style="overflow-y: auto"
+          style="overflow-y: scroll"
         >
         </v-window>
       </v-card-text>

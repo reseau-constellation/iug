@@ -39,7 +39,7 @@ import {inject, ref, onMounted} from 'vue';
 import type ClientConstellation from '@constl/ipa';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from './communs/ImageProfil.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();

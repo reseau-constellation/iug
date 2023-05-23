@@ -159,7 +159,7 @@ import JetonCondition from './JetonConditionLicence.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import type {InfoLicence} from '@constl/ipa/dist/src/licences';
 import {ouvrirLien} from '/@/utils';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps({
   licence: {type: String, required: false},

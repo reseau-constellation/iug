@@ -36,7 +36,7 @@ import {computed, inject, ref} from 'vue';
 import AuteursObjet from '../communs/AuteursObjet.vue';
 import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

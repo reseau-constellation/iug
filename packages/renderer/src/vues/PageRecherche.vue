@@ -127,7 +127,7 @@ import {type Ref, watchEffect} from 'vue';
 
 import {inject, ref} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {MultiChercheur} from '/@/composables/utils';
+import {MultiChercheur} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import RésultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';

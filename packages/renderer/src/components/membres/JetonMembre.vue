@@ -36,7 +36,7 @@ import {ref, inject, computed} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string}>();

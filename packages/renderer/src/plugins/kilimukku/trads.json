@@ -5,6 +5,7 @@
       "suivant": "Suivant",
       "retour": "Retour",
       "anonyme": "Anonyme",
+      "effacer": "Effacer",
       "indiceNom": "Nom",
       "indiceLangue": "Langue",
       "texteAucunNom": "Ajouter un nom ci-dessus",
@@ -79,11 +80,13 @@
     },
     "pages": {
       "compte": {
-        "ajouterDispositif": "Connecter un dispositif"
+        "ajouterDispositif": "Connecter un dispositif",
+        "nouveauContact": "Nouveau contact"
       },
       "signalements": {}
     },
     "membres": {
+      "contacts": "Contacts",
       "confiance": {
         "bloqué": "Bloqué",
         "inconnu": "Inconnu",
@@ -104,6 +107,9 @@
       "suivant": "அடுத்தது",
       "retour": "பின்",
       "fermer": "முடி",
+      "annuler": "ரத்து",
+      "épingler": "ஒட்டிக்கொள்ளு",
+      "copier": "நகல் எடு",
       "sauvegarder": "சேமி",
       "erreurLangue": "இந்த உரை {langue} மொழியில் இருக்கவும்.",
       "pointInterrogation": "?",
@@ -160,6 +166,7 @@
         "connexions": {
           "Constellation": "விண்மீன்",
           "SFIP": "ச. க. மு.",
+          "indiceSFIP": "சர்விகிரக கணியக்கோப்பு முறைமை",
           "titreSFIP": "ச. க. மு இணைப்புகள்",
           "titreConstellation": "விண்மீன் இணைப்புகள்",
           "dispositifs": "{nDispositifs} சாதனங்கள், இணையத்தில் {nDispositifsEnLigne}"
@@ -175,7 +182,7 @@
         "nouveauMotClef": "புது சிறப்பு சொல்",
         "nouvelleVariable": "புது மாறி",
         "nouvelleBd": "புது தரவு தளம்",
-        "nouvelleProjet": "புது திட்டம்",
+        "nouveauProjet": "புது திட்டம்",
         "nouvelleNuée": "புது குழு"
       },
       "signalements": {
@@ -261,6 +268,9 @@
         "texteBtnCréation": "குழுவை உருவாக்கு"
       }
     },
+    "lienObjet": {
+      "indice": "விண்மீன் இணைப்பு"
+    },
     "tableaux": {
       "sansNom": "பெயர் இல்லாத அட்டவணை"
     },
@@ -285,14 +295,31 @@
       "réplications": "நகல்|நகல்கள்",
       "réplicationsEnLigne": "(இணையத்தில் {0})"
     },
+    "épingler": {
+      "titre": "ஒட்டிக்கொள்ளு",
+      "dispositifsÉpingle": "ஒட்டிக்கொள்ளும் சாதனங்கள்",
+      "dispositifsÉpingleFichier": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
+      "aucun": "எந்த சாதநமும் இல்லை",
+      "tous": "அனைத்தும் சாதனங்கள்",
+      "installé": "நிறுவப்பட்ட சாதனங்கள்",
+      "dispositifsSpécifiques": "குறிப்பிட்ட சாதனங்கள்",
+      "indiceSélectionnerDispositif": "சாதனங்களைக் குறிப்பிடுங்கள்"
+    },
+    "effacer": {
+      "titre": "உண்மையில் நீக்க விரும்புகிறீர்களா?",
+      "avertissement": "ஒருமுறை நீக்கப்பட்டால், இந்த தரவுகள் மறுப்படியும் கிடைக்காது.",
+      "explication": "விண்மீன் விநியோகிக்கப்பட்ட ஒரு அமைப்பு இருக்கிறதால், இந்த தரவுகள் உங்கள் கணக்கிலிருந்து மட்டுமே நீக்கப்படும். வேறு பயனாளர்கள் ஏற்கனவே இதின் நகல் செய்து விட்டார்கள் என்பதில், இந்த தரவுகள் இன்னும் விண்மீன் பிணையத்தில் கிடைக்கும் என்று இருக்கலாம்.",
+      "effacer": "நீக்கு"
+    },
     "membres": {
+      "contacts": "தொடர்புகள்",
       "bds": "தரவு தளங்கள்",
       "projets": "திட்டங்கள்",
       "aucuneBd": "எந்த தரவுத்தளமும் இல்லை",
       "aucunProjet": "எந்த திட்டமும் இல்லை",
       "aucuneNuée": "எந்த குழுவும் இல்லை",
       "nuées": "குழுகள்",
-      "moi": "நான்",
+      "moi": "நான் தான்",
       "confiance": {
         "bloqué": "தடுக்கப்பட்டது",
         "inconnu": "தெரியாதவர்",
@@ -304,14 +331,38 @@
         "bloquerPublique": "பொது வழியாக தடுக்கப்பட்டவர்",
         "bloquerPrivé": "தனிப்பட்ட வழியாக தடுக்கப்பட்டவர்",
         "titreCarte": "பயனாளர் நம்பிக்கை",
+        "question": "இந்த பயனாளருக்கு எந்த அளவுக்கு நம்பிக்கை கொடுக்க விரும்புகிறீர்கள்?",
         "indiceInconnu": "குறிப்பான நம்பிக்கை இல்லாதவர்.",
-        "indiceFaireConfiance": "நீங்கள் இந்த பயனாளரை நம்பிக்கிறீர்கள் என்று எல்லோருக்கும் தெரிந்து விடும். இந்த பயனாளருக்காக உங்கள் தெரிந்தவரின் நம்பிக்கையும் அதிகரிக்கும்.",
-        "indiceBloquerPublique": "நீங்கள் இந்த பயனாளரை தடுத்தீர்கள் என்று எல்லோருக்கும் தெரிந்து விடும். இந்த பயனாளருக்காக உங்கள் தெரிந்தவரின் நம்பிக்கையும் குறைந்து விடும்.",
+        "indiceFaireConfiance": "நீங்கள் இந்த பயனாளரை நம்பிக்கிறீர்கள் என்று பயனாளர் அனைவருக்கும் தெரிந்து விடும். இந்த பயனாளருக்கு மேலே உங்கள் தெரிந்தவரின் நம்பிக்கையும் அதிகரிக்கும்.",
+        "indiceBloquerPublique": "நீங்கள் இந்த பயனாளரை தடுத்தீர்கள் என்று பயனாளர் அனைவருக்கும் தெரிந்து விடும். இந்த பயனாளருக்கு மேலே உங்கள் தெரிந்தவர்களின் நம்பிக்கையும் குறைந்து விடும்.",
         "indiceBloquerPrivé": "நீங்கள் இந்த பயனாளரை தடுத்தீர்கள் என்று வேறு யாருக்குமே தெரியாது. உங்கள் கணக்கின் ஒவ்வொரு சாதனத்தில் இந்த பயனாளரை தடுக்க தேவையாக இருக்கும்."
+      },
+      "contact": {
+        "courriel": "மின்னஞ்சல்",
+        "téléphone": "தொலைப்பேசி",
+        "télégramme": "தெலெகிராம்",
+        "whatsapp": "வாட்ஸாப்",
+        "autre": "வேறு வகையான தொடர்பு"
+      },
+      "nouvelleInfoContact": {
+        "titre": "உங்கள் தொடர்பு தகவல்கள் உள்ளிடலாம்",
+        "avertissement": "இந்த தகவல்கள் பொது அணுகலில் வெளியிடப்படும்",
+        "indiceType": "தொரட்பு வகை",
+        "indiceAutreType": "தொடர்பு வகையை உள்ளிடுங்கள்",
+        "valeur": "உங்கள் தொடர்பை உள்ளிடுங்கள்"
+      },
+      "modifierInfoContact": {
+        "titre": "தொடர்பைத் திருத்தி விடலாம்"
+      },
+      "menuContact": {
+        "contacter": "தொடர்பு கொள்ளு",
+        "copier": "நகல் எடு",
+        "messageSalut": "வணக்கம்"
       }
     },
     "listeNomsProfil": {
-      "indiceNom": "உங்கள் பெயர்"
+      "indiceNom": "உங்கள் பெயர்",
+      "indiceLangue": "பெயரின் மொழி"
     },
     "objet": {
       "indiceNom": "பெயர்",

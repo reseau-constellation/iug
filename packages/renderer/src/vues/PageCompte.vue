@@ -67,7 +67,9 @@
       <v-tab value="connexions">{{ t('pages.compte.ongletConnexions') }}</v-tab>
     </v-tabs>
     <v-window v-model="onglet">
-      <v-window-item value="thème"> </v-window-item>
+      <v-window-item value="thème">
+        <OngletThème />
+      </v-window-item>
       <v-window-item value="connexions">
         <OngletConnexions />
       </v-window-item>
@@ -83,13 +85,14 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 import type ClientConstellation from '@constl/ipa';
 
+import {MAX_TAILLE_IMAGE} from '/@/consts';
+import {enregistrerÉcoute} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
 import OngletConnexions from '/@/components/compte/OngletConnexions.vue';
+import OngletThème from '/@/components/compte/OngletThème.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import NouvelleInfoContactMembre from '/@/components/membres/NouvelleInfoContact.vue';
 

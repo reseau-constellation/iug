@@ -17,7 +17,7 @@
 </template>
 <script setup lang="ts">
 import type ClientConstellation from '@constl/ipa';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 import {ref, inject} from 'vue';
 

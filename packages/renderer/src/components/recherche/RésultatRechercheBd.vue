@@ -57,7 +57,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

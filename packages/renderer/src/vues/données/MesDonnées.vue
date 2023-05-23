@@ -217,7 +217,7 @@ import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
 import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
-import {enregistrerRecherche, enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerRecherche, enregistrerÉcoute} from '/@/components/utils';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';

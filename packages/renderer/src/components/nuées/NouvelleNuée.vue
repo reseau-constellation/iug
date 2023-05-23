@@ -12,15 +12,22 @@
       :width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+        <v-card-title class="d-flex">
+          {{ titreCarte }}
+          <v-spacer />
+          <v-btn
+            variant="flat"
+            size="small"
+            icon="mdi-close"
+            @click="fermer"
+          />
         </v-card-title>
         <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
           v-model="étape"
-          style="overflow-y: auto"
+          style="overflow-y: scroll"
         >
           <v-window-item :key="0">
             <liste-noms
@@ -243,6 +250,11 @@ const créerNuée = async () => {
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
 
+  fermer();
+};
+
+// Fermer
+const fermer = () => {
   noms.value = {};
   descriptions.value = {};
   autorisation.value = 'IJPC';

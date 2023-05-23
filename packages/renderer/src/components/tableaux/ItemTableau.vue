@@ -41,7 +41,7 @@ import SérieJetons from '../communs/SérieJetons.vue';
 import CarteVariable from '../variables/CarteVariable.vue';
 import ItemVariable from '../variables/ItemVariable.vue';
 import JetonVariable from '../variables/JetonVariable.vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';

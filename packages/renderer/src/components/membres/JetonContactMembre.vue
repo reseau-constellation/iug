@@ -1,6 +1,6 @@
 <template>
   <v-chip
-    class="mx-2"
+    class="ma-2"
     variant="outlined"
     label
     :prepend-icon="icône"

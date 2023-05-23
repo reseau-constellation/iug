@@ -19,7 +19,7 @@
         <v-card-text>
           <v-window
             v-model="étape"
-            style="overflow-y: auto"
+            style="overflow-y: scroll"
           >
             <v-window-item :value="0">
               <v-select
@@ -142,7 +142,7 @@ const tableaux = computed(() => {
 
 // Options
 const langagesSupportés = ['ts', 'js'] as const;
-const langage = ref<(typeof langagesSupportés)[number]>('ts');
+const langage = ref<typeof langagesSupportés[number]>('ts');
 const itemsLangages = computed(() => {
   return langagesSupportés.map(l => ({
     value: l,

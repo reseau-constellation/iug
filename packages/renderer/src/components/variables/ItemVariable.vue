@@ -17,7 +17,7 @@ import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
 
 import {computed, inject, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {icôneCatégorieVariable} from '/@/utils';

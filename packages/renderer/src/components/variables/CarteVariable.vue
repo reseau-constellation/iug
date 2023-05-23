@@ -54,7 +54,7 @@ import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
 import type {règleVariable, règleVariableAvecId} from '@constl/ipa/dist/src/valid';
 import {computed, inject, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {ajusterTexteTraductible, icôneCatégorieVariable} from '/@/utils';
@@ -128,7 +128,6 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     descriptions: àAjouter,
   });
 };
-
 
 // Catégorie
 const icône = computed(() =>

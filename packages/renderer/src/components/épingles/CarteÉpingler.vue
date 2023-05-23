@@ -25,19 +25,22 @@
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
         <p class="mb-0 text-overline">
-          {{ t('épingler.dispositifsÉpingle') }}
+          {{ }}
         </p>
-        <v-radio-group v-model="typeDispositifs">
+        <v-radio-group
+          v-model="typeDispositifs"
+          :label="t('épingler.dispositifsÉpingle')"
+        >
           <v-radio
-            :label="t('épingler.AUCUN')"
+            :label="t('épingler.aucun')"
             value="AUCUN"
           />
           <v-radio
-            :label="t('épingler.TOUS')"
+            :label="t('épingler.tous')"
             value="TOUS"
           />
           <v-radio
-            :label="t('épingler.INSTALLÉ')"
+            :label="t('épingler.installé')"
             value="INSTALLÉ"
           />
           <v-radio
@@ -52,27 +55,25 @@
             :items="dispositifs || []"
             :disabled="!dispositifs"
             :loading="!dispositifs"
+            :label="t('épingler.indiceSélectionnerDispositif')"
             density="compact"
             variant="outlined"
             multiple
             chips
             closable-chips
           >
-            <template #chip="{ props, item }">
-              <v-chip
-                v-bind="props"
-                :prepend-avatar="item"
-                :text="item"
-              ></v-chip>
+            <template #chip="{ props: propsActivateur, item }">
+              <jeton-dispositif
+                v-bind="propsActivateur"
+                :id="item.title"
+              />
             </template>
 
-            <template #item="{ props, item }">
-              <v-list-item
-                v-bind="props"
-                :prepend-avatar="item?.raw?.avatar"
-                :title="item?.raw?.name"
-                :subtitle="item?.raw?.group"
-              ></v-list-item>
+            <template #item="{ props: propsActivateur, item }">
+              <item-dispositif
+                v-bind="propsActivateur"
+                :id="item.title"
+              />
             </template>
           </v-autocomplete>
         </v-expand-transition>
@@ -85,15 +86,15 @@
             :disabled="typeDispositifs === 'AUCUN'"
           >
             <v-radio
-              :label="t('épingler.AUCUN')"
+              :label="t('épingler.aucun')"
               value="AUCUN"
             />
             <v-radio
-              :label="t('épingler.TOUS')"
+              :label="t('épingler.tous')"
               value="TOUS"
             />
             <v-radio
-              :label="t('épingler.INSTALLÉ')"
+              :label="t('épingler.installé')"
               value="INSTALLÉ"
             />
             <v-radio
@@ -106,13 +107,28 @@
               v-show="typeDispositifsFichiers === 'SPÉCIFIQUES'"
               v-model="dispositifsFichiersSpécifiques"
               :items="dispositifs"
+              :label="t('épingler.indiceSélectionnerDispositif')"
               hide-details
               chips
-              deletable-chips
+              closable-chips
               density="compact"
               variant="outlined"
               multiple
-            />
+            >
+              <template #chip="{ props: propsActivateur, item }">
+                <jeton-dispositif
+                  v-bind="propsActivateur"
+                  :id="item.title"
+                />
+              </template>
+
+              <template #item="{ props: propsActivateur, item }">
+                <item-dispositif
+                  v-bind="propsActivateur"
+                  :id="item.title"
+                />
+              </template>
+            </v-autocomplete>
           </v-expand-transition>
         </span>
       </v-card-text>
@@ -151,10 +167,12 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {computed} from 'vue';
 import {type favoris} from '@constl/ipa';
-import {watchEffect} from 'vue';
+import { watch  } from 'vue';
+import JetonDispositif from './JetonDispositif.vue';
+import ItemDispositif from './ItemDispositif.vue';
 
 const props = defineProps({
   id: {
@@ -192,7 +210,7 @@ enregistrerÉcoute(
 );
 
 // Statut favoris
-const statutFavoris = ref();
+const statutFavoris = ref<favoris.ÉlémentFavoris>();
 enregistrerÉcoute(
   constl?.favoris?.suivreÉtatFavori({
     id: props.id,
@@ -200,7 +218,7 @@ enregistrerÉcoute(
   }),
 );
 
-watchEffect(() => {
+watch(statutFavoris, () => {
   if (statutFavoris.value) {
     if (
       typeof statutFavoris.value.dispositifs === 'string' &&
@@ -214,7 +232,6 @@ watchEffect(() => {
           ? [statutFavoris.value.dispositifs]
           : statutFavoris.value.dispositifs;
     }
-
     if (
       typeof statutFavoris.value.dispositifsFichiers === 'string' &&
       ['TOUS', 'INSTALLÉ', 'AUCUN'].includes(statutFavoris.value.dispositifsFichiers)
@@ -233,8 +250,9 @@ watchEffect(() => {
       typeDispositifsFichiers.value = 'AUCUN';
     }
   } else {
-    // On laisse typeDispositifsFichiers avec "INSTALLÉ" par défaut
     typeDispositifs.value = 'AUCUN';
+    // On laisse typeDispositifsFichiers avec "INSTALLÉ" par défaut
+    typeDispositifsFichiers.value = 'INSTALLÉ';
     dispositifsSpécifiques.value = [];
     dispositifsFichiersSpécifiques.value = [];
   }
@@ -253,6 +271,15 @@ const dispositifsFichiers = computed<favoris.typeDispositifs | undefined>(() => 
     ? dispositifsFichiersSpécifiques.value
     : typeDispositifsFichiers.value;
 });
+const ilYEuChangement = computed<boolean>(() => {
+  if (statutFavoris.value) {
+    return (dispositifsSélectionnés.value !== statutFavoris.value.dispositifs) || (
+      dispositifsFichiers.value !== statutFavoris.value.dispositifsFichiers
+    );
+  } else {
+    return typeDispositifs.value !== 'AUCUN';
+  }
+});
 const prêtÀÉpingler = computed<boolean>(() => {
   const dispositifsPrêts =
     typeDispositifs.value === 'SPÉCIFIQUES' ? !!dispositifsSpécifiques.value.length : true;
@@ -260,7 +287,7 @@ const prêtÀÉpingler = computed<boolean>(() => {
     typeDispositifsFichiers.value === 'SPÉCIFIQUES'
       ? !!dispositifsFichiersSpécifiques.value.length
       : true;
-  return dispositifsPrêts && dispositifsFichiersPrêts;
+  return dispositifsPrêts && dispositifsFichiersPrêts && ilYEuChangement.value;
 });
 
 // Sauvegarder

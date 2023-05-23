@@ -15,7 +15,7 @@
           {{ t('membres.confiance.titreCarte') }}
         </v-card-title>
       </v-card-item>
-      <v-card-text style="overflow-y: auto">
+      <v-card-text style="overflow-y: scroll">
         <p class="my-2">
           <jeton-membre :compte="id" />
         </p>
@@ -135,7 +135,7 @@ import type {infoBloqué} from '@constl/ipa/dist/src/reseau';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import {computed, inject, ref, watchEffect} from 'vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';

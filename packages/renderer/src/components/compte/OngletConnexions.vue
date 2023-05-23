@@ -71,7 +71,7 @@ import type ClientConstellation from '@constl/ipa/dist/src/client';
 import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
 
 import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';

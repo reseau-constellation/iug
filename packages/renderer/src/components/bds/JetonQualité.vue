@@ -29,7 +29,7 @@ import type {infoScore} from '@constl/ipa/dist/src/bds';
 import type ClientConstellation from '@constl/ipa/dist/src/client';
 
 import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/composables/utils';
+import {enregistrerÉcoute} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';

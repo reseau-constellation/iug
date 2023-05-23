@@ -1,5 +1,7 @@
-import {ref} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import type {Ref} from 'vue';
+import { utiliserÉtatThème } from '/@/état/thème';
+import { storeToRefs } from 'pinia';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg')>}} = {
@@ -54,21 +56,28 @@ const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg
   },
 };
 
-export const utiliserImagesDéco = function (thème = 'வவவ'): {
+export const utiliserImagesDéco = function (thème?: string): {
   obtImageDéco: (clef: string) => Ref<string | undefined>;
 } {
+  
   const obtImageDéco = (clef: string): Ref<string | undefined> => {
+    const étatThème = utiliserÉtatThème();
+    const { thèmeImages } = storeToRefs(étatThème);
     const imageDéco = ref<string>();
-    if (clef === 'profil') {
-      const options = ['profilFemme', 'profilHomme'];
-      // Dans le doute, on garde ça équitable :)
-      clef = options[Math.floor(Math.random() * options.length)];
-    }
-    if (imagesThème[clef]) {
-      (imagesThème[clef][thème] || Object.values(imagesThème[clef])[0]).then(
-        svg => (imageDéco.value = svg?.default),
-      );
-    }
+    const thèmeFinal = computed(()=>thème || thèmeImages.value);
+    
+    watchEffect(()=>{
+      if (clef === 'profil') {
+        const options = ['profilFemme', 'profilHomme'];
+        // Dans le doute, on garde ça équitable :)
+        clef = options[Math.floor(Math.random() * options.length)];
+      }
+      if (imagesThème[clef]) {
+        (imagesThème[clef][thèmeFinal.value] || Object.values(imagesThème[clef])[0]).then(
+          svg => (imageDéco.value = svg?.default),
+        );
+      }
+    });
     return imageDéco;
   };
 

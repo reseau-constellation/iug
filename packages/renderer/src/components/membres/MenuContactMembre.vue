@@ -28,9 +28,9 @@ import {computed} from 'vue';
 
 import {copier, ouvrirLien} from '/@/utils';
 
-import { utiliserNumération } from '/@/plugins/localisation/localisation';
+import {utiliserNumération} from '/@/plugins/localisation/localisation';
 import {obtIcôneContact} from './utils';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{type: string; contact: string}>();
 
@@ -59,17 +59,17 @@ const contacter = () => {
       ouvrirLien(`mailto://${props.contact}`);
       break;
     case 'whatsapp': {
-        const messageSalut = t('membres.menuContact.messageSalut');
-        ouvrirLien(`whatsapp://send?text=${messageSalut}&phone=${numéroLatin.value}`);
-        break;
+      const messageSalut = t('membres.menuContact.messageSalut');
+      ouvrirLien(`whatsapp://send?text=${messageSalut}&phone=${numéroLatin.value}`);
+      break;
     }
     case 'téléphone': {
-        ouvrirLien(`tel://${props.contact}`);
-        break;
+      ouvrirLien(`tel://${props.contact}`);
+      break;
     }
     case 'télégrame': {
-        ouvrirLien(`tg://resolve?phone=${numéroLatin.value}`);
-        break;
+      ouvrirLien(`tg://resolve?phone=${numéroLatin.value}`);
+      break;
     }
     default:
       break;
