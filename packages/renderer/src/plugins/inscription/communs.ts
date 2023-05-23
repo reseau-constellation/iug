@@ -17,7 +17,6 @@ import pinia from '../pinia';
 // Types
 import type {App} from 'vue';
 
-
 // À faire : https://rubenr.dev/en/pwa-vite/
 export function registerPlugins(app: App) {
   loadFonts();

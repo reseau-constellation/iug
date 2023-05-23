@@ -44,9 +44,7 @@
                 variant="outlined"
               >
                 <template #selection="{item}">
-                  <jeton-mot-clef
-                    :id="item.value"
-                  />
+                  <jeton-mot-clef :id="item.value" />
                 </template>
                 <template #item="{item, props: propsItemSelect}">
                   <item-mot-clef

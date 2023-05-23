@@ -8,7 +8,7 @@
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.couleurs") }}
+            {{ t('compte.onglets.thème.couleurs') }}
           </p>
           <v-divider class="mb-4" />
           <v-switch
@@ -27,14 +27,14 @@
             </template>
           </v-switch>
         </v-card>
-  
+
         <v-card
           flat
           width="300"
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.culture") }}
+            {{ t('compte.onglets.thème.culture') }}
           </p>
           <v-divider class="mb-4" />
           <v-radio-group
@@ -42,13 +42,13 @@
             :label="t('compte.options.thèmeImages')"
             class="mt-0"
           >
-            <v-radio 
+            <v-radio
               value="unDraw"
               :label="t('compte.options.unDraw')"
             />
-  
-            <v-radio 
-              value="வவவ" 
+
+            <v-radio
+              value="வவவ"
               label="வள்ளுவர் வள்ளலார் வட்டம்"
             />
           </v-radio-group>
@@ -60,7 +60,7 @@
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.langue") }}
+            {{ t('compte.onglets.thème.langue') }}
           </p>
           <v-divider class="mb-4" />
           <v-autocomplete
@@ -73,17 +73,15 @@
             prepend-icon="mdi-earth"
             class="pb-5"
           >
-            <template #item="{ item, props }">
+            <template #item="{item, props}">
               <item-langue
                 v-bind="props"
                 :code="item.value"
                 :selectionnee="item.value === langue"
               />
             </template>
-            <template #selection="{ item }">
-              <jeton-langue 
-                :code="item.value"
-              />
+            <template #selection="{item}">
+              <jeton-langue :code="item.value" />
             </template>
           </v-autocomplete>
           <!--<v-autocomplete
@@ -122,12 +120,12 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, watch } from 'vue';
+import {ref, watchEffect, watch} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { utiliserLangues } from '/@/plugins/localisation/localisation';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
-import { utiliserÉtatThème } from '/@/état/thème';
+import {utiliserÉtatThème} from '/@/état/thème';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
@@ -143,11 +141,11 @@ const couleurThème = ref(état.couleur);
 
 const thèmeImages = ref(état.thèmeImages);
 
-watchEffect(()=>{
+watchEffect(() => {
   état.changerCouleur(couleurThème.value);
 });
 
-watchEffect(()=>{
+watchEffect(() => {
   état.thèmeImages = thèmeImages.value;
 });
 
@@ -155,12 +153,10 @@ watchEffect(()=>{
 const langueChoisie = ref(langue.value);
 const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
-watchEffect(()=>{
+watchEffect(() => {
   langueChoisie.value = langue.value;
 });
-watch(langueChoisie, ()=>{
-  if (langue.value !== langueChoisie.value)
-    choisirLangues(langueChoisie.value);
+watch(langueChoisie, () => {
+  if (langue.value !== langueChoisie.value) choisirLangues(langueChoisie.value);
 });
-
 </script>

@@ -6,7 +6,7 @@
     :auteurs="auteurs"
     @ajuster-noms="nms => ajusterNoms(nms)"
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
-    @effacer="effacerNuée"
+    @effacer="effacerNuée;"
   >
     <template #activator="{props: propsActivateur}">
       <slot

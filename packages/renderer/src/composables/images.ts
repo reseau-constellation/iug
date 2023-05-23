@@ -1,7 +1,7 @@
 import {computed, ref, watchEffect} from 'vue';
 import type {Ref} from 'vue';
-import { utiliserÉtatThème } from '/@/état/thème';
-import { storeToRefs } from 'pinia';
+import {utiliserÉtatThème} from '/@/état/thème';
+import {storeToRefs} from 'pinia';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg')>}} = {
@@ -59,14 +59,13 @@ const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg
 export const utiliserImagesDéco = function (thème?: string): {
   obtImageDéco: (clef: string) => Ref<string | undefined>;
 } {
-  
   const obtImageDéco = (clef: string): Ref<string | undefined> => {
     const étatThème = utiliserÉtatThème();
-    const { thèmeImages } = storeToRefs(étatThème);
+    const {thèmeImages} = storeToRefs(étatThème);
     const imageDéco = ref<string>();
-    const thèmeFinal = computed(()=>thème || thèmeImages.value);
-    
-    watchEffect(()=>{
+    const thèmeFinal = computed(() => thème || thèmeImages.value);
+
+    watchEffect(() => {
       if (clef === 'profil') {
         const options = ['profilFemme', 'profilHomme'];
         // Dans le doute, on garde ça équitable :)
