@@ -2,23 +2,25 @@
   <v-chip variant="outlined">
     {{ nom || code }}
 
-    <v-icon
-      v-if="progrèsPourcentage === 1"
-      end
-      color="primary"
-    >
-      mdi-check-circle
-    </v-icon>
-    <v-icon
-      v-else
-      end
-    >
-      <v-progress-circular
-        :model-value="progrèsPourcentage * 100"
-        size="15"
+    <template #append>
+      <v-icon
+        v-if="progrèsPourcentage === 1"
+        end
         color="primary"
-      ></v-progress-circular>
-    </v-icon>
+      >
+        mdi-check-circle
+      </v-icon>
+      <v-icon
+        v-else
+        end
+      >
+        <v-progress-circular
+          :model-value="progrèsPourcentage * 100"
+          size="15"
+          color="primary"
+        ></v-progress-circular>
+      </v-icon>
+    </template>
   </v-chip>
 </template>
 <script setup lang="ts">
