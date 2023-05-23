@@ -21,12 +21,6 @@ export const utiliserÉtatThème = defineStore('thème', {
             langue: [],
         };
     },
-    actions: {
-        changerCouleur(couleur: string) {
-            this.couleur = couleur;
-            // changerThèmeVuetify(couleur);
-        },
-    },
     persist: {
         afterRestore: (ctx) => {
             changerThèmeVuetify(ctx.store.$state.couleur);

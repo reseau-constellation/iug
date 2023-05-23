@@ -8,7 +8,7 @@
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.couleurs") }}
+            {{ t("pages.compte.options.couleurs") }}
           </p>
           <v-divider class="mb-4" />
           <v-switch
@@ -17,7 +17,7 @@
             true-value="dark"
             false-value="light"
             inset
-            :label="t('compte.options.thèmeNuit')"
+            :label="t('pages.compte.options.thèmeNuit')"
           >
             <template #prepend>
               <v-icon
@@ -34,22 +34,22 @@
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.culture") }}
+            {{ t("pages.compte.options.culture") }}
           </p>
           <v-divider class="mb-4" />
           <v-radio-group
             v-model="thèmeImages"
-            :label="t('compte.options.thèmeImages')"
+            :label="t('pages.compte.options.thèmeImages')"
             class="mt-0"
           >
             <v-radio 
               value="unDraw"
-              :label="t('compte.options.unDraw')"
+              :label="t('pages.compte.options.unDraw')"
             />
   
             <v-radio 
               value="வவவ" 
-              label="வள்ளுவர் வள்ளலார் வட்டம்"
+              :label="t('pages.compte.options.வவவ')"
             />
           </v-radio-group>
         </v-card>
@@ -60,13 +60,13 @@
           class="mx-3 my-3"
         >
           <p class="px-0 mb-0 text-overline">
-            {{ t("compte.onglets.thème.langue") }}
+            {{ t("pages.compte.options.langue") }}
           </p>
           <v-divider class="mb-4" />
           <v-autocomplete
             v-model="langueChoisie"
             :items="codesLanguesDisponibles"
-            :label="t('compte.options.langue')"
+            :label="t('pages.compte.options.langue')"
             variant="outlined"
             density="compact"
             hide-details
@@ -123,6 +123,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watchEffect, watch } from 'vue';
+import { useTheme } from 'vuetify';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import { utiliserLangues } from '/@/plugins/localisation/localisation';
@@ -138,13 +139,14 @@ const {t} = useI18n();
 
 // Thème
 const état = utiliserÉtatThème();
+const thème = useTheme();
 
 const couleurThème = ref(état.couleur);
 
 const thèmeImages = ref(état.thèmeImages);
-
 watchEffect(()=>{
-  état.changerCouleur(couleurThème.value);
+  état.couleur = couleurThème.value;
+  thème.global.name.value = couleurThème.value;
 });
 
 watchEffect(()=>{

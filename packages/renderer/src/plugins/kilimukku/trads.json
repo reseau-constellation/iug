@@ -170,6 +170,17 @@
           "titreSFIP": "ச. க. மு இணைப்புகள்",
           "titreConstellation": "விண்மீன் இணைப்புகள்",
           "dispositifs": "{nDispositifs} சாதனங்கள், இணையத்தில் {nDispositifsEnLigne}"
+        },
+        "options": {
+          "thèmeNuit": "ஒளி/இருள்",
+          "thèmeImages": "படத்தின் வடிவூட்டம்",
+          "langue": "இடைமுக மொழி",
+          "numération": "எண் அமைப்பு",
+          "unDraw":"unDraw",
+          "வவவ": "வள்ளுவர் வள்ளலார் வட்டம்",
+          "entête": "வடிவூட்டம் மற்றும் மொழிகள்",
+          "couleurs": "வண்ணங்கள்",
+          "culture": "கலாச்சாரம்"
         }
       },
       "mesDonnées": {
