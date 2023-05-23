@@ -43,9 +43,8 @@
                 :items="résultatRechercheMotsClefs"
                 variant="outlined"
               >
-                <template #selection="{item, propsSélectionSelect}">
+                <template #selection="{item}">
                   <jeton-mot-clef
-                    v-bind="propsSélectionSelect"
                     :id="item.value"
                   />
                 </template>
@@ -103,7 +102,7 @@ const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 const props = defineProps<{originaux: string[]}>();
-const émettre = defineEmits<{sauvegarder: (motsClefs: string[]) => void}>();
+const émettre = defineEmits<{(é: 'sauvegarder', motsClefs: string[]): void}>();
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -120,7 +119,7 @@ const ajouter = (idMotClef?: string) => {
   if (idMotClef) finaux.value.push(idMotClef);
 };
 const sauvegarder = () => {
-  émettre.sauvegarder(finaux.value);
+  émettre('sauvegarder', finaux.value);
 };
 
 // Ajout de mots-clef
