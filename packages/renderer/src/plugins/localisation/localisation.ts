@@ -138,6 +138,18 @@ export const utiliserNumération = () => {
     if (fOublier) fOublier();
   });
 
+  const systèmesNumération = ref(ennikkai.முறைமைகள்);
+  let fOublierSystèmesNumération: (() => void) | undefined;
+  watchEffect(() => {
+    fOublierSystèmesNumération = ennikkai.முறைமைகளை_பின்பற்று({
+      செ: மு => (systèmesNumération.value = மு),
+    });
+  });
+
+  onUnmounted(() => {
+    if (fOublierSystèmesNumération) fOublierSystèmesNumération();
+  });
+
   const numération = computed<string>(() => {
     return locales.locales.sélectionNumération.value || numérationAuto.value || 'latin';
   });
@@ -155,11 +167,11 @@ export const utiliserNumération = () => {
     });
   }
 
-  const formatterChiffre = (chiffre: number | Ref<number>): Ref<string> => {
+  const formatterChiffre = (chiffre: number | Ref<number>, système?: string): Ref<string> => {
     const chiffreFormatté = computed<string>(() =>
       ennikkai.உரைக்கு({
         எண்: typeof chiffre === 'number' ? chiffre : chiffre.value,
-        மொழி: numération.value,
+        மொழி: système || numération.value,
       }),
     );
     return chiffreFormatté;
@@ -199,6 +211,7 @@ export const utiliserNumération = () => {
 
   return {
     numération,
+    systèmesNumération,
     sélectionNumération: locales?.locales.sélectionNumération,
     formatterChiffre,
     formatterNuméro,
