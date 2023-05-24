@@ -79,9 +79,7 @@
                   variant="outlined"
                 >
                   <template #selection="{item}">
-                    <JetonMembre
-                      :compte="item.value"
-                    />
+                    <JetonMembre :compte="item.value" />
                   </template>
                   <template #item="{item, props}">
                     <ItemMembre

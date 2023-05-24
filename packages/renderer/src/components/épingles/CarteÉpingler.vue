@@ -25,7 +25,7 @@
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
         <p class="mb-0 text-overline">
-          {{ }}
+          {{}}
         </p>
         <v-radio-group
           v-model="typeDispositifs"
@@ -62,14 +62,14 @@
             chips
             closable-chips
           >
-            <template #chip="{ props: propsActivateur, item }">
+            <template #chip="{props: propsActivateur, item}">
               <jeton-dispositif
                 v-bind="propsActivateur"
                 :id="item.title"
               />
             </template>
 
-            <template #item="{ props: propsActivateur, item }">
+            <template #item="{props: propsActivateur, item}">
               <item-dispositif
                 v-bind="propsActivateur"
                 :id="item.title"
@@ -115,14 +115,14 @@
               variant="outlined"
               multiple
             >
-              <template #chip="{ props: propsActivateur, item }">
+              <template #chip="{props: propsActivateur, item}">
                 <jeton-dispositif
                   v-bind="propsActivateur"
                   :id="item.title"
                 />
               </template>
 
-              <template #item="{ props: propsActivateur, item }">
+              <template #item="{props: propsActivateur, item}">
                 <item-dispositif
                   v-bind="propsActivateur"
                   :id="item.title"
@@ -170,7 +170,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {enregistrerÉcoute} from '/@/components/utils';
 import {computed} from 'vue';
 import {type favoris} from '@constl/ipa';
-import { watch  } from 'vue';
+import {watch} from 'vue';
 import JetonDispositif from './JetonDispositif.vue';
 import ItemDispositif from './ItemDispositif.vue';
 
@@ -273,7 +273,8 @@ const dispositifsFichiers = computed<favoris.typeDispositifs | undefined>(() => 
 });
 const ilYEuChangement = computed<boolean>(() => {
   if (statutFavoris.value) {
-    return (dispositifsSélectionnés.value !== statutFavoris.value.dispositifs) || (
+    return (
+      dispositifsSélectionnés.value !== statutFavoris.value.dispositifs ||
       dispositifsFichiers.value !== statutFavoris.value.dispositifsFichiers
     );
   } else {
