@@ -35,7 +35,7 @@
       />
     </h1>
     <modifier-info-contact-membre
-      v-for="[type, contact] in Object.entries(contacts || {})"
+      v-for="{type, contact} in (contacts || [])"
       :key="contact + '|' + type"
       :type="type"
       :valeur-avant="contact"
@@ -83,7 +83,7 @@ import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -100,7 +100,7 @@ import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -162,7 +162,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Contacts
-const contacts = ref<{[type: string]: string}>();
+const contacts = ref<{ type: string; contact: string }[]>();
 enregistrerÉcoute(
   constl?.profil?.suivreContacts({
     f: x => (contacts.value = x),

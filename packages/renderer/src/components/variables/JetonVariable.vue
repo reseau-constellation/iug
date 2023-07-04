@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
 
 import {computed, inject, ref} from 'vue';
@@ -23,7 +23,7 @@ import {icôneCatégorieVariable} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

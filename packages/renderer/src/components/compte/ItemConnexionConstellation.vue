@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
 
 import {computed, inject, ref} from 'vue';
@@ -35,7 +35,7 @@ import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
 
 const props = defineProps<{compte: string; dispositifs: statutDispositif[]}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

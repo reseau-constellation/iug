@@ -33,7 +33,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
 
 import {computed, inject, ref} from 'vue';
@@ -48,7 +48,7 @@ const émettre = defineEmits<{
   (e: 'effacer'): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Actions
 const utiliser = () => {

@@ -328,7 +328,7 @@ import {useDisplay} from 'vuetify';
 import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
 
 import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -340,7 +340,7 @@ import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();

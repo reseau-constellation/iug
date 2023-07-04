@@ -16,7 +16,7 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {computed, inject, ref, onMounted} from 'vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
@@ -29,7 +29,7 @@ const props = defineProps<{
   statut: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom
 const {traduireNom} = utiliserLangues();

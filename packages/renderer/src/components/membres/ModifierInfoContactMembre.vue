@@ -65,7 +65,7 @@
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify/lib/framework.mjs';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {obtIcôneContact} from './utils';
 import {computed} from 'vue';
 import {watchEffect} from 'vue';
@@ -74,7 +74,7 @@ const props = defineProps<{type: string; valeurAvant: string}>();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

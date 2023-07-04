@@ -3,7 +3,7 @@
     <template #activator="{props: propsComposante}">
       <slot
         name="activator"
-        v-bind="{propsComposante}"
+        v-bind="{props: propsComposante}"
       ></slot>
 
       <v-card
@@ -107,7 +107,6 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {isNode} from '@babel/types';
 import type {
   XLSXParsingOptions,
   fréquence as TypeFréquence,
@@ -119,11 +118,11 @@ import type {
   SpécificationImporter,
   SourceDonnéesImportationFichier,
 } from '@constl/ipa/dist/src/automatisation';
-import {obtDonnéesImportation} from '@constl/ipa/dist/src/automatisation';
+
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
 import {computed, ref, inject} from 'vue';
-import {isElectronMain} from 'wherearewe';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import {isElectronMain, isNode} from 'wherearewe';
+import type {client} from '@constl/ipa';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 
@@ -132,11 +131,11 @@ const {t} = useI18n();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const props = defineProps<{
   type?: 'importation' | 'exportation';
-  automatiser: boolean;
+  automatiser?: boolean;
   infoObjet?: {id: string; typeObjet: 'bd' | 'tableau' | 'projet' | 'nuée'};
 }>();
 
@@ -257,7 +256,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
     case 'formatDocExportation':
       return {actif: !!formatDocExportation.value, visible: true};
     case 'voulezVousAutomatiser':
-      return {actif: !!aussiAjouterAutomatisation.value, visible: true};
+      return {actif: aussiAjouterAutomatisation.value !== undefined, visible: true};
     case 'fréquence':
       return {actif: !!fréquence.value, visible: true};
     case 'dispositif':
@@ -482,7 +481,7 @@ const formatDocExportation = ref<formatTélécharger>();
 const fréquence = ref<TypeFréquence>();
 const dispositifAutomatisation = ref<string>();
 
-const aussiAjouterAutomatisation = ref(false);
+const aussiAjouterAutomatisation = ref<boolean>();
 
 // Confirmer
 const enConfirmation = ref(false);
@@ -538,15 +537,18 @@ const confirmer = async () => {
       if (!dispositifAutomatisation.value) throw new Error('Dispositif importation non défini.');
       const spécificationImporter: SpécificationImporter = {
         type: 'importation',
-        id: Math.random().toString(), // Sera ignoré de toute façon, car on le l'ajoute pas à une automatisation ici.
+        id: Math.random().toString(), // Sera ignoré de toute façon, car on le l'ajoute pas à une automatisation ici. On devrait revoir les types !
         idTableau: idObjet.value,
         dispositif: dispositifAutomatisation.value,
         source: sourceImportation.value,
       };
-      await constl?.tableaux?.importerDonnées({
-        idTableau: idObjet.value,
-        données: await obtDonnéesImportation(spécificationImporter),
-      });
+      const données = await constl?.automatisations?.obtDonnéesImportation(spécificationImporter);
+      if (données) {
+        await constl?.tableaux?.importerDonnées({
+          idTableau: idObjet.value,
+          données,
+        });
+      }
     } else if (cheminement.value === 'exportation') {
       if (!formatDocExportation.value) throw new Error('Format document exportation non défini.');
 

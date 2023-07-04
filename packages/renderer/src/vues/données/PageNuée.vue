@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -18,7 +18,7 @@ import ExporterCode from '/@/components/nuées/ExporterCode.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

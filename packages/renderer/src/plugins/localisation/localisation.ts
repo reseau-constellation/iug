@@ -1,4 +1,4 @@
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import type {App, Ref, ComputedRef} from 'vue';
 import {onUnmounted} from 'vue';
 import Cookies from 'js-cookie';
@@ -7,11 +7,11 @@ import {எண்ணிக்கை} from 'ennikkai';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 
-const créerNuchabäl = ({constellation}: {constellation?: ClientConstellation}): Nuchabäl => {
+const créerNuchabäl = ({constellation}: {constellation?: client.ClientConstellation}): Nuchabäl => {
   return new Nuchabäl({chumil: constellation});
 };
 
-const créerEnnikai = ({constellation}: {constellation?: ClientConstellation}): எண்ணிக்கை => {
+const créerEnnikai = ({constellation}: {constellation?: client.ClientConstellation}): எண்ணிக்கை => {
   return new எண்ணிக்கை({விண்மீன்: constellation});
 };
 

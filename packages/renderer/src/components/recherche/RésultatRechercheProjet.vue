@@ -52,7 +52,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {
   infoAuteur,
   infoRésultatRecherche,
@@ -81,7 +81,7 @@ const props = defineProps<{
   >;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {traduireNom} = utiliserLangues();
 const {useI18n} = கிளிமூக்கை_உபயோகி();

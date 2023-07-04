@@ -28,7 +28,7 @@
       {{
         t(
           `variables.catégories.${
-            catégorie.type === 'simple' ? catégorie.catégorie : catégorie.catégorieBase
+            catégorie.catégorie
           }`,
         )
       }}
@@ -48,7 +48,7 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
 import type {règleVariable, règleVariableAvecId} from '@constl/ipa/dist/src/valid';
@@ -63,7 +63,7 @@ import ItemRègle from '/@/components/règles/ItemRègle.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

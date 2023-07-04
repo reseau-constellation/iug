@@ -3,6 +3,7 @@ import type {
   schémaRetourFonctionRechercheParN,
   schémaRetourFonctionRechercheParProfondeur,
 } from '@constl/ipa/dist/src/utils';
+
 import EventEmitter, {once} from 'events';
 import type {Ref} from 'vue';
 import {onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';

@@ -28,7 +28,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur, infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
 
 import {computed, inject, ref} from 'vue';
@@ -42,7 +42,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();
@@ -59,7 +59,7 @@ const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
   constl?.motsClefs?.suivreNomsMotClef({
-    id: props.résultat.id,
+    idMotClef: props.résultat.id,
     f: x => (noms.value = x),
   }),
 );
@@ -70,7 +70,7 @@ const descriptionTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
   constl?.motsClefs?.suivreDescriptionsMotClef({
-    id: props.résultat.id,
+    idMotClef: props.résultat.id,
     f: x => (descriptions.value = x),
   }),
 );

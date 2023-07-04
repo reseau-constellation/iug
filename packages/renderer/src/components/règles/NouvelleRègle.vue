@@ -32,6 +32,7 @@
                   {{ t('règles.nouvelleRègle.règleExiste') }}
                 </v-btn>
                 <v-btn
+                  :disabled="!règleBornePossible"
                   class="ma-3"
                   variant="outlined"
                   @click="() => suivreCheminementRègleBorne()"
@@ -46,6 +47,82 @@
                   {{ t('règles.nouvelleRègle.règleCatégorique') }}
                 </v-btn>
               </div>
+            </v-window-item>
+            <v-window-item :value="1">
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="() => utiliserBorne('fixe')"
+              >
+                {{ t('règles.nouvelleRègle.borneFixes') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="() => utiliserBorne('dynamiqueVariable')"
+              >
+                {{ t('règles.nouvelleRègle.borneDynamiqueVariable') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                :disabled="!idTableauPourRègle"
+                @click="() => utiliserBorne('dynamiqueColonne')"
+              >
+                {{ t('règles.nouvelleRègle.borneDynamiqueColonne') }}
+              </v-btn>
+            </v-window-item>
+            <v-window-item :value="2">
+              <v-select
+                v-model="opBorne"
+                :items="['>', '>=', '<', '<=']"
+              />
+              <v-input
+                v-if="typeBornes === 'fixe'"
+                v-model="valBorneFixe"
+              />
+              <SélecteurVariable
+                v-else-if="typeBornes === 'dynamiqueVariable'"
+                @selectionnee="x => (valBorneDynamiqueVariable = x)"
+              />
+              <SélecteurColonne
+                v-else-if="typeBornes === 'dynamiqueColonne'"
+                :id-tableau="idTableauPourRègle"
+                :tableau-changeable="false"
+                @selectionnee="x => (valBorneDynamiqueColonne = x.idColonne)"
+              />
+            </v-window-item>
+            <v-window-item :value="3">
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="() => utiliserCatégorie('fixe')"
+              >
+                {{ t('règles.nouvelleRègle.catégoriesFixes') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                :disabled="!idTableauPourRègle"
+                @click="() => utiliserCatégorie('dynamique')"
+              >
+                {{ t('règles.nouvelleRègle.catégoriesDynamique') }}
+              </v-btn>
+            </v-window-item>
+            <v-window-item :value="4">
+              <v-combobox
+                v-if="typeCatégorie === 'fixe'"
+                v-model="valCatégorieFixe"
+                multiple
+                chips
+                clearable
+              />
+              <SélecteurColonne
+                v-else
+                :id-tableau="idTableauPourRègle"
+                :tableau-changeable="true"
+                @selectionnee="x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})"
+              />
             </v-window-item>
             <v-window-item :value="5">
               <div class="text-center">
@@ -109,41 +186,36 @@ import type {
   règleVariable,
   typeOp,
 } from '@constl/ipa/dist/src/valid';
+import type {client} from '@constl/ipa';
+import type {catégorieBaseVariables} from '@constl/ipa/dist/src/variables';
+
 import {computed, inject, ref} from 'vue';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
-import {useI18n} from 'vue-i18n';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+
+import SélecteurVariable from '/@/components/variables/SélecteurVariable.vue';
+import SélecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
 
 const props = defineProps<{
   source:
-    | {type: 'variable'; idVariable: string}
-    | {type: 'tableau'; idTableau: string; idColonne: string};
+    | {type: 'variable'; idVariable?: string}
+    | {type: 'tableau'; idTableau: string; idColonne?: string};
+  categorieVariable?: catégorieBaseVariables;
+}>();
+const émettre = defineEmits<{
+  (é: 'sauvegarder', règle: règleVariable): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
+const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 // Navigation
 const dialogue = ref(false);
-const titreCarte = computed(() => {
-  const é = listeÉtapes[étape.value];
-  switch (é) {
-    default:
-      return '';
-  }
-});
-
-const sousTitreCarte = computed(() => {
-  const é = listeÉtapes[étape.value];
-  switch (é) {
-    default:
-      return '';
-  }
-});
-
-// Navigation
 const étape = ref(0);
+
 const listeÉtapes = [
   'TypeRègle',
   'BorneFixeOuDynamique',
@@ -165,6 +237,46 @@ const suivreCheminementRègleCatégorique = () => {
   cheminement.value = 'catégorique';
   étape.value = listeÉtapes.indexOf('CatégorieFixeOuDynamique');
 };
+
+const titreCarte = computed(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'BorneFixeOuDynamique':
+      return t('règles.nouvelleRègle.titreBorneFixeOuDynamique');
+    case 'CatégorieFixeOuDynamique':
+      return t('règles.nouvelleRègle.titreCatégorieFixeOuDynamique');
+    case 'TypeRègle':
+      return t('règles.nouvelleRègle.titreTypeRègle');
+    case 'Confirmer':
+      return t('règles.nouvelleRègle.titreConfirmer');
+    case 'ValeurBorne':
+      return t('règles.nouvelleRègle.titreValeurBorne');
+    case 'ValeurCatégorie':
+      return t('règles.nouvelleRègle.titreValeurCatégorie');
+    default:
+      return '';
+  }
+});
+
+const sousTitreCarte = computed(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    case 'BorneFixeOuDynamique':
+      return t('règles.nouvelleRègle.sousTitreBorneFixeOuDynamique');
+    case 'CatégorieFixeOuDynamique':
+      return t('règles.nouvelleRègle.sousTitreCatégorieFixeOuDynamique');
+    case 'TypeRègle':
+      return t('règles.nouvelleRègle.sousTitreTypeRègle');
+    case 'Confirmer':
+      return t('règles.nouvelleRègle.sousTitreConfirmer');
+    case 'ValeurBorne':
+      return t('règles.nouvelleRègle.sousTitreValeurBorne');
+    case 'ValeurCatégorie':
+      return t('règles.nouvelleRègle.sousTitreValeurCatégorie');
+    default:
+      return '';
+  }
+});
 
 const suivant = () => {
   const é = listeÉtapes[étape.value];
@@ -255,8 +367,22 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   }
 });
 
+// Id tableau, s'il existe
+const idTableauPourRègle = computed(() => {
+  return props.source.type === 'tableau' ? props.source.idTableau : undefined;
+});
+
 // Règle bornes
+const règleBornePossible = computed(
+  () => props.categorieVariable === 'numérique' || props.categorieVariable === 'horoDatage',
+);
 const typeBornes = ref<'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe'>();
+
+const utiliserBorne = (type: 'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe') => {
+  typeBornes.value = type;
+  suivant();
+};
+
 const opBorne = ref<typeOp>();
 const valBorneFixe = ref<number>();
 const valBorneDynamiqueVariable = ref<string>();
@@ -267,17 +393,31 @@ const typeCatégorie = ref<'dynamique' | 'fixe'>();
 const valCatégorieFixe = ref<élémentsBd[]>();
 const valCatégorieDynamique = ref<{tableau: string; colonne: string}>();
 
+const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
+  typeCatégorie.value = type;
+  suivant();
+};
+
 // Confirmer
 const enCréation = ref(false);
 const ajouterRègle = async (règle: règleVariable) => {
   if (props.source.type === 'variable') {
     const {idVariable} = props.source;
+    // Si la variable n'est pas encore créée, renvoyer tout simplement la spécification de la règle
+    if (!idVariable) return émettre('sauvegarder', règle);
+
+    // Sinon, ajouter la règle directement
     await constl?.variables?.ajouterRègleVariable({
       idVariable,
       règle,
     });
   } else {
     const {idTableau, idColonne} = props.source;
+
+    // Si la colonne n'est pas encore créée, renvoyer tout simplement la spécification de la règle
+    if (!idColonne) return émettre('sauvegarder', règle);
+
+    // Sinon, ajouter la règle directement
     await constl?.tableaux?.ajouterRègleTableau({
       idTableau,
       idColonne,
@@ -300,7 +440,7 @@ const confirmer = async () => {
     let détails: détailsRègleBornes;
     switch (typeBornes.value) {
       case 'fixe': {
-        if (!valBorneFixe.value) throw new Error('Valeur borne fixe non défini');
+        if (!valBorneFixe.value) throw new Error('Valeur borne fixe non définie');
         const détailsBorne: détailsRègleBornesFixe = {
           type: 'fixe',
           op: opBorne.value,
@@ -311,7 +451,7 @@ const confirmer = async () => {
       }
       case 'dynamiqueColonne': {
         if (!valBorneDynamiqueColonne.value)
-          throw new Error('Valeur borne dynamique colonne non défini');
+          throw new Error('Valeur borne dynamique colonne non définie');
         const détailsBorne: détailsRègleBornesDynamiqueColonne = {
           type: 'dynamiqueColonne',
           op: opBorne.value,
@@ -322,7 +462,7 @@ const confirmer = async () => {
       }
       case 'dynamiqueVariable': {
         if (!valBorneDynamiqueVariable.value)
-          throw new Error('Valeur borne dynamique variable non défini');
+          throw new Error('Valeur borne dynamique variable non définie');
         const détailsBorne: détailsRègleBornesDynamiqueVariable = {
           type: 'dynamiqueVariable',
           op: opBorne.value,
@@ -343,7 +483,7 @@ const confirmer = async () => {
     let détails: détailsRègleValeurCatégorique;
     switch (typeCatégorie.value) {
       case 'fixe': {
-        if (!valCatégorieFixe.value) throw new Error('Valeur borne fixe non défini');
+        if (!valCatégorieFixe.value) throw new Error('Valeur borne fixe non définie');
         const détailsBorne: détailsRègleValeurCatégoriqueFixe = {
           type: 'fixe',
           options: valCatégorieFixe.value,
@@ -353,7 +493,7 @@ const confirmer = async () => {
       }
       case 'dynamique': {
         if (!valCatégorieDynamique.value)
-          throw new Error('Valeur borne dynamique colonne non défini');
+          throw new Error('Valeur borne dynamique colonne non définie');
         const détailsBorne: détailsRègleValeurCatégoriqueDynamique = {
           type: 'dynamique',
           ...valCatégorieDynamique.value,

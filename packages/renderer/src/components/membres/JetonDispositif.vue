@@ -2,10 +2,10 @@
   <v-chip :prepend-icon="icôneDispositif">{{ nomDispositif }}</v-chip>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
-import { obtIcôneDispositifDeType, utiliserNomEtTypeDispositif } from './utils';
+import {computed} from 'vue';
+import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
 
-const props = defineProps<{idDispositif: string, idCompte?: string}>();
+const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
@@ -17,5 +17,4 @@ const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
 const icôneDispositif = computed(() => {
   return obtIcôneDispositifDeType(typeDispositif.value);
 });
-
 </script>

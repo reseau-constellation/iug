@@ -44,7 +44,7 @@ const icône = computed(() => {
 });
 
 const autoContactable = computed(() => {
-  return ['télégramme', 'téléphone', 'courriel', 'whatsapp'].includes(props.type);
+  return ['siteInternet', 'télégramme', 'téléphone', 'courriel', 'whatsapp'].includes(props.type);
 });
 
 const copierContact = async () => {
@@ -55,6 +55,9 @@ const numéroLatin = formatterNuméro(props.contact, 'latin');
 
 const contacter = () => {
   switch (props.type) {
+    case 'siteInternet':
+      ouvrirLien(props.contact);
+      break;
     case 'courriel':
       ouvrirLien(`mailto://${props.contact}`);
       break;

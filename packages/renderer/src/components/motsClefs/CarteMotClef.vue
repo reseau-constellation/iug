@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -27,13 +27,13 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom mot-clef
 const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
   constl?.motsClefs?.suivreNomsMotClef({
-    id: props.id,
+    idMotClef: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -44,12 +44,12 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   });
   for (const langue of àEffacer) {
     await constl?.motsClefs?.effacerNomMotClef({
-      id: props.id,
+      idMotClef: props.id,
       langue,
     });
   }
-  return await constl?.motsClefs?.ajouterNomsMotClef({
-    id: props.id,
+  return await constl?.motsClefs?.sauvegarderNomsMotClef({
+    idMotClef: props.id,
     noms: àAjouter,
   });
 };
@@ -59,7 +59,7 @@ const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
   constl?.motsClefs?.suivreDescriptionsMotClef({
-    id: props.id,
+    idMotClef: props.id,
     f: x => (descriptions.value = x),
   }),
 );
@@ -75,8 +75,8 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
       langue,
     });
   }
-  return await constl?.motsClefs?.ajouterDescriptionsMotClef({
-    id: props.id,
+  return await constl?.motsClefs?.sauvegarderDescriptionsMotClef({
+    idMotClef: props.id,
     descriptions: àAjouter,
   });
 };
@@ -92,6 +92,6 @@ enregistrerÉcoute(
 
 // Effacer
 const effacerMotClef = async () => {
-  await constl?.motsClefs?.effacerMotClef({id: props.id});
+  await constl?.motsClefs?.effacerMotClef({idMotClef: props.id});
 };
 </script>

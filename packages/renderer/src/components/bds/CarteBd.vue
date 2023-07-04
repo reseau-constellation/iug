@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
 
@@ -146,18 +146,19 @@ import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
-import GérerMotsClefsObjet from '../motsClefs/GérerMotsClefsObjet.vue';
-import DivisionCarte from '../communs/DivisionCarte.vue';
-import JetonRéplications from '../communs/JetonRéplications.vue';
-import JetonQualité from './JetonQualité.vue';
+import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
+import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
+import JetonRéplications from '/@/components/communs/JetonRéplications.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import DialogueLicence from '../licences/DialogueLicence.vue';
+import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
+import JetonQualité from './JetonQualitéBd.vue';
+
 import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

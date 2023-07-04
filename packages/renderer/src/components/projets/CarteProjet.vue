@@ -10,7 +10,7 @@
   ></base-carte-objet>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import {inject, ref} from 'vue';
 
@@ -20,7 +20,7 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom projet
 const noms = ref<{[langue: string]: string}>({});

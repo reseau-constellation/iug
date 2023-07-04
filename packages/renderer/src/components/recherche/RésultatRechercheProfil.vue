@@ -35,7 +35,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
 
 import {computed, inject, ref} from 'vue';
@@ -51,7 +51,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();

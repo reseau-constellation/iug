@@ -13,7 +13,7 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoRéplications} from '@constl/ipa/dist/src/reseau';
 
 import {computed, inject, ref} from 'vue';
@@ -24,7 +24,7 @@ import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

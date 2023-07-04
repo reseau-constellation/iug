@@ -59,6 +59,9 @@
                       v-bind="propsActivateur"
                       prepend-icon="mdi-pin"
                     >
+                      <template #prepend>
+                        <IcôneEpingle :id="id"></IcôneEpingle>
+                      </template>
                       <v-list-item-title>{{ t('communs.épingler') }}</v-list-item-title>
                     </v-list-item>
                   </template>
@@ -150,7 +153,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 
 import {computed, ref, inject} from 'vue';
@@ -161,6 +164,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 
 import DivisionCarte from './DivisionCarte.vue';
 import GererAuteurs from './GererAuteurs.vue';
@@ -183,7 +187,7 @@ const émettre = defineEmits<{
   (é: 'copier'): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();

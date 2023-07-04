@@ -13,7 +13,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {ref, inject, computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -23,7 +23,7 @@ import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

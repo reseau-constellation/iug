@@ -58,7 +58,7 @@ export async function restoreOrCreateWindow() {
     window = await createWindow();
     gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
 
-    // Nécessaire pour que les liens mailto fonctionnent
+    // Nécessaire pour que les liens mailto fonctionnent dans Électron
     // Voir : https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
     window.webContents.setWindowOpenHandler(({url}) => {
       shell.openExternal(url);

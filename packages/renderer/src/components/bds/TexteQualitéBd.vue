@@ -1,32 +1,18 @@
 <template>
-  <v-chip
-    class="mb-2 me-2"
-    variant="outlined"
-    label
-  >
-    <v-progress-circular
-      :rotate="score ? 270 : undefined"
-      :value="score ? score * 100 : 0"
-      :indeterminate="!score"
-      :color="score ? couleurScore(score).couleur : 'grey lighten-2'"
-      :size="15"
-      :width="3"
-    />
-    <span class="ms-2">
-      {{ t('bds.qualité') }}:
-      <span
-        :style="`color:${couleurScore(score ? score : null).couleur}`"
-        class="font-weight-bold"
-      >
-        {{ score ? t('bds.note.' + couleurScore(score).note) : t('communs.pointInterrogation') }}
-      </span>
+  <span class="ms-2">
+    {{ t('bds.qualité') }}:
+    <span
+      :style="`color:${couleurScore(score ? score : null).couleur}`"
+      class="font-weight-bold"
+    >
+      {{ score ? t('bds.note.' + couleurScore(score).note) : t('communs.pointInterrogation') }}
     </span>
-  </v-chip>
+  </span>
 </template>
 
 <script setup lang="ts">
 import type {infoScore} from '@constl/ipa/dist/src/bds';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -36,7 +22,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

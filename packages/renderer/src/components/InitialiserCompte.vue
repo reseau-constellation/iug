@@ -212,7 +212,7 @@
 import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
 import {enregistrerÉcoute} from '/@/components/utils';
 
@@ -232,7 +232,7 @@ const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 const {obtImageDéco} = utiliserImagesDéco();
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Navigation générale
 const dialogue = ref(false);

@@ -200,7 +200,7 @@
 <script setup lang="ts">
 import {ref, inject, type Ref} from 'vue';
 
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {
   infoRésultatRecherche,
   infoRésultatTexte,
@@ -228,7 +228,7 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

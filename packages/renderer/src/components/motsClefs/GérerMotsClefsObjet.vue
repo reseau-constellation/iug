@@ -82,7 +82,7 @@
 import {inject, onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {
   infoRésultatTexte,
   résultatRecherche,
@@ -102,7 +102,7 @@ const {mdAndUp} = useDisplay();
 const props = defineProps<{originaux: string[]}>();
 const émettre = defineEmits<{(é: 'sauvegarder', motsClefs: string[]): void}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

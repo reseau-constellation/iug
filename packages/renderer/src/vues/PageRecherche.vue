@@ -117,7 +117,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {
   infoRésultatRecherche,
   infoRésultatTexte,
@@ -137,7 +137,7 @@ import RésultatRechercheVariable from '/@/components/recherche/RésultatRecherc
 import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

@@ -89,7 +89,7 @@
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify/lib/framework.mjs';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {obtIcôneContact} from './utils';
 import {computed} from 'vue';
 
@@ -97,7 +97,7 @@ const props = defineProps<{dejaPresents: string[]}>();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -113,7 +113,7 @@ const sauvegardeEnCours = ref(false);
 
 const itemsType = computed(() => {
   return [
-    ...['courriel', 'téléphone', 'télégramme', 'whatsapp'].filter(
+    ...['courriel', 'siteInternet', 'téléphone', 'télégramme', 'whatsapp'].filter(
       x => !props.dejaPresents.includes(x),
     ),
     'autre',

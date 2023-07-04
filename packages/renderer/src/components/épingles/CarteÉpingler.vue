@@ -24,9 +24,7 @@
         </v-card-title>
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
-        <p class="mb-0 text-overline">
-          {{}}
-        </p>
+        <p class="mb-0 text-overline"> {{}} </p>
         <v-radio-group
           v-model="typeDispositifs"
           :label="t('épingler.dispositifsÉpingle')"
@@ -162,17 +160,17 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
+import {type favoris} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
+import {inject, ref, computed, watch} from 'vue';
 import {useDisplay} from 'vuetify';
+
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import {computed} from 'vue';
-import {type favoris} from '@constl/ipa';
-import {watch} from 'vue';
-import JetonDispositif from './JetonDispositif.vue';
-import ItemDispositif from './ItemDispositif.vue';
+
+import JetonDispositif from '/@/components/compte/JetonDispositif.vue';
+import ItemDispositif from '/@/components/compte/ItemDispositif.vue';
 
 const props = defineProps({
   id: {
@@ -185,7 +183,7 @@ const props = defineProps({
   },
 });
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();

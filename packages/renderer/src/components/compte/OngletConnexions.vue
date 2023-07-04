@@ -67,7 +67,7 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
 
 import {computed, inject, ref} from 'vue';
@@ -78,7 +78,7 @@ import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
 import ItemConnexionSFIP from './ItemConnexionSFIP.vue';
 import CarteMembre from '../membres/CarteMembre.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

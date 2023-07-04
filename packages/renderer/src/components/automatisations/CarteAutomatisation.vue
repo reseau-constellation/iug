@@ -1,5 +1,8 @@
 <template>
-  <v-card>
+  <v-card
+    class="mx-auto"
+    :width="mdAndUp ? 500 : 300"
+  >
     <v-card-item>
       <v-card-title>{{ nom }}</v-card-title>
     </v-card-item>
@@ -22,9 +25,11 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {ref, onMounted, inject} from 'vue';
+import { useDisplay } from 'vuetify';
+
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
@@ -35,13 +40,14 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+const {mdAndUp} = useDisplay();
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
   statut: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom
 const {traduireNom} = utiliserLangues();

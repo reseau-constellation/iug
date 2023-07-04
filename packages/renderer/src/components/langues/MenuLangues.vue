@@ -56,14 +56,14 @@
 import {useRtl} from 'vuetify';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {inject, ref} from 'vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));

@@ -149,7 +149,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 import {computed, inject, ref, watchEffect} from 'vue';
 
 import JetonDroit from './JetonDroitLicence.vue';
@@ -169,7 +169,7 @@ const émettre = defineEmits<{
   (é: 'changerLicence', licence: string): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

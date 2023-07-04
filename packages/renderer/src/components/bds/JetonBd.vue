@@ -10,7 +10,7 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -19,7 +19,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

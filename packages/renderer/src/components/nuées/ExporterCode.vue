@@ -67,13 +67,13 @@
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {langue} = utiliserLangues();

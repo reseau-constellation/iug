@@ -6,14 +6,26 @@
     <v-list-item-subtitle>
       {{ infoRègle }}
     </v-list-item-subtitle>
+    <v-list-item-action>
+      <v-btn
+        v-if="effacable"
+        icon="mdi-delete"
+        color="error"
+        variant="outlined"
+        @click="() => émettre('effacer')"
+      />
+    </v-list-item-action>
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {règleVariable, règleVariableAvecId} from '@constl/ipa/dist/src/valid';
+import type {règleVariableAvecId} from '@constl/ipa/dist/src/valid';
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{regle: règleVariableAvecId<règleVariable>}>();
+const props = defineProps<{regle: règleVariableAvecId; effacable?: boolean}>();
+const émettre = defineEmits<{
+  (é: 'effacer'): void;
+}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

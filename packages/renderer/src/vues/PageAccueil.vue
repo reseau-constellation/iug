@@ -1,8 +1,8 @@
 <template>
-  <div class="text-center">
+  <v-container class="text-center">
     <TitrePage :titre="t('communs.constellation')" />
     <ServeurWS v-if="isElectron" />
-  </div>
+  </v-container>
 </template>
 
 <script setup lang="ts">

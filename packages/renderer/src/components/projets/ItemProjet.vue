@@ -4,10 +4,11 @@
     :title="nomTraduit"
     :subtitle="descrTraduite"
   >
+    <slot></slot>
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -15,7 +16,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom du projet
 const {traduireNom} = utiliserLangues();

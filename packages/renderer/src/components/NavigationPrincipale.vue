@@ -7,7 +7,7 @@
     <v-list>
       <v-list-item
         :title="nomTraduit"
-        :subtitle="idDispositif"
+        :subtitle="nomDispositif"
         @click="$router.push({path: '/compte'})"
       >
         <template #prepend>
@@ -36,16 +36,17 @@
 
 <script setup lang="ts">
 import {inject, ref, onMounted} from 'vue';
-import type ClientConstellation from '@constl/ipa';
+import type {client} from '@constl/ipa';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from './communs/ImageProfil.vue';
+import {utiliserNomEtTypeDispositif} from './membres/utils';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 // Nom d'utilisatrice
 const {traduireNom} = utiliserLangues();
@@ -63,6 +64,9 @@ enregistrerÉcoute(
 const idDispositif = ref<string>();
 onMounted(async () => {
   idDispositif.value = await constl?.obtIdOrbite();
+});
+const {nomDispositif} = utiliserNomEtTypeDispositif({
+  idDispositif: idDispositif,
 });
 
 // Liens navigation

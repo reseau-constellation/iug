@@ -93,13 +93,13 @@
 </template>
 <script setup lang="ts">
 import {computed, inject, ref} from 'vue';
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {useDisplay} from 'vuetify';
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -202,12 +202,12 @@ const créerMotClef = async () => {
   const idMotClef = await constl?.motsClefs?.créerMotClef();
   if (!idMotClef) throw new Error('Mot clef non créé.');
 
-  await constl?.motsClefs?.ajouterNomsMotClef({
-    id: idMotClef,
+  await constl?.motsClefs?.sauvegarderNomsMotClef({
+    idMotClef: idMotClef,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.motsClefs?.ajouterDescriptionsMotClef({
-    id: idMotClef,
+  await constl?.motsClefs?.sauvegarderDescriptionsMotClef({
+    idMotClef: idMotClef,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
 

@@ -33,7 +33,7 @@
         />
         <span v-if="contacts">
           <menu-contact-membre
-            v-for="[type, contact] in Object.entries(contacts)"
+            v-for="{type, contact} in contacts"
             :key="type"
             :type="type"
             :contact="contact"
@@ -160,7 +160,7 @@
 </template>
 
 <script setup lang="ts">
-import type ClientConstellation from '@constl/ipa/dist/src/client';
+import type {client} from '@constl/ipa';
 
 import {ref, inject} from 'vue';
 
@@ -185,7 +185,7 @@ import MenuContactMembre from './MenuContactMembre.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -207,7 +207,7 @@ enregistrerÉcoute(
 );
 
 // Contacts
-const contacts = ref<{[type: string]: string}>();
+const contacts = ref< { type: string; contact: string }[]>();
 enregistrerÉcoute(
   constl?.profil?.suivreContacts({
     f: x => (contacts.value = x),
