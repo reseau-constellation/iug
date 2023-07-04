@@ -2,8 +2,8 @@ import {createApp} from 'vue';
 import App from '/@/App.vue';
 import {inscrireExtentions} from '/@/plugins/inscription/électron.js';
 
-const app = createApp(App);
+const appli = createApp(App);
 
-inscrireExtentions(app);
+inscrireExtentions(appli);
 
-app.mount('#app');
+appli.mount('#app');
