@@ -91,6 +91,7 @@ const générerAliasRésolution = () => {
       path: 'rollup-plugin-node-polyfills/polyfills/path',
       './buffer-globalThis': 'crypto-browserify',
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
+      os: 'rollup-plugin-node-polyfills/polyfills/os',
     });
   }
 };

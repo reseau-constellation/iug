@@ -63,14 +63,14 @@
             <template #chip="{props: propsActivateur, item}">
               <jeton-dispositif
                 v-bind="propsActivateur"
-                :id="item.title"
+                :id-dispositif="item.title"
               />
             </template>
 
             <template #item="{props: propsActivateur, item}">
               <item-dispositif
                 v-bind="propsActivateur"
-                :id="item.title"
+                :id-dispositif="item.title"
               />
             </template>
           </v-autocomplete>
@@ -116,14 +116,14 @@
               <template #chip="{props: propsActivateur, item}">
                 <jeton-dispositif
                   v-bind="propsActivateur"
-                  :id="item.title"
+                  :id-dispositif="item.title"
                 />
               </template>
 
               <template #item="{props: propsActivateur, item}">
                 <item-dispositif
                   v-bind="propsActivateur"
-                  :id="item.title"
+                  :id-dispositif="item.title"
                 />
               </template>
             </v-autocomplete>
@@ -169,8 +169,8 @@ import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-import JetonDispositif from '/@/components/compte/JetonDispositif.vue';
-import ItemDispositif from '/@/components/compte/ItemDispositif.vue';
+import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
+import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 
 const props = defineProps({
   id: {
