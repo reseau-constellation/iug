@@ -121,14 +121,14 @@ const config = {
     assetsDir: '.',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: pourÉlectron ? undefined : ['chokidar', 'wrtc'],
+      external: pourÉlectron ? undefined : ['chokidar', 'wrtc', 'net', 'dgram'],
       plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    exclude: pourÉlectron ? undefined : ['chokidar', 'wrtc'],
+    exclude: pourÉlectron ? undefined : ['chokidar', 'wrtc', 'net', 'dgram'],
   },
   test: {
     environment: 'happy-dom',

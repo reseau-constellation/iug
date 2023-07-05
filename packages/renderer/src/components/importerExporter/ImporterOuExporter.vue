@@ -118,11 +118,11 @@ import type {
   SpécificationImporter,
   SourceDonnéesImportationFichier,
 } from '@constl/ipa/dist/src/automatisation';
-
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
+import type {client} from '@constl/ipa';
+
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
-import type {client} from '@constl/ipa';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 

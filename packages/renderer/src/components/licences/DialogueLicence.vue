@@ -150,6 +150,8 @@
 
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
+import type {InfoLicence} from '@constl/ipa/dist/src/licences';
+
 import {computed, inject, ref, watchEffect} from 'vue';
 
 import JetonDroit from './JetonDroitLicence.vue';
@@ -157,7 +159,6 @@ import JetonLimitation from './JetonLimitationLicence.vue';
 import JetonCondition from './JetonConditionLicence.vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type {InfoLicence} from '@constl/ipa/dist/src/licences';
 import {ouvrirLien} from '/@/utils';
 import {enregistrerÉcoute} from '/@/components/utils';
 
