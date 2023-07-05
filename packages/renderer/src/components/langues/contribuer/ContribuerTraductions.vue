@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 1500 : 300"
+      :width="mdAndUp ? 1500 : undefined"
     >
       <v-card-item>
         <v-card-title>{{ t('languesInterface.dialogueContribuer.titre') }}</v-card-title>
