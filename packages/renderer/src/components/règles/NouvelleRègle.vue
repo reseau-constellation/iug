@@ -81,11 +81,11 @@
                 v-if="typeBornes === 'fixe'"
                 v-model="valBorneFixe"
               />
-              <SélecteurVariable
+              <SelecteurVariable
                 v-else-if="typeBornes === 'dynamiqueVariable'"
                 @selectionnee="x => (valBorneDynamiqueVariable = x)"
               />
-              <SélecteurColonne
+              <SelecteurColonne
                 v-else-if="typeBornes === 'dynamiqueColonne'"
                 :id-tableau="idTableauPourRègle"
                 :tableau-changeable="false"
@@ -117,7 +117,7 @@
                 chips
                 clearable
               />
-              <SélecteurColonne
+              <SelecteurColonne
                 v-else
                 :id-tableau="idTableauPourRègle"
                 :tableau-changeable="true"
@@ -193,8 +193,8 @@ import {computed, inject, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-import SélecteurVariable from '/@/components/variables/SélecteurVariable.vue';
-import SélecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
+import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
+import SelecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
 
 const props = defineProps<{
   source:

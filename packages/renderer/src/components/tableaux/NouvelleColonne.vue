@@ -32,7 +32,7 @@
             </v-window-item>
             <v-window-item :value="2">
               <v-list>
-                <NouvelleRègle
+                <NouvelleRegle
                   :source="{
                     type: 'tableau',
                     idTableau: idTableau,
@@ -50,7 +50,7 @@
                       </v-list-item-title>
                     </v-list-item>
                   </template>
-                </NouvelleRègle>
+                </NouvelleRegle>
 
                 <ItemRègle
                   v-for="règle in règlesColonne"
@@ -111,7 +111,7 @@ import {v4 as uuidv4} from 'uuid';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import ItemRègle from '/@/components/règles/ItemRègle.vue';
-import NouvelleRègle from '/@/components/règles/NouvelleRègle.vue';
+import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
 
 
@@ -246,6 +246,7 @@ const règlesColonne = ref<règleVariableAvecId[]>([]);
 
 const ajouterRègle = (règle: règleVariable) => {
   const idRègle = uuidv4();
+  // @ts-expect-error  À vérifier éventuellement
   règlesColonne.value = [...règlesColonne.value, {règle: règle, id: idRègle}];
 };
 const effacerRègle = (idRègle: string) => {

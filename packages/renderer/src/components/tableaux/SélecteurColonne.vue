@@ -22,8 +22,8 @@
           style="overflow-y: scroll"
         >
           <v-window-item :value="0">
-            <SélecteurBd @selectionnee="x => (idBd = x)" />
-            <SélecteurTableau
+            <SelecteurBd @selectionnee="x => (idBd = x)" />
+            <SelecteurTableau
               :id-bd="idBd"
               @selectionnee="x => (idTableauSélectionné = x)"
             />
@@ -77,8 +77,8 @@ import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '../utils';
 
-import SélecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import SélecteurBd from '/@/components/bds/SélecteurBd.vue';
+import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
+import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 
 const props = defineProps<{idTableau?: string; tableauChangeable?: boolean}>();
 const émettre = defineEmits<{
