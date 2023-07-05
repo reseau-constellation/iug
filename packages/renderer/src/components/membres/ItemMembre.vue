@@ -10,6 +10,9 @@
     <template #title>
       {{ nomTraduit || t('communs.anonyme') }}
     </template>
+    <template #append>
+      <lien-objet :id="compte" />
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
@@ -20,6 +23,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
+import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 

@@ -23,6 +23,7 @@
           </v-btn>
         </v-card-title>
       </v-card-item>
+      <v-divider />
       <v-card-text style="overflow-y: scroll">
         <p class="mb-0 text-overline"> {{}} </p>
         <v-radio-group
@@ -130,6 +131,7 @@
           </v-expand-transition>
         </span>
       </v-card-text>
+      <v-divider />
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
@@ -146,7 +148,7 @@
           color="primary"
           variant="outlined"
           :loading="enProgrès"
-          :disabled="!prêtÀÉpingler"
+          :disabled="!prêtÀÉpingler || !valeursChangées"
           @click="() => épingler()"
         >
           {{ t('communs.sauvegarder') }}
@@ -287,6 +289,18 @@ const prêtÀÉpingler = computed<boolean>(() => {
       ? !!dispositifsFichiersSpécifiques.value.length
       : true;
   return dispositifsPrêts && dispositifsFichiersPrêts && ilYEuChangement.value;
+});
+const valeursChangées = computed<boolean>(() => {
+  if (!statutFavoris.value) return true;
+  const {dispositifs, dispositifsFichiers} = statutFavoris.value;
+  const dispositifsChangés = Array.isArray(dispositifs)
+    ? new Set(dispositifs) !== new Set(dispositifsSpécifiques.value)
+    : dispositifs !== typeDispositifs.value;
+  const dispositifsFichiersChangés = Array.isArray(dispositifsFichiers)
+    ? new Set(dispositifsFichiers) !== new Set(dispositifsFichiersSpécifiques.value)
+    : dispositifsFichiers !== typeDispositifsFichiers.value;
+
+  return dispositifsChangés || dispositifsFichiersChangés;
 });
 
 // Sauvegarder

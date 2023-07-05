@@ -3,6 +3,7 @@
     class="mb-2 me-2"
     :prepend-icon="icône"
     variant="outlined"
+    size="small"
   >
     <slot>
       {{ nomTraduit || t('variables.sansNom') }}

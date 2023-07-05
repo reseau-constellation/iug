@@ -5,105 +5,104 @@
         name="activator"
         v-bind="{props: propsComposante}"
       ></slot>
-
-      <v-card
-        class="mx-auto"
-        :width="mdAndUp ? 500 : 300"
-      >
-        <v-card-item>
-          <v-card-title class="text-h5 justify-space-between">
-            <span>{{ titreCarte }}</span>
-          </v-card-title>
-          <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-        </v-card-item>
-        <v-card-text>
-          <v-window
-            v-model="étape"
-            style="overflow-y: scroll"
-          >
-            <v-window-item :value="0">
-              <div class="text-center">
-                <v-btn
-                  class="ma-3"
-                  variant="flat"
-                  color="primary"
-                  @click="suivreCheminementImportation"
-                >
-                  {{ t('communs.importerOuExporter.importer') }}
-                </v-btn>
-                <v-btn
-                  class="ma-3"
-                  variant="outlined"
-                  @click="suivreCheminementExportation"
-                >
-                  {{ t('communs.importerOuExporter.exporter') }}
-                </v-btn>
-              </div>
-            </v-window-item>
-            <v-window-item :value="9">
-              <div class="text-center">
-                <v-btn
-                  class="ma-3"
-                  variant="flat"
-                  color="primary"
-                  :disabled="
-                    surNavigateur &&
-                      (cheminement === 'exportation' || origineImportation === 'fichier')
-                  "
-                >
-                  {{ t('communs.importerOuExporter.automatiser') }}
-                </v-btn>
-                <v-btn
-                  class="ma-3"
-                  variant="outlined"
-                >
-                  {{ t('communs.importerOuExporter.nePasAutomatiser') }}
-                </v-btn>
-              </div>
-            </v-window-item>
-            <v-window-item :value="11">
-              <div class="text-center">
-                <h3 class="text-h6 font-weight-light mb-2">
-                  {{ t('communs.importerOuExporter.messageConfirmer') }}
-                </h3>
-                <p>
-                  <v-btn
-                    class="mt-3"
-                    variant="outlined"
-                    :loading="enConfirmation"
-                    @click="() => confirmer()"
-                  >
-                    {{ t('communs.importerOuExporter.confirmer') }}
-                  </v-btn>
-                </p>
-              </div>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-btn
-            v-show="retourActif.visible"
-            variant="text"
-            :disabled="!retourActif.actif"
-            @click="retour"
-          >
-            {{ t('communs.retour') }}
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            v-show="suivantActif.visible"
-            color="primary"
-            variant="flat"
-            :disabled="!suivantActif.actif"
-            @click="suivant"
-          >
-            {{ t('communs.suivant') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
     </template>
+    <v-card
+      class="mx-auto"
+      :width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="text-h5 justify-space-between">
+          <span>{{ titreCarte }}</span>
+        </v-card-title>
+        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: scroll"
+        >
+          <v-window-item :value="0">
+            <div class="text-center">
+              <v-btn
+                class="ma-3"
+                variant="flat"
+                color="primary"
+                @click="suivreCheminementImportation"
+              >
+                {{ t('communs.importerOuExporter.importer') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="suivreCheminementExportation"
+              >
+                {{ t('communs.importerOuExporter.exporter') }}
+              </v-btn>
+            </div>
+          </v-window-item>
+          <v-window-item :value="9">
+            <div class="text-center">
+              <v-btn
+                class="ma-3"
+                variant="flat"
+                color="primary"
+                :disabled="
+                  surNavigateur &&
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
+                "
+              >
+                {{ t('communs.importerOuExporter.automatiser') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+              >
+                {{ t('communs.importerOuExporter.nePasAutomatiser') }}
+              </v-btn>
+            </div>
+          </v-window-item>
+          <v-window-item :value="11">
+            <div class="text-center">
+              <h3 class="text-h6 font-weight-light mb-2">
+                {{ t('communs.importerOuExporter.messageConfirmer') }}
+              </h3>
+              <p>
+                <v-btn
+                  class="mt-3"
+                  variant="outlined"
+                  :loading="enConfirmation"
+                  @click="() => confirmer()"
+                >
+                  {{ t('communs.importerOuExporter.confirmer') }}
+                </v-btn>
+              </p>
+            </div>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn
+          v-show="retourActif.visible"
+          variant="text"
+          :disabled="!retourActif.actif"
+          @click="retour"
+        >
+          {{ t('communs.retour') }}
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+          v-show="suivantActif.visible"
+          color="primary"
+          variant="flat"
+          :disabled="!suivantActif.actif"
+          @click="suivant"
+        >
+          {{ t('communs.suivant') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">

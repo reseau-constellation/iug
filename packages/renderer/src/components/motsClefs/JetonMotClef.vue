@@ -3,6 +3,7 @@
     class="mb-2 me-2"
     prepend-icon="mdi-key"
     variant="outlined"
+    size="small"
   >
     {{ nomTraduit || t('motsClefs.sansNom') }}
   </v-chip>

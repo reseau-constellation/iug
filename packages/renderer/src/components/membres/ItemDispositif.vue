@@ -12,10 +12,14 @@
       <v-icon v-else>{{ icôneDispositif }}</v-icon>
     </template>
     <template #title> {{ nomDispositif }} </template>
-    <v-list-item-subtitle>
-      <lien-objet :id="idDispositif" />
-    </v-list-item-subtitle>
+    <jeton-membre
+      v-if="idCompte"
+      :compte="idCompte"
+    />
     <slot />
+    <template #append>
+      <lien-objet :id="idDispositif" />
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
@@ -23,6 +27,8 @@ import {ref, computed, onMounted, onUnmounted} from 'vue';
 
 import LienObjet from '../communs/LienObjet.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
+import JetonMembre from './JetonMembre.vue';
+
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
 

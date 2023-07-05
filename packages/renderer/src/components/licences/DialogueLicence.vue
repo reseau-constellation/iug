@@ -12,8 +12,15 @@
     </template>
 
     <v-card>
-      <v-card-title class="headline">
+      <v-card-title class="d-flex">
         {{ t('licences.carte.titre') }}
+        <v-spacer />
+        <v-btn
+          icon="mdi-close"
+          variant="flat"
+          size="small"
+          @click="dialogue = false"
+        />
       </v-card-title>
       <v-divider />
 
@@ -27,9 +34,6 @@
         >
           <template #item="{item, props: propsItemListeLicences}">
             <v-list-item v-bind="propsItemListeLicences">
-              <template #prepend>
-                <v-icon v-if="item.value === licenceChoisie">mdi-check</v-icon>
-              </template>
               <template #title>
                 <v-list-item-title :class="{'font-weight-bold': item.value === licenceChoisie}">
                   {{ obtNomLicence(item.value) }}
@@ -138,6 +142,7 @@
         <v-btn
           color="primary"
           variant="outlined"
+          :disabled="!licenceChangée"
           @click="sauvegarderLicence"
         >
           {{ t('communs.sauvegarder') }}
@@ -183,6 +188,7 @@ const licenceChoisie = ref(props.licence);
 watchEffect(() => {
   licenceChoisie.value = props.licence;
 });
+const licenceChangée = computed(() => licenceChoisie.value !== props.licence);
 
 // Caractéristiques licences
 const infoLicences = ref<{[clef: string]: InfoLicence}>();

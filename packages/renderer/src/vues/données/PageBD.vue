@@ -12,7 +12,7 @@
           <template #title="{item}">
             <v-breadcrumbs-item
               :disabled="item.disabled"
-              @click="item.href && $router.push(item.href)"
+              @click="item.lien && $router.push(item.lien)"
             >
               <texteTronqué
                 :texte="item.title"
@@ -32,11 +32,7 @@
         @image-changee="image => modifierImage(image)"
       />
 
-      <v-card-title>
-        <texteTronqué
-          :texte="nomTraduit"
-          :longueur-max="40"
-        />
+      <v-card-title class="d-flex">
         <DialogueNoms
           :indice-nom="t('objet.indiceNom')"
           :indice-langue="t('objet.indiceLangue')"
@@ -62,16 +58,23 @@
 
         <v-spacer />
         <CarteEpingler :id="id">
-          <template #activator="{props: propsActivateur}">
-            <v-list-item
-              v-bind="propsActivateur"
-              prepend-icon="mdi-pin"
+          <template #activator="{props: propsActivateurCarte}">
+            <v-tooltip
+              v-bind="propsActivateurCarte"
+              open-delay="200"
+              location="bottom"
+              :text="t('communs.épingler')"
             >
-              <template #prepend>
-                <IcôneEpingle :id="id"></IcôneEpingle>
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="propsActivateurIndice"
+                  icon
+                  variant="flat"
+                >
+                  <IcôneEpingle :id="id"></IcôneEpingle>
+                </v-btn>
               </template>
-              <v-list-item-title>{{ t('communs.épingler') }}</v-list-item-title>
-            </v-list-item>
+            </v-tooltip>
           </template>
         </CarteEpingler>
 
@@ -90,6 +93,7 @@
                 <v-btn
                   v-bind="propsActivateurIndice"
                   icon="mdi-download"
+                  variant="flat"
                 />
               </template>
             </v-tooltip>
@@ -104,9 +108,10 @@
               :text="t('copier.indice')"
             >
               <template #activator="{props: propsActivateurIndice}">
-                <v-icon
+                <v-btn
                   v-bind="propsActivateurIndice"
                   icon="mdi-content-copy"
+                  variant="flat"
                 />
               </template>
             </v-tooltip>
@@ -125,11 +130,13 @@
               :text="t('effacer.indice')"
             >
               <template #activator="{props: propsActivateurIndice}">
-                <v-icon
+                <v-btn
                   v-bind="propsActivateurIndice"
-                  icon="mdi-delete"
-                  color="error"
-                />
+                  variant="flat"
+                  icon
+                >
+                  <v-icon color="error">mdi-delete</v-icon>
+                </v-btn>
               </template>
             </v-tooltip>
           </template>
@@ -142,7 +149,6 @@
           flat
           class="mx-3 mb-3"
         >
-          {{ descrTraduite }}
           <DialogueNoms
             :indice-nom="t('objet.indiceDescription')"
             :indice-langue="t('objet.indiceLangue')"
@@ -154,6 +160,9 @@
             @ajuster-noms="ajusterDescriptions"
           >
             <template #activator="{props: propsActivateur}">
+              <span :class="{'text-disabled': !descrTraduite}">{{
+                descrTraduite || t('communs.baseCarteObjet.sansDescription')
+              }}</span>
               <v-btn
                 v-bind="propsActivateur"
                 :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
@@ -206,7 +215,7 @@
               class="mb-3"
             >
               <dialogue-licence
-                :id-licence="licence"
+                :licence="licence"
                 :permission-modifier="monAutorisation === 'MODÉRATEUR'"
                 @changer-licence="changerLicence"
               >
@@ -226,7 +235,7 @@
             >
               <CarteRéplicationsObjet :id="id">
                 <template #activator="{props: propsActivateur}">
-                  <item-réplications
+                  <ItemRéplicationsObjet
                     v-bind="propsActivateur"
                     :id="id"
                   />
@@ -263,34 +272,47 @@
               max-width="350"
               class="mb-3 me-3"
             >
-              <p class="mb-0 text-overline">
-                {{ t('bd.carteBd.variables') }}
-              </p>
-              <SérieJetons
-                :n-max="5"
-                :items="variables"
-              >
-                <template #jeton="{id: idVariable}">
-                  <carte-variable :id="idVariable">
-                    <template #activator="{props: propsActivateur}">
-                      <JetonVariable
-                        v-bind="propsActivateur"
-                        :id="idVariable"
-                      />
-                    </template>
-                  </carte-variable>
-                </template>
-                <template #itemListe="{id: idVariable}">
-                  <carte-variable :id="idVariable">
-                    <template #activator="{props: propsActivateur}">
-                      <ItemVariable
-                        v-bind="propsActivateur"
-                        :id="idVariable"
-                      />
-                    </template>
-                  </carte-variable>
-                </template>
-              </SérieJetons>
+              <v-card-item>
+                <v-card-title>
+                  <p class="text-overline">
+                    {{ t('bd.carteBd.variables') }}
+                  </p>
+                </v-card-title>
+              </v-card-item>
+
+              <v-card-text>
+                <SérieJetons
+                  :n-max="5"
+                  :items="variables"
+                >
+                  <template #jeton="{id: idVariable}">
+                    <carte-variable :id="idVariable">
+                      <template #activator="{props: propsActivateur}">
+                        <JetonVariable
+                          v-bind="propsActivateur"
+                          :id="idVariable"
+                        />
+                      </template>
+                    </carte-variable>
+                  </template>
+                  <template #itemListe="{id: idVariable}">
+                    <carte-variable :id="idVariable">
+                      <template #activator="{props: propsActivateur}">
+                        <ItemVariable
+                          v-bind="propsActivateur"
+                          :id="idVariable"
+                        />
+                      </template>
+                    </carte-variable>
+                  </template>
+                </SérieJetons>
+                <p
+                  v-if="!variables?.length"
+                  class="text-disabled"
+                >
+                  {{ t('bds.aucuneVariable') }}
+                </p>
+              </v-card-text>
             </v-card>
             <v-card
               flat
@@ -298,8 +320,14 @@
               max-width="350"
               class="mb-3 me-3"
             >
-              <p class="mb-0 text-overline">
-                {{ t('bds.carteBd.motsClefs') }}
+              <v-card-item>
+                <v-card-title>
+                  <p class="mb-0 text-overline">
+                    {{ t('bds.carteBd.motsClefs') }}
+                  </p>
+                </v-card-title>
+              </v-card-item>
+              <v-card-text>
                 <SérieJetons
                   :n-max="5"
                   :items="motsClefs"
@@ -317,7 +345,7 @@
                   <template #itemListe="{id: idMotClef}">
                     <carte-mot-clef :id="idMotClef">
                       <template #activator="{props: propsActivateur}">
-                        <ItemMotClef
+                        <item-mot-clef
                           v-bind="propsActivateur"
                           :id="idMotClef"
                         />
@@ -325,44 +353,50 @@
                     </carte-mot-clef>
                   </template>
                 </SérieJetons>
+                <p
+                  v-if="motsClefs && !motsClefs.length"
+                  class="text-disabled"
+                >
+                  {{ t('bds.aucunMotClef') }}
+                </p>
                 <GérerMotsClefsObjet
                   v-if="monAutorisation && motsClefs"
                   :originaux="motsClefs"
                   @sauvegarder="sauvegarderMotsClefs"
                 />
-              </p>
-              <p
-                v-if="motsClefs && !motsClefs.length"
-                class="text--disabled"
-              >
-                {{ t('bds.aucunMotClef') }}
-              </p>
+              </v-card-text>
             </v-card>
             <v-card
               flat
               min-width="200"
               max-width="350"
               class="mb-3 me-3"
-            >
-              <p class="mb-0 text-overline">
-                {{ t('bd.visBD.நிலவியல்') }}
-              </p>
-              <p
-                v-if="géog && !géog.length"
-                class="text--disabled"
-              >
-                {{ t('bds.aucuneGéog') }}
-              </p>
-              <v-chip
-                v-for="m in géog"
-                :key="m"
-                outlined
-                small
-                label
-                class="mx-1 my-1"
-              >
-                {{ m }}
-              </v-chip>
+            > 
+              <v-card-item>
+                <v-card-title>
+                  <p class="mb-0 text-overline">
+                    {{ t('bd.carteBd.géographie') }}
+                  </p>
+                </v-card-title>
+              </v-card-item>
+              <v-card-text>
+                <p
+                  v-if="géog && !géog.length"
+                  class="text--disabled"
+                >
+                  {{ t('bds.aucuneGéog') }}
+                </p>
+                <v-chip
+                  v-for="m in géog"
+                  :key="m"
+                  outlined
+                  small
+                  label
+                  class="mx-1 my-1"
+                >
+                  {{ m }}
+                </v-chip>
+              </v-card-text>
             </v-card>
           </div>
         </v-card>
@@ -375,7 +409,8 @@
                   v-if="monAutorisation"
                   v-bind="propsActivateur"
                   icon="mdi-plus"
-                  small
+                  size="small"
+                  variant="flat"
                 />
               </template>
             </nouveau-tableau>
@@ -413,7 +448,7 @@
                       start
                     />
                   </template>
-                  {{ t('bd.visBD.சேர்க்கவும்') }}
+                  {{ t('bds.ajouterTableau') }}
                 </v-btn>
               </template>
             </nouveau-tableau>
@@ -465,6 +500,7 @@ import type {infoAuteur} from '@constl/ipa/dist/src/utils';
 import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
 
 import {useDisplay, useRtl} from 'vuetify';
+import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {computed, inject, ref} from 'vue';
@@ -475,6 +511,8 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+
+import texteTronqué from '/@/components/communs/TexteTronqué.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';
@@ -482,14 +520,22 @@ import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
+import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemQualitéBd from '/@/components/bds/ItemQualitéBd.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
 import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
+import ItemRéplicationsObjet from  '/@/components/épingles/ItemRéplicationsObjet.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -662,8 +708,8 @@ const changerLicence = async (nouvelleLicence: string) => {
 };
 
 // Navigation
-const petitPousset = computed<{title: string; href?: string; disabled?: boolean}[]>(() => [
-  {title: t('navig.mesDonnées') as string, href: encodeURI('/données')},
+const petitPousset = computed<{title: string; lien?: string; disabled?: boolean}[]>(() => [
+  {title: t('navig.mesDonnées') as string, lien: encodeURI('/données/')},
   {title: nomTraduit.value || props.id, disabled: true},
 ]);
 

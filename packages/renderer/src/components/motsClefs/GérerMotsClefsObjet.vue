@@ -5,7 +5,8 @@
         v-bind="propsActivateur"
         class="mb-2 me-2"
         variant="outlined"
-        prepend-icon="mdi-plus"
+        prepend-icon="mdi-pencil-outline"
+        size="small"
       >
         {{ t('motsClefs.gérerMotsClefsObjet') }}
       </v-chip>

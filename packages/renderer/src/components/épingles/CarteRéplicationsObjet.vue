@@ -16,6 +16,8 @@
           <v-spacer />
           <v-btn
             icon="mdi-close"
+            variant="flat"
+            size="small"
             @click="dialogue = false"
           />
         </v-card-title>
@@ -23,6 +25,7 @@
           {{ t('réplications.sousTitre') }}
         </v-card-subtitle>
       </v-card-item>
+      <v-divider />
       <v-card-text style="overflow-y: scroll">
         <v-list>
           <p class="mb-0 text-overline">
@@ -35,7 +38,7 @@
                 lines="two"
               >
                 <template #prepend>
-                  {{ nDispositifsFormatté }}
+                  <v-avatar>{{ nDispositifsFormatté }}</v-avatar>
                 </template>
                 <v-list-item-title>
                   {{ t('réplications.dispositifs') }}
@@ -57,7 +60,11 @@
               :id-compte="d.idCompte"
               :vu-a="d.vuÀ"
             >
-              <v-chip :prepend-icon="d.fichiers ? 'folder-outline' : 'folder-off-outline'">
+              <v-chip
+                :prepend-icon="d.fichiers ? 'mdi-folder-outline' : 'mdi-folder-off-outline'"
+                variant="outlined"
+                label
+              >
                 {{ d.fichiers ? t('réplications.avecFichiers') : t('réplications.sansFichiers') }}
               </v-chip>
             </item-dispositif>
@@ -75,7 +82,9 @@
                   v-if="membres"
                   #prepend
                 >
-                  {{ nMembresFormatté }}
+                  <v-avatar>
+                    {{ nMembresFormatté }}
+                  </v-avatar>
                 </template>
                 <v-list-item-title>
                   {{ t('réplications.membres') }}

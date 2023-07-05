@@ -1,12 +1,12 @@
 <template>
   <v-list-item>
-    <v-list-item-avatar>
+    <template #prepend>
       <v-icon
         left
         icon="mdi-database-sync"
       />
-    </v-list-item-avatar>
-    <v-list-item-content>
+    </template>
+    <v-list-item-title>
       <v-skeleton-loader
         v-if="réplications === undefined"
         type="chip"
@@ -14,7 +14,7 @@
       <span v-else>
         {{ réplications ? t('réplications.nRéplications', {n: nRéplicationsFormatté}) : '' }}
       </span>
-    </v-list-item-content>
+    </v-list-item-title>
   </v-list-item>
 </template>
 <script setup lang="ts">
