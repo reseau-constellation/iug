@@ -26,9 +26,7 @@
       >
         <template #activator="{props: propsActivateur}">
           <v-btn v-bind="propsActivateur">
-            {{
-              t('règles.erreursRègles.variableBonesInexistante.ajouterColonne')
-            }}
+            {{ t('règles.erreursRègles.variableBonesInexistante.ajouterColonne') }}
           </v-btn>
         </template>
       </nouvelle-colonne>
