@@ -63,7 +63,7 @@
               </v-btn>
             </template>
           </nouvelle-colonne>
-          <NouvelleLigne @sauvegarder="(x) => ajouterÉlément(x)">
+          <NouvelleLigne @sauvegarder="x => ajouterÉlément(x)">
             <template #activator="{props: propsActivateur}">
               <v-btn
                 v-if="colonnes.length"
@@ -126,49 +126,63 @@
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: élémentsBd[]) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: élémentsBd[]) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleChaîneNonTraductible
         v-else-if="c.info.catégorie?.catégorie === 'chaîneNonTraductible'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: string) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: string) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleNumérique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleHoroDatage
         v-else-if="c.info.catégorie?.catégorie === 'horoDatage'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleIntervaleTemps
         v-else-if="c.info.catégorie?.catégorie === 'intervaleTemps'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleBooléenne
         v-else-if="c.info.catégorie?.catégorie === 'booléen'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <celluleChaîne
         v-else-if="c.info.catégorie?.catégorie === 'chaîne'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
 
       <celluleGéoJSON
@@ -176,42 +190,54 @@
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <celluleCatégorique
         v-else-if="c.info.catégorie?.catégorie === 'catégorique'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleVidéo
         v-else-if="c.info.catégorie?.catégorie === 'vidéo'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleAudio
         v-else-if="c.info.catégorie?.catégorie === 'audio'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleImage
         v-else-if="c.info.catégorie?.catégorie === 'image'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
       <CelluleFichier
         v-else-if="c.info.catégorie?.catégorie === 'fichier'"
         :val="item.columns[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})"
+        @changer-valeur="
+          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+        "
       />
     </template>
   </v-data-table>

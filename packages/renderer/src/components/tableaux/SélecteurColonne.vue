@@ -82,7 +82,7 @@ import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 
 const props = defineProps<{idTableau?: string; tableauChangeable?: boolean}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', info: {idColonne: string, idTableau: string}): void;
+  (é: 'selectionnee', info: {idColonne: string; idTableau: string}): void;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');
@@ -197,7 +197,7 @@ watchEffect(async () => {
 
 // Contrôles
 const confirmer = () => {
-  if (idColonne.value && idTableauSélectionné.value) 
+  if (idColonne.value && idTableauSélectionné.value)
     émettre('selectionnee', {idTableau: idTableauSélectionné.value, idColonne: idColonne.value});
 };
 </script>

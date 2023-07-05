@@ -1,5 +1,5 @@
 <template>
-  <ItemErreurRègleColonneBornes 
+  <ItemErreurRègleColonneBornes
     v-if="erreur.détails === 'colonneBornesInexistante'"
     :erreur="erreur"
     :id-tableau="idTableau"
@@ -24,14 +24,25 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {erreurRègleBornesColonneInexistante, erreurRègleBornesVariableNonPrésente, erreurRègleCatégoriqueColonneInexistante} from '@constl/ipa/dist/src/valid';
+import type {
+  erreurRègleBornesColonneInexistante,
+  erreurRègleBornesVariableNonPrésente,
+  erreurRègleCatégoriqueColonneInexistante,
+} from '@constl/ipa/dist/src/valid';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ItemErreurRègleColonneBornes from './ItemErreurRègleColonneBornes.vue';
 import ItemErreurRègleColonneCatég from './ItemErreurRègleColonneCatég.vue';
 import ItemErreurRègleVariableBornes from './ItemErreurRègleVariableBornes.vue';
 
-defineProps<{idTableau: string; erreur: erreurRègleBornesColonneInexistante | erreurRègleBornesVariableNonPrésente | erreurRègleCatégoriqueColonneInexistante}>();
+defineProps<{
+  idTableau: string;
+  erreur:
+    | erreurRègleBornesColonneInexistante
+    | erreurRègleBornesVariableNonPrésente
+    | erreurRègleCatégoriqueColonneInexistante;
+}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+</script>

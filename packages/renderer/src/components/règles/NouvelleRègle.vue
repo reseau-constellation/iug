@@ -121,7 +121,9 @@
                 v-else
                 :id-tableau="idTableauPourRègle"
                 :tableau-changeable="true"
-                @selectionnee="x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})"
+                @selectionnee="
+                  x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})
+                "
               />
             </v-window-item>
             <v-window-item :value="5">

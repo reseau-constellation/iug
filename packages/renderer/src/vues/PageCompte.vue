@@ -35,7 +35,7 @@
       />
     </h1>
     <modifier-info-contact-membre
-      v-for="{type, contact} in (contacts || [])"
+      v-for="{type, contact} in contacts || []"
       :key="contact + '|' + type"
       :type="type"
       :valeur-avant="contact"
@@ -162,7 +162,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Contacts
-const contacts = ref<{ type: string; contact: string }[]>();
+const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
   constl?.profil?.suivreContacts({
     f: x => (contacts.value = x),

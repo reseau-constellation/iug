@@ -112,8 +112,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 import ItemRègle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
-
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
   idTableau: string;

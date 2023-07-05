@@ -4,10 +4,12 @@
       {{ t('règles.erreursRègle.variableBornesInexistante.titre') }}
     </v-list-item-title>
     <v-list-item-subtitle>
-      {{ t('règles.erreursRègle.variableBornesInexistante.info', {
-        tableau: nomTableau,
-        variable: nomVariable,
-      }) }}
+      {{
+        t('règles.erreursRègle.variableBornesInexistante.info', {
+          tableau: nomTableau,
+          variable: nomVariable,
+        })
+      }}
       <SélecteurVariable
         v-if="monAutorisation"
         :id-tableau="idTableau"
@@ -23,7 +25,11 @@
         :id-variable="idVariable"
       >
         <template #activator="{props: propsActivateur}">
-          <v-btn v-bind="propsActivateur">{{ t('règles.erreursRègles.variableBonesInexistante.ajouterColonne') }}</v-btn>
+          <v-btn v-bind="propsActivateur">
+            {{
+              t('règles.erreursRègles.variableBonesInexistante.ajouterColonne')
+            }}
+          </v-btn>
         </template>
       </nouvelle-colonne>
     </v-list-item-subtitle>
@@ -31,24 +37,28 @@
       <v-btn
         color="error"
         icon="mdi-delete"
-        @click="()=>effacerRègle()"
+        @click="() => effacerRègle()"
       />
     </v-list-item-action>
   </v-list-item>
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {détailsRègleBornesDynamiqueVariable, erreurRègleBornesVariableNonPrésente, règleBornes} from '@constl/ipa/dist/src/valid';
+import type {
+  détailsRègleBornesDynamiqueVariable,
+  erreurRègleBornesVariableNonPrésente,
+  règleBornes,
+} from '@constl/ipa/dist/src/valid';
 
 import {computed, inject, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { utiliserLangues } from '/@/plugins/localisation/localisation';
-import { enregistrerÉcoute } from '/@/components/utils';
+import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {enregistrerÉcoute} from '/@/components/utils';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
-import { utiliserMonAutorisationRègleSourceErreur } from './utils';
+import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
 const props = defineProps<{idTableau: string; erreur: erreurRègleBornesVariableNonPrésente}>();
 
@@ -62,31 +72,31 @@ const constl = inject<client.ClientConstellation>('constl');
 const nomsTableau = ref<{[langue: string]: string}>({});
 const nomTableau = traduireNom(nomsTableau);
 enregistrerÉcoute(
-    constl?.tableaux?.suivreNomsTableau({
-        idTableau: props.idTableau,
-        f: x => nomsTableau.value = x,
-    }),
+  constl?.tableaux?.suivreNomsTableau({
+    idTableau: props.idTableau,
+    f: x => (nomsTableau.value = x),
+  }),
 );
 
 // Nom variable référence
-const idVariable = computed(()=>props.erreur.règle.règle.règle.détails.val);
+const idVariable = computed(() => props.erreur.règle.règle.règle.détails.val);
 const nomsVariable = ref<{[langue: string]: string}>({});
 const nomVariable = traduireNom(nomsVariable);
 enregistrerÉcoute(
-    constl?.variables?.suivreNomsVariable({
-        id: idVariable.value,
-        f: x => nomsTableau.value = x,
-    }),
+  constl?.variables?.suivreNomsVariable({
+    id: idVariable.value,
+    f: x => (nomsTableau.value = x),
+  }),
 );
 
 // Autorisation
 const monAutorisation = utiliserMonAutorisationRègleSourceErreur({
-    erreur: props.erreur,
-    idTableau: props.idTableau,
+  erreur: props.erreur,
+  idTableau: props.idTableau,
 });
 
 // Actions
-const changerVariable = async (idVar: string)=>{
+const changerVariable = async (idVar: string) => {
   const {source} = props.erreur.règle;
   const {op} = props.erreur.règle.règle.règle.détails;
   const nouvelleRègle: règleBornes<détailsRègleBornesDynamiqueVariable> = {
@@ -98,7 +108,7 @@ const changerVariable = async (idVar: string)=>{
     },
   };
   await effacerRègle();
-  if (source.type==='tableau') {
+  if (source.type === 'tableau') {
     await constl?.tableaux?.ajouterRègleTableau({
       idTableau: props.idTableau,
       idColonne: props.erreur.règle.colonne,
@@ -130,3 +140,4 @@ const effacerRègle = async () => {
     });
   }
 };
+</script>

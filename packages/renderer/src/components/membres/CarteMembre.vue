@@ -207,7 +207,7 @@ enregistrerÉcoute(
 );
 
 // Contacts
-const contacts = ref< { type: string; contact: string }[]>();
+const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
   constl?.profil?.suivreContacts({
     f: x => (contacts.value = x),

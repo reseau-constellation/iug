@@ -57,7 +57,7 @@
               :img-defaut="imgDefaut"
               :max-taille-image="MAX_TAILLE_IMAGE"
               :taille-avatar="150"
-              @image-changee="(img?: ArrayBuffer)=>imageChangée(img)"
+              @image-changee="(img?: ArrayBuffer) => imageChangée(img)"
             />
             <p class="mt-3 text-center text-caption">
               {{ t('accueil.initialiserCompte.texteImage') }}

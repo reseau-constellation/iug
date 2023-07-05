@@ -28,7 +28,7 @@ import type {automatisation} from '@constl/ipa';
 import type {client} from '@constl/ipa';
 
 import {ref, onMounted, inject} from 'vue';
-import { useDisplay } from 'vuetify';
+import {useDisplay} from 'vuetify';
 
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
