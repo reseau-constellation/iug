@@ -38,9 +38,9 @@
           </v-window-item>
           <v-window-item :value="2">
             <liste-noms
-              :texte-aucun-nom="t('variables.nouveau.texteAucuneDescription')"
+              :texte-aucun-nom="t('variables.nouvelle.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
-              :indice-nom="t('variables.nouveau.texteIndiceDescription')"
+              :indice-nom="t('variables.nouvelle.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"
               @ajuster-noms="ajusterDescriptions"
