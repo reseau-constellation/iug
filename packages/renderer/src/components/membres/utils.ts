@@ -1,5 +1,5 @@
 import type {client} from '@constl/ipa';
-import type { utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 import {type Ref, computed, ref, watchEffect, inject} from 'vue';
 import {enregistrerÉcoute} from '../utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';

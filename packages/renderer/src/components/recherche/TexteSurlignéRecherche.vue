@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type {utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

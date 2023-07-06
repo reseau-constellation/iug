@@ -305,7 +305,11 @@ enregistrerÉcoute(
 // Recherche
 const texteRecherche = ref<string>();
 const résulatsRecherche =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+  ref<
+    utils.résultatRecherche<
+      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    >[]
+  >();
 enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
@@ -317,7 +321,9 @@ enregistrerRecherche({
     requète: string;
     nOuProfondeur: number;
     réfRésultat: Ref<
-      utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
+      utils.résultatRecherche<
+        utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+      >[]
     >;
   }) => {
     return await constl?.recherche?.rechercherBdSelonTexte({

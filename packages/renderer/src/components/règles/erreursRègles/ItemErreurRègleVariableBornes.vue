@@ -42,7 +42,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type { valid } from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -54,7 +54,10 @@ import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
-const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesVariableNonPrésente}>();
+const props = defineProps<{
+  idTableau: string;
+  erreur: valid.erreurRègleBornesVariableNonPrésente;
+}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

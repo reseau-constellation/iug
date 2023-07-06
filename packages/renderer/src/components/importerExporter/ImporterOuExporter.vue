@@ -48,7 +48,7 @@
                 color="primary"
                 :disabled="
                   surNavigateur &&
-                    (cheminement === 'exportation' || origineImportation === 'fichier')
+                  (cheminement === 'exportation' || origineImportation === 'fichier')
                 "
               >
                 {{ t('communs.importerOuExporter.automatiser') }}
@@ -106,7 +106,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
 import type {client} from '@constl/ipa';
 
@@ -395,25 +395,29 @@ const générerInfoTableau = (): automatisation.infoImporterFeuilleCalcul => {
   };
 };
 const sourceImportation = computed<
-  automatisation.SourceDonnéesImportation<automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul>
+  automatisation.SourceDonnéesImportation<
+    automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul
+  >
 >(() => {
   if (!origineImportation.value) throw new Error('Format fichier importation non défini.');
 
   if (origineImportation.value === 'fichier') {
     if (!fichierImportation.value) throw new Error('Fichier importation non défini.');
     if (formatImportation.value === 'json') {
-      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterJSON> = {
-        typeSource: origineImportation.value,
-        adresseFichier: fichierImportation.value,
-        info: générerInfoJSON(),
-      };
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterJSON> =
+        {
+          typeSource: origineImportation.value,
+          adresseFichier: fichierImportation.value,
+          info: générerInfoJSON(),
+        };
       return source;
     } else {
-      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterFeuilleCalcul> = {
-        typeSource: origineImportation.value,
-        adresseFichier: fichierImportation.value,
-        info: générerInfoTableau(),
-      };
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterFeuilleCalcul> =
+        {
+          typeSource: origineImportation.value,
+          adresseFichier: fichierImportation.value,
+          info: générerInfoTableau(),
+        };
       return source;
     }
   } else {
@@ -426,11 +430,12 @@ const sourceImportation = computed<
       };
       return source;
     } else {
-      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterFeuilleCalcul> = {
-        typeSource: origineImportation.value,
-        url: urlImportation.value,
-        info: générerInfoTableau(),
-      };
+      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterFeuilleCalcul> =
+        {
+          typeSource: origineImportation.value,
+          url: urlImportation.value,
+          info: générerInfoTableau(),
+        };
       return source;
     }
   }

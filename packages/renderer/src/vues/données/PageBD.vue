@@ -371,7 +371,7 @@
               min-width="200"
               max-width="350"
               class="mb-3 me-3"
-            > 
+            >
               <v-card-item>
                 <v-card-title>
                   <p class="mb-0 text-overline">
@@ -496,8 +496,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {bds, utils } from '@constl/ipa';
-
+import type {bds, utils} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -532,7 +531,7 @@ import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
 import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
-import ItemRéplicationsObjet from  '/@/components/épingles/ItemRéplicationsObjet.vue';
+import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';

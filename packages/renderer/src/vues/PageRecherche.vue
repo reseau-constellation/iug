@@ -177,18 +177,28 @@ const itemsTypesDonnées: {
 ];
 
 const résultatsRechercheBd =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+  ref<
+    utils.résultatRecherche<
+      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    >[]
+  >();
 const résultatsRechercheMotsClefs = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 const résultatsRechercheVariables = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 const résultatsRechercheProjets =
   ref<
     utils.résultatRecherche<
       | utils.infoRésultatTexte
-      | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
+      | utils.infoRésultatRecherche<
+          utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+        >
     >[]
   >();
 const résultatsRechercheNuée =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+  ref<
+    utils.résultatRecherche<
+      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    >[]
+  >();
 
 const chercheur = new MultiChercheur();
 const {nOuProfondeur} = chercheur;
@@ -257,7 +267,9 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
+            utils.résultatRecherche<
+              utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+            >[]
           >;
         }) => {
           return await constl?.recherche?.rechercherBdSelonTexte({
@@ -283,7 +295,9 @@ watchEffect(async () => {
           réfRésultat: Ref<
             utils.résultatRecherche<
               | utils.infoRésultatTexte
-              | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
+              | utils.infoRésultatRecherche<
+                  utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+                >
             >[]
           >;
         }) => {
@@ -308,7 +322,9 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
+            utils.résultatRecherche<
+              utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+            >[]
           >;
         }) => {
           return await constl?.recherche?.rechercherNuéeSelonTexte({

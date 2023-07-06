@@ -173,7 +173,7 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
-import type {client, utils, valid, variables } from '@constl/ipa';
+import type {client, utils, valid, variables} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 

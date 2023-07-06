@@ -1,4 +1,4 @@
-import type { utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
 import type {Ref} from 'vue';
@@ -55,7 +55,9 @@ export const enregistrerRecherche = <T>({
     nOuProfondeur: number;
     réfRésultat: Ref;
   }) => Promise<
-    utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
+    | utils.schémaRetourFonctionRechercheParN
+    | utils.schémaRetourFonctionRechercheParProfondeur
+    | undefined
   >;
   fRechercheDéfaut?: ({
     nOuProfondeur,
@@ -64,7 +66,9 @@ export const enregistrerRecherche = <T>({
     nOuProfondeur: number;
     réfRésultat: Ref;
   }) => Promise<
-    utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
+    | utils.schémaRetourFonctionRechercheParN
+    | utils.schémaRetourFonctionRechercheParProfondeur
+    | undefined
   >;
 }): Ref<number> => {
   let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
@@ -153,7 +157,9 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
+      | utils.schémaRetourFonctionRechercheParN
+      | utils.schémaRetourFonctionRechercheParProfondeur
+      | undefined
     >;
     fRechercheDéfaut?: ({
       nOuProfondeur,
@@ -162,7 +168,9 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
+      | utils.schémaRetourFonctionRechercheParN
+      | utils.schémaRetourFonctionRechercheParProfondeur
+      | undefined
     >;
   }): Promise<void> {
     if (this.fOublierRecherche) {

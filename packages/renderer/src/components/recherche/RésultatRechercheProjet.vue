@@ -71,7 +71,9 @@ import JetonBd from '../bds/JetonBd.vue';
 const props = defineProps<{
   résultat: utils.résultatRecherche<
     | utils.infoRésultatTexte
-    | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
+    | utils.infoRésultatRecherche<
+        utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+      >
   >;
 }>();
 

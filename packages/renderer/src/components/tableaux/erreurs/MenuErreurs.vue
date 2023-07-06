@@ -15,7 +15,7 @@
   </v-menu>
 </template>
 <script setup lang="ts">
-import type {valid } from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 
 defineProps<{erreurs: valid.erreurValidation[]}>();
 </script>

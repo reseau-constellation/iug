@@ -9,7 +9,7 @@ import {
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை, மொழிபெயர்ப்பு_அகராதி_வகை} from './கிளிமூக்கு';
 import type {முன்னேற்றம்_தகவல்கள்} from './கிளிமூக்கு';
 import type {மரம்_மொழிபெயர்ப்பு_அகராதி_வகை} from './கிளிமூக்கு';
-import type {utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 import {useI18n} from 'vue-i18n';
 import {utiliserLangues} from '../localisation/localisation';
 import type {Nuchabäl} from 'nuchabal';

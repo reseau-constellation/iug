@@ -1,5 +1,5 @@
 import type {client} from '@constl/ipa';
-import type { valid } from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 import {type ComputedRef, computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 

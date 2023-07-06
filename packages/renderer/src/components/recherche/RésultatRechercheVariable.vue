@@ -29,7 +29,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {  utils, variables } from '@constl/ipa';
+import type {utils, variables} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 

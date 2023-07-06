@@ -10,7 +10,7 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client, utils } from '@constl/ipa';
+import type {client, utils} from '@constl/ipa';
 import {type Ref, inject, ref} from 'vue';
 
 import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
@@ -32,7 +32,11 @@ watchEffect(() => {
 // Contrôles recherche
 const requèteRecherche = ref<string>();
 const résultatsRecherche =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+  ref<
+    utils.résultatRecherche<
+      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    >[]
+  >();
 
 enregistrerRecherche({
   requète: requèteRecherche,
@@ -45,7 +49,9 @@ enregistrerRecherche({
     requète: string;
     nOuProfondeur: number;
     réfRésultat: Ref<
-      utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
+      utils.résultatRecherche<
+        utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+      >[]
     >;
   }) =>
     await constl?.recherche?.rechercherBdSelonTexte({

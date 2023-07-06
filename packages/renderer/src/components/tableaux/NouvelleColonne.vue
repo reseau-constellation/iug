@@ -99,7 +99,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type { utils, valid, variables } from '@constl/ipa';
+import type {utils, valid, variables} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';

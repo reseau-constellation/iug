@@ -92,10 +92,10 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { client, variables } from '@constl/ipa';
+import type {client, variables} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 
@@ -127,7 +127,6 @@ const sousTitreCarte = computed(() => {
       return '';
   }
 });
-
 
 const retour = () => {
   const é = listeÉtapes[étape.value];
@@ -182,9 +181,9 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 // Catégorie
 const catégorieListe = ref(false);
 const catégorieBase = ref<variables.catégorieBaseVariables>();
-const catégorie = computed<variables.catégorieVariables | undefined>(()=>{
+const catégorie = computed<variables.catégorieVariables | undefined>(() => {
   if (!catégorieBase.value) return;
-  return { type: catégorieListe.value ? 'liste' : 'simple', catégorie: catégorieBase.value};
+  return {type: catégorieListe.value ? 'liste' : 'simple', catégorie: catégorieBase.value};
 });
 
 // Noms
@@ -201,7 +200,7 @@ const ajusterDescriptions = (desrc: {[lng: string]: string}) => {
 
 // Unités
 const unités = ref<string>();
-const unitésPossible = computed(()=>{
+const unitésPossible = computed(() => {
   return catégorieBase.value === 'numérique';
 });
 
@@ -209,7 +208,7 @@ const unitésPossible = computed(()=>{
 const enCréation = ref(false);
 const créerVariable = async () => {
   enCréation.value = true;
-  
+
   if (!catégorie.value) return;
 
   const idVariable = await constl?.variables?.créerVariable({catégorie: catégorie.value});
@@ -239,6 +238,4 @@ const fermer = () => {
   enCréation.value = false;
   dialogue.value = false;
 };
-
-
 </script>

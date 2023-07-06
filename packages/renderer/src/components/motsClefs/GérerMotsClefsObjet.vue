@@ -84,7 +84,7 @@ import {inject, onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import type {client} from '@constl/ipa';
-import type { utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

@@ -153,7 +153,7 @@
 </template>
 
 <script setup lang="ts">
-import type {client, utils } from '@constl/ipa';
+import type {client, utils} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';

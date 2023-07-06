@@ -131,7 +131,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { réseau } from '@constl/ipa';
+import type {réseau} from '@constl/ipa';
 import type {client} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
