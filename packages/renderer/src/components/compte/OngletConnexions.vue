@@ -67,8 +67,7 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
+import type {client, réseau} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -110,13 +109,13 @@ enregistrerÉcoute(
 );
 
 // Connexions Constellation
-const connexionsConstellation = ref<statutDispositif[]>();
+const connexionsConstellation = ref<réseau.statutDispositif[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreConnexionsDispositifs({
     f: x => (connexionsConstellation.value = x),
   }),
 );
-const connexionsMembres = computed<{idCompte: string; dispositifs: statutDispositif[]}[]>(() => {
+const connexionsMembres = computed<{idCompte: string; dispositifs: réseau.statutDispositif[]}[]>(() => {
   const membres = [
     ...(new Set(connexionsConstellation.value?.map(c => c.infoDispositif.idCompte)) || []),
   ];

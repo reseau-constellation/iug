@@ -117,12 +117,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {
-  infoRésultatRecherche,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 import {type Ref, watchEffect} from 'vue';
 
 import {inject, ref} from 'vue';
@@ -182,18 +177,18 @@ const itemsTypesDonnées: {
 ];
 
 const résultatsRechercheBd =
-  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
-const résultatsRechercheMotsClefs = ref<résultatRecherche<infoRésultatTexte>[]>();
-const résultatsRechercheVariables = ref<résultatRecherche<infoRésultatTexte>[]>();
+  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+const résultatsRechercheMotsClefs = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const résultatsRechercheVariables = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 const résultatsRechercheProjets =
   ref<
-    résultatRecherche<
-      | infoRésultatTexte
-      | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>
+    utils.résultatRecherche<
+      | utils.infoRésultatTexte
+      | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
     >[]
   >();
 const résultatsRechercheNuée =
-  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
+  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
 
 const chercheur = new MultiChercheur();
 const {nOuProfondeur} = chercheur;
@@ -217,7 +212,7 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+          réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
         }) => {
           return await constl?.recherche?.rechercherMotClefSelonTexte({
             texte: requète,
@@ -239,7 +234,7 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+          réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
         }) => {
           return await constl?.recherche?.rechercherVariableSelonTexte({
             texte: requète,
@@ -262,7 +257,7 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+            utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
           >;
         }) => {
           return await constl?.recherche?.rechercherBdSelonTexte({
@@ -286,9 +281,9 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            résultatRecherche<
-              | infoRésultatTexte
-              | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>
+            utils.résultatRecherche<
+              | utils.infoRésultatTexte
+              | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
             >[]
           >;
         }) => {
@@ -313,7 +308,7 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+            utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
           >;
         }) => {
           return await constl?.recherche?.rechercherNuéeSelonTexte({

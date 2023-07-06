@@ -127,7 +127,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: élémentsBd[]) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: utils.élémentsBd[]) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleChaîneNonTraductible
@@ -248,11 +248,7 @@
   />
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {InfoColAvecCatégorie, élémentBdListeDonnées} from '@constl/ipa/dist/src/tableaux';
-import type {catégorieBaseVariables} from '@constl/ipa/dist/src/variables';
-import type {erreurValidation, élémentDonnées} from '@constl/ipa/dist/src/valid';
-import type {élémentsBd} from '@constl/ipa/dist/src/utils';
+import type {client, tableaux, variables, valid, utils} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 
@@ -289,7 +285,7 @@ enregistrerÉcoute(
 );
 
 // Colonnes du tableau
-const colonnes = ref<InfoColAvecCatégorie[]>();
+const colonnes = ref<tableaux.InfoColAvecCatégorie[]>();
 enregistrerÉcoute(
   constl?.tableaux?.suivreColonnes({
     idTableau: props.idTableau,
@@ -312,7 +308,7 @@ const entêtes = computed(() => {
   });
 });
 
-const triables: catégorieBaseVariables[] = [
+const triables: variables.catégorieBaseVariables[] = [
   'booléen',
   'catégorique',
   'chaîne',
@@ -320,12 +316,12 @@ const triables: catégorieBaseVariables[] = [
   'intervaleTemps',
   'numérique',
 ];
-const triable = (catégorieBase: catégorieBaseVariables): boolean => {
+const triable = (catégorieBase: variables.catégorieBaseVariables): boolean => {
   return triables.includes(catégorieBase);
 };
 
 // Éléments
-const éléments = ref<élémentDonnées<élémentBdListeDonnées>[]>();
+const éléments = ref<valid.élémentDonnées<tableaux.élémentBdListeDonnées>[]>();
 const filesSélectionnées = ref<string[]>([]);
 enregistrerÉcoute(
   constl?.tableaux?.suivreDonnées({
@@ -333,7 +329,7 @@ enregistrerÉcoute(
     f: x => (éléments.value = x),
   }),
 );
-const ajouterÉlément = async (vals: {[idCol: string]: élémentBdListeDonnées}) => {
+const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdListeDonnées}) => {
   await constl?.tableaux?.ajouterÉlément({
     idTableau: props.idTableau,
     vals,
@@ -355,7 +351,7 @@ const modifierÉlément = async ({
   empreinte,
 }: {
   col: string;
-  val: élémentsBd;
+  val: utils.élémentsBd;
   empreinte: string;
 }) => {
   await constl?.tableaux?.modifierÉlément({
@@ -366,7 +362,7 @@ const modifierÉlément = async ({
 };
 
 // Validation
-const erreursValidation = ref<erreurValidation[]>();
+const erreursValidation = ref<valid.erreurValidation[]>();
 enregistrerÉcoute(
   constl?.tableaux?.suivreValidDonnées({
     idTableau: props.idTableau,

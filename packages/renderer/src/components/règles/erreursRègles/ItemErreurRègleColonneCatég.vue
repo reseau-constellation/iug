@@ -33,11 +33,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {
-  détailsRègleValeurCatégoriqueDynamique,
-  erreurRègleCatégoriqueColonneInexistante,
-  règleValeurCatégorique,
-} from '@constl/ipa/dist/src/valid';
+import type { valid } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -45,7 +41,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
-const props = defineProps<{idTableau: string; erreur: erreurRègleCatégoriqueColonneInexistante}>();
+const props = defineProps<{idTableau: string; erreur: valid.erreurRègleCatégoriqueColonneInexistante}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -83,7 +79,7 @@ const changerColonne = async ({
   idColNouvelle: string;
 }) => {
   const {source} = props.erreur.règle;
-  const nouvelleRègle: règleValeurCatégorique<détailsRègleValeurCatégoriqueDynamique> = {
+  const nouvelleRègle: valid.règleValeurCatégorique<valid.détailsRègleValeurCatégoriqueDynamique> = {
     typeRègle: 'valeurCatégorique',
     détails: {
       type: 'dynamique',

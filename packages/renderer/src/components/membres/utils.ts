@@ -1,5 +1,5 @@
 import type {client} from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import type { utils } from '@constl/ipa';
 import {type Ref, computed, ref, watchEffect, inject} from 'vue';
 import {enregistrerÉcoute} from '../utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -40,7 +40,7 @@ export const utiliserNomEtTypeDispositif = ({
   );
 
   const nomEtType = ref<{type: string; nom: string}>();
-  let fOublier: schémaFonctionOublier | undefined;
+  let fOublier: utils.schémaFonctionOublier | undefined;
 
   watchEffect(async () => {
     if (fOublier) await fOublier();

@@ -1,4 +1,4 @@
-import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
+import type {variables} from '@constl/ipa';
 
 export const ouvrirLien = (lien: string) => {
   window.open(lien); // À faire : tester sous Électron
@@ -67,7 +67,7 @@ export type publicationGitHub = {
   assets: fichierPublicationGitHub[];
 };
 
-export const icôneCatégorieVariable = (catégorie: catégorieVariables): string => {
+export const icôneCatégorieVariable = (catégorie: variables.catégorieVariables): string => {
   if (catégorie.type === 'simple') {
     switch (catégorie.catégorie) {
       case 'numérique':

@@ -13,8 +13,7 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoRéplications} from '@constl/ipa/dist/src/reseau';
+import type {client, réseau} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -31,7 +30,7 @@ const {t} = useI18n();
 const {formatterChiffre} = utiliserNumération();
 
 // Réplications
-const réplications = ref<infoRéplications>();
+const réplications = ref<réseau.infoRéplications>();
 enregistrerÉcoute(
   constl?.réseau?.suivreRéplications({
     idObjet: props.id,

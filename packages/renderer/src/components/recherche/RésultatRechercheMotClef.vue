@@ -28,8 +28,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoAuteur, infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -40,7 +39,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
+const props = defineProps<{résultat: utils.résultatRecherche<utils.infoRésultatTexte>}>();
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -76,7 +75,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursMotClef({
     idMotClef: props.résultat.id,

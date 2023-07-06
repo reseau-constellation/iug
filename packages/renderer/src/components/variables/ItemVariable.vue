@@ -12,8 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
+import type {client, variables} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -34,7 +33,7 @@ const {traduireNom} = utiliserLangues();
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = ref<catégorieVariables>();
+const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
   constl?.variables?.suivreCatégorieVariable({
     id: props.id,

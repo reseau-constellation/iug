@@ -29,7 +29,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
+import type { utils } from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -91,7 +91,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursBd({
     idBd: props.id,

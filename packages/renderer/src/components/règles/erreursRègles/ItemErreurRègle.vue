@@ -24,11 +24,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {
-  erreurRègleBornesColonneInexistante,
-  erreurRègleBornesVariableNonPrésente,
-  erreurRègleCatégoriqueColonneInexistante,
-} from '@constl/ipa/dist/src/valid';
+import type {valid } from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ItemErreurRègleColonneBornes from './ItemErreurRègleColonneBornes.vue';
@@ -38,9 +34,9 @@ import ItemErreurRègleVariableBornes from './ItemErreurRègleVariableBornes.vue
 defineProps<{
   idTableau: string;
   erreur:
-    | erreurRègleBornesColonneInexistante
-    | erreurRègleBornesVariableNonPrésente
-    | erreurRègleCatégoriqueColonneInexistante;
+    | valid.erreurRègleBornesColonneInexistante
+    | valid.erreurRègleBornesVariableNonPrésente
+    | valid.erreurRègleCatégoriqueColonneInexistante;
 }>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();

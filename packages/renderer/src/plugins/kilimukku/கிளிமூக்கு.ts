@@ -1,9 +1,4 @@
-import type {bds, client, valid} from '@constl/ipa';
-import type {
-  schémaFonctionOublier,
-  schémaFonctionSuivi,
-  schémaRetourFonctionRechercheParProfondeur,
-} from '@constl/ipa/dist/src/utils';
+import type {bds, client, utils, valid} from '@constl/ipa';
 import {
   சாபி_நெடுவரிசை_அடையாளம்,
   இலக்கு_மொழி_நெடுவரிசை_அடையாளம்,
@@ -17,8 +12,6 @@ import {
 } from './மாறிலிகள்';
 import {கிளி, தேதி_நெடுவரிசை_அடையாளம், பங்கேற்பாளர்_நெடுவரிசை_அடையாளம்} from '@lassi-js/kili';
 import type {அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை, பிணையம்_பரிந்துரை} from '@lassi-js/kili';
-import type {élémentDonnées} from '@constl/ipa/dist/src/valid';
-
 export type மூல்_மொழிப்பெயர்ப்பு_வகை = {
   clef: string;
   langueCible: string;
@@ -243,7 +236,7 @@ export class கிளிமூக்கு extends கிளி<மொழிப
     });
   }
 
-  async சாபிகளை_கேள்ளு({செ}: {செ: schémaFonctionSuivi<string[]>}): Promise<schémaFonctionOublier> {
+  async சாபிகளை_கேள்ளு({செ}: {செ: utils.schémaFonctionSuivi<string[]>}): Promise<utils.schémaFonctionOublier> {
     const சாபிகள்: {
       மூல்: string[];
       மொழிபெயர்ப்புகள்: string[];
@@ -266,8 +259,8 @@ export class கிளிமூக்கு extends கிளி<மொழிப
     செ,
   }: {
     பரிந்துரைகளும்?: boolean;
-    செ: schémaFonctionSuivi<string[]>;
-  }): Promise<schémaFonctionOublier> {
+    செ: utils.schémaFonctionSuivi<string[]>;
+  }): Promise<utils.schémaFonctionOublier> {
     const மொழிகள்: {மூல்: string[]; அங்கீகரிக்கப்பட்டவை?: string[]; பரிந்துரைகள்?: string[]} = {
       மூல்: Object.values(this.மூல்_மொழிபெயர்ப்புகள்)
         .map(இ => Object.keys(இ))
@@ -311,10 +304,10 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   async அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகளை_கேள்ளு({
     செ,
   }: {
-    செ: schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>;
-  }): Promise<schémaFonctionOublier> {
+    செ: utils.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>;
+  }): Promise<utils.schémaFonctionOublier> {
     const தகவல்கள்: {
-      உறுப்படிகள்: élémentDonnées<
+      உறுப்படிகள்: valid.élémentDonnées<
         அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை<மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை>
       >[];
     } = {
@@ -342,8 +335,8 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   async மொழிபெயர்ப்புகளை_கேள்ளு({
     செ,
   }: {
-    செ: schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>;
-  }): Promise<schémaFonctionOublier> {
+    செ: utils.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>;
+  }): Promise<utils.schémaFonctionOublier> {
     if (!this.விண்மீன்.bds) throw new Error('விண்மீன் தயராரானதில்லை');
     await செ(this.மூல்_மொழிபெயர்ப்புகள்);
 
@@ -372,8 +365,8 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   }: {
     சாபி?: string;
     மொழி?: string;
-    செ: schémaFonctionSuivi<பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]>;
-  }): Promise<schémaRetourFonctionRechercheParProfondeur> {
+    செ: utils.schémaFonctionSuivi<பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]>;
+  }): Promise<utils.schémaRetourFonctionRechercheParProfondeur> {
     return await this.பரிந்துரைகளை_கேள்ளு({
       செ: async பரிந்துரைகள் => {
         return await செ(
@@ -392,8 +385,8 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   async எனது_மொழிபெயர்ப்பு_பரிந்துரைகளை_கேள்ளு({
     செ,
   }: {
-    செ: schémaFonctionSuivi<பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]>;
-  }): Promise<schémaFonctionOublier> {
+    செ: utils.schémaFonctionSuivi<பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]>;
+  }): Promise<utils.schémaFonctionOublier> {
     if (!this.விண்மீன்.bds) throw new Error('விண்மீன் தயராரானதில்லை');
 
     return await this.எனது_பரிந்துரைகளை_கேள்ளு({
@@ -409,8 +402,8 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   }: {
     மொழி: string;
     வகை: 'சாபி' | 'வார்த்தை';
-    செ: schémaFonctionSuivi<முன்னேற்றம்_தகவல்கள்>;
-  }): Promise<schémaFonctionOublier> {
+    செ: utils.schémaFonctionSuivi<முன்னேற்றம்_தகவல்கள்>;
+  }): Promise<utils.schémaFonctionOublier> {
     const தகவல்கள்: {
       சாபிகள்?: string[];
       மொழிபெயர்ப்புகள்?: மொழிபெயர்ப்பு_அகராதி_வகை;
@@ -463,7 +456,7 @@ export class கிளிமூக்கு extends கிளி<மொழிப
       }
     };
 
-    const செ_மறந்துவிடு: schémaFonctionOublier[] = await Promise.all([
+    const செ_மறந்துவிடு: utils.schémaFonctionOublier[] = await Promise.all([
       this.சாபிகளை_கேள்ளு({
         செ: async சாபிகள் => {
           தகவல்கள்.சாபிகள் = சாபிகள்;
@@ -527,9 +520,9 @@ export class கிளிமூக்கு extends கிளி<மொழிப
   }: {
     சாபி: string;
     மொழி: string;
-    செ: schémaFonctionSuivi<string | undefined>;
+    செ: utils.schémaFonctionSuivi<string | undefined>;
     பரிந்துரைகள்: 'எனது' | 'எல்லாம்' | 'வேண்டாம்';
-  }): Promise<schémaFonctionOublier> {
+  }): Promise<utils.schémaFonctionOublier> {
     const தகவல்கள்: {
       மொழிபெயர்ப்புகள்?: மொழிபெயர்ப்பு_அகராதி_வகை;
       பரிந்துரைகள்?: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[];

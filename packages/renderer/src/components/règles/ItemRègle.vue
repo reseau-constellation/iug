@@ -18,11 +18,11 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {règleVariableAvecId} from '@constl/ipa/dist/src/valid';
+import type {valid } from '@constl/ipa';
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{regle: règleVariableAvecId; effacable?: boolean}>();
+const props = defineProps<{regle: valid.règleVariableAvecId; effacable?: boolean}>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;
 }>();

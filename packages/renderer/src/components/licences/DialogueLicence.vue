@@ -27,7 +27,7 @@
       <v-card-text>
         <v-select
           v-model="licenceChoisie"
-          :items="licences"
+          :items="licencesDispos"
           variant="outlined"
           density="compact"
           :disabled="!permissionModifier"
@@ -155,7 +155,7 @@
 
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {InfoLicence} from '@constl/ipa/dist/src/licences';
+import type { licences } from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 
@@ -191,13 +191,13 @@ watchEffect(() => {
 const licenceChangée = computed(() => licenceChoisie.value !== props.licence);
 
 // Caractéristiques licences
-const infoLicences = ref<{[clef: string]: InfoLicence}>();
+const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
 enregistrerÉcoute(
   constl?.suivreLicences({
     f: x => (infoLicences.value = x),
   }),
 );
-const licences = computed<string[]>(() => {
+const licencesDispos = computed<string[]>(() => {
   return infoLicences.value ? Object.keys(infoLicences.value) : [];
 });
 const droits = computed(() => {

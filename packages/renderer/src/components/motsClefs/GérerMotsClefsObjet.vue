@@ -13,7 +13,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title>{{ t('motsClefs.gérerMotsClefsObjet.titreCarte') }}</v-card-title>
@@ -31,7 +31,7 @@
           </template>
           <v-card
             class="mx-auto"
-            :width="mdAndUp ? 500 : 300"
+            :max-width="mdAndUp ? 500 : 300"
           >
             <v-card-text>
               <v-text-field
@@ -84,11 +84,7 @@ import {inject, onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import type {client} from '@constl/ipa';
-import type {
-  infoRésultatTexte,
-  résultatRecherche,
-  schémaFonctionOublier,
-} from '@constl/ipa/dist/src/utils';
+import type { utils } from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -124,9 +120,9 @@ const sauvegarder = () => {
 // Ajout de mots-clef
 const motClefSélectionné = ref<string>();
 const requèteRecherche = ref<string>();
-const résultatRechercheMotsClefs = ref<résultatRecherche<infoRésultatTexte>[]>();
+const résultatRechercheMotsClefs = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 
-let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
+let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
 
 watchEffect(async () => {
   if (fOublierRecherche) await fOublierRecherche();

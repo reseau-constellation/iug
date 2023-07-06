@@ -40,13 +40,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {
-  infoAuteur,
-  infoRésultatRecherche,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
+import type {client, utils } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import type {ComputedRef} from 'vue';
@@ -62,7 +56,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
-  résultat: résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>;
+  résultat: utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');
@@ -72,7 +66,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Sources résultat directes (nom, description, id de la bd)
-const sourceDirecte = (de: string): ComputedRef<infoRésultatTexte | undefined> => {
+const sourceDirecte = (de: string): ComputedRef<utils.infoRésultatTexte | undefined> => {
   return computed(() => {
     const {de: sourceRésultat, info} = props.résultat.résultatObjectif;
     if (info.type === 'texte' && sourceRésultat === de) {
@@ -93,7 +87,7 @@ const sourceObjetConnexe = (
 ): ComputedRef<
   | {
       id: string;
-      info: infoRésultatRecherche<infoRésultatTexte>;
+      info: utils.infoRésultatRecherche<utils.infoRésultatTexte>;
     }
   | undefined
 > => {
@@ -135,7 +129,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursVariable({
     idVariable: props.résultat.id,

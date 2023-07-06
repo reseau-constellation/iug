@@ -42,10 +42,7 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
-import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
-import type {règleVariable, règleVariableAvecId} from '@constl/ipa/dist/src/valid';
+import type {client, utils, variables, valid} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -127,7 +124,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = ref<catégorieVariables>();
+const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
   constl?.variables?.suivreCatégorieVariable({
     id: props.id,
@@ -136,7 +133,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursVariable({
     idVariable: props.id,
@@ -145,7 +142,7 @@ enregistrerÉcoute(
 );
 
 // Règles
-const règles = ref<règleVariableAvecId<règleVariable>[]>();
+const règles = ref<valid.règleVariableAvecId<valid.règleVariable>[]>();
 enregistrerÉcoute(
   constl?.variables?.suivreRèglesVariable({
     id: props.id,

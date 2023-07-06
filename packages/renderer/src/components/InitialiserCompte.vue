@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -213,7 +213,7 @@ import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 import type {client} from '@constl/ipa';
-import type {infoMembreRéseau} from '@constl/ipa/dist/src/reseau';
+import type {réseau} from '@constl/ipa';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -385,7 +385,7 @@ const imageChangée = (img?: ArrayBuffer) => {
 // Rejoindre compte
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
-const comptesEnLigne = ref<infoMembreRéseau[]>([]);
+const comptesEnLigne = ref<réseau.infoMembreRéseau[]>([]);
 const connexionsSFIP = ref<
   {
     adresse: string;

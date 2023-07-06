@@ -8,7 +8,7 @@
 
       <v-card
         class="mx-auto"
-        :width="mdAndUp ? 500 : 300"
+        :max-width="mdAndUp ? 500 : 300"
       >
         <v-card-item>
           <v-card-title class="text-h5 justify-space-between">
@@ -173,23 +173,7 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
-import type {élémentsBd} from '@constl/ipa/dist/src/utils';
-import type {
-  détailsRègleBornes,
-  détailsRègleBornesDynamiqueColonne,
-  détailsRègleBornesDynamiqueVariable,
-  détailsRègleBornesFixe,
-  détailsRègleValeurCatégorique,
-  détailsRègleValeurCatégoriqueDynamique,
-  détailsRègleValeurCatégoriqueFixe,
-  règleBornes,
-  règleExiste,
-  règleValeurCatégorique,
-  règleVariable,
-  typeOp,
-} from '@constl/ipa/dist/src/valid';
-import type {client} from '@constl/ipa';
-import type {catégorieBaseVariables} from '@constl/ipa/dist/src/variables';
+import type {client, utils, valid, variables } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -202,10 +186,10 @@ const props = defineProps<{
   source:
     | {type: 'variable'; idVariable?: string}
     | {type: 'tableau'; idTableau: string; idColonne?: string};
-  categorieVariable?: catégorieBaseVariables;
+  categorieVariable?: variables.catégorieBaseVariables;
 }>();
 const émettre = defineEmits<{
-  (é: 'sauvegarder', règle: règleVariable): void;
+  (é: 'sauvegarder', règle: valid.règleVariable): void;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');
@@ -385,14 +369,14 @@ const utiliserBorne = (type: 'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe') 
   suivant();
 };
 
-const opBorne = ref<typeOp>();
+const opBorne = ref<valid.typeOp>();
 const valBorneFixe = ref<number>();
 const valBorneDynamiqueVariable = ref<string>();
 const valBorneDynamiqueColonne = ref<string>();
 
 // Règle catégorique
 const typeCatégorie = ref<'dynamique' | 'fixe'>();
-const valCatégorieFixe = ref<élémentsBd[]>();
+const valCatégorieFixe = ref<utils.élémentsBd[]>();
 const valCatégorieDynamique = ref<{tableau: string; colonne: string}>();
 
 const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
@@ -402,7 +386,7 @@ const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
 
 // Confirmer
 const enCréation = ref(false);
-const ajouterRègle = async (règle: règleVariable) => {
+const ajouterRègle = async (règle: valid.règleVariable) => {
   if (props.source.type === 'variable') {
     const {idVariable} = props.source;
     // Si la variable n'est pas encore créée, renvoyer tout simplement la spécification de la règle
@@ -432,18 +416,18 @@ const confirmer = async () => {
   if (!cheminement.value) throw new Error('Cheminement non défini');
 
   if (cheminement.value === 'existe') {
-    const règle: règleExiste = {
+    const règle: valid.règleExiste = {
       typeRègle: 'existe',
       détails: {},
     };
     await ajouterRègle(règle);
   } else if (cheminement.value === 'borne') {
     if (!opBorne.value) throw new Error('Opérateur borne non défini');
-    let détails: détailsRègleBornes;
+    let détails: valid.détailsRègleBornes;
     switch (typeBornes.value) {
       case 'fixe': {
         if (!valBorneFixe.value) throw new Error('Valeur borne fixe non définie');
-        const détailsBorne: détailsRègleBornesFixe = {
+        const détailsBorne: valid.détailsRègleBornesFixe = {
           type: 'fixe',
           op: opBorne.value,
           val: valBorneFixe.value,
@@ -454,7 +438,7 @@ const confirmer = async () => {
       case 'dynamiqueColonne': {
         if (!valBorneDynamiqueColonne.value)
           throw new Error('Valeur borne dynamique colonne non définie');
-        const détailsBorne: détailsRègleBornesDynamiqueColonne = {
+        const détailsBorne: valid.détailsRègleBornesDynamiqueColonne = {
           type: 'dynamiqueColonne',
           op: opBorne.value,
           val: valBorneDynamiqueColonne.value,
@@ -465,7 +449,7 @@ const confirmer = async () => {
       case 'dynamiqueVariable': {
         if (!valBorneDynamiqueVariable.value)
           throw new Error('Valeur borne dynamique variable non définie');
-        const détailsBorne: détailsRègleBornesDynamiqueVariable = {
+        const détailsBorne: valid.détailsRègleBornesDynamiqueVariable = {
           type: 'dynamiqueVariable',
           op: opBorne.value,
           val: valBorneDynamiqueVariable.value,
@@ -476,17 +460,17 @@ const confirmer = async () => {
       default:
         throw new Error(typeBornes.value);
     }
-    const règle: règleBornes = {
+    const règle: valid.règleBornes = {
       typeRègle: 'bornes',
       détails,
     };
     await ajouterRègle(règle);
   } else {
-    let détails: détailsRègleValeurCatégorique;
+    let détails: valid.détailsRègleValeurCatégorique;
     switch (typeCatégorie.value) {
       case 'fixe': {
         if (!valCatégorieFixe.value) throw new Error('Valeur borne fixe non définie');
-        const détailsBorne: détailsRègleValeurCatégoriqueFixe = {
+        const détailsBorne: valid.détailsRègleValeurCatégoriqueFixe = {
           type: 'fixe',
           options: valCatégorieFixe.value,
         };
@@ -496,7 +480,7 @@ const confirmer = async () => {
       case 'dynamique': {
         if (!valCatégorieDynamique.value)
           throw new Error('Valeur borne dynamique colonne non définie');
-        const détailsBorne: détailsRègleValeurCatégoriqueDynamique = {
+        const détailsBorne: valid.détailsRègleValeurCatégoriqueDynamique = {
           type: 'dynamique',
           ...valCatégorieDynamique.value,
         };
@@ -506,7 +490,7 @@ const confirmer = async () => {
       default:
         throw new Error(typeCatégorie.value);
     }
-    const règle: règleValeurCatégorique = {
+    const règle: valid.règleValeurCatégorique = {
       typeRègle: 'valeurCatégorique',
       détails,
     };

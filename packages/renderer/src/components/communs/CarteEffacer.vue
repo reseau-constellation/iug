@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="dialogue"
-    :width="mdAndUp ? 500 : 300"
+    :max-width="mdAndUp ? 500 : 300"
   >
     <template #activator="{props: propsActivateur}">
       <slot

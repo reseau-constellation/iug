@@ -27,7 +27,7 @@
   </SérieJetons>
 </template>
 <script setup lang="ts">
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
+import type {utils} from '@constl/ipa';
 
 import {computed} from 'vue';
 import type {PropType} from 'vue';
@@ -39,7 +39,7 @@ import CarteMembre from '../membres/CarteMembre.vue';
 
 const props = defineProps({
   auteurs: {
-    type: Array as PropType<infoAuteur[]>,
+    type: Array as PropType<utils.infoAuteur[]>,
     default: () => [],
   },
   nMax: {

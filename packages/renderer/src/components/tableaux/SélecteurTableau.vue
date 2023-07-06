@@ -16,9 +16,7 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
+import type {client, bds, utils} from '@constl/ipa';
 
 import {inject, ref, watchEffect} from 'vue';
 
@@ -33,8 +31,8 @@ const émettre = defineEmits<{
 const constl = inject<client.ClientConstellation>('constl');
 
 // Tableaux
-const tableaux = ref<infoTableauAvecId[]>();
-let oublierTableaux: schémaFonctionOublier | undefined;
+const tableaux = ref<bds.infoTableauAvecId[]>();
+let oublierTableaux: utils.schémaFonctionOublier | undefined;
 watchEffect(async () => {
   if (oublierTableaux) await oublierTableaux();
   if (props.idBd) {

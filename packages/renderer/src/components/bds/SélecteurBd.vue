@@ -10,13 +10,8 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {client, utils } from '@constl/ipa';
 import {type Ref, inject, ref} from 'vue';
-import type {
-  infoRésultatRecherche,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
 
 import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 import {enregistrerRecherche} from '/@/components/utils';
@@ -37,7 +32,7 @@ watchEffect(() => {
 // Contrôles recherche
 const requèteRecherche = ref<string>();
 const résultatsRecherche =
-  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
+  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
 
 enregistrerRecherche({
   requète: requèteRecherche,
@@ -50,7 +45,7 @@ enregistrerRecherche({
     requète: string;
     nOuProfondeur: number;
     réfRésultat: Ref<
-      résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+      utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
     >;
   }) =>
     await constl?.recherche?.rechercherBdSelonTexte({
@@ -63,7 +58,7 @@ enregistrerRecherche({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) => {
     return await constl?.recherche?.rechercherBds({
       f: x => (réfRésultat.value = x),

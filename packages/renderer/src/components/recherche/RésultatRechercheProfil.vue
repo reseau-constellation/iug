@@ -35,8 +35,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -49,7 +48,7 @@ import JetonContactMembre from '../membres/JetonContactMembre.vue';
 import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
+const props = defineProps<{résultat: utils.résultatRecherche<utils.infoRésultatTexte>}>();
 
 const constl = inject<client.ClientConstellation>('constl');
 

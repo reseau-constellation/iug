@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type {infoTableau} from '@constl/ipa/dist/src/bds';
-import type {InfoColAvecCatégorie} from '@constl/ipa/dist/src/tableaux';
+import type {bds, tableaux } from '@constl/ipa';
+
 import ItemSpécificationColonne from './ItemSpécificationColonne.vue';
 
-defineProps<{info: infoTableau; idTableau?: string; colonnes: InfoColAvecCatégorie[]}>();
+defineProps<{info: bds.infoTableau; idTableau?: string; colonnes: tableaux.InfoColAvecCatégorie[]}>();
 </script>

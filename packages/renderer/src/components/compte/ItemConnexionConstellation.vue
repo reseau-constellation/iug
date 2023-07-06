@@ -22,8 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {statutDispositif} from '@constl/ipa/dist/src/reseau';
+import type {client, réseau} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -33,7 +32,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
 
-const props = defineProps<{compte: string; dispositifs: statutDispositif[]}>();
+const props = defineProps<{compte: string; dispositifs: réseau.statutDispositif[]}>();
 
 const constl = inject<client.ClientConstellation>('constl');
 

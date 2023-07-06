@@ -1,9 +1,5 @@
 import type {client} from '@constl/ipa';
-import type {
-  erreurRègleBornesColonneInexistante,
-  erreurRègleBornesVariableNonPrésente,
-  erreurRègleCatégoriqueColonneInexistante,
-} from '@constl/ipa/dist/src/valid';
+import type { valid } from '@constl/ipa';
 import {type ComputedRef, computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
@@ -12,9 +8,9 @@ export const utiliserMonAutorisationRègleSourceErreur = ({
   idTableau,
 }: {
   erreur:
-    | erreurRègleBornesColonneInexistante
-    | erreurRègleBornesVariableNonPrésente
-    | erreurRègleCatégoriqueColonneInexistante;
+    | valid.erreurRègleBornesColonneInexistante
+    | valid.erreurRègleBornesVariableNonPrésente
+    | valid.erreurRègleCatégoriqueColonneInexistante;
   idTableau: string;
 }): ComputedRef<'MODÉRATEUR' | 'MEMBRE' | undefined> => {
   const constl = inject<client.ClientConstellation>('constl');

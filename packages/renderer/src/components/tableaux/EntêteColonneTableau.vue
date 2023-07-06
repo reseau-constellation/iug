@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title></v-card-title>

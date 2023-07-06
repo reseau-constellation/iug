@@ -52,13 +52,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {
-  infoAuteur,
-  infoRésultatRecherche,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import type {ComputedRef} from 'vue';
@@ -75,9 +69,9 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import JetonBd from '../bds/JetonBd.vue';
 
 const props = defineProps<{
-  résultat: résultatRecherche<
-    | infoRésultatTexte
-    | infoRésultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>
+  résultat: utils.résultatRecherche<
+    | utils.infoRésultatTexte
+    | utils.infoRésultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>
   >;
 }>();
 
@@ -88,7 +82,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Sources résultat directes (nom, description, id de la nuée)
-const sourceDirecte = (de: string): ComputedRef<infoRésultatTexte | undefined> => {
+const sourceDirecte = (de: string): ComputedRef<utils.infoRésultatTexte | undefined> => {
   return computed(() => {
     const {de: sourceRésultat, info} = props.résultat.résultatObjectif;
     if (info.type === 'texte' && sourceRésultat === de) {
@@ -108,7 +102,7 @@ const infoSourceBdIndirecte = computed(
   ():
     | {
         id: string;
-        info: infoRésultatRecherche<infoRésultatTexte>;
+        info: utils.infoRésultatRecherche<utils.infoRésultatTexte>;
       }
     | undefined => {
     const {de, clef, info} = props.résultat.résultatObjectif;
@@ -129,7 +123,7 @@ const sourceObjetConnexe = (
 ): ComputedRef<
   | {
       id: string;
-      info: infoRésultatRecherche<infoRésultatTexte>;
+      info: utils.infoRésultatRecherche<utils.infoRésultatTexte>;
     }
   | undefined
 > => {
@@ -138,7 +132,7 @@ const sourceObjetConnexe = (
     if (info.type === 'résultat' && sourceRésultat === de && clef && info.info.type === 'texte') {
       return {
         id: clef,
-        info: info as infoRésultatRecherche<infoRésultatTexte>,
+        info: info as utils.infoRésultatRecherche<utils.infoRésultatTexte>,
       };
     } else {
       return undefined;
@@ -172,7 +166,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursVariable({
     idVariable: props.résultat.id,

@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
       class="mx-auto"
     >
       <v-card-item>
@@ -131,7 +131,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {infoBloqué} from '@constl/ipa/dist/src/reseau';
+import type { réseau } from '@constl/ipa';
 import type {client} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
@@ -156,7 +156,7 @@ const dialogue = ref(false);
 
 // Statut relation
 const fiables = ref<string[]>();
-const bloqués = ref<infoBloqué[]>();
+const bloqués = ref<réseau.infoBloqué[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreBloqués({
     f: x => (bloqués.value = x),

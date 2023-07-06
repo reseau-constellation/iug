@@ -8,7 +8,7 @@
 
       <v-card
         class="mx-auto"
-        :width="mdAndUp ? 500 : 300"
+        :max-width="mdAndUp ? 500 : 300"
       >
         <v-card-item>
           <v-card-title class="text-h5 justify-space-between">
@@ -99,9 +99,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
-import type {règleVariable, règleVariableAvecId} from '@constl/ipa/dist/src/valid';
-import type {catégorieBaseVariables} from '@constl/ipa/dist/src/variables';
+import type { utils, valid, variables } from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -196,8 +194,8 @@ const idVariableChoisie = ref(props.idVariable);
 const choisirVariable = (idVar: string) => (idVariableChoisie.value = idVar);
 
 // Catégorie variable
-const catégorieBaseVariableChoisie = ref<catégorieBaseVariables>();
-let oublierCatégorieVariable: schémaFonctionOublier | undefined;
+const catégorieBaseVariableChoisie = ref<variables.catégorieBaseVariables>();
+let oublierCatégorieVariable: utils.schémaFonctionOublier | undefined;
 const lancerSuiviCatégorieBaseVariable = async (idVariable?: string) => {
   if (oublierCatégorieVariable) await oublierCatégorieVariable();
   if (idVariable) {
@@ -219,8 +217,8 @@ watchEffect(async () => {
 const index = ref(false);
 
 // Règles variable associée
-const règlesVariable = ref<règleVariableAvecId[]>();
-let oublierRèglesVariables: schémaFonctionOublier | undefined;
+const règlesVariable = ref<valid.règleVariableAvecId[]>();
+let oublierRèglesVariables: utils.schémaFonctionOublier | undefined;
 
 const lancerSuiviRèglesVariables = async (idVariable?: string) => {
   if (oublierRèglesVariables) await oublierRèglesVariables();
@@ -241,9 +239,9 @@ watchEffect(async () => {
 });
 
 // Règles colonne
-const règlesColonne = ref<règleVariableAvecId[]>([]);
+const règlesColonne = ref<valid.règleVariableAvecId[]>([]);
 
-const ajouterRègle = (règle: règleVariable) => {
+const ajouterRègle = (règle: valid.règleVariable) => {
   const idRègle = uuidv4();
   // @ts-expect-error  À vérifier éventuellement
   règlesColonne.value = [...règlesColonne.value, {règle: règle, id: idRègle}];

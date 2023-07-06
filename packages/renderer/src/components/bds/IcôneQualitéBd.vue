@@ -10,8 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type {infoScore} from '@constl/ipa/dist/src/bds';
-import type {client} from '@constl/ipa';
+import type {client, bds} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -22,7 +21,7 @@ const props = defineProps<{id: string}>();
 const constl = inject<client.ClientConstellation>('constl');
 
 // Qualité BD
-const qualité = ref<infoScore>();
+const qualité = ref<bds.infoScore>();
 enregistrerÉcoute(
   constl?.bds?.suivreScoreBd({
     id: props.id,

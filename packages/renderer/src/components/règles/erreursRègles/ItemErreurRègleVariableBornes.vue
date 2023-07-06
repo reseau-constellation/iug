@@ -42,11 +42,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {
-  détailsRègleBornesDynamiqueVariable,
-  erreurRègleBornesVariableNonPrésente,
-  règleBornes,
-} from '@constl/ipa/dist/src/valid';
+import type { valid } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -58,7 +54,7 @@ import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
-const props = defineProps<{idTableau: string; erreur: erreurRègleBornesVariableNonPrésente}>();
+const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesVariableNonPrésente}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -97,7 +93,7 @@ const monAutorisation = utiliserMonAutorisationRègleSourceErreur({
 const changerVariable = async (idVar: string) => {
   const {source} = props.erreur.règle;
   const {op} = props.erreur.règle.règle.règle.détails;
-  const nouvelleRègle: règleBornes<détailsRègleBornesDynamiqueVariable> = {
+  const nouvelleRègle: valid.règleBornes<valid.détailsRègleBornesDynamiqueVariable> = {
     typeRègle: 'bornes',
     détails: {
       type: 'dynamiqueVariable',

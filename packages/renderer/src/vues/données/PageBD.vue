@@ -496,8 +496,8 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
-import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
+import type {bds, utils } from '@constl/ipa';
+
 
 import {useDisplay, useRtl} from 'vuetify';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -674,7 +674,7 @@ enregistrerÉcoute(
 */
 
 // Tableaux
-const tableaux = ref<infoTableauAvecId[]>();
+const tableaux = ref<bds.infoTableauAvecId[]>();
 const tableauxOrdonnés = computed(() => {
   if (!tableaux.value) return;
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
@@ -687,7 +687,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursBd({
     idBd: props.id,

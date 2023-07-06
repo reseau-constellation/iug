@@ -200,12 +200,7 @@
 <script setup lang="ts">
 import {ref, inject, type Ref} from 'vue';
 
-import type {client} from '@constl/ipa';
-import type {
-  infoRésultatRecherche,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -310,7 +305,7 @@ enregistrerÉcoute(
 // Recherche
 const texteRecherche = ref<string>();
 const résulatsRecherche =
-  ref<résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]>();
+  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
 enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
@@ -322,7 +317,7 @@ enregistrerRecherche({
     requète: string;
     nOuProfondeur: number;
     réfRésultat: Ref<
-      résultatRecherche<infoRésultatTexte | infoRésultatRecherche<infoRésultatTexte>>[]
+      utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
     >;
   }) => {
     return await constl?.recherche?.rechercherBdSelonTexte({

@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -67,9 +67,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {InfoColAvecCatégorie} from '@constl/ipa/dist/src/tableaux';
-import type {schémaFonctionOublier} from '@constl/ipa/dist/src/utils';
+import type {client, tableaux, utils} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -175,9 +173,9 @@ const idTableauSélectionné = ref(props.idTableau);
 
 // Colonne
 const idColonne = ref<string>();
-const colonnesTableau = ref<InfoColAvecCatégorie[]>();
+const colonnesTableau = ref<tableaux.InfoColAvecCatégorie[]>();
 
-let oublierColonnes: schémaFonctionOublier | undefined;
+let oublierColonnes: utils.schémaFonctionOublier | undefined;
 const lancerSuiviColonnes = async (idTableauSél?: string) => {
   if (oublierColonnes) await oublierColonnes();
   if (idTableauSél) {

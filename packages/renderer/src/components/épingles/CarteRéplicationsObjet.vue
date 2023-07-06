@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :width="mdAndUp ? 700 : 300"
+      :max-width="mdAndUp ? 700 : 300"
       class="mx-auto"
     >
       <v-card-item>
@@ -128,8 +128,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoRéplications} from '@constl/ipa/dist/src/reseau';
+import type {client, réseau} from '@constl/ipa';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -154,7 +153,7 @@ const constl = inject<client.ClientConstellation>('constl');
 const dialogue = ref(false);
 
 // Réplications
-const réplications = ref<infoRéplications>();
+const réplications = ref<réseau.infoRéplications>();
 enregistrerÉcoute(
   constl?.réseau?.suivreRéplications({
     idObjet: props.id,

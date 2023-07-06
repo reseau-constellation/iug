@@ -14,8 +14,7 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 
 import {type Ref, inject, ref} from 'vue';
 import JetonVariable from './JetonVariable.vue';
@@ -31,7 +30,7 @@ const constl = inject<client.ClientConstellation>('constl');
 
 const variableChoisie = ref<string>();
 const recherche = ref<string>();
-const résultatsRecherche = ref<résultatRecherche<infoRésultatTexte>[]>();
+const résultatsRecherche = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 
 enregistrerRecherche({
   requète: recherche,
@@ -43,7 +42,7 @@ enregistrerRecherche({
   }: {
     requète: string;
     nOuProfondeur: number;
-    réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) =>
     await constl?.recherche?.rechercherVariableSelonTexte({
       texte: requète,
@@ -55,7 +54,7 @@ enregistrerRecherche({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) => {
     return await constl?.recherche?.rechercherVariables({
       f: x => (réfRésultat.value = x),

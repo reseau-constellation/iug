@@ -29,8 +29,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {infoAuteur, infoRésultatTexte, résultatRecherche} from '@constl/ipa/dist/src/utils';
-import type {catégorieVariables} from '@constl/ipa/dist/src/variables';
+import type {  utils, variables } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -43,7 +42,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{résultat: résultatRecherche<infoRésultatTexte>}>();
+const props = defineProps<{résultat: utils.résultatRecherche<utils.infoRésultatTexte>}>();
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -60,7 +59,7 @@ const source = computed(() => {
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = ref<catégorieVariables>();
+const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
   constl?.variables?.suivreCatégorieVariable({
     id: props.résultat.id,
@@ -91,7 +90,7 @@ enregistrerÉcoute(
 );
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursVariable({
     idVariable: props.résultat.id,

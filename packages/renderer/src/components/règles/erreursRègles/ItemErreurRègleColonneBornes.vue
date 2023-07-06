@@ -43,11 +43,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {
-  détailsRègleBornesDynamiqueColonne,
-  erreurRègleBornesColonneInexistante,
-  règleBornes,
-} from '@constl/ipa/dist/src/valid';
+import type { valid } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -56,7 +52,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 import NouvelleColonne from '../../tableaux/NouvelleColonne.vue';
 
-const props = defineProps<{idTableau: string; erreur: erreurRègleBornesColonneInexistante}>();
+const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesColonneInexistante}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -87,7 +83,7 @@ const monAutorisation = utiliserMonAutorisationRègleSourceErreur({
 const changerColonne = async (idCol: string) => {
   const {source} = props.erreur.règle;
   const {op} = props.erreur.règle.règle.règle.détails;
-  const nouvelleRègle: règleBornes<détailsRègleBornesDynamiqueColonne> = {
+  const nouvelleRègle: valid.règleBornes<valid.détailsRègleBornesDynamiqueColonne> = {
     typeRègle: 'bornes',
     détails: {
       type: 'dynamiqueColonne',

@@ -127,9 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
-import type {infoTableauAvecId} from '@constl/ipa/dist/src/bds';
+import type {client, utils, bds} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -217,7 +215,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = ref<infoAuteur[]>();
+const auteurs = ref<utils.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursBd({
     idBd: props.id,
@@ -267,7 +265,7 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 };
 
 // Tableaux
-const tableaux = ref<infoTableauAvecId[]>();
+const tableaux = ref<bds.infoTableauAvecId[]>();
 enregistrerÉcoute(
   constl?.bds?.suivreTableauxBd({
     id: props.id,

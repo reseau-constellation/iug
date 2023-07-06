@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -106,17 +106,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {
-  XLSXParsingOptions,
-  fréquence as TypeFréquence,
-  formatTélécharger,
-  SourceDonnéesImportation,
-  infoImporterJSON,
-  infoImporterFeuilleCalcul,
-  SourceDonnéesImportationURL,
-  SpécificationImporter,
-  SourceDonnéesImportationFichier,
-} from '@constl/ipa/dist/src/automatisation';
+import type { automatisation } from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
 import type {client} from '@constl/ipa';
 
@@ -379,9 +369,9 @@ const correspondancesJSONCols = ref<{[key: string]: clefsExtraction}>();
 
 const correspondancesFeuilleCalculNomTableau = ref<string>();
 const correspondancesFeuilleCalculCols = ref<{[key: string]: string}>();
-const correspondancesFeuilleCalculOptionsXLSX = ref<XLSXParsingOptions>();
+const correspondancesFeuilleCalculOptionsXLSX = ref<automatisation.XLSXParsingOptions>();
 
-const générerInfoJSON = (): infoImporterJSON => {
+const générerInfoJSON = (): automatisation.infoImporterJSON => {
   if (!correspondancesJSONClefRacine.value) throw new Error('Clefs racine JSON non définies.');
   if (!correspondancesJSONClefsÉléments.value) throw new Error('Clefs éléments JSON non définies.');
   if (!correspondancesJSONCols.value) throw new Error('Colonnes JSON non définies.');
@@ -392,7 +382,7 @@ const générerInfoJSON = (): infoImporterJSON => {
     cols: correspondancesJSONCols.value,
   };
 };
-const générerInfoTableau = (): infoImporterFeuilleCalcul => {
+const générerInfoTableau = (): automatisation.infoImporterFeuilleCalcul => {
   if (!correspondancesFeuilleCalculNomTableau.value) throw new Error('Nom tableau non défini.');
   if (!correspondancesFeuilleCalculCols.value)
     throw new Error('Colonnes feuille calcul non définies.');
@@ -405,21 +395,21 @@ const générerInfoTableau = (): infoImporterFeuilleCalcul => {
   };
 };
 const sourceImportation = computed<
-  SourceDonnéesImportation<infoImporterJSON | infoImporterFeuilleCalcul>
+  automatisation.SourceDonnéesImportation<automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul>
 >(() => {
   if (!origineImportation.value) throw new Error('Format fichier importation non défini.');
 
   if (origineImportation.value === 'fichier') {
     if (!fichierImportation.value) throw new Error('Fichier importation non défini.');
     if (formatImportation.value === 'json') {
-      const source: SourceDonnéesImportationFichier<infoImporterJSON> = {
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterJSON> = {
         typeSource: origineImportation.value,
         adresseFichier: fichierImportation.value,
         info: générerInfoJSON(),
       };
       return source;
     } else {
-      const source: SourceDonnéesImportationFichier<infoImporterFeuilleCalcul> = {
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterFeuilleCalcul> = {
         typeSource: origineImportation.value,
         adresseFichier: fichierImportation.value,
         info: générerInfoTableau(),
@@ -429,14 +419,14 @@ const sourceImportation = computed<
   } else {
     if (!urlImportation.value) throw new Error('URL importation non défini.');
     if (formatImportation.value === 'json') {
-      const source: SourceDonnéesImportationURL<infoImporterJSON> = {
+      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterJSON> = {
         typeSource: origineImportation.value,
         url: urlImportation.value,
         info: générerInfoJSON(),
       };
       return source;
     } else {
-      const source: SourceDonnéesImportationURL<infoImporterFeuilleCalcul> = {
+      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterFeuilleCalcul> = {
         typeSource: origineImportation.value,
         url: urlImportation.value,
         info: générerInfoTableau(),
@@ -474,10 +464,10 @@ const typesObjetsPourImportation = ['tableau', 'bd'];
 
 // Options exportation
 const languesExportation = ref<string[]>();
-const formatDocExportation = ref<formatTélécharger>();
+const formatDocExportation = ref<automatisation.formatTélécharger>();
 
 // Automatisation
-const fréquence = ref<TypeFréquence>();
+const fréquence = ref<automatisation.fréquence>();
 const dispositifAutomatisation = ref<string>();
 
 const aussiAjouterAutomatisation = ref<boolean>();
@@ -534,7 +524,7 @@ const confirmer = async () => {
   if (!props.automatiser) {
     if (cheminement.value === 'importation') {
       if (!dispositifAutomatisation.value) throw new Error('Dispositif importation non défini.');
-      const spécificationImporter: SpécificationImporter = {
+      const spécificationImporter: automatisation.SpécificationImporter = {
         type: 'importation',
         id: Math.random().toString(), // Sera ignoré de toute façon, car on le l'ajoute pas à une automatisation ici. On devrait revoir les types !
         idTableau: idObjet.value,

@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :width="mdAndUp ? 700 : 300"
+      :max-width="mdAndUp ? 700 : 300"
       class="mx-auto"
     >
       <v-card-item>
@@ -153,8 +153,7 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {infoAuteur} from '@constl/ipa/dist/src/utils';
+import type {client, utils } from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -178,7 +177,7 @@ const props = defineProps<{
   id: string;
   noms: {[langue: string]: string};
   descriptions: {[langue: string]: string};
-  auteurs?: infoAuteur[];
+  auteurs?: utils.infoAuteur[];
 }>();
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;

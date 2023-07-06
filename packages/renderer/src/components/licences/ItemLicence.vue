@@ -15,7 +15,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {InfoLicence} from '@constl/ipa/dist/src/licences';
+import type { licences } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -29,7 +29,7 @@ const {t} = useI18n();
 const props = defineProps<{licence: string | undefined}>();
 
 // Info licence
-const infoLicences = ref<{[clef: string]: InfoLicence}>();
+const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
 enregistrerÉcoute(
   constl?.suivreLicences({
     f: x => (infoLicences.value = x),

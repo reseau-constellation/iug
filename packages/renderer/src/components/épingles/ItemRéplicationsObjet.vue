@@ -20,8 +20,7 @@
 <script setup lang="ts">
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
-import type {client} from '@constl/ipa';
-import type {infoRéplications} from '@constl/ipa/dist/src/reseau';
+import type {client, réseau} from '@constl/ipa';
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -36,7 +35,7 @@ const {formatterChiffre} = utiliserNumération();
 
 const constl = inject<client.ClientConstellation>('constl');
 
-const réplications = ref<infoRéplications>();
+const réplications = ref<réseau.infoRéplications>();
 
 enregistrerÉcoute(
   constl?.réseau?.suivreRéplications({

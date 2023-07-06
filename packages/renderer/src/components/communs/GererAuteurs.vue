@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="dialogue"
-    :width="mdAndUp ? 500 : 300"
+    :max-width="mdAndUp ? 500 : 300"
   >
     <template #activator="{props: propsActivateur}">
       <slot
@@ -88,13 +88,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {
-  infoAuteur,
-  infoRésultat,
-  infoRésultatTexte,
-  résultatRecherche,
-} from '@constl/ipa/dist/src/utils';
+import type {client, utils} from '@constl/ipa';
 import type {Ref} from 'vue';
 
 import {inject, ref, computed} from 'vue';
@@ -106,7 +100,7 @@ import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
 import RésultatRechercheProfil from '../recherche/RésultatRechercheProfil.vue';
 
-const props = defineProps<{auteurs: infoAuteur[] | undefined}>();
+const props = defineProps<{auteurs: utils.infoAuteur[] | undefined}>();
 const émettre = defineEmits<{
   (é: 'sauvegarder'): void;
 }>();
@@ -128,7 +122,7 @@ const fermer = () => {
 const ajouterCommeModérateur = ref(false);
 
 // Membres
-const membres = ref<résultatRecherche<infoRésultatTexte>[]>();
+const membres = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
 const requèteRecherche = ref<string>();
 enregistrerRecherche({
   requète: requèteRecherche,
@@ -140,7 +134,7 @@ enregistrerRecherche({
   }: {
     requète: string;
     nOuProfondeur: number;
-    réfRésultat: Ref<résultatRecherche<infoRésultatTexte>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) =>
     constl?.recherche?.rechercherProfilSelonTexte({
       texte: requète,
@@ -159,7 +153,7 @@ enregistrerRecherche({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<résultatRecherche<infoRésultat>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultat>[]>;
   }) =>
     constl?.réseau?.rechercherMembres({
       nRésultatsDésirés: nOuProfondeur,

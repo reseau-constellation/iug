@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -22,12 +22,17 @@
           v-model="étape"
           style="overflow-y: scroll"
         >
+          <v-window-item :value="0">
+            <v-select v-model="catégorieBase" />
+            <v-checkbox v-model="catégorieListe" />
+          </v-window-item>
         </v-window>
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
+import type { variables } from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -54,4 +59,16 @@ const sousTitreCarte = computed(() => {
       return '';
   }
 });
+
+// Catégorie
+const catégorieListe = ref(false);
+const catégorieBase = ref<variables.catégorieBaseVariables>();
+
+// Noms
+
+// Descriptions
+
+// Unités
+
+
 </script>

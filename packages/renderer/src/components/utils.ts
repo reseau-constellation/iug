@@ -1,8 +1,4 @@
-import type {
-  schémaFonctionOublier,
-  schémaRetourFonctionRechercheParN,
-  schémaRetourFonctionRechercheParProfondeur,
-} from '@constl/ipa/dist/src/utils';
+import type { utils } from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
 import type {Ref} from 'vue';
@@ -10,13 +6,13 @@ import {onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const enregistrerÉcoute = <
   T extends
-    | schémaFonctionOublier
-    | schémaRetourFonctionRechercheParProfondeur
-    | schémaRetourFonctionRechercheParN,
+    | utils.schémaFonctionOublier
+    | utils.schémaRetourFonctionRechercheParProfondeur
+    | utils.schémaRetourFonctionRechercheParN,
 >(
   promesseÉcoute?: Promise<T>,
 ): Promise<T | undefined> => {
-  let fOublier: schémaFonctionOublier | undefined = undefined;
+  let fOublier: utils.schémaFonctionOublier | undefined = undefined;
 
   const événements = new EventEmitter();
   let résultat: T | undefined;
@@ -59,7 +55,7 @@ export const enregistrerRecherche = <T>({
     nOuProfondeur: number;
     réfRésultat: Ref;
   }) => Promise<
-    schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+    utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
   >;
   fRechercheDéfaut?: ({
     nOuProfondeur,
@@ -68,17 +64,17 @@ export const enregistrerRecherche = <T>({
     nOuProfondeur: number;
     réfRésultat: Ref;
   }) => Promise<
-    schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+    utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
   >;
 }): Ref<number> => {
-  let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
+  let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
   let fChangerNOuProfondeur: (n: number) => Promise<void>;
 
   const nOuProfondeurRésultats = ref(10);
 
   const vérifierSiParProfondeur = (
-    x: schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur,
-  ): x is schémaRetourFonctionRechercheParProfondeur => {
+    x: utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur,
+  ): x is utils.schémaRetourFonctionRechercheParProfondeur => {
     // @ts-expect-error Je ne sais pas comment faire ça
     return !!x['fChangerProfondeur'];
   };
@@ -132,7 +128,7 @@ export const enregistrerRecherche = <T>({
 
 export class MultiChercheur {
   nOuProfondeur: Ref<number>;
-  fOublierRecherche?: schémaFonctionOublier;
+  fOublierRecherche?: utils.schémaFonctionOublier;
 
   constructor() {
     this.nOuProfondeur = ref(10);
@@ -157,7 +153,7 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+      utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
     >;
     fRechercheDéfaut?: ({
       nOuProfondeur,
@@ -166,7 +162,7 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur | undefined
+      utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur | undefined
     >;
   }): Promise<void> {
     if (this.fOublierRecherche) {
@@ -174,12 +170,12 @@ export class MultiChercheur {
       this.fOublierRecherche = undefined;
     }
 
-    let fOublierRecherche: schémaFonctionOublier | undefined = undefined;
+    let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
     let fChangerNOuProfondeur: (n: number) => Promise<void>;
 
     const vérifierSiParProfondeur = (
-      x: schémaRetourFonctionRechercheParN | schémaRetourFonctionRechercheParProfondeur,
-    ): x is schémaRetourFonctionRechercheParProfondeur => {
+      x: utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur,
+    ): x is utils.schémaRetourFonctionRechercheParProfondeur => {
       // @ts-expect-error Je ne sais pas comment faire ça
       return !!x['fChangerProfondeur'];
     };

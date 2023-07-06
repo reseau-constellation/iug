@@ -11,8 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type {infoScore} from '@constl/ipa/dist/src/bds';
-import type {client} from '@constl/ipa';
+import type {client, bds} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -28,7 +27,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Qualité BD
-const qualité = ref<infoScore>();
+const qualité = ref<bds.infoScore>();
 enregistrerÉcoute(
   constl?.bds?.suivreScoreBd({
     id: props.id,
