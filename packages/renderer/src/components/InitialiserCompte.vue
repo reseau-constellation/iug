@@ -92,10 +92,12 @@
                 </v-select>
                 <p class="my-3 text-disabled">
                   {{
-                    (comptesEnLigne.length
-                      ? t('accueil.initialiserCompte.indiceComptePasVu')
-                      : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                    (
+                      comptesEnLigne.length
+                        ? t('accueil.initialiserCompte.indiceComptePasVu')
+                        : t('accueil.initialiserCompte.indiceRechercheComptes')) +
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter'
+                      )
                   }}
                 </p>
               </div>
