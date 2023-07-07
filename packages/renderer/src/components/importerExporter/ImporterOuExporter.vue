@@ -106,7 +106,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
 import type {client} from '@constl/ipa';
 
@@ -395,25 +395,29 @@ const générerInfoTableau = (): automatisation.infoImporterFeuilleCalcul => {
   };
 };
 const sourceImportation = computed<
-  automatisation.SourceDonnéesImportation<automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul>
+  automatisation.SourceDonnéesImportation<
+    automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul
+  >
 >(() => {
   if (!origineImportation.value) throw new Error('Format fichier importation non défini.');
 
   if (origineImportation.value === 'fichier') {
     if (!fichierImportation.value) throw new Error('Fichier importation non défini.');
     if (formatImportation.value === 'json') {
-      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterJSON> = {
-        typeSource: origineImportation.value,
-        adresseFichier: fichierImportation.value,
-        info: générerInfoJSON(),
-      };
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterJSON> =
+        {
+          typeSource: origineImportation.value,
+          adresseFichier: fichierImportation.value,
+          info: générerInfoJSON(),
+        };
       return source;
     } else {
-      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterFeuilleCalcul> = {
-        typeSource: origineImportation.value,
-        adresseFichier: fichierImportation.value,
-        info: générerInfoTableau(),
-      };
+      const source: automatisation.SourceDonnéesImportationFichier<automatisation.infoImporterFeuilleCalcul> =
+        {
+          typeSource: origineImportation.value,
+          adresseFichier: fichierImportation.value,
+          info: générerInfoTableau(),
+        };
       return source;
     }
   } else {
@@ -426,15 +430,33 @@ const sourceImportation = computed<
       };
       return source;
     } else {
-      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterFeuilleCalcul> = {
-        typeSource: origineImportation.value,
-        url: urlImportation.value,
-        info: générerInfoTableau(),
-      };
+      const urlRésolu = résoudreUrl(urlImportation.value);
+      const source: automatisation.SourceDonnéesImportationURL<automatisation.infoImporterFeuilleCalcul> =
+        {
+          typeSource: origineImportation.value,
+          url: urlRésolu,
+          info: générerInfoTableau(),
+        };
       return source;
     }
   }
 });
+
+const résoudreUrl = (url: string): string => {
+  // Convertir document google à url téléchargement CSV
+  const domaine = new URL(url);
+  const docGoogle = domaine.hostname === 'docs.google.com';
+  if (docGoogle && !domaine.href.includes('gviz')) {
+    try {
+      const nom_tableau = url.split('gid=')[1];
+      const clef = url.split('spreadsheets/d/')[1].split('/edit#')[0];
+      return `https://docs.google.com/spreadsheets/d/${clef}/gviz/tq?tqx=out:csv&sheet=${nom_tableau}`;
+    } catch {
+      return url;
+    }
+  }
+  return url;
+};
 
 const correspondancesImportationBienSpécifiées = computed(() => {
   switch (formatImportation.value) {

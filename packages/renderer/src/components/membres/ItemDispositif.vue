@@ -29,7 +29,6 @@ import LienObjet from '../communs/LienObjet.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
 import JetonMembre from './JetonMembre.vue';
 
-
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
 
 // Info dispositif

@@ -198,7 +198,7 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject, type Ref} from 'vue';
+import {ref, inject} from 'vue';
 
 import type {client, utils} from '@constl/ipa';
 
@@ -305,7 +305,11 @@ enregistrerÉcoute(
 // Recherche
 const texteRecherche = ref<string>();
 const résulatsRecherche =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]>();
+  ref<
+    utils.résultatRecherche<
+      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    >[]
+  >();
 enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
@@ -313,12 +317,6 @@ enregistrerRecherche({
     requète,
     nOuProfondeur,
     réfRésultat,
-  }: {
-    requète: string;
-    nOuProfondeur: number;
-    réfRésultat: Ref<
-      utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>[]
-    >;
   }) => {
     return await constl?.recherche?.rechercherBdSelonTexte({
       texte: requète,

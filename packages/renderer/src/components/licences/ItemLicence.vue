@@ -15,7 +15,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type { licences } from '@constl/ipa';
+import type {licences} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';

@@ -11,7 +11,14 @@
       v-if="spécification.type === 'importation'"
       :spécification="spécification"
     />
-    <jeton-statut-automatisation :statut="props.statut" />
+    <jeton-statut-automatisation
+      v-if="statut"
+      :statut="statut"
+    />
+    <v-skeleton-loader
+      v-else
+      type="chip"
+    />
   </v-list-item>
 </template>
 <script setup lang="ts">
@@ -19,6 +26,8 @@ import type {automatisation} from '@constl/ipa';
 import type {client} from '@constl/ipa';
 
 import {computed, inject, ref, onMounted} from 'vue';
+import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
+
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -26,7 +35,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
-  statut: automatisation.ÉtatAutomatisation;
+  statut?: automatisation.ÉtatAutomatisation;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');

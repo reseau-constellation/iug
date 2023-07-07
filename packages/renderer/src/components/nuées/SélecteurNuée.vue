@@ -1,12 +1,11 @@
 <template>
   <v-autocomplete
-    v-model="idsBdsSélectionnées"
+    v-model="idNuéeSélectionnée"
     v-model:search="requèteRecherche"
-    :items="résultatsPermisRecherche"
-    :multiple="multiples"
+    :items="résultatsRecherche"
   >
     <template #item="{item}">
-      <RésultatRechercheBd :résultat="item.raw" />
+      <ResultatRechercheNuee :résultat="item.raw" />
     </template>
   </v-autocomplete>
 </template>
@@ -14,22 +13,20 @@
 import type {client, utils} from '@constl/ipa';
 import {inject, ref} from 'vue';
 
-import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
 import {enregistrerRecherche} from '/@/components/utils';
 import {watchEffect} from 'vue';
-import { computed } from 'vue';
 
-const props = defineProps<{multiples: boolean; interdites?: string[]}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idsBds: string[]): void;
+  (é: 'selectionnee', idNuée?: string): void;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');
 
 // Sélection
-const idsBdsSélectionnées = ref<string[]>([]);
+const idNuéeSélectionnée = ref<string>();
 watchEffect(() => {
-  émettre('selectionnee', idsBdsSélectionnées.value);
+  émettre('selectionnee', idNuéeSélectionnée.value);
 });
 
 // Contrôles recherche
@@ -40,9 +37,6 @@ const résultatsRecherche =
       utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
     >[]
   >();
-const résultatsPermisRecherche = computed(()=>{
-  return résultatsRecherche.value?.filter(r=>!((props.interdites || []).includes(r.id)));
-});
 
 enregistrerRecherche({
   requète: requèteRecherche,
@@ -52,7 +46,7 @@ enregistrerRecherche({
     nOuProfondeur,
     réfRésultat,
   }) =>
-    await constl?.recherche?.rechercherBdSelonTexte({
+    await constl?.recherche?.rechercherNuéeSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
@@ -61,7 +55,7 @@ enregistrerRecherche({
     nOuProfondeur,
     réfRésultat,
   }) => {
-    return await constl?.recherche?.rechercherBds({
+    return await constl?.recherche?.rechercherNuées({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

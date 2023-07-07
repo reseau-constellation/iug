@@ -236,7 +236,11 @@ export class கிளிமூக்கு extends கிளி<மொழிப
     });
   }
 
-  async சாபிகளை_கேள்ளு({செ}: {செ: utils.schémaFonctionSuivi<string[]>}): Promise<utils.schémaFonctionOublier> {
+  async சாபிகளை_கேள்ளு({
+    செ,
+  }: {
+    செ: utils.schémaFonctionSuivi<string[]>;
+  }): Promise<utils.schémaFonctionOublier> {
     const சாபிகள்: {
       மூல்: string[];
       மொழிபெயர்ப்புகள்: string[];

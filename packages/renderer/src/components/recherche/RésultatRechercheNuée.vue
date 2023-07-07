@@ -56,7 +56,9 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
-  résultat: utils.résultatRecherche<utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>>;
+  résultat: utils.résultatRecherche<
+    utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+  >;
 }>();
 
 const constl = inject<client.ClientConstellation>('constl');

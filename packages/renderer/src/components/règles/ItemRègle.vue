@@ -18,7 +18,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {valid } from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 

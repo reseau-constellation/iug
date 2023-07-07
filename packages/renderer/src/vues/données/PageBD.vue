@@ -371,7 +371,7 @@
               min-width="200"
               max-width="350"
               class="mb-3 me-3"
-            > 
+            >
               <v-card-item>
                 <v-card-title>
                   <p class="mb-0 text-overline">
@@ -496,8 +496,7 @@
 </template>
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {bds, utils } from '@constl/ipa';
-
+import type {bds, utils} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -527,15 +526,16 @@ import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemQualitéBd from '/@/components/bds/ItemQualitéBd.vue';
-import {ajusterTexteTraductible} from '/@/utils';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
 import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
-import ItemRéplicationsObjet from  '/@/components/épingles/ItemRéplicationsObjet.vue';
+import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
+
+import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

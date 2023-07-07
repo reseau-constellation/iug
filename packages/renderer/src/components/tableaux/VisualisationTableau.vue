@@ -127,7 +127,8 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: utils.élémentsBd[]) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: utils.élémentsBd[]) =>
+            modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleChaîneNonTraductible

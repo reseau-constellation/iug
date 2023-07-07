@@ -22,7 +22,10 @@
           style="overflow-y: scroll"
         >
           <v-window-item :value="0">
-            <SelecteurBd @selectionnee="x => (idBd = x)" />
+            <SelecteurBd
+              :multiples="false"
+              @selectionnee="ids => (idBd = ids[0])"
+            />
             <SelecteurTableau
               :id-bd="idBd"
               @selectionnee="x => (idTableauSélectionné = x)"

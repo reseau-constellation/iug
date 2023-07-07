@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import type {client} from '@constl/ipa';
-import type {utils } from '@constl/ipa';
+import type {utils} from '@constl/ipa';
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';

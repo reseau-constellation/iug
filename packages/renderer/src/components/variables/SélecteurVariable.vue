@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import type {client, utils} from '@constl/ipa';
 
-import {type Ref, inject, ref} from 'vue';
+import {inject, ref} from 'vue';
 import JetonVariable from './JetonVariable.vue';
 import {enregistrerRecherche} from '../utils';
 import RésultatRechercheVariable from '../recherche/RésultatRechercheVariable.vue';
@@ -39,10 +39,6 @@ enregistrerRecherche({
     requète,
     nOuProfondeur,
     réfRésultat,
-  }: {
-    requète: string;
-    nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) =>
     await constl?.recherche?.rechercherVariableSelonTexte({
       texte: requète,
@@ -52,9 +48,6 @@ enregistrerRecherche({
   fRechercheDéfaut: async ({
     nOuProfondeur,
     réfRésultat,
-  }: {
-    nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
   }) => {
     return await constl?.recherche?.rechercherVariables({
       f: x => (réfRésultat.value = x),

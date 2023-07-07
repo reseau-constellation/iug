@@ -134,7 +134,7 @@ enregistrerRecherche({
   }: {
     requète: string;
     nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[] | undefined>;
   }) =>
     constl?.recherche?.rechercherProfilSelonTexte({
       texte: requète,
@@ -153,7 +153,7 @@ enregistrerRecherche({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultat>[]>;
+    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultat>[] | undefined>;
   }) =>
     constl?.réseau?.rechercherMembres({
       nRésultatsDésirés: nOuProfondeur,
