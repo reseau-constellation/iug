@@ -41,20 +41,13 @@ const résultatsRecherche =
 enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }) =>
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
     await constl?.recherche?.rechercherNuéeSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
-  fRechercheDéfaut: async ({
-    nOuProfondeur,
-    réfRésultat,
-  }) => {
+  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
     return await constl?.recherche?.rechercherNuées({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

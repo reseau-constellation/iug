@@ -17,7 +17,7 @@ import {inject, ref} from 'vue';
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
 import {enregistrerRecherche} from '/@/components/utils';
 import {watchEffect} from 'vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps<{multiples: boolean; interdites?: string[]}>();
 const émettre = defineEmits<{
@@ -34,29 +34,21 @@ watchEffect(() => {
 
 // Contrôles recherche
 const requèteRecherche = ref<string>();
-const résultatsRecherche =
-  ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
-const résultatsPermisRecherche = computed(()=>{
-  return résultatsRecherche.value?.filter(r=>!((props.interdites || []).includes(r.id)));
+const résultatsRecherche = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const résultatsPermisRecherche = computed(() => {
+  return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
 
 enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }) =>
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
     await constl?.recherche?.rechercherMotClefSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
-  fRechercheDéfaut: async ({
-    nOuProfondeur,
-    réfRésultat,
-  }) => {
+  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
     return await constl?.recherche?.rechercherMotsClefs({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

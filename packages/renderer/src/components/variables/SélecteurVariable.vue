@@ -35,20 +35,13 @@ const résultatsRecherche = ref<utils.résultatRecherche<utils.infoRésultatText
 enregistrerRecherche({
   requète: recherche,
   réfRésultat: résultatsRecherche,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }) =>
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
     await constl?.recherche?.rechercherVariableSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
-  fRechercheDéfaut: async ({
-    nOuProfondeur,
-    réfRésultat,
-  }) => {
+  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
     return await constl?.recherche?.rechercherVariables({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

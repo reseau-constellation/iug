@@ -6,15 +6,13 @@
       :sous-titre="t('pages.automatisations.sousTitre')"
     />
     <v-list>
-      <ImporterOuExporter
-        automatiser
-      >
+      <ImporterOuExporter automatiser>
         <template #activator="{props}">
-          <v-list-item 
-            v-bind="props" 
-            prepend-icon="mdi-plus" 
-            :title="t('pages.automatisations.ajouterNouvelle.titre')" 
-            :subtitle="t('pages.automatisations.ajouterNouvelle.sousTitre')" 
+          <v-list-item
+            v-bind="props"
+            prepend-icon="mdi-plus"
+            :title="t('pages.automatisations.ajouterNouvelle.titre')"
+            :subtitle="t('pages.automatisations.ajouterNouvelle.sousTitre')"
           />
         </template>
       </ImporterOuExporter>
@@ -28,8 +26,8 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type { automatisation, client } from '@constl/ipa';
-import { inject, ref } from 'vue';
+import type {automatisation, client} from '@constl/ipa';
+import {inject, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -37,7 +35,7 @@ import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
-import { enregistrerÉcoute } from '../components/utils';
+import {enregistrerÉcoute} from '../components/utils';
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -51,16 +49,15 @@ const imgAutomatisations = obtImageDéco('automatisation');
 const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
 enregistrerÉcoute(
   constl?.automatisations?.suivreAutomatisations({
-    f: x => automatisations.value = x,
+    f: x => (automatisations.value = x),
   }),
 );
 const statutAutomatisations = ref<{
-    [key: string]: automatisation.ÉtatAutomatisation;
+  [key: string]: automatisation.ÉtatAutomatisation;
 }>({});
 enregistrerÉcoute(
   constl?.automatisations?.suivreÉtatAutomatisations({
-    f: x => statutAutomatisations.value = x,
+    f: x => (statutAutomatisations.value = x),
   }),
 );
 </script>
-

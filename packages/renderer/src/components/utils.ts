@@ -45,7 +45,7 @@ export const enregistrerRecherche = <T, V, U extends V>({
   fRechercheDéfaut,
 }: {
   requète: Ref<T | undefined>;
-  réfRésultat: Ref<U[]|undefined>;
+  réfRésultat: Ref<U[] | undefined>;
   fRecherche: ({
     requète,
     nOuProfondeur,
@@ -53,7 +53,7 @@ export const enregistrerRecherche = <T, V, U extends V>({
   }: {
     requète: T;
     nOuProfondeur: number;
-    réfRésultat: Ref<U[]|undefined>;
+    réfRésultat: Ref<U[] | undefined>;
   }) => Promise<
     | utils.schémaRetourFonctionRechercheParN
     | utils.schémaRetourFonctionRechercheParProfondeur
@@ -64,7 +64,7 @@ export const enregistrerRecherche = <T, V, U extends V>({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<V[]|undefined>;
+    réfRésultat: Ref<V[] | undefined>;
   }) => Promise<
     | utils.schémaRetourFonctionRechercheParN
     | utils.schémaRetourFonctionRechercheParProfondeur

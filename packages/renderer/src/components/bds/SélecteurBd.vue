@@ -17,7 +17,7 @@ import {inject, ref} from 'vue';
 import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 import {enregistrerRecherche} from '/@/components/utils';
 import {watchEffect} from 'vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps<{multiples: boolean; interdites?: string[]}>();
 const émettre = defineEmits<{
@@ -40,27 +40,20 @@ const résultatsRecherche =
       utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
     >[]
   >();
-const résultatsPermisRecherche = computed(()=>{
-  return résultatsRecherche.value?.filter(r=>!((props.interdites || []).includes(r.id)));
+const résultatsPermisRecherche = computed(() => {
+  return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
 
 enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }) =>
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
     await constl?.recherche?.rechercherBdSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
-  fRechercheDéfaut: async ({
-    nOuProfondeur,
-    réfRésultat,
-  }) => {
+  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
     return await constl?.recherche?.rechercherBds({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

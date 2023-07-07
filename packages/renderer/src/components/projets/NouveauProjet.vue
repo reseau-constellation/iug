@@ -44,13 +44,13 @@
           <v-window-item :value="2">
             <SelecteurMotClef
               multiples
-              @selectionnee="ids => motsClefs = ids"
+              @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>
           <v-window-item :value="3">
             <SelecteurBd
               multiples
-              @selectionnee="ids => bds = ids"
+              @selectionnee="ids => (bds = ids)"
             />
           </v-window-item>
           <v-window-item :value="4">
@@ -69,9 +69,7 @@
                 </v-btn>
               </p>
               <v-checkbox v-model="ouvrirAprèsCréation">
-                {{
-                  t('projets.nouveau.ouvrirAprèsCréation')
-                }}
+                {{ t('projets.nouveau.ouvrirAprèsCréation') }}
               </v-checkbox>
             </div>
           </v-window-item>
@@ -103,15 +101,15 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { client } from '@constl/ipa';
+import type {client} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
-import { useRouter } from 'vue-router';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {useRouter} from 'vue-router';
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -141,8 +139,6 @@ const sousTitreCarte = computed(() => {
       return '';
   }
 });
-
-
 
 const suivant = () => {
   const é = listeÉtapes[étape.value];
@@ -189,7 +185,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 // Noms
 const noms = ref<{[lng: string]: string}>({});
 const ajusterNoms = (nms: {[lng: string]: string}) => {
-  noms.value =  nms; 
+  noms.value = nms;
 };
 
 // Descriptions
@@ -224,10 +220,13 @@ const créerBd = async () => {
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
   await constl?.projets?.ajouterMotsClefsProjet({idProjet, idsMotsClefs: motsClefs.value});
-  await Promise.all(bds.value.map(async idBd => await constl?.projets?.ajouterBdProjet({idProjet, idBd})));
+  await Promise.all(
+    bds.value.map(async idBd => await constl?.projets?.ajouterBdProjet({idProjet, idBd})),
+  );
 
   fermer();
-  if (ouvrirAprèsCréation.value) router.push(encodeURI(`/données/projet/${encodeURIComponent(idProjet)}`));
+  if (ouvrirAprèsCréation.value)
+    router.push(encodeURI(`/données/projet/${encodeURIComponent(idProjet)}`));
 };
 
 // Fermer
@@ -241,5 +240,4 @@ const fermer = () => {
   enCréation.value = false;
   dialogue.value = false;
 };
-
 </script>

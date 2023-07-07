@@ -28,36 +28,34 @@
                 prepend-icon="mdi-creation-outline"
                 :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
                 :title="t('bds.nouvelle.créerNouvelle')"
-                @click="()=>suivreCheminementNouvelle()"
+                @click="() => suivreCheminementNouvelle()"
               />
               <v-list-item
                 prepend-icon="mdi-table"
                 :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
                 :title="t('bds.nouvelle.copierDeBd')"
-                @click="()=>suivreCheminementGabarit('bd')"
+                @click="() => suivreCheminementGabarit('bd')"
               />
               <v-list-item
                 prepend-icon="mdi-table-multiple"
                 :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
                 :title="t('bds.nouvelle.copierDeNuée')"
-                @click="()=>suivreCheminementGabarit('nuée')"
+                @click="() => suivreCheminementGabarit('nuée')"
               />
             </v-list>
           </v-window-item>
           <v-window-item :value="1">
             <SelecteurBd
               :multiples="false"
-              @selectionnee="(ids) => ids[0] && choisirGabaritBd(ids[0])"
+              @selectionnee="ids => ids[0] && choisirGabaritBd(ids[0])"
             ></SelecteurBd>
-            <v-checkbox 
-              v-model="copierDonnées" 
+            <v-checkbox
+              v-model="copierDonnées"
               :label="t('bds.nouvelle.copierDonnéesBd')"
             />
           </v-window-item>
           <v-window-item :value="2">
-            <SelecteurNuee
-              @selectionnee="(id) => id && choisirGabaritNuée(id)"
-            />
+            <SelecteurNuee @selectionnee="id => id && choisirGabaritNuée(id)" />
           </v-window-item>
           <v-window-item :value="3">
             <liste-noms
@@ -82,13 +80,13 @@
           <v-window-item :value="5">
             <SelecteurMotClef
               multiples
-              @selectionnee="ids => motsClefs = ids"
+              @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>
           <v-window-item :value="6">
             <dialogue-licence
               :licence="licence"
-              @changer-licence="l => licence = l"
+              @changer-licence="l => (licence = l)"
             >
               <template #activator="{props}">
                 <JetonLicence
@@ -114,9 +112,7 @@
                 </v-btn>
               </p>
               <v-checkbox v-model="ouvrirAprèsCréation">
-                {{
-                  t('bds.nouvelle.ouvrirAprèsCréation')
-                }}
+                {{ t('bds.nouvelle.ouvrirAprèsCréation') }}
               </v-checkbox>
             </div>
           </v-window-item>
@@ -231,7 +227,7 @@ const sousTitreCarte = computed(() => {
   }
 });
 
-const cheminement = ref<'nouvelle'|'bd'|'nuée'>();
+const cheminement = ref<'nouvelle' | 'bd' | 'nuée'>();
 const suivreCheminementGabarit = (type: 'nuée' | 'bd') => {
   cheminement.value = type;
   étape.value = listeÉtapes.indexOf(type === 'bd' ? 'gabaritBd' : 'gabaritNuée');
@@ -240,7 +236,6 @@ const suivreCheminementNouvelle = () => {
   cheminement.value = 'nouvelle';
   étape.value = listeÉtapes.indexOf('noms');
 };
-
 
 const suivant = () => {
   const é = listeÉtapes[étape.value];
@@ -268,7 +263,11 @@ const retour = () => {
 
     case 'licence':
       étape.value = listeÉtapes.indexOf(
-        cheminement.value === 'bd' ? 'gabaritBd' : (cheminement.value === 'nuée' ? 'gabaritNuée' : 'motsClefs'),
+        cheminement.value === 'bd'
+          ? 'gabaritBd'
+          : cheminement.value === 'nuée'
+          ? 'gabaritNuée'
+          : 'motsClefs',
       );
       break;
 
@@ -319,7 +318,7 @@ const choisirGabaritBd = async (idBd: string) => {
 const choisirGabaritNuée = async (idNuée: string) => {
   const schéma = await constl?.nuées?.générerSchémaBdNuée({
     idNuée,
-    licence: 'ODbl-1_0',  // À faire : incorporer dans la spécification de la nuée
+    licence: 'ODbl-1_0', // À faire : incorporer dans la spécification de la nuée
   });
   if (schéma) {
     gabaritNuée.value = schéma;

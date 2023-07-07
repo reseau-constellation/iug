@@ -313,11 +313,7 @@ const résulatsRecherche =
 enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }) => {
+  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) => {
     return await constl?.recherche?.rechercherBdSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
