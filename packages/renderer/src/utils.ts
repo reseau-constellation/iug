@@ -75,8 +75,6 @@ export const icôneCatégorieVariable = (catégorie: variables.catégorieVariabl
       case 'chaîneNonTraductible':
       case 'chaîne':
         return 'mdi-text-short';
-      case 'catégorique':
-        return 'mdi-view-list';
       case 'booléen':
         return 'mdi-order-bool-ascending-variant';
       case 'géojson':

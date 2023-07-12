@@ -195,15 +195,6 @@
           (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
         "
       />
-      <celluleCatégorique
-        v-else-if="c.info.catégorie?.catégorie === 'catégorique'"
-        :val="item.columns[c.key]"
-        :editer="éditer"
-        :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
-        "
-      />
       <CelluleVidéo
         v-else-if="c.info.catégorie?.catégorie === 'vidéo'"
         :val="item.columns[c.key]"
@@ -311,7 +302,6 @@ const entêtes = computed(() => {
 
 const triables: variables.catégorieBaseVariables[] = [
   'booléen',
-  'catégorique',
   'chaîne',
   'horoDatage',
   'intervaleTemps',
