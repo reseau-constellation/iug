@@ -40,9 +40,8 @@ const imgFavoris = obtImageDéco('automatisation');
 // Mes favoris
 const mesFavoris = ref<favoris.ÉlémentFavorisAvecObjet[]>();
 enregistrerÉcoute(
-    constl?.favoris?.suivreFavoris({
-        f: x => mesFavoris.value = x,
-    }),
+  constl?.favoris?.suivreFavoris({
+    f: x => (mesFavoris.value = x),
+  }),
 );
-
 </script>
