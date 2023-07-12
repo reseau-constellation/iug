@@ -13,7 +13,7 @@
       <v-card-item>
         <v-card-title class="d-flex">
           <span class="text-error">
-            {{ t('effacer.titre') }}
+            {{ titre || t('effacer.titre') }}
           </span>
           <v-spacer />
           <v-btn
@@ -27,7 +27,7 @@
       <v-divider></v-divider>
       <v-card-text>
         <span class="text-error font-weight-bold">{{ t('effacer.avertissement') }}</span>
-        {{ t('effacer.explication') }}
+        {{ explication || t('effacer.explication') }}
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
@@ -57,6 +57,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const {mdAndUp} = useDisplay();
 
+defineProps<{titre?: string; explication?: string}>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;
 }>();
