@@ -61,16 +61,12 @@ export const utiliserNomEtTypeDispositif = ({
   });
 
   const nomDispositif = computed(() => {
-    return (
-      nomEtType.value?.['nom'] ||
-      (typeof idDispositif === 'string' ? idDispositif : idDispositif.value)
-    );
+    return nomEtType.value?.['nom'] || nomEtType.value?.['type']
+      ? t(nomGénériqueTypeDispositif(nomEtType.value?.['type']))
+      : undefined;
   });
   const typeDispositif = computed(() => {
-    return (
-      nomEtType.value?.['type'] ||
-      (nomDispositif.value ? t(nomGénériqueTypeDispositif(nomDispositif.value)) : undefined)
-    );
+    return nomEtType.value?.['type'];
   });
 
   return {nomDispositif, typeDispositif};

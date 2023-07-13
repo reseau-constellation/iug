@@ -11,7 +11,8 @@
       </v-badge>
       <v-icon v-else>{{ icôneDispositif }}</v-icon>
     </template>
-    <template #title> {{ nomDispositif }} </template>
+    <template #title> {{ nomDispositif || t('dispositifs.sansNom') }} </template>
+    <template #subtitle> {{ idDispositif }} </template>
     <jeton-membre
       v-if="idCompte"
       :compte="idCompte"
@@ -28,8 +29,12 @@ import {ref, computed, onMounted, onUnmounted} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
 import JetonMembre from './JetonMembre.vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
