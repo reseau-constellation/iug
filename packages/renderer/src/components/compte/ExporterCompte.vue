@@ -65,7 +65,8 @@ const dialogue = ref(false);
 
 // Contrôles
 const exporterCompte = async () => {
-    await constl?.exporterDispositif({nomFichier: `Mon compte Constellation ${Date.now().toLocaleString()}.zip`});
+  await constl?.exporterDispositif({
+    nomFichier: `Mon compte Constellation ${Date.now().toLocaleString()}.zip`,
+  });
 };
-
 </script>
