@@ -63,10 +63,14 @@
       </template>
     </nouvelle-info-contact-membre>
     <v-tabs v-model="onglet">
+      <v-tab value="compte">{{ t('pages.compte.ongletCompte') }}</v-tab>
       <v-tab value="thème">{{ t('pages.compte.ongletThème') }}</v-tab>
       <v-tab value="connexions">{{ t('pages.compte.ongletConnexions') }}</v-tab>
     </v-tabs>
     <v-window v-model="onglet">
+      <v-window-item value="compte">
+        <OngletCompte />
+      </v-window-item>
       <v-window-item value="thème">
         <OngletThème />
       </v-window-item>
@@ -93,6 +97,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import OngletConnexions from '/@/components/compte/OngletConnexions.vue';
 import OngletThème from '/@/components/compte/OngletThème.vue';
+import OngletCompte from '/@/components/compte/OngletCompte.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import NouvelleInfoContactMembre from '/@/components/membres/NouvelleInfoContact.vue';
 
