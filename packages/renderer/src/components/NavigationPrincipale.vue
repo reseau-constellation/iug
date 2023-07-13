@@ -7,11 +7,17 @@
     <v-list>
       <v-list-item
         :title="nomTraduit"
-        :subtitle="nomDispositif"
         @click="$router.push({path: '/compte'})"
       >
         <template #prepend>
           <image-profil />
+        </template>
+        <template #subtitle>
+          <v-icon start>{{ icôneDispositif }}</v-icon>
+          <TexteTronque
+            :texte="nomDispositif || t('dispositifs.sansNom')"
+            :longueur-max="20"
+          />
         </template>
       </v-list-item>
     </v-list>
@@ -35,13 +41,14 @@
 </template>
 
 <script setup lang="ts">
-import {inject, ref, onMounted} from 'vue';
+import {inject, ref, onMounted, computed} from 'vue';
 import type {client} from '@constl/ipa';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from './communs/ImageProfil.vue';
-import {utiliserNomEtTypeDispositif} from './membres/utils';
+import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './membres/utils';
+import TexteTronque from './communs/TexteTronqué.vue';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -65,9 +72,10 @@ const idDispositif = ref<string>();
 onMounted(async () => {
   idDispositif.value = await constl?.obtIdOrbite();
 });
-const {nomDispositif} = utiliserNomEtTypeDispositif({
+const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
   idDispositif: idDispositif,
 });
+const icôneDispositif = computed(() => obtIcôneDispositifDeType(typeDispositif.value));
 
 // Liens navigation
 const liens: {icône: string; chemin: string; texte: string}[] = [
