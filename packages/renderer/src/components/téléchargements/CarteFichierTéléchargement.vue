@@ -62,9 +62,9 @@ const systèmeOpératoire = computed<'Linux' | 'macOS' | 'Windows' | undefined>(
 
 // Image
 const images = {
-  Linux: import('@/assets/logosSO/Linux.png'),
-  macOS: import('@/assets/logosSO/macOS.png'),
-  Windows: import('@/assets/logosSO/Windows.png'),
+  Linux: import('/@/assets/logosSO/Linux.png'),
+  macOS: import('/@/assets/logosSO/macOS.png'),
+  Windows: import('/@/assets/logosSO/Windows.png'),
 };
 
 const imgSO = ref<string>();

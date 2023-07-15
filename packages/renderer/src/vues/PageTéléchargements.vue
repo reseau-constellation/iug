@@ -143,17 +143,17 @@ onMounted(async () => {
 const systèmesOpératoirs: infoSO[] = [
   {
     nom: 'Linux',
-    logo: import('@/assets/logosSO/Linux.png'),
+    logo: import('/@/assets/logosSO/Linux.png'),
     exts: ['AppImage'],
   },
   {
     nom: 'macOS',
-    logo: import('@/assets/logosSO/macOS.png'),
+    logo: import('/@/assets/logosSO/macOS.png'),
     exts: ['dmg'],
   },
   {
     nom: 'Windows',
-    logo: import('@/assets/logosSO/Windows.png'),
+    logo: import('/@/assets/logosSO/Windows.png'),
     exts: ['exe'],
   },
 ];
