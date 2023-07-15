@@ -58,7 +58,7 @@ import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import CarteEffacer from '../communs/CarteEffacer.vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps<{epingle: favoris.ÉlémentFavorisAvecObjet}>();
 
@@ -85,10 +85,10 @@ const typeObjet = ref<'motClef' | 'variable' | 'bd' | 'projet' | 'nuée'>();
 enregistrerÉcoute(
   constl?.suivreTypeObjet({
     idObjet: props.epingle.idObjet,
-    f: x => typeObjet.value = x,
+    f: x => (typeObjet.value = x),
   }),
 );
-const icôneTypeItem = computed(()=>{
+const icôneTypeItem = computed(() => {
   switch (typeObjet.value) {
     case 'bd':
       return 'mdi-database';
