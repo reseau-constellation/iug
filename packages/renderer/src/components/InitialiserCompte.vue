@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -69,7 +69,6 @@
                 <p class="mb-4">
                   {{ t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
                 </p>
-
                 <v-select
                   v-model="compteÀRejoindre"
                   :items="comptesEnLigne.map(x => x.idBdCompte)"
@@ -85,7 +84,7 @@
                     <ItemMembre
                       v-bind="props"
                       :compte="item.value"
-                      :montrer-anonymes="false"
+                      :montrer-anonymes="true"
                       simple
                     />
                   </template>
@@ -95,7 +94,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
