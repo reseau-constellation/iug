@@ -1,5 +1,13 @@
-# IUG Constellation
+<h1 align="center">IUG Constellation</h1>
+<h3 align="center">L'interface utilisateur graphique pour Constellation</h3>
 
+<p align="center">
+  <a href="https://github.com/reseau-constellation/serveur-ws/actions/workflows/tests.yml"><img src="https://github.com/reseau-constellation/serveur-ws/actions/workflows/tests.yml/badge.svg"></a>
+  <a href="https://codecov.io/gh/reseau-constellation/serveur-ws" >
+ <img src="https://codecov.io/gh/reseau-constellation/serveur-ws/branch/master/graph/badge.svg?token=m5OkXIcKo6"/>
+ </a>
+  <br>
+</p>
 
 ## Licence
 L'IUG de Constellation est distribué sous la licence AGPL-3.0. La structure du projet est basé sur [Vite Electron Builder Boilerplate](https://github.com/cawa-93/vite-electron-builder) de [Олександр Козак](https://kozack.me/) sous [licence MIT](https://choosealicense.com/licenses/mit/).
