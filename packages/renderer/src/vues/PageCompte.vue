@@ -175,5 +175,5 @@ enregistrerÉcoute(
 );
 
 // Onglets
-const onglet = ref('thème');
+const onglet = ref('compte');
 </script>
