@@ -30,9 +30,9 @@
 import {useDisplay} from 'vuetify';
 
 defineProps({
-  titre: String,
+  titre: {type: String, required: true},
   sousTitre: {type: String, default: ''},
-  image: String,
+  image: {type: String, default: undefined},
   imageRonde: {type: Boolean, default: true},
 });
 
