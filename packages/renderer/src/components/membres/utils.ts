@@ -1,11 +1,20 @@
 import type {client} from '@constl/ipa';
 import type {utils} from '@constl/ipa';
-import type { ComposerTranslation } from 'vue-i18n';
-import {type Ref, type ComputedRef, computed, ref, watchEffect, inject, onMounted, onUnmounted} from 'vue';
+import type {ComposerTranslation} from 'vue-i18n';
+import {
+  type Ref,
+  type ComputedRef,
+  computed,
+  ref,
+  watchEffect,
+  inject,
+  onMounted,
+  onUnmounted,
+} from 'vue';
 
 import {enregistrerÉcoute} from '../utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { utiliserNumération } from '/@/plugins/localisation/localisation';
+import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
   switch (type) {
@@ -65,7 +74,7 @@ export const utiliserNomEtTypeDispositif = ({
 
   const nomDispositif = computed(() => {
     if (!nomEtType.value) return undefined;
-    const { nom, type } = nomEtType.value;
+    const {nom, type} = nomEtType.value;
     return nom || (type ? t(nomGénériqueTypeDispositif(type)) : undefined);
   });
   const typeDispositif = computed(() => {
@@ -123,7 +132,7 @@ export const utiliserIlYA = ({
   },
 }: {
   vuÀ?: number;
-  t: ComposerTranslation,
+  t: ComposerTranslation;
   clefs?: {
     enLigne: string;
     àLinstant: string;
@@ -134,7 +143,11 @@ export const utiliserIlYA = ({
     ilYAMois: string;
     ilYALongtemps: string;
   };
-}): {ilYA: ComputedRef<number | undefined>; texte: ComputedRef<string>, ilYAMs: ComputedRef<number | undefined>;} => {
+}): {
+  ilYA: ComputedRef<number | undefined>;
+  texte: ComputedRef<string>;
+  ilYAMs: ComputedRef<number | undefined>;
+} => {
   const {formatterChiffre} = utiliserNumération();
 
   // Chronomètre
@@ -155,40 +168,40 @@ export const utiliserIlYA = ({
   const info = computed(() => {
     console.log({ilYA: ilYA.value});
     if (ilYA.value === undefined) {
-      return { ilYA: 0, texte: clefs.enLigne};
+      return {ilYA: 0, texte: clefs.enLigne};
     } else if (ilYA.value < 1000 * 60 * 2) {
       // < 2 minutes
-      return { ilYA: 0, texte: clefs.àLinstant };
+      return {ilYA: 0, texte: clefs.àLinstant};
     } else if (ilYA.value < 1000 * 60 * 60) {
       // < 1 heure
-      return { ilYA: Math.floor(ilYA.value / (1000 * 60)), texte: clefs.ilYAMinutes };
+      return {ilYA: Math.floor(ilYA.value / (1000 * 60)), texte: clefs.ilYAMinutes};
     } else if (ilYA.value < 1000 * 60 * 60 * 24) {
       // < 1 jour
-      return { ilYA: Math.floor(ilYA.value / (1000 * 60 * 60)), texte: clefs.ilYAHeures };
+      return {ilYA: Math.floor(ilYA.value / (1000 * 60 * 60)), texte: clefs.ilYAHeures};
     } else if (ilYA.value < 1000 * 60 * 60 * 24 * 7) {
       // < 1 semaine
-      return { ilYA: Math.floor(ilYA.value / (1000 * 60 * 60 * 24)), texte: clefs.ilYAJours };
+      return {ilYA: Math.floor(ilYA.value / (1000 * 60 * 60 * 24)), texte: clefs.ilYAJours};
     } else if (ilYA.value < 1000 * 60 * 60 * 24 * 30) {
       // < 1 mois
-      return { ilYA:  Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 7)), texte: clefs.ilYASemaines };
+      return {ilYA: Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 7)), texte: clefs.ilYASemaines};
     } else if (ilYA.value < 1000 * 60 * 60 * 24 * 365.25) {
       // < 1 an
-      return { ilYA:  Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 30)), texte: clefs.ilYAMois };
+      return {ilYA: Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 30)), texte: clefs.ilYAMois};
     }
-    return { ilYA: 0, texte: clefs.ilYALongtemps };
+    return {ilYA: 0, texte: clefs.ilYALongtemps};
   });
 
-  const vuIlYAFormatté = formatterChiffre(computed(()=>info.value.ilYA || 0));
+  const vuIlYAFormatté = formatterChiffre(computed(() => info.value.ilYA || 0));
   const texte = computed(() => {
     if (info.value.ilYA) {
-      return t(info.value.texte, { n: vuIlYAFormatté.value }, info.value.ilYA);
+      return t(info.value.texte, {n: vuIlYAFormatté.value}, info.value.ilYA);
     } else {
       return t(info.value.texte);
     }
   });
 
   return {
-    ilYA: computed(()=>info.value.ilYA),
+    ilYA: computed(() => info.value.ilYA),
     texte,
     ilYAMs: ilYA,
   };

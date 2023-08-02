@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import {storeToRefs} from 'pinia';
 
-import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import {utiliserÉtatInfos} from '/@/état/infos';
 import ItemInfo from './ItemInfo.vue';
@@ -11,7 +11,6 @@ const {infos} = storeToRefs(étatInfos);
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-
 </script>
 
 <template>

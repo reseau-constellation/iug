@@ -160,7 +160,6 @@ const suivant = () => {
   }
 };
 
-
 const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {

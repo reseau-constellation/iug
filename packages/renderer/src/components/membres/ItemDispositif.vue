@@ -26,19 +26,15 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type { client } from '@constl/ipa';
+import type {client} from '@constl/ipa';
 
-import { computed, inject, ref } from 'vue';
+import {computed, inject, ref} from 'vue';
 
 import LienObjet from '../communs/LienObjet.vue';
-import {
-  obtIcôneDispositifDeType,
-  utiliserIlYA,
-  utiliserNomEtTypeDispositif,
-} from './utils';
+import {obtIcôneDispositifDeType, utiliserIlYA, utiliserNomEtTypeDispositif} from './utils';
 import JetonMembre from './JetonMembre.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import { onMounted } from 'vue';
+import {onMounted} from 'vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
 
@@ -59,13 +55,13 @@ const icôneDispositif = computed(() => {
 });
 
 // Activité
-const { ilYAMs: vuIlYA, texte: texteVuIlYA } = utiliserIlYA({vuÀ: props.vuA, t});
+const {ilYAMs: vuIlYA, texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.vuA, t});
 const ceDispositif = ref<string>();
-onMounted(async ()=>{
+onMounted(async () => {
   ceDispositif.value = await constl?.obtIdOrbite();
 });
 
-const sousTitre = computed(()=>{
+const sousTitre = computed(() => {
   if (props.idDispositif === ceDispositif.value) {
     return t('dispositifs.ceDispositif');
   } else {
@@ -81,5 +77,4 @@ const couleurPointActivité = computed(() => {
   }
   return undefined;
 });
-
 </script>
