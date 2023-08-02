@@ -1,9 +1,10 @@
 <template>
   <v-card class="text-start">
     <v-card-text>
-      <p class="px-0 mb-0 text-overline">
+      <p class="px-0 mb-0 text-h6">
         {{ t('pages.compte.compte.mesDispositifs') }}
       </p>
+      <v-divider />
       <v-list>
         <InviterDispositif>
           <template #activator="{props: propsActivateur}">
@@ -21,9 +22,10 @@
           :vu-a="statutDispositifs?.find(d => d.infoDispositif.idOrbite === id)?.vuÀ"
         />
       </v-list>
-      <p class="px-0 mb-0 text-overline">
+      <p class="px-0 mb-0 text-h6">
         {{ t('pages.compte.compte.optionsAvancées') }}
       </p>
+      
       <v-card variant="outlined">
         <v-list>
           <v-list-item>
@@ -33,38 +35,57 @@
             <v-list-item-subtitle>
               {{ t('pages.compte.compte.sousTitreExporterCompte') }}
             </v-list-item-subtitle>
-            <v-list-item-action>
+            <template #append>
               <ExporterCompte>
                 <template #activator="{props: propsActivateur}">
                   <v-btn
+                    v-if="mdAndUp"
                     v-bind="propsActivateur"
-                    prepend-icon="mdi-download"
+                    append-icon="mdi-download"
+                    variant="outlined"
                   >
                     {{ t('pages.compte.compte.btnExporterCompte') }}
                   </v-btn>
+                  <v-btn
+                    v-else
+                    v-bind="propsActivateur"
+                    icon="mdi-download"
+                    variant="outlined"
+                    size="small"
+                  ></v-btn>
                 </template>
               </ExporterCompte>
-            </v-list-item-action>
+            </template>
           </v-list-item>
-          <v-list-item color="error">
+          <v-divider class="my-2" />
+          <v-list-item class="text-error">
             <v-list-item-title>
               {{ t('pages.compte.compte.titreEffacerCompte') }}
             </v-list-item-title>
             <v-list-item-subtitle>
               {{ t('pages.compte.compte.sousTitreEffacerCompte') }}
             </v-list-item-subtitle>
-            <v-list-item-action>
+            <template #append>
               <FermerCompte>
                 <template #activator="{props: propsActivateur}">
                   <v-btn
+                    v-if="mdAndUp"
                     v-bind="propsActivateur"
-                    prepend-icon="mdi-delete"
+                    append-icon="mdi-delete"
+                    variant="outlined"
                   >
                     {{ t('pages.compte.compte.btnEffacerCompte') }}
                   </v-btn>
+                  <v-btn
+                    v-else
+                    v-bind="propsActivateur"
+                    icon="mdi-delete"
+                    variant="outlined"
+                    size="small"
+                  ></v-btn>
                 </template>
               </FermerCompte>
-            </v-list-item-action>
+            </template>
           </v-list-item>
         </v-list>
       </v-card>
@@ -73,7 +94,9 @@
 </template>
 <script setup lang="ts">
 import type {client, réseau} from '@constl/ipa';
+
 import {ref, inject} from 'vue';
+import { useDisplay } from 'vuetify';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -88,6 +111,7 @@ const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+const { mdAndUp } = useDisplay();
 
 // Dispositifs
 const dispositifs = ref<string[]>();

@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          <span class="text-error">
+          <span>
             {{ t('compte.exporterCompte.titre') }}
           </span>
           <v-spacer />
@@ -27,7 +27,8 @@
       <v-divider></v-divider>
       <v-card-text>
         <v-btn
-          prepend-icon="mdi-download"
+          append-icon="mdi-download"
+          variant="outlined"
           @click="exporterCompte"
         >
           {{ t('compte.exporterCompte.exporter') }}
