@@ -22,10 +22,7 @@
             style="overflow-y: scroll"
           >
             <v-window-item :value="0">
-              <v-select
-                v-model="langage"
-                :items="itemsLangages"
-              />
+              <v-btn @click="suivant" />
             </v-window-item>
             <v-window-item :value="1">
               <dialogue-licence>
@@ -55,10 +52,30 @@
 
               <v-text-field readonly>{{ installation }}</v-text-field>
               <v-textarea readonly>{{ code }}</v-textarea>
+              <v-btn @click="() => générerPaquetComplet()"></v-btn>
             </v-window-item>
           </v-window>
         </v-card-text>
-        <v-card-actions> </v-card-actions>
+        <v-card-actions>
+          <v-btn
+            v-show="retourActif.visible"
+            variant="text"
+            :disabled="!retourActif.actif"
+            @click="retour"
+          >
+            {{ t('communs.retour') }}
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn
+            v-show="suivantActif.visible"
+            color="primary"
+            variant="flat"
+            :disabled="!suivantActif.actif"
+            @click="suivant"
+          >
+            {{ t('communs.suivant') }}
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </template>
   </v-dialog>
@@ -72,6 +89,11 @@ import type {client} from '@constl/ipa';
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {GABARIT_CODE} from '/@/consts';
+
+import axios from 'axios';
+import JSZip from 'jszip';
+import {fileSave} from 'browser-fs-access';
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -86,18 +108,13 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = [
-  'langageInformatique',
-  'licenceParDéfaut',
-  'bdPrincipale',
-  'codeGénéré',
-] as const;
+const listeÉtapes = ['présentation', 'licenceParDéfaut', 'bdPrincipale', 'codeGénéré'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'langageInformatique':
-      return t('nuées.générerCode.titrelangageInformatique');
+    case 'présentation':
+      return t('nuées.générerCode.titrePrésentation');
     case 'licenceParDéfaut':
       return t('nuées.générerCode.titreLicenceParDéfaut');
     case 'bdPrincipale':
@@ -112,8 +129,8 @@ const titreCarte = computed(() => {
 const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'langageInformatique':
-      return t('nuées.générerCode.sousTitrelangageInformatique');
+    case 'présentation':
+      return t('nuées.générerCode.sousTitrePrésentation');
     case 'licenceParDéfaut':
       return t('nuées.générerCode.sousTitreLicenceParDéfaut');
     case 'bdPrincipale':
@@ -122,6 +139,41 @@ const sousTitreCarte = computed(() => {
       return t('nuées.générerCode.sousTitreCodeGénéré');
     default:
       return '';
+  }
+});
+
+const retour = () => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    default:
+      étape.value--;
+      break;
+  }
+};
+
+const suivant = () => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    default:
+      étape.value++;
+      break;
+  }
+};
+
+
+const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    default:
+      return {actif: true, visible: true};
+  }
+});
+
+const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
+  const é = listeÉtapes[étape.value];
+  switch (é) {
+    default:
+      return {actif: true, visible: true};
   }
 });
 
@@ -143,12 +195,7 @@ const tableaux = computed(() => {
 // Options
 const langagesSupportés = ['ts', 'js'] as const;
 const langage = ref<(typeof langagesSupportés)[number]>('ts');
-const itemsLangages = computed(() => {
-  return langagesSupportés.map(l => ({
-    value: l,
-    title: t(`communs.langagesInformatiques.${l}.abr`),
-  }));
-});
+
 const langueCode = ref<string>(langue.value);
 
 const licenceDéfaut = ref('ODbl-1_0');
@@ -289,4 +336,78 @@ export const générerKili = ({
 };
 `;
 });
+
+// Code paquet complet
+
+const générerCodeSpécificationNuée = (): string => {
+  return `
+${codeImportationsTs.value}
+
+${codeSchémaBdTsJs.value}
+
+`;
+};
+
+const générerCodeComposanteAjoutDonnées = (): string => {
+  return `
+<template>
+  <v-dialog>
+    
+    <v-card>
+      <v-card-item>
+        <v-card-title>
+        </v-card-title>
+      </v-card-item>
+    </v-card>
+  </v-dialog>
+</template>
+<script setup lang="ts">
+import { ref } from "vue";
+
+<+/script>
+`.replace('+/', '/'); // Pour éviter problème eslint la clôture du <script>
+};
+
+const électron = ref(false);
+
+const générerPaquetComplet = async (): Promise<void> => {
+  // Télécharger gabarit correspondant de GitHub
+  const racineGabarit = (await axios.get(GABARIT_CODE, {responseType: 'arraybuffer'})).data;
+  const zipRacineGabarit = await JSZip.loadAsync(racineGabarit);
+  const gabarit = zipRacineGabarit
+    .folder('paquets')
+    ?.folder(électron.value ? 'électron' : 'navigateur');
+  if (!gabarit) throw new Error('Erreur de structure de paquet.');
+
+  // Générer les fichiers spécifiques à la nuée
+  const codeSpécificationNuée = générerCodeSpécificationNuée();
+  const codeComposanteAjoutDonnées = générerCodeComposanteAjoutDonnées();
+
+  // Ajouter les fichiers générés au gabarit
+  const adresseDossierUtils = électron.value
+    ? ['packages', 'renderer', 'src', 'utils']
+    : ['src', 'utils'];
+  const dossierGabaritUtils = adresseDossierUtils.reduce(
+    (cumul: JSZip | null, nouveau: string) => (cumul ? cumul.folder(nouveau) : null),
+    gabarit,
+  );
+  if (!dossierGabaritUtils) throw new Error('Erreur de structure de paquet.');
+
+  dossierGabaritUtils.file('nuée.ts', codeSpécificationNuée);
+
+  const adresseDossierComposantes = électron.value
+    ? ['packages', 'renderer', 'src', 'components']
+    : ['src', 'components'];
+  const dossierGabaritComposantes = adresseDossierComposantes.reduce(
+    (cumul: JSZip | null, nouveau: string) => (cumul ? cumul.folder(nouveau) : null),
+    gabarit,
+  );
+  if (!dossierGabaritComposantes) throw new Error('Erreur de structure de paquet.');
+
+  dossierGabaritComposantes.file('AjoutDonnées.vue', codeComposanteAjoutDonnées);
+
+  // Rezipper tout et télécharger
+  const contenu = await gabarit.generateAsync({type: 'blob'});
+  await fileSave(contenu, {fileName: 'Mon appli.zip'});
+};
 </script>
