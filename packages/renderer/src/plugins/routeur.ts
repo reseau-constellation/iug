@@ -10,6 +10,7 @@ import PageFavoris from '/@/vues/PageFavoris.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
 import PageSignalements from '/@/vues/PageSignalements.vue';
 import PageTéléchargements from '/@/vues/PageTéléchargements.vue';
+import {utiliserLangues} from './localisation/localisation.js';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -73,7 +74,17 @@ const routes: Array<RouteRecordRaw> = [
   },
 ];
 
-export default createRouter({
+const routeur = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+routeur.afterEach(to => {
+  const {lg} = to.query;
+  if (lg && typeof lg === 'string') {
+    const {choisirLangues} = utiliserLangues();
+    choisirLangues(lg);
+  }
+});
+
+export default routeur;
