@@ -1,25 +1,3 @@
-<script lang="ts" setup>
-import {ref, inject, watchEffect} from 'vue';
-
-import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
-
-const serveur = inject<GestionnaireServeur>('serveurConstl');
-
-const dialogue = ref(false);
-
-const serveurConnecté = ref(false);
-const portServeurSpécifié = ref<number | undefined>();
-const portServeur = ref<number | undefined>();
-watchEffect(async () => {
-  if (serveurConnecté.value) {
-    portServeur.value = await serveur?.initialiser(portServeurSpécifié.value);
-  } else {
-    portServeur.value = undefined;
-    await serveur?.fermer();
-  }
-});
-</script>
-
 <template>
   <v-card
     class="text-start ma-2"
@@ -28,9 +6,11 @@ watchEffect(async () => {
   >
     <v-card-item>
       <v-card-title>
-        Nœud WS local
+        {{ t('accueil.nœud.titre') }}Nœud WS local
         <v-tooltip
-          text="Ouvrir un nœud local pour connecter d'autres applications."
+          :text="
+            t('accueil.nœud.indice: Ouvrir un nœud local pour connecter d\'autres applications.')
+          "
           location="bottom"
         >
           <template #activator="{props}">
@@ -69,3 +49,28 @@ watchEffect(async () => {
     </v-card-text>
   </v-card>
 </template>
+<script lang="ts" setup>
+import {ref, inject, watchEffect} from 'vue';
+
+import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
+import { கிளிமூக்கை_உபயோகி } from '/@/plugins/kilimukku/kilimukku-vue';
+
+const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {t} = useI18n();
+
+const serveur = inject<GestionnaireServeur>('serveurConstl');
+
+const dialogue = ref(false);
+
+const serveurConnecté = ref(false);
+const portServeurSpécifié = ref<number | undefined>();
+const portServeur = ref<number | undefined>();
+watchEffect(async () => {
+  if (serveurConnecté.value) {
+    portServeur.value = await serveur?.initialiser(portServeurSpécifié.value);
+  } else {
+    portServeur.value = undefined;
+    await serveur?.fermer();
+  }
+});
+</script>
