@@ -1,5 +1,8 @@
 <template>
-  <v-chip variant="outlined">
+  <v-chip
+    variant="outlined"
+    size="small"
+  >
     {{ nom || code }}
 
     <template #append>

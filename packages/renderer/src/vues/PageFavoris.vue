@@ -1,22 +1,24 @@
 <template>
-  <TitrePage
-    :titre="t('pages.favoris.titre')"
-    :image="imgFavoris"
-    :sous-titre="t('pages.favoris.sousTitre')"
-  />
-  <v-list>
-    <v-list-item
-      prepend-icon="mdi-plus"
-      :title="t('pages.favoris.commentAjouterNouveau.titre')"
-      :subtitle="t('pages.favoris.commentAjouterNouveau.sousTitre')"
-      @click="$router.push('/données/')"
+  <v-container class="text-center">
+    <TitrePage
+      :titre="t('pages.favoris.titre')"
+      :image="imgFavoris"
+      :sous-titre="t('pages.favoris.sousTitre')"
     />
-    <ItemFavoris
-      v-for="fav in mesFavoris"
-      :key="fav.idObjet"
-      :epingle="fav"
-    />
-  </v-list>
+    <v-list>
+      <v-list-item
+        prepend-icon="mdi-plus"
+        :title="t('pages.favoris.commentAjouterNouveau.titre')"
+        :subtitle="t('pages.favoris.commentAjouterNouveau.sousTitre')"
+        @click="$router.push('/données/')"
+      />
+      <ItemFavoris
+        v-for="fav in mesFavoris"
+        :key="fav.idObjet"
+        :epingle="fav"
+      />
+    </v-list>
+  </v-container>
 </template>
 <script setup lang="ts">
 import type {favoris, client} from '@constl/ipa';

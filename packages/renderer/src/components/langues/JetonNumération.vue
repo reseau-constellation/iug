@@ -1,10 +1,10 @@
 <template>
-  <v-chip>
+  <v-chip
+    variant="outlined"
+    size="small"
+  >
     {{ code || t('communs.auto') }}
-
-    <template #append>
-      {{ numéroFormatté }}
-    </template>
+    {{ numéroFormatté }}
   </v-chip>
 </template>
 <script setup lang="ts">

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <TitrePage entête="t('pages.téléchargements.titre')" />
+    <TitrePage :titre="t('pages.téléchargements.titre')" />
     <v-toolbar class="mb-4">
       <v-row>
         <v-col cols="4">
