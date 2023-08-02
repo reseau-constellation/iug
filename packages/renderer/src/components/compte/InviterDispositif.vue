@@ -6,55 +6,123 @@
         v-bind="{props: propsActivateur}"
       />
     </template>
-    <v-card>
+    <v-card
+      class="mx-auto"
+      :max-width="mdAndUp ? 500 : 300"
+    >
       <v-card-item>
-        <v-card-title>
+        <v-card-title class="d-flex">
           {{ titreCarte }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          ></v-btn>
         </v-card-title>
         <v-card-subtitle>
           {{ sousTitreCarte }}
         </v-card-subtitle>
       </v-card-item>
       <v-card-text>
-        <v-window>
+        <v-window
+          v-model="étape"
+          style="overflow-y: scroll"
+        >
           <v-window-item :value="0">
             <v-list>
               <v-list-item
                 :title="t('dispositifs.inviter.manuellement')"
-                @click="suivreCheminementManuel"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
+                prepend-icon="mdi-pencil"
+                @click="() => suivreCheminementManuel()"
               ></v-list-item>
               <v-list-item
                 :title="t('dispositifs.inviter.codeR2')"
-                @click="suivreCheminementCodeR2"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
+                prepend-icon="mdi-qrcode"
+                @click="() => suivreCheminementCodeR2()"
               ></v-list-item>
             </v-list>
           </v-window-item>
-          <v-window-item :value="1">
-            <v-btn
-              :text="
-                invitationTexte
-                  ? t('dispositifs.inviter.générerInvitation')
-                  : t('dispositifs.inviter.reGénérerInvitation')
+          <v-window-item
+            :value="1"
+            class="text-center"
+          >
+            <div
+              class="mx-auto"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 15px;
+                border: 2px solid #1867c0;
+                width: 250px;
+                height: 50px;
               "
+            >
+              <p
+                class="text-h3"
+                style="color: #1867c0"
+              >
+                {{ (invitation?.codeSecret || '---').slice(2, 9) }}
+              </p>
+            </div>
+            <v-btn
+              v-if="!invitationTexte"
+              class="mt-2"
+              :text="t('dispositifs.inviter.générerInvitation')"
               :loading="générationEnCours"
+              variant="outlined"
+              append-icon="mdi-reload"
               @click="() => générerInvitation()"
             />
-            {{ invitation?.codeSecret }}
+            <v-btn
+              v-else
+              class="mt-2"
+              :text="t('dispositifs.inviter.annulerInvitation')"
+              variant="outlined"
+              append-icon="mdi-cancel"
+              @click="() => révoquerInvitation()"
+            />
           </v-window-item>
-          <v-window-item :value="2">
+          <v-window-item
+            :value="2"
+            class="text-center"
+          >
+            <div
+              class="mx-auto mb-2"
+              style="display: flex; align-items: center; justify-content: center"
+            >
+              <qrcode-vue
+                :value="invitationTexte"
+                :size="200"
+                level="H"
+              />
+              <div
+                :class="{
+                  fond: !invitationTexte,
+                }"
+                style="position: fixed; height: 200px; width: 200px"
+              />
+            </div>
             <v-btn
-              :text="
-                invitationTexte
-                  ? t('dispositifs.inviter.générerInvitation')
-                  : t('dispositifs.inviter.reGénérerInvitation')
-              "
+              v-if="!invitationTexte"
+              class="mt-2"
+              :text="t('dispositifs.inviter.générerInvitation')"
               :loading="générationEnCours"
+              variant="outlined"
+              append-icon="mdi-reload"
               @click="() => générerInvitation()"
             />
-            <qrcode-vue
-              :value="invitationTexte"
-              :size="300"
-              level="H"
+            <v-btn
+              v-else
+              class="mt-2"
+              :text="t('dispositifs.inviter.annulerInvitation')"
+              variant="outlined"
+              append-icon="mdi-cancel"
+              @click="() => révoquerInvitation()"
             />
           </v-window-item>
         </v-window>
@@ -89,14 +157,25 @@ import {computed, inject, ref} from 'vue';
 
 import QrcodeVue from 'qrcode.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {useDisplay, useRtl} from 'vuetify/lib/framework.mjs';
+import {watchEffect} from 'vue';
 
 const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+const {mdAndUp} = useDisplay();
+const {isRtl} = useRtl();
 
 // Navigation
 const dialogue = ref(false);
+
+// Pour la sécurité, automatiquement révoquer l'invitation si l'on ferme le dialogue
+watchEffect(async () => {
+  if (!dialogue.value) {
+    await révoquerInvitation();
+  }
+});
 
 const étape = ref(0);
 const listeÉtapes = ['cheminement', 'manuelle', 'codeR2'] as const;
@@ -198,4 +277,15 @@ const invitationTexte = computed(() => {
   if (invitation.value) return JSON.stringify(invitation.value);
   else return undefined;
 });
+
+// Annulation
+const révoquerInvitation = async () => {
+  invitation.value = undefined;
+  // await constl.révoquerInvitation()
+};
 </script>
+<style scoped>
+.fond {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+</style>
