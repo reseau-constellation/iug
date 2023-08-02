@@ -86,7 +86,7 @@
           </v-autocomplete>
           <v-autocomplete
             v-model="choixNumération"
-            :items="[null, systèmesNumération]"
+            :items="[null, ...systèmesNumération]"
             :label="t('compte.options.numération')"
             variant="outlined"
             density="compact"
@@ -121,6 +121,7 @@ import {utiliserÉtatThème} from '/@/état/thème';
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemNumération from '/@/components/langues/ItemNumération.vue';
+import JetonNumération from '/@/components/langues/JetonNumération.vue';
 
 const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {langue, choisirLangues} = utiliserLangues();
