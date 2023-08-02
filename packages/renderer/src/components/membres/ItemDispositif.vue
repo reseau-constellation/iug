@@ -1,18 +1,20 @@
 <template>
   <v-list-item>
     <template #prepend>
-      <v-badge
-        v-if="couleurPointActivité"
-        dot
-        :color="couleurPointActivité"
-        location="bottom end"
-      >
-        <v-icon>{{ icôneDispositif }}</v-icon>
-      </v-badge>
-      <v-icon v-else>{{ icôneDispositif }}</v-icon>
+      <v-icon>
+        <v-badge
+          v-if="couleurPointActivité"
+          dot
+          :color="couleurPointActivité"
+          location="bottom end"
+        >
+          <v-icon>{{ icôneDispositif }}</v-icon>
+        </v-badge>
+        <v-icon v-else>{{ icôneDispositif }}</v-icon>
+      </v-icon>
     </template>
     <template #title> {{ nomDispositif || t('dispositifs.sansNom') }} </template>
-    <template #subtitle> {{ idDispositif }} </template>
+    <template #subtitle> {{ sousTitre }} </template>
     <jeton-membre
       v-if="idCompte"
       :compte="idCompte"
@@ -24,17 +26,26 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import type { client } from '@constl/ipa';
+
+import { computed, inject, ref } from 'vue';
 
 import LienObjet from '../communs/LienObjet.vue';
-import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
+import {
+  obtIcôneDispositifDeType,
+  utiliserIlYA,
+  utiliserNomEtTypeDispositif,
+} from './utils';
 import JetonMembre from './JetonMembre.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { onMounted } from 'vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
+
+const constl = inject<client.ClientConstellation>('constl');
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
@@ -48,26 +59,27 @@ const icôneDispositif = computed(() => {
 });
 
 // Activité
-const maintenant = ref(Date.now());
-let idIntervale: ReturnType<typeof setInterval>;
-onMounted(() => {
-  idIntervale = setInterval(() => {
-    maintenant.value = Date.now();
-  }, 1000);
+const { ilYAMs: vuIlYA, texte: texteVuIlYA } = utiliserIlYA({vuÀ: props.vuA, t});
+const ceDispositif = ref<string>();
+onMounted(async ()=>{
+  ceDispositif.value = await constl?.obtIdOrbite();
 });
-onUnmounted(() => {
-  if (idIntervale) clearInterval(idIntervale);
+
+const sousTitre = computed(()=>{
+  if (props.idDispositif === ceDispositif.value) {
+    return t('dispositifs.ceDispositif');
+  } else {
+    return texteVuIlYA.value;
+  }
 });
-const vuDepuis = computed(() => {
-  return props.vuA ? maintenant.value - props.vuA : undefined;
-});
+
 const couleurPointActivité = computed(() => {
-  if (!vuDepuis.value) return;
-  if (vuDepuis.value <= 1000 * 60 * 5) {
+  if (vuIlYA.value === undefined || vuIlYA.value <= 1000 * 60 * 5) {
     return 'success';
-  } else if (vuDepuis.value <= 1000 * 60 * 30) {
+  } else if (vuIlYA.value <= 1000 * 60 * 30) {
     return 'warning';
   }
   return undefined;
 });
+
 </script>

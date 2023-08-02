@@ -1,8 +1,11 @@
 import type {client} from '@constl/ipa';
 import type {utils} from '@constl/ipa';
-import {type Ref, computed, ref, watchEffect, inject} from 'vue';
+import type { ComposerTranslation } from 'vue-i18n';
+import {type Ref, type ComputedRef, computed, ref, watchEffect, inject, onMounted, onUnmounted} from 'vue';
+
 import {enregistrerÉcoute} from '../utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { utiliserNumération } from '/@/plugins/localisation/localisation';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
   switch (type) {
@@ -39,7 +42,7 @@ export const utiliserNomEtTypeDispositif = ({
     }),
   );
 
-  const nomEtType = ref<{type: string; nom: string}>();
+  const nomEtType = ref<{type?: string; nom?: string}>();
   let fOublier: utils.schémaFonctionOublier | undefined;
 
   watchEffect(async () => {
@@ -61,9 +64,9 @@ export const utiliserNomEtTypeDispositif = ({
   });
 
   const nomDispositif = computed(() => {
-    return nomEtType.value?.['nom'] || nomEtType.value?.['type']
-      ? t(nomGénériqueTypeDispositif(nomEtType.value?.['type']))
-      : undefined;
+    if (!nomEtType.value) return undefined;
+    const { nom, type } = nomEtType.value;
+    return nom || (type ? t(nomGénériqueTypeDispositif(type)) : undefined);
   });
   const typeDispositif = computed(() => {
     return nomEtType.value?.['type'];
@@ -103,4 +106,90 @@ export const obtIcôneDispositifDeType = (typeDispositif?: string) => {
   } else {
     return 'mdi-monitor-cellphone';
   }
+};
+
+export const utiliserIlYA = ({
+  vuÀ,
+  t,
+  clefs = {
+    enLigne: 'membres.vu.enLigne',
+    àLinstant: 'membres.vu.àLinstant',
+    ilYAMinutes: 'membres.vu.ilYAMinutes',
+    ilYAHeures: 'membres.vu.ilYAHeures',
+    ilYAJours: 'membres.vu.ilYAJours',
+    ilYASemaines: 'membres.vu.ilYASemaines',
+    ilYAMois: 'membres.vu.ilYAMois',
+    ilYALongtemps: 'membres.vu.ilYALongtemps',
+  },
+}: {
+  vuÀ?: number;
+  t: ComposerTranslation,
+  clefs?: {
+    enLigne: string;
+    àLinstant: string;
+    ilYAMinutes: string;
+    ilYAHeures: string;
+    ilYAJours: string;
+    ilYASemaines: string;
+    ilYAMois: string;
+    ilYALongtemps: string;
+  };
+}): {ilYA: ComputedRef<number | undefined>; texte: ComputedRef<string>, ilYAMs: ComputedRef<number | undefined>;} => {
+  const {formatterChiffre} = utiliserNumération();
+
+  // Chronomètre
+  const maintenant = ref(new Date().getTime());
+  let oublierChronomètre: number | undefined;
+  onMounted(() => {
+    oublierChronomètre = window.setInterval(() => {
+      maintenant.value = new Date().getTime();
+    }, 1000);
+  });
+  onUnmounted(() => {
+    if (oublierChronomètre) clearInterval(oublierChronomètre);
+  });
+  const ilYA = computed(() => {
+    return vuÀ ? maintenant.value - vuÀ : undefined;
+  });
+
+  const info = computed(() => {
+    console.log({ilYA: ilYA.value});
+    if (ilYA.value === undefined) {
+      return { ilYA: 0, texte: clefs.enLigne};
+    } else if (ilYA.value < 1000 * 60 * 2) {
+      // < 2 minutes
+      return { ilYA: 0, texte: clefs.àLinstant };
+    } else if (ilYA.value < 1000 * 60 * 60) {
+      // < 1 heure
+      return { ilYA: Math.floor(ilYA.value / (1000 * 60)), texte: clefs.ilYAMinutes };
+    } else if (ilYA.value < 1000 * 60 * 60 * 24) {
+      // < 1 jour
+      return { ilYA: Math.floor(ilYA.value / (1000 * 60 * 60)), texte: clefs.ilYAHeures };
+    } else if (ilYA.value < 1000 * 60 * 60 * 24 * 7) {
+      // < 1 semaine
+      return { ilYA: Math.floor(ilYA.value / (1000 * 60 * 60 * 24)), texte: clefs.ilYAJours };
+    } else if (ilYA.value < 1000 * 60 * 60 * 24 * 30) {
+      // < 1 mois
+      return { ilYA:  Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 7)), texte: clefs.ilYASemaines };
+    } else if (ilYA.value < 1000 * 60 * 60 * 24 * 365.25) {
+      // < 1 an
+      return { ilYA:  Math.floor(ilYA.value / (1000 * 60 * 60 * 24 * 30)), texte: clefs.ilYAMois };
+    }
+    return { ilYA: 0, texte: clefs.ilYALongtemps };
+  });
+
+  const vuIlYAFormatté = formatterChiffre(computed(()=>info.value.ilYA || 0));
+  const texte = computed(() => {
+    if (info.value.ilYA) {
+      return t(info.value.texte, { n: vuIlYAFormatté.value }, info.value.ilYA);
+    } else {
+      return t(info.value.texte);
+    }
+  });
+
+  return {
+    ilYA: computed(()=>info.value.ilYA),
+    texte,
+    ilYAMs: ilYA,
+  };
 };
