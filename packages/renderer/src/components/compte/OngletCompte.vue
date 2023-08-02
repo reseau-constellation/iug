@@ -25,7 +25,7 @@
       <p class="px-0 mb-0 text-h6">
         {{ t('pages.compte.compte.optionsAvancées') }}
       </p>
-      
+
       <v-card variant="outlined">
         <v-list>
           <v-list-item>
@@ -55,6 +55,36 @@
                   ></v-btn>
                 </template>
               </ExporterCompte>
+            </template>
+          </v-list-item>
+          <v-divider class="my-2" />
+          <v-list-item>
+            <v-list-item-title>
+              {{ t('pages.compte.compte.titreRejoindreCompte') }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ t('pages.compte.compte.sousTitreRejoindreCompte') }}
+            </v-list-item-subtitle>
+            <template #append>
+              <RejoindreCompte>
+                <template #activator="{props: propsActivateur}">
+                  <v-btn
+                    v-if="mdAndUp"
+                    v-bind="propsActivateur"
+                    append-icon="mdi-account-plus-outline"
+                    variant="outlined"
+                  >
+                    {{ t('pages.compte.compte.btnRejoindreCompte') }}
+                  </v-btn>
+                  <v-btn
+                    v-else
+                    v-bind="propsActivateur"
+                    icon="mdi-account-plus-outline"
+                    variant="outlined"
+                    size="small"
+                  ></v-btn>
+                </template>
+              </RejoindreCompte>
             </template>
           </v-list-item>
           <v-divider class="my-2" />
@@ -96,12 +126,13 @@
 import type {client, réseau} from '@constl/ipa';
 
 import {ref, inject} from 'vue';
-import { useDisplay } from 'vuetify';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import InviterDispositif from './InviterDispositif.vue';
+import RejoindreCompte from './RejoindreCompte.vue';
 import FermerCompte from './FermerCompte.vue';
 import ExporterCompte from './ExporterCompte.vue';
 
@@ -111,7 +142,7 @@ const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const { mdAndUp } = useDisplay();
+const {mdAndUp} = useDisplay();
 
 // Dispositifs
 const dispositifs = ref<string[]>();
