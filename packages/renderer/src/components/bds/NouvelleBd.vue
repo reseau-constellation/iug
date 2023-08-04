@@ -105,7 +105,7 @@
                       clefTableau: tbl.clef,
                       idVariable: col.idVariable,
                       index: col.index,
-                      règles: col.règles
+                      règles: col.règles,
                     })
                 "
                 @effacer-colonne="
@@ -176,13 +176,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, client, tableaux as tblx, valid } from '@constl/ipa';
+import type {bds, client, tableaux as tblx, valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
@@ -386,7 +386,13 @@ const licence = ref<string>();
 const licenceContenu = ref<string>();
 
 // Tableaux
-const tableaux = ref<{clef: string; noms: {[langue: string]: string}; cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]}[]>([]);
+const tableaux = ref<
+  {
+    clef: string;
+    noms: {[langue: string]: string};
+    cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+  }[]
+>([]);
 const ajouterTableau = () => {
   tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
 };
@@ -415,7 +421,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[]
+  règles: valid.règleVariableAvecId[];
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),
@@ -443,7 +449,6 @@ const effacerColonneTableau = ({
       : t;
   });
 };
-
 
 // Création
 const prêtÀCréer = computed(() => {
@@ -517,7 +522,6 @@ const créerBd = async () => {
         }
       }
     }
-
   } else if (cheminement.value === 'nuée') {
     if (!gabaritNuée.value) return;
     idBd = await constl?.bds?.créerBdDeSchéma({schéma: gabaritNuée.value});
