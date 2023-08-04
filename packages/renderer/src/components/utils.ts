@@ -1,8 +1,9 @@
 import type {utils} from '@constl/ipa';
+import type {schémaFonctionOublier, schémaFonctionSuivi} from '@constl/ipa/dist/src/utils';
 
 import EventEmitter, {once} from 'events';
-import type {Ref} from 'vue';
-import {onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import type {ComputedRef, Ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const enregistrerÉcoute = <
   T extends
@@ -36,6 +37,48 @@ export const enregistrerÉcoute = <
   });
 
   return promesseRetour;
+};
+
+// Solution TypeScript de https://stackoverflow.com/a/48181378 (CC BY-SA 3.0)
+type ObtTypeInterne<S> = S extends Ref<infer V> ? V : never;
+
+export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
+  params,
+  fÉcoute,
+}: {
+  params: T;
+  fÉcoute: (
+    params: {[K in keyof T]: Exclude<ObtTypeInterne<T[K]>, undefined>},
+    f: schémaFonctionSuivi<U>,
+  ) => Promise<schémaFonctionOublier> | undefined;
+}): ComputedRef<U | undefined> => {
+  const résultat = ref<U>();
+
+  let fOublier: utils.schémaFonctionOublier | undefined;
+
+  const définis = computed(() => {
+    const valeursParams = Object.fromEntries(Object.entries(params).map(([p, v]) => [p, v.value])) as {
+      [K in keyof T]: ObtTypeInterne<T[K]>;
+    };
+    if (Object.values(valeursParams).every(x => x !== undefined)) {
+      return valeursParams as {[K in keyof T]: Exclude<ObtTypeInterne<T[K]>, undefined>};
+    } else {
+      return undefined;
+    }
+  });
+
+  const lancerÉcoute = async () => {
+    if (fOublier) await fOublier();
+    if (définis.value) {
+      fOublier = await enregistrerÉcoute(fÉcoute(définis.value, x => (résultat.value = x)));
+    } else {
+      résultat.value = undefined;
+    }
+  };
+  watch(Object.values(params), lancerÉcoute);
+  lancerÉcoute();
+
+  return computed(() => résultat.value); // Pour enlever la tentation de l'éditer directement
 };
 
 export const enregistrerRecherche = <T, V, U extends V>({
