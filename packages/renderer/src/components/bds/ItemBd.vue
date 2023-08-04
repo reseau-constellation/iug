@@ -71,7 +71,7 @@ const descrTraduite = traduireNom(descriptions);
 enregistrerÉcoute(
   constl?.bds?.suivreDescrBd({
     id: props.id,
-    f: x => (noms.value = x),
+    f: x => (descriptions.value = x),
   }),
 );
 
