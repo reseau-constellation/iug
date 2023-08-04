@@ -84,6 +84,38 @@
             />
           </v-window-item>
           <v-window-item :value="6">
+            <nouveau-tableau @sauvegarder="ajouterTableau">
+              <template #activator="{props: propsActivateur}">
+                <v-btn v-bind="propsActivateur" />
+              </template>
+            </nouveau-tableau>
+
+            <v-list>
+              <ItemSpecificationTableau
+                v-for="tbl in tableaux"
+                :key="tbl.clef"
+                :clef="tbl.clef"
+                :noms="tbl.noms"
+                :colonnes="tbl.cols"
+                modification-permise
+                @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
+                @nouvelle-colonne="
+                  col =>
+                    ajouterColonneTableau({
+                      clefTableau: tbl.clef,
+                      idVariable: col.idVariable,
+                      index: col.index,
+                      règles: col.règles
+                    })
+                "
+                @effacer-colonne="
+                  idColonne => effacerColonneTableau({clefTableau: tbl.clef, idColonne})
+                "
+                @effacer-tableau="() => effacerTableau(tbl.clef)"
+              />
+            </v-list>
+          </v-window-item>
+          <v-window-item :value="7">
             <dialogue-licence
               :licence="licence"
               @changer-licence="l => (licence = l)"
@@ -96,7 +128,7 @@
               </template>
             </dialogue-licence>
           </v-window-item>
-          <v-window-item :value="7">
+          <v-window-item :value="8">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
                 {{ t('bds.nouvelle.texteCréer') }}
@@ -144,17 +176,22 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, client} from '@constl/ipa';
+import type {bds, client, tableaux as tblx, valid } from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useRouter} from 'vue-router';
+
+import { v4 as uuidv4 } from 'uuid';
+
+import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import JetonLicence from '../licences/JetonLicence.vue';
-import DialogueLicence from '../licences/DialogueLicence.vue';
+import JetonLicence from '/@/components/licences/JetonLicence.vue';
+import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
+import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
+import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 
 const constl = inject<client.ClientConstellation>('constl');
 
@@ -175,6 +212,7 @@ const listeÉtapes = [
   'noms',
   'descriptions',
   'motsClefs',
+  'tableaux',
   'licence',
   'confirmation',
 ] as const;
@@ -347,6 +385,66 @@ const motsClefs = ref<string[]>([]);
 const licence = ref<string>();
 const licenceContenu = ref<string>();
 
+// Tableaux
+const tableaux = ref<{clef: string; noms: {[langue: string]: string}; cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]}[]>([]);
+const ajouterTableau = () => {
+  tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
+};
+const effacerTableau = (clef: string) => {
+  tableaux.value = tableaux.value.filter(t => t.clef !== clef);
+};
+const modifierNomsTableau = ({
+  clefTableau,
+  noms,
+}: {
+  clefTableau: string;
+  noms: {[langue: string]: string};
+}) => {
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau ? {...t, noms} : t;
+  });
+};
+
+// Colonnes tableaux
+const ajouterColonneTableau = ({
+  clefTableau,
+  idVariable,
+  index,
+  règles,
+}: {
+  clefTableau: string;
+  idVariable: string;
+  index?: boolean;
+  règles: valid.règleVariableAvecId[]
+}) => {
+  const nouvelleColonne = {
+    id: uuidv4(),
+    variable: idVariable,
+    index,
+    règles,
+  };
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau
+      ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
+      : t;
+  });
+};
+
+const effacerColonneTableau = ({
+  clefTableau,
+  idColonne,
+}: {
+  clefTableau: string;
+  idColonne: string;
+}) => {
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau
+      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.id !== idColonne)}
+      : t;
+  });
+};
+
+
 // Création
 const prêtÀCréer = computed(() => {
   if (!licence.value) return undefined;
@@ -380,6 +478,46 @@ const créerBd = async () => {
       descriptions: Object.fromEntries(Object.entries(descriptions.value)),
     });
     await constl?.bds?.ajouterMotsClefsBd({idBd, idsMotsClefs: motsClefs.value});
+
+    // Ajouter les tableaux
+    for (const tbl of tableaux.value) {
+      const idTableau = await constl?.bds?.ajouterTableauBd({
+        idBd,
+        clefTableau: tbl.clef,
+      });
+      if (!idTableau) return;
+
+      await constl?.tableaux?.ajouterNomsTableau({
+        idTableau,
+        noms: tbl.noms,
+      });
+
+      // Ajouter les colonnes
+      for (const col of tbl.cols) {
+        const idColonne = col.id;
+        await constl?.tableaux?.ajouterColonneTableau({
+          idTableau,
+          idVariable: col.variable,
+          idColonne,
+        });
+        if (col.index)
+          await constl?.tableaux?.changerColIndex({
+            idTableau,
+            idColonne,
+            val: col.index,
+          });
+
+        // Ajotuer les règles colonne
+        for (const règle of col.règles) {
+          await constl?.tableaux?.ajouterRègleTableau({
+            idTableau,
+            idColonne,
+            règle: règle.règle,
+          });
+        }
+      }
+    }
+
   } else if (cheminement.value === 'nuée') {
     if (!gabaritNuée.value) return;
     idBd = await constl?.bds?.créerBdDeSchéma({schéma: gabaritNuée.value});
