@@ -101,7 +101,7 @@
                       clefTableau: tbl.clef,
                       idVariable: col.idVariable,
                       index: col.index,
-                      règles: col.règles
+                      règles: col.règles,
                     })
                 "
                 @effacer-colonne="
@@ -154,7 +154,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client, tableaux as tblx, valid} from '@constl/ipa';
+import {type client, type tableaux as tblx, type valid} from '@constl/ipa';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -272,7 +272,13 @@ const ajusterDescriptions = (desrc: {[lng: string]: string}) => {
 const autorisation = ref<'CJPI' | 'IJPC'>('IJPC');
 
 // Tableaux
-const tableaux = ref<{clef: string; noms: {[langue: string]: string}; cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]}[]>([]);
+const tableaux = ref<
+  {
+    clef: string;
+    noms: {[langue: string]: string};
+    cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+  }[]
+>([]);
 const ajouterTableau = () => {
   tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
 };
@@ -301,7 +307,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[]
+  règles: valid.règleVariableAvecId[];
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),
@@ -358,7 +364,8 @@ const créerNuée = async () => {
     if (!idTableau) return;
 
     await constl?.nuées?.ajouterNomsTableauNuée({
-      idTableau, noms: tbl.noms,
+      idTableau,
+      noms: tbl.noms,
     });
 
     // Ajouter les colonnes
@@ -369,11 +376,12 @@ const créerNuée = async () => {
         idVariable: col.variable,
         idColonne,
       });
-      if (col.index) await constl?.nuées?.changerColIndexTableauNuée({ 
-        idTableau,
-        idColonne,
-        val: col.index,
-      });
+      if (col.index)
+        await constl?.nuées?.changerColIndexTableauNuée({
+          idTableau,
+          idColonne,
+          val: col.index,
+        });
 
       // Ajotuer les règles colonne
       for (const règle of col.règles) {

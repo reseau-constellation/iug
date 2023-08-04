@@ -57,7 +57,9 @@ export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
   let fOublier: utils.schémaFonctionOublier | undefined;
 
   const définis = computed(() => {
-    const valeursParams = Object.fromEntries(Object.entries(params).map(([p, v]) => [p, v.value])) as {
+    const valeursParams = Object.fromEntries(
+      Object.entries(params).map(([p, v]) => [p, v.value]),
+    ) as {
       [K in keyof T]: ObtTypeInterne<T[K]>;
     };
     if (Object.values(valeursParams).every(x => x !== undefined)) {

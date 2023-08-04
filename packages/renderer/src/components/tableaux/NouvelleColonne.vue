@@ -126,12 +126,15 @@ const props = defineProps<{
 }>();
 
 const émettre = defineEmits<{
-  (é: 'nouvelle', info: {
-    idVariable: string,
-    idColonne?: string,
-    index: boolean,
-    règles: valid.règleVariableAvecId[],
-  }): void;
+  (
+    é: 'nouvelle',
+    info: {
+      idVariable: string;
+      idColonne?: string;
+      index: boolean;
+      règles: valid.règleVariableAvecId[];
+    },
+  ): void;
 }>();
 
 const {mdAndUp} = useDisplay();

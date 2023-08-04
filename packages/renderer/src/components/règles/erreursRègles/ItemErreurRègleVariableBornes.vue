@@ -23,7 +23,7 @@
       <nouvelle-colonne
         :id-tableau="idTableau"
         :id-variable="idVariable"
-        @nouvelle="(info) => créerColonneTableau({idTableau, ...info})"
+        @nouvelle="info => créerColonneTableau({idTableau, ...info})"
       >
         <template #activator="{props: propsActivateur}">
           <v-btn v-bind="propsActivateur">
@@ -53,7 +53,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
-import { créerColonneTableau } from '/@/components/tableaux/utils';
+import {créerColonneTableau} from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
 const props = defineProps<{

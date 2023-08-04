@@ -24,7 +24,7 @@
       <nouvelle-colonne
         :id-tableau="idTableau"
         :id-colonne="idColonneRéf"
-        @nouvelle="info=>créerColonneTableau({idTableau, ...info})"
+        @nouvelle="info => créerColonneTableau({idTableau, ...info})"
       >
         <template #activator="{props: propsActivateur}">
           <v-btn v-bind="propsActivateur">
@@ -54,7 +54,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-import { créerColonneTableau } from '/@/components/tableaux/utils';
+import {créerColonneTableau} from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
 const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesColonneInexistante}>();

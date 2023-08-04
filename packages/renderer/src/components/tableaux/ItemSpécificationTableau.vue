@@ -82,7 +82,10 @@ const props = defineProps<{
 }>();
 const émettre = defineEmits<{
   (é: 'modifier-noms', noms: {[langue: string]: string}): void;
-  (é: 'nouvelle-colonne', info: {idVariable: string; index?: boolean, règles: valid.règleVariableAvecId[]}): void;
+  (
+    é: 'nouvelle-colonne',
+    info: {idVariable: string; index?: boolean; règles: valid.règleVariableAvecId[]},
+  ): void;
   (é: 'modifier-colonne', info: {idColonne: string; idVariable: string; index?: boolean}): void;
   (é: 'effacer-colonne', idColonne: string): void;
 }>();
@@ -105,7 +108,11 @@ const modifierColonne = (idColonne: string, info: {idVariable: string; index?: b
 const effacerColonne = (idColonne: string) => {
   émettre('effacer-colonne', idColonne);
 };
-const ajouterColonne = (info: {idVariable: string; index?: boolean, règles: valid.règleVariableAvecId[]}) => {
+const ajouterColonne = (info: {
+  idVariable: string;
+  index?: boolean;
+  règles: valid.règleVariableAvecId[];
+}) => {
   émettre('nouvelle-colonne', info);
 };
 </script>

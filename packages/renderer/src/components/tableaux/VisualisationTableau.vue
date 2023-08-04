@@ -3,7 +3,7 @@
     {{ t('bd.visBD.தகவல்கள்') }}
     <nouvelle-colonne
       :id-tableau="idTableau"
-      @nouvelle="(info) => créerColonneTableau({idTableau, ...info})"
+      @nouvelle="info => créerColonneTableau({idTableau, ...info})"
     >
       <template #activator="{props: propsActivateur}">
         <v-btn
@@ -55,7 +55,7 @@
         <div v-if="monAutorisation">
           <nouvelle-colonne
             :id-tableau="idTableau"
-            @nouvelle="(info) => créerColonneTableau({idTableau, ...info})"
+            @nouvelle="info => créerColonneTableau({idTableau, ...info})"
           >
             <template #activator="{props: propsActivateur}">
               <v-btn
