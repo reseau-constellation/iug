@@ -80,6 +80,38 @@
             </v-radio-group>
           </v-window-item>
           <v-window-item :key="3">
+            <nouveau-tableau @sauvegarder="ajouterTableau">
+              <template #activator="{props: propsActivateur}">
+                <v-btn v-bind="propsActivateur" />
+              </template>
+            </nouveau-tableau>
+
+            <v-list>
+              <ItemSpecificationTableau
+                v-for="tbl in tableaux"
+                :key="tbl.clef"
+                :clef="tbl.clef"
+                :noms="tbl.noms"
+                :colonnes="tbl.cols"
+                modification-permise
+                @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
+                @nouvelle-colonne="
+                  col =>
+                    ajouterColonneTableau({
+                      clefTableau: tbl.clef,
+                      idVariable: col.idVariable,
+                      index: col.index,
+                      règles: col.règles
+                    })
+                "
+                @effacer-colonne="
+                  idColonne => effacerColonneTableau({clefTableau: tbl.clef, idColonne})
+                "
+                @effacer-tableau="() => effacerTableau(tbl.clef)"
+              />
+            </v-list>
+          </v-window-item>
+          <v-window-item :key="4">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
                 {{ t('nuées.nouvelle.texteCréer') }}
@@ -122,12 +154,16 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {client, tableaux as tblx, valid} from '@constl/ipa';
+
+import {v4 as uuidv4} from 'uuid';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
+import NouveauTableau from '../tableaux/NouveauTableau.vue';
+import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 
 const {mdAndUp} = useDisplay();
 
@@ -140,7 +176,7 @@ const constl = inject<client.ClientConstellation>('constl');
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['noms', 'descriptions', 'autorisation', 'confirmation'] as const;
+const listeÉtapes = ['noms', 'descriptions', 'autorisation', 'tableaux', 'confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
@@ -151,6 +187,8 @@ const titreCarte = computed(() => {
       return t('nuées.nouvelle.titreDescriptions');
     case 'autorisation':
       return t('nuées.nouvelle.titreAutorisation');
+    case 'tableaux':
+      return t('nuées.nouvelle.titreTableaux');
     case 'confirmation':
       return t('nuées.nouvelle.titreConfirmation');
     default:
@@ -167,6 +205,8 @@ const sousTitreCarte = computed(() => {
       return t('nuées.nouvelle.sousTitreDescriptions');
     case 'autorisation':
       return t('nuées.nouvelle.sousTitreAutorisation');
+    case 'tableaux':
+      return t('nuées.nouvelle.sousTitreTableaux');
     case 'confirmation':
       return t('nuées.nouvelle.sousTitreConfirmation');
     default:
@@ -231,6 +271,65 @@ const ajusterDescriptions = (desrc: {[lng: string]: string}) => {
 // Autorisation
 const autorisation = ref<'CJPI' | 'IJPC'>('IJPC');
 
+// Tableaux
+const tableaux = ref<{clef: string; noms: {[langue: string]: string}; cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]}[]>([]);
+const ajouterTableau = () => {
+  tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
+};
+const effacerTableau = (clef: string) => {
+  tableaux.value = tableaux.value.filter(t => t.clef !== clef);
+};
+const modifierNomsTableau = ({
+  clefTableau,
+  noms,
+}: {
+  clefTableau: string;
+  noms: {[langue: string]: string};
+}) => {
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau ? {...t, noms} : t;
+  });
+};
+
+// Colonnes tableaux
+const ajouterColonneTableau = ({
+  clefTableau,
+  idVariable,
+  index,
+  règles,
+}: {
+  clefTableau: string;
+  idVariable: string;
+  index?: boolean;
+  règles: valid.règleVariableAvecId[]
+}) => {
+  const nouvelleColonne = {
+    id: uuidv4(),
+    variable: idVariable,
+    index,
+    règles,
+  };
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau
+      ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
+      : t;
+  });
+};
+
+const effacerColonneTableau = ({
+  clefTableau,
+  idColonne,
+}: {
+  clefTableau: string;
+  idColonne: string;
+}) => {
+  tableaux.value = tableaux.value.map(t => {
+    return t.clef === clefTableau
+      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.id !== idColonne)}
+      : t;
+  });
+};
+
 // Création
 const enCréation = ref(false);
 const créerNuée = async () => {
@@ -249,6 +348,43 @@ const créerNuée = async () => {
     id: idNuée,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
+
+  // Ajouter les tableaux
+  for (const tbl of tableaux.value) {
+    const idTableau = await constl?.nuées?.ajouterTableauNuée({
+      idNuée,
+      clefTableau: tbl.clef,
+    });
+    if (!idTableau) return;
+
+    await constl?.nuées?.ajouterNomsTableauNuée({
+      idTableau, noms: tbl.noms,
+    });
+
+    // Ajouter les colonnes
+    for (const col of tbl.cols) {
+      const idColonne = col.id;
+      await constl?.nuées?.ajouterColonneTableauNuée({
+        idTableau,
+        idVariable: col.variable,
+        idColonne,
+      });
+      if (col.index) await constl?.nuées?.changerColIndexTableauNuée({ 
+        idTableau,
+        idColonne,
+        val: col.index,
+      });
+
+      // Ajotuer les règles colonne
+      for (const règle of col.règles) {
+        await constl?.nuées?.ajouterRègleTableauNuée({
+          idTableau,
+          idColonne,
+          règle: règle.règle,
+        });
+      }
+    }
+  }
 
   fermer();
 };

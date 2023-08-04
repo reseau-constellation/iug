@@ -24,10 +24,11 @@
       <nouvelle-colonne
         :id-tableau="idTableau"
         :id-colonne="idColonneRéf"
+        @nouvelle="info=>créerColonneTableau({idTableau, ...info})"
       >
         <template #activator="{props: propsActivateur}">
           <v-btn v-bind="propsActivateur">
-            {{ t('règles.erreursRègles.variableBonesInexistante.ajouterColonne') }}
+            {{ t('règles.erreursRègles.variableBornesInexistante.ajouterColonne') }}
           </v-btn>
         </template>
       </nouvelle-colonne>
@@ -46,11 +47,15 @@ import type {client} from '@constl/ipa';
 import type {valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
+
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
+
+import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
+import {enregistrerÉcoute} from '/@/components/utils';
+
+import { créerColonneTableau } from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
-import NouvelleColonne from '../../tableaux/NouvelleColonne.vue';
 
 const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesColonneInexistante}>();
 

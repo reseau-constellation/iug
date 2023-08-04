@@ -135,7 +135,6 @@
                   <v-btn
                     class="mt-3"
                     variant="outlined"
-                    :loading="enCréation"
                     @click="() => confirmer()"
                   >
                     {{ t('règles.nouvelleRègle.confirmer') }}
@@ -173,9 +172,9 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
-import type {client, utils, valid, variables} from '@constl/ipa';
+import type { utils, valid, variables} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -185,14 +184,12 @@ import SelecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
 const props = defineProps<{
   source:
     | {type: 'variable'; idVariable?: string}
-    | {type: 'tableau'; idTableau: string; idColonne?: string};
+    | {type: 'tableau'; idTableau?: string; idColonne?: string};
   categorieVariable?: variables.catégorieBaseVariables;
 }>();
 const émettre = defineEmits<{
   (é: 'sauvegarder', règle: valid.règleVariable): void;
 }>();
-
-const constl = inject<client.ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -346,8 +343,6 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   switch (é) {
     case 'TypeRègle':
       return {actif: false, visible: false};
-    case 'Confirmer':
-      return {actif: !enCréation.value, visible: true};
     default:
       return {actif: true, visible: true};
   }
@@ -385,34 +380,10 @@ const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
 };
 
 // Confirmer
-const enCréation = ref(false);
 const ajouterRègle = async (règle: valid.règleVariable) => {
-  if (props.source.type === 'variable') {
-    const {idVariable} = props.source;
-    // Si la variable n'est pas encore créée, renvoyer tout simplement la spécification de la règle
-    if (!idVariable) return émettre('sauvegarder', règle);
-
-    // Sinon, ajouter la règle directement
-    await constl?.variables?.ajouterRègleVariable({
-      idVariable,
-      règle,
-    });
-  } else {
-    const {idTableau, idColonne} = props.source;
-
-    // Si la colonne n'est pas encore créée, renvoyer tout simplement la spécification de la règle
-    if (!idColonne) return émettre('sauvegarder', règle);
-
-    // Sinon, ajouter la règle directement
-    await constl?.tableaux?.ajouterRègleTableau({
-      idTableau,
-      idColonne,
-      règle,
-    });
-  }
+  émettre('sauvegarder', règle);
 };
 const confirmer = async () => {
-  enCréation.value = true;
   if (!cheminement.value) throw new Error('Cheminement non défini');
 
   if (cheminement.value === 'existe') {
@@ -496,7 +467,5 @@ const confirmer = async () => {
     };
     await ajouterRègle(règle);
   }
-
-  enCréation.value = false;
 };
 </script>

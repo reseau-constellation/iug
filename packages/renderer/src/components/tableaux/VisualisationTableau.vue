@@ -1,7 +1,10 @@
 <template>
   <p class="mb-0 text-overline">
     {{ t('bd.visBD.தகவல்கள்') }}
-    <nouvelle-colonne :id-tableau="idTableau">
+    <nouvelle-colonne
+      :id-tableau="idTableau"
+      @nouvelle="(info) => créerColonneTableau({idTableau, ...info})"
+    >
       <template #activator="{props: propsActivateur}">
         <v-btn
           v-bind="propsActivateur"
@@ -50,7 +53,10 @@
       <div class="text-center my-3">
         <p class="text-h5 mt-5">{{ t('tableau.vide') }}</p>
         <div v-if="monAutorisation">
-          <nouvelle-colonne :id-tableau="idTableau">
+          <nouvelle-colonne
+            :id-tableau="idTableau"
+            @nouvelle="(info) => créerColonneTableau({idTableau, ...info})"
+          >
             <template #activator="{props: propsActivateur}">
               <v-btn
                 v-bind="propsActivateur"
@@ -256,6 +262,8 @@ import NouvelleLigne from './NouvelleLigne.vue';
 import CelluleChaîneNonTraductible from './cellules/CelluleChaîneNonTraductible.vue';
 import CelluleBooléenne from './cellules/CelluleBooléenne.vue';
 import CelluleNumérique from './cellules/CelluleNumérique.vue';
+
+import {créerColonneTableau} from '/@/components/tableaux/utils';
 
 const props = defineProps<{idTableau: string}>();
 

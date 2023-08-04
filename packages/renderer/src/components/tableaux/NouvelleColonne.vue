@@ -35,7 +35,7 @@
                 <NouvelleRegle
                   :source="{
                     type: 'tableau',
-                    idTableau: idTableau,
+                    idTableau,
                   }"
                   :categorie-variable="catégorieBaseVariableChoisie"
                   @sauvegarder="r => ajouterRègle(r)"
@@ -52,12 +52,18 @@
                   </template>
                 </NouvelleRegle>
 
-                <ItemRègle
+                <ItemRegle
                   v-for="règle in règlesColonne"
                   :key="règle.id"
                   :regle="règle"
                   effacable
                   @effacer="() => effacerRègle(règle.id)"
+                />
+
+                <ItemRegle
+                  v-for="règle in règlesVariable"
+                  :key="règle.id"
+                  :regle="règle"
                 />
               </v-list>
             </v-window-item>
@@ -106,17 +112,26 @@ import {useDisplay} from 'vuetify';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {enregistrerÉcoute, enregistrerÉcouteDynamique} from '/@/components/utils';
 
-import ItemRègle from '/@/components/règles/ItemRègle.vue';
+import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
-  idTableau: string;
+  idTableau?: string;
   idVariable?: string;
   idColonne?: string;
   variablesInterdites?: string[];
+}>();
+
+const émettre = defineEmits<{
+  (é: 'nouvelle', info: {
+    idVariable: string,
+    idColonne?: string,
+    index: boolean,
+    règles: valid.règleVariableAvecId[],
+  }): void;
 }>();
 
 const {mdAndUp} = useDisplay();
@@ -182,8 +197,6 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   switch (é) {
     case 'Variable':
       return {actif: false, visible: false};
-    case 'Confirmation':
-      return {actif: !enCréation.value, visible: true};
     default:
       return {actif: true, visible: true};
   }
@@ -217,25 +230,10 @@ watchEffect(async () => {
 const index = ref(false);
 
 // Règles variable associée
-const règlesVariable = ref<valid.règleVariableAvecId[]>();
-let oublierRèglesVariables: utils.schémaFonctionOublier | undefined;
-
-const lancerSuiviRèglesVariables = async (idVariable?: string) => {
-  if (oublierRèglesVariables) await oublierRèglesVariables();
-  if (idVariable) {
-    oublierRèglesVariables = await enregistrerÉcoute(
-      constl?.variables?.suivreRèglesVariable({
-        id: idVariable,
-        f: x => (règlesVariable.value = x),
-      }),
-    );
-  } else {
-    règlesVariable.value = undefined;
-  }
-};
-
-watchEffect(async () => {
-  await lancerSuiviRèglesVariables(idVariableChoisie.value);
+const règlesVariable = enregistrerÉcouteDynamique({
+  params: {id: idVariableChoisie},
+  fÉcoute: (params, f: utils.schémaFonctionSuivi<valid.règleVariableAvecId[]>) =>
+    constl?.variables?.suivreRèglesVariable({id: params.id, f}),
 });
 
 // Règles colonne
@@ -243,7 +241,6 @@ const règlesColonne = ref<valid.règleVariableAvecId[]>([]);
 
 const ajouterRègle = (règle: valid.règleVariable) => {
   const idRègle = uuidv4();
-  // @ts-expect-error  À vérifier éventuellement
   règlesColonne.value = [...règlesColonne.value, {règle: règle, id: idRègle}];
 };
 const effacerRègle = (idRègle: string) => {
@@ -251,7 +248,6 @@ const effacerRègle = (idRègle: string) => {
 };
 
 // Créer colonne
-const enCréation = ref(false);
 const prèteÀCréér = computed<{idVariable: string} | undefined>(() => {
   return idVariableChoisie.value ? {idVariable: idVariableChoisie.value} : undefined;
 });
@@ -260,32 +256,13 @@ const créerColonne = async () => {
   if (!prèteÀCréér.value) return;
   const {idVariable} = prèteÀCréér.value;
 
-  enCréation.value = true;
-
-  const idColonne = await constl?.tableaux?.ajouterColonneTableau({
-    idTableau: props.idTableau,
-    idVariable: idVariable,
+  émettre('nouvelle', {
+    idVariable,
+    index: index.value,
     idColonne: props.idColonne,
+    règles: règlesColonne.value,
   });
 
-  if (index.value && idColonne) {
-    await constl?.tableaux?.changerColIndex({
-      idTableau: props.idTableau,
-      idColonne,
-      val: true,
-    });
-  }
-  if (idColonne) {
-    for (const règle of règlesColonne.value) {
-      await constl?.tableaux?.ajouterRègleTableau({
-        idTableau: props.idTableau,
-        idColonne: idColonne,
-        règle: règle.règle,
-      });
-    }
-  }
-
-  enCréation.value = false;
   dialogue.value = false;
 };
 </script>
