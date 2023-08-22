@@ -186,7 +186,7 @@ import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
@@ -426,7 +426,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[];
+  règles: valid.règleVariableAvecId[]
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),
@@ -434,11 +434,14 @@ const ajouterColonneTableau = ({
     index,
     règles,
   };
+  throw new Error('À faire' + JSON.stringify(nouvelleColonne) + clefTableau);
+  /**
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
       ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
       : t;
   });
+  */
 };
 
 const effacerColonneTableau = ({
@@ -519,11 +522,13 @@ const créerBd = async () => {
 
         // Ajotuer les règles colonne
         for (const règle of col.règles) {
+          throw new Error('À faire' + JSON.stringify(règle));
+          /**
           await constl?.tableaux.ajouterRègleTableau({
             idTableau,
             idColonne,
             règle: règle.règle,
-          });
+          });*/
         }
       }
     }
