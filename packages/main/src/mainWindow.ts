@@ -56,7 +56,8 @@ export async function restoreOrCreateWindow() {
 
   if (window === undefined) {
     window = await createWindow();
-    if (window)  // Nécessaire pour l'environnement test
+    if (window)
+      // Nécessaire pour l'environnement test
       gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
 
     // Nécessaire pour que les liens mailto fonctionnent dans Électron
