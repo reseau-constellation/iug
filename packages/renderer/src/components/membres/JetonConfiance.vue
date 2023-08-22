@@ -58,7 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 
@@ -73,20 +74,20 @@ const props = defineProps<{
   styleJeton: 'jeton' | 'icône';
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Mon compte
 const monCompte = ref<string>();
-enregistrerÉcoute(constl?.suivreIdBdCompte({f: id => (monCompte.value = id)}));
+enregistrerÉcoute(constl?.suivreIdCompte({f: id => (monCompte.value = id)}));
 
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
   constl?.réseau?.suivreConfianceMonRéseauPourMembre({
-    idBdCompte: props.id,
+    idCompte: props.id,
     f: x => (confiance.value = x),
     profondeur: 5,
   }),

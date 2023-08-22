@@ -10,8 +10,6 @@ export const மூல்_உரை_நெடுவரிசை_அடையா�
 export const மொழிபெயர்ப்பு_நெடுவரிசை_அடையாளம் = 'மொழிபெயர்ப்பு';
 
 /** À changer - temporaire ! */
-export const மொழிபெயர்ப்பு_தரவுத்தள_அடையாளம் =
-  '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik/841abe65-93f5-4539-b721-2f8085a18cc5';
 export const குழு_அடையாளம் =
   '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik/841abe65-93f5-4539-b721-2f8085a18cc5';
 /** À changer - temporaire ! */

@@ -115,7 +115,9 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {type Ref, watchEffect} from 'vue';
 
 import {inject, ref} from 'vue';
@@ -131,7 +133,7 @@ import RésultatRechercheVariable from '/@/components/recherche/RésultatRecherc
 import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -177,25 +179,25 @@ const itemsTypesDonnées: {
 
 const résultatsRechercheBd =
   ref<
-    utils.résultatRecherche<
-      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
     >[]
   >();
-const résultatsRechercheMotsClefs = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
-const résultatsRechercheVariables = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const résultatsRechercheMotsClefs = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
+const résultatsRechercheVariables = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
 const résultatsRechercheProjets =
   ref<
-    utils.résultatRecherche<
-      | utils.infoRésultatTexte
-      | utils.infoRésultatRecherche<
-          utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      | types.infoRésultatTexte
+      | types.infoRésultatRecherche<
+          types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
         >
     >[]
   >();
 const résultatsRechercheNuée =
   ref<
-    utils.résultatRecherche<
-      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
     >[]
   >();
 
@@ -221,9 +223,9 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
+          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
         }) => {
-          return await constl?.recherche?.rechercherMotClefSelonTexte({
+          return await constl?.recherche.rechercherMotsClefsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -243,9 +245,9 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>;
+          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
         }) => {
-          return await constl?.recherche?.rechercherVariableSelonTexte({
+          return await constl?.recherche.rechercherVariablesSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -266,12 +268,12 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            utils.résultatRecherche<
-              utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+            types.résultatRecherche<
+              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
             >[]
           >;
         }) => {
-          return await constl?.recherche?.rechercherBdSelonTexte({
+          return await constl?.recherche.rechercherBdsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -292,15 +294,15 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            utils.résultatRecherche<
-              | utils.infoRésultatTexte
-              | utils.infoRésultatRecherche<
-                  utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+            types.résultatRecherche<
+              | types.infoRésultatTexte
+              | types.infoRésultatRecherche<
+                  types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
                 >
             >[]
           >;
         }) => {
-          return await constl?.recherche?.rechercherProjetSelonTexte({
+          return await constl?.recherche.rechercherProjetsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -321,12 +323,12 @@ watchEffect(async () => {
           requète: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
-            utils.résultatRecherche<
-              utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+            types.résultatRecherche<
+              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
             >[]
           >;
         }) => {
-          return await constl?.recherche?.rechercherNuéeSelonTexte({
+          return await constl?.recherche.rechercherNuéesSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,

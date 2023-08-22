@@ -5,107 +5,114 @@
         name="activator"
         v-bind="{props: propsActivateur}"
       ></slot>
-
-      <v-card
-        class="mx-auto"
-        :max-width="mdAndUp ? 500 : 300"
-      >
-        <v-card-item>
-          <v-card-title class="text-h5 justify-space-between">
-            <span>{{ titreCarte }}</span>
-          </v-card-title>
-          <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-        </v-card-item>
-        <v-card-text>
-          <v-window
-            v-model="étape"
-            style="overflow-y: scroll"
-          >
-            <v-window-item :value="0">
-              <SélecteurVariable
-                :interdites="variablesInterdites"
-                @selectionnee="choisirVariable"
-              />
-            </v-window-item>
-            <v-window-item :value="1">
-              <v-checkbox></v-checkbox>
-            </v-window-item>
-            <v-window-item :value="2">
-              <v-list>
-                <NouvelleRegle
-                  :source="{
-                    type: 'tableau',
-                    idTableau,
-                  }"
-                  :categorie-variable="catégorieBaseVariableChoisie"
-                  @sauvegarder="r => ajouterRègle(r)"
-                >
-                  <template #activator="{props: propsActivateurNouvelleRègle}">
-                    <v-list-item v-bind="propsActivateurNouvelleRègle">
-                      <template #prepend>
-                        <v-icon>mdi-plus</v-icon>
-                      </template>
-                      <v-list-item-title>
-                        {{ t('') }}
-                      </v-list-item-title>
-                    </v-list-item>
-                  </template>
-                </NouvelleRegle>
-
-                <ItemRegle
-                  v-for="règle in règlesColonne"
-                  :key="règle.id"
-                  :regle="règle"
-                  effacable
-                  @effacer="() => effacerRègle(règle.id)"
-                />
-
-                <ItemRegle
-                  v-for="règle in règlesVariable"
-                  :key="règle.id"
-                  :regle="règle"
-                />
-              </v-list>
-            </v-window-item>
-            <v-window-item :value="3">
-              <v-btn
-                variant="outlined"
-                @click="() => créerColonne()"
-              >
-                {{ t('') }}
-              </v-btn>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-btn
-            v-show="retourActif.visible"
-            variant="text"
-            :disabled="!retourActif.actif"
-            @click="retour"
-          >
-            {{ t('communs.retour') }}
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            v-show="suivantActif.visible"
-            color="primary"
-            variant="flat"
-            :disabled="!suivantActif.actif"
-            @click="suivant"
-          >
-            {{ t('communs.suivant') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
     </template>
+    <v-card
+      class="mx-auto"
+      :max-width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="d-flex">
+          <span>{{ titreCarte }}</span>
+          <v-spacer />
+          <v-btn
+            variant="flat"
+            size="small"
+            icon="mdi-close"
+            @click="fermer"
+          />
+        </v-card-title>
+        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: scroll"
+        >
+          <v-window-item :value="0">
+            <SelecteurVariable
+              :interdites="variablesInterdites"
+              @selectionnee="choisirVariable"
+            />
+          </v-window-item>
+          <v-window-item :value="1">
+            <v-checkbox></v-checkbox>
+          </v-window-item>
+          <v-window-item :value="2">
+            <v-list>
+              <NouvelleRegle
+                :source="{
+                  type: 'tableau',
+                  idTableau,
+                }"
+                :categorie-variable="catégorieBaseVariableChoisie"
+                @sauvegarder="r => ajouterRègle(r)"
+              >
+                <template #activator="{props: propsActivateurNouvelleRègle}">
+                  <v-list-item v-bind="propsActivateurNouvelleRègle">
+                    <template #prepend>
+                      <v-icon>mdi-plus</v-icon>
+                    </template>
+                    <v-list-item-title>
+                      {{ t('') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </template>
+              </NouvelleRegle>
+
+              <ItemRegle
+                v-for="règle in règlesColonne"
+                :key="règle.id"
+                :regle="règle"
+                effacable
+                @effacer="() => effacerRègle(règle.id)"
+              />
+
+              <ItemRegle
+                v-for="règle in règlesVariable"
+                :key="règle.id"
+                :regle="règle"
+              />
+            </v-list>
+          </v-window-item>
+          <v-window-item :value="3">
+            <v-btn
+              variant="outlined"
+              @click="() => créerColonne()"
+            >
+              {{ t('') }}
+            </v-btn>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn
+          v-show="retourActif.visible"
+          variant="text"
+          :disabled="!retourActif.actif"
+          @click="retour"
+        >
+          {{ t('communs.retour') }}
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+          v-show="suivantActif.visible"
+          color="primary"
+          variant="flat"
+          :disabled="!suivantActif.actif"
+          @click="suivant"
+        >
+          {{ t('communs.suivant') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {utils, valid, variables} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {types, valid, variables} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -113,6 +120,7 @@ import {useDisplay} from 'vuetify';
 import {v4 as uuidv4} from 'uuid';
 
 import {enregistrerÉcoute, enregistrerÉcouteDynamique} from '/@/components/utils';
+import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
@@ -141,17 +149,19 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['Variable', 'Index', 'Règles', 'Confirmation'] as const;
+const listeÉtapes = ['variable', 'index', 'règles', 'confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'variable':
+      return t('colonnes.nouvelle.titreVariable');
     default:
       return '';
   }
@@ -160,6 +170,8 @@ const titreCarte = computed(() => {
 const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'variable':
+      return t('colonnes.nouvelle.sousTitreVariable');
     default:
       return '';
   }
@@ -186,9 +198,9 @@ const retour = () => {
 const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Variable':
+    case 'variable':
       return {actif: !!idVariableChoisie.value, visible: false};
-    case 'Confirmation':
+    case 'confirmation':
       return {actif: false, visible: false};
     default:
       return {actif: true, visible: true};
@@ -198,7 +210,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
 const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Variable':
+    case 'variable':
       return {actif: false, visible: false};
     default:
       return {actif: true, visible: true};
@@ -211,13 +223,13 @@ const choisirVariable = (idVar: string) => (idVariableChoisie.value = idVar);
 
 // Catégorie variable
 const catégorieBaseVariableChoisie = ref<variables.catégorieBaseVariables>();
-let oublierCatégorieVariable: utils.schémaFonctionOublier | undefined;
+let oublierCatégorieVariable: types.schémaFonctionOublier | undefined;
 const lancerSuiviCatégorieBaseVariable = async (idVariable?: string) => {
   if (oublierCatégorieVariable) await oublierCatégorieVariable();
   if (idVariable) {
     oublierCatégorieVariable = await enregistrerÉcoute(
-      constl?.variables?.suivreCatégorieVariable({
-        id: idVariable,
+      constl?.variables.suivreCatégorieVariable({
+        idVariable,
         f: x => (catégorieBaseVariableChoisie.value = x.catégorie),
       }),
     );
@@ -235,8 +247,8 @@ const index = ref(false);
 // Règles variable associée
 const règlesVariable = enregistrerÉcouteDynamique({
   params: {id: idVariableChoisie},
-  fÉcoute: (params, f: utils.schémaFonctionSuivi<valid.règleVariableAvecId[]>) =>
-    constl?.variables?.suivreRèglesVariable({id: params.id, f}),
+  fÉcoute: (params, f: types.schémaFonctionSuivi<valid.règleVariableAvecId[]>) =>
+    constl?.variables.suivreRèglesVariable({idVariable: params.id, f}),
 });
 
 // Règles colonne
@@ -265,6 +277,14 @@ const créerColonne = async () => {
     idColonne: props.idColonne,
     règles: règlesColonne.value,
   });
+
+  fermer();
+};
+
+const fermer = () => {
+  idVariableChoisie.value = undefined;
+  index.value = false;
+  règlesColonne.value = [];
 
   dialogue.value = false;
 };

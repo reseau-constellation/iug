@@ -23,8 +23,27 @@
           style="overflow-y: scroll"
         >
           <v-window-item :value="0">
-            <v-select v-model="catégorieBase" />
-            <v-checkbox v-model="catégorieListe" />
+            <v-select
+              v-model="catégorieBase"
+              :items="catégoriesBase"
+              :label="t('variables.nouvelle.catégorie')"
+              variant="outlined"
+            >
+              <template #item="{item, props: propsItem}">
+                <v-list-item
+                  v-bind="propsItem"
+                  :title="t(`variables.catégories.${item.raw}`)"
+                  :subtitle="t(`variables.indicesCatégories.${item.raw}`)"
+                  :prepend-icon="
+                    icôneCatégorieVariable({type: 'simple', catégorie: item.raw}) || 'mdi-variable'
+                  "
+                />
+              </template>
+            </v-select>
+            <v-checkbox
+              v-model="catégorieListe"
+              :label="t('variables.nouvelle.typeListe')"
+            />
           </v-window-item>
           <v-window-item :value="1">
             <liste-noms
@@ -92,14 +111,19 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client, variables} from '@constl/ipa';
+import type { variables} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
 
-const constl = inject<client.ClientConstellation>('constl');
+import {catégoriesBase} from './utils';
+
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -110,11 +134,13 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['Catégorie', 'Noms', 'Descriptions', 'Unités', 'Confirmation'] as const;
+const listeÉtapes = ['catégorie', 'noms', 'descriptions', 'unités', 'confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'catégorie':
+      return t('variables.nouvelle.titreCatégorie');
     default:
       return '';
   }
@@ -123,6 +149,8 @@ const titreCarte = computed(() => {
 const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'catégorie':
+      return t('variables.nouvelle.sousTitreCatégorie');
     default:
       return '';
   }
@@ -131,8 +159,8 @@ const sousTitreCarte = computed(() => {
 const retour = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Confirmation':
-      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'Unités' : 'Descriptions');
+    case 'confirmation':
+      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'unités' : 'descriptions');
       break;
     default:
       étape.value--;
@@ -143,8 +171,8 @@ const retour = () => {
 const suivant = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Descriptions':
-      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'Unités' : 'Confirmation');
+    case 'descriptions':
+      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'unités' : 'confirmation');
       break;
     default:
       étape.value++;
@@ -155,11 +183,11 @@ const suivant = () => {
 const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Catégorie':
+    case 'catégorie':
       return {actif: !!catégorieBase.value, visible: true};
-    case 'Noms':
+    case 'noms':
       return {actif: !!Object.keys(noms.value).length, visible: true};
-    case 'Confirmation':
+    case 'confirmation':
       return {actif: false, visible: false};
     default:
       return {actif: true, visible: true};
@@ -169,9 +197,9 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
 const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'Noms':
+    case 'noms':
       return {actif: false, visible: false};
-    case 'Confirmation':
+    case 'confirmation':
       return {actif: !enCréation.value, visible: true};
     default:
       return {actif: true, visible: true};
@@ -211,20 +239,20 @@ const créerVariable = async () => {
 
   if (!catégorie.value) return;
 
-  const idVariable = await constl?.variables?.créerVariable({catégorie: catégorie.value});
+  const idVariable = await constl?.variables.créerVariable({catégorie: catégorie.value});
   if (!idVariable) throw new Error('Variable non créée.');
 
-  await constl?.variables?.ajouterNomsVariable({
-    id: idVariable,
+  await constl?.variables.sauvegarderNomsVariable({
+    idVariable,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.variables?.ajouterDescriptionsVariable({
-    id: idVariable,
+  await constl?.variables.sauvegarderDescriptionsVariable({
+    idVariable,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
 
   if (unités.value) {
-    await constl?.variables?.sauvegarderUnitésVariable({idVariable, idUnité: unités.value});
+    await constl?.variables.sauvegarderUnitésVariable({idVariable, idUnité: unités.value});
   }
 
   fermer();

@@ -31,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {ref, inject, computed} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -41,7 +42,7 @@ import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -53,7 +54,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
   }),
@@ -61,13 +62,13 @@ enregistrerÉcoute(
 
 // Mon compte
 const monCompte = ref<string>();
-enregistrerÉcoute(constl?.suivreIdBdCompte({f: id => (monCompte.value = id)}));
+enregistrerÉcoute(constl?.suivreIdCompte({f: id => (monCompte.value = id)}));
 
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
   constl?.réseau?.suivreConfianceMonRéseauPourMembre({
-    idBdCompte: props.compte,
+    idCompte: props.compte,
     f: x => (confiance.value = x),
     profondeur: 5,
   }),

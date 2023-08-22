@@ -42,7 +42,8 @@
 
 <script setup lang="ts">
 import {inject, ref, onMounted, computed} from 'vue';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -53,7 +54,7 @@ import TexteTronque from './communs/TexteTronqué.vue';
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Nom d'utilisatrice
 const {traduireNom} = utiliserLangues();
@@ -62,7 +63,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     f: x => (noms.value = x),
   }),
 );
@@ -70,7 +71,7 @@ enregistrerÉcoute(
 // Dispositif
 const idDispositif = ref<string>();
 onMounted(async () => {
-  idDispositif.value = await constl?.obtIdOrbite();
+  idDispositif.value = await constl?.obtIdDispositif();
 });
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
   idDispositif: idDispositif,

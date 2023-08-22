@@ -4,6 +4,7 @@
     :noms="noms"
     :descriptions="descriptions"
     :auteurs="auteurs"
+    :fichiers-epinglables="true"
     @ajuster-noms="nms => ajusterNoms(nms)"
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
     @effacer="() => effacerNuée()"
@@ -20,7 +21,7 @@
       <v-btn
         variant="outlined"
         append-icon="mdi-open-in-new"
-        @click="$router.push(encodeURI(`/données/bd/${encodeURIComponent(id)}`))"
+        @click="$router.push(encodeURI(`/données/nuée/${encodeURIComponent(id)}`))"
       >
         {{ t('nuées.carteNuée.ouvrirNuée') }}
       </v-btn>
@@ -28,8 +29,9 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {utils} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {types} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -40,7 +42,7 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -49,7 +51,7 @@ const {t} = useI18n();
 const noms = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.nuées?.suivreNomsNuée({
+  constl?.nuées.suivreNomsNuée({
     idNuée: props.id,
     f: x => (noms.value = x),
   }),
@@ -58,10 +60,10 @@ enregistrerÉcoute(
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
-    await constl?.nuées?.effacerNomNuée({id: props.id, langue});
+    await constl?.nuées.effacerNomNuée({idNuée: props.id, langue});
   }
-  await constl?.nuées?.ajouterNomsNuée({
-    id: props.id,
+  await constl?.nuées.sauvegarderNomsNuée({
+    idNuée: props.id,
     noms: àAjouter,
   });
 };
@@ -70,7 +72,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.nuées?.suivreDescriptionsNuée({
+  constl?.nuées.suivreDescriptionsNuée({
     idNuée: props.id,
     f: x => (descriptions.value = x),
   }),
@@ -82,16 +84,16 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     nouvelles: descrs,
   });
   for (const langue of àEffacer) {
-    await constl?.nuées?.effacerDescriptionNuée({id: props.id, langue});
+    await constl?.nuées.effacerDescriptionNuée({idNuée: props.id, langue});
   }
-  await constl?.nuées?.ajouterDescriptionsNuée({
-    id: props.id,
+  await constl?.nuées.sauvegarderDescriptionsNuée({
+    idNuée: props.id,
     descriptions: àAjouter,
   });
 };
 
 // Auteurs
-const auteurs = ref<utils.infoAuteur[]>();
+const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursBd({
     idBd: props.id,
@@ -101,6 +103,6 @@ enregistrerÉcoute(
 
 // Effacer
 const effacerNuée = async () => {
-  await constl?.nuées?.effacerNuée({id: props.id});
+  await constl?.nuées.effacerNuée({idNuée: props.id});
 };
 </script>

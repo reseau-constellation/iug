@@ -75,10 +75,10 @@
 
         <v-divider />
 
-        <p class="mb-0 text-overline">{{ t('licences.droits.sousTitre') }}</p>
-        <v-progress-circular
+        <p class="mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
+        <v-skeleton-loader
           v-if="!droits"
-          indeterminate
+          type="chip@3"
         />
         <p
           v-else-if="!droits.length"
@@ -91,12 +91,12 @@
           :key="d"
           :droit="d"
         />
-        <p class="mb-0 text-overline">
+        <p class="mb-0 text-h6">
           {{ t('licences.conditions.sousTitre') }}
         </p>
-        <v-progress-circular
+        <v-skeleton-loader
           v-if="!conditions"
-          indeterminate
+          type="chip@3"
         />
         <p
           v-else-if="!conditions.length"
@@ -109,12 +109,12 @@
           :key="c"
           :condition="c"
         />
-        <p class="mb-0 text-overline">
+        <p class="mb-0 text-h6">
           {{ t('licences.limitations.sousTitre') }}
         </p>
-        <v-progress-circular
+        <v-skeleton-loader
           v-if="!limitations"
-          indeterminate
+          type="chip@3"
         />
         <p
           v-else-if="!limitations.length"
@@ -154,10 +154,12 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {licences} from '@constl/ipa';
+import type { licences} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, watchEffect} from 'vue';
+
+import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import JetonDroit from './JetonDroitLicence.vue';
 import JetonLimitation from './JetonLimitationLicence.vue';
@@ -168,14 +170,14 @@ import {ouvrirLien} from '/@/utils';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps({
-  licence: {type: String, required: false},
+  licence: {type: String, required: false, default: undefined},
   permissionModifier: {default: false, type: Boolean},
 });
 const émettre = defineEmits<{
   (é: 'changerLicence', licence: string): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -193,7 +195,7 @@ const licenceChangée = computed(() => licenceChoisie.value !== props.licence);
 // Caractéristiques licences
 const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
 enregistrerÉcoute(
-  constl?.suivreLicences({
+  constl?.licences.suivreLicences({
     f: x => (infoLicences.value = x),
   }),
 );

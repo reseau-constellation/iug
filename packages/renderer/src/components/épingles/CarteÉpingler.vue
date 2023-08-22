@@ -25,27 +25,30 @@
       </v-card-item>
       <v-divider />
       <v-card-text style="overflow-y: scroll">
-        <p class="mb-0 text-overline"> {{}} </p>
-        <v-radio-group
-          v-model="typeDispositifs"
-          :label="t('épingler.dispositifsÉpingle')"
-        >
+        <p class="mb-0 text-h6">
+          {{ t('épingler.dispositifsÉpingle') }}
+        </p>
+        <v-radio-group v-model="typeDispositifs">
           <v-radio
-            :label="t('épingler.aucun')"
-            value="AUCUN"
-          />
-          <v-radio
-            :label="t('épingler.tous')"
-            value="TOUS"
-          />
-          <v-radio
-            :label="t('épingler.installé')"
-            value="INSTALLÉ"
-          />
-          <v-radio
-            :label="t('épingler.dispositifsSpécifiques')"
-            value="SPÉCIFIQUES"
-          />
+            v-for="opt in optionsÉpingle"
+            :key="opt.valeur"
+            :value="opt.valeur"
+          >
+            <template #label>
+              <div>
+                <v-list-item :subtitle="opt.sousTitre">
+                  <template #title>
+                    <v-icon
+                      :icon="opt.icône"
+                      start
+                      size="small"
+                    ></v-icon>
+                    <span class="font-weight-bold">{{ opt.titre }}</span>
+                  </template>
+                </v-list-item>
+              </div>
+            </template>
+          </v-radio>
         </v-radio-group>
         <v-expand-transition>
           <v-autocomplete
@@ -77,7 +80,7 @@
           </v-autocomplete>
         </v-expand-transition>
         <span v-if="optionFichiers">
-          <p class="mb-0 text-overline">
+          <p class="mb-0 text-h6">
             {{ t('épingler.dispositifsÉpingleFichier') }}
           </p>
           <v-radio-group
@@ -85,21 +88,25 @@
             :disabled="typeDispositifs === 'AUCUN'"
           >
             <v-radio
-              :label="t('épingler.aucun')"
-              value="AUCUN"
-            />
-            <v-radio
-              :label="t('épingler.tous')"
-              value="TOUS"
-            />
-            <v-radio
-              :label="t('épingler.installé')"
-              value="INSTALLÉ"
-            />
-            <v-radio
-              :label="t('épingler.dispositifsSpécifiques')"
-              value="SPÉCIFIQUES"
-            />
+              v-for="opt in optionsÉpingle"
+              :key="opt.valeur"
+              :value="opt.valeur"
+            >
+              <template #label>
+                <div>
+                  <v-list-item :subtitle="opt.sousTitre">
+                    <template #title>
+                      <v-icon
+                        :icon="opt.icône"
+                        start
+                        size="small"
+                      ></v-icon>
+                      <span class="font-weight-bold">{{ opt.titre }}</span>
+                    </template>
+                  </v-list-item>
+                </div>
+              </template>
+            </v-radio>
           </v-radio-group>
           <v-expand-transition>
             <v-autocomplete
@@ -162,7 +169,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {type favoris} from '@constl/ipa';
 
 import {inject, ref, computed, watch} from 'vue';
@@ -185,7 +193,7 @@ const props = defineProps({
   },
 });
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -201,6 +209,38 @@ const typeDispositifsFichiers = ref<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQU
 const dispositifsSpécifiques = ref<string[]>([]);
 const dispositifsFichiersSpécifiques = ref<string[]>([]);
 
+const optionsÉpingle: {
+  titre: string;
+  sousTitre: string;
+  icône: string;
+  valeur: 'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES';
+}[] = [
+  {
+    titre: t('épingler.aucun'),
+    sousTitre: t('épingler.indiceAucun'),
+    icône: 'mdi-cancel',
+    valeur: 'AUCUN',
+  },
+  {
+    titre: t('épingler.tous'),
+    sousTitre: t('épingler.indiceTous'),
+    icône: 'mdi-devices',
+    valeur: 'TOUS',
+  },
+  {
+    titre: t('épingler.installé'),
+    sousTitre: t('épingler.indiceInstallé'),
+    icône: 'mdi-monitor',
+    valeur: 'INSTALLÉ',
+  },
+  {
+    titre: t('épingler.dispositifsSpécifiques'),
+    sousTitre: t('épingler.indiceDispositifsSpécifiques'),
+    icône: 'mdi-monitor-cellphone-star',
+    valeur: 'SPÉCIFIQUES',
+  },
+];
+
 // Dispositifs
 const dispositifs = ref<string[]>();
 enregistrerÉcoute(
@@ -212,8 +252,8 @@ enregistrerÉcoute(
 // Statut favoris
 const statutFavoris = ref<favoris.ÉlémentFavoris>();
 enregistrerÉcoute(
-  constl?.favoris?.suivreÉtatFavori({
-    id: props.id,
+  constl?.favoris.suivreÉtatFavori({
+    idObjet: props.id,
     f: statut => (statutFavoris.value = statut),
   }),
 );
@@ -310,25 +350,25 @@ const épingler = async () => {
 
   if (dispositifsSélectionnés.value) {
     const épingle: {
-      id: string;
+      idObjet: string;
       dispositifs: favoris.typeDispositifs;
       dispositifsFichiers?: favoris.typeDispositifs;
       récursif: boolean;
     } = {
-      id: props.id,
+      idObjet: props.id,
       dispositifs: dispositifsSélectionnés.value,
       récursif: true,
     };
     if (dispositifsFichiers.value) épingle.dispositifsFichiers = dispositifsFichiers.value;
 
-    await constl?.favoris?.épinglerFavori(épingle);
+    await constl?.favoris.épinglerFavori(épingle);
   } else {
     await désépingler();
   }
   fermer();
 };
 const désépingler = async () => {
-  await constl?.favoris?.désépinglerFavori({id: props.id});
+  await constl?.favoris.désépinglerFavori({idObjet: props.id});
 };
 
 // Fermer

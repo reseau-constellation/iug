@@ -1,5 +1,6 @@
-import type {client} from '@constl/ipa';
-import type {utils} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {types} from '@constl/ipa';
 import type {ComposerTranslation} from 'vue-i18n';
 import {
   type Ref,
@@ -40,19 +41,19 @@ export const utiliserNomEtTypeDispositif = ({
   idDispositif: string | Ref<string | undefined>;
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
-  const constl = inject<client.ClientConstellation>('constl');
+  const constl = inject<MandataireClientConstellation>('constl');
   const {useI18n} = கிளிமூக்கை_உபயோகி();
   const {t} = useI18n();
 
   const monCompte = ref<string>();
   enregistrerÉcoute(
-    constl?.suivreIdBdCompte({
+    constl?.suivreIdCompte({
       f: x => (monCompte.value = x),
     }),
   );
 
   const nomEtType = ref<{type?: string; nom?: string}>();
-  let fOublier: utils.schémaFonctionOublier | undefined;
+  let fOublier: types.schémaFonctionOublier | undefined;
 
   watchEffect(async () => {
     if (fOublier) await fOublier();
@@ -166,7 +167,6 @@ export const utiliserIlYA = ({
   });
 
   const info = computed(() => {
-    console.log({ilYA: ilYA.value});
     if (ilYA.value === undefined) {
       return {ilYA: 0, texte: clefs.enLigne};
     } else if (ilYA.value < 1000 * 60 * 2) {

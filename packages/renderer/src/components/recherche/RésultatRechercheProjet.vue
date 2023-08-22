@@ -52,7 +52,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 import type {ComputedRef} from 'vue';
@@ -69,22 +70,22 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import JetonBd from '../bds/JetonBd.vue';
 
 const props = defineProps<{
-  résultat: utils.résultatRecherche<
-    | utils.infoRésultatTexte
-    | utils.infoRésultatRecherche<
-        utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+  résultat: types.résultatRecherche<
+    | types.infoRésultatTexte
+    | types.infoRésultatRecherche<
+        types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
       >
   >;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {traduireNom} = utiliserLangues();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 // Sources résultat directes (nom, description, id de la nuée)
-const sourceDirecte = (de: string): ComputedRef<utils.infoRésultatTexte | undefined> => {
+const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {
   return computed(() => {
     const {de: sourceRésultat, info} = props.résultat.résultatObjectif;
     if (info.type === 'texte' && sourceRésultat === de) {
@@ -104,7 +105,7 @@ const infoSourceBdIndirecte = computed(
   ():
     | {
         id: string;
-        info: utils.infoRésultatRecherche<utils.infoRésultatTexte>;
+        info: types.infoRésultatRecherche<types.infoRésultatTexte>;
       }
     | undefined => {
     const {de, clef, info} = props.résultat.résultatObjectif;
@@ -125,7 +126,7 @@ const sourceObjetConnexe = (
 ): ComputedRef<
   | {
       id: string;
-      info: utils.infoRésultatRecherche<utils.infoRésultatTexte>;
+      info: types.infoRésultatRecherche<types.infoRésultatTexte>;
     }
   | undefined
 > => {
@@ -134,7 +135,7 @@ const sourceObjetConnexe = (
     if (info.type === 'résultat' && sourceRésultat === de && clef && info.info.type === 'texte') {
       return {
         id: clef,
-        info: info as utils.infoRésultatRecherche<utils.infoRésultatTexte>,
+        info: info as types.infoRésultatRecherche<types.infoRésultatTexte>,
       };
     } else {
       return undefined;
@@ -150,8 +151,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.variables?.suivreNomsVariable({
-    id: props.résultat.id,
+  constl?.projets.suivreNomsProjet({
+    idProjet: props.résultat.id,
     f: x => (noms.value = x),
   }),
 );
@@ -161,17 +162,17 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descriptionTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.variables?.suivreDescrVariable({
-    id: props.résultat.id,
+  constl?.projets.suivreDescriptionsProjet({
+    idProjet: props.résultat.id,
     f: x => (descriptions.value = x),
   }),
 );
 
 // Auteurs
-const auteurs = ref<utils.infoAuteur[]>();
+const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreAuteursVariable({
-    idVariable: props.résultat.id,
+  constl?.réseau?.suivreAuteursProjet({
+    idProjet: props.résultat.id,
     f: x => (auteurs.value = x),
   }),
 );

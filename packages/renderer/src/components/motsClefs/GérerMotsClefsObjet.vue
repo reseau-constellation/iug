@@ -83,8 +83,9 @@
 import {inject, onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {client} from '@constl/ipa';
-import type {utils} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {types} from '@constl/ipa';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -99,7 +100,7 @@ const {mdAndUp} = useDisplay();
 const props = defineProps<{originaux: string[]}>();
 const émettre = defineEmits<{(é: 'sauvegarder', motsClefs: string[]): void}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);
@@ -120,15 +121,15 @@ const sauvegarder = () => {
 // Ajout de mots-clef
 const motClefSélectionné = ref<string>();
 const requèteRecherche = ref<string>();
-const résultatRechercheMotsClefs = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const résultatRechercheMotsClefs = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
 
-let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
+let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
 
 watchEffect(async () => {
   if (fOublierRecherche) await fOublierRecherche();
 
   if (requèteRecherche.value) {
-    const retour = await constl?.recherche?.rechercherMotClefSelonTexte({
+    const retour = await constl?.recherche.rechercherMotsClefsSelonTexte({
       texte: requèteRecherche.value,
       f: x => (résultatRechercheMotsClefs.value = x),
       nRésultatsDésirés: 10,

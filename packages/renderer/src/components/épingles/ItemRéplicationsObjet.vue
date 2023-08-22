@@ -18,10 +18,12 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
+import type { réseau} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import {inject, ref} from 'vue';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
-import type {client, réseau} from '@constl/ipa';
-import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {computed} from 'vue';
@@ -33,7 +35,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {formatterChiffre} = utiliserNumération();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const réplications = ref<réseau.infoRéplications>();
 

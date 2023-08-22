@@ -33,7 +33,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
 
 import {computed, inject, ref} from 'vue';
@@ -48,7 +49,7 @@ const émettre = defineEmits<{
   (e: 'effacer'): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Actions
 const utiliser = () => {
@@ -61,7 +62,7 @@ const effacer = () => {
 // Autorisations
 const monCompte = ref<string>();
 enregistrerÉcoute(
-  constl?.suivreIdBdCompte({
+  constl?.suivreIdCompte({
     f: id => (monCompte.value = id),
   }),
 );

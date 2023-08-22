@@ -10,7 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import {ref, inject} from 'vue';
@@ -20,7 +21,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -31,7 +32,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.motsClefs?.suivreNomsMotClef({
+  constl?.motsClefs.suivreNomsMotClef({
     idMotClef: props.id,
     f: x => (noms.value = x),
   }),

@@ -55,7 +55,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -67,7 +68,7 @@ import {computed} from 'vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

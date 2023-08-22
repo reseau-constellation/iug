@@ -13,19 +13,20 @@
       />
       <jeton-statut-automatisation :statut="statut" />
       <jeton-fichier-importation
-        v-if="spécification.type === 'importation'"
-        :spécification="spécification"
+        v-if="specification.type === 'importation'"
+        :spécification="specification"
       />
       <jeton-fichier-exportation
         v-else
-        :spécification="spécification"
+        :spécification="specification"
       />
     </v-card-text>
   </v-card>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {ref, onMounted, inject} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -43,11 +44,11 @@ const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 const props = defineProps<{
-  spécification: automatisation.SpécificationAutomatisation;
+  specification: automatisation.SpécificationAutomatisation;
   statut: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Nom
 const {traduireNom} = utiliserLangues();
@@ -55,49 +56,49 @@ const {traduireNom} = utiliserLangues();
 const noms = ref<{[langue: string]: string}>({});
 
 onMounted(() => {
-  if (props.spécification.type === 'importation') {
+  if (props.specification.type === 'importation') {
     enregistrerÉcoute(
-      constl?.tableaux?.suivreNomsTableau({
-        idTableau: props.spécification.idTableau,
+      constl?.tableaux.suivreNomsTableau({
+        idTableau: props.specification.idTableau,
         f: x => (noms.value = x),
       }),
     );
   } else {
-    switch (props.spécification.typeObjet) {
+    switch (props.specification.typeObjet) {
       case 'tableau':
         enregistrerÉcoute(
-          constl?.tableaux?.suivreNomsTableau({
-            idTableau: props.spécification.idObjet,
+          constl?.tableaux.suivreNomsTableau({
+            idTableau: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       case 'projet':
         enregistrerÉcoute(
-          constl?.projets?.suivreNomsProjet({
-            id: props.spécification.idObjet,
+          constl?.projets.suivreNomsProjet({
+            idProjet: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       case 'bd':
         enregistrerÉcoute(
-          constl?.bds?.suivreNomsBd({
-            id: props.spécification.idObjet,
+          constl?.bds.suivreNomsBd({
+            idBd: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       case 'nuée':
         enregistrerÉcoute(
-          constl?.nuées?.suivreNomsNuée({
-            idNuée: props.spécification.idObjet,
+          constl?.nuées.suivreNomsNuée({
+            idNuée: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       default:
-        throw new Error(JSON.stringify(props.spécification));
+        throw new Error(JSON.stringify(props.specification));
     }
   }
 });

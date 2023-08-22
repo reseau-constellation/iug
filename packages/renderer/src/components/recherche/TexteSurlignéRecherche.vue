@@ -9,11 +9,11 @@
 </template>
 
 <script setup lang="ts">
-import type {utils} from '@constl/ipa';
+import type {types} from '@constl/ipa';
 import {computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{info: utils.infoRésultatTexte; maxTaille?: number}>();
+const props = defineProps<{info: types.infoRésultatTexte; maxTaille?: number}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

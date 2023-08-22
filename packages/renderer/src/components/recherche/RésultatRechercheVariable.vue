@@ -28,8 +28,9 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {utils, variables} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {types, variables} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -39,12 +40,12 @@ import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import {icôneCatégorieVariable} from '/@/utils';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{résultat: utils.résultatRecherche<utils.infoRésultatTexte>}>();
+const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();
@@ -61,8 +62,8 @@ const icône = computed(() =>
 );
 const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
-  constl?.variables?.suivreCatégorieVariable({
-    id: props.résultat.id,
+  constl?.variables.suivreCatégorieVariable({
+    idVariable: props.résultat.id,
     f: x => (catégorie.value = x),
   }),
 );
@@ -72,8 +73,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.variables?.suivreNomsVariable({
-    id: props.résultat.id,
+  constl?.variables.suivreNomsVariable({
+    idVariable: props.résultat.id,
     f: x => (noms.value = x),
   }),
 );
@@ -83,14 +84,14 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descriptionTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.variables?.suivreDescrVariable({
-    id: props.résultat.id,
+  constl?.variables.suivreDescrVariable({
+    idVariable: props.résultat.id,
     f: x => (descriptions.value = x),
   }),
 );
 
 // Auteurs
-const auteurs = ref<utils.infoAuteur[]>();
+const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursVariable({
     idVariable: props.résultat.id,

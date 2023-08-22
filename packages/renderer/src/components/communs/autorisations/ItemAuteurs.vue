@@ -21,7 +21,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {utils} from '@constl/ipa';
+import type {types} from '@constl/ipa';
 
 import {computed} from 'vue';
 
@@ -29,7 +29,7 @@ import {utiliserNumération} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
-  auteurs?: utils.infoAuteur[];
+  auteurs?: types.infoAuteur[];
 }>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();

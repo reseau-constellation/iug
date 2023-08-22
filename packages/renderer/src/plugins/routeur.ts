@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
     component: PageTableau,
   },
   {
-    path: encodeURI('/données/nuées/:id'),
+    path: encodeURI('/données/nuée/:id'),
     component: PageNuée,
     props: route => {
       const {id} = route.params;

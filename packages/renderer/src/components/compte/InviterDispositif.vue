@@ -151,7 +151,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 
@@ -160,7 +161,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 import {useDisplay, useRtl} from 'vuetify/lib/framework.mjs';
 import {watchEffect} from 'vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

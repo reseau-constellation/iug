@@ -84,7 +84,8 @@
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
@@ -95,7 +96,7 @@ import axios from 'axios';
 import JSZip from 'jszip';
 import {fileSave} from 'browser-fs-access';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {langue} = utiliserLangues();
@@ -181,7 +182,7 @@ const clefTableauNuée = ref<string>();
 const schémaSpécificationBdsNuée = ref<bds.schémaSpécificationBd>();
 
 watchEffect(async () => {
-  schémaSpécificationBdsNuée.value = await constl?.nuées?.générerSchémaBdNuée({
+  schémaSpécificationBdsNuée.value = await constl?.nuées.générerSchémaBdNuée({
     idNuée: props.idNuee,
     licence: licenceDéfaut.value,
   });

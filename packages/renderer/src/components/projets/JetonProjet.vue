@@ -7,7 +7,8 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -16,7 +17,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -28,8 +29,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.projets?.suivreNomsProjet({
-    id: props.id,
+  constl?.projets.suivreNomsProjet({
+    idProjet: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -44,7 +45,7 @@ const srcImgProjet = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.projets?.suivreImage({
+  constl?.projets.suivreImage({
     idProjet: props.id,
     f: image => (imageProjet.value = image),
   }),

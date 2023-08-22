@@ -1,8 +1,9 @@
-import type {client, valid} from '@constl/ipa';
+import type { valid} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject} from 'vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 export const créerColonneTableau = async ({
   idTableau,
@@ -17,7 +18,7 @@ export const créerColonneTableau = async ({
   index?: boolean;
   règles: valid.règleVariableAvecId[];
 }) => {
-  const idColonneFinale = await constl?.tableaux?.ajouterColonneTableau({
+  const idColonneFinale = await constl?.tableaux.ajouterColonneTableau({
     idTableau,
     idVariable: idVariable,
     idColonne,
@@ -25,14 +26,14 @@ export const créerColonneTableau = async ({
   if (!idColonneFinale) return;
 
   if (index) {
-    await constl?.tableaux?.changerColIndex({
+    await constl?.tableaux.changerColIndex({
       idTableau,
       idColonne: idColonneFinale,
       val: true,
     });
   }
   for (const règle of règles) {
-    await constl?.tableaux?.ajouterRègleTableau({
+    await constl?.tableaux.ajouterRègleTableau({
       idTableau,
       idColonne: idColonneFinale,
       règle: règle.règle,

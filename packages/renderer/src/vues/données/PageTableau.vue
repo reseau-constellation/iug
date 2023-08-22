@@ -109,7 +109,8 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
@@ -127,7 +128,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{idTableau: string; idBd: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {obtImageDéco} = utiliserImagesDéco();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -157,7 +158,7 @@ const nomsTableau = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(nomsTableau);
 
 enregistrerÉcoute(
-  constl?.tableaux?.suivreNomsTableau({
+  constl?.tableaux.suivreNomsTableau({
     idTableau: props.idTableau,
     f: x => (nomsTableau.value = x),
   }),
@@ -169,9 +170,9 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
     nouvelles: nms,
   });
   for (const langue of àEffacer) {
-    await constl?.tableaux?.effacerNomTableau({idTableau: props.idTableau, langue});
+    await constl?.tableaux.effacerNomTableau({idTableau: props.idTableau, langue});
   }
-  await constl?.tableaux?.ajouterNomsTableau({
+  await constl?.tableaux.sauvegarderNomsTableau({
     idTableau: props.idTableau,
     noms: àAjouter,
   });
@@ -182,8 +183,8 @@ const nomsBd = ref<{[lng: string]: string}>({});
 const nomTraduitBd = traduireNom(nomsBd);
 
 enregistrerÉcoute(
-  constl?.bds?.suivreNomsBd({
-    id: props.idBd,
+  constl?.bds.suivreNomsBd({
+    idBd: props.idBd,
     f: x => (nomsBd.value = x),
   }),
 );
@@ -198,7 +199,7 @@ const srcImgBd = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.bds?.suivreImage({
+  constl?.bds.suivreImage({
     idBd: props.idBd,
     f: image => (imageBd.value = image),
   }),
@@ -208,9 +209,9 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 const modifierImage = async (image?: ArrayBuffer) => {
   if (image) {
-    await constl?.profil?.sauvegarderImage({image});
+    await constl?.profil.sauvegarderImage({image});
   } else {
-    await constl?.profil?.effacerImage();
+    await constl?.profil.effacerImage();
   }
 };
 </script>

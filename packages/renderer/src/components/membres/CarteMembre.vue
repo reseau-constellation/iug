@@ -160,7 +160,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {ref, inject} from 'vue';
 
@@ -185,7 +186,7 @@ import MenuContactMembre from './MenuContactMembre.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -201,7 +202,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     f: x => (noms.value = x),
   }),
 );
@@ -209,7 +210,7 @@ enregistrerÉcoute(
 // Contacts
 const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
-  constl?.profil?.suivreContacts({
+  constl?.profil.suivreContacts({
     f: x => (contacts.value = x),
   }),
 );

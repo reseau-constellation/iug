@@ -12,18 +12,19 @@
 </template>
 
 <script setup lang="ts">
-import type {client, variables} from '@constl/ipa';
+import type { variables} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {icôneCatégorieVariable} from '/@/utils';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -35,8 +36,8 @@ const icône = computed(() =>
 );
 const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
-  constl?.variables?.suivreCatégorieVariable({
-    id: props.id,
+  constl?.variables.suivreCatégorieVariable({
+    idVariable: props.id,
     f: x => (catégorie.value = x),
   }),
 );
@@ -46,8 +47,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.variables?.suivreNomsVariable({
-    id: props.id,
+  constl?.variables.suivreNomsVariable({
+    idVariable: props.id,
     f: x => (noms.value = x),
   }),
 );

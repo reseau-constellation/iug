@@ -22,8 +22,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {automatisation} from '@constl/ipa';
-import type {client} from '@constl/ipa';
+import type {automatisation } from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, onMounted} from 'vue';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -35,10 +35,9 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
-  statut?: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Nom
 const {traduireNom} = utiliserLangues();
@@ -48,7 +47,7 @@ const noms = ref<{[langue: string]: string}>({});
 onMounted(() => {
   if (props.spécification.type === 'importation') {
     enregistrerÉcoute(
-      constl?.tableaux?.suivreNomsTableau({
+      constl?.tableaux.suivreNomsTableau({
         idTableau: props.spécification.idTableau,
         f: x => (noms.value = x),
       }),
@@ -57,7 +56,7 @@ onMounted(() => {
     switch (props.spécification.typeObjet) {
       case 'tableau':
         enregistrerÉcoute(
-          constl?.tableaux?.suivreNomsTableau({
+          constl?.tableaux.suivreNomsTableau({
             idTableau: props.spécification.idObjet,
             f: x => (noms.value = x),
           }),
@@ -65,23 +64,23 @@ onMounted(() => {
         break;
       case 'projet':
         enregistrerÉcoute(
-          constl?.projets?.suivreNomsProjet({
-            id: props.spécification.idObjet,
+          constl?.projets.suivreNomsProjet({
+            idProjet: props.spécification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       case 'bd':
         enregistrerÉcoute(
-          constl?.bds?.suivreNomsBd({
-            id: props.spécification.idObjet,
+          constl?.bds.suivreNomsBd({
+            idBd: props.spécification.idObjet,
             f: x => (noms.value = x),
           }),
         );
         break;
       case 'nuée':
         enregistrerÉcoute(
-          constl?.nuées?.suivreNomsNuée({
+          constl?.nuées.suivreNomsNuée({
             idNuée: props.spécification.idObjet,
             f: x => (noms.value = x),
           }),
@@ -113,5 +112,16 @@ const icôneTypeObjet = computed(() => {
         throw new Error(JSON.stringify(props.spécification));
     }
   }
+});
+
+// Statut
+const statuts = ref<{[key: string]: automatisation.ÉtatAutomatisation}>();
+enregistrerÉcoute(
+  constl?.automatisations.suivreÉtatAutomatisations({
+    f: x => (statuts.value = x),
+  }),
+);
+const statut = computed(() => {
+  return statuts.value ? statuts.value[props.spécification.id] : undefined;
 });
 </script>

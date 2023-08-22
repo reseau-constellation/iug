@@ -1,5 +1,4 @@
-import type {utils} from '@constl/ipa';
-import type {schémaFonctionOublier, schémaFonctionSuivi} from '@constl/ipa/dist/src/utils';
+import type {types} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
 import type {ComputedRef, Ref} from 'vue';
@@ -7,13 +6,13 @@ import {computed, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const enregistrerÉcoute = <
   T extends
-    | utils.schémaFonctionOublier
-    | utils.schémaRetourFonctionRechercheParProfondeur
-    | utils.schémaRetourFonctionRechercheParN,
+    | types.schémaFonctionOublier
+    | types.schémaRetourFonctionRechercheParProfondeur
+    | types.schémaRetourFonctionRechercheParN,
 >(
   promesseÉcoute?: Promise<T>,
 ): Promise<T | undefined> => {
-  let fOublier: utils.schémaFonctionOublier | undefined = undefined;
+  let fOublier: types.schémaFonctionOublier | undefined = undefined;
 
   const événements = new EventEmitter();
   let résultat: T | undefined;
@@ -49,12 +48,12 @@ export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
   params: T;
   fÉcoute: (
     params: {[K in keyof T]: Exclude<ObtTypeInterne<T[K]>, undefined>},
-    f: schémaFonctionSuivi<U>,
-  ) => Promise<schémaFonctionOublier> | undefined;
+    f: types.schémaFonctionSuivi<U>,
+  ) => Promise<types.schémaFonctionOublier> | undefined;
 }): ComputedRef<U | undefined> => {
   const résultat = ref<U>();
 
-  let fOublier: utils.schémaFonctionOublier | undefined;
+  let fOublier: types.schémaFonctionOublier | undefined;
 
   const définis = computed(() => {
     const valeursParams = Object.fromEntries(
@@ -100,8 +99,8 @@ export const enregistrerRecherche = <T, V, U extends V>({
     nOuProfondeur: number;
     réfRésultat: Ref<U[] | undefined>;
   }) => Promise<
-    | utils.schémaRetourFonctionRechercheParN
-    | utils.schémaRetourFonctionRechercheParProfondeur
+    | types.schémaRetourFonctionRechercheParN
+    | types.schémaRetourFonctionRechercheParProfondeur
     | undefined
   >;
   fRechercheDéfaut?: ({
@@ -111,19 +110,19 @@ export const enregistrerRecherche = <T, V, U extends V>({
     nOuProfondeur: number;
     réfRésultat: Ref<V[] | undefined>;
   }) => Promise<
-    | utils.schémaRetourFonctionRechercheParN
-    | utils.schémaRetourFonctionRechercheParProfondeur
+    | types.schémaRetourFonctionRechercheParN
+    | types.schémaRetourFonctionRechercheParProfondeur
     | undefined
   >;
 }): Ref<number> => {
-  let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
+  let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
   let fChangerNOuProfondeur: (n: number) => Promise<void>;
 
   const nOuProfondeurRésultats = ref(10);
 
   const vérifierSiParProfondeur = (
-    x: utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur,
-  ): x is utils.schémaRetourFonctionRechercheParProfondeur => {
+    x: types.schémaRetourFonctionRechercheParN | types.schémaRetourFonctionRechercheParProfondeur,
+  ): x is types.schémaRetourFonctionRechercheParProfondeur => {
     // @ts-expect-error Je ne sais pas comment faire ça
     return !!x['fChangerProfondeur'];
   };
@@ -177,7 +176,7 @@ export const enregistrerRecherche = <T, V, U extends V>({
 
 export class MultiChercheur {
   nOuProfondeur: Ref<number>;
-  fOublierRecherche?: utils.schémaFonctionOublier;
+  fOublierRecherche?: types.schémaFonctionOublier;
 
   constructor() {
     this.nOuProfondeur = ref(10);
@@ -202,8 +201,8 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      | utils.schémaRetourFonctionRechercheParN
-      | utils.schémaRetourFonctionRechercheParProfondeur
+      | types.schémaRetourFonctionRechercheParN
+      | types.schémaRetourFonctionRechercheParProfondeur
       | undefined
     >;
     fRechercheDéfaut?: ({
@@ -213,8 +212,8 @@ export class MultiChercheur {
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
-      | utils.schémaRetourFonctionRechercheParN
-      | utils.schémaRetourFonctionRechercheParProfondeur
+      | types.schémaRetourFonctionRechercheParN
+      | types.schémaRetourFonctionRechercheParProfondeur
       | undefined
     >;
   }): Promise<void> {
@@ -223,12 +222,12 @@ export class MultiChercheur {
       this.fOublierRecherche = undefined;
     }
 
-    let fOublierRecherche: utils.schémaFonctionOublier | undefined = undefined;
+    let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
     let fChangerNOuProfondeur: (n: number) => Promise<void>;
 
     const vérifierSiParProfondeur = (
-      x: utils.schémaRetourFonctionRechercheParN | utils.schémaRetourFonctionRechercheParProfondeur,
-    ): x is utils.schémaRetourFonctionRechercheParProfondeur => {
+      x: types.schémaRetourFonctionRechercheParN | types.schémaRetourFonctionRechercheParProfondeur,
+    ): x is types.schémaRetourFonctionRechercheParProfondeur => {
       // @ts-expect-error Je ne sais pas comment faire ça
       return !!x['fChangerProfondeur'];
     };

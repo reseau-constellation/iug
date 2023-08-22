@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
@@ -80,13 +80,20 @@
             </v-radio-group>
           </v-window-item>
           <v-window-item :key="3">
-            <nouveau-tableau @sauvegarder="ajouterTableau">
-              <template #activator="{props: propsActivateur}">
-                <v-btn v-bind="propsActivateur" />
-              </template>
-            </nouveau-tableau>
-
             <v-list>
+              <nouveau-tableau
+                :importation-permise="false"
+              >
+                <!--@sauvegarder="ajouterTableau"-->
+                <template #activator="{props: propsActivateur}">
+                  <v-list-item
+                    v-bind="propsActivateur"
+                    :title="$t('nuées.nouvelle.ajoutTableau')"
+                    prepend-icon="mdi-plus"
+                  >
+                  </v-list-item>
+                </template>
+              </nouveau-tableau>
               <ItemSpecificationTableau
                 v-for="tbl in tableaux"
                 :key="tbl.clef"
@@ -154,7 +161,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {type client, type tableaux as tblx, type valid} from '@constl/ipa';
+import {type tableaux as tblx, type valid} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -170,7 +178,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);
@@ -279,12 +287,20 @@ const tableaux = ref<
     cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
   }[]
 >([]);
-const ajouterTableau = () => {
-  tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
+/** const ajouterTableau = ({
+  noms,
+  cols,
+}: {
+  noms: {[langue: string]: string};
+  cols: tblx.InfoCol & {règles: valid.règleVariableAvecId[]};
+}) => {
+  tableaux.value = [...tableaux.value, {clef: uuidv4(), noms, cols}];
 };
+*/
 const effacerTableau = (clef: string) => {
   tableaux.value = tableaux.value.filter(t => t.clef !== clef);
 };
+
 const modifierNomsTableau = ({
   clefTableau,
   noms,
@@ -315,11 +331,14 @@ const ajouterColonneTableau = ({
     index,
     règles,
   };
+  
+  throw new Error('À faire' + clefTableau + JSON.stringify(nouvelleColonne));
+  /**
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
       ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
       : t;
-  });
+  }); */
 };
 
 const effacerColonneTableau = ({
@@ -341,29 +360,29 @@ const enCréation = ref(false);
 const créerNuée = async () => {
   enCréation.value = true;
 
-  const idNuée = await constl?.nuées?.créerNuée({
+  const idNuée = await constl?.nuées.créerNuée({
     autorisation: autorisation.value,
   });
   if (!idNuée) throw new Error('Nuée non créée.');
 
-  await constl?.nuées?.ajouterNomsNuée({
-    id: idNuée,
+  await constl?.nuées.sauvegarderNomsNuée({
+    idNuée,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.nuées?.ajouterDescriptionsNuée({
-    id: idNuée,
+  await constl?.nuées.sauvegarderDescriptionsNuée({
+    idNuée,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
 
   // Ajouter les tableaux
   for (const tbl of tableaux.value) {
-    const idTableau = await constl?.nuées?.ajouterTableauNuée({
+    const idTableau = await constl?.nuées.ajouterTableauNuée({
       idNuée,
       clefTableau: tbl.clef,
     });
     if (!idTableau) return;
 
-    await constl?.nuées?.ajouterNomsTableauNuée({
+    await constl?.nuées.ajouterNomsTableauNuée({
       idTableau,
       noms: tbl.noms,
     });
@@ -371,13 +390,13 @@ const créerNuée = async () => {
     // Ajouter les colonnes
     for (const col of tbl.cols) {
       const idColonne = col.id;
-      await constl?.nuées?.ajouterColonneTableauNuée({
+      await constl?.nuées.ajouterColonneTableauNuée({
         idTableau,
         idVariable: col.variable,
         idColonne,
       });
       if (col.index)
-        await constl?.nuées?.changerColIndexTableauNuée({
+        await constl?.nuées.changerColIndexTableauNuée({
           idTableau,
           idColonne,
           val: col.index,
@@ -385,11 +404,13 @@ const créerNuée = async () => {
 
       // Ajotuer les règles colonne
       for (const règle of col.règles) {
-        await constl?.nuées?.ajouterRègleTableauNuée({
+        throw new Error('À faire' + JSON.stringify(règle));
+        /**
+        await constl?.nuées.ajouterRègleTableauNuée({
           idTableau,
           idColonne,
           règle: règle.règle,
-        });
+        }); */
       }
     }
   }
@@ -402,6 +423,8 @@ const fermer = () => {
   noms.value = {};
   descriptions.value = {};
   autorisation.value = 'IJPC';
+  tableaux.value = [];
+
   étape.value = 0;
   dialogue.value = false;
   enCréation.value = false;

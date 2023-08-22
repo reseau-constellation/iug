@@ -83,7 +83,12 @@
         "ajouterDispositif": "Connecter un dispositif",
         "nouveauContact": "Nouveau contact"
       },
-      "signalements": {}
+      "signalements": {
+        "titre": "Vous éprouvez des difficultés ?",
+        "sousTitre": "Ne vous en faites pas ; nous sommes là pour vous aider.",
+        "bouton": "Signaler sur GitHub",
+        "boutonCourriel": "Support par courriel"
+      }
     },
     "membres": {
       "contacts": "Contacts",
@@ -231,6 +236,9 @@
         "aucunRésultat": "கோரிக்கை படி எந்த பயனாளரும் இல்லை",
         "nouveaux": "சேர்க்கபடும் பங்களிப்பாளர்கள்",
         "ajouterCommeModérateur": "மதிப்பீட்டாளராக சேரு"
+      },
+      "item": {
+        "titre": "எந்த பங்களிப்பாளரும் இல்லை | {n} பங்களிபாளர் | {n} பங்களிபாளர்கள்"
       }
     },
     "motsClefs": {
@@ -303,6 +311,7 @@
       "sansNom": "பெயர் இல்லாத மாறி",
       "catégorie": "வகை",
       "catégories": {
+        "numérique": "எண்",
         "chaîne": "சரம்",
         "chaîneNonTraductible": "மொழிபெயர்க்க முடியாத சரம்"
       },
@@ -320,14 +329,23 @@
       "réplications": "நகல்|நகல்கள்",
       "réplicationsEnLigne": "(இணையத்தில் {0})"
     },
+    "automatisations": {
+      "item": {
+        "titre": "எந்த தானியங்கலும் இல்லை | {n} தானியங்கல் | {n} தானியங்கல்கள்"
+      }
+    },
     "épingler": {
       "titre": "ஒட்டிக்கொள்ளு",
       "dispositifsÉpingle": "ஒட்டிக்கொள்ளும் சாதனங்கள்",
       "dispositifsÉpingleFichier": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
-      "aucun": "எந்த சாதநமும் இல்லை",
+      "aucun": "எந்த சாதனமும் இல்லை",
+      "indiceAucun": "எந்த சாதனத்திலும் ஒட்டிக்கொள்ள கூடாது",
       "tous": "அனைத்தும் சாதனங்கள்",
+      "indiceTous": "உங்கள் அனைத்த சாதனங்களிலும் ஒட்டிக்கொள்ளப்படும்",
       "installé": "நிறுவப்பட்ட சாதனங்கள்",
+      "indiceInstallé": "உலாவி தவிர உங்கள் எல்லா சாதனங்களிலும் ஒட்டிக்கொள்ளப்படும்",
       "dispositifsSpécifiques": "குறிப்பிட்ட சாதனங்கள்",
+      "indiceDispositifsSpécifiques": "நீங்க குறிப்பிடும் சாதனங்களில் மட்டுமே ஒட்டிக்கொள்ளப்படும்",
       "indiceSélectionnerDispositif": "சாதனங்களைக் குறிப்பிடுங்கள்"
     },
     "effacer": {

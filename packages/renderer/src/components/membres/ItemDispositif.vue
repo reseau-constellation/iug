@@ -26,7 +26,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 
@@ -41,7 +42,7 @@ const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
@@ -58,7 +59,7 @@ const icôneDispositif = computed(() => {
 const {ilYAMs: vuIlYA, texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.vuA, t});
 const ceDispositif = ref<string>();
 onMounted(async () => {
-  ceDispositif.value = await constl?.obtIdOrbite();
+  ceDispositif.value = await constl?.obtIdDispositif();
 });
 
 const sousTitre = computed(() => {

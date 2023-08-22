@@ -22,7 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client, réseau} from '@constl/ipa';
+import type { réseau} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -34,7 +35,7 @@ import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
 
 const props = defineProps<{compte: string; dispositifs: réseau.statutDispositif[]}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -47,7 +48,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
   }),

@@ -52,7 +52,7 @@ const infoRègle = computed(() => {
   switch (règle.typeRègle) {
     case 'catégorie':
       return t('règles.infos.catégorie', {
-        categorie: t(`variables.catégories.${règle.détails.catégorie}`),
+        categorie: t(`variables.catégories.${règle.détails.catégorie.catégorie}`),
       });
     case 'bornes':
       return t('règles.infos.bornes', {val: règle.détails.val, op: règle.détails.op});

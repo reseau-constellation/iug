@@ -35,7 +35,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 import SérieJetons from '../communs/SérieJetons.vue';
 import CarteVariable from '../variables/CarteVariable.vue';
@@ -48,7 +49,7 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -57,7 +58,7 @@ const {traduireNom} = utiliserLangues();
 // Nom tableau
 const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
-  constl?.tableaux?.suivreNomsTableau({
+  constl?.tableaux.suivreNomsTableau({
     idTableau: props.id,
     f: x => (noms.value = x),
   }),
@@ -67,7 +68,7 @@ const nomTableau = traduireNom(noms);
 // Variables
 const variables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.tableaux?.suivreVariables({
+  constl?.tableaux.suivreVariables({
     idTableau: props.id,
     f: x => (variables.value = x),
   }),

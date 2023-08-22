@@ -1,18 +1,28 @@
 <template>
-  <v-dialog>
+  <v-dialog v-model="dialogue">
     <template #activator="{props}">
       <slot
         name="activator"
         v-bind="{props}"
       ></slot>
     </template>
+    x
 
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 1500 : undefined"
+      :min-width="mdAndUp ? 1000 : undefined"
     >
       <v-card-item>
-        <v-card-title>{{ t('languesInterface.dialogueContribuer.titre') }}</v-card-title>
+        <v-card-title class="d-flex">
+          {{ t('languesInterface.dialogueContribuer.titre') }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="outlined"
+            @click="dialogue = false"
+          ></v-btn>
+        </v-card-title>
         <v-card-subtitle>{{ t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>
         <v-divider class="my-3" />
       </v-card-item>
@@ -328,7 +338,8 @@ import {useDisplay} from 'vuetify';
 import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
 
 import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -340,7 +351,7 @@ import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
@@ -357,6 +368,9 @@ const {
 const {t} = useI18n();
 
 const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+
+// Navigation
+const dialogue = ref(false);
 
 // Général
 const monCompte = ref<string>();

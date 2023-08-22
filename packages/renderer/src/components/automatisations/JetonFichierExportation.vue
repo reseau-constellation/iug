@@ -21,7 +21,8 @@
 
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import path from 'path';
 import {computed, ref, inject, onMounted, watchEffect} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -32,12 +33,12 @@ const props = defineProps<{
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 const dispositifPrésent = ref<string>();
 
 // Dispositifs
 onMounted(async () => {
-  dispositifPrésent.value = await constl?.obtIdOrbite();
+  dispositifPrésent.value = await constl?.obtIdDispositif();
 });
 const surCeDispositif = computed<boolean>(() => {
   return (
@@ -51,7 +52,7 @@ const enProgrès = computed<boolean>(() => {
   return surCeDispositif.value && fichier.value === undefined;
 });
 watchEffect(async () => {
-  fichier.value = await constl?.automatisations?.résoudreAdressePrivéeFichier({
+  fichier.value = await constl?.automatisations.résoudreAdressePrivéeFichier({
     clef: props.spécification.dossier,
   });
 });

@@ -7,7 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -18,7 +19,7 @@ import ExporterCode from '/@/components/nuées/ExporterCode.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -30,7 +31,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.nuées?.suivreNomsNuée({
+  constl?.nuées.suivreNomsNuée({
     idNuée: props.id,
     f: x => (noms.value = x),
   }),

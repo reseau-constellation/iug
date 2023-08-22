@@ -101,17 +101,19 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useRouter} from 'vue-router';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -208,20 +210,20 @@ const enCréation = ref(false);
 const créerBd = async () => {
   enCréation.value = true;
 
-  const idProjet = await constl?.projets?.créerProjet();
+  const idProjet = await constl?.projets.créerProjet();
   if (!idProjet) throw new Error('Projet non créé.');
 
-  await constl?.projets?.ajouterNomsProjet({
-    id: idProjet,
+  await constl?.projets.sauvegarderNomsProjet({
+    idProjet,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.projets?.ajouterDescriptionsProjet({
-    id: idProjet,
+  await constl?.projets.sauvegarderDescriptionsProjet({
+    idProjet,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
-  await constl?.projets?.ajouterMotsClefsProjet({idProjet, idsMotsClefs: motsClefs.value});
+  await constl?.projets.ajouterMotsClefsProjet({idProjet, idsMotsClefs: motsClefs.value});
   await Promise.all(
-    bds.value.map(async idBd => await constl?.projets?.ajouterBdProjet({idProjet, idBd})),
+    bds.value.map(async idBd => await constl?.projets.ajouterBdProjet({idProjet, idBd})),
   );
 
   fermer();

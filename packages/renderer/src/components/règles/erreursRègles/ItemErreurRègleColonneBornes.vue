@@ -43,7 +43,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import type {valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
@@ -63,13 +64,13 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Nom de ce tableau
 const nomsTableau = ref<{[langue: string]: string}>({});
 const nomTableau = traduireNom(nomsTableau);
 enregistrerÉcoute(
-  constl?.tableaux?.suivreNomsTableau({
+  constl?.tableaux.suivreNomsTableau({
     idTableau: props.idTableau,
     f: x => (nomsTableau.value = x),
   }),
@@ -98,14 +99,14 @@ const changerColonne = async (idCol: string) => {
   };
   await effacerRègle();
   if (source.type === 'tableau') {
-    await constl?.tableaux?.ajouterRègleTableau({
+    await constl?.tableaux.ajouterRègleTableau({
       idTableau: props.idTableau,
       idColonne: props.erreur.règle.colonne,
       règle: nouvelleRègle,
     });
   } else {
     const idVariableSource = props.erreur.règle.source.id;
-    await constl?.variables?.ajouterRègleVariable({
+    await constl?.variables.ajouterRègleVariable({
       idVariable: idVariableSource,
       règle: nouvelleRègle,
     });
@@ -117,13 +118,13 @@ const effacerRègle = async () => {
   if (!monAutorisation.value) return;
 
   if (source.type === 'tableau') {
-    await constl?.tableaux?.effacerRègleTableau({
+    await constl?.tableaux.effacerRègleTableau({
       idTableau: props.idTableau,
       idRègle: props.erreur.règle.règle.id,
     });
   } else {
     const idVariableSource = props.erreur.règle.source.id;
-    await constl?.variables?.effacerRègleVariable({
+    await constl?.variables.effacerRègleVariable({
       idVariable: idVariableSource,
       idRègle: props.erreur.règle.règle.id,
     });

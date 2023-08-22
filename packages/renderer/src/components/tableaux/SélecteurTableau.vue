@@ -16,7 +16,8 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import type {client, bds, utils} from '@constl/ipa';
+import type { bds, types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject, ref, watchEffect} from 'vue';
 
@@ -28,16 +29,16 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idTableau?: string): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Tableaux
 const tableaux = ref<bds.infoTableauAvecId[]>();
-let oublierTableaux: utils.schémaFonctionOublier | undefined;
+let oublierTableaux: types.schémaFonctionOublier | undefined;
 watchEffect(async () => {
   if (oublierTableaux) await oublierTableaux();
   if (props.idBd) {
     oublierTableaux = await enregistrerÉcoute(
-      constl?.bds?.suivreTableauxBd({id: props.idBd, f: x => (tableaux.value = x)}),
+      constl?.bds.suivreTableauxBd({idBd: props.idBd, f: x => (tableaux.value = x)}),
     );
   } else {
     tableaux.value = undefined;

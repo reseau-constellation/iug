@@ -65,7 +65,8 @@
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify/lib/framework.mjs';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {obtIcôneContact} from './utils';
 import {computed} from 'vue';
 import {watchEffect} from 'vue';
@@ -74,7 +75,7 @@ const props = defineProps<{type: string; valeurAvant: string}>();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -99,7 +100,7 @@ const sauvegarder = async () => {
   sauvegardeEnCours.value = true;
   if (!valeurEtTypeFinaux.value) return;
 
-  await constl?.profil?.sauvegarderContact({
+  await constl?.profil.sauvegarderContact({
     type: valeurEtTypeFinaux.value.type,
     contact: valeurEtTypeFinaux.value.valeur,
   });
@@ -108,7 +109,7 @@ const sauvegarder = async () => {
 };
 
 const effacer = async () => {
-  await constl?.profil?.effacerContact({type: props.type, contact: props.valeurAvant});
+  await constl?.profil.effacerContact({type: props.type, contact: props.valeurAvant});
 };
 
 const fermer = () => {

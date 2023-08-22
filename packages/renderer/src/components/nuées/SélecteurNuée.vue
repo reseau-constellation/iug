@@ -10,7 +10,9 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 
 import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
@@ -21,7 +23,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idNuée?: string): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Sélection
 const idNuéeSélectionnée = ref<string>();
@@ -33,8 +35,8 @@ watchEffect(() => {
 const requèteRecherche = ref<string>();
 const résultatsRecherche =
   ref<
-    utils.résultatRecherche<
-      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
     >[]
   >();
 
@@ -42,13 +44,13 @@ enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche?.rechercherNuéeSelonTexte({
+    await constl?.recherche.rechercherNuéesSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche?.rechercherNuées({
+    return await constl?.recherche.rechercherNuées({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

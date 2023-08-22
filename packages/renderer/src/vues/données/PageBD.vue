@@ -182,21 +182,21 @@
               width="200"
               class="mb-3"
             >
-              <CarteQualitéBd>
+              <carte-qualite-bd>
                 <template #activator="{props: propsActivateur}">
-                  <ItemQualitéBd
+                  <item-qualite-bd
                     v-bind="propsActivateur"
                     :id="id"
                   />
                 </template>
-              </CarteQualitéBd>
+              </carte-qualite-bd>
             </v-card>
             <v-card
               flat
               width="200"
               class="mb-3"
             >
-              <carte-auteurs
+              <gerer-auteurs
                 :id="id"
                 :auteurs="auteurs"
                 :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
@@ -204,10 +204,10 @@
                 <template #activator="{props: propsActivateur}">
                   <item-auteurs
                     v-bind="propsActivateur"
-                    :id="id"
+                    :auteurs="auteurs"
                   />
                 </template>
-              </carte-auteurs>
+              </gerer-auteurs>
             </v-card>
             <v-card
               flat
@@ -248,13 +248,14 @@
               class="mb-3"
             >
               <carte-automatisations
-                :id="id"
+                :id-objet="id"
                 :permission="monAutorisation"
+                type-objet="bd"
               >
                 <template #activator="{props: propsActivateur}">
                   <item-automatisations
                     v-bind="propsActivateur"
-                    :id="id"
+                    :id-objet="id"
                   />
                 </template>
               </carte-automatisations>
@@ -403,7 +404,10 @@
         <v-list>
           <p class="mb-0 text-overline">
             {{ t('bds.tableaux') }}
-            <nouveau-tableau :id-bd="id">
+            <nouveau-tableau
+              :id-bd="id"
+              importation-permise
+            >
               <template #activator="{props: propsActivateur}">
                 <v-btn
                   v-if="monAutorisation"
@@ -433,7 +437,10 @@
               contain
               height="175px"
             />
-            <nouveau-tableau :id-bd="id">
+            <nouveau-tableau
+              :id-bd="id"
+              importation-permise
+            >
               <template #activator="{props: propsActivateur}">
                 <v-btn
                   v-if="monAutorisation"
@@ -495,8 +502,9 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {bds, utils} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
+import type {bds, types} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -519,13 +527,18 @@ import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
+import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
+import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
-import ItemQualitéBd from '/@/components/bds/ItemQualitéBd.vue';
+import ItemQualiteBd from '/@/components/bds/ItemQualitéBd.vue';
+import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
 import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
@@ -539,7 +552,7 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {mdAndUp} = useDisplay();
@@ -565,8 +578,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.bds?.suivreNomsBd({
-    id: props.id,
+  constl?.bds.suivreNomsBd({
+    idBd: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -574,10 +587,10 @@ enregistrerÉcoute(
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
-    await constl?.bds?.effacerNomBd({id: props.id, langue});
+    await constl?.bds.effacerNomBd({idBd: props.id, langue});
   }
-  await constl?.bds?.ajouterNomsBd({
-    id: props.id,
+  await constl?.bds.sauvegarderNomsBd({
+    idBd: props.id,
     noms: àAjouter,
   });
 };
@@ -587,8 +600,8 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.bds?.suivreDescrBd({
-    id: props.id,
+  constl?.bds.suivreDescriptionsBd({
+    idBd: props.id,
     f: x => (descriptions.value = x),
   }),
 );
@@ -599,10 +612,10 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     nouvelles: descrs,
   });
   for (const langue of àEffacer) {
-    await constl?.bds?.effacerDescrBd({id: props.id, langue});
+    await constl?.bds.effacerDescriptionBd({idBd: props.id, langue});
   }
-  await constl?.bds?.ajouterDescriptionsBd({
-    id: props.id,
+  await constl?.bds.sauvegarderDescriptionsBd({
+    idBd: props.id,
     descriptions: àAjouter,
   });
 };
@@ -617,7 +630,7 @@ const srcImgBd = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.bds?.suivreImage({
+  constl?.bds.suivreImage({
     idBd: props.id,
     f: image => (imageBd.value = image),
   }),
@@ -627,17 +640,17 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 const modifierImage = async (image?: ArrayBuffer) => {
   if (image) {
-    await constl?.profil?.sauvegarderImage({image});
+    await constl?.profil.sauvegarderImage({image});
   } else {
-    await constl?.profil?.effacerImage();
+    await constl?.profil.effacerImage();
   }
 };
 
 // Variables
 const variables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.bds?.suivreVariablesBd({
-    id: props.id,
+  constl?.bds.suivreVariablesBd({
+    idBd: props.id,
     f: vars => (variables.value = vars),
   }),
 );
@@ -645,20 +658,20 @@ enregistrerÉcoute(
 // Mots-clefs
 const motsClefs = ref<string[]>();
 enregistrerÉcoute(
-  constl?.bds?.suivreMotsClefsBd({
-    id: props.id,
+  constl?.bds.suivreMotsClefsBd({
+    idBd: props.id,
     f: x => (motsClefs.value = x),
   }),
 );
 const sauvegarderMotsClefs = async (àJour: string[]) => {
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
-  await constl?.bds?.ajouterMotsClefsBd({
+  await constl?.bds.ajouterMotsClefsBd({
     idBd: props.id,
     idsMotsClefs: nouveaux,
   });
   await Promise.all(
-    àEnlever.map(m => constl?.bds?.effacerMotClefBd({idBd: props.id, idMotClef: m})),
+    àEnlever.map(m => constl?.bds.effacerMotClefBd({idBd: props.id, idMotClef: m})),
   );
 };
 
@@ -666,7 +679,7 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 const géog = ref();
 /* À faire
 enregistrerÉcoute(
-  constl?.bds?.suivreGéographieBd({
+  constl?.bds.suivreGéographieBd({
     idBd: props.id,
     f: x => (géog.value = x)
   }),
@@ -680,14 +693,14 @@ const tableauxOrdonnés = computed(() => {
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
 });
 enregistrerÉcoute(
-  constl?.bds?.suivreTableauxBd({
-    id: props.id,
+  constl?.bds.suivreTableauxBd({
+    idBd: props.id,
     f: x => (tableaux.value = x),
   }),
 );
 
 // Auteurs
-const auteurs = ref<utils.infoAuteur[]>();
+const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
   constl?.réseau?.suivreAuteursBd({
     idBd: props.id,
@@ -698,13 +711,13 @@ enregistrerÉcoute(
 // Licence
 const licence = ref<string>();
 enregistrerÉcoute(
-  constl?.bds?.suivreLicence({
-    id: props.id,
+  constl?.bds.suivreLicenceBd({
+    idBd: props.id,
     f: x => (licence.value = x),
   }),
 );
 const changerLicence = async (nouvelleLicence: string) => {
-  await constl?.bds?.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
+  await constl?.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
 };
 
 // Navigation
@@ -715,6 +728,6 @@ const petitPousset = computed<{title: string; lien?: string; disabled?: boolean}
 
 // Actions
 const effacerBd = async () => {
-  await constl?.bds?.effacerBd({id: props.id});
+  await constl?.bds.effacerBd({idBd: props.id});
 };
 </script>

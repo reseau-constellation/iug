@@ -53,7 +53,10 @@
                     </v-list-item>
                   </template>
                 </carte-copier>
-                <CarteEpingler :id="id">
+                <CarteEpingler
+                  :id="id"
+                  :option-fichiers="fichiersEpinglables"
+                >
                   <template #activator="{props: propsActivateur}">
                     <v-list-item
                       v-bind="propsActivateur"
@@ -122,7 +125,9 @@
         <auteurs-objet :auteurs="auteurs" />
         <gerer-auteurs
           v-if="monAutorisation === 'MODÉRATEUR'"
+          :id="id"
           :auteurs="auteurs"
+          :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
         >
           <template #activator="{props: propsActivateurAuteurs}">
             <v-chip
@@ -142,10 +147,19 @@
       <v-card-actions>
         <v-spacer />
         <v-btn
+          v-if="sauvegardePossible"
           variant="flat"
+          color="primary"
+          @click="sauvegarder"
+        >
+          {{ t('communs.sauvegarder') }}
+        </v-btn>
+        <v-btn
+          variant="flat"
+          append-icon="mdi-close"
           @click="dialogue = false"
         >
-          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
+          {{ t('communs.fermer') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -153,7 +167,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -177,16 +192,19 @@ const props = defineProps<{
   id: string;
   noms: {[langue: string]: string};
   descriptions: {[langue: string]: string};
-  auteurs?: utils.infoAuteur[];
+  fichiersEpinglables: boolean;
+  auteurs?: types.infoAuteur[];
+  sauvegardePossible?: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
   (é: 'ajusterDescriptions', noms: {[lng: string]: string}): void;
   (é: 'effacer'): void;
   (é: 'copier'): void;
+  (é: 'sauvegarder'): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -220,6 +238,12 @@ const effacer = async () => {
 // Copier objet
 const copier = async () => {
   émettre('copier');
+  dialogue.value = false;
+};
+
+// Sauvegarder
+const sauvegarder = async () => {
+  émettre('sauvegarder');
   dialogue.value = false;
 };
 </script>

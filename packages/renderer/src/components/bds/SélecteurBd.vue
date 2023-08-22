@@ -11,7 +11,9 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 
 import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
@@ -24,7 +26,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idsBds: string[]): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Sélection
 const idsBdsSélectionnées = ref<string[]>([]);
@@ -36,8 +38,8 @@ watchEffect(() => {
 const requèteRecherche = ref<string>();
 const résultatsRecherche =
   ref<
-    utils.résultatRecherche<
-      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
     >[]
   >();
 const résultatsPermisRecherche = computed(() => {
@@ -48,13 +50,13 @@ enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche?.rechercherBdSelonTexte({
+    await constl?.recherche.rechercherBdsSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche?.rechercherBds({
+    return await constl?.recherche.rechercherBds({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

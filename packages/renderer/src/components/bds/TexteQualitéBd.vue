@@ -11,7 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import type {client, bds} from '@constl/ipa';
+import type { bds} from '@constl/ipa';
+import type { MandataireClientConstellation } from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -21,7 +22,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -29,8 +30,8 @@ const {t} = useI18n();
 // Qualité BD
 const qualité = ref<bds.infoScore>();
 enregistrerÉcoute(
-  constl?.bds?.suivreScoreBd({
-    id: props.id,
+  constl?.bds.suivreQualitéBd({
+    idBd: props.id,
     f: x => (qualité.value = x),
   }),
 );

@@ -3,12 +3,12 @@
     :items="items"
     :n-max="nMax"
   >
-    <template #jeton="{idBdCompte}">
-      <CarteMembre :id="idBdCompte as string">
+    <template #jeton="{idCompte}">
+      <CarteMembre :id="idCompte as string">
         <template #activator="{props: propsActivateurJetonMembre}">
           <JetonMembre
             v-bind="propsActivateurJetonMembre"
-            :compte="idBdCompte as string"
+            :compte="idCompte as string"
           />
         </template>
       </CarteMembre>
@@ -27,7 +27,7 @@
   </SérieJetons>
 </template>
 <script setup lang="ts">
-import type {utils} from '@constl/ipa';
+import type {types} from '@constl/ipa';
 
 import {computed} from 'vue';
 import type {PropType} from 'vue';
@@ -39,7 +39,7 @@ import CarteMembre from '../membres/CarteMembre.vue';
 
 const props = defineProps({
   auteurs: {
-    type: Array as PropType<utils.infoAuteur[]>,
+    type: Array as PropType<types.infoAuteur[]>,
     default: () => [],
   },
   nMax: {
@@ -49,6 +49,6 @@ const props = defineProps({
 });
 
 const items = computed(() => {
-  return props.auteurs?.map(a => ({id: a.idBdCompte, ...a}));
+  return props.auteurs?.map(a => ({id: a.idCompte, ...a}));
 });
 </script>

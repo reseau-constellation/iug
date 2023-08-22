@@ -133,7 +133,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: utils.élémentsBd[]) =>
+          (x: types.élémentsBd[]) =>
             modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
         "
       />
@@ -246,7 +246,8 @@
   />
 </template>
 <script setup lang="ts">
-import type {client, tableaux, variables, valid, utils} from '@constl/ipa';
+import type { tableaux, variables, valid, types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {ref, inject, computed} from 'vue';
 
@@ -267,7 +268,7 @@ import {créerColonneTableau} from '/@/components/tableaux/utils';
 
 const props = defineProps<{idTableau: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -287,7 +288,7 @@ enregistrerÉcoute(
 // Colonnes du tableau
 const colonnes = ref<tableaux.InfoColAvecCatégorie[]>();
 enregistrerÉcoute(
-  constl?.tableaux?.suivreColonnes({
+  constl?.tableaux.suivreColonnesTableau({
     idTableau: props.idTableau,
     f: x => (colonnes.value = x),
   }),
@@ -320,24 +321,24 @@ const triable = (catégorieBase: variables.catégorieBaseVariables): boolean => 
 };
 
 // Éléments
-const éléments = ref<valid.élémentDonnées<tableaux.élémentBdListeDonnées>[]>();
+const éléments = ref<tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]>();
 const filesSélectionnées = ref<string[]>([]);
 enregistrerÉcoute(
-  constl?.tableaux?.suivreDonnées({
+  constl?.tableaux.suivreDonnées({
     idTableau: props.idTableau,
     f: x => (éléments.value = x),
   }),
 );
 const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdListeDonnées}) => {
-  await constl?.tableaux?.ajouterÉlément({
+  await constl?.tableaux.ajouterÉlément({
     idTableau: props.idTableau,
     vals,
   });
 };
 const effacerÉlément = async (empreinte: string) => {
-  await constl?.tableaux?.effacerÉlément({
+  await constl?.tableaux.effacerÉlément({
     idTableau: props.idTableau,
-    empreinteÉlément: empreinte,
+    empreinte,
   });
 };
 const effacer = async () => {
@@ -350,10 +351,10 @@ const modifierÉlément = async ({
   empreinte,
 }: {
   col: string;
-  val: utils.élémentsBd;
+  val: types.élémentsBd;
   empreinte: string;
 }) => {
-  await constl?.tableaux?.modifierÉlément({
+  await constl?.tableaux.modifierÉlément({
     idTableau: props.idTableau,
     vals: {[col]: val},
     empreintePrécédente: empreinte,
@@ -363,7 +364,7 @@ const modifierÉlément = async ({
 // Validation
 const erreursValidation = ref<valid.erreurValidation[]>();
 enregistrerÉcoute(
-  constl?.tableaux?.suivreValidDonnées({
+  constl?.tableaux.suivreValidDonnées({
     idTableau: props.idTableau,
     f: x => (erreursValidation.value = x),
   }),

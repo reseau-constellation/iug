@@ -10,7 +10,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -20,7 +21,7 @@ import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -32,7 +33,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.nuées?.suivreNomsNuée({
+  constl?.nuées.suivreNomsNuée({
     idNuée: props.id,
     f: x => (noms.value = x),
   }),
@@ -43,7 +44,7 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.nuées?.suivreDescriptionsNuée({
+  constl?.nuées.suivreDescriptionsNuée({
     idNuée: props.id,
     f: x => (descriptions.value = x),
   }),
@@ -59,7 +60,7 @@ const srcImgNuée = computed(() => {
   }
 });
 /*enregistrerÉcoute(
-  constl?.nuées?.suivreImage({
+  constl?.nuées.suivreImage({
     idBd: props.id,
     f: image => (imageNuée.value = image),
   }),

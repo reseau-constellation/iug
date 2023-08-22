@@ -20,7 +20,8 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import path from 'path';
 import {computed, ref, inject, watchEffect} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -31,7 +32,7 @@ const props = defineProps<{
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Statut source
 const enProgrès = computed<boolean>(() => {
@@ -49,7 +50,7 @@ const sourceRésolue = computed(() => {
 const fichier = ref<string | null>();
 watchEffect(async () => {
   if (props.spécification.source.typeSource === 'fichier') {
-    fichier.value = await constl?.automatisations?.résoudreAdressePrivéeFichier({
+    fichier.value = await constl?.automatisations.résoudreAdressePrivéeFichier({
       clef: props.spécification.source.adresseFichier,
     });
   }

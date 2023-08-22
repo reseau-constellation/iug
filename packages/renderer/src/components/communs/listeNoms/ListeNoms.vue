@@ -154,6 +154,10 @@ const nouveauNom = ref<string>();
 const nouvelleLangue = ref<string>();
 const nomNouvelleLangue = nomLangue(nouvelleLangue);
 
+watchEffect(() => {
+  if (nouvelleLangue.value === undefined) nouvelleLangue.value = languesDisponibles.value[0]?.code;
+});
+
 const règlesNouveauNom = computed<string[] | undefined>(() => {
   if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;
   const exprégÉcriture = nuchabäl.rutzibTzibanem({runuk: nouvelleLangue.value});

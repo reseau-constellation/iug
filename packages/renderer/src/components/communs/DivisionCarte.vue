@@ -1,5 +1,5 @@
 <template>
-  <p class="text-overline">{{ titre }}</p>
+  <p class="text-h6">{{ titre }}</p>
   <v-progress-linear
     v-if="enAttente"
     class="mb-2"

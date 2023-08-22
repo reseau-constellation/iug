@@ -71,7 +71,7 @@
                 </p>
                 <v-select
                   v-model="compteÀRejoindre"
-                  :items="comptesEnLigne.map(x => x.idBdCompte)"
+                  :items="comptesEnLigne.map(x => x.idCompte)"
                   :loading="!comptesEnLigne.length"
                   :disabled="!comptesEnLigne.length"
                   :label="t('accueil.initialiserCompte.indiceCompte')"
@@ -94,7 +94,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -208,11 +208,13 @@
 </template>
 
 <script setup lang="ts">
+import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {réseau} from '@constl/ipa';
+
 import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
-import type {client} from '@constl/ipa';
-import type {réseau} from '@constl/ipa';
+
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -231,7 +233,7 @@ const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 const {obtImageDéco} = utiliserImagesDéco();
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation générale
 const dialogue = ref(false);
@@ -398,10 +400,10 @@ enregistrerÉcoute(
     f: connexions => (connexionsSFIP.value = connexions),
   }),
 );
-enregistrerÉcoute(constl?.suivreIdBdCompte({f: idCompte => (monIdCompte.value = idCompte)}));
+enregistrerÉcoute(constl?.suivreIdCompte({f: idCompte => (monIdCompte.value = idCompte)}));
 enregistrerÉcoute(
   constl?.réseau?.suivreComptesRéseauEtEnLigne({
-    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idBdCompte !== monIdCompte.value)),
+    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idCompte !== monIdCompte.value)),
     profondeur: Infinity,
   }),
 );
@@ -444,5 +446,5 @@ const créerCompte = async () => {
 };
 
 const idCompte = ref();
-constl?.suivreIdBdCompte({f: id => (idCompte.value = id)});
+constl?.suivreIdCompte({f: id => (idCompte.value = id)});
 </script>

@@ -63,7 +63,8 @@
 import {onMounted, ref, inject, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
@@ -76,7 +77,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const {formatterVersion} = utiliserNumération();
@@ -96,7 +97,7 @@ const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const nomsProfil = ref<{[lng: string]: string}>();
-enregistrerÉcoute(constl?.profil?.suivreNoms({f: noms => (nomsProfil.value = noms)}));
+enregistrerÉcoute(constl?.profil.suivreNoms({f: noms => (nomsProfil.value = noms)}));
 
 watchEffect(() => {
   if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();

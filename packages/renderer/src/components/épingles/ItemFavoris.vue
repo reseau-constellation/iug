@@ -50,7 +50,9 @@
 </template>
 
 <script setup lang="ts">
-import type {client, favoris} from '@constl/ipa';
+import type { favoris} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {enregistrerÉcoute} from '../utils';
@@ -67,14 +69,14 @@ const {traduireNom} = utiliserLangues();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Noms objet
 const noms = ref<{[langue: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.motsClefs?.suivreNomsMotClef({
+  constl?.motsClefs.suivreNomsMotClef({
     idMotClef: props.epingle.idObjet,
     f: x => (noms.value = x),
   }),
@@ -108,7 +110,7 @@ const icôneTypeItem = computed(() => {
 // Épingle
 const épinglé = ref<favoris.épingleDispositif>();
 enregistrerÉcoute(
-  constl?.favoris?.suivreEstÉpingléSurDispositif({
+  constl?.favoris.suivreEstÉpingléSurDispositif({
     idObjet: props.epingle.idObjet,
     f: x => (épinglé.value = x),
   }),
@@ -116,6 +118,6 @@ enregistrerÉcoute(
 
 // Contrôle
 const effacerFavoris = async () => {
-  await constl?.favoris?.désépinglerFavori({id: props.epingle.idObjet});
+  await constl?.favoris.désépinglerFavori({idObjet: props.epingle.idObjet});
 };
 </script>

@@ -35,7 +35,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 
@@ -48,9 +49,9 @@ import JetonContactMembre from '../membres/JetonContactMembre.vue';
 import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const props = defineProps<{résultat: utils.résultatRecherche<utils.infoRésultatTexte>}>();
+const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();
@@ -66,7 +67,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     idCompte: props.résultat.id,
     f: x => (noms.value = x),
   }),

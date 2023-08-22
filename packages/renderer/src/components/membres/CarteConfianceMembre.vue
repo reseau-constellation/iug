@@ -132,7 +132,8 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -145,7 +146,7 @@ const props = defineProps<{
   id: string;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -172,7 +173,7 @@ const statutRelation = computed<'fiable' | 'bloquéPrivé' | 'bloquéPublique' |
   if (fiables.value?.includes(props.id)) {
     return 'fiable';
   } else {
-    const bloqué = bloqués.value?.find(b => b.idBdCompte === props.id);
+    const bloqué = bloqués.value?.find(b => b.idCompte === props.id);
     if (bloqué) return bloqué.privé ? 'bloquéPrivé' : 'bloquéPublique';
     return 'inconnu';
   }
@@ -185,23 +186,23 @@ watchEffect(() => {
 const sauvegarder = async () => {
   switch (statutRelationSélectionné.value) {
     case 'fiable':
-      await constl?.réseau?.faireConfianceAuMembre({idBdCompte: props.id});
+      await constl?.réseau?.faireConfianceAuMembre({idCompte: props.id});
       break;
     case 'bloquéPublique':
     case 'bloquéPrivé':
       await constl?.réseau?.bloquerMembre({
-        idBdCompte: props.id,
+        idCompte: props.id,
         privé: statutRelationSélectionné.value === 'bloquéPrivé',
       });
       break;
     case 'inconnu':
       if (statutRelation.value === 'fiable') {
         await constl?.réseau?.nePlusFaireConfianceAuMembre({
-          idBdCompte: props.id,
+          idCompte: props.id,
         });
       } else {
         await constl?.réseau?.débloquerMembre({
-          idBdCompte: props.id,
+          idCompte: props.id,
         });
       }
       break;

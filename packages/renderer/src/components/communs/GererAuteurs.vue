@@ -88,19 +88,25 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
-import type {Ref} from 'vue';
+import type { MandataireClientConstellation } from '@constl/mandataire';
+import type { types} from '@constl/ipa';
 
+import type {Ref} from 'vue';
 import {inject, ref, computed} from 'vue';
+
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {enregistrerRecherche} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
-import RésultatRechercheProfil from '../recherche/RésultatRechercheProfil.vue';
+import RésultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 
-const props = defineProps<{auteurs: utils.infoAuteur[] | undefined}>();
+const props = defineProps<{
+  id: string;
+  auteurs: types.infoAuteur[] | undefined;
+  permissionModerateur: boolean;
+}>();
 const émettre = defineEmits<{
   (é: 'sauvegarder'): void;
 }>();
@@ -110,7 +116,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);
@@ -122,7 +128,7 @@ const fermer = () => {
 const ajouterCommeModérateur = ref(false);
 
 // Membres
-const membres = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const membres = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
 const requèteRecherche = ref<string>();
 enregistrerRecherche({
   requète: requèteRecherche,
@@ -134,9 +140,9 @@ enregistrerRecherche({
   }: {
     requète: string;
     nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultatTexte>[] | undefined>;
+    réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[] | undefined>;
   }) =>
-    constl?.recherche?.rechercherProfilSelonTexte({
+    constl?.recherche.rechercherProfilsSelonTexte({
       texte: requète,
       nRésultatsDésirés: nOuProfondeur,
       f: x =>
@@ -153,7 +159,7 @@ enregistrerRecherche({
     réfRésultat,
   }: {
     nOuProfondeur: number;
-    réfRésultat: Ref<utils.résultatRecherche<utils.infoRésultat>[] | undefined>;
+    réfRésultat: Ref<types.résultatRecherche<types.infoRésultat>[] | undefined>;
   }) =>
     constl?.réseau?.rechercherMembres({
       nRésultatsDésirés: nOuProfondeur,
@@ -172,9 +178,9 @@ const membresDisponibles = computed(() => {
     if (sélectionnés.value.includes(m.id)) return false;
 
     if (ajouterCommeModérateur.value) {
-      return !(props.auteurs?.find(x => x.idBdCompte === m.id)?.rôle === 'MODÉRATEUR');
+      return !(props.auteurs?.find(x => x.idCompte === m.id)?.rôle === 'MODÉRATEUR');
     } else {
-      return !props.auteurs?.map(a => a.idBdCompte).includes(m.id);
+      return !props.auteurs?.map(a => a.idCompte).includes(m.id);
     }
   });
 });

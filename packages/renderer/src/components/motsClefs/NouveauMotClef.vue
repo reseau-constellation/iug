@@ -93,13 +93,14 @@
 </template>
 <script setup lang="ts">
 import {computed, inject, ref} from 'vue';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {useDisplay} from 'vuetify';
-import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -199,14 +200,14 @@ const enCréation = ref(false);
 const créerMotClef = async () => {
   enCréation.value = true;
 
-  const idMotClef = await constl?.motsClefs?.créerMotClef();
+  const idMotClef = await constl?.motsClefs.créerMotClef();
   if (!idMotClef) throw new Error('Mot clef non créé.');
 
-  await constl?.motsClefs?.sauvegarderNomsMotClef({
+  await constl?.motsClefs.sauvegarderNomsMotClef({
     idMotClef: idMotClef,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.motsClefs?.sauvegarderDescriptionsMotClef({
+  await constl?.motsClefs.sauvegarderDescriptionsMotClef({
     idMotClef: idMotClef,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });

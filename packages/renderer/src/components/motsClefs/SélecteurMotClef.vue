@@ -11,7 +11,9 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {client, utils} from '@constl/ipa';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
@@ -24,7 +26,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idsMotsClefs: string[]): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Sélection
 const idsMotsClefsSélectionnées = ref<string[]>([]);
@@ -34,7 +36,7 @@ watchEffect(() => {
 
 // Contrôles recherche
 const requèteRecherche = ref<string>();
-const résultatsRecherche = ref<utils.résultatRecherche<utils.infoRésultatTexte>[]>();
+const résultatsRecherche = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
 const résultatsPermisRecherche = computed(() => {
   return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
@@ -43,13 +45,13 @@ enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche?.rechercherMotClefSelonTexte({
+    await constl?.recherche.rechercherMotsClefsSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche?.rechercherMotsClefs({
+    return await constl?.recherche.rechercherMotsClefs({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

@@ -198,9 +198,10 @@
 </template>
 
 <script setup lang="ts">
-import {ref, inject} from 'vue';
+import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
-import type {client, utils} from '@constl/ipa';
+import {ref, inject} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -223,7 +224,7 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -265,7 +266,7 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
 // Mots-clefs
 const mesMotsClefs = ref<string[]>();
 enregistrerÉcoute(
-  constl?.motsClefs?.suivreMotsClefs({
+  constl?.motsClefs.suivreMotsClefs({
     f: x => (mesMotsClefs.value = x),
   }),
 );
@@ -273,7 +274,7 @@ enregistrerÉcoute(
 // Variables
 const mesVariables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.variables?.suivreVariables({
+  constl?.variables.suivreVariables({
     f: x => (mesVariables.value = x),
   }),
 );
@@ -281,7 +282,7 @@ enregistrerÉcoute(
 // Bds
 const mesBds = ref<string[]>();
 enregistrerÉcoute(
-  constl?.bds?.suivreBds({
+  constl?.bds.suivreBds({
     f: x => (mesBds.value = x),
   }),
 );
@@ -289,7 +290,7 @@ enregistrerÉcoute(
 // Projets
 const mesProjets = ref<string[]>();
 enregistrerÉcoute(
-  constl?.projets?.suivreProjets({
+  constl?.projets.suivreProjets({
     f: x => (mesProjets.value = x),
   }),
 );
@@ -297,7 +298,7 @@ enregistrerÉcoute(
 // Nuées
 const mesNuées = ref<string[]>();
 enregistrerÉcoute(
-  constl?.nuées?.suivreNuées({
+  constl?.nuées.suivreNuées({
     f: x => (mesNuées.value = x),
   }),
 );
@@ -306,15 +307,15 @@ enregistrerÉcoute(
 const texteRecherche = ref<string>();
 const résulatsRecherche =
   ref<
-    utils.résultatRecherche<
-      utils.infoRésultatTexte | utils.infoRésultatRecherche<utils.infoRésultatTexte>
+    types.résultatRecherche<
+      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
     >[]
   >();
 enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche?.rechercherBdSelonTexte({
+    return await constl?.recherche.rechercherBdsSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

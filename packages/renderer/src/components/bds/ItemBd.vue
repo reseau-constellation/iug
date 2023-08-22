@@ -33,7 +33,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -46,7 +47,7 @@ import ItemVariable from '../variables/ItemVariable.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -58,8 +59,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.bds?.suivreNomsBd({
-    id: props.id,
+  constl?.bds.suivreNomsBd({
+    idBd: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -69,8 +70,8 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.bds?.suivreDescrBd({
-    id: props.id,
+  constl?.bds.suivreDescriptionsBd({
+    idBd: props.id,
     f: x => (descriptions.value = x),
   }),
 );
@@ -85,7 +86,7 @@ const srcImgBd = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.bds?.suivreImage({
+  constl?.bds.suivreImage({
     idBd: props.id,
     f: image => (imageBd.value = image),
   }),
@@ -97,8 +98,8 @@ const imgDéfaut = obtImageDéco('logoBD');
 // Variables
 const variables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.bds?.suivreVariablesBd({
-    id: props.id,
+  constl?.bds.suivreVariablesBd({
+    idBd: props.id,
     f: vars => (variables.value = vars),
   }),
 );

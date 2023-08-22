@@ -5,7 +5,7 @@
       :image="imgAutomatisations"
       :sous-titre="t('pages.automatisations.sousTitre')"
     />
-    <v-list>
+    <v-list class="text-start">
       <ImporterOuExporter automatiser>
         <template #activator="{props}">
           <v-list-item
@@ -20,13 +20,14 @@
         v-for="auto in automatisations"
         :key="auto.id"
         :spécification="auto"
-        :statut="statutAutomatisations[auto.id]"
       />
     </v-list>
   </v-container>
 </template>
 <script setup lang="ts">
-import type {automatisation, client} from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {inject, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -37,7 +38,7 @@ import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporte
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
 import {enregistrerÉcoute} from '../components/utils';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -48,16 +49,8 @@ const imgAutomatisations = obtImageDéco('automatisation');
 // Automatisations
 const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
 enregistrerÉcoute(
-  constl?.automatisations?.suivreAutomatisations({
+  constl?.automatisations.suivreAutomatisations({
     f: x => (automatisations.value = x),
-  }),
-);
-const statutAutomatisations = ref<{
-  [key: string]: automatisation.ÉtatAutomatisation;
-}>({});
-enregistrerÉcoute(
-  constl?.automatisations?.suivreÉtatAutomatisations({
-    f: x => (statutAutomatisations.value = x),
   }),
 );
 </script>

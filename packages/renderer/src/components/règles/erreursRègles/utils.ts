@@ -1,4 +1,5 @@
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import type {valid} from '@constl/ipa';
 import {type ComputedRef, computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -13,7 +14,7 @@ export const utiliserMonAutorisationRègleSourceErreur = ({
     | valid.erreurRègleCatégoriqueColonneInexistante;
   idTableau: string;
 }): ComputedRef<'MODÉRATEUR' | 'MEMBRE' | undefined> => {
-  const constl = inject<client.ClientConstellation>('constl');
+  const constl = inject<MandataireClientConstellation>('constl');
 
   const monAutorisationTableau = ref<'MODÉRATEUR' | 'MEMBRE'>();
   enregistrerÉcoute(

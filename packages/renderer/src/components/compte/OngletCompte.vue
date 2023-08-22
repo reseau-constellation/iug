@@ -19,7 +19,7 @@
           v-for="id in dispositifs"
           :key="id"
           :id-dispositif="id"
-          :vu-a="statutDispositifs?.find(d => d.infoDispositif.idOrbite === id)?.vuÀ"
+          :vu-a="statutDispositifs?.find(d => d.infoDispositif.idDispositif === id)?.vuÀ"
         />
       </v-list>
       <p class="px-0 mb-0 text-h6">
@@ -123,7 +123,8 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import type {client, réseau} from '@constl/ipa';
+import type { réseau} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -138,7 +139,7 @@ import ExporterCompte from './ExporterCompte.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

@@ -87,7 +87,8 @@ import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -105,7 +106,7 @@ import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -114,7 +115,7 @@ const {mdAndUp} = useDisplay();
 // Mon ID compte
 const idCompte = ref<string>();
 enregistrerÉcoute(
-  constl?.suivreIdBdCompte({
+  constl?.suivreIdCompte({
     f: id => (idCompte.value = id),
   }),
 );
@@ -129,7 +130,7 @@ const srcImgProfil = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.profil?.suivreImage({
+  constl?.profil.suivreImage({
     f: image => (imageProfil.value = image),
   }),
 );
@@ -139,9 +140,9 @@ const imgDéfaut = obtImageDéco('profil');
 
 const sauvegarderImage = async (image?: ArrayBuffer) => {
   if (image) {
-    await constl?.profil?.sauvegarderImage({image});
+    await constl?.profil.sauvegarderImage({image});
   } else {
-    await constl?.profil?.effacerImage();
+    await constl?.profil.effacerImage();
   }
 };
 
@@ -151,7 +152,7 @@ const {traduireNom} = utiliserLangues();
 const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 enregistrerÉcoute(
-  constl?.profil?.suivreNoms({
+  constl?.profil.suivreNoms({
     f: x => (noms.value = x),
   }),
 );
@@ -159,17 +160,17 @@ enregistrerÉcoute(
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const [langue, nom] of Object.entries(àAjouter)) {
-    await constl?.profil?.sauvegarderNom({langue, nom});
+    await constl?.profil.sauvegarderNom({langue, nom});
   }
   for (const langue of àEffacer) {
-    await constl?.profil?.effacerNom({langue});
+    await constl?.profil.effacerNom({langue});
   }
 };
 
 // Contacts
 const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
-  constl?.profil?.suivreContacts({
+  constl?.profil.suivreContacts({
     f: x => (contacts.value = x),
   }),
 );

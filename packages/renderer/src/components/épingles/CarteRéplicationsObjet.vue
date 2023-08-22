@@ -107,8 +107,8 @@
             </template>
             <item-membre
               v-for="m in membres"
-              :key="m.infoMembre.idBdCompte"
-              :compte="m.infoMembre.idBdCompte"
+              :key="m.infoMembre.idCompte"
+              :compte="m.infoMembre.idCompte"
               :montrer-anonymes="true"
             />
           </v-list-group>
@@ -128,7 +128,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client, réseau} from '@constl/ipa';
+import type { réseau} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -147,7 +148,7 @@ const {formatterChiffre} = utiliserNumération();
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

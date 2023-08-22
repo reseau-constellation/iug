@@ -84,7 +84,10 @@
             />
           </v-window-item>
           <v-window-item :value="6">
-            <nouveau-tableau @sauvegarder="ajouterTableau">
+            <nouveau-tableau
+              importation-permise
+              @sauvegarder="ajouterTableau"
+            >
               <template #activator="{props: propsActivateur}">
                 <v-btn v-bind="propsActivateur" />
               </template>
@@ -105,7 +108,7 @@
                       clefTableau: tbl.clef,
                       idVariable: col.idVariable,
                       index: col.index,
-                      règles: col.règles
+                      règles: col.règles,
                     })
                 "
                 @effacer-colonne="
@@ -176,13 +179,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, client, tableaux as tblx, valid } from '@constl/ipa';
+import type {bds, tableaux as tblx, valid} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
@@ -192,8 +196,9 @@ import JetonLicence from '/@/components/licences/JetonLicence.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -354,7 +359,7 @@ const choisirGabaritBd = async (idBd: string) => {
   idBdÀCopier.value = idBd;
 };
 const choisirGabaritNuée = async (idNuée: string) => {
-  const schéma = await constl?.nuées?.générerSchémaBdNuée({
+  const schéma = await constl?.nuées.générerSchémaBdNuée({
     idNuée,
     licence: 'ODbl-1_0', // À faire : incorporer dans la spécification de la nuée
   });
@@ -386,7 +391,13 @@ const licence = ref<string>();
 const licenceContenu = ref<string>();
 
 // Tableaux
-const tableaux = ref<{clef: string; noms: {[langue: string]: string}; cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]}[]>([]);
+const tableaux = ref<
+  {
+    clef: string;
+    noms: {[langue: string]: string};
+    cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+  }[]
+>([]);
 const ajouterTableau = () => {
   tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
 };
@@ -415,7 +426,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[]
+  règles: valid.règleVariableAvecId[];
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),
@@ -444,7 +455,6 @@ const effacerColonneTableau = ({
   });
 };
 
-
 // Création
 const prêtÀCréer = computed(() => {
   if (!licence.value) return undefined;
@@ -463,31 +473,31 @@ const créerBd = async () => {
   if (cheminement.value === 'nouvelle') {
     if (!prêtÀCréer.value) return;
     const {licenceChoisie} = prêtÀCréer.value;
-    idBd = await constl?.bds?.créerBd({
+    idBd = await constl?.bds.créerBd({
       licence: licenceChoisie,
       licenceContenu: licenceContenu.value,
     });
     if (!idBd) throw new Error('Bd non créée.');
 
-    await constl?.bds?.ajouterNomsBd({
-      id: idBd,
+    await constl?.bds.sauvegarderNomsBd({
+      idBd,
       noms: Object.fromEntries(Object.entries(noms.value)),
     });
-    await constl?.bds?.ajouterDescriptionsBd({
-      id: idBd,
+    await constl?.bds.sauvegarderDescriptionsBd({
+      idBd,
       descriptions: Object.fromEntries(Object.entries(descriptions.value)),
     });
-    await constl?.bds?.ajouterMotsClefsBd({idBd, idsMotsClefs: motsClefs.value});
+    await constl?.bds.ajouterMotsClefsBd({idBd, idsMotsClefs: motsClefs.value});
 
     // Ajouter les tableaux
     for (const tbl of tableaux.value) {
-      const idTableau = await constl?.bds?.ajouterTableauBd({
+      const idTableau = await constl?.bds.ajouterTableauBd({
         idBd,
         clefTableau: tbl.clef,
       });
       if (!idTableau) return;
 
-      await constl?.tableaux?.ajouterNomsTableau({
+      await constl?.tableaux.sauvegarderNomsTableau({
         idTableau,
         noms: tbl.noms,
       });
@@ -495,13 +505,13 @@ const créerBd = async () => {
       // Ajouter les colonnes
       for (const col of tbl.cols) {
         const idColonne = col.id;
-        await constl?.tableaux?.ajouterColonneTableau({
+        await constl?.tableaux.ajouterColonneTableau({
           idTableau,
           idVariable: col.variable,
           idColonne,
         });
         if (col.index)
-          await constl?.tableaux?.changerColIndex({
+          await constl?.tableaux.changerColIndex({
             idTableau,
             idColonne,
             val: col.index,
@@ -509,7 +519,7 @@ const créerBd = async () => {
 
         // Ajotuer les règles colonne
         for (const règle of col.règles) {
-          await constl?.tableaux?.ajouterRègleTableau({
+          await constl?.tableaux.ajouterRègleTableau({
             idTableau,
             idColonne,
             règle: règle.règle,
@@ -517,14 +527,13 @@ const créerBd = async () => {
         }
       }
     }
-
   } else if (cheminement.value === 'nuée') {
     if (!gabaritNuée.value) return;
-    idBd = await constl?.bds?.créerBdDeSchéma({schéma: gabaritNuée.value});
+    idBd = await constl?.bds.créerBdDeSchéma({schéma: gabaritNuée.value});
   } else {
     if (!idBdÀCopier.value) return;
-    idBd = await constl?.bds?.copierBd({
-      id: idBdÀCopier.value,
+    idBd = await constl?.bds.copierBd({
+      idBd: idBdÀCopier.value,
       copierDonnées: copierDonnées.value,
     });
   }

@@ -171,10 +171,10 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {useDisplay} from 'vuetify';
-import type {utils, valid, variables} from '@constl/ipa';
+import type {valid, variables, types} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
@@ -371,7 +371,7 @@ const valBorneDynamiqueColonne = ref<string>();
 
 // Règle catégorique
 const typeCatégorie = ref<'dynamique' | 'fixe'>();
-const valCatégorieFixe = ref<utils.élémentsBd[]>();
+const valCatégorieFixe = ref<types.élémentsBd[]>();
 const valCatégorieDynamique = ref<{tableau: string; colonne: string}>();
 
 const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {

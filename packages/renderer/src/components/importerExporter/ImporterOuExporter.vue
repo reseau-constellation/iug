@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props: propsComposante}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props: propsComposante}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <v-card
@@ -11,8 +11,15 @@
       :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+        <v-card-title class="d-flex">
+          {{ titreCarte }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          />
         </v-card-title>
         <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       </v-card-item>
@@ -25,8 +32,8 @@
             <div class="text-center">
               <v-btn
                 class="ma-3"
-                variant="flat"
-                color="primary"
+                variant="outlined"
+                append-icon="mdi-import"
                 @click="suivreCheminementImportation"
               >
                 {{ t('communs.importerOuExporter.importer') }}
@@ -34,11 +41,29 @@
               <v-btn
                 class="ma-3"
                 variant="outlined"
+                append-icon="mdi-export"
                 @click="suivreCheminementExportation"
               >
                 {{ t('communs.importerOuExporter.exporter') }}
               </v-btn>
             </div>
+          </v-window-item>
+          <v-window-item :value="3">
+            <span v-if="formatImportation === 'tableau'">
+              <v-select :items="colonnesImportation" />
+              <v-select :items="idsColonnesTableauConstellation" />
+              <v-combobox chips />
+            </span>
+            <span v-else-if="formatImportation === 'json'">
+              <v-select
+                multiple
+                chips
+              />
+              <v-select
+                multiple
+                chips
+              />
+            </span>
           </v-window-item>
           <v-window-item :value="9">
             <div class="text-center">
@@ -48,7 +73,7 @@
                 color="primary"
                 :disabled="
                   surNavigateur &&
-                  (cheminement === 'exportation' || origineImportation === 'fichier')
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
                 "
               >
                 {{ t('communs.importerOuExporter.automatiser') }}
@@ -106,21 +131,23 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {automatisation} from '@constl/ipa';
+import type {automatisation, bds, types} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
+import { enregistrerÉcouteDynamique } from '../utils';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const props = defineProps<{
   type?: 'importation' | 'exportation';
@@ -281,7 +308,7 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'importerOuExporter':
-      return t('communs.importerOuExporter.titreimporterOuExporter');
+      return t('communs.importerOuExporter.titreImporterOuExporter');
     case 'objetConstellation':
       return t('communs.importerOuExporter.titreObjetConstellation');
     case 'sourceImportation':
@@ -313,7 +340,7 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'importerOuExporter':
-      return t('communs.importerOuExporter.sousTitreimporterOuExporter');
+      return t('communs.importerOuExporter.sousTitreImporterOuExporter');
     case 'objetConstellation':
       return t('communs.importerOuExporter.sousTitreObjetConstellation');
     case 'sourceImportation':
@@ -341,6 +368,14 @@ const sousTitreCarte = computed(() => {
   }
 });
 
+
+// Objet Constellation
+const idObjet = ref(props.infoObjet?.id);
+const typeObjet = ref(props.infoObjet?.typeObjet);
+const idTableauImportation = ref<string>();
+const typesObjetsPourImportation = ['tableau', 'bd'];
+
+
 // Exportation
 const dossierExportation = ref<string>();
 const inclureSFIPExportation = ref<boolean>();
@@ -349,6 +384,22 @@ const inclureSFIPExportation = ref<boolean>();
 const fichierImportation = ref<string>();
 const urlImportation = ref<string>();
 const origineImportation = ref<'url' | 'fichier'>();
+
+const colonnesTableauConstellation = enregistrerÉcouteDynamique({
+  params: {
+    idBd : idObjet,
+  },
+  fÉcoute: (params: {idBd: string}, f: types.schémaFonctionSuivi<bds.infoTableauAvecId[]>) => 
+    constl?.bds.suivreTableauxBd({
+      idBd: params.idBd,
+      f,
+    }),
+});
+const idsColonnesTableauConstellation = computed(()=>{
+  return colonnesTableauConstellation.value?.map(c => c.id);
+});
+
+const colonnesImportation = ref<string[]>();
 
 const formatFichierImportation = computed<'json' | 'tableau' | undefined>(() => {
   const ext = fichierImportation.value?.split('.').pop();
@@ -479,11 +530,6 @@ const correspondancesImportationBienSpécifiées = computed(() => {
   }
 });
 
-// Objet Constellation
-const idObjet = ref(props.infoObjet?.id);
-const typeObjet = ref(props.infoObjet?.typeObjet);
-const typesObjetsPourImportation = ['tableau', 'bd'];
-
 // Options exportation
 const languesExportation = ref<string[]>();
 const formatDocExportation = ref<automatisation.formatTélécharger>();
@@ -505,9 +551,12 @@ const ajouterAutomatisation = async () => {
       throw new Error(`Objet de type ${typeObjet.value} ne peut pas être importé.`);
 
     switch (typeObjet.value) {
+      case 'bd':
       case 'tableau':
-        await constl?.automatisations?.ajouterAutomatisationImporter({
-          idTableau: idObjet.value,
+        if (typeObjet.value === 'bd' && !idTableauImportation.value) throw new Error('Source tableau importation non définie.');
+
+        await constl?.automatisations.ajouterAutomatisationImporter({
+          idTableau: typeObjet.value === 'tableau' ? idObjet.value : idTableauImportation.value!,
           source: sourceImportation.value,
           fréquence: fréquence.value,
           dispositif: dispositifAutomatisation.value,
@@ -524,7 +573,7 @@ const ajouterAutomatisation = async () => {
       throw new Error('Inclure fichiers SFIP exportation non spécifié.');
     if (!dispositifAutomatisation.value) throw new Error('Dispositif exportation non défini.');
 
-    await constl?.automatisations?.ajouterAutomatisationExporter({
+    await constl?.automatisations.ajouterAutomatisationExporter({
       id: idObjet.value,
       typeObjet: typeObjet.value,
       formatDoc: formatDocExportation.value,
@@ -553,9 +602,9 @@ const confirmer = async () => {
         dispositif: dispositifAutomatisation.value,
         source: sourceImportation.value,
       };
-      const données = await constl?.automatisations?.obtDonnéesImportation(spécificationImporter);
+      const données = await constl?.automatisations.obtDonnéesImportation(spécificationImporter);
       if (données) {
-        await constl?.tableaux?.importerDonnées({
+        await constl?.tableaux.importerDonnées({
           idTableau: idObjet.value,
           données,
         });
@@ -565,12 +614,12 @@ const confirmer = async () => {
 
       switch (typeObjet.value) {
         case 'tableau': {
-          const données = await constl?.tableaux?.exporterDonnées({
+          const données = await constl?.tableaux.exporterDonnées({
             idTableau: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds?.exporterDocumentDonnées({
+          await constl?.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -579,12 +628,12 @@ const confirmer = async () => {
           break;
         }
         case 'bd': {
-          const données = await constl?.bds?.exporterDonnées({
-            id: idObjet.value,
+          const données = await constl?.bds.exporterDonnées({
+            idBd: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds?.exporterDocumentDonnées({
+          await constl?.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -593,12 +642,12 @@ const confirmer = async () => {
           break;
         }
         case 'projet': {
-          const données = await constl?.projets?.exporterDonnées({
-            id: idObjet.value,
+          const données = await constl?.projets.exporterDonnées({
+            idProjet: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.projets?.exporterDocumentDonnées({
+          await constl?.projets.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -607,13 +656,13 @@ const confirmer = async () => {
           break;
         }
         case 'nuée': {
-          const données = await constl?.nuées?.exporterDonnéesNuée({
+          const données = await constl?.nuées.exporterDonnéesNuée({
             idNuée: idObjet.value,
             langues: languesExportation.value,
             nRésultatsDésirés: 1000,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds?.exporterDocumentDonnées({
+          await constl?.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,

@@ -5,7 +5,8 @@
   />
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 
 import {computed, inject, ref} from 'vue';
 
@@ -14,7 +15,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const imageProfil = ref<Uint8Array | null>();
 const srcImgProfil = computed(() => {
@@ -25,7 +26,7 @@ const srcImgProfil = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.profil?.suivreImage({
+  constl?.profil.suivreImage({
     idCompte: props.id,
     f: image => (imageProfil.value = image),
   }),

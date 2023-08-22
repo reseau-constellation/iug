@@ -8,7 +8,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -16,7 +17,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 // Nom du projet
 const {traduireNom} = utiliserLangues();
@@ -25,8 +26,8 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = traduireNom(noms);
 
 enregistrerÉcoute(
-  constl?.projets?.suivreNomsProjet({
-    id: props.id,
+  constl?.projets.suivreNomsProjet({
+    idProjet: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -36,8 +37,8 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = traduireNom(descriptions);
 
 enregistrerÉcoute(
-  constl?.projets?.suivreDescrProjet({
-    id: props.id,
+  constl?.projets.suivreDescriptionsProjet({
+    idProjet: props.id,
     f: x => (noms.value = x),
   }),
 );
@@ -52,7 +53,7 @@ const srcImgProjet = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.projets?.suivreImage({
+  constl?.projets.suivreImage({
     idProjet: props.id,
     f: image => (imageProjet.value = image),
   }),

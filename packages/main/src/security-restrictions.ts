@@ -3,10 +3,12 @@ import {URL} from 'url';
 
 type Permissions =
   | 'clipboard-read'
+  | 'clipboard-sanitized-write'
   | 'media'
   | 'display-capture'
   | 'mediaKeySystem'
   | 'geolocation'
+  | 'idle-detection'
   | 'notifications'
   | 'midi'
   | 'midiSysex'

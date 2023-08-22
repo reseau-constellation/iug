@@ -14,14 +14,14 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {client} from '@constl/ipa';
-import type {licences} from '@constl/ipa';
+import type { licences} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -31,7 +31,7 @@ const props = defineProps<{licence: string | undefined}>();
 // Info licence
 const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
 enregistrerÉcoute(
-  constl?.suivreLicences({
+  constl?.licences.suivreLicences({
     f: x => (infoLicences.value = x),
   }),
 );

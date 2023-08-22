@@ -70,7 +70,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {client, tableaux, utils} from '@constl/ipa';
+import type { tableaux, types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -86,7 +87,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', info: {idColonne: string; idTableau: string}): void;
 }>();
 
-const constl = inject<client.ClientConstellation>('constl');
+const constl = inject<MandataireClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -178,12 +179,12 @@ const idTableauSélectionné = ref(props.idTableau);
 const idColonne = ref<string>();
 const colonnesTableau = ref<tableaux.InfoColAvecCatégorie[]>();
 
-let oublierColonnes: utils.schémaFonctionOublier | undefined;
+let oublierColonnes: types.schémaFonctionOublier | undefined;
 const lancerSuiviColonnes = async (idTableauSél?: string) => {
   if (oublierColonnes) await oublierColonnes();
   if (idTableauSél) {
     oublierColonnes = await enregistrerÉcoute(
-      constl?.tableaux?.suivreColonnes({
+      constl?.tableaux.suivreColonnesTableau({
         idTableau: idTableauSél,
         f: x => (colonnesTableau.value = x),
       }),

@@ -3,7 +3,7 @@
     <template #activator="{props: propsActivateur}">
       <v-list-item
         v-bind="propsActivateur"
-        prepend-icon="mdi-account-circle"
+        prepend-icon="mdi-table"
       >
         <v-list-item-title>
           <DialogueNoms

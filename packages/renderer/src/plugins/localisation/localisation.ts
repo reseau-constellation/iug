@@ -1,4 +1,3 @@
-import type {client} from '@constl/ipa';
 import type {App, Ref, ComputedRef} from 'vue';
 import {onUnmounted} from 'vue';
 import Cookies from 'js-cookie';
@@ -6,12 +5,13 @@ import {Nuchabäl} from 'nuchabal';
 import {எண்ணிக்கை} from 'ennikkai';
 
 import {computed, inject, ref, watchEffect} from 'vue';
+import type { MandataireClientConstellation } from '@constl/mandataire';
 
-const créerNuchabäl = ({constellation}: {constellation?: client.ClientConstellation}): Nuchabäl => {
+const créerNuchabäl = ({constellation}: {constellation?: MandataireClientConstellation}): Nuchabäl => {
   return new Nuchabäl({chumil: constellation});
 };
 
-const créerEnnikai = ({constellation}: {constellation?: client.ClientConstellation}): எண்ணிக்கை => {
+const créerEnnikai = ({constellation}: {constellation?: MandataireClientConstellation}): எண்ணிக்கை => {
   return new எண்ணிக்கை({விண்மீன்: constellation});
 };
 
@@ -75,11 +75,13 @@ export const utiliserLangues = () => {
       for (const lng of langueEtAlternatives.value) {
         if (noms.value[lng]) return noms.value[lng];
       }
-      const écritureLanguePréférée = nuchabäl?.rutzibChabäl({runuk: langueEtAlternatives.value[0]});
+      const écritureLanguePréférée = nuchabäl?.rutzibanemChabäl({
+        runuk: langueEtAlternatives.value[0],
+      });
       for (const lng of langueEtAlternatives.value) {
         if (
           écritureLanguePréférée &&
-          écritureLanguePréférée === nuchabäl?.rutzibChabäl({runuk: lng})
+          écritureLanguePréférée === nuchabäl?.rutzibanemChabäl({runuk: lng})
         )
           return noms.value[lng];
       }
@@ -95,7 +97,7 @@ export const utiliserLangues = () => {
     }>('locales');
     const nuchabäl = locales?.nuchabäl;
     return computed(() => {
-      const écriture = nuchabäl?.rutzibChabäl({runuk: langue.value});
+      const écriture = nuchabäl?.rutzibanemChabäl({runuk: langue.value});
       if (!écriture) return false;
       const direction = nuchabäl?.rucholanemTzibanem({runuk: écriture});
       return direction ? direction === '←↓' : false;
