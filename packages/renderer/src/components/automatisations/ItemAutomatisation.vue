@@ -22,7 +22,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, onMounted} from 'vue';

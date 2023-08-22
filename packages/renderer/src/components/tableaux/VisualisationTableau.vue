@@ -246,7 +246,7 @@
   />
 </template>
 <script setup lang="ts">
-import type { tableaux, variables, valid, types} from '@constl/ipa';
+import type {tableaux, variables, valid, types} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {ref, inject, computed} from 'vue';

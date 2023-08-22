@@ -74,7 +74,7 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type { types, variables, valid} from '@constl/ipa';
+import type {types, variables, valid} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, watchEffect} from 'vue';

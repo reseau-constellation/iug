@@ -88,8 +88,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { MandataireClientConstellation } from '@constl/mandataire';
-import type { types} from '@constl/ipa';
+import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {types} from '@constl/ipa';
 
 import type {Ref} from 'vue';
 import {inject, ref, computed} from 'vue';

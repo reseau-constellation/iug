@@ -186,7 +186,7 @@ import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
@@ -426,7 +426,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[]
+  règles: valid.règleVariableAvecId[];
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),

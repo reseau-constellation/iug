@@ -111,7 +111,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { variables} from '@constl/ipa';
+import type {variables} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';

@@ -86,7 +86,6 @@ import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';

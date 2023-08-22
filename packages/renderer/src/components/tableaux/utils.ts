@@ -1,4 +1,4 @@
-import type { valid} from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject} from 'vue';

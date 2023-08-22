@@ -11,7 +11,6 @@
 import type {automatisation} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserNumération} from '/@/plugins/localisation/localisation';

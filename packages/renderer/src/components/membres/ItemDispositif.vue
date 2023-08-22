@@ -28,7 +28,6 @@
 <script setup lang="ts">
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {computed, inject, ref} from 'vue';
 
 import LienObjet from '../communs/LienObjet.vue';

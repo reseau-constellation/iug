@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import type { favoris} from '@constl/ipa';
+import type {favoris} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject, ref} from 'vue';

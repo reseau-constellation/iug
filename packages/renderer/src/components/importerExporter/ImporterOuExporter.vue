@@ -135,12 +135,11 @@ import type {automatisation, bds, types} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {useDisplay} from 'vuetify';
-import { enregistrerÉcouteDynamique } from '../utils';
+import {enregistrerÉcouteDynamique} from '../utils';
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
@@ -368,13 +367,11 @@ const sousTitreCarte = computed(() => {
   }
 });
 
-
 // Objet Constellation
 const idObjet = ref(props.infoObjet?.id);
 const typeObjet = ref(props.infoObjet?.typeObjet);
 const idTableauImportation = ref<string>();
 const typesObjetsPourImportation = ['tableau', 'bd'];
-
 
 // Exportation
 const dossierExportation = ref<string>();
@@ -387,15 +384,15 @@ const origineImportation = ref<'url' | 'fichier'>();
 
 const colonnesTableauConstellation = enregistrerÉcouteDynamique({
   params: {
-    idBd : idObjet,
+    idBd: idObjet,
   },
-  fÉcoute: (params: {idBd: string}, f: types.schémaFonctionSuivi<bds.infoTableauAvecId[]>) => 
+  fÉcoute: (params: {idBd: string}, f: types.schémaFonctionSuivi<bds.infoTableauAvecId[]>) =>
     constl?.bds.suivreTableauxBd({
       idBd: params.idBd,
       f,
     }),
 });
-const idsColonnesTableauConstellation = computed(()=>{
+const idsColonnesTableauConstellation = computed(() => {
   return colonnesTableauConstellation.value?.map(c => c.id);
 });
 
@@ -553,7 +550,8 @@ const ajouterAutomatisation = async () => {
     switch (typeObjet.value) {
       case 'bd':
       case 'tableau':
-        if (typeObjet.value === 'bd' && !idTableauImportation.value) throw new Error('Source tableau importation non définie.');
+        if (typeObjet.value === 'bd' && !idTableauImportation.value)
+          throw new Error('Source tableau importation non définie.');
 
         await constl?.automatisations.ajouterAutomatisationImporter({
           idTableau: typeObjet.value === 'tableau' ? idObjet.value : idTableauImportation.value!,

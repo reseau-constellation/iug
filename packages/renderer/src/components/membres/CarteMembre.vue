@@ -162,7 +162,6 @@
 <script setup lang="ts">
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {ref, inject} from 'vue';
 
 import {utiliserLangues} from '/@/plugins/localisation/localisation';

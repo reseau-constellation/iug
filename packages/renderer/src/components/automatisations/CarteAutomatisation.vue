@@ -27,7 +27,6 @@
 import type {automatisation} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {ref, onMounted, inject} from 'vue';
 import {useDisplay} from 'vuetify';
 

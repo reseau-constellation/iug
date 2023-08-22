@@ -52,7 +52,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type { types} from '@constl/ipa';
+import type {types} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';

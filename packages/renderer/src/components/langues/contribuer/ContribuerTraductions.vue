@@ -340,7 +340,6 @@ import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/loca
 import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';

@@ -58,7 +58,6 @@ import {utiliserLangues} from '/@/plugins/localisation/localisation';
 
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';

@@ -89,7 +89,6 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {enregistrerÉcoute} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';

@@ -60,7 +60,6 @@
 <script setup lang="ts">
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {computed, inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';

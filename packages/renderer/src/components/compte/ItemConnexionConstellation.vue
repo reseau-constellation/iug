@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import type { réseau} from '@constl/ipa';
+import type {réseau} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';

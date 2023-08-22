@@ -81,9 +81,7 @@
           </v-window-item>
           <v-window-item :key="3">
             <v-list>
-              <nouveau-tableau
-                :importation-permise="false"
-              >
+              <nouveau-tableau :importation-permise="false">
                 <!--@sauvegarder="ajouterTableau"-->
                 <template #activator="{props: propsActivateur}">
                   <v-list-item
@@ -331,7 +329,7 @@ const ajouterColonneTableau = ({
     index,
     règles,
   };
-  
+
   throw new Error('À faire' + clefTableau + JSON.stringify(nouvelleColonne));
   /**
   tableaux.value = tableaux.value.map(t => {

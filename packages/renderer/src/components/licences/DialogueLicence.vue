@@ -154,7 +154,7 @@
 </template>
 
 <script setup lang="ts">
-import type { licences} from '@constl/ipa';
+import type {licences} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref, watchEffect} from 'vue';

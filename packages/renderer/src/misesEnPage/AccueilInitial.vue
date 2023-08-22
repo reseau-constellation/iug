@@ -65,7 +65,6 @@ import {useDisplay} from 'vuetify';
 
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 

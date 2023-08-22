@@ -95,7 +95,6 @@
 import {computed, inject, ref} from 'vue';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {useDisplay} from 'vuetify';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';

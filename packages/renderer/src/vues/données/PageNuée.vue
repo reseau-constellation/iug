@@ -9,7 +9,6 @@
 <script setup lang="ts">
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';

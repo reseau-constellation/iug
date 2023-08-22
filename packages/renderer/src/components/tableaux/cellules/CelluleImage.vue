@@ -15,7 +15,6 @@
 <script setup lang="ts">
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-
 import {inject, ref} from 'vue';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';

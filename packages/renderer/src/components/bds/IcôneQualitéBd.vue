@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { bds} from '@constl/ipa';
+import type {bds} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {computed, inject, ref} from 'vue';

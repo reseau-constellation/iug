@@ -16,7 +16,7 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import type { bds, types} from '@constl/ipa';
+import type {bds, types} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject, ref, watchEffect} from 'vue';

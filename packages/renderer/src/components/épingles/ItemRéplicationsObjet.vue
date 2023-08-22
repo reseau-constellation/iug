@@ -18,7 +18,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type { réseau} from '@constl/ipa';
+import type {réseau} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
 import {inject, ref} from 'vue';
