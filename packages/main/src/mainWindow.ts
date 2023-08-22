@@ -56,7 +56,8 @@ export async function restoreOrCreateWindow() {
 
   if (window === undefined) {
     window = await createWindow();
-    gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
+    if (window)  // Nécessaire pour l'environnement test
+      gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
 
     // Nécessaire pour que les liens mailto fonctionnent dans Électron
     // Voir : https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
