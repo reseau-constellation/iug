@@ -1,20 +1,23 @@
 import {expect, test, vi} from 'vitest';
 
-import type { IpcRendererEvent } from 'electron';
-import type { messageDeServeur, messageInitServeur } from '@constl/mandataire-electron-principal';
+import type {IpcRendererEvent} from 'electron';
+import type {messageDeServeur, messageInitServeur} from '@constl/mandataire-electron-principal';
 
 import {v4 as uuidv4} from 'uuid';
 import EventEmitter from 'events';
-import { attente } from '@constl/utils-tests';
+import {attente} from '@constl/utils-tests';
 
 import {
-  envoyerMessageÀConstellation, 
+  envoyerMessageÀConstellation,
   écouterMessagesDeConstellation,
   envoyerMessageÀServeurConstellation,
   écouterMessagesDeServeurConstellation,
-  surLinux, surMac, surWindows, plateforme,
+  surLinux,
+  surMac,
+  surWindows,
+  plateforme,
 } from '../src';
-import type { mandataire } from '@constl/ipa';
+import type {mandataire} from '@constl/ipa';
 
 test('plateforme', async () => {
   expect(plateforme).toBe(process.platform);
@@ -24,9 +27,9 @@ test('plateforme', async () => {
     linux: surLinux,
     win32: surWindows,
   };
-  
+
   expect(plateformes[process.platform]).toBe(true);
-  
+
   for (const p of Object.keys(plateformes).filter(p => p !== process.platform)) {
     expect(plateformes[p]).toBe(false);
   }
@@ -38,7 +41,10 @@ vi.mock('electron', () => {
   const ipcRenderer: Pick<Electron.IpcRenderer, 'on' | 'once' | 'send'> = {
     on(channel: string, listener: (event: IpcRendererEvent, ...args: unknown[]) => void) {
       if (channel === 'deClient') {
-        événements.on(channel, (x: [IpcRendererEvent, mandataire.messages.MessageDeTravailleur[]]) => listener(...x));
+        événements.on(
+          channel,
+          (x: [IpcRendererEvent, mandataire.messages.MessageDeTravailleur[]]) => listener(...x),
+        );
       } else if (channel === 'deServeur') {
         événements.on(channel, (x: [IpcRendererEvent, messageDeServeur[]]) => listener(...x));
       }
@@ -53,15 +59,14 @@ vi.mock('electron', () => {
       return this;
     },
     send(channel: string, ...args: unknown[]) {
-      if (channel === 'pourClient'){
-       événements.emit('deClient', [{}, args[0]]);
-      } else if (channel === 'pourServeur'){
+      if (channel === 'pourClient') {
+        événements.emit('deClient', [{}, args[0]]);
+      } else if (channel === 'pourServeur') {
         événements.emit('deServeur', [{}, args[0]]);
-       }
+      }
       return this;
     },
   };
-  
 
   return {ipcRenderer};
 });
@@ -69,15 +74,13 @@ vi.mock('electron', () => {
 test('messages ipa constellation', async () => {
   const résultat = new attente.AttendreRésultat<mandataire.messages.MessageDeTravailleur>();
 
-  écouterMessagesDeConstellation(
-    message => résultat.mettreÀJour(message),
-  );
+  écouterMessagesDeConstellation(message => résultat.mettreÀJour(message));
 
   const message: mandataire.messages.MessagePourTravailleur = {
     type: 'action',
     id: uuidv4(),
     fonction: ['on', 'test', 'une', 'fonction'],
-    args: { qui: 'nexiste', pas: 'vraiment' },
+    args: {qui: 'nexiste', pas: 'vraiment'},
   };
   await envoyerMessageÀConstellation(message);
 
@@ -88,9 +91,7 @@ test('messages ipa constellation', async () => {
 test('messages serveur constellation', async () => {
   const résultat = new attente.AttendreRésultat<messageDeServeur>();
 
-  écouterMessagesDeServeurConstellation(
-    message => résultat.mettreÀJour(message),
-  );
+  écouterMessagesDeServeurConstellation(message => résultat.mettreÀJour(message));
 
   const message: messageInitServeur = {
     type: 'init',
@@ -101,4 +102,3 @@ test('messages serveur constellation', async () => {
   const val = await résultat.attendreExiste();
   expect(val).to.deep.equal(message);
 });
-
