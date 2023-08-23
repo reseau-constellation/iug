@@ -16,8 +16,8 @@ test('Main window state', async () => {
   const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
     await electronApp.evaluate(async ({BrowserWindow}) => {
       await new Promise<void>(résoudre => {
-        const intervale = setInterval(()=>{
-          if (BrowserWindow.getAllWindows().length) { 
+        const intervale = setInterval(() => {
+          if (BrowserWindow.getAllWindows().length) {
             clearInterval(intervale);
             résoudre();
           }
