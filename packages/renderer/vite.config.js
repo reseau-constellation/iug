@@ -132,6 +132,11 @@ const config = {
   },
   test: {
     environment: 'happy-dom',
+    server: {
+      deps: {
+        inline: ['vuetify'],
+      },
+    },
   },
   plugins: générerExtentions(),
 };
