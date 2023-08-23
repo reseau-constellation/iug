@@ -1,5 +1,5 @@
 import {app} from 'electron';
-import {gestionnaireFenêtres} from './constellation';
+import {gestionnaireFenêtres} from '/@/constellation';
 import './security-restrictions';
 import {restoreOrCreateWindow} from '/@/mainWindow';
 

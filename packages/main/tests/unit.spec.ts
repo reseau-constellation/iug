@@ -21,20 +21,31 @@ vi.mock('electron', () => {
   bw.prototype.focus = vi.fn();
   bw.prototype.restore = vi.fn();
 
+  // @ts-expect-error webContents est une propriété en lecture seule
+  bw.prototype.webContents = {
+    send: vi.fn(),
+    setWindowOpenHandler: vi.fn(),
+  };
+
   const app: Pick<Electron.App, 'getAppPath'> = {
     getAppPath(): string {
       return '';
     },
   };
+  const ipcMain: Pick<Electron.IpcMain, 'on'> = {
+    on(..._args) {
+      return this;
+    },
+  };
 
-  return {BrowserWindow: bw, app};
+  return {BrowserWindow: bw, app, ipcMain};
 });
 
 beforeEach(() => {
   vi.clearAllMocks();
 });
 
-test('Should create a new window', async () => {
+test('Devrait créer une nouvelle fenêtre', async () => {
   const {mock} = vi.mocked(BrowserWindow);
   expect(mock.instances).toHaveLength(0);
 
@@ -44,7 +55,7 @@ test('Should create a new window', async () => {
   expect(mock.instances[0].loadURL).toHaveBeenCalledWith(expect.stringMatching(/index\.html$/));
 });
 
-test('Should restore an existing window', async () => {
+test('Devrait restaurer une fenêtre existante', async () => {
   const {mock} = vi.mocked(BrowserWindow);
 
   // Create a window and minimize it.
@@ -58,7 +69,7 @@ test('Should restore an existing window', async () => {
   expect(appWindow.restore).toHaveBeenCalledOnce();
 });
 
-test('Should create a new window if the previous one was destroyed', async () => {
+test('Devrait créer une nouvelle fenêtre si l\'ancienne fenêtre a été détruite', async () => {
   const {mock} = vi.mocked(BrowserWindow);
 
   // Create a window and destroy it.
