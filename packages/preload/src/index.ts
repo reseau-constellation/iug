@@ -2,7 +2,7 @@
  * @module preload
  */
 
-export {surLinux, surMac, surWindows} from './so.js';
+export {surLinux, surMac, surWindows, plateforme} from './so.js';
 
 export {
   envoyerMessageÀConstellation,
