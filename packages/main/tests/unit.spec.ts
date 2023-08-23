@@ -69,7 +69,7 @@ test('Devrait restaurer une fenêtre existante', async () => {
   expect(appWindow.restore).toHaveBeenCalledOnce();
 });
 
-test('Devrait créer une nouvelle fenêtre si l\'ancienne fenêtre a été détruite', async () => {
+test("Devrait créer une nouvelle fenêtre si l'ancienne fenêtre a été détruite", async () => {
   const {mock} = vi.mocked(BrowserWindow);
 
   // Create a window and destroy it.
