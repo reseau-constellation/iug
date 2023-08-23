@@ -68,8 +68,8 @@
   "dependencies": {
     "@constl/ipa": "0.8.1",
     "@constl/mandataire": "^0.1.13",
-    "@constl/mandataire-electron-principal": "^0.2.11",
-    "@constl/mandataire-electron-rendu": "^0.2.11",
+    "@constl/mandataire-electron-principal": "^0.2.13",
+    "@constl/mandataire-electron-rendu": "^0.2.13",
     "@constl/serveur": "^0.3.2",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@lassi-js/kili": "^0.2.2",

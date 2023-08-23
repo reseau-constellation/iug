@@ -12,11 +12,11 @@ dependencies:
     specifier: ^0.1.13
     version: 0.1.13
   '@constl/mandataire-electron-principal':
-    specifier: ^0.2.11
-    version: 0.2.11(@constl/ipa@0.8.1)(@constl/mandataire@0.1.13)(@constl/serveur@0.3.2)(electron@26.0.0)
+    specifier: ^0.2.13
+    version: 0.2.13(@constl/ipa@0.8.1)(@constl/mandataire@0.1.13)(@constl/serveur@0.3.2)(electron@26.0.0)
   '@constl/mandataire-electron-rendu':
-    specifier: ^0.2.11
-    version: 0.2.11
+    specifier: ^0.2.13
+    version: 0.2.13
   '@constl/serveur':
     specifier: ^0.3.2
     version: 0.3.2(@constl/ipa@0.8.1)
@@ -475,8 +475,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.11(@constl/ipa@0.8.1)(@constl/mandataire@0.1.13)(@constl/serveur@0.3.2)(electron@26.0.0):
-    resolution: {integrity: sha512-jnlpoKTTwmIS1xQNTj9s7/YuATD6L+fl1sACsRavqijdPWSHBSzy6Gqxm+UHPocnMJRPsgdMn6XhCwcr9Vk5OQ==}
+  /@constl/mandataire-electron-principal@0.2.13(@constl/ipa@0.8.1)(@constl/mandataire@0.1.13)(@constl/serveur@0.3.2)(electron@26.0.0):
+    resolution: {integrity: sha512-SN5isKwITS6juikhBLyO/DXGr7eeT7nu4Uj7/TllK/fEBZS0gzhl8bvIhe8A1btXz9BBc5+Esn9enmUOhi560A==}
     peerDependencies:
       '@constl/ipa': ^0.8.1
       '@constl/mandataire': ^0.1.13
@@ -492,8 +492,8 @@ packages:
       uuid: 9.0.0
     dev: false
 
-  /@constl/mandataire-electron-rendu@0.2.11:
-    resolution: {integrity: sha512-/EiPnKTRjB0afKOLGeH1biia4qK0ThzODWDSyOyRWv3Lx8Ene2Yk2krfbMYPM/ct2jLq78MT/kpTxAfA9ZBOFg==}
+  /@constl/mandataire-electron-rendu@0.2.13:
+    resolution: {integrity: sha512-0/zfWd+jRGkSJTEkGI2fkeQryaEZMCYMld8sr3mIUTwC4uN25DkiBzNhq3CXb31h0iTA/xf+zvqY0wkm+9G9cw==}
     dependencies:
       '@constl/mandataire': 0.1.13
       events: 3.3.0
@@ -6292,6 +6292,7 @@ packages:
     resolution: {integrity: sha512-Wrk35e8ydCKDj/ArClo1VrPVmN8zph5V4AtHwIuHhvMXsKf73UT3BOD+azBIW+3wOJ4FhEH7zyaJCFvChjYvMA==}
     engines: {'0': node >=0.6.0}
     requiresBuild: true
+    dev: true
     optional: true
 
   /fast-deep-equal@3.1.3:
@@ -12299,7 +12300,7 @@ packages:
     dependencies:
       assert-plus: 1.0.0
       core-util-is: 1.0.2
-      extsprintf: 1.4.1
+      extsprintf: 1.3.0
     dev: false
     optional: true
 
