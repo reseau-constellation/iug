@@ -17,7 +17,7 @@ test('Composante TitrePage - titre', async () => {
 
   const titre = 'Mon titre de page';
   const wrapper = mountFunction(TitrePage, {
-    props: { titre },
+    props: {titre},
   });
 
   const élTitre = wrapper.get('h1');
@@ -27,11 +27,11 @@ test('Composante TitrePage - titre', async () => {
 
 test('Composante TitrePage - sousTitre', async () => {
   expect(TitrePage).toBeTruthy();
-  
+
   const titre = 'Mon titre de page';
   const sousTitre = 'Mon sous-titre de page';
   const wrapper = mountFunction(TitrePage, {
-    props: { titre, sousTitre },
+    props: {titre, sousTitre},
   });
 
   const élSousTitre = wrapper.get('h2');
@@ -39,14 +39,13 @@ test('Composante TitrePage - sousTitre', async () => {
   expect(élSousTitre.text()).toBe(sousTitre);
 });
 
-
 test('Composante TitrePage - image', async () => {
   expect(TitrePage).toBeTruthy();
-  
+
   const titre = 'Mon titre de page';
   const image = 'urlImage.png';
   const wrapper = mountFunction(TitrePage, {
-    props: { titre, image },
+    props: {titre, image},
   });
 
   const élSousTitre = wrapper.get('img');
