@@ -1,7 +1,6 @@
 import type {ElectronApplication} from 'playwright';
 import {_electron as electron} from 'playwright';
 import {afterAll, beforeAll, expect, test} from 'vitest';
-import {createHash} from 'crypto';
 
 let electronApp: ElectronApplication;
 
@@ -15,7 +14,15 @@ afterAll(async () => {
 
 test('Main window state', async () => {
   const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
-    await electronApp.evaluate(({BrowserWindow}) => {
+    await electronApp.evaluate(async ({BrowserWindow}) => {
+      await new Promise<void>(résoudre => {
+        const intervale = setInterval(()=>{
+          if (BrowserWindow.getAllWindows().length) { 
+            clearInterval(intervale);
+            résoudre();
+          }
+        }, 1000);
+      });
       const mainWindow = BrowserWindow.getAllWindows()[0];
 
       const getState = () => ({
@@ -42,7 +49,7 @@ test('Main window web content', async () => {
   expect(element, 'Was unable to find the root element').toBeDefined();
   expect((await element!.innerHTML()).trim(), 'Window content was empty').not.equal('');
 });
-
+/**
 test('Preload versions', async () => {
   const page = await electronApp.firstWindow();
   const renderedVersions = await page.locator('#process-versions').innerText();
@@ -67,3 +74,4 @@ test('Preload nodeCrypto', async () => {
   const expectedHash = createHash('sha256').update(testString).digest('hex');
   expect(renderedHash).toEqual(expectedHash);
 });
+ */

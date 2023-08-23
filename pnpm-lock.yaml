@@ -24,8 +24,8 @@ dependencies:
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.19.2)
   '@lassi-js/kili':
-    specifier: ^0.2.2
-    version: 0.2.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+    specifier: ^0.2.3
+    version: 0.2.3(@constl/ipa@0.8.1)(wrtc@0.4.7)
   '@mdi/font':
     specifier: ^7.2.96
     version: 7.2.96
@@ -55,7 +55,7 @@ dependencies:
     version: 6.1.1
   ennikkai:
     specifier: ^2.2.0
-    version: 2.2.0(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+    version: 2.2.0(@constl/ipa@0.8.1)(wrtc@0.4.7)
   events:
     specifier: ^3.3.0
     version: 3.3.0
@@ -79,7 +79,7 @@ dependencies:
     version: 4.6.0
   nuchabal:
     specifier: ^3.1.2
-    version: 3.1.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+    version: 3.1.2(@constl/ipa@0.8.1)(wrtc@0.4.7)
   pinia:
     specifier: ^2.1.6
     version: 2.1.6(typescript@5.1.6)(vue@3.3.4)
@@ -430,7 +430,7 @@ packages:
       '@chriscdn/promise-semaphore': 2.0.1
       '@constl/electron-webrtc-relay': 0.2.1
       '@constl/mandataire': 0.1.13
-      '@constl/utils-ipa': 0.1.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+      '@constl/utils-ipa': 0.1.2(wrtc@0.4.7)
       '@lassi-js/kili': 0.1.2(@constl/ipa@0.8.1)
       '@libp2p/interface-transport': 4.0.3
       '@libp2p/mplex': 8.0.4
@@ -448,7 +448,7 @@ packages:
       crypto-js: 4.1.1
       deep-equal: 2.2.2
       deepcopy: 2.1.0
-      ennikkai: 2.2.0(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+      ennikkai: 2.2.0(@constl/ipa@0.8.1)(wrtc@0.4.7)
       events: 3.3.0
       genversion: 3.1.1
       geojson-validation: 1.0.2
@@ -511,9 +511,6 @@ packages:
       events: 3.3.0
       uuid: 9.0.0
 
-  /@constl/orbit-db-types@1.1.0:
-    resolution: {integrity: sha512-4N3iQvhR5AF54EqllWieAP6Q5+1qru/7671XnBp6+/cCU9P0FU8MJxEdZbXFyXkFEmWylMjs3X7H0YEUexpBiA==}
-
   /@constl/serveur@0.3.2(@constl/ipa@0.8.1):
     resolution: {integrity: sha512-HXMqGssdoAXvBeFDh9luMwp6GMuLGPLGdJZLI9a41c6TO1FdvT2C2HzkDSWyhkgOjx46JtFUEYX8e2Fzsf09tw==}
     engines: {node: '>=16'}
@@ -537,28 +534,23 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/utils-ipa@0.1.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7):
-    resolution: {integrity: sha512-ZhprY/W4PlxWn6uHGhYPT6m6Eb5xKFFukeXWoFoeJXjbYx6j0IFcWm2n3DWo0Cu0mZavXWArELHSQo8+B8qTLg==}
+  /@constl/utils-ipa@0.1.2(wrtc@0.4.7):
+    resolution: {integrity: sha512-RjdzN4b3Yy2+S6bWrybQk+ZybKWItRuEZu2GFFkeiN21JKpkEPTL2bt312/eF58V91t31rNzvngQ6GgicbUXxg==}
     engines: {node: '>=20'}
     peerDependencies:
       wrtc: ^0.4.7
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.8
-      '@constl/orbit-db-types': 1.1.0
       browser-fs-access: 0.34.1
       events: 3.3.0
       genversion: 3.1.1
       jszip: 3.10.1
       multiformats: 9.9.0
-      orbit-db: 0.29.0(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)
       rimraf: 5.0.1
       uint8arrays: 4.0.6
       wherearewe: 2.0.1
       wrtc: 0.4.7
     transitivePeerDependencies:
-      - go-ipfs
-      - ipfs
-      - ipfsd-ctl
       - supports-color
 
   /@constl/utils-tests@0.1.1(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7):
@@ -1853,18 +1845,15 @@ packages:
       '@constl/ipa': 0.8.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
       deepcopy: 2.1.0
 
-  /@lassi-js/kili@0.2.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7):
-    resolution: {integrity: sha512-PVON1prA7NrUxv7oUi8+ZxXBqXVZ3jzEk14KlB1JHSTtkkdk4GQammtE7waPQ7wGei2Sxp92DyfR5gU9IMeJ7Q==}
+  /@lassi-js/kili@0.2.3(@constl/ipa@0.8.1)(wrtc@0.4.7):
+    resolution: {integrity: sha512-l7S2At9Ci+Y1mfXJ0PrI3RaXFmyna1hKoSmdAcChUvklMNZHwcazGcdmpETnc0DGdcrIxEh3v9VIVisqfk0jlA==}
     peerDependencies:
       '@constl/ipa': ^0.8.1
     dependencies:
       '@constl/ipa': 0.8.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
-      '@constl/utils-ipa': 0.1.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+      '@constl/utils-ipa': 0.1.2(wrtc@0.4.7)
       deepcopy: 2.1.0
     transitivePeerDependencies:
-      - go-ipfs
-      - ipfs
-      - ipfsd-ctl
       - supports-color
       - wrtc
 
@@ -5542,19 +5531,16 @@ packages:
     resolution: {integrity: sha512-9JktcM3u18nU9N2Lz3bWeBgxVgOKpw7yhRaoxQA3FUDZzzw+9WlA6p4G4u0RixNkg14fH7EfEc/RhpurtiROTQ==}
     engines: {node: '>=10.0.0'}
 
-  /ennikkai@2.2.0(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7):
+  /ennikkai@2.2.0(@constl/ipa@0.8.1)(wrtc@0.4.7):
     resolution: {integrity: sha512-o2snPeh/83TLbHufOkl1Q1x99nM4u/qbZDZuKL+KzYZdgZ6cMaS2MV1prCV3u+E8WD/oko5FaUCRKsnWL67SEg==}
     peerDependencies:
       '@constl/ipa': ^0.8.1
     dependencies:
       '@constl/ipa': 0.8.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
-      '@lassi-js/kili': 0.2.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+      '@lassi-js/kili': 0.2.3(@constl/ipa@0.8.1)(wrtc@0.4.7)
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
-      - go-ipfs
-      - ipfs
-      - ipfsd-ctl
       - supports-color
       - wrtc
 
@@ -9123,19 +9109,16 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal@3.1.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7):
+  /nuchabal@3.1.2(@constl/ipa@0.8.1)(wrtc@0.4.7):
     resolution: {integrity: sha512-xzR6z2kAUsLrppcB5K6DHM/tVItQQHgoUYXosK2OV4lL9s5xA9tALYCRC7PeoCVcasSqJNj4HLkM1gA54ss59Q==}
     peerDependencies:
       '@constl/ipa': ^0.8.1
     dependencies:
       '@constl/ipa': 0.8.1(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
-      '@lassi-js/kili': 0.2.2(@constl/ipa@0.8.1)(go-ipfs@0.22.0)(ipfs@0.66.1)(ipfsd-ctl@13.0.0)(wrtc@0.4.7)
+      '@lassi-js/kili': 0.2.3(@constl/ipa@0.8.1)(wrtc@0.4.7)
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
-      - go-ipfs
-      - ipfs
-      - ipfsd-ctl
       - supports-color
       - wrtc
     dev: false
@@ -11914,8 +11897,6 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     bundledDependencies:
       - node-pre-gyp
 
@@ -12015,6 +11996,7 @@ packages:
   /xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
+    requiresBuild: true
 
   /y18n@5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
