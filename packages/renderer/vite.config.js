@@ -137,6 +137,9 @@ const config = {
         inline: ['vuetify'],
       },
     },
+    coverage: {
+      provider: 'istanbul',
+    },
   },
   plugins: générerExtentions(),
 };

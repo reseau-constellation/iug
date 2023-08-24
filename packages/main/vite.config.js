@@ -39,6 +39,11 @@ const config = {
     reportCompressedSize: false,
   },
   plugins: [injectAppVersion()],
+  test: {
+    coverage: {
+      provider: 'istanbul',
+    },
+  },
 };
 
 export default config;
