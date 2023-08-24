@@ -4,7 +4,7 @@
 <p align="center">
   <a href="https://github.com/reseau-constellation/iug/actions/workflows/ci.yml"><img src="https://github.com/reseau-constellation/iug/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://github.com/reseau-constellation/iug/actions/workflows/publierPage.yml"><img src="https://github.com/reseau-constellation/iug/actions/workflows/publierPage.yml/badge.svg"></a>
-  <a href="https://github.com/reseau-constellation/iug/actions/workflows/release.yml"><img src="https://github.com/reseau-constellation/iug/actions/workflows/release.yml/badge.svg"></a>
+  <a href="https://github.com/reseau-constellation/iug/actions/workflows/ci.yml"><img src="https://github.com/reseau-constellation/iug/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://codecov.io/gh/reseau-constellation/iug" >
  <img src="https://codecov.io/gh/reseau-constellation/iug/branch/master/graph/badge.svg?token=àcopierplustard"/>
  </a>
