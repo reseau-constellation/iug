@@ -120,8 +120,8 @@ jobs:
 
           # If the commit is tagged with a version (e.g. "v1.0.0"),
           # release the app after building
-          # ${{ startsWith(github.ref, 'refs/tags/v') }}
-          release: true
+          # 
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
 
           # Sometimes the build may fail due to a connection problem with Apple, GitHub, etc. servers.
           # This option will restart the build as many attempts as possible
