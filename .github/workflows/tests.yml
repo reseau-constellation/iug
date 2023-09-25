@@ -33,7 +33,7 @@ jobs:
 
       # Publier couverture tests
       - name: Envoyer couverure à Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
 
   e2e:
     strategy:
