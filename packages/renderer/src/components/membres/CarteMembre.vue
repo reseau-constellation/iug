@@ -211,6 +211,7 @@ const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
   constl?.profil.suivreContacts({
     f: x => (contacts.value = x),
+    idCompte: props.id,
   }),
 );
 
