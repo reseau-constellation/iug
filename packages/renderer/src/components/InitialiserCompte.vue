@@ -94,7 +94,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -369,7 +369,7 @@ const ajusterNoms = (nms: {[lng: string]: string}) => {
 };
 
 // Image
-const imageSélectionnée = ref< {contenu:  ArrayBuffer, fichier:  string}>();
+const imageSélectionnée = ref<{contenu: ArrayBuffer; fichier: string}>();
 const srcImgProfil = computed(() => {
   if (imageSélectionnée.value) {
     return URL.createObjectURL(new Blob([imageSélectionnée.value.contenu], {type: 'image'}));
@@ -379,7 +379,7 @@ const srcImgProfil = computed(() => {
 });
 const imgDefaut = obtImageDéco('profil');
 
-const imageChangée = (img?: {contenu:  ArrayBuffer, fichier:  string}) => {
+const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
   imageSélectionnée.value = img;
 };
 

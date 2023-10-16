@@ -112,7 +112,8 @@ const sauvegarder = async () => {
 
 const effacer = async () => {
   await constl?.profil.effacerContact({
-    type: props.type, contact: props.valeurAvant,
+    type: props.type,
+    contact: props.valeurAvant,
   });
 };
 

@@ -282,7 +282,6 @@ watchEffect(async () => {
     await révoquerInvitation();
   }
 });
-
 </script>
 
 <style scoped>

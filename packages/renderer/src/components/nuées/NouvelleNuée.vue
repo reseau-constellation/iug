@@ -99,7 +99,7 @@
                 :key="tbl.clef"
                 :clef="tbl.clef"
                 :noms="tbl.noms"
-                :colonnes="tbl.cols.map(x=>x.info)"
+                :colonnes="tbl.cols.map(x => x.info)"
                 modification-permise
                 @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
                 @nouvelle-colonne="
