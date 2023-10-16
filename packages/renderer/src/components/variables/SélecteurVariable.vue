@@ -13,7 +13,7 @@
       />
     </template>
     <template #selection="{item}">
-      <jeton-variable :id="item.value" />
+      <jeton-variable :id="item.raw.id" />
     </template>
     <template #append>
       <NouvelleVariable>
