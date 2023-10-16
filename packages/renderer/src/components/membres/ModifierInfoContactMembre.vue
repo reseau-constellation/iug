@@ -100,6 +100,8 @@ const sauvegarder = async () => {
   sauvegardeEnCours.value = true;
   if (!valeurEtTypeFinaux.value) return;
 
+  await effacer();
+
   await constl?.profil.sauvegarderContact({
     type: valeurEtTypeFinaux.value.type,
     contact: valeurEtTypeFinaux.value.valeur,
@@ -109,10 +111,13 @@ const sauvegarder = async () => {
 };
 
 const effacer = async () => {
-  await constl?.profil.effacerContact({type: props.type, contact: props.valeurAvant});
+  await constl?.profil.effacerContact({
+    type: props.type, contact: props.valeurAvant,
+  });
 };
 
 const fermer = () => {
   dialogue.value = false;
+  valeur.value = props.valeurAvant;
 };
 </script>
