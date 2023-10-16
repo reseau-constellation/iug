@@ -638,9 +638,9 @@ enregistrerÉcoute(
 
 const imgDéfaut = obtImageDéco('logoBD');
 
-const modifierImage = async (image?: ArrayBuffer) => {
+const modifierImage = async (image?: {contenu: ArrayBuffer, fichier: string}) => {
   if (image) {
-    await constl?.profil.sauvegarderImage({image});
+    await constl?.profil.sauvegarderImage({image: {content: image.contenu, path: image.fichier}});
   } else {
     await constl?.profil.effacerImage();
   }

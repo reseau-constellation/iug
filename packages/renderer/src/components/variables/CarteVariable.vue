@@ -134,7 +134,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.variables.suivreDescrVariable({
+  constl?.variables.suivreDescriptionsVariable({
     idVariable: props.id,
     f: x => (descriptions.value = x),
   }),

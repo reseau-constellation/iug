@@ -51,13 +51,13 @@
             />
           </v-window-item>
           <v-window-item :value="2">
-            <ImageÉditable
+            <ImageEditable
               :editable="true"
               :src-image="srcImgProfil"
               :img-defaut="imgDefaut"
               :max-taille-image="MAX_TAILLE_IMAGE"
               :taille-avatar="150"
-              @image-changee="(img?: ArrayBuffer) => imageChangée(img)"
+              @image-changee="(img?) => imageChangée(img)"
             />
             <p class="mt-3 text-center text-caption">
               {{ t('accueil.initialiserCompte.texteImage') }}
@@ -94,7 +94,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -221,7 +221,7 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import ImageÉditable from '/@/components/communs/ImageEditable.vue';
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -369,17 +369,17 @@ const ajusterNoms = (nms: {[lng: string]: string}) => {
 };
 
 // Image
-const imageSélectionnée = ref<ArrayBuffer>();
+const imageSélectionnée = ref< {contenu:  ArrayBuffer, fichier:  string}>();
 const srcImgProfil = computed(() => {
   if (imageSélectionnée.value) {
-    return URL.createObjectURL(new Blob([imageSélectionnée.value], {type: 'image'}));
+    return URL.createObjectURL(new Blob([imageSélectionnée.value.contenu], {type: 'image'}));
   } else {
     return undefined;
   }
 });
 const imgDefaut = obtImageDéco('profil');
 
-const imageChangée = (img?: ArrayBuffer) => {
+const imageChangée = (img?: {contenu:  ArrayBuffer, fichier:  string}) => {
   imageSélectionnée.value = img;
 };
 
@@ -432,7 +432,8 @@ const créerCompte = async () => {
       await constl.profil?.sauvegarderNom({langue: lng, nom});
     }
     if (imageSélectionnée.value) {
-      await constl.profil?.sauvegarderImage({image: imageSélectionnée.value});
+      const {contenu, fichier} = imageSélectionnée.value;
+      await constl.profil?.sauvegarderImage({image: {content: contenu, path: fichier}});
     }
   } else {
     if (!compteÀRejoindre.value || !codeSecret.value) return;

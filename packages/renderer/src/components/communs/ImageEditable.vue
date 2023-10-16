@@ -103,7 +103,7 @@ const props = defineProps<{
   editable: boolean;
 }>();
 const émettre = defineEmits<{
-  (é: 'imageChangee', image?: ArrayBuffer): void;
+  (é: 'imageChangee', image?: {contenu: ArrayBuffer, fichier: string}): void;
 }>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
@@ -180,8 +180,9 @@ watchEffect(async () => {
 });
 watchEffect(async () => {
   if (image.value) {
-    if (!imageTropGrande.value) {
-      émettre('imageChangee', image.value);
+    const nomFichier = fichier.value?.path.split('/').pop();
+    if (!imageTropGrande.value && nomFichier) {
+      émettre('imageChangee', {contenu: image.value, fichier: nomFichier});
     }
   }
 });

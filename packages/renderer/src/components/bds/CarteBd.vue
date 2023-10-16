@@ -107,7 +107,7 @@
       :en-attente="!tableaux"
     />
     <ItemTableau
-      v-for="tableau in tableauxOrdonnés"
+      v-for="tableau in tableaux"
       :id="tableau.id"
       :key="tableau.clef"
     />
@@ -131,7 +131,7 @@
 import type {types, bds} from '@constl/ipa';
 import type {MandataireClientConstellation} from '@constl/mandataire';
 
-import {computed, inject, ref} from 'vue';
+import {inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
@@ -271,16 +271,9 @@ const tableaux = ref<bds.infoTableauAvecId[]>();
 enregistrerÉcoute(
   constl?.bds.suivreTableauxBd({
     idBd: props.id,
-    f: x => (tableaux.value = x.sort((a, b) => (a.position < b.position ? -1 : 1))),
+    f: x => tableaux.value = x,
   }),
 );
-const tableauxOrdonnés = computed(() => {
-  const listeTableaux = tableaux.value;
-  listeTableaux?.sort((a, b) =>
-    a.position && b.position ? (a.position > b.position ? 1 : -1) : 0,
-  );
-  return listeTableaux || [];
-});
 
 // Effacer
 const effacerBd = async () => {

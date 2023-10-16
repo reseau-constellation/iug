@@ -137,9 +137,9 @@ enregistrerÉcoute(
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
 
-const sauvegarderImage = async (image?: ArrayBuffer) => {
+const sauvegarderImage = async (image?: {contenu: ArrayBuffer, fichier: string}) => {
   if (image) {
-    await constl?.profil.sauvegarderImage({image});
+    await constl?.profil.sauvegarderImage({image: {content: image.contenu, path: image.fichier}});
   } else {
     await constl?.profil.effacerImage();
   }

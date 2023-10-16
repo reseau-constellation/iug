@@ -134,7 +134,7 @@
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
           (x: types.élémentsBd[]) =>
-            modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+            modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleChaîneNonTraductible
@@ -143,7 +143,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: string) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: string) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleNumérique
@@ -152,7 +152,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleHoroDatage
@@ -161,7 +161,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleIntervaleTemps
@@ -170,7 +170,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleBooléenne
@@ -179,7 +179,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <celluleChaîne
@@ -188,7 +188,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
 
@@ -198,7 +198,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleVidéo
@@ -207,7 +207,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleAudio
@@ -216,7 +216,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleImage
@@ -225,7 +225,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
       <CelluleFichier
@@ -234,7 +234,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({empreinte: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
         "
       />
     </template>
@@ -335,10 +335,10 @@ const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdList
     vals,
   });
 };
-const effacerÉlément = async (empreinte: string) => {
+const effacerÉlément = async (idÉlément: string) => {
   await constl?.tableaux.effacerÉlément({
     idTableau: props.idTableau,
-    empreinte,
+    idÉlément,
   });
 };
 const effacer = async () => {
@@ -348,16 +348,16 @@ const effacer = async () => {
 const modifierÉlément = async ({
   col,
   val,
-  empreinte,
+  idÉlément,
 }: {
   col: string;
   val: types.élémentsBd;
-  empreinte: string;
+  idÉlément: string;
 }) => {
   await constl?.tableaux.modifierÉlément({
     idTableau: props.idTableau,
     vals: {[col]: val},
-    empreintePrécédente: empreinte,
+    idÉlément,
   });
 };
 
