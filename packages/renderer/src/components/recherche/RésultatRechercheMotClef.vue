@@ -1,14 +1,14 @@
 <template>
   <v-list-item>
     <v-list-item-title>
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="source === 'nom'"
         :info="résultat.résultatObjectif.info"
       />
       <span v-else>{{ nomTraduit || t('motsClefs.aucunNom') }}</span>
     </v-list-item-title>
     <v-list-item-subtitle>
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="source === 'descr'"
         :info="résultat.résultatObjectif.info"
       />
@@ -19,7 +19,7 @@
       :n-max="1"
     ></AuteursObjet>
     <jeton-id-objet :id="résultat.id">
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="source === 'id'"
         :info="résultat.résultatObjectif.info"
       />
@@ -39,6 +39,7 @@ import JetonIdObjet from '../communs/JetonIdObjet.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 

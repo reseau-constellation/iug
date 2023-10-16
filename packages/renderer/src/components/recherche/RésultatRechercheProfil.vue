@@ -7,7 +7,7 @@
       />
     </template>
     <template #title>
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="source === 'nom'"
         :info="résultat.résultatObjectif.info"
       />
@@ -20,17 +20,17 @@
       size="small"
       prepend-icon="mdi-link"
     >
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         :info="résultat.résultatObjectif.info"
         :max-taille="25"
-      ></TexteSurlignéRecherche>
+      ></TexteSurligneRecherche>
     </v-chip>
     <JetonContactMembre
       v-if="source === 'contact' && résultat.résultatObjectif.clef"
       :contact="résultat.résultatObjectif.info.texte"
       :type="résultat.résultatObjectif.clef"
     >
-      <TexteSurlignéRecherche :info="résultat.résultatObjectif.info"></TexteSurlignéRecherche>
+      <TexteSurligneRecherche :info="résultat.résultatObjectif.info"></TexteSurligneRecherche>
     </JetonContactMembre>
   </v-list-item>
 </template>
@@ -46,7 +46,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonContactMembre from '../membres/JetonContactMembre.vue';
-import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
+import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();

@@ -1,14 +1,14 @@
 <template>
   <v-list-item>
     <v-list-item-title>
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="infoSourceNom"
         :info="infoSourceNom"
       />
       <span v-else>{{ nomTraduit || t('nuées.aucunNom') }}</span>
     </v-list-item-title>
     <v-list-item-subtitle>
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="infoSourcDescr"
         :info="infoSourcDescr"
       />
@@ -19,7 +19,7 @@
       :n-max="1"
     ></AuteursObjet>
     <jeton-id-objet :id="résultat.id">
-      <TexteSurlignéRecherche
+      <TexteSurligneRecherche
         v-if="infoSourceId"
         :info="infoSourceId"
       />
@@ -29,25 +29,25 @@
       v-if="infoSourceVariable"
       :id="infoSourceVariable.id"
     >
-      <TexteSurlignéRecherche :info="infoSourceVariable.info.info" />
+      <TexteSurligneRecherche :info="infoSourceVariable.info.info" />
     </JetonVariable>
     <JetonMotClef
       v-if="infoSourceMotClef"
       :id="infoSourceMotClef.id"
     >
-      <TexteSurlignéRecherche :info="infoSourceMotClef.info.info" />
+      <TexteSurligneRecherche :info="infoSourceMotClef.info.info" />
     </JetonMotClef>
     <JetonBd
       v-if="infoSourceBdDirecte"
       :id="infoSourceBdDirecte.id"
     >
-      <TexteSurlignéRecherche :info="infoSourceBdDirecte.info.info" />
+      <TexteSurligneRecherche :info="infoSourceBdDirecte.info.info" />
     </JetonBd>
     <JetonBd
       v-if="infoSourceBdIndirecte"
       :id="infoSourceBdIndirecte.id"
     >
-      <TexteSurlignéRecherche :info="infoSourceBdIndirecte.info.info" />
+      <TexteSurligneRecherche :info="infoSourceBdIndirecte.info.info" />
     </JetonBd>
   </v-list-item>
 </template>
@@ -62,7 +62,7 @@ import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
-import TexteSurlignéRecherche from './TexteSurlignéRecherche.vue';
+import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';

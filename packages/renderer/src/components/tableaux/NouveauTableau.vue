@@ -90,7 +90,7 @@ const émettre = defineEmits<{
     é: 'sauvegarder',
     args: {
       noms: {[langue: string]: string};
-      cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+      cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
     },
   ): void;
 }>();
@@ -181,7 +181,7 @@ const ajusterNoms = (nms: {[lng: string]: string}) => {
 };
 
 // Colonnes
-const cols = ref<(tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[]>();
+const cols = ref<{info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[]>();
 
 // Confirmation
 const confirmer = () => {

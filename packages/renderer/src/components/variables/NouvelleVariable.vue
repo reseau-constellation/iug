@@ -66,7 +66,10 @@
             />
           </v-window-item>
           <v-window-item :value="3">
-            <v-input v-model="unités" />
+            <v-text-field
+              v-model="unités"
+              variant="outlined"
+            />
           </v-window-item>
           <v-window-item :key="4">
             <div class="text-center">
@@ -141,6 +144,14 @@ const titreCarte = computed(() => {
   switch (é) {
     case 'catégorie':
       return t('variables.nouvelle.titreCatégorie');
+    case 'noms':
+      return t('variables.nouvelle.titreNoms');
+    case 'descriptions':
+      return t('variables.nouvelle.titreDescriptions');
+    case 'unités':
+      return t('variables.nouvelle.titreUnités');
+    case 'confirmation':
+      return t('variables.nouvelle.titreConfirmation');
     default:
       return '';
   }
@@ -151,6 +162,14 @@ const sousTitreCarte = computed(() => {
   switch (é) {
     case 'catégorie':
       return t('variables.nouvelle.sousTitreCatégorie');
+    case 'noms':
+      return t('variables.nouvelle.sousTitreNoms');
+    case 'descriptions':
+      return t('variables.nouvelle.sousTitreDescriptions');
+    case 'unités':
+      return t('variables.nouvelle.sousTitreUnités');
+    case 'confirmation':
+      return t('variables.nouvelle.sousTitreConfirmation');
     default:
       return '';
   }

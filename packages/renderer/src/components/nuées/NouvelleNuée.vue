@@ -81,8 +81,10 @@
           </v-window-item>
           <v-window-item :key="3">
             <v-list>
-              <nouveau-tableau :importation-permise="false">
-                <!--@sauvegarder="ajouterTableau"-->
+              <nouveau-tableau
+                :importation-permise="false"
+                @sauvegarder="ajouterTableau"
+              >
                 <template #activator="{props: propsActivateur}">
                   <v-list-item
                     v-bind="propsActivateur"
@@ -97,7 +99,7 @@
                 :key="tbl.clef"
                 :clef="tbl.clef"
                 :noms="tbl.noms"
-                :colonnes="tbl.cols"
+                :colonnes="tbl.cols.map(x=>x.info)"
                 modification-permise
                 @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
                 @nouvelle-colonne="
@@ -282,19 +284,19 @@ const tableaux = ref<
   {
     clef: string;
     noms: {[langue: string]: string};
-    cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+    cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
   }[]
 >([]);
-/** const ajouterTableau = ({
+const ajouterTableau = ({
   noms,
   cols,
 }: {
   noms: {[langue: string]: string};
-  cols: tblx.InfoCol & {règles: valid.règleVariableAvecId[]};
+  cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
 }) => {
   tableaux.value = [...tableaux.value, {clef: uuidv4(), noms, cols}];
 };
-*/
+
 const effacerTableau = (clef: string) => {
   tableaux.value = tableaux.value.filter(t => t.clef !== clef);
 };
@@ -348,7 +350,7 @@ const effacerColonneTableau = ({
 }) => {
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
-      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.id !== idColonne)}
+      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.info.id !== idColonne)}
       : t;
   });
 };
@@ -387,17 +389,17 @@ const créerNuée = async () => {
 
     // Ajouter les colonnes
     for (const col of tbl.cols) {
-      const idColonne = col.id;
+      const idColonne = col.info.id;
       await constl?.nuées.ajouterColonneTableauNuée({
         idTableau,
-        idVariable: col.variable,
+        idVariable: col.info.variable,
         idColonne,
       });
-      if (col.index)
+      if (col.info.index)
         await constl?.nuées.changerColIndexTableauNuée({
           idTableau,
           idColonne,
-          val: col.index,
+          val: col.info.index,
         });
 
       // Ajotuer les règles colonne
