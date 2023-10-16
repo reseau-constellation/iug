@@ -95,7 +95,7 @@ jobs:
         run: echo "$RELEASE_NOTE" >> ./buildResources/release-notes.md
 
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
+        uses: samuelmeuli/action-snapcraft@v2
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
         # Only install Snapcraft on Ubuntu
