@@ -271,7 +271,7 @@ const tableaux = ref<bds.infoTableauAvecId[]>();
 enregistrerÉcoute(
   constl?.bds.suivreTableauxBd({
     idBd: props.id,
-    f: x => tableaux.value = x,
+    f: x => (tableaux.value = x),
   }),
 );
 

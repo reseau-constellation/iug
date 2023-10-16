@@ -103,7 +103,7 @@ const props = defineProps<{
   editable: boolean;
 }>();
 const émettre = defineEmits<{
-  (é: 'imageChangee', image?: {contenu: ArrayBuffer, fichier: string}): void;
+  (é: 'imageChangee', image?: {contenu: ArrayBuffer; fichier: string}): void;
 }>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
