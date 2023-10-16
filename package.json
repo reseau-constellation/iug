@@ -6,7 +6,7 @@
     "name": "Julien Jean Malard-Adam",
     "url": "https://github.com/julienmalard"
   },
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "packages/main/dist/index.cjs",
   "scripts": {
     "build": "pnpm run build:main && pnpm run build:preload && pnpm run build:renderer",
@@ -47,7 +47,7 @@
     "@vitest/coverage-istanbul": "^0.34.2",
     "@vue/test-utils": "2.4.1",
     "cross-env": "7.0.3",
-    "electron": "26.0.0",
+    "electron": "27.0.0",
     "electron-builder": "24.6.3",
     "eslint": "8.47.0",
     "eslint-plugin-vue": "9.17.0",
