@@ -170,13 +170,6 @@ const {isRtl} = useRtl();
 // Navigation
 const dialogue = ref(false);
 
-// Pour la sécurité, automatiquement révoquer l'invitation si l'on ferme le dialogue
-watchEffect(async () => {
-  if (!dialogue.value) {
-    await révoquerInvitation();
-  }
-});
-
 const étape = ref(0);
 const listeÉtapes = ['cheminement', 'manuelle', 'codeR2'] as const;
 const cheminement = ref<'manuelle' | 'codeR2'>();
@@ -283,7 +276,15 @@ const révoquerInvitation = async () => {
   invitation.value = undefined;
   // await constl.révoquerInvitation()
 };
+// Pour la sécurité, automatiquement révoquer l'invitation si l'on ferme le dialogue
+watchEffect(async () => {
+  if (!dialogue.value) {
+    await révoquerInvitation();
+  }
+});
+
 </script>
+
 <style scoped>
 .fond {
   background-color: rgba(255, 255, 255, 0.95);
