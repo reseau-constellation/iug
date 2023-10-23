@@ -188,8 +188,8 @@ devDependencies:
     specifier: 9.17.0
     version: 9.17.0(eslint@8.47.0)
   happy-dom:
-    specifier: 10.11.0
-    version: 10.11.0
+    specifier: 12.9.1
+    version: 12.9.1
   nano-staged:
     specifier: 0.8.0
     version: 0.8.0
@@ -228,7 +228,7 @@ devDependencies:
     version: 1.0.2(vite@4.4.9)(vue@3.3.4)(vuetify@3.3.14)
   vitest:
     specifier: 0.34.2
-    version: 0.34.2(happy-dom@10.11.0)(playwright@1.37.1)
+    version: 0.34.2(happy-dom@12.9.1)(playwright@1.37.1)
   vue-tsc:
     specifier: 1.8.8
     version: 1.8.8(typescript@5.1.6)
@@ -3938,7 +3938,7 @@ packages:
       istanbul-lib-source-maps: 4.0.1
       istanbul-reports: 3.1.6
       test-exclude: 6.0.0
-      vitest: 0.34.2(happy-dom@10.11.0)(playwright@1.37.1)
+      vitest: 0.34.2(happy-dom@12.9.1)(playwright@1.37.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -7133,8 +7133,8 @@ packages:
       pino-pretty: 4.8.0
     dev: true
 
-  /happy-dom@10.11.0:
-    resolution: {integrity: sha512-CmUT4LOLzvAsbYqgTJESrPyvF0gxLDkDG/KK1o/HYU7+c9o/VVIKXl3feJZnuCYbGqemw7meiQaZcL4SMgn1jQ==}
+  /happy-dom@12.9.1:
+    resolution: {integrity: sha512-UvQ3IwKn1G3iiNCdTrhijdLGqf8Vj7d3OpmYcPwlKakjFy83oYbW6TmOKDLMTVLO9whmOC1HIpS09wf/14k7cA==}
     dependencies:
       css.escape: 1.5.1
       entities: 4.5.0
@@ -12565,7 +12565,7 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vitest@0.34.2(happy-dom@10.11.0)(playwright@1.37.1):
+  /vitest@0.34.2(happy-dom@12.9.1)(playwright@1.37.1):
     resolution: {integrity: sha512-WgaIvBbjsSYMq/oiMlXUI7KflELmzM43BEvkdC/8b5CAod4ryAiY2z8uR6Crbi5Pjnu5oOmhKa9sy7uk6paBxQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -12609,7 +12609,7 @@ packages:
       cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
-      happy-dom: 10.11.0
+      happy-dom: 12.9.1
       local-pkg: 0.4.3
       magic-string: 0.30.3
       pathe: 1.1.1
