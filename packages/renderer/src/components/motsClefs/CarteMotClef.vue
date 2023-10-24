@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import type {types} from '@constl/ipa';
 import {inject, ref} from 'vue';
@@ -29,7 +29,7 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Nom mot-clef
 const noms = ref<{[langue: string]: string}>({});

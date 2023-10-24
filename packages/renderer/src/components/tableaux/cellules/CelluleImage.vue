@@ -13,7 +13,7 @@
   />
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 
@@ -23,7 +23,7 @@ import {watchEffect} from 'vue';
 
 const props = defineProps<{val: {cid: string; ext: string}}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Image
 const srcImg = ref<string>();

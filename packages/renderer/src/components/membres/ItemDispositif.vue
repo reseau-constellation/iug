@@ -26,7 +26,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -41,7 +41,7 @@ const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({

@@ -84,7 +84,7 @@
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
@@ -95,7 +95,7 @@ import axios from 'axios';
 import JSZip from 'jszip';
 import {fileSave} from 'browser-fs-access';
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {langue} = utiliserLangues();

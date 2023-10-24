@@ -63,7 +63,7 @@
 import {onMounted, ref, inject, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
@@ -76,7 +76,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const {formatterVersion} = utiliserNumération();

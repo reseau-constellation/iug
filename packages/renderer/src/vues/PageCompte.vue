@@ -87,7 +87,7 @@ import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -105,7 +105,7 @@ import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

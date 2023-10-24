@@ -88,7 +88,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 import type {types} from '@constl/ipa';
 
 import type {Ref} from 'vue';
@@ -116,7 +116,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

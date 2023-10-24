@@ -247,7 +247,7 @@
 </template>
 <script setup lang="ts">
 import type {tableaux, variables, valid, types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 
@@ -268,7 +268,7 @@ import {créerColonneTableau} from '/@/components/tableaux/utils';
 
 const props = defineProps<{idTableau: string}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

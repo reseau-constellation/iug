@@ -17,7 +17,7 @@
 </template>
 <script setup lang="ts">
 import type {bds, types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref, watchEffect} from 'vue';
 
@@ -29,7 +29,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idTableau?: string): void;
 }>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Tableaux
 const tableaux = ref<bds.infoTableauAvecId[]>();

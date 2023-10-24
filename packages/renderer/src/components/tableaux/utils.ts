@@ -1,9 +1,9 @@
 import type {valid} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject} from 'vue';
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 export const créerColonneTableau = async ({
   idTableau,

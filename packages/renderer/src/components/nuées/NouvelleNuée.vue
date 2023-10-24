@@ -162,7 +162,7 @@
 </template>
 <script setup lang="ts">
 import {type tableaux as tblx, type valid} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -178,7 +178,7 @@ const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

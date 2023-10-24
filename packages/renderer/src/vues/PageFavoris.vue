@@ -22,7 +22,7 @@
 </template>
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 import {inject, ref} from 'vue';
 
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -32,7 +32,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
 import {enregistrerÉcoute} from '../components/utils';
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

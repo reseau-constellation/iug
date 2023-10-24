@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {utiliserLangues} from '/@/plugins/localisation/localisation';
@@ -69,7 +69,7 @@ const {traduireNom} = utiliserLangues();
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Noms objet
 const noms = ref<{[langue: string]: string}>({});

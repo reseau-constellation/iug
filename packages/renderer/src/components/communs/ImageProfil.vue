@@ -5,7 +5,7 @@
   />
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -14,7 +14,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const imageProfil = ref<Uint8Array | null>();
 const srcImgProfil = computed(() => {

@@ -16,7 +16,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
@@ -28,7 +28,7 @@ import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

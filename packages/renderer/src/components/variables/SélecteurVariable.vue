@@ -42,7 +42,7 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import JetonVariable from './JetonVariable.vue';
@@ -56,7 +56,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idVar: string): void;
 }>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

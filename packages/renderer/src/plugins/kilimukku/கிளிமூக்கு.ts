@@ -11,7 +11,7 @@ import {
 } from './மாறிலிகள்';
 import {கிளி, தேதி_நெடுவரிசை_அடையாளம், பங்கேற்பாளர்_நெடுவரிசை_அடையாளம்} from '@lassi-js/kili';
 import type {அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை, பிணையம்_பரிந்துரை} from '@lassi-js/kili';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 export type மூல்_மொழிப்பெயர்ப்பு_வகை = {
   clef: string;
@@ -202,7 +202,7 @@ export class கிளிமூக்கு extends கிளி<மொழிப
     மூல்_மொழி,
     மாறிலிகள்,
   }: {
-    விண்மீன்: MandataireClientConstellation;
+    விண்மீன்: ClientConstellation;
     மூல்_மொழிபெயர்ப்புகள்: மொழிபெயர்ப்பு_அகராதி_வகை;
     மூல்_மொழி: string;
     மாறிலிகள்?: {

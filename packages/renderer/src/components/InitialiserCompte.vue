@@ -94,7 +94,7 @@
                     (comptesEnLigne.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -208,7 +208,7 @@
 </template>
 
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 import type {réseau} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
@@ -233,7 +233,7 @@ const {t} = useI18n();
 const {mdAndUp} = useDisplay();
 
 const {obtImageDéco} = utiliserImagesDéco();
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation générale
 const dialogue = ref(false);

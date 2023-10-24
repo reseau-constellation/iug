@@ -83,7 +83,7 @@
 import {inject, onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import type {types} from '@constl/ipa';
 
@@ -100,7 +100,7 @@ const {mdAndUp} = useDisplay();
 const props = defineProps<{originaux: string[]}>();
 const émettre = defineEmits<{(é: 'sauvegarder', motsClefs: string[]): void}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type {bds} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -22,7 +22,7 @@ import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kili
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

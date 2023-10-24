@@ -168,7 +168,7 @@
 
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -204,7 +204,7 @@ const émettre = defineEmits<{
   (é: 'sauvegarder'): void;
 }>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
 const {useI18n} = கிளிமூக்கை_உபயோகி();

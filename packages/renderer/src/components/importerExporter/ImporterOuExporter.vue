@@ -73,7 +73,7 @@
                 color="primary"
                 :disabled="
                   surNavigateur &&
-                  (cheminement === 'exportation' || origineImportation === 'fichier')
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
                 "
               >
                 {{ t('communs.importerOuExporter.automatiser') }}
@@ -133,7 +133,7 @@
 <script setup lang="ts">
 import type {automatisation, bds, types} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
@@ -146,7 +146,7 @@ const {t} = useI18n();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const props = defineProps<{
   type?: 'importation' | 'exportation';

@@ -73,7 +73,7 @@
 </template>
 <script setup lang="ts">
 import type {automatisation, bds} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, ref, inject, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -93,7 +93,7 @@ const props = defineProps<{
   typeObjet: 'nuée' | 'projet' | 'bd' | 'tableau';
 }>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();

@@ -129,7 +129,7 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -148,7 +148,7 @@ const {formatterChiffre} = utiliserNumération();
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Navigation
 const dialogue = ref(false);

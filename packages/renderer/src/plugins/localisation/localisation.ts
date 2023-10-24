@@ -5,12 +5,12 @@ import {Nuchabäl} from 'nuchabal';
 import {எண்ணிக்கை} from 'ennikkai';
 
 import {computed, inject, ref, watchEffect} from 'vue';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 const créerNuchabäl = ({
   constellation,
 }: {
-  constellation?: MandataireClientConstellation;
+  constellation?: ClientConstellation;
 }): Nuchabäl => {
   return new Nuchabäl({chumil: constellation});
 };
@@ -18,7 +18,7 @@ const créerNuchabäl = ({
 const créerEnnikai = ({
   constellation,
 }: {
-  constellation?: MandataireClientConstellation;
+  constellation?: ClientConstellation;
 }): எண்ணிக்கை => {
   return new எண்ணிக்கை({விண்மீன்: constellation});
 };

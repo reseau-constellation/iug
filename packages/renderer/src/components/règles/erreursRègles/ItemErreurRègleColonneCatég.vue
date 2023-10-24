@@ -32,7 +32,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import type {valid} from '@constl/ipa';
 
@@ -51,7 +51,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {traduireNom} = utiliserLangues();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 // Nom tableau référence catégorie
 const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.tableau);

@@ -1,4 +1,4 @@
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import type {types} from '@constl/ipa';
 import type {ComposerTranslation} from 'vue-i18n';
@@ -41,7 +41,7 @@ export const utiliserNomEtTypeDispositif = ({
   idDispositif: string | Ref<string | undefined>;
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
-  const constl = inject<MandataireClientConstellation>('constl');
+  const constl = inject<ClientConstellation>('constl');
   const {useI18n} = கிளிமூக்கை_உபயோகி();
   const {t} = useI18n();
 

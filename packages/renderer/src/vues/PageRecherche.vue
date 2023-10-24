@@ -116,7 +116,7 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {type Ref, watchEffect} from 'vue';
 
@@ -133,7 +133,7 @@ import RésultatRechercheVariable from '/@/components/recherche/RésultatRecherc
 import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();

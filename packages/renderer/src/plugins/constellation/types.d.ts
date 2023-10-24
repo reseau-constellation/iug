@@ -1,8 +1,8 @@
 declare module '@vue/runtime-core' {
-  import type {MandataireClientConstellation} from '@constl/mandataire';
+  import type {ClientConstellation} from '@constl/ipa';
   import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
   interface ComponentCustomProperties {
-    $constl: MandataireClientConstellation;
+    $constl: ClientConstellation;
     $serveurConstl: GestionnaireServeur;
   }
 }

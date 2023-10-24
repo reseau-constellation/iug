@@ -19,7 +19,7 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
@@ -35,7 +35,7 @@ const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
 const {formatterChiffre} = utiliserNumération();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const réplications = ref<réseau.infoRéplications>();
 

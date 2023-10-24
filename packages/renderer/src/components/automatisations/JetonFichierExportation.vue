@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import path from 'path';
 import {computed, ref, inject, onMounted, watchEffect} from 'vue';
@@ -33,7 +33,7 @@ const props = defineProps<{
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 const dispositifPrésent = ref<string>();
 
 // Dispositifs

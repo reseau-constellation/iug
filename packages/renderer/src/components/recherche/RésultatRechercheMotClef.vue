@@ -29,7 +29,7 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {MandataireClientConstellation} from '@constl/mandataire';
+import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
@@ -43,7 +43,7 @@ import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 
-const constl = inject<MandataireClientConstellation>('constl');
+const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {traduireNom} = utiliserLangues();
