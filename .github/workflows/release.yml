@@ -4,7 +4,7 @@ on:
     inputs:
       dry-run:
         description: 'Compiles the app but not upload artifacts to distribution server'
-        default: startsWith(${{github.ref_name}}, "v")
+        default: false
         required: false
         type: boolean
 
