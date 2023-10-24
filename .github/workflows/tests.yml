@@ -10,54 +10,28 @@ defaults:
     shell: 'bash'
 
 jobs:
-  unit:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ windows-latest, ubuntu-latest, macos-latest ]
-        package: [ main, preload, renderer ]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: latest
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'pnpm'
-      - run: pnpm install
-        env:
-          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      - run: pnpm run test:${{ matrix.package }}
-
-      # Publier couverture tests
-      - name: Envoyer couverure à Codecov
-        uses: codecov/codecov-action@v2
-
-  e2e:
+  tests:
     strategy:
       fail-fast: false
       matrix:
         os: [ windows-latest, ubuntu-latest, macos-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/setup-node@v4
         with:
-          version: latest
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
           cache: 'pnpm'
       - run: pnpm install
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: pnpm test:main
+      - run: pnpm test:preload
+      - run: pnpm test:renderer
 
-        # I ran into problems trying to run an electron window in ubuntu due to a missing graphics server.
-        # That's why this special command for Ubuntu is here
-      - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- pnpm run test:e2e
+      # I ran into problems trying to run an electron window in ubuntu due to a missing graphics server.
+      # That's why this special command for Ubuntu is here
+      - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- pnpm test:e2e
         if: matrix.os == 'ubuntu-latest'
 
-      - run: pnpm run test:e2e
+      - run: pnpm test:e2e
         if: matrix.os != 'ubuntu-latest'
