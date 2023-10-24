@@ -7,19 +7,11 @@ import {எண்ணிக்கை} from 'ennikkai';
 import {computed, inject, ref, watchEffect} from 'vue';
 import type {ClientConstellation} from '@constl/ipa';
 
-const créerNuchabäl = ({
-  constellation,
-}: {
-  constellation?: ClientConstellation;
-}): Nuchabäl => {
+const créerNuchabäl = ({constellation}: {constellation?: ClientConstellation}): Nuchabäl => {
   return new Nuchabäl({chumil: constellation});
 };
 
-const créerEnnikai = ({
-  constellation,
-}: {
-  constellation?: ClientConstellation;
-}): எண்ணிக்கை => {
+const créerEnnikai = ({constellation}: {constellation?: ClientConstellation}): எண்ணிக்கை => {
   return new எண்ணிக்கை({விண்மீன்: constellation});
 };
 
