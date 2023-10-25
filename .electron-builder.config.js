@@ -19,8 +19,8 @@ const config = {
     version: process.env.VITE_APP_VERSION,
   },
   linux: {
-    target: "AppImage"
-  }  
+    target: 'AppImage',
+  },
 };
 
 module.exports = config;
