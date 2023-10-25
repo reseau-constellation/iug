@@ -88,7 +88,7 @@
                 <template #activator="{props: propsActivateur}">
                   <v-list-item
                     v-bind="propsActivateur"
-                    :title="$t('nuées.nouvelle.ajoutTableau')"
+                    :title="t('nuées.nouvelle.ajoutTableau')"
                     prepend-icon="mdi-plus"
                   >
                   </v-list-item>

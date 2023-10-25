@@ -12,7 +12,7 @@
         type="chip"
       />
       <span v-else>
-        {{ réplications ? t('réplications.nRéplications', {n: nRéplicationsFormatté}) : '' }}
+        {{ t('réplications.nRéplications', nRéplications) }}
       </span>
     </v-list-item-title>
   </v-list-item>
@@ -27,13 +27,11 @@ import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 import {computed} from 'vue';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
 
 const props = defineProps<{id: string}>();
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const {formatterChiffre} = utiliserNumération();
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -48,5 +46,4 @@ enregistrerÉcoute(
 );
 
 const nRéplications = computed(() => réplications.value?.dispositifs.length || 0);
-const nRéplicationsFormatté = formatterChiffre(nRéplications);
 </script>

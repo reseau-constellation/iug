@@ -46,9 +46,7 @@
                 </v-list-item-title>
                 <v-list-item-subtitle class="text-success">
                   {{
-                    t('réplications.enLigne', {
-                      n: nDispositifsEnLigneFormatté,
-                    })
+                    t('réplications.enLigne', nDispositifsEnLigne)
                   }}
                 </v-list-item-subtitle>
               </v-list-item>
@@ -98,9 +96,7 @@
                   class="text-success"
                 >
                   {{
-                    t('réplications.enLigne', {
-                      n: nMembresEnLigneFormatté,
-                    })
+                    t('réplications.enLigne', nMembresEnLigne)
                   }}
                 </v-list-item-subtitle>
               </v-list-item>
@@ -173,7 +169,6 @@ const dispositifsEnLigne = computed(() => {
   return réplications.value?.dispositifs.filter(x => !x.vuÀ);
 });
 const nDispositifsEnLigne = computed(() => dispositifsEnLigne.value?.length || 0);
-const nDispositifsEnLigneFormatté = formatterChiffre(nDispositifsEnLigne);
 
 const membres = computed(() => {
   return réplications.value?.membres;
@@ -185,5 +180,4 @@ const membresEnLigne = computed(() => {
   return réplications.value?.membres.filter(x => !x.vuÀ);
 });
 const nMembresEnLigne = computed(() => membresEnLigne.value?.length || 0);
-const nMembresEnLigneFormatté = formatterChiffre(nMembresEnLigne);
 </script>

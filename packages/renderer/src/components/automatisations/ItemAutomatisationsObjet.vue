@@ -2,7 +2,7 @@
   <v-list-item prepend-icon="mdi-lightning-bolt">
     <v-list-item-title>
       {{
-        t('automatisations.item.titre', {n: nAutomatisationsObjetFormatté}, nAutomatisationsObjet)
+        t('automatisations.item.titre', nAutomatisationsObjet)
       }}
     </v-list-item-title>
   </v-list-item>
@@ -13,7 +13,6 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
 import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
 
 const props = defineProps<{
@@ -24,7 +23,6 @@ const constl = inject<ClientConstellation>('constl');
 
 const {useI18n} = கிளிமூக்கை_உபயோகி();
 const {t} = useI18n();
-const {formatterChiffre} = utiliserNumération();
 
 // Automatisations
 const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
@@ -44,5 +42,5 @@ const automatisationsObjet = computed(() => {
 const nAutomatisationsObjet = computed(() => {
   return automatisationsObjet.value?.length || 0;
 });
-const nAutomatisationsObjetFormatté = formatterChiffre(nAutomatisationsObjet);
+
 </script>

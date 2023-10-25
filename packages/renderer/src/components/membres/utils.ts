@@ -1,7 +1,7 @@
 import type {ClientConstellation} from '@constl/ipa';
 
 import type {types} from '@constl/ipa';
-import type {ComposerTranslation} from 'vue-i18n';
+
 import {
   type Ref,
   type ComputedRef,
@@ -133,7 +133,9 @@ export const utiliserIlYA = ({
   },
 }: {
   vuÀ?: number;
-  t: ComposerTranslation;
+  t: (clef: string,
+    interpol?: {[clef: string]: unknown} | number | unknown[],
+    n?: number) => string;
   clefs?: {
     enLigne: string;
     àLinstant: string;
