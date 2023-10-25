@@ -12,159 +12,159 @@ dependencies:
     specifier: 0.9.3
     version: 0.9.3(wrtc@0.4.7)
   '@constl/mandataire':
-    specifier: ^0.1.14
+    specifier: 0.1.14
     version: 0.1.14
   '@constl/mandataire-electron-principal':
-    specifier: ^0.2.13
+    specifier: 0.2.13
     version: 0.2.13(@constl/ipa@0.9.3)(@constl/mandataire@0.1.14)(@constl/serveur@0.3.2)(electron@27.0.2)
   '@constl/mandataire-electron-rendu':
-    specifier: ^0.2.13
+    specifier: 0.2.13
     version: 0.2.13
   '@constl/serveur':
-    specifier: ^0.3.2
+    specifier: 0.3.2
     version: 0.3.2(@constl/ipa@0.9.3)
   '@esbuild-plugins/node-globals-polyfill':
-    specifier: ^0.2.3
+    specifier: 0.2.3
     version: 0.2.3(esbuild@0.19.5)
   '@lassi-js/kili':
-    specifier: ^0.2.3
+    specifier: 0.2.3
     version: 0.2.3(@constl/ipa@0.9.3)(wrtc@0.4.7)
   '@mdi/font':
-    specifier: ^7.3.67
+    specifier: 7.3.67
     version: 7.3.67
   '@vueuse/core':
-    specifier: ^10.5.0
+    specifier: 10.5.0
     version: 10.5.0(vue@3.3.7)
   assert:
-    specifier: ^2.1.0
+    specifier: 2.1.0
     version: 2.1.0
   axios:
-    specifier: ^1.5.1
+    specifier: 1.5.1
     version: 1.5.1
   core-js:
-    specifier: ^3.33.1
+    specifier: 3.33.1
     version: 3.33.1
   crypto-browserify:
-    specifier: ^3.12.0
+    specifier: 3.12.0
     version: 3.12.0
   crypto-js:
-    specifier: ^4.1.1
+    specifier: 4.1.1
     version: 4.1.1
   deep-equal:
-    specifier: ^2.2.2
+    specifier: 2.2.2
     version: 2.2.2
   electron-updater:
     specifier: 6.1.4
     version: 6.1.4
   ennikkai:
-    specifier: ^2.2.0
+    specifier: 2.2.0
     version: 2.2.0(@constl/ipa@0.9.3)(wrtc@0.4.7)
   events:
-    specifier: ^3.3.0
+    specifier: 3.3.0
     version: 3.3.0
   image-file-resize:
-    specifier: ^1.0.5
+    specifier: 1.0.5
     version: 1.0.5
   js-cookie:
-    specifier: ^3.0.5
+    specifier: 3.0.5
     version: 3.0.5
   jszip:
-    specifier: ^3.10.1
+    specifier: 3.10.1
     version: 3.10.1
   lodash:
-    specifier: ^4.17.21
+    specifier: 4.17.21
     version: 4.17.21
   multiformats:
     specifier: 9.9.0
     version: 9.9.0
   node-gyp-build:
-    specifier: ^4.6.1
+    specifier: 4.6.1
     version: 4.6.1
   nuchabal:
-    specifier: ^3.1.4
+    specifier: 3.1.4
     version: 3.1.4(@constl/ipa@0.9.3)(wrtc@0.4.7)
   pinia:
-    specifier: ^2.1.7
+    specifier: 2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.7)
   pinia-plugin-persistedstate:
-    specifier: ^3.2.0
+    specifier: 3.2.0
     version: 3.2.0(pinia@2.1.7)
   qrcode.vue:
-    specifier: ^3.4.1
+    specifier: 3.4.1
     version: 3.4.1(vue@3.3.7)
   rollup-plugin-node-polyfills:
-    specifier: ^0.2.1
+    specifier: 0.2.1
     version: 0.2.1
   rollup-plugin-polyfill-node:
-    specifier: ^0.12.0
+    specifier: 0.12.0
     version: 0.12.0(rollup@3.29.4)
   semaphore-async-await:
-    specifier: ^1.5.1
+    specifier: 1.5.1
     version: 1.5.1
   tslib:
-    specifier: ^2.6.2
+    specifier: 2.6.2
     version: 2.6.2
   uuid:
-    specifier: ^9.0.1
+    specifier: 9.0.1
     version: 9.0.1
   vue:
     specifier: 3.3.7
     version: 3.3.7(typescript@5.2.2)
   vue-router:
-    specifier: ^4.2.5
+    specifier: 4.2.5
     version: 4.2.5(vue@3.3.7)
   vuetify:
-    specifier: ^3.3.23
+    specifier: 3.3.23
     version: 3.3.23(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.7)
   webfontloader:
-    specifier: ^1.6.28
+    specifier: 1.6.28
     version: 1.6.28
   wherearewe:
-    specifier: ^2.0.1
+    specifier: 2.0.1
     version: 2.0.1
   wrtc:
-    specifier: ^0.4.7
+    specifier: 0.4.7
     version: 0.4.7
 
 devDependencies:
   '@constl/utils-tests':
-    specifier: ^0.2.1
+    specifier: 0.2.1
     version: 0.2.1(wrtc@0.4.7)
   '@rollup/plugin-node-resolve':
-    specifier: ^15.2.3
+    specifier: 15.2.3
     version: 15.2.3(rollup@3.29.4)
   '@types/deep-equal':
-    specifier: ^1.0.3
+    specifier: 1.0.3
     version: 1.0.3
   '@types/file-saver':
-    specifier: ^2.0.6
+    specifier: 2.0.6
     version: 2.0.6
   '@types/js-cookie':
-    specifier: ^3.0.5
+    specifier: 3.0.5
     version: 3.0.5
   '@types/lodash':
-    specifier: ^4.14.200
+    specifier: 4.14.200
     version: 4.14.200
   '@types/node':
-    specifier: ^20.8.8
+    specifier: 20.8.8
     version: 20.8.8
   '@types/uuid':
-    specifier: ^9.0.6
+    specifier: 9.0.6
     version: 9.0.6
   '@types/webfontloader':
-    specifier: ^1.6.36
+    specifier: 1.6.36
     version: 1.6.36
   '@typescript-eslint/eslint-plugin':
     specifier: 6.9.0
     version: 6.9.0(@typescript-eslint/parser@6.9.0)(eslint@8.52.0)(typescript@5.2.2)
   '@typescript-eslint/parser':
-    specifier: ^6.9.0
+    specifier: 6.9.0
     version: 6.9.0(eslint@8.52.0)(typescript@5.2.2)
   '@vitejs/plugin-vue':
     specifier: 4.4.0
     version: 4.4.0(vite@4.5.0)(vue@3.3.7)
   '@vitest/coverage-istanbul':
-    specifier: ^0.34.6
+    specifier: 0.34.6
     version: 0.34.6(vitest@0.34.6)
   '@vue/test-utils':
     specifier: 2.4.1
@@ -191,19 +191,19 @@ devDependencies:
     specifier: 0.8.0
     version: 0.8.0
   node-pre-gyp:
-    specifier: ^0.17.0
+    specifier: 0.17.0
     version: 0.17.0
   playwright:
     specifier: 1.39.0
     version: 1.39.0
   rollup-plugin-node-builtins:
-    specifier: ^2.1.2
+    specifier: 2.1.2
     version: 2.1.2
   rollup-plugin-node-globals:
-    specifier: ^1.4.0
+    specifier: 1.4.0
     version: 1.4.0
   rollup-plugin-resolve-id:
-    specifier: ^1.0.2
+    specifier: 1.0.2
     version: 1.0.2
   simple-git-hooks:
     specifier: 2.9.0
@@ -218,10 +218,10 @@ devDependencies:
     specifier: 4.5.0
     version: 4.5.0(@types/node@20.8.8)
   vite-plugin-commonjs-externals:
-    specifier: ^0.1.3
+    specifier: 0.1.3
     version: 0.1.3(vite@4.5.0)
   vite-plugin-vuetify:
-    specifier: ^1.0.2
+    specifier: 1.0.2
     version: 1.0.2(vite@4.5.0)(vue@3.3.7)(vuetify@3.3.23)
   vitest:
     specifier: 0.34.6
@@ -9649,7 +9649,7 @@ packages:
   /wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
 
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -9678,8 +9678,6 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     bundledDependencies:
       - node-pre-gyp
 
