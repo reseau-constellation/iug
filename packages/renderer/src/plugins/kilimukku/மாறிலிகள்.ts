@@ -11,24 +11,25 @@ export const மொழிபெயர்ப்பு_நெடுவரிசை
 
 /** À changer - temporaire ! */
 export const குழு_அடையாளம் =
-  '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik/841abe65-93f5-4539-b721-2f8085a18cc5';
-/** À changer - temporaire ! */
+  '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik';
 
 export const சாபி_மாறி_அடையாளம் =
-  '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik/841abe65-93f5-4539-b721-2f8085a18cc5';
+  '/orbitdb/zdpuAt9PVUHGEyrL43tWDmpBUrgoPPWZHX7AGXWk4ZhEZ1oik';
 export const மூல்_மொழி_மாறி_அடையாளம் =
-  '/orbitdb/zdpuB1TEfuUWUQ2dPf8PHQFCg5n3zzx2xRhmimdF7tv6SSu9s/c15da84d-15bf-44da-9827-74d2857ff339';
+  '/orbitdb/zdpuB1TEfuUWUQ2dPf8PHQFCg5n3zzx2xRhmimdF7tv6SSu9s';
 export const இலக்கு_மொழி_மாறி_அடையாளம் =
-  '/orbitdb/zdpuAtmGaeNicerk2ByPa4oQMtSPgdNovQp6ZC6c2fJqF64Sb/6462ccb9-25ca-44e5-b81a-ea6d5df09709';
+  '/orbitdb/zdpuAtmGaeNicerk2ByPa4oQMtSPgdNovQp6ZC6c2fJqF64Sb';
 export const மூல்_உரை_மாறி_அடையாளம் =
-  '/orbitdb/zdpuAyBg5f4Lxabv7YHVrxpNbBQW6dzxwH6wfQVMKZjECnkry/f536d48e-e040-48bf-9efb-539321804f4f';
+  '/orbitdb/zdpuAyBg5f4Lxabv7YHVrxpNbBQW6dzxwH6wfQVMKZjECnkry';
 export const மொழிபெயர்ப்பு_மாறி_அடையாளம் =
-  '/orbitdb/zdpuAnEhqhCW51yfohfHWzjLgDPyuY2ySVmTBW7upAidVbwnX/954f02c8-e2ea-433b-89e2-6e670fd8873b';
+  '/orbitdb/zdpuAnEhqhCW51yfohfHWzjLgDPyuY2ySVmTBW7upAidVbwnX';
 
 export const மொழியாக்கம்_சிறப்பு_சொல்_அடையாளம் =
-  '/orbitdb/zdpuAoNDXakfzK2DxJAozuR2V9TYha5bvzjQHN5VnAm4jvL6S/736889ad-a29b-4e6f-94fa-a78f8e92978d';
+  '/orbitdb/zdpuAoNDXakfzK2DxJAozuR2V9TYha5bvzjQHN5VnAm4jvL6S';
 export const கிளிமூக்கு_சிறப்பு_சொல்_அடையாளம் =
-  '/orbitdb/zdpuAsViPqnpRhUwN6kL7cSyLFaxSEkK233cJAChJMtc2vwLT/fe6ab45c-dd39-4ca9-a695-f151d922704f';
+  '/orbitdb/zdpuAsViPqnpRhUwN6kL7cSyLFaxSEkK233cJAChJMtc2vwLT';
+
+/** À changer - temporaire ! */
 
 export const கிளிமூக்கு_தரவுத்தளம்_வார்ப்புரு: bds.schémaSpécificationBd = {
   motsClefs: [மொழியாக்கம்_சிறப்பு_சொல்_அடையாளம், கிளிமூக்கு_சிறப்பு_சொல்_அடையாளம்],
