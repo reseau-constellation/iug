@@ -1,9 +1,7 @@
 <template>
   <v-list-item prepend-icon="mdi-lightning-bolt">
     <v-list-item-title>
-      {{
-        t('automatisations.item.titre', nAutomatisationsObjet)
-      }}
+      {{ t('automatisations.item.titre', nAutomatisationsObjet) }}
     </v-list-item-title>
   </v-list-item>
 </template>
@@ -42,5 +40,4 @@ const automatisationsObjet = computed(() => {
 const nAutomatisationsObjet = computed(() => {
   return automatisationsObjet.value?.length || 0;
 });
-
 </script>

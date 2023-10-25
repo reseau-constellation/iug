@@ -45,9 +45,7 @@
                   <v-icon end>mdi-monitor-cellphone</v-icon>
                 </v-list-item-title>
                 <v-list-item-subtitle class="text-success">
-                  {{
-                    t('réplications.enLigne', nDispositifsEnLigne)
-                  }}
+                  {{ t('réplications.enLigne', nDispositifsEnLigne) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
@@ -95,9 +93,7 @@
                   v-if="membresEnLigne"
                   class="text-success"
                 >
-                  {{
-                    t('réplications.enLigne', nMembresEnLigne)
-                  }}
+                  {{ t('réplications.enLigne', nMembresEnLigne) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>

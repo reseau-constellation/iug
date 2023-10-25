@@ -63,13 +63,16 @@ const useI18n_ = () => {
       };
       const messagesParN = messageFinal.split('|');
 
-       if (messagesParN.length < 2) {
-        return formatterMessage(messagesParN[0], typeof interpol !== 'number' ? interpol : undefined);
+      if (messagesParN.length < 2) {
+        return formatterMessage(
+          messagesParN[0],
+          typeof interpol !== 'number' ? interpol : undefined,
+        );
       } else {
         const nPluriel = typeof n === 'number' ? n : typeof interpol === 'number' ? interpol : 0;
         return formatterMessage(
           messagesParN[nPluriel] || messagesParN[messagesParN.length - 1],
-          typeof interpol === 'number' ? { n: interpol } : interpol,  // Consistent avec https://kazupon.github.io/vue-i18n/guide/pluralization.html#accessing-the-number-via-the-pre-defined-argument
+          typeof interpol === 'number' ? {n: interpol} : interpol, // Consistent avec https://kazupon.github.io/vue-i18n/guide/pluralization.html#accessing-the-number-via-the-pre-defined-argument
         );
       }
     }).value;

@@ -37,5 +37,4 @@ const idDUnAuteur = computed(() => {
 const nAuteursAcceptés = computed(() => {
   return auteursAcceptés.value.length;
 });
-
 </script>

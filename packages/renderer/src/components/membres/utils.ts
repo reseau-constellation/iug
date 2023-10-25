@@ -133,9 +133,11 @@ export const utiliserIlYA = ({
   },
 }: {
   vuÀ?: number;
-  t: (clef: string,
+  t: (
+    clef: string,
     interpol?: {[clef: string]: unknown} | number | unknown[],
-    n?: number) => string;
+    n?: number,
+  ) => string;
   clefs?: {
     enLigne: string;
     àLinstant: string;
