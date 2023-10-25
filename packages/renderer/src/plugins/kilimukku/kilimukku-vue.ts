@@ -1,4 +1,4 @@
-import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import {computed, inject, onMounted, onUnmounted, ref, watchEffect} from 'vue';
 import type {Ref, App} from 'vue';
 import {isEqual} from 'lodash';
 import {
@@ -14,38 +14,78 @@ import type {
 } from './கிளிமூக்கு';
 import type {types} from '@constl/ipa';
 
-import {useI18n} from 'vue-i18n';
-import {utiliserLangues} from '../localisation/localisation';
+import {utiliserLangues, utiliserNumération} from '../localisation/localisation';
+
 import type {Nuchabäl} from 'nuchabal';
 
 const useI18n_ = () => {
   const {langue, languesAlternatives} = utiliserLangues();
+  const {formatterChiffre} = utiliserNumération();
   const செய்திகள் = inject<Ref<மரம்_மொழிபெயர்ப்பு_அகராதி_வகை>>('செய்திகள்');
+
   const {codesLanguesDisponibles: localesKilimukku} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
-  // Apparament il faut passer locale explicitement ici.
-  const i18n_ = useI18n({
-    messages: செய்திகள்?.value || {},
-  });
+  const t = (
+    clef: string,
+    interpol?: {[clef: string]: unknown} | number | unknown[],
+    n?: number,
+  ): string => {
+    return computed(() => {
+      const messages = மரத்திலிருந்து_மொழிபெயர்ப்பு_அகராதி(செய்திகள்?.value || {});
+      const meilleureLangueDispo = toutesLanguesAlternatives.value.find(
+        lg => !!messages[clef]?.[lg],
+      );
 
-  watchEffect(() => {
-    i18n_.locale.value = langue.value;
-  });
+      const messageFinal = meilleureLangueDispo ? messages[clef][meilleureLangueDispo] : clef;
 
-  // Pour une drôle de raison, assigner un objet ou une liste à i18n.fallbackLocale mène à une récursion infinie si on le fait dans watchEffect().
+      const formatter = (val: unknown): string => {
+        if (typeof val === 'number') {
+          return formatterChiffre(val).value;
+        }
+        return JSON.stringify(val);
+      };
+
+      const formatterMessage = (
+        m: string,
+        intp?: {[clef: string]: unknown} | unknown[],
+      ): string => {
+        const regexp = /{([^{]+)}/g;
+        if (Array.isArray(intp)) {
+          return m.replace(regexp, function (_, key) {
+            return key >= intp.length ? key : formatter(intp[key]);
+          });
+        } else if (typeof intp === 'object') {
+          return m.replace(regexp, function (_, key) {
+            return (key = intp[key]) == null ? '' : formatter(key);
+          });
+        }
+        return m;
+      };
+      const messagesParN = messageFinal.split('|');
+      console.log(messagesParN);
+      if (messagesParN.length < 2) {
+        return formatterMessage(messagesParN[0], typeof interpol !== 'number' ? interpol : undefined);
+      } else {
+        const nPluriel = typeof n === 'number' ? n : typeof interpol === 'number' ? interpol : 0;
+        return formatterMessage(
+          messagesParN[nPluriel] || messagesParN[messagesParN.length - 1],
+          typeof interpol !== 'number' ? interpol : undefined,
+        );
+      }
+    }).value;
+  };
+
   const toutesLanguesAlternatives = computed(() => {
     return [
+      langue.value,
       ...languesAlternatives.value,
       ...localesKilimukku.value.filter(
         l => l !== langue.value && !languesAlternatives.value.includes(l),
       ),
     ];
   });
-  watch([toutesLanguesAlternatives], () => {
-    i18n_.fallbackLocale.value = toutesLanguesAlternatives.value;
-  });
-  i18n_.fallbackLocale.value = toutesLanguesAlternatives.value;
-  return {...i18n_, $t: i18n_.t};
+
+  return {t, $t: t};
 };
 
 const கிடைக்கும்_மொழிகளை_பயன்படுத்து = () => {
