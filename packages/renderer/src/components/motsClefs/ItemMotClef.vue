@@ -24,20 +24,20 @@ import {ref, inject} from 'vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
-const {traduireNom} = utiliserLangues();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Nom du mot-clef
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.motsClefs.suivreNomsMotClef({
@@ -48,7 +48,7 @@ enregistrerÉcoute(
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
-const descriptionTraduite = traduireNom(descriptions);
+const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 enregistrerÉcoute(
   constl?.motsClefs.suivreDescriptionsMotClef({

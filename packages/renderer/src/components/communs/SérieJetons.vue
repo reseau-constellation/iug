@@ -37,12 +37,12 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 type TypeItemSérie = {[clef: string]: unknown} & {id: string};
 const props = defineProps<{nMax: number; items?: (TypeItemSérie | string)[]}>();
 
-const {formatterChiffre} = utiliserNumération();
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Logique générale
 const itemiser = (item: string | TypeItemSérie): TypeItemSérie => {
@@ -59,5 +59,5 @@ const extras = computed<TypeItemSérie[]>(() => {
 const nExtras = computed(() => {
   return extras.value.length;
 });
-const nExtrasFormatté = formatterChiffre(nExtras);
+const nExtrasFormatté = எண்ணை_வடிவூட்டு(nExtras);
 </script>

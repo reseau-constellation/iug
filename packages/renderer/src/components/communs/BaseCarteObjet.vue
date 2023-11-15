@@ -174,8 +174,8 @@ import {computed, ref, inject} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';
@@ -207,9 +207,9 @@ const émettre = defineEmits<{
 const constl = inject<ClientConstellation>('constl');
 
 const {mdAndUp} = useDisplay();
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
-const {traduireNom} = utiliserLangues();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);
@@ -224,10 +224,10 @@ enregistrerÉcoute(
 );
 
 // Nom
-const nom = traduireNom(computed(() => props.noms));
+const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.noms));
 
 // Description
-const description = traduireNom(computed(() => props.descriptions));
+const description = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.descriptions));
 
 // Effacer objet
 const effacer = async () => {

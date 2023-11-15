@@ -11,10 +11,10 @@
             class="pt-1"
             density="compact"
             variant="outlined"
-            item-title="lng"
-            item-value="code"
+            item-title="மொழி"
+            item-value="குறியீடு"
             :readonly="!autorisationModification"
-            :items="languesEtCodes"
+            :items="மொழிகளும்_குறியீடுகளும்"
             :label="indiceLangue"
           ></v-autocomplete>
         </v-col>
@@ -50,12 +50,13 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
-const {languesEtCodes, nomLangue} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
-const {t} = useI18n();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const nuchabäl = new Nuchabäl({});
 
@@ -81,7 +82,7 @@ onMounted(() => {
 });
 
 // Changements
-const nomNouvelleLangue = nomLangue(nouvelleLangue);
+const nomNouvelleLangue = மொழியின்_பெயர்(nouvelleLangue);
 
 const règlesNouveauNom = computed<string[] | undefined>(() => {
   if (!nouveauNom.value?.length || !nouvelleLangue.value) return undefined;

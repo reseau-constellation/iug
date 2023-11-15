@@ -49,8 +49,8 @@ import type {valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
@@ -60,15 +60,15 @@ import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
 const props = defineProps<{idTableau: string; erreur: valid.erreurRègleBornesColonneInexistante}>();
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
-const {traduireNom} = utiliserLangues();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const constl = inject<ClientConstellation>('constl');
 
 // Nom de ce tableau
 const nomsTableau = ref<{[langue: string]: string}>({});
-const nomTableau = traduireNom(nomsTableau);
+const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 enregistrerÉcoute(
   constl?.tableaux.suivreNomsTableau({
     idTableau: props.idTableau,

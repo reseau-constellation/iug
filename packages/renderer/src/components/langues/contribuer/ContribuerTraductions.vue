@@ -34,7 +34,7 @@
               v-model="langueSource"
               variant="outlined"
               hide-details
-              :items="codesLanguesDisponibles"
+              :items="கிடைக்கும்_மொழி_குறியீடுகள்"
               :label="t('languesInterface.dialogueContribuer.langueSource')"
             >
               <template #item="{item, props}">
@@ -65,7 +65,7 @@
               v-model="langueCible"
               variant="outlined"
               hide-details
-              :items="codesLanguesDisponibles"
+              :items="கிடைக்கும்_மொழி_குறியீடுகள்"
               :label="t('languesInterface.dialogueContribuer.langueCible')"
             >
               <template #item="{item, props}">
@@ -258,11 +258,11 @@
                   </template>
                   <item-suggestion-traduction
                     v-for="sugg in suggestionsLangueCibleClef"
-                    :key="sugg.கைரேகை"
+                    :key="sugg.அடையாளம்"
                     :suggestion="sugg"
                     :compte="sugg.பங்கேற்பாளர்"
                     @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
-                    @effacer="effacerSuggestion(sugg.கைரேகை)"
+                    @effacer="effacerSuggestion(sugg.அடையாளம்)"
                   />
                 </v-list-group>
 
@@ -335,12 +335,12 @@
 <script setup lang="ts">
 import {computed, inject, onMounted, ref, watch} from 'vue';
 import {useDisplay} from 'vuetify';
-import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
+import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 import type {ClientConstellation} from '@constl/ipa';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';
 
@@ -354,19 +354,20 @@ const constl = inject<ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
-const {langue, languesAlternatives} = utiliserLangues();
-const {formatterChiffre} = utiliserNumération();
+const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
 const {
-  useI18n,
   கிடைக்கும்_மொழிகளை_பயன்படுத்து,
   சாபிகளை_பயன்படுத்து,
   மொழிபெயர்ப்புகளை_பயன்படுத்து,
   பரிந்துரைகளை_பயன்படுத்து,
-} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+  மொழியாக்கம்_பயன்படுத்து,
+  மொழி_முன்னேற்றத்தை_பயன்படுத்து,
+} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
 
 // Navigation
 const dialogue = ref(false);
@@ -378,8 +379,8 @@ onMounted(async () => {
 });
 
 // Contrôles
-const langueSource = ref(langue.value);
-const langueCible = ref<string>(languesAlternatives.value[0]);
+const langueSource = ref(மொழி.value);
+const langueCible = ref<string>(மாற்றுமொழிகள்.value[0]);
 const montrerTraduites = ref(false);
 const rechercher = ref('');
 
@@ -390,7 +391,6 @@ const échangerLangues = () => {
 };
 
 // Ligne de progrès
-const {மொழி_முன்னேற்றத்தை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
 const {மொழி_முன்னேற்றம்: progrèsLangue} = மொழி_முன்னேற்றத்தை_பயன்படுத்து({
   மொழி: langueCible,
   வகை: 'வார்த்தை',
@@ -407,7 +407,7 @@ const progrèsSuggéré = computed(() => {
 });
 
 // Liste clefs à traduire
-const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து();
+const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து({});
 const clefsPourListe = computed(() => {
   if (!clefsDisponibles.value) return;
   let toutesClefs: string[] = [];
@@ -430,7 +430,7 @@ watch(clefSélectionnée, () => {
   suggestion.value = '';
 });
 
-const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளை_பயன்படுத்து();
+const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளை_பயன்படுத்து({});
 const traductionsApprouvéesLangueCible = computed(() => {
   const {value: lngCible} = langueCible;
   return (
@@ -482,7 +482,7 @@ const suggérer = async () => {
 
 // Suggestions
 const imgVide = obtImageDéco('vide');
-const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து();
+const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து({});
 const suggestionsLangueCibleClef = computed(() => {
   const {value: lngCible} = langueCible;
   return (
@@ -493,15 +493,15 @@ const suggestionsLangueCibleClef = computed(() => {
     []
   );
 });
-const effacerSuggestion = async (empreinte: string) => {
-  await கிளி?.பரிந்துரையை_நீக்கு({
-    கைரேகை: empreinte,
+const effacerSuggestion = async (id: string) => {
+  await கிளி?.கிளி?.பரிந்துரையை_நீக்கு({
+    அடையாளம்: id,
   });
 };
 const nSuggestionsClefLangue = computed(() => {
   return suggestionsLangueCibleClef.value.length;
 });
-const nSuggestionsClefLangueFormattée = formatterChiffre(nSuggestionsClefLangue);
+const nSuggestionsClefLangueFormattée = எண்ணை_வடிவூட்டு(nSuggestionsClefLangue);
 
 const traductionsClefToutesLangues = ref<மொழி_மொழிபெயர்ப்பு_அகராதி_வகை>();
 enregistrerÉcoute(
@@ -522,7 +522,7 @@ const traductionsClefAutresLangues = computed(() => {
   else return undefined;
 });
 
-const nTraductionsClefsAutresLanguesFormattée = formatterChiffre(
+const nTraductionsClefsAutresLanguesFormattée = எண்ணை_வடிவூட்டு(
   computed(() => {
     return traductionsClefAutresLangues.value ? traductionsClefAutresLangues.value.length : 0;
   }),

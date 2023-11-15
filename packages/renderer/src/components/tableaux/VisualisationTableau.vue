@@ -94,7 +94,7 @@
     <template
       v-for="c in entêtes"
       :key="c.key"
-      #[`column.${c.key}`]="{column}"
+      #[`header.${c.key}`]="{column}"
     >
       <EntêteColonneTableau
         v-if="c.key !== 'actions'"
@@ -122,119 +122,119 @@
           color="error"
           icon
           small
-          @click="() => effacerÉlément(item.raw.empreinte)"
+          @click="() => effacerÉlément(item.id)"
         >
           <v-icon small>mdi-delete</v-icon>
         </v-btn>
       </span>
       <cellule-liste
         v-else-if="c.info.catégorie?.type === 'liste'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
           (x: types.élémentsBd[]) =>
-            modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+            modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleChaîneNonTraductible
         v-else-if="c.info.catégorie?.catégorie === 'chaîneNonTraductible'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: string) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: string) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleNumérique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleHoroDatage
         v-else-if="c.info.catégorie?.catégorie === 'horoDatage'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleIntervaleTemps
         v-else-if="c.info.catégorie?.catégorie === 'intervaleTemps'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleBooléenne
         v-else-if="c.info.catégorie?.catégorie === 'booléen'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <celluleChaîne
         v-else-if="c.info.catégorie?.catégorie === 'chaîne'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
 
       <celluleGéoJSON
         v-else-if="c.info.catégorie?.catégorie === 'géojson'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleVidéo
         v-else-if="c.info.catégorie?.catégorie === 'vidéo'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleAudio
         v-else-if="c.info.catégorie?.catégorie === 'audio'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleImage
         v-else-if="c.info.catégorie?.catégorie === 'image'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleFichier
         v-else-if="c.info.catégorie?.catégorie === 'fichier'"
-        :val="item.columns[c.key]"
+        :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.raw.empreinte, col: c.key, val: x})
+          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
     </template>
@@ -251,11 +251,8 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '../utils';
-
-import {VDataTable} from 'vuetify/labs/VDataTable';
-import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
@@ -270,8 +267,8 @@ const props = defineProps<{idTableau: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Contrôles
 const éditer = ref(false);

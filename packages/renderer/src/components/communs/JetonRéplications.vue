@@ -19,16 +19,15 @@ import type {ClientConstellation} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
-const {formatterChiffre} = utiliserNumération();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Réplications
 const réplications = ref<réseau.infoRéplications>();
@@ -42,10 +41,10 @@ enregistrerÉcoute(
 const nRéplicationsDispositifs = computed(() => {
   return réplications.value?.dispositifs.length || 0;
 });
-const nRéplicationsDispositifsFormatté = formatterChiffre(nRéplicationsDispositifs);
+const nRéplicationsDispositifsFormatté = எண்ணை_வடிவூட்டு(nRéplicationsDispositifs);
 
 const nRéplicationsEnLigne = computed(() => {
   return réplications.value?.dispositifs.filter(d => !d.vuÀ).length || 0;
 });
-const nRéplicationsEnLigneFormatté = formatterChiffre(nRéplicationsEnLigne);
+const nRéplicationsEnLigneFormatté = எண்ணை_வடிவூட்டு(nRéplicationsEnLigne);
 </script>

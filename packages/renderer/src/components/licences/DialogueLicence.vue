@@ -159,13 +159,11 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 
-import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
-
 import JetonDroit from './JetonDroitLicence.vue';
 import JetonLimitation from './JetonLimitationLicence.vue';
 import JetonCondition from './JetonConditionLicence.vue';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
 import {enregistrerÉcoute} from '/@/components/utils';
 
@@ -179,8 +177,8 @@ const émettre = defineEmits<{
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Dialogue
 const dialogue = ref(false);

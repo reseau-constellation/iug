@@ -41,11 +41,11 @@
         ></v-progress-linear>
         <v-divider v-else />
         <item-langue
-          v-for="code in codesLanguesDisponibles"
+          v-for="code in கிடைக்கும்_மொழி_குறியீடுகள்"
           :key="code"
           :code="code"
-          :selectionnee="code === langue"
-          @click="() => choisirLangues(code)"
+          :selectionnee="code === மொழி"
+          @click="() => மொழிகளை_தேர்ந்தெடுக்கொள்ளு(code)"
         />
       </v-list>
     </v-menu>
@@ -54,12 +54,12 @@
 
 <script setup lang="ts">
 import {useRtl} from 'vuetify';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import type {ClientConstellation} from '@constl/ipa';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {inject, ref} from 'vue';
 
@@ -68,13 +68,14 @@ const constl = inject<ClientConstellation>('constl');
 const constellationPrète = ref(false);
 constl?.obtIdCompte().then(() => (constellationPrète.value = true));
 
-const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const {isRtl} = useRtl();
 
-const {langue, choisirLangues} = utiliserLangues();
-const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு} = மொழிகளைப்_பயன்படுத்து();
 </script>
 
 <style></style>

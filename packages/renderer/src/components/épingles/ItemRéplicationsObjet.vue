@@ -22,16 +22,15 @@ import type {réseau} from '@constl/ipa';
 import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
-import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 
 const props = defineProps<{id: string}>();
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const constl = inject<ClientConstellation>('constl');
 

@@ -125,18 +125,18 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '../utils';
 
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {mdAndUp} = useDisplay();
-const {formatterChiffre} = utiliserNumération();
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 const props = defineProps<{id: string}>();
 
@@ -159,7 +159,7 @@ const dispositifs = computed(() => {
   return réplications.value?.dispositifs;
 });
 const nDispositifs = computed(() => dispositifs.value?.length || 0);
-const nDispositifsFormatté = formatterChiffre(nDispositifs);
+const nDispositifsFormatté = எண்ணை_வடிவூட்டு(nDispositifs);
 
 const dispositifsEnLigne = computed(() => {
   return réplications.value?.dispositifs.filter(x => !x.vuÀ);
@@ -170,7 +170,7 @@ const membres = computed(() => {
   return réplications.value?.membres;
 });
 const nMembres = computed(() => membres.value?.length || 0);
-const nMembresFormatté = formatterChiffre(nMembres);
+const nMembresFormatté = எண்ணை_வடிவூட்டு(nMembres);
 
 const membresEnLigne = computed(() => {
   return réplications.value?.membres.filter(x => !x.vuÀ);

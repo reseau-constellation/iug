@@ -11,12 +11,12 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 import {computed} from 'vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{info: types.infoRésultatTexte; maxTaille?: number}>();
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const TAILLE_MIN_TEXTE_AVANT = 4;
 

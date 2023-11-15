@@ -25,20 +25,20 @@
 import {computed, ref} from 'vue';
 import {ouvrirLien} from '/@/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {watchEffect} from 'vue';
 
 const props = defineProps<{url: string; version: string; nom: string}>();
 
-const {formatterVersion} = utiliserNumération();
+const {பதிப்பை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {obtImageDéco} = utiliserImagesDéco();
 
 // Version
-const versionFormattée = formatterVersion(props.version);
+const versionFormattée = பதிப்பை_வடிவூட்டு(props.version);
 
 // SO
 const exts = {

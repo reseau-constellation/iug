@@ -31,11 +31,12 @@ import {surLinux, surMac, surWindows} from '#preload';
 
 import {ouvrirLien, type publicationGitHub} from '/@/utils';
 import {IPA_TÉLÉCHARGEMENTS, URL_TÉLÉCHARGEMENTS} from '/@/consts';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+
+const {பதிப்பை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 const extentionCompatible = (ext: string): boolean => {
   if (surLinux) {
@@ -51,12 +52,11 @@ const extentionCompatible = (ext: string): boolean => {
 
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
-const {formatterVersion} = utiliserNumération();
-const versionAppliFormattée = formatterVersion(VERSION_APPLI);
+const versionAppliFormattée = பதிப்பை_வடிவூட்டு(VERSION_APPLI);
 
 const versionPlusRécente = ref<string>();
 const nouvelleVersionFormattée = computed(() => {
-  if (versionPlusRécente.value) return formatterVersion(versionPlusRécente.value);
+  if (versionPlusRécente.value) return பதிப்பை_வடிவூட்டு(versionPlusRécente.value);
   return undefined;
 });
 

@@ -10,7 +10,7 @@ import PageFavoris from '/@/vues/PageFavoris.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
 import PageSignalements from '/@/vues/PageSignalements.vue';
 import PageTéléchargements from '/@/vues/PageTéléchargements.vue';
-import {utiliserLangues} from './localisation/localisation.js';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -82,8 +82,8 @@ const routeur = createRouter({
 routeur.afterEach(to => {
   const {lg} = to.query;
   if (lg && typeof lg === 'string') {
-    const {choisirLangues} = utiliserLangues();
-    choisirLangues(lg);
+    const {மொழிகளை_தேர்ந்தெடுக்கொள்ளு} = மொழிகளைப்_பயன்படுத்து();
+    மொழிகளை_தேர்ந்தெடுக்கொள்ளு(lg);
   }
 });
 

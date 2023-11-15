@@ -4,13 +4,13 @@ import {ref} from 'vue';
 import PagePrincipale from './misesEnPage/PagePrincipale.vue';
 import AccueilInitial from './misesEnPage/AccueilInitial.vue';
 import MenuLangues from './components/langues/MenuLangues.vue';
-import {utiliserLangues} from './plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const initialisé = ref(false);
 
 // Direction texte
-const {langueDroiteÀGauche} = utiliserLangues();
-const dàg = langueDroiteÀGauche();
+const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
+const dàg = வலதிலிருந்து_இடது_மொழி();
 </script>
 
 <template>

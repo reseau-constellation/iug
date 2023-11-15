@@ -507,12 +507,11 @@ import type {ClientConstellation} from '@constl/ipa';
 import type {bds, types} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
-import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {computed, inject, ref} from 'vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -554,11 +553,11 @@ const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
-const {t} = useI18n();
-const {traduireNom} = utiliserLangues();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
 // Visualisation
@@ -575,7 +574,7 @@ enregistrerÉcoute(
 
 // Nom de la Bd
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.bds.suivreNomsBd({
@@ -597,7 +596,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 
 // Description de la Bd
 const descriptions = ref<{[lng: string]: string}>({});
-const descrTraduite = traduireNom(descriptions);
+const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 enregistrerÉcoute(
   constl?.bds.suivreDescriptionsBd({

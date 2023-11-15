@@ -11,22 +11,22 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Nom du projet
-const {traduireNom} = utiliserLangues();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.projets.suivreNomsProjet({

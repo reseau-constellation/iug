@@ -135,7 +135,7 @@ import {inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import JetonLicence from '/@/components/licences/JetonLicence.vue';
@@ -160,8 +160,8 @@ const props = defineProps<{id: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();

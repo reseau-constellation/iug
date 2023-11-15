@@ -188,7 +188,7 @@ import {useRouter} from 'vue-router';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
@@ -200,8 +200,8 @@ import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const router = useRouter();
 const {isRtl} = useRtl();
 const {mdAndUp} = useDisplay();

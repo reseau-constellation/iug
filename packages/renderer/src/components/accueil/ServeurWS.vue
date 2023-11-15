@@ -53,10 +53,10 @@
 import {ref, inject, watchEffect} from 'vue';
 
 import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const serveur = inject<GestionnaireServeur>('serveurConstl');
 

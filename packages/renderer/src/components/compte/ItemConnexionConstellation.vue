@@ -27,8 +27,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
@@ -37,15 +36,15 @@ const props = defineProps<{compte: string; dispositifs: réseau.statutDispositif
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
-const {formatterChiffre} = utiliserNumération();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Nom d'utilisatrice
-const {traduireNom} = utiliserLangues();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.profil.suivreNoms({
@@ -55,9 +54,9 @@ enregistrerÉcoute(
 );
 
 // Nombre de dispositifs
-const nDispositifsFormatté = formatterChiffre(computed(() => props.dispositifs.length));
+const nDispositifsFormatté = எண்ணை_வடிவூட்டு(computed(() => props.dispositifs.length));
 const nDispositifsEnLigne = computed(() => {
   return props.dispositifs.filter(d => !d.vuÀ).length;
 });
-const nDispositifsEnLigneFormatté = formatterChiffre(nDispositifsEnLigne);
+const nDispositifsEnLigneFormatté = எண்ணை_வடிவூட்டு(nDispositifsEnLigne);
 </script>

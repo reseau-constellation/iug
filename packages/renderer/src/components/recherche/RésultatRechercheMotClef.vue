@@ -37,17 +37,17 @@ import AuteursObjet from '../communs/AuteursObjet.vue';
 import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {traduireNom} = utiliserLangues();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Source résultat
 const source = computed(() => {
@@ -56,7 +56,7 @@ const source = computed(() => {
 
 // Nom
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.motsClefs.suivreNomsMotClef({
@@ -67,7 +67,7 @@ enregistrerÉcoute(
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
-const descriptionTraduite = traduireNom(descriptions);
+const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 enregistrerÉcoute(
   constl?.motsClefs.suivreDescriptionsMotClef({

@@ -10,7 +10,6 @@ import vuetify from '../vuetify';
 
 import routeur from '../routeur';
 import kilimukku from '../kilimukku';
-import localisation from '../localisation';
 import pinia from '../pinia';
 
 // Types
@@ -22,6 +21,5 @@ export function registerPlugins(app: App) {
   app.use(pinia);
   app.use(vuetify);
   app.use(routeur);
-  app.use(localisation);
   app.use(kilimukku);
 }

@@ -2,7 +2,7 @@
   <v-list-item>
     <template #prepend>
       <v-icon
-        v-if="code === numération"
+        v-if="code === தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு"
         color="primary"
       >
         mdi-check-bold
@@ -19,15 +19,15 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{code: string}>();
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const {numération, formatterChiffre} = utiliserNumération();
+const {தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு, எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const numéroFormatté = formatterChiffre(123.45, props.code);
+const numéroFormatté = எண்ணை_வடிவூட்டு(123.45, props.code);
 </script>

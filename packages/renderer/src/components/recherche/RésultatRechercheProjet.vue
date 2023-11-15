@@ -65,8 +65,8 @@ import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import JetonBd from '../bds/JetonBd.vue';
 
 const props = defineProps<{
@@ -80,9 +80,9 @@ const props = defineProps<{
 
 const constl = inject<ClientConstellation>('constl');
 
-const {traduireNom} = utiliserLangues();
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Sources résultat directes (nom, description, id de la nuée)
 const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {
@@ -148,7 +148,7 @@ const infoSourceBdDirecte = sourceObjetConnexe('bd');
 
 // Nom
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
   constl?.projets.suivreNomsProjet({
@@ -159,7 +159,7 @@ enregistrerÉcoute(
 
 // Descriptions
 const descriptions = ref<{[lng: string]: string}>({});
-const descriptionTraduite = traduireNom(descriptions);
+const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 enregistrerÉcoute(
   constl?.projets.suivreDescriptionsProjet({

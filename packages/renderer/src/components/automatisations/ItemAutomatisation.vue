@@ -26,12 +26,11 @@ import type {automatisation} from '@constl/ipa';
 import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref, onMounted} from 'vue';
-import {VSkeletonLoader} from 'vuetify/labs/VSkeletonLoader';
 
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
@@ -40,7 +39,7 @@ const props = defineProps<{
 const constl = inject<ClientConstellation>('constl');
 
 // Nom
-const {traduireNom} = utiliserLangues();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const noms = ref<{[langue: string]: string}>({});
 
@@ -92,7 +91,7 @@ onMounted(() => {
   }
 });
 
-const nom = traduireNom(noms);
+const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Icône
 const icôneTypeObjet = computed(() => {

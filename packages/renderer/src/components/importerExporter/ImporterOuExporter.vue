@@ -73,7 +73,7 @@
                 color="primary"
                 :disabled="
                   surNavigateur &&
-                  (cheminement === 'exportation' || origineImportation === 'fichier')
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
                 "
               >
                 {{ t('communs.importerOuExporter.automatiser') }}
@@ -137,12 +137,12 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 import {enregistrerÉcouteDynamique} from '../utils';
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const {mdAndUp} = useDisplay();
 

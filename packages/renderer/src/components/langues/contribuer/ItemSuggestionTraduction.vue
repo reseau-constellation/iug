@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import type {ClientConstellation} from '@constl/ipa';
 
-import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '/@/plugins/kilimukku/கிளிமூக்கு';
+import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 
 import {computed, inject, ref} from 'vue';
 

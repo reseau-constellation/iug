@@ -83,12 +83,12 @@
 <script setup lang="ts">
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import type {ClientConstellation} from '@constl/ipa';
 
 import type {bds} from '@constl/ipa';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {GABARIT_CODE} from '/@/consts';
 
 import axios from 'axios';
@@ -97,9 +97,9 @@ import {fileSave} from 'browser-fs-access';
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {langue} = utiliserLangues();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொழி} = மொழிகளைப்_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const props = defineProps<{idNuee: string}>();
 const {mdAndUp} = useDisplay();
@@ -195,7 +195,7 @@ const tableaux = computed(() => {
 const langagesSupportés = ['ts', 'js'] as const;
 const langage = ref<(typeof langagesSupportés)[number]>('ts');
 
-const langueCode = ref<string>(langue.value);
+const langueCode = ref<string>(மொழி.value);
 
 const licenceDéfaut = ref('ODbl-1_0');
 const motsClefNuée = ref<string[]>([]);
@@ -307,7 +307,7 @@ const codeTypesTs = computed(() => {
   return `
 export type entréeDonnéesMonProjet = {
   ${cols.map(
-    c => '[codeColonne' + c.idColonne + ']' + (c.optionnel ? '?' : '') + ': string;',
+    c => '[codeColonne' + c.idColonne + ']' + (c.optionnelle ? '?' : '') + ': string;',
   )} // À faire: type de colonne dynamique
 };
 

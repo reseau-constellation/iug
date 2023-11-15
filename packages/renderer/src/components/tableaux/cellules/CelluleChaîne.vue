@@ -14,7 +14,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
@@ -23,7 +23,7 @@ const props = defineProps<{val: string}>();
 
 const constl = inject<ClientConstellation>('constl');
 
-const {traduireNom} = utiliserLangues();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Texte traduit
 const textes = ref<{[langue: string]: string}>({});
@@ -33,5 +33,5 @@ enregistrerÉcoute(
     f: x => (textes.value = x as {[langue: string]: string}),
   }),
 );
-const texteTraduit = traduireNom(textes);
+const texteTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(textes);
 </script>

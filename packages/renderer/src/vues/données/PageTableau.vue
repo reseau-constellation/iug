@@ -114,9 +114,9 @@ import type {ClientConstellation} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+
 import {enregistrerÉcoute} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -130,11 +130,11 @@ const props = defineProps<{idTableau: string; idBd: string}>();
 const constl = inject<ClientConstellation>('constl');
 
 const {obtImageDéco} = utiliserImagesDéco();
-const {useI18n} = கிளிமூக்கை_உபயோகி();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
-const {traduireNom} = utiliserLangues();
-const {t} = useI18n();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Navigation
 const petitPousset = computed<{title: string; href?: string; disabled?: boolean}[]>(() => [
@@ -154,7 +154,7 @@ enregistrerÉcoute(
 
 // Nom du tableau
 const nomsTableau = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(nomsTableau);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 enregistrerÉcoute(
   constl?.tableaux.suivreNomsTableau({
@@ -179,7 +179,7 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
 
 // Nom de la BD
 const nomsBd = ref<{[lng: string]: string}>({});
-const nomTraduitBd = traduireNom(nomsBd);
+const nomTraduitBd = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsBd);
 
 enregistrerÉcoute(
   constl?.bds.suivreNomsBd({

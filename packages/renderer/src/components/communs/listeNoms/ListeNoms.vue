@@ -76,13 +76,15 @@ import {v4 as uuidv4} from 'uuid';
 
 import ItemNom from './ItemNom.vue';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, useI18n} = கிளிமூக்கை_உபயோகி();
 
-const {t} = useI18n();
-const {languesEtCodes, nomLangue} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+
 const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
@@ -119,7 +121,7 @@ watchEffect(() => {
 
 // Langues
 const languesDisponibles = computed(() => {
-  return languesEtCodes.value.filter(x => !listeNoms.value.some(n => n.lng === x.code));
+  return மொழிகளும்_குறியீடுகளும்.value.filter(x => !listeNoms.value.some(n => n.lng === x.குறியீடு));
 });
 
 // Changements
@@ -152,10 +154,10 @@ const effacerNom = ({id}: {id: string}) => {
 // Ajouts
 const nouveauNom = ref<string>();
 const nouvelleLangue = ref<string>();
-const nomNouvelleLangue = nomLangue(nouvelleLangue);
+const nomNouvelleLangue = மொழியின்_பெயர்(nouvelleLangue);
 
 watchEffect(() => {
-  if (nouvelleLangue.value === undefined) nouvelleLangue.value = languesDisponibles.value[0]?.code;
+  if (nouvelleLangue.value === undefined) nouvelleLangue.value = languesDisponibles.value[0]?.குறியீடு;
 });
 
 const règlesNouveauNom = computed<string[] | undefined>(() => {

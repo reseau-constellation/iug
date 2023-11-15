@@ -14,8 +14,8 @@ import {
 } from 'vue';
 
 import {enregistrerÉcoute} from '../utils';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserNumération} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
   switch (type) {
@@ -42,8 +42,8 @@ export const utiliserNomEtTypeDispositif = ({
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
   const constl = inject<ClientConstellation>('constl');
-  const {useI18n} = கிளிமூக்கை_உபயோகி();
-  const {t} = useI18n();
+  const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+  const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
   const monCompte = ref<string>();
   enregistrerÉcoute(
@@ -153,7 +153,7 @@ export const utiliserIlYA = ({
   texte: ComputedRef<string>;
   ilYAMs: ComputedRef<number | undefined>;
 } => {
-  const {formatterChiffre} = utiliserNumération();
+  const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
   // Chronomètre
   const maintenant = ref(new Date().getTime());
@@ -195,7 +195,7 @@ export const utiliserIlYA = ({
     return {ilYA: 0, texte: clefs.ilYALongtemps};
   });
 
-  const vuIlYAFormatté = formatterChiffre(computed(() => info.value.ilYA || 0));
+  const vuIlYAFormatté = எண்ணை_வடிவூட்டு(computed(() => info.value.ilYA || 0));
   const texte = computed(() => {
     if (info.value.ilYA) {
       return t(info.value.texte, {n: vuIlYAFormatté.value}, info.value.ilYA);

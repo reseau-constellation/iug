@@ -85,7 +85,7 @@
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import type {ClientConstellation} from '@constl/ipa';
 
@@ -93,7 +93,7 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {enregistrerÉcoute} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import {utiliserLangues} from '/@/plugins/localisation/localisation';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import OngletConnexions from '/@/components/compte/OngletConnexions.vue';
 import OngletThème from '/@/components/compte/OngletThème.vue';
@@ -107,8 +107,8 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {mdAndUp} = useDisplay();
 
 // Mon ID compte
@@ -146,10 +146,10 @@ const sauvegarderImage = async (image?: {contenu: ArrayBuffer; fichier: string})
 };
 
 // Nom profil
-const {traduireNom} = utiliserLangues();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const noms = ref<{[lng: string]: string}>({});
-const nomTraduit = traduireNom(noms);
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 enregistrerÉcoute(
   constl?.profil.suivreNoms({
     f: x => (noms.value = x),

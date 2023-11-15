@@ -65,7 +65,7 @@
           <v-divider class="mb-4" />
           <v-autocomplete
             v-model="langueChoisie"
-            :items="codesLanguesDisponibles"
+            :items="கிடைக்கும்_மொழி_குறியீடுகள்"
             :label="t('pages.compte.options.langue')"
             variant="outlined"
             density="compact"
@@ -77,7 +77,7 @@
               <item-langue
                 v-bind="props"
                 :code="item.value"
-                :selectionnee="item.value === langue"
+                :selectionnee="item.value === மொழி"
               />
             </template>
             <template #selection="{item}">
@@ -86,7 +86,7 @@
           </v-autocomplete>
           <v-autocomplete
             v-model="choixNumération"
-            :items="[null, ...systèmesNumération]"
+            :items="[null, ...எண்ணுரு_முறைமைகள்]"
             :label="t('compte.options.numération')"
             variant="outlined"
             density="compact"
@@ -113,8 +113,7 @@
 import {ref, watchEffect, watch} from 'vue';
 import {useTheme} from 'vuetify';
 
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
-import {utiliserLangues, utiliserNumération} from '/@/plugins/localisation/localisation';
+import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து, எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import {utiliserÉtatThème} from '/@/état/thème';
 
@@ -123,10 +122,13 @@ import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemNumération from '/@/components/langues/ItemNumération.vue';
 import JetonNumération from '/@/components/langues/JetonNumération.vue';
 
-const {useI18n, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_உபயோகி();
-const {langue, choisirLangues} = utiliserLangues();
-const {numération, systèmesNumération} = utiliserNumération();
-const {t} = useI18n();
+const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு} = மொழிகளைப்_பயன்படுத்து();
+
+const {தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு, எண்ணுரு_முறைமைகள்} = எண்களைப்_பயன்படுத்து();
+
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+
 
 // Thème
 const état = utiliserÉtatThème();
@@ -145,16 +147,16 @@ watchEffect(() => {
 });
 
 // Langues
-const langueChoisie = ref(langue.value);
-const {codesLanguesDisponibles} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const langueChoisie = ref(மொழி.value);
+const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
 
 watchEffect(() => {
-  langueChoisie.value = langue.value;
+  langueChoisie.value = மொழி.value;
 });
 watch(langueChoisie, () => {
-  if (langue.value !== langueChoisie.value) choisirLangues(langueChoisie.value);
+  if (மொழி.value !== langueChoisie.value) மொழிகளை_தேர்ந்தெடுக்கொள்ளு(langueChoisie.value);
 });
 
 // Numération
-const choixNumération = ref(numération.value);
+const choixNumération = ref(தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு.value);
 </script>

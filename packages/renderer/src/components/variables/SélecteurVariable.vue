@@ -49,7 +49,7 @@ import JetonVariable from './JetonVariable.vue';
 import {enregistrerRecherche} from '/@/components/utils';
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import NouvelleVariable from './NouvelleVariable.vue';
-import {கிளிமூக்கை_உபயோகி} from '/@/plugins/kilimukku/kilimukku-vue';
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 defineProps<{interdites?: string[]}>();
 const émettre = defineEmits<{
@@ -58,8 +58,8 @@ const émettre = defineEmits<{
 
 const constl = inject<ClientConstellation>('constl');
 
-const {useI18n} = கிளிமூக்கை_உபயோகி();
-const {t} = useI18n();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Recherche
 const variableChoisie = ref<string>();
