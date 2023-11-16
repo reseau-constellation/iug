@@ -46,5 +46,5 @@ const progrèsPourcentage = computed(() => {
     (மொழி_முன்னேற்றம்.value?.அங்கீகரிக்கப்பட்டவை || 0) / (மொழி_முன்னேற்றம்.value?.மொத்தம் || 0)
   );
 });
-const nom = மொழியின்_பெயர்(props.code).value;
+const nom = மொழியின்_பெயர்(props.code);
 </script>
