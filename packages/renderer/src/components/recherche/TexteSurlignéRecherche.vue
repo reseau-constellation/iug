@@ -16,7 +16,7 @@ import { கிளிமூக்கை_பயன்படுத்து } from
 const props = defineProps<{info: types.infoRésultatTexte; maxTaille?: number}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const TAILLE_MIN_TEXTE_AVANT = 4;
 

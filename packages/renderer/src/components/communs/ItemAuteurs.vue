@@ -18,7 +18,7 @@ import { கிளிமூக்கை_பயன்படுத்து } from
 import ImageProfil from './ImageProfil.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const props = defineProps<{auteurs: types.infoAuteur[] | undefined}>();
 

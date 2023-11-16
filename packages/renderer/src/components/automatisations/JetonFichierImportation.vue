@@ -31,7 +31,7 @@ const props = defineProps<{
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const constl = inject<ClientConstellation>('constl');
 
 // Statut source

@@ -99,7 +99,7 @@ const constl = inject<ClientConstellation>('constl');
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி} = மொழிகளைப்_பயன்படுத்து();
-const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const props = defineProps<{idNuee: string}>();
 const {mdAndUp} = useDisplay();

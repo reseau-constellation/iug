@@ -142,7 +142,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 const constl = inject<ClientConstellation>('constl');
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {mdAndUp} = useDisplay();
 
 // Dispositifs
