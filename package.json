@@ -75,6 +75,7 @@
     "@constl/mandataire-electron-rendu": "^0.2.14",
     "@constl/serveur": "^0.3.5",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
+    "@highlightjs/vue-plugin": "^2.1.0",
     "@lassi-js/kili": "^0.3.4",
     "@lassi-js/kilimukku": "^1.0.3",
     "@lassi-js/kilimukku-vue": "^1.0.11",
