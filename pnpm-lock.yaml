@@ -9,20 +9,20 @@ dependencies:
     specifier: 1.0.8
     version: 1.0.8
   '@constl/ipa':
-    specifier: 0.9.16
-    version: 0.9.16(wrtc@0.4.7)
+    specifier: 0.9.17
+    version: 0.9.17(wrtc@0.4.7)
   '@constl/mandataire':
     specifier: ^0.1.15
     version: 0.1.15
   '@constl/mandataire-electron-principal':
     specifier: ^0.2.14
-    version: 0.2.14(@constl/ipa@0.9.16)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.0.2)
+    version: 0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.0.2)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.2.14
     version: 0.2.14
   '@constl/serveur':
     specifier: ^0.3.5
-    version: 0.3.5(@constl/ipa@0.9.16)
+    version: 0.3.5(@constl/ipa@0.9.17)
   '@esbuild-plugins/node-globals-polyfill':
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.19.5)
@@ -31,7 +31,7 @@ dependencies:
     version: 2.1.0(highlight.js@11.9.0)(vue@3.3.8)
   '@lassi-js/kili':
     specifier: ^0.3.4
-    version: 0.3.4(@constl/ipa@0.9.16)
+    version: 0.3.4(@constl/ipa@0.9.17)
   '@lassi-js/kilimukku':
     specifier: ^1.0.3
     version: 1.0.3(wrtc@0.4.7)
@@ -67,7 +67,7 @@ dependencies:
     version: 6.1.4
   ennikkai:
     specifier: ^2.2.5
-    version: 2.2.5(@constl/ipa@0.9.16)
+    version: 2.2.5(@constl/ipa@0.9.17)
   events:
     specifier: ^3.3.0
     version: 3.3.0
@@ -91,7 +91,7 @@ dependencies:
     version: 4.6.1
   nuchabal:
     specifier: ^3.1.8
-    version: 3.1.8(@constl/ipa@0.9.16)
+    version: 3.1.8(@constl/ipa@0.9.17)
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.8)
@@ -619,8 +619,8 @@ packages:
       - supports-color
     dev: false
 
-  /@constl/ipa@0.9.16(wrtc@0.4.7):
-    resolution: {integrity: sha512-S+EW4FToU0ZzZrSiO0p7RNN2+2iDHRH80UFoQA/omz4LM948oQlAq7oVOzjVLIpmGfAvgbsS4cKrJFjpakTFcQ==}
+  /@constl/ipa@0.9.17(wrtc@0.4.7):
+    resolution: {integrity: sha512-J+PykHLsig4XQm/oCo2OuYz/hcJ0k48KLGgI7g//CU26sfnRfuOrdNAdxjPdxnIIQje1qW10xEFgnMJbQij2yA==}
     engines: {node: '>=20'}
     peerDependencies:
       wrtc: ^0.4.7
@@ -635,7 +635,7 @@ packages:
       '@constl/orbit-db-kuiper': 0.0.2
       '@constl/utils-ipa': 0.2.4
       '@ipld/dag-cbor': 9.0.6
-      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.16)
+      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.17)
       '@libp2p/interface-transport': 4.0.3
       '@libp2p/mplex': 8.0.4
       '@libp2p/tcp': 7.0.3
@@ -653,7 +653,7 @@ packages:
       crypto-js: 4.2.0
       deep-equal: 2.2.3
       deepcopy: 2.1.0
-      ennikkai: 2.2.5(@constl/ipa@0.9.16)
+      ennikkai: 2.2.5(@constl/ipa@0.9.17)
       events: 3.3.0
       genversion: 3.1.1
       geojson-validation: 1.0.2
@@ -682,7 +682,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.16)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.0.2):
+  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.0.2):
     resolution: {integrity: sha512-n2w2akrrcuBS1L1lUXYf9uY9JjQ8OCiBUuWl2gbGJH4OMqPXRtinNXyHO52LRu3Pb2PDamL+vWn2BT1gYkckNg==}
     peerDependencies:
       '@constl/ipa': ^0.9.16
@@ -690,9 +690,9 @@ packages:
       '@constl/serveur': ^0.3.5
       electron: ^27.0.4
     dependencies:
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
       '@constl/mandataire': 0.1.15
-      '@constl/serveur': 0.3.5(@constl/ipa@0.9.16)
+      '@constl/serveur': 0.3.5(@constl/ipa@0.9.17)
       electron: 27.0.2
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
@@ -727,7 +727,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/serveur@0.3.5(@constl/ipa@0.9.16):
+  /@constl/serveur@0.3.5(@constl/ipa@0.9.17):
     resolution: {integrity: sha512-hm/B7zXE0ZQX77i5Q0Rtd56HbJPi6KIW0mhB2A4/6CCKvAEouQ1CnB2t0/Mm0krCxP30TkfAJDps6z/FtjKifA==}
     engines: {node: '>=20'}
     hasBin: true
@@ -735,7 +735,7 @@ packages:
       '@constl/ipa': ^0.9.8
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.12
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
       bufferutil: 4.0.8
       chalk: 5.3.0
       core-js: 3.33.2
@@ -1093,6 +1093,7 @@ packages:
   /@herbcaudill/crypto@0.1.14:
     resolution: {integrity: sha512-6S4OEO4iB54jpAvPz5BU1qUpK5XXLAJxU0NNkSuZLmdIVHkaZTPAcJsdEnNC40tPQ2xjdJt57palGfsNqXAtMA==}
     engines: {node: '>=10'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     dependencies:
       '@stablelib/base64': 1.0.1
       '@stablelib/utf8': 1.0.1
@@ -1213,12 +1214,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@lassi-js/kili@0.3.4(@constl/ipa@0.9.16):
+  /@lassi-js/kili@0.3.4(@constl/ipa@0.9.17):
     resolution: {integrity: sha512-1GxEwC4FZDGWNzRAQMt3av1bNEGIaUvec0Bjw8ML06ToQFF21BzztGMem66wubFl0yNxST/FVQTGiiMRiJNq2g==}
     peerDependencies:
       '@constl/ipa': ^0.9.15
     dependencies:
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
       '@constl/utils-ipa': 0.2.4
       '@orbitdb/core': 1.0.0
       deepcopy: 2.1.0
@@ -1232,13 +1233,13 @@ packages:
       vue: ^3.3.8
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.8
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
-      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.16)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.17)
       '@lassi-js/kilimukku': 1.0.3(wrtc@0.4.7)
-      ennikkai: 2.2.5(@constl/ipa@0.9.16)
+      ennikkai: 2.2.5(@constl/ipa@0.9.17)
       js-cookie: 3.0.5
       lodash: 4.17.21
-      nuchabal: 3.1.8(@constl/ipa@0.9.16)
+      nuchabal: 3.1.8(@constl/ipa@0.9.17)
       uuid: 9.0.1
       vue: 3.3.8(typescript@5.2.2)
     transitivePeerDependencies:
@@ -1254,8 +1255,8 @@ packages:
     resolution: {integrity: sha512-3QDdRP2TFTsfo1PbwOzQcDsHciHIhiixfGBI8pqtPCkYRaOUdrXZWkCGhwD6FylXoLa3G4Ni7NbYH+GO4la2UQ==}
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.8
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
-      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.16)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.17)
       uuid: 9.0.1
     transitivePeerDependencies:
       - bufferutil
@@ -4708,13 +4709,13 @@ packages:
     resolution: {integrity: sha512-9JktcM3u18nU9N2Lz3bWeBgxVgOKpw7yhRaoxQA3FUDZzzw+9WlA6p4G4u0RixNkg14fH7EfEc/RhpurtiROTQ==}
     engines: {node: '>=10.0.0'}
 
-  /ennikkai@2.2.5(@constl/ipa@0.9.16):
+  /ennikkai@2.2.5(@constl/ipa@0.9.17):
     resolution: {integrity: sha512-zzyBrfQlzTJKv9OhzdC4+QbqIaqOsmjsJf4lxqGF6PSuDaPDJewKSUOEcE90sOU3rcMWE9IFtxwgCq+Jw4t7lA==}
     peerDependencies:
       '@constl/ipa': ^0.9.6
     dependencies:
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
-      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.16)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.17)
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
@@ -7628,13 +7629,13 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal@3.1.8(@constl/ipa@0.9.16):
+  /nuchabal@3.1.8(@constl/ipa@0.9.17):
     resolution: {integrity: sha512-DoTViqE8cAAn8aRWgIQWcK1q4KswRYbaIYvwn6objPGebgIgXh+bi5Mqu3Gkz1n52Q0GTmcNxE4Le/HHtIR7cw==}
     peerDependencies:
       '@constl/ipa': ^0.9.13
     dependencies:
-      '@constl/ipa': 0.9.16(wrtc@0.4.7)
-      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.16)
+      '@constl/ipa': 0.9.17(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.4(@constl/ipa@0.9.17)
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
