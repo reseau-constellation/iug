@@ -1,3 +1,4 @@
+name: Formatter
 on:
   workflow_dispatch:
   push:
