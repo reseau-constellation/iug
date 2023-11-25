@@ -133,8 +133,7 @@
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="
-          (x: types.élémentsBd[]) =>
-            modifierÉlément({idÉlément: item.id, col: c.key, val: x})
+          (x: types.élémentsBd[]) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
       <CelluleChaîneNonTraductible
@@ -142,54 +141,42 @@
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: string) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: string) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleNumérique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleHoroDatage
         v-else-if="c.info.catégorie?.catégorie === 'horoDatage'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleIntervaleTemps
         v-else-if="c.info.catégorie?.catégorie === 'intervaleTemps'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleBooléenne
         v-else-if="c.info.catégorie?.catégorie === 'booléen'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <celluleChaîne
         v-else-if="c.info.catégorie?.catégorie === 'chaîne'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
 
       <celluleGéoJSON
@@ -197,45 +184,35 @@
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleVidéo
         v-else-if="c.info.catégorie?.catégorie === 'vidéo'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleAudio
         v-else-if="c.info.catégorie?.catégorie === 'audio'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleImage
         v-else-if="c.info.catégorie?.catégorie === 'image'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
       <CelluleFichier
         v-else-if="c.info.catégorie?.catégorie === 'fichier'"
         :val="item.données[c.key]"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="
-          (x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
-        "
+        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
     </template>
   </v-data-table>
@@ -251,7 +228,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject, computed} from 'vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';

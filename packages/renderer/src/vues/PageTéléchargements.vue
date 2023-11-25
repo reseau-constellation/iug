@@ -59,7 +59,7 @@ import {computed, onMounted, ref} from 'vue';
 import {ouvrirLien} from '/@/utils';
 
 import {URL_TÉLÉCHARGEMENTS, IPA_TÉLÉCHARGEMENTS} from '/@/consts';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TitrePage from '../components/communs/TitrePage.vue';
 import CarteFichierTelechargement from '../components/téléchargements/CarteFichierTéléchargement.vue';
 

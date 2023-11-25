@@ -510,7 +510,7 @@ import {useDisplay, useRtl} from 'vuetify';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {computed, inject, ref} from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';

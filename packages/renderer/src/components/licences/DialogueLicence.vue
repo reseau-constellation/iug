@@ -163,7 +163,7 @@ import JetonDroit from './JetonDroitLicence.vue';
 import JetonLimitation from './JetonLimitationLicence.vue';
 import JetonCondition from './JetonConditionLicence.vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
 import {enregistrerÉcoute} from '/@/components/utils';
 

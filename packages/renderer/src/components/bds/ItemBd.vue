@@ -39,7 +39,7 @@ import {ref, inject, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';

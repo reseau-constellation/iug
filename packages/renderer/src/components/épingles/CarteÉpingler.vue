@@ -176,7 +176,7 @@ import {type favoris} from '@constl/ipa';
 import {inject, ref, computed, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';

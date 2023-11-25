@@ -44,7 +44,7 @@ import ItemVariable from '../variables/ItemVariable.vue';
 import JetonVariable from '../variables/JetonVariable.vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{id: string}>();

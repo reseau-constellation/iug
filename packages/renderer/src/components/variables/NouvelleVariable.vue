@@ -119,7 +119,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';

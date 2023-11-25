@@ -53,7 +53,7 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const {mdAndUp} = useDisplay();
 

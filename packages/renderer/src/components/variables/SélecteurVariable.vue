@@ -49,7 +49,7 @@ import JetonVariable from './JetonVariable.vue';
 import {enregistrerRecherche} from '/@/components/utils';
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import NouvelleVariable from './NouvelleVariable.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 defineProps<{interdites?: string[]}>();
 const émettre = defineEmits<{

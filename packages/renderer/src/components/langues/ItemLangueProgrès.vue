@@ -31,7 +31,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 const props = defineProps<{code: string; selectionnee: boolean}>();
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழி_முன்னேற்றத்தை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

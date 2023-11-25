@@ -95,7 +95,7 @@ import type {Ref} from 'vue';
 import {inject, ref, computed} from 'vue';
 
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerRecherche} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
@@ -150,8 +150,8 @@ enregistrerRecherche({
           a.résultatObjectif.score > b.résultatObjectif.score
             ? -1
             : a.résultatObjectif.score < b.résultatObjectif.score
-            ? 1
-            : 0,
+              ? 1
+              : 0,
         )),
     }),
   fRechercheDéfaut: async ({
@@ -168,8 +168,8 @@ enregistrerRecherche({
           a.résultatObjectif.score > b.résultatObjectif.score
             ? -1
             : a.résultatObjectif.score < b.résultatObjectif.score
-            ? 1
-            : 0,
+              ? 1
+              : 0,
         )),
     }),
 });

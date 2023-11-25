@@ -121,7 +121,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {type Ref, watchEffect} from 'vue';
 
 import {inject, ref} from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {MultiChercheur} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 

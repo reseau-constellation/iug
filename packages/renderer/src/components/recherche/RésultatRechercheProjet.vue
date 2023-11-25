@@ -66,7 +66,7 @@ import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonBd from '../bds/JetonBd.vue';
 
 const props = defineProps<{

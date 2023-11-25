@@ -28,9 +28,9 @@ import {computed} from 'vue';
 
 import {copier, ouvrirLien} from '/@/utils';
 
-import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {obtIcôneContact} from './utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{type: string; contact: string}>();
 

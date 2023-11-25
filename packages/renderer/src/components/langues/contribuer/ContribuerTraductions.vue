@@ -340,7 +340,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 import type {ClientConstellation} from '@constl/ipa';
 
-import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';
 
@@ -430,7 +430,9 @@ watch(clefSélectionnée, () => {
   suggestion.value = '';
 });
 
-const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளை_பயன்படுத்து({});
+const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளை_பயன்படுத்து(
+  {},
+);
 const traductionsApprouvéesLangueCible = computed(() => {
   const {value: lngCible} = langueCible;
   return (

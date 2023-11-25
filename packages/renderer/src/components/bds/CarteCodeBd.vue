@@ -5,12 +5,12 @@
 const props = defineProps<{id: string}>();
 
 const codes = {
-    'ts': `
+  ts: `
 client.bds.suivreDonnéesExportation({
 
 })
 `,
-    'py': `
+  py: `
 ${props.id}
 `,
 };

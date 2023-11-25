@@ -6,7 +6,7 @@
 const props = defineProps<{id: string}>();
 const port = 5000;
 const codes = {
-    'ts': `
+  ts: `
 const analyser = async (données) => {
     console.log(données) // Faire quelque chose de plus intelligent ici :)
 }
@@ -16,13 +16,13 @@ const fOublierDonnées = await client.tableaux.suivreDonnéesExportation({
     f: analyser
 });
 `,
-    'julia': `
+  julia: `
 
 `,
-    'R': `
+  R: `
 
 `,
-    'py': `
+  py: `
 import trio
 from constellationPy import ouvrir_client
 
@@ -37,7 +37,7 @@ async def principale():
 
 trio.run(principale)
 `,
-    'py:sync': `
+  'py:sync': `
 from constellationPy import ClientSync
 
 client = ClientSync(${port})

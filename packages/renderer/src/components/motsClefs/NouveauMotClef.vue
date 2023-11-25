@@ -97,7 +97,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {useDisplay} from 'vuetify';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const constl = inject<ClientConstellation>('constl');
 

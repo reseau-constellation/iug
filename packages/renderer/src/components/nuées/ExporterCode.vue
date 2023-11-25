@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import type {ClientConstellation} from '@constl/ipa';
 
 import type {bds} from '@constl/ipa';

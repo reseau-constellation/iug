@@ -25,8 +25,8 @@
 import {computed, ref} from 'vue';
 import {ouvrirLien} from '/@/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {watchEffect} from 'vue';
 
 const props = defineProps<{url: string; version: string; nom: string}>();

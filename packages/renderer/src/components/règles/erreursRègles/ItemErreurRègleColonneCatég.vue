@@ -37,7 +37,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import type {valid} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';

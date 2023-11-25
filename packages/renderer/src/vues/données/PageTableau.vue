@@ -114,7 +114,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
-import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
 import {enregistrerÉcoute} from '/@/components/utils';

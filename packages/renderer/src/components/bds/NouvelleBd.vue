@@ -188,7 +188,7 @@ import {useRouter} from 'vue-router';
 
 import {v4 as uuidv4} from 'uuid';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
@@ -309,8 +309,8 @@ const retour = () => {
         cheminement.value === 'bd'
           ? 'gabaritBd'
           : cheminement.value === 'nuée'
-          ? 'gabaritNuée'
-          : 'motsClefs',
+            ? 'gabaritNuée'
+            : 'motsClefs',
       );
       break;
 

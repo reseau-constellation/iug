@@ -203,7 +203,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {ref, inject} from 'vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import TitrePage from '../../components/communs/TitrePage.vue';

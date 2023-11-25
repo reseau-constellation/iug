@@ -58,7 +58,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import {enregistrerÉcoute} from '../utils';
 import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteEffacer from '../communs/CarteEffacer.vue';
 import {computed} from 'vue';
 

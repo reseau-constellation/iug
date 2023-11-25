@@ -137,7 +137,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 import {enregistrerÉcouteDynamique} from '../utils';
 
@@ -227,8 +227,8 @@ const retour = () => {
         cheminementAjouterAutomatisation.value
           ? 'dispositif'
           : cheminement.value === 'importation'
-          ? 'correspondancesImportation'
-          : 'formatDocExportation',
+            ? 'correspondancesImportation'
+            : 'formatDocExportation',
       );
       break;
 

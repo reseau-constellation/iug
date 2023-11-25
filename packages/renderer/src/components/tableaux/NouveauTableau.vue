@@ -80,7 +80,7 @@ import {useDisplay} from 'vuetify';
 
 import type {tableaux as tblx, valid} from '@constl/ipa';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 

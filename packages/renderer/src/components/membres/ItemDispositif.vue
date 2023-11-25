@@ -33,7 +33,7 @@ import {computed, inject, ref} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {obtIcôneDispositifDeType, utiliserIlYA, utiliserNomEtTypeDispositif} from './utils';
 import JetonMembre from './JetonMembre.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {onMounted} from 'vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();

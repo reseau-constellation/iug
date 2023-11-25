@@ -175,7 +175,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';

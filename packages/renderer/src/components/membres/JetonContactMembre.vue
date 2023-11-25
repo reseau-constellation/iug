@@ -10,7 +10,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {obtIcôneContact} from './utils';
 

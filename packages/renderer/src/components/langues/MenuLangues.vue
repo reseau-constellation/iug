@@ -59,7 +59,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import type {ClientConstellation} from '@constl/ipa';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {inject, ref} from 'vue';
 

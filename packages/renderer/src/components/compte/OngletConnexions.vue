@@ -73,7 +73,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
 import ItemConnexionSFIP from './ItemConnexionSFIP.vue';
 import CarteMembre from '../membres/CarteMembre.vue';

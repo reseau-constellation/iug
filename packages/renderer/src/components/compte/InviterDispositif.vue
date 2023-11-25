@@ -156,7 +156,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {computed, inject, ref} from 'vue';
 
 import QrcodeVue from 'qrcode.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay, useRtl} from 'vuetify/lib/framework.mjs';
 import {watchEffect} from 'vue';
 

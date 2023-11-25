@@ -50,7 +50,7 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

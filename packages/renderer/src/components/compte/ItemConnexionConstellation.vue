@@ -27,7 +27,11 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';
-import { கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {
+  கிளிமூக்கை_பயன்படுத்து,
+  எண்களைப்_பயன்படுத்து,
+  மொழிகளைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonConfiance from '/@/components/membres/JetonConfiance.vue';

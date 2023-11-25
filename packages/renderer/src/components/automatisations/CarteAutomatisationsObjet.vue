@@ -79,7 +79,7 @@ import {computed, ref, inject, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
 import ImporterOuExporter from '../importerExporter/ImporterOuExporter.vue';

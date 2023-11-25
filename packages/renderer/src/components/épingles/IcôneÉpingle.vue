@@ -14,7 +14,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import type {favoris} from '@constl/ipa';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {inject, ref, computed} from 'vue';
 import {enregistrerÉcoute} from '/@/components/utils';

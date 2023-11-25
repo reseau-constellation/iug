@@ -125,10 +125,10 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {enregistrerÉcoute} from '../utils';
 
-import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
