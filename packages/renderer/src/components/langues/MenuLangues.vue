@@ -13,11 +13,7 @@
       min-width="225"
       :location="isRtl ? 'bottom right' : 'bottom left'"
     >
-      <v-list
-        class="overflow-y-auto"
-        max-height="500px"
-        min-width="200px"
-      >
+      <v-list>
         <ContribuerTraductions>
           <template #activator="{props}">
             <v-list-item
@@ -32,7 +28,7 @@
               </v-list-item-title>
             </v-list-item>
           </template>
-        </ContribuerTraductions>
+        </ContribuerTraductions> 
         <v-progress-linear
           v-if="!constellationPrète"
           height="1"
@@ -40,13 +36,19 @@
           :indeterminate="!constellationPrète"
         ></v-progress-linear>
         <v-divider v-else />
-        <item-langue
-          v-for="code in கிடைக்கும்_மொழி_குறியீடுகள்"
-          :key="code"
-          :code="code"
-          :selectionnee="code === மொழி"
-          @click="() => மொழிகளை_தேர்ந்தெடுக்கொள்ளு(code)"
-        />
+        <v-list
+          class="overflow-y-auto"
+          max-height="500px"
+          min-width="200px"
+        >
+          <item-langue
+            v-for="code in கிடைக்கும்_மொழி_குறியீடுகள்"
+            :key="code"
+            :code="code"
+            :selectionnee="code === மொழி"
+            @click="() => மொழிகளை_தேர்ந்தெடுக்கொள்ளு(code)"
+          />
+        </v-list>
       </v-list>
     </v-menu>
   </v-btn>
