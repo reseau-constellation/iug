@@ -208,8 +208,7 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-import type {réseau} from '@constl/ipa';
+import type {ClientConstellation, réseau} from '@constl/ipa';
 
 import {computed, ref, inject} from 'vue';
 import {useDisplay} from 'vuetify';
