@@ -28,7 +28,7 @@
               </v-list-item-title>
             </v-list-item>
           </template>
-        </ContribuerTraductions> 
+        </ContribuerTraductions>
         <v-progress-linear
           v-if="!constellationPrète"
           height="1"
