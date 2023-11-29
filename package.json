@@ -45,7 +45,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "@vitejs/plugin-vue": "4.4.0",
     "@vitest/coverage-istanbul": "^0.34.6",
-    "@vue/test-utils": "2.4.1",
+    "@vue/test-utils": "2.4.3",
     "cross-env": "7.0.3",
     "electron": "27.0.2",
     "electron-builder": "24.6.4",
