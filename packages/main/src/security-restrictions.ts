@@ -9,6 +9,7 @@ type Permissions =
   | 'mediaKeySystem'
   | 'geolocation'
   | 'idle-detection'
+  | 'keyboardLock'
   | 'notifications'
   | 'midi'
   | 'midiSysex'
