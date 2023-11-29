@@ -55,8 +55,6 @@ jobs:
 
       - run: pnpm run lint
 
-  # This job just check code style for in-template contributions.
-  code-style:
     runs-on: ubuntu-latest
 
     steps:
