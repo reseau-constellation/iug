@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang="ts">
+import CarteCode from '/@/components/communs/CarteCode.vue';
+
 const props = defineProps<{id: string}>();
 const port = 5000;
 const codes = {

@@ -60,14 +60,13 @@
         <CarteEpingler :id="id">
           <template #activator="{props: propsActivateurCarte}">
             <v-tooltip
-              v-bind="propsActivateurCarte"
               open-delay="200"
               location="bottom"
               :text="t('communs.épingler')"
             >
               <template #activator="{props: propsActivateurIndice}">
                 <v-btn
-                  v-bind="propsActivateurIndice"
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
                   icon
                   variant="flat"
                 >
@@ -84,14 +83,13 @@
         >
           <template #activator="{props: propsActivateurCarte}">
             <v-tooltip
-              v-bind="propsActivateurCarte"
               :text="t('exporter.indice')"
               :open-delay="200"
               location="bottom"
             >
               <template #activator="{props: propsActivateurIndice}">
                 <v-btn
-                  v-bind="propsActivateurIndice"
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
                   icon="mdi-download"
                   variant="flat"
                 />
@@ -99,17 +97,35 @@
             </v-tooltip>
           </template>
         </importer-ou-exporter>
+
+        <carte-code-bd :id="id">
+          <template #activator="{props: propsActivateurCarte}">
+            <v-tooltip
+              :text="t('code.indice')"
+              :open-delay="200"
+              location="bottom"
+            >
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                  icon="mdi-xml"
+                  variant="flat"
+                />
+              </template>
+            </v-tooltip>
+          </template>
+        </carte-code-bd>
+
         <carte-copier :id="id">
           <template #activator="{props: propsActivateurCarte}">
             <v-tooltip
-              v-bind="propsActivateurCarte"
               open-delay="200"
               location="bottom"
               :text="t('copier.indice')"
             >
               <template #activator="{props: propsActivateurIndice}">
                 <v-btn
-                  v-bind="propsActivateurIndice"
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
                   icon="mdi-content-copy"
                   variant="flat"
                 />
@@ -124,14 +140,13 @@
         >
           <template #activator="{props: propsActivateurCarte}">
             <v-tooltip
-              v-bind="propsActivateurCarte"
               open-delay="200"
               location="bottom"
               :text="t('effacer.indice')"
             >
               <template #activator="{props: propsActivateurIndice}">
                 <v-btn
-                  v-bind="propsActivateurIndice"
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
                   variant="flat"
                   icon
                 >
@@ -538,6 +553,7 @@ import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemQualiteBd from '/@/components/bds/ItemQualitéBd.vue';
 import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
+import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
 import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
