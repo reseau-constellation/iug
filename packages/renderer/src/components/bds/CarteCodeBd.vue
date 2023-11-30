@@ -51,7 +51,7 @@ Constellation.avecServeur() do port
   end
 end
 `,
-r: `
+    r: `
 library(constellationR)
 
 constellationR::avecClientEtServeur(
