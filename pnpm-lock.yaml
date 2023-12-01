@@ -191,8 +191,8 @@ devDependencies:
     specifier: 8.54.0
     version: 8.54.0
   eslint-plugin-vue:
-    specifier: 9.18.1
-    version: 9.18.1(eslint@8.54.0)
+    specifier: 9.19.2
+    version: 9.19.2(eslint@8.54.0)
   happy-dom:
     specifier: 12.9.1
     version: 12.9.1
@@ -1861,8 +1861,6 @@ packages:
       '@libp2p/interface': 0.1.6
       multiformats: 12.1.3
       uint8arrays: 4.0.6
-    transitivePeerDependencies:
-      - supports-color
 
   /@libp2p/peer-record@5.0.4:
     resolution: {integrity: sha512-e+AArf7pwMLqF24mehTe1OYjr1v0SOKshVrI1E9YH/Cb1F3ZZuK3smyGmnLaS4JlqsarRCMSe3V50tRkqMFY7g==}
@@ -4838,8 +4836,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  /eslint-plugin-vue@9.18.1(eslint@8.54.0):
-    resolution: {integrity: sha512-7hZFlrEgg9NIzuVik2I9xSnJA5RsmOfueYgsUGUokEDLJ1LHtxO0Pl4duje1BriZ/jDWb+44tcIlC3yi0tdlZg==}
+  /eslint-plugin-vue@9.19.2(eslint@8.54.0):
+    resolution: {integrity: sha512-CPDqTOG2K4Ni2o4J5wixkLVNwgctKXFu6oBpVJlpNq7f38lh9I80pRTouZSJ2MAebPJlINU/KTFSXyQfBUlymA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
