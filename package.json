@@ -1,5 +1,5 @@
 {
-  "name": "constl",
+  "name": "@constl/iug",
   "description": "Secure boilerplate for Electron app based on Vite",
   "author": {
     "email": "julien.malard@mail.mcgill.ca",
