@@ -68,7 +68,7 @@
     "vue-tsc": "1.8.24"
   },
   "dependencies": {
-    "@achingbrain/nat-port-mapper": "1.0.8",
+    "@achingbrain/nat-port-mapper": "1.0.13",
     "@constl/ipa": "0.9.17",
     "@constl/mandataire": "^0.1.15",
     "@constl/mandataire-electron-principal": "^0.2.14",
