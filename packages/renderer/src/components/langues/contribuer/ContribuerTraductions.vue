@@ -6,7 +6,6 @@
         v-bind="{props}"
       ></slot>
     </template>
-    x
 
     <v-card
       class="mx-auto"
