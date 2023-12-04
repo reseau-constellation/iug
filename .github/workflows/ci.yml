@@ -44,7 +44,6 @@ jobs:
   publier_appli_internet:
     uses: ./.github/workflows/publierPage.yml
     needs: [ typechecking, tests ]
-    if: ${{ github.ref_name == 'main' }}
   draft_release:
     permissions:
       contents: write # Allows this job to create releases
