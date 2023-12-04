@@ -7,14 +7,14 @@
       ></slot>
     </template>
     <v-card
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
       class="mx-auto"
     >
       <v-card-item>
         <v-card-title>
           {{ titre }}
         </v-card-title>
-        <v-card-subtitle>
+        <v-card-subtitle v-if="sousTitre">
           {{ sousTitre }}
         </v-card-subtitle>
       </v-card-item>

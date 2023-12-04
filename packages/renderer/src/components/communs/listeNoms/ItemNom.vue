@@ -10,53 +10,52 @@
             v-model="nouvelleLangue"
             class="pt-1"
             density="compact"
-            variant="outlined"
+            variant="underlined"
             item-title="மொழி"
             item-value="குறியீடு"
             :readonly="!autorisationModification"
             :items="மொழிகளும்_குறியீடுகளும்"
-            :label="indiceLangue"
-          ></v-autocomplete>
+          >
+            <template #no-data>
+              <gestionnaire-ennikkai />
+            </template>
+          </v-autocomplete>
         </v-col>
         <v-col
           cols="8"
-          class="pb-0"
         >
-          <v-text-field
-            v-model="nouveauNom"
-            class="pt-1"
-            density="compact"
-            variant="outlined"
-            :readonly="!autorisationModification"
-            :rules="règlesNouveauNom"
-            :label="indiceNom"
-            @blur="sauvegarder"
-          ></v-text-field>
+          <v-locale-provider :rtl="langueDÀG">
+            <v-text-field
+              v-model="nouveauNom"
+              :readonly="!autorisationModification"
+              :rules="règlesNouveauNom"
+              class="pt-1"
+              density="compact"
+              variant="underlined"
+              clear-icon="mdi-close"
+              clearable
+              @click:clear="effacer"
+              @blur="sauvegarder"
+            ></v-text-field>
+          </v-locale-provider>
         </v-col>
       </v-row>
     </v-list-item-title>
-
-    <template #append>
-      <v-btn
-        v-if="autorisationModification"
-        class="mb-3"
-        icon="mdi-delete"
-        variant="text"
-        @click="effacer"
-      ></v-btn>
-    </template>
   </v-list-item>
 </template>
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
+import GestionnaireEnnikkai from '../../langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+
+const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 
 const nuchabäl = new Nuchabäl({});
 
@@ -64,8 +63,6 @@ const props = defineProps<{
   langue: string;
   nom: string;
   id: string;
-  indiceNom: string;
-  indiceLangue: string;
   autorisationModification: boolean;
 }>();
 const émettre = defineEmits<{
@@ -80,6 +77,7 @@ onMounted(() => {
   nouveauNom.value = props.nom;
   nouvelleLangue.value = props.langue;
 });
+const langueDÀG = வலதிலிருந்து_இடது_மொழி(nouvelleLangue);
 
 // Changements
 const nomNouvelleLangue = மொழியின்_பெயர்(nouvelleLangue);

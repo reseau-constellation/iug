@@ -5,84 +5,86 @@
   >
     <v-list-item>
       <v-row>
-        <v-col cols="4">
-          <v-select
+        <v-col :cols="mdAndUp ? 4 : 12">
+          <v-autocomplete
             v-model="nouvelleLangue"
             class="pt-1"
             density="compact"
-            variant="outlined"
-            item-title="lng"
-            item-value="code"
+            variant="underlined"
+            item-title="மொழி"
+            item-value="குறியீடு"
+            hide-details
             :items="languesDisponibles"
             :label="indiceLangue"
-          ></v-select>
+          >
+            <template #no-data>
+              <gestionnaire-ennikkai />
+            </template>
+          </v-autocomplete>
         </v-col>
-        <v-col cols="8">
-          <v-text-field
-            v-model="nouveauNom"
-            class="pt-1"
-            density="compact"
-            variant="outlined"
-            :rules="règlesNouveauNom"
-            :label="indiceNom"
-            @blur="ajouterNom"
-            @keydown.enter="ajouterNom"
-          ></v-text-field>
+        <v-col :cols="mdAndUp ? 4 : 12">
+          <v-locale-provider :rtl="nouvelleLangueDÀG">
+            <v-text-field
+              v-model="nouveauNom"
+              class="pt-1"
+              density="compact"
+              variant="underlined"
+
+              :rules="règlesNouveauNom"
+              :label="indiceNom"
+              @blur="ajouterNom"
+              @keydown.enter="ajouterNom"
+            ></v-text-field>
+          </v-locale-provider>
         </v-col>
       </v-row>
-      <template #append>
-        <v-btn
-          icon="mdi-plus"
-          variant="text"
-          class="mb-2"
-          :disabled="!ajoutPrêt"
-          @click="ajouterNom"
-        ></v-btn>
-      </template>
     </v-list-item>
   </v-list>
-  <v-list
-    max-height="200"
-    style="overflow-y: scroll"
-  >
+  <span v-show="listeNoms.length">
     <v-divider class="mb-2" />
-    <v-scroll-y-transition group>
-      <ItemNom
-        v-for="nom in listeNoms"
-        :id="nom.id"
-        :key="nom.id"
-        :langue="nom.lng"
-        :nom="nom.nom"
-        :indice-langue="indiceLangue"
-        :indice-nom="indiceNom"
-        :autorisation-modification="autorisationModification"
-        @changer-nom="changerNom"
-        @effacer="effacerNom"
-      />
-      <div
-        v-if="!listeNoms.length"
-        class="text-center mt-3 text-h6"
-      >
-        {{ texteAucunNom }}
-      </div>
-    </v-scroll-y-transition>
-  </v-list>
+    <p class="text-overline">{{ t('communs.autresLangues') }}</p>
+    <v-list
+      max-height="200"
+      style="overflow-y: scroll"
+    >
+      <v-scroll-y-transition group>
+        <ItemNom
+          v-for="nom in listeNoms"
+          :id="nom.id"
+          :key="nom.id"
+          :langue="nom.lng"
+          :nom="nom.nom"
+          :autorisation-modification="autorisationModification"
+          @changer-nom="changerNom"
+          @effacer="effacerNom"
+        />
+      </v-scroll-y-transition>
+    </v-list>
+  </span>
 </template>
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
+import { useDisplay } from 'vuetify';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import {v4 as uuidv4} from 'uuid';
 
 import ItemNom from './ItemNom.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
+import { utiliserHistoriqueLangues } from '/@/état/historiqueLangues';
+import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
+
+const historiqueLangues = utiliserHistoriqueLangues();
+
+const {mdAndUp} = useDisplay();
 
 const nuchabäl = new Nuchabäl({});
 
@@ -108,6 +110,7 @@ const listeNoms = ref<
     id: string;
   }[]
 >([]);
+
 watchEffect(() => {
   listeNoms.value = Object.entries(noms.value).map(([lng, nom]) => {
     return {
@@ -120,9 +123,17 @@ watchEffect(() => {
 
 // Langues
 const languesDisponibles = computed(() => {
-  return மொழிகளும்_குறியீடுகளும்.value.filter(
+  const disponibles = மொழிகளும்_குறியீடுகளும்.value.filter(
     x => !listeNoms.value.some(n => n.lng === x.குறியீடு),
   );
+
+  return disponibles.sort((a, b) => {
+    const indexA = historiqueLangues.historique.indexOf(a.குறியீடு);
+    const indexB = historiqueLangues.historique.indexOf(b.குறியீடு);
+    return indexA >= 0 ? (
+      indexB >= 0 ? (indexA > indexB ? 1 : -1) : -1
+    ) : 1;
+  });
 });
 
 // Changements
@@ -136,7 +147,7 @@ const émettreChangements = () => {
 };
 
 const changerNom = ({id, nom, lng}: {id: string; nom: string; lng: string}) => {
-  if (lng === nouvelleLangue.value) nouvelleLangue.value = undefined;
+  if (lng === nouvelleLangue.value) nouvelleLangue.value = '';
 
   listeNoms.value = listeNoms.value
     .filter(nm => nm.lng !== lng || nm.id === id)
@@ -153,12 +164,13 @@ const effacerNom = ({id}: {id: string}) => {
 };
 
 // Ajouts
-const nouveauNom = ref<string>();
-const nouvelleLangue = ref<string>();
+const nouveauNom = ref<string>('');
+const nouvelleLangue = ref<string>('');
 const nomNouvelleLangue = மொழியின்_பெயர்(nouvelleLangue);
+const nouvelleLangueDÀG = வலதிலிருந்து_இடது_மொழி(nouvelleLangue);
 
 watchEffect(() => {
-  if (nouvelleLangue.value === undefined)
+  if (!nouvelleLangue.value || !languesDisponibles.value.map(x=>x.குறியீடு).includes(nouvelleLangue.value))
     nouvelleLangue.value = languesDisponibles.value[0]?.குறியீடு;
 });
 
@@ -172,24 +184,31 @@ const règlesNouveauNom = computed<string[] | undefined>(() => {
 });
 
 const ajoutPrêt = computed(() => {
-  return !!(nouvelleLangue.value && nouveauNom.value) && !règlesNouveauNom.value?.length;
+  if (nouvelleLangue.value && nouveauNom.value && !règlesNouveauNom.value?.length) {
+    return {valNouvelleLangue: nouvelleLangue.value, valNouveauNom: nouveauNom.value};
+  } else {
+    return undefined;
+  }
 });
 
 const ajouterNom = () => {
-  if (!(nouvelleLangue.value && nouveauNom.value)) return;
-  if (règlesNouveauNom.value?.length) return;
+  const prêt = ajoutPrêt.value;
+  if (!prêt) return;
+  const {valNouveauNom, valNouvelleLangue} = prêt;
+  historiqueLangues.sélectionner(valNouvelleLangue);
 
   listeNoms.value = [
     {
-      nom: nouveauNom.value,
-      lng: nouvelleLangue.value,
+      nom: valNouveauNom,
+      lng: valNouvelleLangue,
       id: uuidv4(),
     },
     ...listeNoms.value,
   ];
 
-  nouvelleLangue.value = undefined;
-  nouveauNom.value = undefined;
+  nouvelleLangue.value = '';
+  nouveauNom.value = '';
+
   émettreChangements();
 };
 </script>
