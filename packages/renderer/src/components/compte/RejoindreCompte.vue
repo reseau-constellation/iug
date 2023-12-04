@@ -34,7 +34,16 @@
             {{ t('compte.rejoindreCompte.explication') }}
           </v-window-item>
           <v-window-item>
-            <v-btn @click="rejoindreCompte" />
+            <v-otp-input
+              v-model="codeSecret"
+              :length="8"
+              type="text"
+            />
+            <v-btn
+              :disabled="!prêt"
+              :loading="enProgrès"
+              @click="rejoindreCompte"
+            />
           </v-window-item>
         </v-window>
       </v-card-text>
@@ -49,6 +58,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { computed } from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -61,14 +71,30 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const dialogue = ref(false);
 
 // Rejoindre compte
+const enProgrès = ref(false);
 const idCompte = ref<string>();
 const codeSecret = ref<string>();
 
-const rejoindreCompte = async () => {
+const prêt = computed(()=>{
   if (!idCompte.value || !codeSecret.value) return;
-  await constl?.demanderEtPuisRejoindreCompte({
+  return {
     idCompte: idCompte.value,
     codeSecret: codeSecret.value,
+  };
+});
+
+const rejoindreCompte = async () => {
+  if (!prêt.value) return;
+  const {
+    idCompte,
+    codeSecret,
+  } = prêt.value;
+
+  enProgrès.value = true;
+  await constl?.demanderEtPuisRejoindreCompte({
+    idCompte,
+    codeSecret,
   });
+  enProgrès.value = false;
 };
 </script>

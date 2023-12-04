@@ -50,25 +50,12 @@
             :value="1"
             class="text-center"
           >
-            <div
-              class="mx-auto"
-              style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 15px;
-                border: 2px solid #1867c0;
-                width: 250px;
-                height: 50px;
-              "
-            >
-              <p
-                class="text-h3"
-                style="color: #1867c0"
-              >
-                {{ (invitation?.codeSecret || '---').slice(2, 9) }}
-              </p>
-            </div>
+            <v-otp-input
+              :model-value="invitation?.codeSecret"
+              :length="8"
+              type="text"
+              disabled
+            />
             <v-btn
               v-if="!invitationTexte"
               class="mt-2"
