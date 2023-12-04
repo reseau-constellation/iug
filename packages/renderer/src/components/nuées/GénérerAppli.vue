@@ -407,6 +407,7 @@ const générerPaquetComplet = async (): Promise<void> => {
 
   // Rezipper tout et télécharger
   const contenu = await gabarit.generateAsync({type: 'blob'});
-  await fileSave(contenu, {fileName: 'Mon appli.zip'});
+  await fileSave(contenu, {fileName: t('Mon appli.zip')});
 };
+
 </script>

@@ -14,7 +14,7 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import ExporterCode from '/@/components/nuées/ExporterCode.vue';
+import ExporterCode from '/@/components/nuées/GénérerAppli.vue';
 
 const props = defineProps<{id: string}>();
 
