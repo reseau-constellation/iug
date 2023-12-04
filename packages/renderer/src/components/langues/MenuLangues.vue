@@ -36,13 +36,21 @@
           :indeterminate="!constellationPrète"
         ></v-progress-linear>
         <v-divider v-else />
+        <v-text-field
+          v-model="rechercheLangue"
+          density="compact"
+          prepend-inner-icon="mdi-magnify"
+          autofocus
+          hide-details
+          @click.stop
+        ></v-text-field>
         <v-list
           class="overflow-y-auto"
-          max-height="500px"
+          max-height="400px"
           min-width="200px"
         >
           <item-langue
-            v-for="code in கிடைக்கும்_மொழி_குறியீடுகள்"
+            v-for="code in languesDisponibles"
             :key="code"
             :code="code"
             :selectionnee="code === மொழி"
@@ -64,6 +72,7 @@ import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {inject, ref} from 'vue';
+import { computed } from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -78,6 +87,15 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {isRtl} = useRtl();
 
 const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு} = மொழிகளைப்_பயன்படுத்து();
+
+// Recherche
+const rechercheLangue = ref<string>();
+const languesDisponibles = computed(()=>{
+  return கிடைக்கும்_மொழி_குறியீடுகள்.value.filter(
+    lng => (!rechercheLangue.value) || lng.includes(rechercheLangue.value),
+  );
+});
+
 </script>
 
 <style></style>
