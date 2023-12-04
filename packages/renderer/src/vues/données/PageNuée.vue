@@ -2,7 +2,41 @@
   <v-container>
     <TitrePage :titre="nomTraduit || couper(id, 50, t('communs.troisPetitsPoints'))" />
     <p>{{ id }}</p>
-    <ExporterCode :id-nuee="id" />
+    <generer-appli :id-nuee="id">
+      <template #activator="{props: propsActivateurCarte}">
+        <v-tooltip
+          :text="t('code.indice')"
+          :open-delay="200"
+          location="bottom"
+        >
+          <template #activator="{props: propsActivateurIndice}">
+            <v-btn
+              v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+              color="primary"
+              icon="mdi-creation"
+              variant="flat"
+            />
+          </template>
+        </v-tooltip>
+      </template>
+    </generer-appli>
+    <carte-code-nuee :id="id">
+      <template #activator="{props: propsActivateurCarte}">
+        <v-tooltip
+          :text="t('code.indice')"
+          :open-delay="200"
+          location="bottom"
+        >
+          <template #activator="{props: propsActivateurIndice}">
+            <v-btn
+              v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+              icon="mdi-xml"
+              variant="flat"
+            />
+          </template>
+        </v-tooltip>
+      </template>
+    </carte-code-nuee>
   </v-container>
 </template>
 
@@ -14,7 +48,8 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import ExporterCode from '/@/components/nuées/GénérerAppli.vue';
+import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
+import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
 
 const props = defineProps<{id: string}>();
 

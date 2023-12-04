@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props: propsComposante}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{propsComposante}"
+        v-bind="{props: propsActivateur}"
       ></slot>
 
       <v-card
