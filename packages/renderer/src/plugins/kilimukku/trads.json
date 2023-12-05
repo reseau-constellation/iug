@@ -10,7 +10,13 @@
       "indiceLangue": "Langue",
       "texteAucunNom": "Ajouter un nom ci-dessus",
       "erreurLangue": "Ce texte doit être en {langue}.",
-      "troisPetitsPoints": "..."
+      "troisPetitsPoints": "...",
+      "langagesInformatiques": {
+        "ts": {"abr": "ts"},
+        "py": {"abr": "py"},
+        "jl": {"abr": "jl"},
+        "r": {"abr": "R"}
+      }
     },
     "navigation": {
       "accueil": "Accueil",
@@ -150,6 +156,12 @@
         "sansDescription": "விளக்கம் ஒன்றும் இல்லை",
         "auteurs": "பங்களிப்பாளர்கள்",
         "ajouterAuteur": "பங்களிப்பாளரை சேரு"
+      },
+      "langagesInformatiques": {
+        "ts": {"abr": "வகை"},
+        "py": {"abr": "பை"},
+        "jl": {"abr": "ஜூ"},
+        "r": {"abr": "ஆர்"}
       }
     },
     "navigation": {

@@ -1,5 +1,8 @@
 <template>
-  <v-menu :close-on-content-click="false">
+  <v-menu
+    v-model="menu"
+    :close-on-content-click="false"
+  >
     <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
@@ -27,24 +30,40 @@
                 :value="lng"
                 color="primary"
               >
-                {{ lng }}
+                {{ t(`communs.langagesInformatiques.${lng}.abr`) }}
               </v-btn>
             </v-btn-toggle>
           </v-col>
         </v-row>
         <v-row>
           <v-col
+            v-if="codeInstallation"
             cols="12"
             class="py-2"
           >
             <v-divider />
-            <div style="overflow-y: auto; height: 200px">
-              <highlightjs
-                :language="langage"
-                :code="code"
-                :autodetect="false"
-              />
-            </div>
+            <v-code-block
+              :code="codeInstallation"
+              :lang="codeInstallation.startsWith('$') ? 'shell' : langage"
+              highlightjs
+              max-height="75"
+              theme="docco"
+            />
+            <v-divider />
+          </v-col>
+          <v-col
+            cols="12"
+            class="py-2"
+          >
+            <v-divider />
+            <v-code-block
+              :lang="langage"
+              :code="code"
+              :persistent-copy-button="mdAndDown"
+              :max-height="codeInstallation ? 225 : 300"
+              highlightjs
+              theme="docco"
+            />
             <v-divider />
           </v-col>
         </v-row>
@@ -53,10 +72,10 @@
         <v-spacer />
         <v-btn
           variant="outlined"
-          :append-icon="copié ? 'mdi-check' : 'mdi-content-copy'"
-          @click="copierCode"
+          append-icon="mdi-close"
+          @click="menu = false"
         >
-          {{ t('communs.copier') }}
+          {{ t('communs.fermer') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -64,17 +83,24 @@
 </template>
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import VCodeBlock from '@wdns/vue-code-block';
+
 import {computed, onMounted, ref} from 'vue';
 
-import {copier} from '/@/utils';
 import {watch} from 'vue';
+import { useDisplay } from 'vuetify/lib/framework.mjs';
 
-const props = defineProps<{codes: {[langage: string]: string}}>();
+const props = defineProps<{
+  codes: {[langage: string]: string}, installation?: {[langage: string]: string}
+}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
+const { mdAndDown } = useDisplay();
+
+const menu = ref(false);
 const copié = ref(false);
 
 const langage = ref<string>();
@@ -89,8 +115,15 @@ const code = computed(() => {
 
 watch(langage, () => (copié.value = false));
 
-const copierCode = async () => {
-  await copier(code.value);
-  copié.value = true;
+const installationDéfaut:  {[langage: string]: string} = {
+  ts: '$ pnpm add @constl/ipa',
+  py: '$ poetry add constellationPy',
+  jl: '$ pkg> add Constellation',
+  r: `# install.packages("devtools")
+devtools::install_github("reseau-constellation/client-r")`,
 };
+
+const codeInstallation = computed(()=>{
+  return langage.value ? {...installationDéfaut, ...(props.installation || {})}[langage.value] : undefined;
+});
 </script>

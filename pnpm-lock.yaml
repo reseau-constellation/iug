@@ -26,9 +26,6 @@ dependencies:
   '@esbuild-plugins/node-globals-polyfill':
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.19.8)
-  '@highlightjs/vue-plugin':
-    specifier: ^2.1.0
-    version: 2.1.0(highlight.js@11.9.0)(vue@3.3.10)
   '@lassi-js/kili':
     specifier: ^0.3.4
     version: 0.3.4(@constl/ipa@0.9.17)
@@ -44,6 +41,9 @@ dependencies:
   '@vueuse/core':
     specifier: ^10.6.1
     version: 10.6.1(vue@3.3.10)
+  '@wdns/vue-code-block':
+    specifier: ^2.3.1
+    version: 2.3.1(typescript@5.2.2)
   assert:
     specifier: ^2.1.0
     version: 2.1.0
@@ -1101,16 +1101,6 @@ packages:
       msgpack-lite: 0.1.26
       scrypt-js: 3.0.1
       tweetnacl: 1.0.3
-    dev: false
-
-  /@highlightjs/vue-plugin@2.1.0(highlight.js@11.9.0)(vue@3.3.10):
-    resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
-    peerDependencies:
-      highlight.js: ^11.0.1
-      vue: ^3
-    dependencies:
-      highlight.js: 11.9.0
-      vue: 3.3.10(typescript@5.2.2)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -3204,6 +3194,17 @@ packages:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+    dev: false
+
+  /@wdns/vue-code-block@2.3.1(typescript@5.2.2):
+    resolution: {integrity: sha512-5aaAT5HNADiYCv/msSSFS83/nzMuFrPStR8VligNJcCKA7au2vPWNxQ/p6mYHGDAPYP4g7WwTqh91SPaPg3UFQ==}
+    dependencies:
+      highlight.js: 11.9.0
+      prismjs: 1.29.0
+      ua-parser-js: 1.0.37
+      vue: 3.3.10(typescript@5.2.2)
+    transitivePeerDependencies:
+      - typescript
     dev: false
 
   /@xmldom/xmldom@0.8.10:
@@ -8053,6 +8054,11 @@ packages:
       react-is: 18.2.0
     dev: true
 
+  /prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
+    dev: false
+
   /private-ip@3.0.1:
     resolution: {integrity: sha512-Ezc16ANuhSHmWAE6lbXUKburNzGpR0J5X0Zh5Um/PZ/s57Fp+HYqYe6BYPH2QbqKr/5WebfzJQ1jq6Kj5dbRmA==}
     engines: {node: '>=14.16'}
@@ -9155,6 +9161,10 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  /ua-parser-js@1.0.37:
+    resolution: {integrity: sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==}
+    dev: false
 
   /ufo@1.3.2:
     resolution: {integrity: sha512-o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==}

@@ -16,27 +16,30 @@ const props = defineProps<{id: string}>();
 
 const codes = computed(() => {
   return {
-    ts: `
-import { générerClient } from "@constl/ipa";
+    ts: `import { générerClient } from "@constl/ipa";
 
 const client = générerClient({});
 
-client.bds.suivreDonnéesExportation({
-  idBd: "${props.id}"
+const monAnalyse = async (données) => {
+  console.log(données)
+  // Faire quelque chose...
+}
+
+const fOublier = client.bds.suivreDonnéesExportation({
+  idBd: "${props.id}",
+  f: monAnalyse
 })
 `,
-    py: `
-from constellationPy import Serveur, ClientSync
-
-client = ClientSync()
-
+    py: `from constellationPy import Serveur, ClientSync
+    
 with Serveur():
-  données = client.bds.suivreDonnéesExportation(
-    idBd="${props.id}"
-  )
+    client = ClientSync()
+
+    données = client.bds.suivreDonnéesExportation(
+      idBd="${props.id}"
+    )
 `,
-    julia: `
-import Constellation
+    jl: `import Constellation
 
 Constellation.avecServeur() do port
   Constellation.avecClient(port) do client
@@ -51,8 +54,7 @@ Constellation.avecServeur() do port
   end
 end
 `,
-    r: `
-library(constellationR)
+    r: `library(constellationR)
 
 constellationR::avecClientEtServeur(
   function (client) {

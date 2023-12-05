@@ -5,88 +5,113 @@
         name="activator"
         v-bind="{props: propsActivateur}"
       ></slot>
-
-      <v-card
-        class="mx-auto"
-        :max-width="mdAndUp ? 500 : 300"
-      >
-        <v-card-item>
-          <v-card-title class="text-h5 justify-space-between">
-            <span>{{ titreCarte }}</span>
-          </v-card-title>
-          <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
-        </v-card-item>
-        <v-card-text>
-          <v-window
-            v-model="étape"
-            style="overflow-y: scroll"
-          >
-            <v-window-item :value="0">
-              <v-btn @click="suivant" />
-            </v-window-item>
-            <v-window-item :value="1">
-              <dialogue-licence>
-                <v-btn></v-btn>
-              </dialogue-licence>
-            </v-window-item>
-            <v-window-item :value="2">
-              <v-radio-group>
-                <v-radio></v-radio>
-                <v-radio></v-radio>
-              </v-radio-group>
-            </v-window-item>
-            <v-window-item :value="3">
-              <v-btn-toggle
-                v-model="langage"
-                mandatory
-              >
-                <v-btn
-                  v-for="l in langagesSupportés"
-                  :key="l"
-                  :value="l"
-                >
-                  {{ t(`communs.langagesInformatiques.${l}.abr`) }}
-                </v-btn>
-              </v-btn-toggle>
-              <v-select v-model="langueCode" />
-
-              <v-text-field readonly>{{ installation }}</v-text-field>
-              <v-textarea readonly>{{ code }}</v-textarea>
-              <v-btn @click="() => générerPaquetComplet()"></v-btn>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn
-            v-show="retourActif.visible"
-            variant="text"
-            :disabled="!retourActif.actif"
-            @click="retour"
-          >
-            {{ t('communs.retour') }}
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            v-show="suivantActif.visible"
-            color="primary"
-            variant="flat"
-            :disabled="!suivantActif.actif"
-            @click="suivant"
-          >
-            {{ t('communs.suivant') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
     </template>
+    <v-card
+      class="mx-auto"
+      :max-width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="text-h5 justify-space-between">
+          <span>{{ titreCarte }}</span>
+        </v-card-title>
+        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: scroll"
+        >
+          <v-window-item :value="0">
+            <v-btn @click="suivant" />
+          </v-window-item>
+          <v-window-item :value="1">
+            <dialogue-licence>
+              <v-btn></v-btn>
+            </dialogue-licence>
+          </v-window-item>
+          <v-window-item :value="2">
+            <v-radio-group>
+              <v-radio></v-radio>
+              <v-radio></v-radio>
+            </v-radio-group>
+          </v-window-item>
+          <v-window-item :value="3">
+            <v-btn-toggle
+              v-model="langage"
+              mandatory
+            >
+              <v-btn
+                v-for="l in langagesSupportés"
+                :key="l"
+                :value="l"
+              >
+                {{ t(`communs.langagesInformatiques.${l}.abr`) }}
+              </v-btn>
+            </v-btn-toggle>
+            <v-select v-model="langueCode" />
+            <v-row>
+              <v-col
+                cols="12"
+                class="py-2"
+              >
+                <v-divider />
+                <v-code-block
+                  :code="installation"
+                  lang="shell"
+                  highlightjs
+                  max-height="75"
+                  theme="docco"
+                ></v-code-block>
+              </v-col>
+              <v-col
+                cols="12"
+                class="py-2"
+              >
+                <v-divider />
+                <v-code-block
+                  :code="code"
+                  lang="ts"
+                  highlightjs
+                  max-height="225"
+                  theme="docco"
+                ></v-code-block>
+              </v-col>
+            </v-row>
+            <v-btn @click="() => générerPaquetComplet()"></v-btn>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          v-show="retourActif.visible"
+          variant="text"
+          :disabled="!retourActif.actif"
+          @click="retour"
+        >
+          {{ t('communs.retour') }}
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+          v-show="suivantActif.visible"
+          color="primary"
+          variant="flat"
+          :disabled="!suivantActif.actif"
+          @click="suivant"
+        >
+          {{ t('communs.suivant') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
+import type {ClientConstellation, bds} from '@constl/ipa';
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import type {ClientConstellation} from '@constl/ipa';
+import VCodeBlock from '@wdns/vue-code-block';
 
-import type {bds} from '@constl/ipa';
+
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {GABARIT_CODE} from '/@/consts';
@@ -176,6 +201,18 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   }
 });
 
+
+// Options
+const langagesSupportés = ['ts', 'js'] as const;
+const langage = ref<(typeof langagesSupportés)[number]>('ts');
+
+const langueCode = ref<string>(மொழி.value);
+
+const licenceDéfaut = ref('ODbl-1_0');
+const motsClefNuée = ref<string[]>([]);
+const bdPrincipale = ref<string>();
+
+
 // Spécifications nuée
 const clefTableauNuée = ref<string>();
 const schémaSpécificationBdsNuée = ref<bds.schémaSpécificationBd>();
@@ -191,16 +228,6 @@ const tableaux = computed(() => {
   return schémaSpécificationBdsNuée.value?.tableaux;
 });
 
-// Options
-const langagesSupportés = ['ts', 'js'] as const;
-const langage = ref<(typeof langagesSupportés)[number]>('ts');
-
-const langueCode = ref<string>(மொழி.value);
-
-const licenceDéfaut = ref('ODbl-1_0');
-const motsClefNuée = ref<string[]>([]);
-const bdPrincipale = ref<string>();
-
 // Code
 const code = computed(() => {
   switch (langage.value) {
@@ -213,9 +240,7 @@ const code = computed(() => {
   }
 });
 const installation = computed(() => {
-  return `
-pnpm install @constl/ipa ${bdPrincipale.value ? '@lassi-js/kili' : ''}
-`;
+  return `pnpm install @constl/ipa ${bdPrincipale.value ? '@lassi-js/kili' : ''}`;
 });
 
 // JS
@@ -371,7 +396,7 @@ const électron = ref(false);
 
 const générerPaquetComplet = async (): Promise<void> => {
   // Télécharger gabarit correspondant de GitHub
-  const racineGabarit = (await axios.get(GABARIT_CODE, {responseType: 'arraybuffer'})).data;
+  const racineGabarit = (await axios.get(GABARIT_CODE, {responseType: 'arraybuffer', withCredentials: false})).data;
   const zipRacineGabarit = await JSZip.loadAsync(racineGabarit);
   const gabarit = zipRacineGabarit
     .folder('paquets')

@@ -5,17 +5,21 @@
     <generer-appli :id-nuee="id">
       <template #activator="{props: propsActivateurCarte}">
         <v-tooltip
-          :text="t('code.indice')"
+          :text="t('code.générerAppli.indice')"
           :open-delay="200"
           location="bottom"
         >
           <template #activator="{props: propsActivateurIndice}">
             <v-btn
               v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-              color="primary"
-              icon="mdi-creation"
               variant="flat"
-            />
+              icon
+            >
+              <v-icon
+                icon="mdi-creation-outline"
+                color="primary"
+              ></v-icon>
+            </v-btn>
           </template>
         </v-tooltip>
       </template>
@@ -48,6 +52,8 @@ import {enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
+import TitrePage from '/@/components/communs/TitrePage.vue';
 import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
 import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
 
