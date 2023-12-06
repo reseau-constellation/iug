@@ -27,8 +27,11 @@ vi.mock('electron', () => {
     setWindowOpenHandler: vi.fn(),
   };
 
-  const app: Pick<Electron.App, 'getAppPath'> = {
+  const app: Pick<Electron.App, 'getAppPath' | 'getPath'> = {
     getAppPath(): string {
+      return '';
+    },
+    getPath(): string {
       return '';
     },
   };
