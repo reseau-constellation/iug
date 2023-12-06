@@ -2,7 +2,7 @@ import {app, BrowserWindow, shell} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
-import { connecterHttp } from './http';
+import {connecterHttp} from './http';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
