@@ -22,6 +22,12 @@
           style="overflow-y: scroll"
         >
           <v-window-item :value="0">
+            <v-btn
+              :loading="enGénération"
+              @click="() => générerPaquetComplet()"
+            >
+              Magie !!
+            </v-btn>
             <v-btn @click="suivant" />
           </v-window-item>
           <v-window-item :value="1">
@@ -106,18 +112,18 @@
 </template>
 <script setup lang="ts">
 import type {ClientConstellation, bds} from '@constl/ipa';
+
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
+import JSZip from 'jszip';
+import {saveAs} from 'file-saver';
+
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
 
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {GABARIT_CODE} from '/@/consts';
-
-import axios from 'axios';
-import JSZip from 'jszip';
-import {fileSave} from 'browser-fs-access';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -369,68 +375,45 @@ ${codeSchémaBdTsJs.value}
 `;
 };
 
-const générerCodeComposanteAjoutDonnées = (): string => {
-  return `
-<template>
-  <v-dialog>
-    
-    <v-card>
-      <v-card-item>
-        <v-card-title>
-        </v-card-title>
-      </v-card-item>
-    </v-card>
-  </v-dialog>
-</template>
-<script setup lang="ts">
-import { ref } from "vue";
-
-<+/script>
-`.replace('+/', '/'); // Pour éviter problème eslint la clôture du <script>
-};
-
-const électron = ref(false);
-
+const enGénération = ref(false);
 const générerPaquetComplet = async (): Promise<void> => {
+  enGénération.value = true;
+  const {requèteHttp} = await import('#preload');
   // Télécharger gabarit correspondant de GitHub
-  const racineGabarit = (
-    await axios.get(GABARIT_CODE, {responseType: 'arraybuffer', withCredentials: false})
-  ).data;
-  const zipRacineGabarit = await JSZip.loadAsync(racineGabarit);
-  const gabarit = zipRacineGabarit
-    .folder('paquets')
-    ?.folder(électron.value ? 'électron' : 'navigateur');
-  if (!gabarit) throw new Error('Erreur de structure de paquet.');
+  const racineGabarit = await requèteHttp(GABARIT_CODE, {responseType: 'arraybuffer'});
+
+  const zipRacineGabarit = await JSZip.loadAsync(racineGabarit as ArrayBuffer);
+  const racineProjet = Object.keys(zipRacineGabarit.files)[0];
+  const zipRacineProjet = zipRacineGabarit.folder(racineProjet);
+  if (!zipRacineProjet) throw new Error('Erreur de structure de paquet.');
 
   // Générer les fichiers spécifiques à la nuée
   const codeSpécificationNuée = générerCodeSpécificationNuée();
-  const codeComposanteAjoutDonnées = générerCodeComposanteAjoutDonnées();
+  const codeComposanteAjoutDonnées = 'code composante test';
 
   // Ajouter les fichiers générés au gabarit
-  const adresseDossierUtils = électron.value
-    ? ['packages', 'renderer', 'src', 'utils']
-    : ['src', 'utils'];
+  const adresseDossierUtils = ['packages', 'renderer', 'src', 'utils'];
   const dossierGabaritUtils = adresseDossierUtils.reduce(
     (cumul: JSZip | null, nouveau: string) => (cumul ? cumul.folder(nouveau) : null),
-    gabarit,
+    zipRacineProjet,
   );
   if (!dossierGabaritUtils) throw new Error('Erreur de structure de paquet.');
 
   dossierGabaritUtils.file('nuée.ts', codeSpécificationNuée);
 
-  const adresseDossierComposantes = électron.value
-    ? ['packages', 'renderer', 'src', 'components']
-    : ['src', 'components'];
+  const adresseDossierComposantes = ['packages', 'renderer', 'src', 'components'];
   const dossierGabaritComposantes = adresseDossierComposantes.reduce(
     (cumul: JSZip | null, nouveau: string) => (cumul ? cumul.folder(nouveau) : null),
-    gabarit,
+    zipRacineProjet,
   );
   if (!dossierGabaritComposantes) throw new Error('Erreur de structure de paquet.');
 
   dossierGabaritComposantes.file('AjoutDonnées.vue', codeComposanteAjoutDonnées);
 
   // Rezipper tout et télécharger
-  const contenu = await gabarit.generateAsync({type: 'blob'});
-  await fileSave(contenu, {fileName: t('Mon appli.zip')});
+  const contenu = await zipRacineProjet.generateAsync({type: 'blob'});
+  enGénération.value = false;
+
+  saveAs(contenu, t('Mon appli.zip'));
 };
 </script>

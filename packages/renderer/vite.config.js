@@ -92,9 +92,13 @@ const générerAliasRésolution = () => {
       './buffer-globalThis': 'crypto-browserify',
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
       os: 'rollup-plugin-node-polyfills/polyfills/os',
+      '#preload': join(PACKAGE_ROOT, 'src') + '/polyfillPreload',
     });
   }
 };
+
+// Pareil pour Électron ou non, parce qu'ici il s'agit de la partie interface (rendu)
+const dépendsÀExclure = ['chokidar', 'wrtc'];
 
 /**
  * @type {import('vite').UserConfig}
@@ -121,14 +125,14 @@ const config = {
     assetsDir: '.',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
-      external: ['chokidar', 'wrtc'], // Pareil pour Électron ou non, parce qu'ici il s'agit de la partie interface (rendu)
+      external: dépendsÀExclure,
       plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
   },
   optimizeDeps: {
-    exclude: ['chokidar', 'wrtc'], // Pareil pour Électron ou non, parce qu'ici il s'agit de la partie interface (rendu)
+    exclude: dépendsÀExclure,
   },
   test: {
     environment: 'happy-dom',
