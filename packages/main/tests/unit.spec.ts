@@ -32,8 +32,11 @@ vi.mock('electron', () => {
       return '';
     },
   };
-  const ipcMain: Pick<Electron.IpcMain, 'on'> = {
+  const ipcMain: Pick<Electron.IpcMain, 'on' | 'handle'> = {
     on(..._args) {
+      return this;
+    },
+    handle(..._args) {
       return this;
     },
   };
