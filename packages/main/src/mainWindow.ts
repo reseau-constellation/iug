@@ -2,6 +2,7 @@ import {app, BrowserWindow, shell} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
+import { connecterHttp } from './http';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -57,6 +58,7 @@ export async function restoreOrCreateWindow() {
   if (window === undefined) {
     window = await createWindow();
     gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
+    connecterHttp();
 
     // Nécessaire pour que les liens mailto fonctionnent dans Électron
     // Voir : https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
