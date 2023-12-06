@@ -58,7 +58,7 @@ import type {ClientConstellation} from '@constl/ipa';
 import {inject, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -75,7 +75,7 @@ const enProgrès = ref(false);
 const idCompte = ref<string>();
 const codeSecret = ref<string>();
 
-const prêt = computed(()=>{
+const prêt = computed(() => {
   if (!idCompte.value || !codeSecret.value) return;
   return {
     idCompte: idCompte.value,
@@ -85,10 +85,7 @@ const prêt = computed(()=>{
 
 const rejoindreCompte = async () => {
   if (!prêt.value) return;
-  const {
-    idCompte,
-    codeSecret,
-  } = prêt.value;
+  const {idCompte, codeSecret} = prêt.value;
 
   enProgrès.value = true;
   await constl?.demanderEtPuisRejoindreCompte({

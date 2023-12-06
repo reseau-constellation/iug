@@ -72,7 +72,7 @@ import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {inject, ref} from 'vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 
@@ -90,12 +90,16 @@ const {மொழி, மொழிகளை_தேர்ந்தெடுக்�
 
 // Recherche
 const rechercheLangue = ref<string>();
-const languesDisponibles = computed(()=>{
-  return மொழிகளும்_குறியீடுகளும்.value.filter(
-    lng => (!rechercheLangue.value) || lng.குறியீடு.includes(rechercheLangue.value) || lng.மொழி.includes(rechercheLangue.value),
-  ).map(lng=>lng.குறியீடு);
+const languesDisponibles = computed(() => {
+  return மொழிகளும்_குறியீடுகளும்.value
+    .filter(
+      lng =>
+        !rechercheLangue.value ||
+        lng.குறியீடு.includes(rechercheLangue.value) ||
+        lng.மொழி.includes(rechercheLangue.value),
+    )
+    .map(lng => lng.குறியீடு);
 });
-
 </script>
 
 <style></style>

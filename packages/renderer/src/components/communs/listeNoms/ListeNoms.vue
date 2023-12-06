@@ -29,7 +29,6 @@
               class="pt-1"
               density="compact"
               variant="underlined"
-
               :rules="règlesNouveauNom"
               :label="indiceNom"
               @blur="ajouterNom"
@@ -65,15 +64,15 @@
 
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
-import { useDisplay } from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {useDisplay} from 'vuetify';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {v4 as uuidv4} from 'uuid';
 
 import ItemNom from './ItemNom.vue';
 
 import {Nuchabäl} from 'nuchabal';
-import { utiliserHistoriqueLangues } from '/@/état/historiqueLangues';
+import {utiliserHistoriqueLangues} from '/@/état/historiqueLangues';
 import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -130,9 +129,7 @@ const languesDisponibles = computed(() => {
   return disponibles.sort((a, b) => {
     const indexA = historiqueLangues.historique.indexOf(a.குறியீடு);
     const indexB = historiqueLangues.historique.indexOf(b.குறியீடு);
-    return indexA >= 0 ? (
-      indexB >= 0 ? (indexA > indexB ? 1 : -1) : -1
-    ) : 1;
+    return indexA >= 0 ? (indexB >= 0 ? (indexA > indexB ? 1 : -1) : -1) : 1;
   });
 });
 
@@ -170,7 +167,10 @@ const nomNouvelleLangue = மொழியின்_பெயர்(nouvelleLangu
 const nouvelleLangueDÀG = வலதிலிருந்து_இடது_மொழி(nouvelleLangue);
 
 watchEffect(() => {
-  if (!nouvelleLangue.value || !languesDisponibles.value.map(x=>x.குறியீடு).includes(nouvelleLangue.value))
+  if (
+    !nouvelleLangue.value ||
+    !languesDisponibles.value.map(x => x.குறியீடு).includes(nouvelleLangue.value)
+  )
     nouvelleLangue.value = languesDisponibles.value[0]?.குறியீடு;
 });
 

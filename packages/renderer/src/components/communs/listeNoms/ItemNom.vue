@@ -21,9 +21,7 @@
             </template>
           </v-autocomplete>
         </v-col>
-        <v-col
-          cols="8"
-        >
+        <v-col cols="8">
           <v-locale-provider :rtl="langueDÀG">
             <v-text-field
               v-model="nouveauNom"

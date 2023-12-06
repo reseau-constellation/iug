@@ -5,18 +5,17 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 const dédoublonnerListe = (liste: string[]) => {
   const déjàVu = new Set();
   return liste.filter(x => {
-      return déjàVu.has(x) ? false : déjàVu.add(x);
+    return déjàVu.has(x) ? false : déjàVu.add(x);
   });
 };
 
 export const utiliserHistoriqueLangues = defineStore('historiqueLangues', () => {
-  
   const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
-  const sélectionsInterface = computed(()=>{
+  const sélectionsInterface = computed(() => {
     return [மொழி.value, ...மாற்றுமொழிகள்.value];
   });
   const autresSélections = ref<string[]>([]);
-  const historique = computed(()=>{
+  const historique = computed(() => {
     return dédoublonnerListe([...autresSélections.value, ...sélectionsInterface.value]);
   });
 

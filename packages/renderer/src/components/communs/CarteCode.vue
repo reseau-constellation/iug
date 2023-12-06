@@ -88,17 +88,18 @@ import VCodeBlock from '@wdns/vue-code-block';
 import {computed, onMounted, ref} from 'vue';
 
 import {watch} from 'vue';
-import { useDisplay } from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify/lib/framework.mjs';
 
 const props = defineProps<{
-  codes: {[langage: string]: string}, installation?: {[langage: string]: string}
+  codes: {[langage: string]: string};
+  installation?: {[langage: string]: string};
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const { mdAndDown } = useDisplay();
+const {mdAndDown} = useDisplay();
 
 const menu = ref(false);
 const copié = ref(false);
@@ -115,7 +116,7 @@ const code = computed(() => {
 
 watch(langage, () => (copié.value = false));
 
-const installationDéfaut:  {[langage: string]: string} = {
+const installationDéfaut: {[langage: string]: string} = {
   ts: '$ pnpm add @constl/ipa',
   py: '$ poetry add constellationPy',
   jl: '$ pkg> add Constellation',
@@ -123,7 +124,9 @@ const installationDéfaut:  {[langage: string]: string} = {
 devtools::install_github("reseau-constellation/client-r")`,
 };
 
-const codeInstallation = computed(()=>{
-  return langage.value ? {...installationDéfaut, ...(props.installation || {})}[langage.value] : undefined;
+const codeInstallation = computed(() => {
+  return langage.value
+    ? {...installationDéfaut, ...(props.installation || {})}[langage.value]
+    : undefined;
 });
 </script>

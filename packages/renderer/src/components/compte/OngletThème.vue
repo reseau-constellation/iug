@@ -7,7 +7,7 @@
           width="300"
           class="mx-3 my-3"
         >
-          <p class="px-0 mb-0 text-overline">
+          <p class="px-0 mb-0 font-weight-bold">
             {{ t('pages.compte.options.couleurs') }}
           </p>
           <v-divider class="mb-4" />
@@ -33,7 +33,7 @@
           width="300"
           class="mx-3 my-3"
         >
-          <p class="px-0 mb-0 text-overline">
+          <p class="px-0 mb-0 font-weight-bold">
             {{ t('pages.compte.options.culture') }}
           </p>
           <v-divider class="mb-4" />
@@ -59,7 +59,7 @@
           width="300"
           class="mx-3 my-3"
         >
-          <p class="px-0 mb-0 text-overline">
+          <p class="px-0 mb-0 font-weight-bold">
             {{ t('pages.compte.options.langue') }}
           </p>
           <v-divider class="mb-4" />

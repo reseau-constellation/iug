@@ -11,6 +11,7 @@
       >
         <v-col>
           <LogoAnimé
+            :class="{'my-7': !mdAndUp}"
             :largeur="mdAndUp ? 500 : 250"
             :delai="délai"
             :debut="début"

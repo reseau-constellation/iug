@@ -111,7 +111,6 @@ import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
 
-
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {GABARIT_CODE} from '/@/consts';
@@ -201,7 +200,6 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   }
 });
 
-
 // Options
 const langagesSupportés = ['ts', 'js'] as const;
 const langage = ref<(typeof langagesSupportés)[number]>('ts');
@@ -211,7 +209,6 @@ const langueCode = ref<string>(மொழி.value);
 const licenceDéfaut = ref('ODbl-1_0');
 const motsClefNuée = ref<string[]>([]);
 const bdPrincipale = ref<string>();
-
 
 // Spécifications nuée
 const clefTableauNuée = ref<string>();
@@ -396,7 +393,9 @@ const électron = ref(false);
 
 const générerPaquetComplet = async (): Promise<void> => {
   // Télécharger gabarit correspondant de GitHub
-  const racineGabarit = (await axios.get(GABARIT_CODE, {responseType: 'arraybuffer', withCredentials: false})).data;
+  const racineGabarit = (
+    await axios.get(GABARIT_CODE, {responseType: 'arraybuffer', withCredentials: false})
+  ).data;
   const zipRacineGabarit = await JSZip.loadAsync(racineGabarit);
   const gabarit = zipRacineGabarit
     .folder('paquets')
@@ -434,5 +433,4 @@ const générerPaquetComplet = async (): Promise<void> => {
   const contenu = await gabarit.generateAsync({type: 'blob'});
   await fileSave(contenu, {fileName: t('Mon appli.zip')});
 };
-
 </script>

@@ -1,10 +1,10 @@
 <template>
   <v-card class="text-start">
     <v-card-text>
-      <p class="px-0 mb-0 text-h6">
+      <p class="mt-6 font-weight-bold">
         {{ t('pages.compte.compte.mesDispositifs') }}
       </p>
-      <v-divider />
+      <v-divider class="my-2" />
       <v-list>
         <InviterDispositif>
           <template #activator="{props: propsActivateur}">
@@ -22,14 +22,14 @@
           :vu-a="statutDispositifs?.find(d => d.infoDispositif.idDispositif === id)?.vuÀ"
         />
       </v-list>
-      <p class="px-0 mb-0 text-h6">
+      <p class="mt-6 font-weight-bold">
         {{ t('pages.compte.compte.optionsAvancées') }}
       </p>
-
+      <v-divider class="my-2" />
       <v-card variant="outlined">
         <v-list>
           <v-list-item>
-            <v-list-item-title>
+            <v-list-item-title class="font-weight-bold">
               {{ t('pages.compte.compte.titreExporterCompte') }}
             </v-list-item-title>
             <v-list-item-subtitle>
@@ -59,7 +59,7 @@
           </v-list-item>
           <v-divider class="my-2" />
           <v-list-item>
-            <v-list-item-title>
+            <v-list-item-title class="font-weight-bold">
               {{ t('pages.compte.compte.titreRejoindreCompte') }}
             </v-list-item-title>
             <v-list-item-subtitle>
@@ -89,7 +89,7 @@
           </v-list-item>
           <v-divider class="my-2" />
           <v-list-item class="text-error">
-            <v-list-item-title>
+            <v-list-item-title class="font-weight-bold">
               {{ t('pages.compte.compte.titreEffacerCompte') }}
             </v-list-item-title>
             <v-list-item-subtitle>
