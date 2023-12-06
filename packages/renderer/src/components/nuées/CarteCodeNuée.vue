@@ -28,8 +28,11 @@ const props = defineProps<{id: string}>();
 
 const codes = computed(() => {
   return {
-    ts: `
-const analyser = async (données) => {
+    ts: `import { générerClient, type nuées } from "@constl/ipa";
+
+const client = générerClient({});
+
+const analyser = async (données: nuées.donnéesNuéeExportation) => {
     console.log(données)  // Faire quelque chose de plus intelligent ici :)
 }
 const fOublierDonnées = await client.nuées.suivreDonnéesExportation({
