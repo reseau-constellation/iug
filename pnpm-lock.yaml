@@ -16,7 +16,7 @@ dependencies:
     version: 0.1.15
   '@constl/mandataire-electron-principal':
     specifier: ^0.2.14
-    version: 0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.0.0)
+    version: 0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.1.3)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.2.14
     version: 0.2.14
@@ -109,7 +109,7 @@ dependencies:
     version: 0.2.1
   rollup-plugin-polyfill-node:
     specifier: ^0.13.0
-    version: 0.13.0(rollup@4.6.1)
+    version: 0.13.0(rollup@4.7.0)
   semaphore-async-await:
     specifier: ^1.5.1
     version: 1.5.1
@@ -126,8 +126,8 @@ dependencies:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.3.10)
   vuetify:
-    specifier: ^3.4.5
-    version: 3.4.5(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
+    specifier: ^3.4.6
+    version: 3.4.6(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
   webfontloader:
     specifier: ^1.6.28
     version: 1.6.28
@@ -144,7 +144,7 @@ devDependencies:
     version: 0.2.3
   '@rollup/plugin-node-resolve':
     specifier: ^15.2.3
-    version: 15.2.3(rollup@4.6.1)
+    version: 15.2.3(rollup@4.7.0)
   '@types/deep-equal':
     specifier: ^1.0.4
     version: 1.0.4
@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^4.14.202
     version: 4.14.202
   '@types/node':
-    specifier: ^20.10.3
-    version: 20.10.3
+    specifier: ^20.10.4
+    version: 20.10.4
   '@types/uuid':
     specifier: ^9.0.7
     version: 9.0.7
@@ -176,8 +176,8 @@ devDependencies:
     specifier: 4.5.1
     version: 4.5.1(vite@5.0.6)(vue@3.3.10)
   '@vitest/coverage-istanbul':
-    specifier: ^1.0.1
-    version: 1.0.1(vitest@1.0.1)
+    specifier: ^1.0.2
+    version: 1.0.2(vitest@1.0.1)
   '@vue/test-utils':
     specifier: 2.4.3
     version: 2.4.3(vue@3.3.10)
@@ -185,8 +185,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 28.0.0
-    version: 28.0.0
+    specifier: 27.1.3
+    version: 27.1.3
   electron-builder:
     specifier: 24.9.1
     version: 24.9.1
@@ -228,16 +228,16 @@ devDependencies:
     version: 0.0.5
   vite:
     specifier: 5.0.6
-    version: 5.0.6(@types/node@20.10.3)
+    version: 5.0.6(@types/node@20.10.4)
   vite-plugin-commonjs-externals:
     specifier: ^0.1.4
     version: 0.1.4(vite@5.0.6)
   vite-plugin-vuetify:
     specifier: ^1.0.2
-    version: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.5)
+    version: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6)
   vitest:
     specifier: 1.0.1
-    version: 1.0.1(@types/node@20.10.3)(happy-dom@12.10.3)
+    version: 1.0.1(@types/node@20.10.4)(happy-dom@12.10.3)
   vue-tsc:
     specifier: 1.8.25
     version: 1.8.25(typescript@5.2.2)
@@ -526,7 +526,7 @@ packages:
       multiformats: 11.0.2
       protobufjs: 6.11.4
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -557,7 +557,7 @@ packages:
       multiformats: 11.0.2
       protobufjs: 6.11.4
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -584,7 +584,7 @@ packages:
       it-stream-types: 1.0.5
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -672,7 +672,7 @@ packages:
       prom-client: 15.0.0
       ssim: 0.0.0
       tslib: 2.6.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       uuid: 9.0.1
       wherearewe: 2.0.1
       wrtc: 0.4.7
@@ -685,7 +685,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.0.0):
+  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.17)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.1.3):
     resolution: {integrity: sha512-n2w2akrrcuBS1L1lUXYf9uY9JjQ8OCiBUuWl2gbGJH4OMqPXRtinNXyHO52LRu3Pb2PDamL+vWn2BT1gYkckNg==}
     peerDependencies:
       '@constl/ipa': ^0.9.16
@@ -696,7 +696,7 @@ packages:
       '@constl/ipa': 0.9.17(wrtc@0.4.7)
       '@constl/mandataire': 0.1.15
       '@constl/serveur': 0.3.5(@constl/ipa@0.9.17)
-      electron: 28.0.0
+      electron: 27.1.3
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -768,7 +768,7 @@ packages:
       jszip: 3.10.1
       multiformats: 9.9.0
       rimraf: 5.0.5
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       wherearewe: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -783,7 +783,7 @@ packages:
       genversion: 3.1.1
       ipfs-core: 0.18.1
       rimraf: 5.0.5
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       uuid: 9.0.1
       wherearewe: 2.0.1
     transitivePeerDependencies:
@@ -1290,7 +1290,7 @@ packages:
       node-forge: 1.3.1
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /@libp2p/crypto@2.0.8:
     resolution: {integrity: sha512-8e5fh6bsJNpSjhrggtlm8QF+BERjelJswIjRS69aKgxp24R4z2kDM4pRYPkfQjXJDLNDtqWtKNmePgX23+QJsA==}
@@ -1302,7 +1302,7 @@ packages:
       node-forge: 1.3.1
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1350,7 +1350,7 @@ packages:
       '@libp2p/pubsub': 6.0.6
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1722,7 +1722,7 @@ packages:
       protons-runtime: 5.2.0
       timeout-abort-controller: 3.0.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -1734,7 +1734,7 @@ packages:
       '@libp2p/interface-peer-id': 2.0.2
       '@multiformats/multiaddr': 12.1.11
       debug: 4.3.4
-      interface-datastore: 8.2.7
+      interface-datastore: 8.2.9
       multiformats: 11.0.2
     transitivePeerDependencies:
       - supports-color
@@ -1745,7 +1745,7 @@ packages:
       '@libp2p/interface': 0.1.6
       '@multiformats/multiaddr': 12.1.11
       debug: 4.3.4
-      interface-datastore: 8.2.7
+      interface-datastore: 8.2.9
       multiformats: 12.1.3
     transitivePeerDependencies:
       - supports-color
@@ -1783,7 +1783,7 @@ packages:
       it-stream-types: 1.0.5
       rate-limiter-flexible: 2.4.2
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -1804,7 +1804,7 @@ packages:
       it-stream-types: 2.0.1
       rate-limiter-flexible: 2.4.2
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -1826,7 +1826,7 @@ packages:
       it-reader: 6.0.4
       it-stream-types: 2.0.1
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1848,7 +1848,7 @@ packages:
       multiformats: 11.0.2
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /@libp2p/peer-id@2.0.4:
     resolution: {integrity: sha512-gcOsN8Fbhj6izIK+ejiWsqiqKeJ2yWPapi/m55VjOvDa52/ptQzZszxQP8jUk93u36de92ATFXDfZR/Bi6eeUQ==}
@@ -1857,14 +1857,14 @@ packages:
       '@libp2p/interface-peer-id': 2.0.2
       '@libp2p/interfaces': 3.3.2
       multiformats: 11.0.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /@libp2p/peer-id@3.0.6:
     resolution: {integrity: sha512-iN1Ia5gH2U1V/GOVRmLHmVY6fblxzrOPUoZrMYjHl/K4s+AiI7ym/527WDeQvhQpD7j3TfDwcAYforD2dLGpLw==}
     dependencies:
       '@libp2p/interface': 0.1.6
       multiformats: 12.1.3
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1882,7 +1882,7 @@ packages:
       protons-runtime: 5.2.0
       uint8-varint: 1.0.8
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1904,11 +1904,11 @@ packages:
       it-filter: 2.0.2
       it-foreach: 1.0.1
       it-map: 2.0.1
-      mortice: 3.0.1
+      mortice: 3.0.3
       multiformats: 11.0.2
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1946,7 +1946,7 @@ packages:
       multiformats: 11.0.2
       p-queue: 7.4.1
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -1971,7 +1971,7 @@ packages:
       multiformats: 11.0.2
       p-queue: 7.4.1
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -1985,7 +1985,7 @@ packages:
       multiformats: 11.0.2
       protons-runtime: 5.2.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -2074,7 +2074,7 @@ packages:
       multiformats: 11.0.2
       native-fetch: 4.0.2(undici@5.28.2)
       p-event: 5.0.1
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       undici: 5.28.2
       wherearewe: 2.0.1
     transitivePeerDependencies:
@@ -2094,7 +2094,7 @@ packages:
       it-stream-types: 1.0.5
       p-defer: 4.0.0
       p-event: 5.0.1
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -2143,7 +2143,7 @@ packages:
       multiformats: 11.0.2
       p-defer: 4.0.0
       socket.io-client: 4.7.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -2170,7 +2170,7 @@ packages:
       iso-random-stream: 2.0.2
       p-defer: 4.0.0
       socket.io-client: 4.7.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -2287,7 +2287,7 @@ packages:
       dns-over-http-resolver: 2.1.3
       err-code: 3.0.1
       multiformats: 11.0.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -2301,7 +2301,7 @@ packages:
       dns-over-http-resolver: 3.0.0
       multiformats: 12.1.3
       uint8-varint: 2.0.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -2369,7 +2369,7 @@ packages:
       multiformats: 12.1.3
       p-queue: 7.4.1
       timeout-abort-controller: 3.0.0
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -2412,7 +2412,7 @@ packages:
   /@protobufjs/utf8@1.1.0:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  /@rollup/plugin-inject@5.0.5(rollup@4.6.1):
+  /@rollup/plugin-inject@5.0.5(rollup@4.7.0):
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -2421,13 +2421,13 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.6.1)
+      '@rollup/pluginutils': 5.1.0(rollup@4.7.0)
       estree-walker: 2.0.2
       magic-string: 0.30.5
-      rollup: 4.6.1
+      rollup: 4.7.0
     dev: false
 
-  /@rollup/plugin-node-resolve@15.2.3(rollup@4.6.1):
+  /@rollup/plugin-node-resolve@15.2.3(rollup@4.7.0):
     resolution: {integrity: sha512-j/lym8nf5E21LwBT4Df1VD6hRO2L2iwUeUmP7litikRsVp1H6NWx20NEp0Y7su+7XGc476GnXXc4kFeZNGmaSQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -2436,16 +2436,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.6.1)
+      '@rollup/pluginutils': 5.1.0(rollup@4.7.0)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.8
-      rollup: 4.6.1
+      rollup: 4.7.0
     dev: true
 
-  /@rollup/pluginutils@5.1.0(rollup@4.6.1):
+  /@rollup/pluginutils@5.1.0(rollup@4.7.0):
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -2457,87 +2457,94 @@ packages:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 4.6.1
+      rollup: 4.7.0
 
-  /@rollup/rollup-android-arm-eabi@4.6.1:
-    resolution: {integrity: sha512-0WQ0ouLejaUCRsL93GD4uft3rOmB8qoQMU05Kb8CmMtMBe7XUDLAltxVZI1q6byNqEtU7N1ZX1Vw5lIpgulLQA==}
+  /@rollup/rollup-android-arm-eabi@4.7.0:
+    resolution: {integrity: sha512-rGku10pL1StFlFvXX5pEv88KdGW6DHUghsxyP/aRYb9eH+74jTGJ3U0S/rtlsQ4yYq1Hcc7AMkoJOb1xu29Fxw==}
     cpu: [arm]
     os: [android]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-android-arm64@4.6.1:
-    resolution: {integrity: sha512-1TKm25Rn20vr5aTGGZqo6E4mzPicCUD79k17EgTLAsXc1zysyi4xXKACfUbwyANEPAEIxkzwue6JZ+stYzWUTA==}
+  /@rollup/rollup-android-arm64@4.7.0:
+    resolution: {integrity: sha512-/EBw0cuJ/KVHiU2qyVYUhogXz7W2vXxBzeE9xtVIMC+RyitlY2vvaoysMUqASpkUtoNIHlnKTu/l7mXOPgnKOA==}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-darwin-arm64@4.6.1:
-    resolution: {integrity: sha512-cEXJQY/ZqMACb+nxzDeX9IPLAg7S94xouJJCNVE5BJM8JUEP4HeTF+ti3cmxWeSJo+5D+o8Tc0UAWUkfENdeyw==}
+  /@rollup/rollup-darwin-arm64@4.7.0:
+    resolution: {integrity: sha512-4VXG1bgvClJdbEYYjQ85RkOtwN8sqI3uCxH0HC5w9fKdqzRzgG39K7GAehATGS8jghA7zNoS5CjSKkDEqWmNZg==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-darwin-x64@4.6.1:
-    resolution: {integrity: sha512-LoSU9Xu56isrkV2jLldcKspJ7sSXmZWkAxg7sW/RfF7GS4F5/v4EiqKSMCFbZtDu2Nc1gxxFdQdKwkKS4rwxNg==}
+  /@rollup/rollup-darwin-x64@4.7.0:
+    resolution: {integrity: sha512-/ImhO+T/RWJ96hUbxiCn2yWI0/MeQZV/aeukQQfhxiSXuZJfyqtdHPUPrc84jxCfXTxbJLmg4q+GBETeb61aNw==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-linux-arm-gnueabihf@4.6.1:
-    resolution: {integrity: sha512-EfI3hzYAy5vFNDqpXsNxXcgRDcFHUWSx5nnRSCKwXuQlI5J9dD84g2Usw81n3FLBNsGCegKGwwTVsSKK9cooSQ==}
+  /@rollup/rollup-linux-arm-gnueabihf@4.7.0:
+    resolution: {integrity: sha512-zhye8POvTyUXlKbfPBVqoHy3t43gIgffY+7qBFqFxNqVtltQLtWeHNAbrMnXiLIfYmxcoL/feuLDote2tx+Qbg==}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-linux-arm64-gnu@4.6.1:
-    resolution: {integrity: sha512-9lhc4UZstsegbNLhH0Zu6TqvDfmhGzuCWtcTFXY10VjLLUe4Mr0Ye2L3rrtHaDd/J5+tFMEuo5LTCSCMXWfUKw==}
+  /@rollup/rollup-linux-arm64-gnu@4.7.0:
+    resolution: {integrity: sha512-RAdr3OJnUum6Vs83cQmKjxdTg31zJnLLTkjhcFt0auxM6jw00GD6IPFF42uasYPr/wGC6TRm7FsQiJyk0qIEfg==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-linux-arm64-musl@4.6.1:
-    resolution: {integrity: sha512-FfoOK1yP5ksX3wwZ4Zk1NgyGHZyuRhf99j64I5oEmirV8EFT7+OhUZEnP+x17lcP/QHJNWGsoJwrz4PJ9fBEXw==}
+  /@rollup/rollup-linux-arm64-musl@4.7.0:
+    resolution: {integrity: sha512-nhWwYsiJwZGq7SyR3afS3EekEOsEAlrNMpPC4ZDKn5ooYSEjDLe9W/xGvoIV8/F/+HNIY6jY8lIdXjjxfxopXw==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-linux-x64-gnu@4.6.1:
-    resolution: {integrity: sha512-DNGZvZDO5YF7jN5fX8ZqmGLjZEXIJRdJEdTFMhiyXqyXubBa0WVLDWSNlQ5JR2PNgDbEV1VQowhVRUh+74D+RA==}
+  /@rollup/rollup-linux-riscv64-gnu@4.7.0:
+    resolution: {integrity: sha512-rlfy5RnQG1aop1BL/gjdH42M2geMUyVQqd52GJVirqYc787A/XVvl3kQ5NG/43KXgOgE9HXgCaEH05kzQ+hLoA==}
+    cpu: [riscv64]
+    os: [linux]
+    requiresBuild: true
+    optional: true
+
+  /@rollup/rollup-linux-x64-gnu@4.7.0:
+    resolution: {integrity: sha512-cCkoGlGWfBobdDtiiypxf79q6k3/iRVGu1HVLbD92gWV5WZbmuWJCgRM4x2N6i7ljGn1cGytPn9ZAfS8UwF6vg==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-linux-x64-musl@4.6.1:
-    resolution: {integrity: sha512-RkJVNVRM+piYy87HrKmhbexCHg3A6Z6MU0W9GHnJwBQNBeyhCJG9KDce4SAMdicQnpURggSvtbGo9xAWOfSvIQ==}
+  /@rollup/rollup-linux-x64-musl@4.7.0:
+    resolution: {integrity: sha512-R2oBf2p/Arc1m+tWmiWbpHBjEcJnHVnv6bsypu4tcKdrYTpDfl1UT9qTyfkIL1iiii5D4WHxUHCg5X0pzqmxFg==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-win32-arm64-msvc@4.6.1:
-    resolution: {integrity: sha512-v2FVT6xfnnmTe3W9bJXl6r5KwJglMK/iRlkKiIFfO6ysKs0rDgz7Cwwf3tjldxQUrHL9INT/1r4VA0n9L/F1vQ==}
+  /@rollup/rollup-win32-arm64-msvc@4.7.0:
+    resolution: {integrity: sha512-CPtgaQL1aaPc80m8SCVEoxFGHxKYIt3zQYC3AccL/SqqiWXblo3pgToHuBwR8eCP2Toa+X1WmTR/QKFMykws7g==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-win32-ia32-msvc@4.6.1:
-    resolution: {integrity: sha512-YEeOjxRyEjqcWphH9dyLbzgkF8wZSKAKUkldRY6dgNR5oKs2LZazqGB41cWJ4Iqqcy9/zqYgmzBkRoVz3Q9MLw==}
+  /@rollup/rollup-win32-ia32-msvc@4.7.0:
+    resolution: {integrity: sha512-pmioUlttNh9GXF5x2CzNa7Z8kmRTyhEzzAC+2WOOapjewMbl+3tGuAnxbwc5JyG8Jsz2+hf/QD/n5VjimOZ63g==}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
     optional: true
 
-  /@rollup/rollup-win32-x64-msvc@4.6.1:
-    resolution: {integrity: sha512-0zfTlFAIhgz8V2G8STq8toAjsYYA6eci1hnXuyOTUFnymrtJwnS6uGKiv3v5UrPZkBlamLvrLV2iiaeqCKzb0A==}
+  /@rollup/rollup-win32-x64-msvc@4.7.0:
+    resolution: {integrity: sha512-SeZzC2QhhdBQUm3U0c8+c/P6UlRyBcLL2Xp5KX7z46WXZxzR8RJSIWL9wSUeBTgxog5LTPJuPj0WOT9lvrtP7Q==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -2662,7 +2669,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       '@types/responselike': 1.0.3
 
   /@types/debug@4.1.12:
@@ -2678,7 +2685,7 @@ packages:
   /@types/dns-packet@5.6.4:
     resolution: {integrity: sha512-R0ORTvCCeujG+upKfV4JlvozKLdQWlpsducXGd1L6ezBChwpjSj9K84F+KoMDsZQ9RhOLTR1hnNrwJHWagY24g==}
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -2690,7 +2697,7 @@ packages:
   /@types/fs-extra@9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
     dev: true
 
   /@types/http-cache-semantics@4.0.4:
@@ -2707,7 +2714,7 @@ packages:
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
 
   /@types/lodash@4.14.202:
     resolution: {integrity: sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==}
@@ -2727,15 +2734,15 @@ packages:
     resolution: {integrity: sha512-ib5K4cIDR4Ro5SR3Sx/LROkMDa0BHz0OPaCBL/OSPDsAXEGZ3/KQeS6poBKYVN7BfjXDL9lWNwzyHVgt/wkyCw==}
     dependencies:
       '@types/dns-packet': 5.6.4
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
 
-  /@types/node@18.19.2:
-    resolution: {integrity: sha512-6wzfBdbWpe8QykUkXBjtmO3zITA0A3FIjoy+in0Y2K4KrCiRhNYJIdwAPDffZ3G6GnaKaSLSEa9ZuORLfEoiwg==}
+  /@types/node@18.19.3:
+    resolution: {integrity: sha512-k5fggr14DwAytoA/t8rPrIz++lXK7/DqckthCmoZOKNsEbJkId4Z//BqgApXBUGrGddrigYa1oqheo/7YmW4rg==}
     dependencies:
       undici-types: 5.26.5
 
-  /@types/node@20.10.3:
-    resolution: {integrity: sha512-XJavIpZqiXID5Yxnxv3RUDKTN5b81ddNC3ecsA0SoFXz/QU8OGBwZGMomiq0zw+uuqbL/krztv/DINAQ/EV4gg==}
+  /@types/node@20.10.4:
+    resolution: {integrity: sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==}
     dependencies:
       undici-types: 5.26.5
 
@@ -2743,7 +2750,7 @@ packages:
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       xmlbuilder: 15.1.1
     dev: true
     optional: true
@@ -2755,7 +2762,7 @@ packages:
   /@types/responselike@1.0.3:
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
 
   /@types/retry@0.12.1:
     resolution: {integrity: sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==}
@@ -2796,7 +2803,7 @@ packages:
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
     optional: true
 
   /@typescript-eslint/eslint-plugin@6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.2.2):
@@ -2944,12 +2951,12 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.0.6(@types/node@20.10.3)
+      vite: 5.0.6(@types/node@20.10.4)
       vue: 3.3.10(typescript@5.2.2)
     dev: true
 
-  /@vitest/coverage-istanbul@1.0.1(vitest@1.0.1):
-    resolution: {integrity: sha512-g2XAfl6DlYy37ycUuPtXYpOu9TcFN9wVGraxrKQJESeal7z9d0UMI/FcOqKifUPfjod+QnCl2+9CZe1elvAvMA==}
+  /@vitest/coverage-istanbul@1.0.2(vitest@1.0.1):
+    resolution: {integrity: sha512-HZk0VYYvLrUX/TExxxVT7DwowqjJXmm4LbKGYBLN9HwYZe50nGYU3K/KisnOY7lgt0+Po4MLVa2fXe2ediyr9g==}
     peerDependencies:
       vitest: ^1.0.0
     dependencies:
@@ -2962,7 +2969,7 @@ packages:
       magicast: 0.3.2
       picocolors: 1.0.0
       test-exclude: 6.0.0
-      vitest: 1.0.1(@types/node@20.10.3)(happy-dom@12.10.3)
+      vitest: 1.0.1(@types/node@20.10.4)(happy-dom@12.10.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3032,11 +3039,27 @@ packages:
       estree-walker: 2.0.2
       source-map-js: 1.0.2
 
+  /@vue/compiler-core@3.3.11:
+    resolution: {integrity: sha512-h97/TGWBilnLuRaj58sxNrsUU66fwdRKLOLQ9N/5iNDfp+DZhYH9Obhe0bXxhedl8fjAgpRANpiZfbgWyruQ0w==}
+    dependencies:
+      '@babel/parser': 7.23.5
+      '@vue/shared': 3.3.11
+      estree-walker: 2.0.2
+      source-map-js: 1.0.2
+    dev: true
+
   /@vue/compiler-dom@3.3.10:
     resolution: {integrity: sha512-NCrqF5fm10GXZIK0GrEAauBqdy+F2LZRt3yNHzrYjpYBuRssQbuPLtSnSNjyR9luHKkWSH8we5LMB3g+4z2HvA==}
     dependencies:
       '@vue/compiler-core': 3.3.10
       '@vue/shared': 3.3.10
+
+  /@vue/compiler-dom@3.3.11:
+    resolution: {integrity: sha512-zoAiUIqSKqAJ81WhfPXYmFGwDRuO+loqLxvXmfUdR5fOitPoUiIeFI9cTTyv9MU5O1+ZZglJVTusWzy+wfk5hw==}
+    dependencies:
+      '@vue/compiler-core': 3.3.11
+      '@vue/shared': 3.3.11
+    dev: true
 
   /@vue/compiler-sfc@3.3.10:
     resolution: {integrity: sha512-xpcTe7Rw7QefOTRFFTlcfzozccvjM40dT45JtrE3onGm/jBLZ0JhpKu3jkV7rbDFLeeagR/5RlJ2Y9SvyS0lAg==}
@@ -3072,8 +3095,8 @@ packages:
     dependencies:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
-      '@vue/compiler-dom': 3.3.10
-      '@vue/shared': 3.3.10
+      '@vue/compiler-dom': 3.3.11
+      '@vue/shared': 3.3.11
       computeds: 0.0.1
       minimatch: 9.0.3
       muggle-string: 0.3.1
@@ -3107,7 +3130,7 @@ packages:
     dependencies:
       '@vue/runtime-core': 3.3.10
       '@vue/shared': 3.3.10
-      csstype: 3.1.2
+      csstype: 3.1.3
 
   /@vue/server-renderer@3.3.10(vue@3.3.10):
     resolution: {integrity: sha512-0i6ww3sBV3SKlF3YTjSVqKQ74xialMbjVYGy7cOTi7Imd8ediE7t72SK3qnvhrTAhOvlQhq6Bk6nFPdXxe0sAg==}
@@ -3121,6 +3144,10 @@ packages:
   /@vue/shared@3.3.10:
     resolution: {integrity: sha512-2y3Y2J1a3RhFa0WisHvACJR2ncvWiVHcP8t0Inxo+NKz+8RKO4ZV8eZgCxRgQoA6ITfV12L4E6POOL9HOU5nqw==}
 
+  /@vue/shared@3.3.11:
+    resolution: {integrity: sha512-u2G8ZQ9IhMWTMXaWqZycnK4UthG1fA238CD+DP4Dm4WJi5hdUKKLg0RMRaRpDPNMdkTwIDkp7WtD0Rd9BH9fLw==}
+    dev: true
+
   /@vue/test-utils@2.4.3(vue@3.3.10):
     resolution: {integrity: sha512-F4K7mF+ad++VlTrxMJVRnenKSJmO6fkQt2wpRDiKDesQMkfpniGWsqEi/JevxGBo2qEkwwjvTUAoiGJLNx++CA==}
     peerDependencies:
@@ -3132,10 +3159,10 @@ packages:
     dependencies:
       js-beautify: 1.14.11
       vue: 3.3.10(typescript@5.2.2)
-      vue-component-type-helpers: 1.8.24
+      vue-component-type-helpers: 1.8.25
     dev: true
 
-  /@vuetify/loader-shared@1.7.1(vue@3.3.10)(vuetify@3.4.5):
+  /@vuetify/loader-shared@1.7.1(vue@3.3.10)(vuetify@3.4.6):
     resolution: {integrity: sha512-kLUvuAed6RCvkeeTNJzuy14pqnkur8lTuner7v7pNE/kVhPR97TuyXwBSBMR1cJeiLiOfu6SF5XlCYbXByEx1g==}
     peerDependencies:
       vue: ^3.0.0
@@ -3144,7 +3171,7 @@ packages:
       find-cache-dir: 3.3.2
       upath: 2.0.1
       vue: 3.3.10(typescript@5.2.2)
-      vuetify: 3.4.5(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
+      vuetify: 3.4.6(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
 
   /@vueuse/core@10.7.0(vue@3.3.10):
     resolution: {integrity: sha512-4EUDESCHtwu44ZWK3Gc/hZUVhVo/ysvdtwocB5vcauSV4B7NiGY5972WnsojB3vRNdxvAt7kzJWE2h9h7C9d5w==}
@@ -3701,7 +3728,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001566
-      electron-to-chromium: 1.4.605
+      electron-to-chromium: 1.4.608
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -4180,8 +4207,8 @@ packages:
     hasBin: true
     dev: true
 
-  /csstype@3.1.2:
-    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+  /csstype@3.1.3:
+    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
   /dag-jose@4.0.0:
     resolution: {integrity: sha512-tw595L3UYoOUT9dSJPbBEG/qpRpw24kRZxa5SLRnlnr+g5L7O8oEs1d3W5TiVA1oJZbthVsf0Vi3zFN66qcEBA==}
@@ -4204,7 +4231,7 @@ packages:
       it-pipe: 2.0.5
       it-pushable: 3.2.3
       it-take: 2.0.1
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -4247,7 +4274,7 @@ packages:
       '@libp2p/logger': 2.1.1
       datastore-core: 8.0.4
       interface-datastore: 7.0.4
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -4599,8 +4626,8 @@ packages:
       - supports-color
     dev: true
 
-  /electron-to-chromium@1.4.605:
-    resolution: {integrity: sha512-V52j+P5z6cdRqTjPR/bYNxx7ETCHIkm5VIGuyCy3CMrfSnbEpIlLnk5oHmZo7gYvDfh2TfHeanB6rawyQ23ktg==}
+  /electron-to-chromium@1.4.608:
+    resolution: {integrity: sha512-J2f/3iIIm3Mo0npneITZ2UPe4B1bg8fTNrFjD8715F/k1BvbviRuqYGkET1PgprrczXYTHFvotbBOmUp6KE0uA==}
     dev: true
 
   /electron-updater@6.1.7:
@@ -4618,14 +4645,14 @@ packages:
       - supports-color
     dev: false
 
-  /electron@28.0.0:
-    resolution: {integrity: sha512-eDhnCFBvG0PGFVEpNIEdBvyuGUBsFdlokd+CtuCe2ER3P+17qxaRfWRxMmksCOKgDHb5Wif5UxqOkZSlA4snlw==}
+  /electron@27.1.3:
+    resolution: {integrity: sha512-7eD8VMhhlL5J531OOawn00eMthUkX1e3qN5Nqd7eMK8bg5HxQBrn8bdPlvUEnCano9KhrVwaDnGeuzWoDOGpjQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@electron/get': 2.0.3
-      '@types/node': 18.19.2
+      '@types/node': 18.19.3
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -5471,7 +5498,7 @@ packages:
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
       sparse-array: 1.3.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /happy-dom@12.10.3:
     resolution: {integrity: sha512-JzUXOh0wdNGY54oKng5hliuBkq/+aT1V3YpTM+lrN/GoLQTANZsMaIvmHiHe612rauHvPJnDZkZ+5GZR++1Abg==}
@@ -5726,14 +5753,13 @@ packages:
     dependencies:
       interface-store: 3.0.4
       nanoid: 4.0.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
-  /interface-datastore@8.2.7:
-    resolution: {integrity: sha512-ot5B5+VogufRfjhedAXZHm5NuEKyYZkDyVpTjBYIrxYUpS5GIfF2soE/dsd/FiBVqubcxa4IEToMXL5ruMwhjw==}
+  /interface-datastore@8.2.9:
+    resolution: {integrity: sha512-J/8PN8TnB5xxCRtgu9Vx3zExdOzcTU5/DBF2dlU41deX1GW6/SPpbJo5DRNSnvzfjmwJ7YhUOIFXyccUp8nuAA==}
     dependencies:
       interface-store: 5.1.5
-      nanoid: 5.0.4
-      uint8arrays: 4.0.9
+      uint8arrays: 5.0.0
 
   /interface-store@3.0.4:
     resolution: {integrity: sha512-OjHUuGXbH4eXSBx1TF1tTySvjLldPLzRSYYXJwrEQI+XfH5JWYZofr0gVMV4F8XTwC+4V7jomDYkvGRmDSRKqQ==}
@@ -5788,7 +5814,7 @@ packages:
       protobufjs: 7.2.5
       readable-stream: 4.4.2
       timeout-abort-controller: 3.0.0
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
       varint-decoder: 1.0.0
     transitivePeerDependencies:
@@ -5820,7 +5846,7 @@ packages:
       it-drain: 2.0.1
       it-foreach: 1.0.1
       p-queue: 7.4.1
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -5838,7 +5864,7 @@ packages:
       '@libp2p/interface-peer-info': 1.0.10
       '@libp2p/interface-pubsub': 3.0.7
       '@multiformats/multiaddr': 11.6.1
-      '@types/node': 18.19.2
+      '@types/node': 18.19.3
       interface-datastore: 7.0.4
       ipfs-unixfs: 9.0.1
       multiformats: 11.0.2
@@ -5869,7 +5895,7 @@ packages:
       nanoid: 4.0.2
       parse-duration: 1.1.0
       timeout-abort-controller: 3.0.0
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -5945,12 +5971,12 @@ packages:
       just-safe-set: 4.2.1
       libp2p: 0.42.2
       merge-options: 3.0.4
-      mortice: 3.0.1
+      mortice: 3.0.3
       multiformats: 11.0.2
       pako: 2.1.0
       parse-duration: 1.1.0
       timeout-abort-controller: 3.0.0
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -5980,7 +6006,7 @@ packages:
       multiformats: 11.0.2
       parse-duration: 1.1.0
       stream-to-it: 0.2.4
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6000,7 +6026,7 @@ packages:
       it-length: 2.0.1
       multiformats: 11.0.2
       protobufjs: 7.2.5
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       varint: 6.0.0
     transitivePeerDependencies:
       - supports-color
@@ -6029,13 +6055,13 @@ packages:
       just-safe-get: 4.2.0
       just-safe-set: 4.2.1
       merge-options: 3.0.4
-      mortice: 3.0.1
+      mortice: 3.0.3
       multiformats: 11.0.2
       p-queue: 7.4.1
       proper-lockfile: 4.1.2
       quick-lru: 6.1.2
       sort-keys: 5.0.0
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -6057,7 +6083,7 @@ packages:
       it-pushable: 3.2.3
       multiformats: 11.0.2
       p-queue: 7.4.1
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /ipfs-unixfs-importer@12.0.1:
     resolution: {integrity: sha512-//VPZOqbONtc1HNtb+sBrw+nIGijHEloSm1O3LVR5orSlhHQ8X7+OCkeqceFBhu40tPMe/TwgAPrkvh+fXL+bA==}
@@ -6077,7 +6103,7 @@ packages:
       multiformats: 11.0.2
       rabin-wasm: 0.1.5
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -6129,7 +6155,7 @@ packages:
       protons-runtime: 4.0.2(uint8arraylist@2.4.7)
       timestamp-nano: 1.0.1
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -6251,7 +6277,7 @@ packages:
       '@multiformats/multiaddr': 11.6.1
       iso-url: 1.2.1
       multiformats: 11.0.2
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     transitivePeerDependencies:
       - supports-color
 
@@ -6551,7 +6577,7 @@ packages:
       it-stream-types: 1.0.5
       uint8-varint: 1.0.8
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /it-length-prefixed@9.0.3:
     resolution: {integrity: sha512-YAu424ceYpXctxtjcLOqn7vJq082CaoP8J646ZusYISfQc3bpzQErgTUqMFj81V262KG2W9/YMBHsy6A/4yvmg==}
@@ -6562,7 +6588,7 @@ packages:
       it-stream-types: 2.0.1
       uint8-varint: 2.0.2
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /it-length@2.0.1:
     resolution: {integrity: sha512-BynaPOK4UwcQX2Z+kqsQygXUNW9NZswfTnscfP7MLhFvVhRYbYJv8XH+09/Qwf8ktk65QdsGoVnDmQUCUGCyvg==}
@@ -6684,18 +6710,18 @@ packages:
       it-to-buffer: 3.0.1
       p-defer: 4.0.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /it-to-buffer@3.0.1:
     resolution: {integrity: sha512-TiMudfypF2yW+HdNfhDgbkNQ42yuK1MizB716kwnzIJSQa8AM15zh+VZG2L/xQWaqyWfra1dr9neWO55xsYolA==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /it-to-buffer@4.0.4:
     resolution: {integrity: sha512-QwsBKNdf9nDtG+KOs+reBCob9dpZgqgdFdoN/+/E3BEYUAleH4tXFRoMKsGJz7j4U3Ge1ns6U38uVgiQETvurQ==}
     dependencies:
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
     dev: false
 
   /it-to-stream@1.0.0:
@@ -6715,7 +6741,7 @@ packages:
       event-iterator: 2.0.0
       iso-url: 1.2.1
       it-stream-types: 1.0.5
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       ws: 8.14.2(bufferutil@4.0.8)
     transitivePeerDependencies:
       - bufferutil
@@ -7033,7 +7059,7 @@ packages:
       set-delayed-interval: 1.0.0
       timeout-abort-controller: 3.0.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
       wherearewe: 2.0.1
       xsalsa20: 1.2.0
     transitivePeerDependencies:
@@ -7382,11 +7408,9 @@ packages:
     resolution: {integrity: sha512-0yuvsqSCv8LbaOKhnsQ/T5JhyFlCYLPXK3U2sgV10zoKQwzs/MyfuQUOZQ1V/6OCOJsK/TRgNVrPuPDqtdMFtA==}
     engines: {node: '>=10'}
 
-  /mortice@3.0.1:
-    resolution: {integrity: sha512-eyDUsl1nCR9+JtNksKnaESLP9MgAXCA4w1LTtsmOSQNsThnv++f36rrBu5fC/fdGIwTJZmbiaR/QewptH93pYA==}
-    engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+  /mortice@3.0.3:
+    resolution: {integrity: sha512-C1maDct5qTPH6dDXEzZg9XP+RteVHsdQ3IRdOF2Halll5qsCKYVwNL1x9FHGs3xOFvB6xerqxY9AG+Ac6aLr6A==}
     dependencies:
-      nanoid: 4.0.2
       observable-webworkers: 2.0.1
       p-queue: 7.4.1
       p-timeout: 6.1.2
@@ -7454,11 +7478,6 @@ packages:
   /nanoid@4.0.2:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
-    hasBin: true
-
-  /nanoid@5.0.4:
-    resolution: {integrity: sha512-vAjmBf13gsmhXSgBrtIclinISzFFy22WwCYoyilZlsrRXNIHSwgFQ1bEdjRwMT3aoadeIF6HMuDRlOxzfXV8ig==}
-    engines: {node: ^18 || >=20}
     hasBin: true
 
   /napi-macros@2.2.2:
@@ -8149,7 +8168,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       long: 4.0.0
 
   /protobufjs@7.2.5:
@@ -8167,7 +8186,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       long: 5.2.3
 
   /protons-runtime@4.0.2(uint8arraylist@2.4.7):
@@ -8183,7 +8202,7 @@ packages:
     resolution: {integrity: sha512-jL3VSbXllgm17zurKQ/z+Ath0w+4BknJ+l/NLocfjAB8hbeASOZTNtb7zK3nDsKq2pHK9YFumNQvpkZ6gFfWhA==}
     dependencies:
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
@@ -8527,13 +8546,13 @@ packages:
       rollup-plugin-inject: 3.0.2
     dev: false
 
-  /rollup-plugin-polyfill-node@0.13.0(rollup@4.6.1):
+  /rollup-plugin-polyfill-node@0.13.0(rollup@4.7.0):
     resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
-      '@rollup/plugin-inject': 5.0.5(rollup@4.6.1)
-      rollup: 4.6.1
+      '@rollup/plugin-inject': 5.0.5(rollup@4.7.0)
+      rollup: 4.7.0
     dev: false
 
   /rollup-plugin-resolve-id@1.0.2:
@@ -8546,23 +8565,24 @@ packages:
     dependencies:
       estree-walker: 0.6.1
 
-  /rollup@4.6.1:
-    resolution: {integrity: sha512-jZHaZotEHQaHLgKr8JnQiDT1rmatjgKlMekyksz+yk9jt/8z9quNjnKNRoaM0wd9DC2QKXjmWWuDYtM3jfF8pQ==}
+  /rollup@4.7.0:
+    resolution: {integrity: sha512-7Kw0dUP4BWH78zaZCqF1rPyQ8D5DSU6URG45v1dqS/faNsx9WXyess00uTOZxKr7oR/4TOjO1CPudT8L1UsEgw==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.6.1
-      '@rollup/rollup-android-arm64': 4.6.1
-      '@rollup/rollup-darwin-arm64': 4.6.1
-      '@rollup/rollup-darwin-x64': 4.6.1
-      '@rollup/rollup-linux-arm-gnueabihf': 4.6.1
-      '@rollup/rollup-linux-arm64-gnu': 4.6.1
-      '@rollup/rollup-linux-arm64-musl': 4.6.1
-      '@rollup/rollup-linux-x64-gnu': 4.6.1
-      '@rollup/rollup-linux-x64-musl': 4.6.1
-      '@rollup/rollup-win32-arm64-msvc': 4.6.1
-      '@rollup/rollup-win32-ia32-msvc': 4.6.1
-      '@rollup/rollup-win32-x64-msvc': 4.6.1
+      '@rollup/rollup-android-arm-eabi': 4.7.0
+      '@rollup/rollup-android-arm64': 4.7.0
+      '@rollup/rollup-darwin-arm64': 4.7.0
+      '@rollup/rollup-darwin-x64': 4.7.0
+      '@rollup/rollup-linux-arm-gnueabihf': 4.7.0
+      '@rollup/rollup-linux-arm64-gnu': 4.7.0
+      '@rollup/rollup-linux-arm64-musl': 4.7.0
+      '@rollup/rollup-linux-riscv64-gnu': 4.7.0
+      '@rollup/rollup-linux-x64-gnu': 4.7.0
+      '@rollup/rollup-linux-x64-musl': 4.7.0
+      '@rollup/rollup-win32-arm64-msvc': 4.7.0
+      '@rollup/rollup-win32-ia32-msvc': 4.7.0
+      '@rollup/rollup-win32-x64-msvc': 4.7.0
       fsevents: 2.3.3
 
   /run-parallel-limit@1.1.0:
@@ -9192,21 +9212,26 @@ packages:
       byte-access: 1.0.1
       longbits: 1.1.0
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /uint8-varint@2.0.2:
     resolution: {integrity: sha512-LZXmBT0jiHR7J4oKM1GUhtdLFW1yPauzI8NjJlotXn92TprO9u8VMvEVR4QMk8xhUVUd+2fqfU2/kGbVHYSSWw==}
     dependencies:
       uint8arraylist: 2.4.7
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
   /uint8arraylist@2.4.7:
     resolution: {integrity: sha512-ohRElqR6C5dd60vRFLq40MCiSnUe1AzkpHvbCEMCGGP6zMoFYECsjdhL6bR1kTK37ONNRDuHQ3RIpScRYcYYIg==}
     dependencies:
-      uint8arrays: 4.0.9
+      uint8arrays: 4.0.10
 
-  /uint8arrays@4.0.9:
-    resolution: {integrity: sha512-iHU8XJJnfeijILZWzV7RgILdPHqe0mjJvyzY4mO8aUUtHsDbPa2Gc8/02Kc4zeokp2W6Qq8z9Ap1xkQ1HfbKwg==}
+  /uint8arrays@4.0.10:
+    resolution: {integrity: sha512-AnJNUGGDJAgFw/eWu/Xb9zrVKEGlwJJCaeInlf3BkecE/zcTobk5YXYIPNQJO1q5Hh1QZrQQHf0JvcHqz2hqoA==}
+    dependencies:
+      multiformats: 12.1.3
+
+  /uint8arrays@5.0.0:
+    resolution: {integrity: sha512-RWO7gR4x6syxnKDfZO8mDCsaaYs1/BqZCxlHgrcRge50E9GTnLmtoA4kwFSGIL4s3dQkryeTkvtG6oEFEya3yg==}
     dependencies:
       multiformats: 12.1.3
 
@@ -9328,7 +9353,7 @@ packages:
     dev: true
     optional: true
 
-  /vite-node@1.0.1(@types/node@20.10.3):
+  /vite-node@1.0.1(@types/node@20.10.4):
     resolution: {integrity: sha512-Y2Jnz4cr2azsOMMYuVPrQkp3KMnS/0WV8ezZjCy4hU7O5mUHCAVOnFmoEvs1nvix/4mYm74Len8bYRWZJMNP6g==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9337,7 +9362,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 5.0.6(@types/node@20.10.3)
+      vite: 5.0.6(@types/node@20.10.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9357,26 +9382,26 @@ packages:
       acorn: 8.11.2
       es-module-lexer: 1.4.1
       magic-string: 0.30.5
-      vite: 5.0.6(@types/node@20.10.3)
+      vite: 5.0.6(@types/node@20.10.4)
     dev: true
 
-  /vite-plugin-vuetify@1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.5):
+  /vite-plugin-vuetify@1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6):
     resolution: {integrity: sha512-MubIcKD33O8wtgQXlbEXE7ccTEpHZ8nPpe77y9Wy3my2MWw/PgehP9VqTp92BLqr0R1dSL970Lynvisx3UxBFw==}
     engines: {node: '>=12'}
     peerDependencies:
       vite: ^2.7.0 || ^3.0.0 || ^4.0.0
       vuetify: ^3.0.0-beta.4
     dependencies:
-      '@vuetify/loader-shared': 1.7.1(vue@3.3.10)(vuetify@3.4.5)
+      '@vuetify/loader-shared': 1.7.1(vue@3.3.10)(vuetify@3.4.6)
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.0.6(@types/node@20.10.3)
-      vuetify: 3.4.5(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
+      vite: 5.0.6(@types/node@20.10.4)
+      vuetify: 3.4.6(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
     transitivePeerDependencies:
       - supports-color
       - vue
 
-  /vite@5.0.6(@types/node@20.10.3):
+  /vite@5.0.6(@types/node@20.10.4):
     resolution: {integrity: sha512-MD3joyAEBtV7QZPl2JVVUai6zHms3YOmLR+BpMzLlX2Yzjfcc4gTgNi09d/Rua3F4EtC8zdwPU8eQYyib4vVMQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9404,14 +9429,14 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       esbuild: 0.19.8
       postcss: 8.4.32
-      rollup: 4.6.1
+      rollup: 4.7.0
     optionalDependencies:
       fsevents: 2.3.3
 
-  /vitest@1.0.1(@types/node@20.10.3)(happy-dom@12.10.3):
+  /vitest@1.0.1(@types/node@20.10.4)(happy-dom@12.10.3):
     resolution: {integrity: sha512-MHsOj079S28hDsvdDvyD1pRj4dcS51EC5Vbe0xvOYX+WryP8soiK2dm8oULi+oA/8Xa/h6GoJEMTmcmBy5YM+Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9436,7 +9461,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.10.3
+      '@types/node': 20.10.4
       '@vitest/expect': 1.0.1
       '@vitest/runner': 1.0.1
       '@vitest/snapshot': 1.0.1
@@ -9456,8 +9481,8 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.5.1
       tinypool: 0.8.1
-      vite: 5.0.6(@types/node@20.10.3)
-      vite-node: 1.0.1(@types/node@20.10.3)
+      vite: 5.0.6(@types/node@20.10.4)
+      vite-node: 1.0.1(@types/node@20.10.4)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -9473,8 +9498,8 @@ packages:
     resolution: {integrity: sha512-DRibZL6DsNhIgYQ+wNdWDL2SL3bKPlVrRiBqV5yuMm++op8W4kGFtaQfCs4KEJn0wBZcHVHJ3eoywX8983k1ow==}
     dev: true
 
-  /vue-component-type-helpers@1.8.24:
-    resolution: {integrity: sha512-lqWs/7fdRXoSBAlbouHBX+LNuaY6gI9xWW34m/ZIz9zVPYHEyw0b2/zaCBwlKx0NtKTeF/6pOpvrxVkh7nhIYg==}
+  /vue-component-type-helpers@1.8.25:
+    resolution: {integrity: sha512-NCA6sekiJIMnMs4DdORxATXD+/NRkQpS32UC+I1KQJUasx+Z7MZUb3Y+MsKsFmX+PgyTYSteb73JW77AibaCCw==}
     dev: true
 
   /vue-demi@0.14.6(vue@3.3.10):
@@ -9553,8 +9578,8 @@ packages:
       '@vue/shared': 3.3.10
       typescript: 5.2.2
 
-  /vuetify@3.4.5(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10):
-    resolution: {integrity: sha512-JptPH5iTCTrAyiI65Av8zCB6oZT0JUqMjlAF/1wPE2Rse3xoMSej/BpwI7+iXKSX6endExZCItrPp1oor4a65w==}
+  /vuetify@3.4.6(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10):
+    resolution: {integrity: sha512-Zp6BjKkNcnyHlOmr01Y/Rc4d686PORO+hcpfM76qRaDMIU4H1GnP0JIF3jwxI1q3Uj/2bHKLwn81oCLJZd+8sg==}
     engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       typescript: '>=4.7'
@@ -9573,7 +9598,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.2.2
-      vite-plugin-vuetify: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.5)
+      vite-plugin-vuetify: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6)
       vue: 3.3.10(typescript@5.2.2)
 
   /webfontloader@1.6.28:
