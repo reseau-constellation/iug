@@ -174,7 +174,7 @@ devDependencies:
     version: 6.13.2(eslint@8.55.0)(typescript@5.2.2)
   '@vitejs/plugin-vue':
     specifier: 4.5.2
-    version: 4.5.2(vite@5.0.6)(vue@3.3.10)
+    version: 4.5.2(vite@5.0.7)(vue@3.3.10)
   '@vitest/coverage-istanbul':
     specifier: ^1.0.2
     version: 1.0.2(vitest@1.0.1)
@@ -227,14 +227,14 @@ devDependencies:
     specifier: 0.0.5
     version: 0.0.5
   vite:
-    specifier: 5.0.6
-    version: 5.0.6(@types/node@20.10.4)
+    specifier: 5.0.7
+    version: 5.0.7(@types/node@20.10.4)
   vite-plugin-commonjs-externals:
     specifier: ^0.1.4
-    version: 0.1.4(vite@5.0.6)
+    version: 0.1.4(vite@5.0.7)
   vite-plugin-vuetify:
     specifier: ^1.0.2
-    version: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6)
+    version: 1.0.2(vite@5.0.7)(vue@3.3.10)(vuetify@3.4.6)
   vitest:
     specifier: 1.0.1
     version: 1.0.1(@types/node@20.10.4)(happy-dom@12.10.3)
@@ -2944,14 +2944,14 @@ packages:
   /@vascosantos/moving-average@1.1.0:
     resolution: {integrity: sha512-MVEJ4vWAPNbrGLjz7ITnHYg+YXZ6ijAqtH5/cHwSoCpbvuJ98aLXwFfPKAUfZpJMQR5uXB58UJajbY130IRF/w==}
 
-  /@vitejs/plugin-vue@4.5.2(vite@5.0.6)(vue@3.3.10):
+  /@vitejs/plugin-vue@4.5.2(vite@5.0.7)(vue@3.3.10):
     resolution: {integrity: sha512-UGR3DlzLi/SaVBPX0cnSyE37vqxU3O6chn8l0HJNzQzDia6/Au2A4xKv+iIJW8w2daf80G7TYHhi1pAUjdZ0bQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.0.6(@types/node@20.10.4)
+      vite: 5.0.7(@types/node@20.10.4)
       vue: 3.3.10(typescript@5.2.2)
     dev: true
 
@@ -9362,7 +9362,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 5.0.6(@types/node@20.10.4)
+      vite: 5.0.7(@types/node@20.10.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9374,7 +9374,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-commonjs-externals@0.1.4(vite@5.0.6):
+  /vite-plugin-commonjs-externals@0.1.4(vite@5.0.7):
     resolution: {integrity: sha512-mJ5KzL8F3RqyFh8IhEBfRK6cDY+HXz7HXIDht5c9W+DOKbLpk57CX1LOwnG/Lx3v++ywIcMt51yRuezATV8kaQ==}
     peerDependencies:
       vite: ^4.3.9 || ^5.0.0
@@ -9382,10 +9382,10 @@ packages:
       acorn: 8.11.2
       es-module-lexer: 1.4.1
       magic-string: 0.30.5
-      vite: 5.0.6(@types/node@20.10.4)
+      vite: 5.0.7(@types/node@20.10.4)
     dev: true
 
-  /vite-plugin-vuetify@1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6):
+  /vite-plugin-vuetify@1.0.2(vite@5.0.7)(vue@3.3.10)(vuetify@3.4.6):
     resolution: {integrity: sha512-MubIcKD33O8wtgQXlbEXE7ccTEpHZ8nPpe77y9Wy3my2MWw/PgehP9VqTp92BLqr0R1dSL970Lynvisx3UxBFw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -9395,14 +9395,14 @@ packages:
       '@vuetify/loader-shared': 1.7.1(vue@3.3.10)(vuetify@3.4.6)
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.0.6(@types/node@20.10.4)
+      vite: 5.0.7(@types/node@20.10.4)
       vuetify: 3.4.6(typescript@5.2.2)(vite-plugin-vuetify@1.0.2)(vue@3.3.10)
     transitivePeerDependencies:
       - supports-color
       - vue
 
-  /vite@5.0.6(@types/node@20.10.4):
-    resolution: {integrity: sha512-MD3joyAEBtV7QZPl2JVVUai6zHms3YOmLR+BpMzLlX2Yzjfcc4gTgNi09d/Rua3F4EtC8zdwPU8eQYyib4vVMQ==}
+  /vite@5.0.7(@types/node@20.10.4):
+    resolution: {integrity: sha512-B4T4rJCDPihrQo2B+h1MbeGL/k/GMAHzhQ8S0LjQ142s6/+l3hHTT095ORvsshj4QCkoWu3Xtmob5mazvakaOw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -9481,7 +9481,7 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.5.1
       tinypool: 0.8.1
-      vite: 5.0.6(@types/node@20.10.4)
+      vite: 5.0.7(@types/node@20.10.4)
       vite-node: 1.0.1(@types/node@20.10.4)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
@@ -9598,7 +9598,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.2.2
-      vite-plugin-vuetify: 1.0.2(vite@5.0.6)(vue@3.3.10)(vuetify@3.4.6)
+      vite-plugin-vuetify: 1.0.2(vite@5.0.7)(vue@3.3.10)(vuetify@3.4.6)
       vue: 3.3.10(typescript@5.2.2)
 
   /webfontloader@1.6.28:
@@ -9701,7 +9701,7 @@ packages:
   /wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
 
   /wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
