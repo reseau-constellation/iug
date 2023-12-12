@@ -61,7 +61,7 @@
     "simple-git-hooks": "2.9.0",
     "typescript": "5.2.2",
     "unplugin-auto-expose": "0.0.5",
-    "vite": "5.0.7",
+    "vite": "5.0.8",
     "vite-plugin-commonjs-externals": "^0.1.4",
     "vite-plugin-vuetify": "^1.0.2",
     "vitest": "1.0.4",
