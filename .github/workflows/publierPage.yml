@@ -30,4 +30,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: packages/renderer/dist/web
-          # cname: xn--rseau-constellation-bzb.ca
+          cname: appli.xn--rseau-constellation-bzb.ca
