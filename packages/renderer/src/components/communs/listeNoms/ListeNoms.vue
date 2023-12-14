@@ -22,7 +22,7 @@
             </template>
           </v-autocomplete>
         </v-col>
-        <v-col :cols="mdAndUp ? 4 : 12">
+        <v-col :cols="mdAndUp ? 8 : 12">
           <v-locale-provider :rtl="nouvelleLangueDÀG">
             <v-text-field
               v-model="nouveauNom"
