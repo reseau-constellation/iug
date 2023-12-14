@@ -3,7 +3,7 @@
     lines="three"
     @click="utiliser"
   >
-    <template #prepend>
+    <v-list-item-title>
       <carte-membre :id="compte">
         <template #activator="{props: propsActivateur}">
           <image-profil
@@ -12,12 +12,12 @@
           />
         </template>
       </carte-membre>
-    </template>
-    <v-list-item-subtitle>
-      {{ suggestion.பரிந்துரை.தேதி?.toLocaleDateString() }}
-    </v-list-item-subtitle>
+      <span class="ms-3">
+        {{ suggestion.பரிந்துரை.தேதி?.toLocaleDateString() }}
+      </span>
+    </v-list-item-title>
     <v-divider class="my-2" />
-    {{ suggestion.பரிந்துரை.மொழிபெயர்ப்பு.repeat(52) }}
+    {{ suggestion.பரிந்துரை.மொழிபெயர்ப்பு }}
 
     <v-list-item-action v-if="autorisé">
       <v-spacer />

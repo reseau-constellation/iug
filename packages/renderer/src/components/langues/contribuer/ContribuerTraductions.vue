@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :min-width="mdAndUp ? 1000 : undefined"
+      :width="mdAndUp ? '95%' : undefined"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -80,12 +80,23 @@
             </v-select>
           </v-col>
           <v-col :cols="mdAndUp ? 2 : 12">
-            <v-switch
-              v-model="montrerTraduites"
-              color="primary"
-              hide-details
-              :label="t('languesInterface.dialogueContribuer.montrerTraduites')"
-            ></v-switch>
+            <v-select
+              v-model="montrer"
+              :label="t('languesInterface.dialogueContribuer.montrer')"
+              :items="[
+                {title: t('languesInterface.dialogueContribuer.filtre.toutes'), value: 'toutes'},
+                {
+                  title: t('languesInterface.dialogueContribuer.filtre.nonTraduite'),
+                  value: 'nonTraduites',
+                },
+                {
+                  title: t('languesInterface.dialogueContribuer.filtre.sansSuggestion'),
+                  value: 'sansSuggestion',
+                },
+              ]"
+              variant="outlined"
+            >
+            </v-select>
           </v-col>
         </v-row>
         <v-progress-linear
@@ -98,12 +109,13 @@
         <v-row class="fill-height">
           <v-col :cols="mdAndUp ? 3 : 12">
             <v-list v-if="mdAndUp">
-              <v-list-item>
+              <v-list-item class="px-0">
                 <v-list-item-title>
                   <v-text-field
                     v-model="rechercher"
+                    class="mt-2"
                     variant="outlined"
-                    label="Rechercher"
+                    :label="t('communs.rechercher')"
                     hide-details
                     clearable
                     prepend-inner-icon="mdi-magnify"
@@ -137,21 +149,24 @@
               v-else
               v-model="clefSélectionnée"
               :items="clefsPourListe"
-              label="Message"
+              :label="t('languesInterface.dialogueContribuer.message')"
               variant="outlined"
             >
               <template #item="{item, props}">
-                <v-list-item
+                <item-message-traduction
                   v-bind="props"
-                  :active="item.value === clefSélectionnée"
-                >
-                  <template #title>
-                    {{ traductionsApprouvées[item.value][langueSource] || '[Aucune traduction]' }}
-                  </template>
-                  <template #subtitle>
-                    {{ item.value }}
-                  </template>
-                </v-list-item>
+                  :key="item.value"
+                  :actif="item.value === clefSélectionnée"
+                  :clef="item.value"
+                  :traduction-approuvee="traductionsApprouvées[item.value]?.[langueCible]"
+                  :traduction-langue-source="traductionsApprouvées[item.value]?.[langueSource]"
+                  :suggestions="
+                    suggestions.filter(
+                      s =>
+                        s.பரிந்துரை.சாபி === item.value && s.பரிந்துரை.இலக்கு_மொழி === langueCible,
+                    )
+                  "
+                />
               </template>
               <template #selection="{item}">
                 {{
@@ -172,9 +187,10 @@
             <div v-if="clefSélectionnée">
               <v-textarea
                 v-model="suggestion"
-                label="Suggérez une traduction ici"
+                :label="t('languesInterface.dialogueContribuer.indiceSuggestion')"
                 no-resize
                 variant="outlined"
+                @keydown.enter="(é: KeyboardEvent) => (é.metaKey || é.ctrlKey) && suggérer()"
               ></v-textarea>
               <div class="text-right">
                 <v-btn
@@ -185,7 +201,8 @@
                   :loading="enTrainDeSuggérer"
                   @click="() => suggérer()"
                 >
-                  Suggérer <v-icon end>mdi-upload</v-icon>
+                  {{ t('languesInterface.dialogueContribuer.suggérer') }}
+                  <v-icon end>mdi-hand-pointing-up</v-icon>
                 </v-btn>
                 <v-btn
                   class="ml-2"
@@ -212,12 +229,12 @@
               v-else
               class="text-center"
             >
+              <p class="my-2 text-h6">Pour commencer, choisissez un message à traduire.</p>
               <img
                 :src="imgMessage"
                 contain
                 :width="mdAndUp ? 400 : 250"
               />
-              <p class="my-2">Pour commencer, choisissez un message à traduire.</p>
             </div>
           </v-col>
           <v-col
@@ -230,16 +247,8 @@
                 {{ t('languesInterface.dialogueContribuer.titreSuggestions') }}
               </h2>
             </div>
-            <div v-if="suggestionsLangueCibleClef.length || traductionsClefAutresLangues?.length">
+            <div v-if="suggestionsDisponibles">
               <v-list max-height="350px">
-                <v-list-item
-                  v-if="traductionApprouvée"
-                  @click="suggestion = traductionApprouvée"
-                >
-                  <v-list-item-title> அங்கீகரிக்கப்பட்ட மொழிபெயர்ப்பு </v-list-item-title>
-                  {{ traductionApprouvée }}
-                </v-list-item>
-
                 <v-list-group v-if="suggestionsLangueCibleClef.length">
                   <template #activator="{props}">
                     <v-list-item v-bind="props">
@@ -260,6 +269,7 @@
                     :key="sugg.அடையாளம்"
                     :suggestion="sugg"
                     :compte="sugg.பங்கேற்பாளர்"
+                    class="ps-10"
                     @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
                     @effacer="effacerSuggestion(sugg.அடையாளம்)"
                   />
@@ -297,15 +307,13 @@
                       </v-list-item-title>
                     </v-list-item>
                   </template>
-                  <v-list-item
+                  <item-suggestion-autre-langue
                     v-for="{lng, traduc} in traductionsClefAutresLangues"
                     :key="lng"
-                  >
-                    {{ traduc }}
-                    <v-list-item-subtitle>
-                      {{ lng }}
-                    </v-list-item-subtitle>
-                  </v-list-item>
+                    :lng="lng"
+                    :traduc="traduc"
+                    @click="suggestion = traduc"
+                  />
                 </v-list-group>
               </v-list>
             </div>
@@ -320,14 +328,20 @@
                 class="my-4"
               />
               <p class="my-2">
-                Nous n'avons trouvé aucune suggestion communautaire pour ce message.
+                {{ t('languesInterface.dialogueContribuer.aucuneSuggestion') }}
               </p>
             </div>
           </v-col>
         </v-row>
-
-        <v-btn variant="outlined">Gérer traductions</v-btn>
       </v-card-text>
+      <v-divider />
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          :text="t('communs.fermer')"
+          append-icon="mdi-close"
+        ></v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -336,7 +350,7 @@ import {computed, inject, onMounted, ref, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import type {கிளிமூக்கு, மொழி_மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
+import type {கிளிமூக்கு, மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 import type {ClientConstellation} from '@constl/ipa';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -347,6 +361,8 @@ import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
+import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
+
 import {enregistrerÉcoute} from '/@/components/utils';
 
 const constl = inject<ClientConstellation>('constl');
@@ -380,7 +396,7 @@ onMounted(async () => {
 // Contrôles
 const langueSource = ref(மொழி.value);
 const langueCible = ref<string>(மாற்றுமொழிகள்.value[0]);
-const montrerTraduites = ref(false);
+const montrer = ref<'toutes' | 'nonTraduites' | 'sansSuggestion'>('nonTraduites');
 const rechercher = ref('');
 
 const échangerLangues = () => {
@@ -409,11 +425,12 @@ const progrèsSuggéré = computed(() => {
 const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து({});
 const clefsPourListe = computed(() => {
   if (!clefsDisponibles.value) return;
-  let toutesClefs: string[] = [];
-  if (montrerTraduites.value) {
-    toutesClefs = clefsDisponibles.value;
-  } else {
-    toutesClefs = clefsDisponibles.value?.filter(c => !traductionsApprouvéesLangueCible.value[c]);
+  let toutesClefs: string[] = clefsDisponibles.value;
+  if (montrer.value === 'nonTraduites' || montrer.value === 'sansSuggestion') {
+    toutesClefs = toutesClefs.filter(c => !traductionsApprouvéesLangueCible.value[c]);
+    if (montrer.value === 'sansSuggestion') {
+      toutesClefs = toutesClefs.filter(c => !suggestions.value.find(s => s.பரிந்துரை.சாபி === c));
+    }
   }
   if (rechercher.value) {
     toutesClefs = toutesClefs.filter(
@@ -444,11 +461,6 @@ const traductionsApprouvéesLangueCible = computed(() => {
       )) ||
     {}
   );
-});
-
-const traductionApprouvée = computed(() => {
-  if (clefSélectionnée.value) return traductionsApprouvéesLangueCible.value[clefSélectionnée.value];
-  else return undefined;
 });
 
 // Panneau traduire
@@ -482,6 +494,9 @@ const suggérer = async () => {
 };
 
 // Suggestions
+const suggestionsDisponibles = computed(() => {
+  return suggestionsLangueCibleClef.value.length || traductionsClefAutresLangues.value?.length;
+});
 const imgVide = obtImageDéco('vide');
 const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து({});
 const suggestionsLangueCibleClef = computed(() => {
@@ -499,33 +514,33 @@ const effacerSuggestion = async (id: string) => {
     அடையாளம்: id,
   });
 };
-const nSuggestionsClefLangue = computed(() => {
-  return suggestionsLangueCibleClef.value.length;
-});
+const nSuggestionsClefLangue = computed(() => suggestionsLangueCibleClef.value.length);
 const nSuggestionsClefLangueFormattée = எண்ணை_வடிவூட்டு(nSuggestionsClefLangue);
 
-const traductionsClefToutesLangues = ref<மொழி_மொழிபெயர்ப்பு_அகராதி_வகை>();
+const toutesTraductions = ref<மொழிபெயர்ப்பு_அகராதி_வகை>();
+const traductionsClefToutesLangues = computed(() => {
+  if (clefSélectionnée.value && toutesTraductions.value)
+    return toutesTraductions.value[clefSélectionnée.value];
+  return [];
+});
 enregistrerÉcoute(
   கிளி?.மொழிபெயர்ப்புகளை_கேள்ளு({
-    செ: trads => {
-      if (clefSélectionnée.value)
-        traductionsClefToutesLangues.value = trads[clefSélectionnée.value];
-    },
+    செ: trads => (toutesTraductions.value = trads),
   }),
 );
 
 const traductionsClefAutresLangues = computed(() => {
   if (traductionsClefToutesLangues.value)
-    return Object.entries(traductionsClefToutesLangues.value).map(([lng, traduc]) => ({
-      lng,
-      traduc,
-    }));
-  else return undefined;
+    return Object.entries(traductionsClefToutesLangues.value)
+      .map(([lng, traduc]) => ({
+        lng,
+        traduc,
+      }))
+      .filter(({lng}) => lng !== langueCible.value && lng !== langueSource.value);
+  else return [];
 });
 
 const nTraductionsClefsAutresLanguesFormattée = எண்ணை_வடிவூட்டு(
-  computed(() => {
-    return traductionsClefAutresLangues.value ? traductionsClefAutresLangues.value.length : 0;
-  }),
+  computed(() => traductionsClefAutresLangues.value.length),
 );
 </script>
