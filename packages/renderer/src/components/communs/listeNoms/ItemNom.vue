@@ -4,7 +4,6 @@
       <v-row>
         <v-col
           cols="4"
-          class="pb-0"
         >
           <v-autocomplete
             v-model="nouvelleLangue"
