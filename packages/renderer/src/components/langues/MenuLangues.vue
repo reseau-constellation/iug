@@ -8,7 +8,6 @@
 
     <v-menu
       activator="parent"
-      open-on-hover
       offset="10px"
       min-width="225"
       :location="isRtl ? 'bottom right' : 'bottom left'"
