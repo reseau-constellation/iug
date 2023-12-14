@@ -2,9 +2,7 @@
   <v-list-item>
     <v-list-item-title>
       <v-row>
-        <v-col
-          cols="4"
-        >
+        <v-col cols="4">
           <v-autocomplete
             v-model="nouvelleLangue"
             class="pt-1"

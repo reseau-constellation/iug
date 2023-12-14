@@ -41,8 +41,8 @@
 </template>
 
 <script setup lang="ts">
-import {inject, ref, onMounted, computed} from 'vue';
 import type {ClientConstellation} from '@constl/ipa';
+import {inject, ref, onMounted, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
