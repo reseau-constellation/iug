@@ -112,7 +112,7 @@ const config = {
     alias: générerAliasRésolution(),
     extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
-  base: '',  // pourÉlectron ? '' : '/iug/', // Plus nécessaire maintenant qu'on est sur appli.réseau-constellation.ca/
+  base: '', // pourÉlectron ? '' : '/iug/', // Plus nécessaire maintenant qu'on est sur appli.réseau-constellation.ca/
   server: {
     fs: {
       strict: true,
