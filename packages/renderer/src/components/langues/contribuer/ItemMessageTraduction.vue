@@ -15,9 +15,9 @@
         <v-icon>mdi-hand-pointing-up</v-icon>
       </v-badge>
     </template>
-    <v-list-item-title>
+    <template #title>
       {{ traductionLangueSource || t('languesInterface.dialogueContribuer.aucuneTraduction') }}
-    </v-list-item-title>
+    </template>
     <v-list-item-subtitle>{{ clef }}</v-list-item-subtitle>
   </v-list-item>
 </template>
