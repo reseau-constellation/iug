@@ -1,6 +1,6 @@
 <template>
   <v-container :class="{'mt-3': true, 'pb-0': !!image, 'text-center': true}">
-    <h1 class="text-h2">
+    <h1 :class="[mdAndUp ? 'text-h2' : 'text-h3']">
       {{ titre }}
     </h1>
 
@@ -19,7 +19,7 @@
 
     <h2
       v-if="sousTitre"
-      class="text-h4 mb-5"
+      :class="['mb-5', mdAndUp ? 'text-h4' : 'text-h5']"
     >
       {{ sousTitre }}
     </h2>
