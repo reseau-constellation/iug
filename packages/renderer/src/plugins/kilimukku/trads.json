@@ -74,17 +74,18 @@
     "listeNomsProfil": {
       "indiceNom": "Votre nom"
     },
-    "languesInterface": {
+    "kilimukku": {
       "contribuer": "Contribuer",
-      "dialogueContribuer": {
-        "titre": "Contribuer",
-        "sousTitre": "Aidez à traduire l'interface Constellation",
-        "langueSource": "Langue source",
-        "langueCible": "Langue cible",
-        "aucuneTraduction": "[Aucune traduction]",
-        "titreSuggestions": "Suggestions",
-        "aucuneSuggestion": "Nous n'avons trouvé aucune suggestion communautaire pour ce message.",
-        "suggérer": "Suggérer"
+      "titre": "Contribuer",
+      "sousTitre": "Aidez à traduire l'interface Constellation",
+      "langueSource": "Langue source",
+      "langueCible": "Langue cible",
+      "aucuneTraduction": "[Aucune traduction]",
+      "titreSuggestions": "Suggestions",
+      "aucuneSuggestion": "Nous n'avons trouvé aucune suggestion communautaire pour ce message.",
+      "suggérer": "Suggérer",
+      "suggestions": {
+        "aucuneTrouvée": "Aucune suggestion trouvée"
       }
     },
     "licences": {
@@ -267,21 +268,24 @@
         "boutonCourriel": "மின்னஞ்சல் அனுப்பு"
       }
     },
-    "languesInterface": {
-      "dialogueContribuer": {
-        "aucuneTraduction": "[மொழிபெயர்ப்பு இல்லை]",
-        "titreSuggestions": "பரிந்துரைகள்",
-        "suggérer": "பரிந்துரையு",
-        "montrer": "வடிக்கட்டி",
-        "message": "செய்தியை தேர்ந்தெடு",
-        "indiceSuggestion": "உங்கள் பரிந்துரையை இங்கே உள்ளிடுங்கள்",
-        "filtre": {
-          "toutes": "அனையும்",
-          "nonTraduite": "மொழிப்பெயர்ப்பில்லாமல்",
-          "sansSuggestion": "பரிந்துரையில்லாமல்"
-        },
-        "aucuneSuggestion": "இந்த செய்திக்காக எந்த பரிந்துரையும் கண்டுப்பிடிக்க முடியவில்லை",
-        "titreApprouvé": "அங்கீகரிக்கப்பட்ட மொழிபெயர்ப்பு"
+    "kilimukku": {
+      "aucuneTraduction": "[மொழிபெயர்ப்பு இல்லை]",
+      "titreSuggestions": "பரிந்துரைகள்",
+      "suggérer": "பரிந்துரையு",
+      "montrer": "வடிக்கட்டி",
+      "message": "செய்தியை தேர்ந்தெடு",
+      "indiceSuggestion": "உங்கள் பரிந்துரையை இங்கே உள்ளிடுங்கள்",
+      "filtre": {
+        "toutes": "அனையும்",
+        "nonTraduite": "மொழிப்பெயர்ப்பில்லாமல்",
+        "sansSuggestion": "பரிந்துரையில்லாமல்"
+      },
+      "aucuneSuggestion": "இந்த செய்திக்காக எந்த பரிந்துரையும் கண்டுப்பிடிக்க முடியவில்லை",
+      "titreApprouvé": "அங்கீகரிக்கப்பட்ட மொழிபெயர்ப்பு",
+      "suggestions": {
+        "communautaires": "சமூக பரிந்துரைகள்",
+        "automatiques": "தானாக பரிந்துரைகள்",
+        "autresLangues": "வேறு மொழிகள்"
       }
     },
     "dispositifs": {

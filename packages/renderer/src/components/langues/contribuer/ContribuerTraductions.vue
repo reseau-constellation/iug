@@ -13,7 +13,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ t('languesInterface.dialogueContribuer.titre') }}
+          {{ t('kilimukku.titre') }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -22,7 +22,7 @@
             @click="dialogue = false"
           ></v-btn>
         </v-card-title>
-        <v-card-subtitle>{{ t('languesInterface.dialogueContribuer.sousTitre') }}</v-card-subtitle>
+        <v-card-subtitle>{{ t('kilimukku.sousTitre') }}</v-card-subtitle>
         <v-divider class="my-3" />
       </v-card-item>
 
@@ -34,7 +34,7 @@
               variant="outlined"
               hide-details
               :items="கிடைக்கும்_மொழி_குறியீடுகள்"
-              :label="t('languesInterface.dialogueContribuer.langueSource')"
+              :label="t('kilimukku.langueSource')"
             >
               <template #item="{item, props}">
                 <ItemLangueProgrès
@@ -65,7 +65,7 @@
               variant="outlined"
               hide-details
               :items="கிடைக்கும்_மொழி_குறியீடுகள்"
-              :label="t('languesInterface.dialogueContribuer.langueCible')"
+              :label="t('kilimukku.langueCible')"
             >
               <template #item="{item, props}">
                 <ItemLangueProgrès
@@ -82,15 +82,15 @@
           <v-col :cols="mdAndUp ? 2 : 12">
             <v-select
               v-model="montrer"
-              :label="t('languesInterface.dialogueContribuer.montrer')"
+              :label="t('kilimukku.montrer')"
               :items="[
-                {title: t('languesInterface.dialogueContribuer.filtre.toutes'), value: 'toutes'},
+                {title: t('kilimukku.filtre.toutes'), value: 'toutes'},
                 {
-                  title: t('languesInterface.dialogueContribuer.filtre.nonTraduite'),
+                  title: t('kilimukku.filtre.nonTraduite'),
                   value: 'nonTraduites',
                 },
                 {
-                  title: t('languesInterface.dialogueContribuer.filtre.sansSuggestion'),
+                  title: t('kilimukku.filtre.sansSuggestion'),
                   value: 'sansSuggestion',
                 },
               ]"
@@ -148,7 +148,7 @@
               v-else
               v-model="clefSélectionnée"
               :items="clefsPourListe"
-              :label="t('languesInterface.dialogueContribuer.message')"
+              :label="t('kilimukku.message')"
               variant="outlined"
             >
               <template #item="{item, props}">
@@ -186,7 +186,7 @@
             <div v-if="clefSélectionnée">
               <v-textarea
                 v-model="suggestion"
-                :label="t('languesInterface.dialogueContribuer.indiceSuggestion')"
+                :label="t('kilimukku.indiceSuggestion')"
                 no-resize
                 variant="outlined"
                 @keydown.enter="(é: KeyboardEvent) => (é.metaKey || é.ctrlKey) && suggérer()"
@@ -200,7 +200,7 @@
                   :loading="enTrainDeSuggérer"
                   @click="() => suggérer()"
                 >
-                  {{ t('languesInterface.dialogueContribuer.suggérer') }}
+                  {{ t('kilimukku.suggérer') }}
                   <v-icon end>mdi-hand-pointing-up</v-icon>
                 </v-btn>
                 <v-btn
@@ -243,17 +243,18 @@
           >
             <div class="text-center">
               <h2 class="text-h4">
-                {{ t('languesInterface.dialogueContribuer.titreSuggestions') }}
+                {{ t('kilimukku.titreSuggestions') }}
               </h2>
             </div>
             <div v-if="suggestionsDisponibles">
               <v-list max-height="350px">
-                <v-list-group v-if="suggestionsLangueCibleClef.length">
+                <v-list-group>
                   <template #activator="{props}">
                     <v-list-item v-bind="props">
                       <v-list-item-title>
-                        சமூக பரிந்துரைகள்
+                        {{ t('kilimukku.suggestions.communautaires') }}
                         <v-avatar
+                          v-if="suggestionsLangueCibleClef.length"
                           class="mx-2"
                           color="primary"
                           size="20"
@@ -272,31 +273,53 @@
                     @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
                     @effacer="effacerSuggestion(sugg.அடையாளம்)"
                   />
+                  <v-list-item
+                    v-if="!suggestionsLangueCibleClef.length"
+                  >
+                    <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
+                  </v-list-item>
                 </v-list-group>
 
                 <v-list-group>
                   <template #activator="{props}">
                     <v-list-item v-bind="props">
                       <v-list-item-title>
-                        தானாக பரிந்துரைகள்
+                        {{ t('kilimukku.suggestions.automatiques') }}
                         <v-avatar
+                          v-if="suggestionsAutomatiques.length"
                           class="mx-2"
                           color="primary"
                           size="20"
                         >
-                          {{ nSuggestionsClefLangueFormattée }}
+                          {{ nSuggestionsAutomatiquesFormattée }}
                         </v-avatar>
                       </v-list-item-title>
                     </v-list-item>
                   </template>
+
+                  <item-suggestion-automatique
+                    v-for="{clef, texte, traduc, corresp} in suggestionsAutomatiques"
+                    :key="clef"
+                    :clef="clef"
+                    :texte="texte"
+                    :traduc="traduc"
+                    :corresp="corresp"
+                    @utiliser="suggestion = traduc"
+                  />
+                  <v-list-item
+                    v-if="!suggestionsAutomatiques.length"
+                  >
+                    <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
+                  </v-list-item>
                 </v-list-group>
 
                 <v-list-group>
                   <template #activator="{props}">
                     <v-list-item v-bind="props">
                       <v-list-item-title>
-                        வேறு மொழிகள்
+                        {{ t('kilimukku.suggestions.autresLangues') }}
                         <v-avatar
+                          v-if="nTraductionsClefsAutresLangues"
                           class="mx-2"
                           color="primary"
                           size="20"
@@ -313,6 +336,11 @@
                     :traduc="traduc"
                     @click="suggestion = traduc"
                   />
+                  <v-list-item
+                    v-if="!traductionsClefAutresLangues.length"
+                  >
+                    <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
+                  </v-list-item>
                 </v-list-group>
               </v-list>
             </div>
@@ -327,7 +355,7 @@
                 class="my-4"
               />
               <p class="my-2">
-                {{ t('languesInterface.dialogueContribuer.aucuneSuggestion') }}
+                {{ t('kilimukku.aucuneSuggestion') }}
               </p>
             </div>
           </v-col>
@@ -349,6 +377,8 @@ import {computed, inject, onMounted, ref, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
+import correspTexte from 'approx-string-match';
+
 import type {கிளிமூக்கு, மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 import type {ClientConstellation} from '@constl/ipa';
 
@@ -361,6 +391,7 @@ import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
+import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 
@@ -496,7 +527,7 @@ const suggérer = async () => {
 
 // Suggestions
 const suggestionsDisponibles = computed(() => {
-  return suggestionsLangueCibleClef.value.length || traductionsClefAutresLangues.value?.length;
+  return suggestionsLangueCibleClef.value.length || suggestionsAutomatiques.value.length || traductionsClefAutresLangues.value?.length;
 });
 const imgVide = obtImageDéco('vide');
 const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து({});
@@ -530,6 +561,20 @@ enregistrerÉcoute(
   }),
 );
 
+const suggestionsAutomatiques = computed(()=>{
+  if (!texteOriginal.value) return [];
+  const original = texteOriginal.value;
+  const clefsSimilaires = Object.entries(toutesTraductions.value || {}).map(
+    ([clef, dicTrads]) => ({clef, texte: dicTrads[langueSource.value]}),
+  ).filter(({clef, texte})=>!!texte && clef !== clefSélectionnée.value).map(({clef, texte}) => ({clef, texte, corresp: correspTexte(texte, original, Math.floor(original.length / 4))})).filter(({corresp})=>corresp.length);
+  return clefsSimilaires.map(({clef, texte, corresp})=>({clef, texte, corresp: {début: corresp[0].start, fin: corresp[0].end}, traduc: (toutesTraductions.value || {})[clef]?.[langueCible.value]})).filter(({traduc})=>!!traduc);
+});
+
+const nSuggestionsAutomatiques = computed(() => suggestionsAutomatiques.value.length);
+const nSuggestionsAutomatiquesFormattée = எண்ணை_வடிவூட்டு(
+  nSuggestionsAutomatiques,
+);
+
 const traductionsClefAutresLangues = computed(() => {
   if (traductionsClefToutesLangues.value)
     return Object.entries(traductionsClefToutesLangues.value)
@@ -541,7 +586,8 @@ const traductionsClefAutresLangues = computed(() => {
   else return [];
 });
 
+const nTraductionsClefsAutresLangues = computed(() => traductionsClefAutresLangues.value.length);
 const nTraductionsClefsAutresLanguesFormattée = எண்ணை_வடிவூட்டு(
-  computed(() => traductionsClefAutresLangues.value.length),
+  nTraductionsClefsAutresLangues,
 );
 </script>

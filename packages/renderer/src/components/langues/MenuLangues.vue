@@ -23,7 +23,7 @@
                 <v-icon> mdi-plus </v-icon>
               </template>
               <v-list-item-title>
-                {{ t('languesInterface.contribuer') }}
+                {{ t('kilimukku.contribuer') }}
               </v-list-item-title>
             </v-list-item>
           </template>

@@ -16,7 +16,7 @@
       </v-badge>
     </template>
     <template #title>
-      {{ traductionLangueSource || t('languesInterface.dialogueContribuer.aucuneTraduction') }}
+      {{ traductionLangueSource || t('kilimukku.aucuneTraduction') }}
     </template>
     <v-list-item-subtitle>{{ clef }}</v-list-item-subtitle>
   </v-list-item>
