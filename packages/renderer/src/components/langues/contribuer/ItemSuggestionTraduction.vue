@@ -3,16 +3,17 @@
     lines="three"
     @click="utiliser"
   >
-    <v-list-item-title>
+    <v-list-item-title class="d-flex">
       <carte-membre :id="compte">
         <template #activator="{props: propsActivateur}">
-          <image-profil
-            v-bind="propsActivateur"
-            :id="compte"
-          />
+          <span v-bind="propsActivateur">
+            <image-profil :id="compte" />
+            <span class="mx-3">{{ nomCompte }}</span>
+          </span>
         </template>
       </carte-membre>
-      <span class="ms-3">
+
+      <span class="ms-auto">
         {{ suggestion.பரிந்துரை.தேதி?.toLocaleDateString() }}
       </span>
     </v-list-item-title>
@@ -40,8 +41,9 @@ import type {பிணையம்_மொழிபெயர்ப்பு_ப�
 import {computed, inject, ref} from 'vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import ImageProfil from '../../communs/ImageProfil.vue';
-import CarteMembre from '../../membres/CarteMembre.vue';
+import ImageProfil from '/@/components/communs/ImageProfil.vue';
+import CarteMembre from '/@/components/membres/CarteMembre.vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{suggestion: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை; compte: string}>();
 const émettre = defineEmits<{
@@ -50,6 +52,19 @@ const émettre = defineEmits<{
 }>();
 
 const constl = inject<ClientConstellation>('constl');
+
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
+
+//
+const nomsCompte = ref<{[langue: string]: string}>({});
+const nomCompte = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsCompte);
+
+enregistrerÉcoute(
+  constl?.profil.suivreNoms({
+    idCompte: props.compte,
+    f: noms => (nomsCompte.value = noms),
+  }),
+);
 
 // Actions
 const utiliser = () => {
