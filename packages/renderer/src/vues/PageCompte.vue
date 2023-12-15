@@ -62,11 +62,50 @@
         </v-chip>
       </template>
     </nouvelle-info-contact-membre>
-    <v-tabs v-model="onglet">
-      <v-tab value="compte">{{ t('pages.compte.ongletCompte') }}</v-tab>
-      <v-tab value="thème">{{ t('pages.compte.ongletThème') }}</v-tab>
-      <v-tab value="connexions">{{ t('pages.compte.ongletConnexions') }}</v-tab>
+    <v-tabs
+      v-if="mdAndUp"
+      v-model="onglet"
+      class="mt-2"
+      color="primary"
+    >
+      <v-tab
+        v-for="ong in onglets"
+        :key="ong.clef"
+        :value="ong.clef"
+      >
+        {{ t(`pages.compte.${ong.clefTraduc}`) }}
+        <v-icon
+          end
+          :icon="ong.icône"
+        >
+        </v-icon>
+      </v-tab>
     </v-tabs>
+    <v-slide-group
+      v-else
+      v-model="onglet"
+      class="mt-4"
+      show-arrows
+      center-active
+    >
+      <v-slide-group-item
+        v-for="ong in onglets"
+        :key="ong.clef"
+        v-slot="{isSelected, toggle}"
+        :value="ong.clef"
+      >
+        <v-chip
+          class="mx-2"
+          variant="outlined"
+          label
+          :color="isSelected ? 'primary' : ''"
+          :append-icon="ong.icône"
+          @click="toggle"
+        >
+          {{ t(`pages.compte.${ong.clefTraduc}`) }}
+        </v-chip>
+      </v-slide-group-item>
+    </v-slide-group>
     <v-window v-model="onglet">
       <v-window-item value="compte">
         <OngletCompte />
@@ -176,4 +215,9 @@ enregistrerÉcoute(
 
 // Onglets
 const onglet = ref('compte');
+const onglets: {clef: string; clefTraduc: string; icône?: string}[] = [
+  {clef: 'compte', clefTraduc: 'ongletCompte', icône: 'mdi-account'},
+  {clef: 'thème', clefTraduc: 'ongletThème', icône: 'mdi-tune-variant'},
+  {clef: 'connexions', clefTraduc: 'ongletConnexions', icône: 'mdi-lan-connect'},
+];
 </script>
