@@ -124,14 +124,13 @@
                 </v-list-item-title>
               </v-list-item>
             </v-list>
-            <v-list
+            <v-virtual-scroll
               v-if="mdAndUp"
-              max-height="350px"
+              :items="clefsPourListe || []"
+              height="350px"
             >
-              <v-fade-transition group>
+              <template #default="{ item: clef }">
                 <item-message-traduction
-                  v-for="clef in clefsPourListe"
-                  :key="clef"
                   :actif="clef === clefSélectionnée"
                   :clef="clef"
                   :traduction-approuvee="traductionsApprouvées[clef]?.[langueCible]"
@@ -143,8 +142,8 @@
                   "
                   @click="clefSélectionnée = clef === clefSélectionnée ? undefined : clef"
                 />
-              </v-fade-transition>
-            </v-list>
+              </template>
+            </v-virtual-scroll>
             <v-select
               v-else
               v-model="clefSélectionnée"
@@ -435,8 +434,8 @@ const clefsPourListe = computed(() => {
   if (rechercher.value) {
     toutesClefs = toutesClefs.filter(
       c =>
-        c.includes(rechercher.value) ||
-        Object.values(traductionsApprouvées.value[c] || {}).some(t => t.includes(rechercher.value)),
+        c.toLowerCase().includes(rechercher.value.toLowerCase()) ||
+        Object.values(traductionsApprouvées.value[c] || {}).some(t => t.toLowerCase().includes(rechercher.value.toLowerCase())),
     );
   }
   return toutesClefs;
