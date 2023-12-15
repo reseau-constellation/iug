@@ -273,9 +273,7 @@
                     @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
                     @effacer="effacerSuggestion(sugg.அடையாளம்)"
                   />
-                  <v-list-item
-                    v-if="!suggestionsLangueCibleClef.length"
-                  >
+                  <v-list-item v-if="!suggestionsLangueCibleClef.length">
                     <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
                   </v-list-item>
                 </v-list-group>
@@ -306,9 +304,7 @@
                     :corresp="corresp"
                     @utiliser="suggestion = traduc"
                   />
-                  <v-list-item
-                    v-if="!suggestionsAutomatiques.length"
-                  >
+                  <v-list-item v-if="!suggestionsAutomatiques.length">
                     <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
                   </v-list-item>
                 </v-list-group>
@@ -336,9 +332,7 @@
                     :traduc="traduc"
                     @click="suggestion = traduc"
                   />
-                  <v-list-item
-                    v-if="!traductionsClefAutresLangues.length"
-                  >
+                  <v-list-item v-if="!traductionsClefAutresLangues.length">
                     <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
                   </v-list-item>
                 </v-list-group>
@@ -527,7 +521,11 @@ const suggérer = async () => {
 
 // Suggestions
 const suggestionsDisponibles = computed(() => {
-  return suggestionsLangueCibleClef.value.length || suggestionsAutomatiques.value.length || traductionsClefAutresLangues.value?.length;
+  return (
+    suggestionsLangueCibleClef.value.length ||
+    suggestionsAutomatiques.value.length ||
+    traductionsClefAutresLangues.value?.length
+  );
 });
 const imgVide = obtImageDéco('vide');
 const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து({});
@@ -561,19 +559,30 @@ enregistrerÉcoute(
   }),
 );
 
-const suggestionsAutomatiques = computed(()=>{
+const suggestionsAutomatiques = computed(() => {
   if (!texteOriginal.value) return [];
   const original = texteOriginal.value;
-  const clefsSimilaires = Object.entries(toutesTraductions.value || {}).map(
-    ([clef, dicTrads]) => ({clef, texte: dicTrads[langueSource.value]}),
-  ).filter(({clef, texte})=>!!texte && clef !== clefSélectionnée.value).map(({clef, texte}) => ({clef, texte, corresp: correspTexte(texte, original, Math.floor(original.length / 4))})).filter(({corresp})=>corresp.length);
-  return clefsSimilaires.map(({clef, texte, corresp})=>({clef, texte, corresp: {début: corresp[0].start, fin: corresp[0].end}, traduc: (toutesTraductions.value || {})[clef]?.[langueCible.value]})).filter(({traduc})=>!!traduc);
+  const clefsSimilaires = Object.entries(toutesTraductions.value || {})
+    .map(([clef, dicTrads]) => ({clef, texte: dicTrads[langueSource.value]}))
+    .filter(({clef, texte}) => !!texte && clef !== clefSélectionnée.value)
+    .map(({clef, texte}) => ({
+      clef,
+      texte,
+      corresp: correspTexte(texte, original, Math.floor(original.length / 4)),
+    }))
+    .filter(({corresp}) => corresp.length);
+  return clefsSimilaires
+    .map(({clef, texte, corresp}) => ({
+      clef,
+      texte,
+      corresp: {début: corresp[0].start, fin: corresp[0].end},
+      traduc: (toutesTraductions.value || {})[clef]?.[langueCible.value],
+    }))
+    .filter(({traduc}) => !!traduc);
 });
 
 const nSuggestionsAutomatiques = computed(() => suggestionsAutomatiques.value.length);
-const nSuggestionsAutomatiquesFormattée = எண்ணை_வடிவூட்டு(
-  nSuggestionsAutomatiques,
-);
+const nSuggestionsAutomatiquesFormattée = எண்ணை_வடிவூட்டு(nSuggestionsAutomatiques);
 
 const traductionsClefAutresLangues = computed(() => {
   if (traductionsClefToutesLangues.value)
@@ -587,7 +596,5 @@ const traductionsClefAutresLangues = computed(() => {
 });
 
 const nTraductionsClefsAutresLangues = computed(() => traductionsClefAutresLangues.value.length);
-const nTraductionsClefsAutresLanguesFormattée = எண்ணை_வடிவூட்டு(
-  nTraductionsClefsAutresLangues,
-);
+const nTraductionsClefsAutresLanguesFormattée = எண்ணை_வடிவூட்டு(nTraductionsClefsAutresLangues);
 </script>
