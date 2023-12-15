@@ -251,6 +251,15 @@
         "nouveauProjet": "புது திட்டம்",
         "nouvelleNuée": "புது குழு"
       },
+      "recherche": {
+        "titre": "தேடல்"
+      },
+      "automatisations": {
+        "titre": "தானியங்கி"
+      },
+      "favoris": {
+        "titre": "எனது பிடித்தவை"
+      },
       "signalements": {
         "titre": "சிரமம் உள்ளதா?",
         "sousTitre": "எங்களுக்கு சொல்லுங்கள், உங்களை மகிழ்ச்சியாக உதவிப்போம்.",
