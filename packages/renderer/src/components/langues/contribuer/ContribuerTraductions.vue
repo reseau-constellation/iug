@@ -129,7 +129,7 @@
               :items="clefsPourListe || []"
               height="350px"
             >
-              <template #default="{ item: clef }">
+              <template #default="{item: clef}">
                 <item-message-traduction
                   :actif="clef === clefSélectionnée"
                   :clef="clef"
@@ -435,7 +435,9 @@ const clefsPourListe = computed(() => {
     toutesClefs = toutesClefs.filter(
       c =>
         c.toLowerCase().includes(rechercher.value.toLowerCase()) ||
-        Object.values(traductionsApprouvées.value[c] || {}).some(t => t.toLowerCase().includes(rechercher.value.toLowerCase())),
+        Object.values(traductionsApprouvées.value[c] || {}).some(t =>
+          t.toLowerCase().includes(rechercher.value.toLowerCase()),
+        ),
     );
   }
   return toutesClefs;
