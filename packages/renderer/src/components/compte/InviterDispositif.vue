@@ -144,7 +144,7 @@ import {computed, inject, ref} from 'vue';
 
 import QrcodeVue from 'qrcode.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {useDisplay, useRtl} from 'vuetify/lib/framework.mjs';
+import {useDisplay, useRtl} from 'vuetify';
 import {watchEffect} from 'vue';
 
 const constl = inject<ClientConstellation>('constl');

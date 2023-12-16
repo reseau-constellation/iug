@@ -88,7 +88,7 @@ import VCodeBlock from '@wdns/vue-code-block';
 import {computed, onMounted, ref} from 'vue';
 
 import {watch} from 'vue';
-import {useDisplay} from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify';
 
 const props = defineProps<{
   codes: {[langage: string]: string};

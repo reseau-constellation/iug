@@ -23,7 +23,7 @@
 </template>
 <script setup lang="ts">
 import {ref} from 'vue';
-import {useDisplay} from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify';
 
 defineProps<{
   permissionModifier?: 'MODÉRATEUR' | 'MEMBRE';

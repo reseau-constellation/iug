@@ -1,18 +1,10 @@
 <template>
-  <v-list-item>
+  <v-list-item @click="() => émettre('suggerer')">
     <v-list-item-subtitle>
       {{ nomLangue }}
     </v-list-item-subtitle>
     <v-divider class="my-1" />
     {{ traduc }}
-    <v-list-item-action>
-      <v-spacer />
-      <v-btn
-        icon="mdi-content-copy"
-        variant="flat"
-        @click="() => émettre('suggerer')"
-      ></v-btn>
-    </v-list-item-action>
   </v-list-item>
 </template>
 <script setup lang="ts">

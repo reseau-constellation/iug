@@ -176,7 +176,7 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import JetonNuée from '/@/components/nuées/JetonNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 import ImageProfil from '../communs/ImageProfil.vue';
-import {useDisplay} from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonConfiance from './JetonConfiance.vue';
 import CarteBd from '../bds/CarteBd.vue';

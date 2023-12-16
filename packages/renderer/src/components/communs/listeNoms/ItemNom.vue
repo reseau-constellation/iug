@@ -64,7 +64,7 @@ import {computed, onMounted, ref, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
 import GestionnaireEnnikkai from '../../langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
-import { useDisplay } from 'vuetify/lib/framework.mjs';
+import { useDisplay } from 'vuetify';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
