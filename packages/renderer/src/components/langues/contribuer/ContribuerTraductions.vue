@@ -56,6 +56,7 @@
             <v-btn
               icon="mdi-swap-horizontal"
               variant="flat"
+              :disabled="!langueSource"
               @click="() => échangerLangues()"
             />
           </v-col>
@@ -125,7 +126,7 @@
               </v-list-item>
             </v-list>
             <v-virtual-scroll
-              v-if="mdAndUp"
+              v-if="mdAndUp && langueSource"
               :items="clefsPourListe || []"
               height="350px"
             >
@@ -145,7 +146,7 @@
               </template>
             </v-virtual-scroll>
             <v-select
-              v-else
+              v-else-if="langueSource"
               v-model="clefSélectionnée"
               :items="clefsPourListe"
               :label="t('kilimukku.message')"
@@ -247,7 +248,7 @@
               </h2>
             </div>
             <div v-if="suggestionsDisponibles">
-              <v-list max-height="350px">
+              <v-list :max-height="mdAndUp ? '350px' : undefined">
                 <v-list-group>
                   <template #activator="{props}">
                     <v-list-item v-bind="props">
@@ -388,6 +389,7 @@ import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
+import { watchEffect } from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
@@ -418,15 +420,32 @@ onMounted(async () => {
 });
 
 // Contrôles
-const langueSource = ref(மொழி.value);
-const langueCible = ref<string>(மாற்றுமொழிகள்.value[0]);
+const langueSource = ref<string>();
+const langueCible = ref(மொழி.value);
+watchEffect(()=>{
+  if (!langueSource.value)
+    langueSource.value  = மாற்றுமொழிகள்.value[0] || கிடைக்கும்_மொழி_குறியீடுகள்.value[0];
+});
+
+watch(langueSource, (nouvelle, avant)=>{
+  if (nouvelle === langueCible.value && avant) {
+    langueCible.value = avant;
+  }
+});
+watch(langueCible, (nouvelle, avant)=>{
+  if (nouvelle === langueSource.value && avant) {
+    langueSource.value = avant;
+  }
+});
 const montrer = ref<'toutes' | 'nonTraduites' | 'sansSuggestion'>('nonTraduites');
 const rechercher = ref('');
 
 const échangerLangues = () => {
   const langueCibleAvant = langueCible.value;
-  langueCible.value = langueSource.value;
-  langueSource.value = langueCibleAvant;
+  if (langueSource.value) {
+    langueCible.value = langueSource.value;
+    langueSource.value = langueCibleAvant;
+  }
 };
 
 // Ligne de progrès
@@ -496,7 +515,7 @@ const imgMessage = obtImageDéco('message');
 
 const suggestion = ref<string>();
 const texteOriginal = computed(() => {
-  if (clefSélectionnée.value)
+  if (clefSélectionnée.value && langueSource.value)
     return traductionsApprouvées.value[clefSélectionnée.value]?.[langueSource.value];
   return undefined;
 });
@@ -560,10 +579,11 @@ enregistrerÉcoute(
 );
 
 const suggestionsAutomatiques = computed(() => {
-  if (!texteOriginal.value) return [];
+  if (!texteOriginal.value || !langueSource.value) return [];
   const original = texteOriginal.value;
+  const source = langueSource.value;
   const clefsSimilaires = Object.entries(toutesTraductions.value || {})
-    .map(([clef, dicTrads]) => ({clef, texte: dicTrads[langueSource.value]}))
+    .map(([clef, dicTrads]) => ({clef, texte: dicTrads[source]}))
     .filter(({clef, texte}) => !!texte && clef !== clefSélectionnée.value)
     .map(({clef, texte}) => ({
       clef,

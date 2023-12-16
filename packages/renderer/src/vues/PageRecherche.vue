@@ -8,6 +8,7 @@
       v-model="texteRecherche"
       variant="outlined"
       prepend-inner-icon="mdi-magnify"
+      clearable
     />
     <v-chip-group
       v-model="typeDonnées"
@@ -21,7 +22,7 @@
         variant="outlined"
         :prepend-icon="item.icône"
       >
-        {{ item.texte }}
+        {{ t(item.texte) }}
       </v-chip>
     </v-chip-group>
     <v-list
@@ -152,27 +153,27 @@ const itemsTypesDonnées: {
 }[] = [
   {
     icône: 'mdi-key',
-    texte: t('pages.mesDonnées.motsClefs'),
+    texte: 'pages.mesDonnées.motsClefs',
     clef: 'motsClefs',
   },
   {
     icône: 'mdi-variable',
-    texte: t('pages.mesDonnées.variables'),
+    texte: 'pages.mesDonnées.variables',
     clef: 'variables',
   },
   {
     icône: 'mdi-database-outline',
-    texte: t('pages.mesDonnées.bds'),
+    texte: 'pages.mesDonnées.bds',
     clef: 'bds',
   },
   {
     icône: 'mdi-folder-outline',
-    texte: t('pages.mesDonnées.projets'),
+    texte: 'pages.mesDonnées.projets',
     clef: 'projets',
   },
   {
     icône: 'mdi-account-group-outline',
-    texte: t('pages.mesDonnées.nuées'),
+    texte: 'pages.mesDonnées.nuées',
     clef: 'nuées',
   },
 ];

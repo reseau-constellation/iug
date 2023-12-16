@@ -11,6 +11,7 @@
             v-model="texteRecherche"
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
+            clearable
           />
           <v-chip-group
             v-model="typeDonnées"
