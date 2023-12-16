@@ -14,6 +14,7 @@
         <v-card-title class="d-flex">
           <DialogueNoms
             :indice-nom="t('objet.indiceNom')"
+            :etiquette-nom="t('objet.étiquetteNom')"
             :indice-langue="t('objet.indiceLangue')"
             :texte-aucun-nom="t('objet.texteAucunNom')"
             :noms-initiaux="noms"
@@ -99,6 +100,7 @@
           description || t('communs.baseCarteObjet.sansDescription')
         }}</span>
         <DialogueNoms
+          :etiquette-nom="t('objet.étiquetteDescription')"
           :indice-nom="t('objet.indiceDescription')"
           :indice-langue="t('objet.indiceLangue')"
           :texte-aucun-nom="t('objet.texteAucuneDescription')"

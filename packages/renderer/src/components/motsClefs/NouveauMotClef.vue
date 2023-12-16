@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -24,16 +24,16 @@
         </v-card-title>
         <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       </v-card-item>
-      <v-card-text>
+      <v-card-text style="overflow-y: scroll">
         <v-window
           v-model="étape"
-          style="overflow-y: scroll"
         >
           <v-window-item :key="0">
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
-              :indice-nom="t('communs.indiceNom')"
+              :etiquette-nom="t('communs.étiquetteNom')"
+              :indice-nom="t('motsClefs.nouveau.indiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -43,9 +43,11 @@
             <liste-noms
               :texte-aucun-nom="t('motsClefs.nouveau.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
-              :indice-nom="t('motsClefs.nouveau.texteIndiceDescription')"
+              :etiquette-nom="t('motsClefs.nouveau.texteIndiceDescription')"
+              :indice-nom="t('motsClefs.nouveau.indiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"
+              longue
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>
@@ -58,6 +60,7 @@
                 <v-btn
                   class="mt-3"
                   variant="outlined"
+                  append-icon="mdi-check"
                   :loading="enCréation"
                   @click="() => créerMotClef()"
                 >
@@ -68,6 +71,7 @@
           </v-window-item>
         </v-window>
       </v-card-text>
+      <v-divider />
       <v-card-actions>
         <v-btn
           v-show="retourActif.visible"

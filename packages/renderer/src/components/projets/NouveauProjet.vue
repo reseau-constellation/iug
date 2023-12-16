@@ -25,6 +25,7 @@
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
+              :etiquette-nom="t('communs.étiquetteNom')"
               :indice-nom="t('communs.indiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
@@ -35,6 +36,7 @@
             <liste-noms
               :texte-aucun-nom="t('projets.nouveau.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
+              :etiquette-nom="t('projets.nouveau.texteÉtiquetteDescription')"
               :indice-nom="t('projets.nouveau.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"

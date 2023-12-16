@@ -2,7 +2,10 @@
   <v-list-item>
     <v-list-item-title>
       <v-row>
-        <v-col cols="4">
+        <v-col
+          v-if="mdAndUp"
+          cols="4"
+        >
           <v-autocomplete
             v-model="nouvelleLangue"
             class="pt-1"
@@ -18,10 +21,12 @@
             </template>
           </v-autocomplete>
         </v-col>
-        <v-col cols="8">
+        <v-col :cols="mdAndUp ? 8 : 12">
           <v-locale-provider :rtl="langueDÀG">
             <v-text-field
+              v-if="!longue"
               v-model="nouveauNom"
+              :label="mdAndUp ? '' : nomNouvelleLangue"
               :readonly="!autorisationModification"
               :rules="règlesNouveauNom"
               class="pt-1"
@@ -32,6 +37,21 @@
               @click:clear="effacer"
               @blur="sauvegarder"
             ></v-text-field>
+            <v-textarea
+              v-else
+              v-model="nouveauNom"
+              :label="mdAndUp ? '' : nomNouvelleLangue"
+              :readonly="!autorisationModification"
+              :rules="règlesNouveauNom"
+              class="pt-1"
+              density="compact"
+              variant="underlined"
+              clear-icon="mdi-close"
+              clearable
+              auto-grow
+              @click:clear="effacer"
+              @blur="sauvegarder"
+            ></v-textarea>
           </v-locale-provider>
         </v-col>
       </v-row>
@@ -44,6 +64,7 @@ import {computed, onMounted, ref, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {Nuchabäl} from 'nuchabal';
 import GestionnaireEnnikkai from '../../langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
+import { useDisplay } from 'vuetify/lib/framework.mjs';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
@@ -52,6 +73,8 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 
+const {mdAndUp} = useDisplay();
+
 const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
@@ -59,6 +82,7 @@ const props = defineProps<{
   nom: string;
   id: string;
   autorisationModification: boolean;
+  longue?: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'changerNom', info: {id: string; nom: string; lng: string}): void;

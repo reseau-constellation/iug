@@ -7,6 +7,7 @@
       >
         <v-list-item-title>
           <DialogueNoms
+            :etiquette-nom="t('listeNomsProfil.étiquetteNom')"
             :indice-nom="t('listeNomsProfil.indiceNom')"
             :indice-langue="t('listeNomsProfil.indiceLangue')"
             :texte-aucun-nom="t('listeNomsProfil.texteAucunNom')"

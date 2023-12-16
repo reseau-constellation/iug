@@ -12,6 +12,7 @@
     <h1 class="mb-2">
       <span :class="{'text-disabled': !nomTraduit}">{{ nomTraduit || t('communs.anonyme') }}</span>
       <DialogueNoms
+        :etiquette-nom="t('listeNomsProfil.étiquetteNom')"
         :indice-nom="t('listeNomsProfil.indiceNom')"
         :indice-langue="t('listeNomsProfil.indiceLangue')"
         :texte-aucun-nom="t('listeNomsProfil.texteAucunNom')"
@@ -63,7 +64,7 @@
       </template>
     </nouvelle-info-contact-membre>
     <v-tabs
-      v-if="mdAndUp"
+      v-if="smAndUp"
       v-model="onglet"
       class="mt-2"
       color="primary"
@@ -90,8 +91,8 @@
     >
       <v-slide-group-item
         v-for="ong in onglets"
-        :key="ong.clef"
         v-slot="{isSelected, toggle}"
+        :key="ong.clef"
         :value="ong.clef"
       >
         <v-chip
@@ -148,7 +149,7 @@ const constl = inject<ClientConstellation>('constl');
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
-const {mdAndUp} = useDisplay();
+const {smAndUp, mdAndUp} = useDisplay();
 
 // Mon ID compte
 const idCompte = ref<string>();

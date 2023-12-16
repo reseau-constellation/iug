@@ -34,6 +34,7 @@
 
       <v-card-title class="d-flex">
         <DialogueNoms
+          :etiquette-nom="t('objet.étiquetteNom')"
           :indice-nom="t('objet.indiceNom')"
           :indice-langue="t('objet.indiceLangue')"
           :texte-aucun-nom="t('objet.texteAucunNom')"
@@ -165,6 +166,7 @@
           class="mx-3 mb-3"
         >
           <DialogueNoms
+            :etiquette-nom="t('objet.étiquetteDescription')"
             :indice-nom="t('objet.indiceDescription')"
             :indice-langue="t('objet.indiceLangue')"
             :texte-aucun-nom="t('objet.texteAucuneDescription')"

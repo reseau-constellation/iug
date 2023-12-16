@@ -24,6 +24,7 @@
           :texte-aucun-nom="texteAucunNom"
           :indice-langue="indiceLangue"
           :indice-nom="indiceNom"
+          :etiquette-nom="etiquetteNom"
           :autorisation-modification="autorisationModification"
           @ajuster-noms="ajusterNoms"
         ></ListeNoms>
@@ -67,6 +68,7 @@ const props = defineProps<{
   titre: string;
   sousTitre: string;
   nomsInitiaux: {[lng: string]: string};
+  etiquetteNom: string;
   indiceNom: string;
   indiceLangue: string;
   texteAucunNom: string;

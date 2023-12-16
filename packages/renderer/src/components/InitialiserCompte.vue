@@ -43,6 +43,7 @@
           <v-window-item :value="1">
             <ListeNoms
               :noms-initiaux="noms"
+              :etiquette-nom="t('listeNomsProfil.étiquetteNom')"
               :indice-nom="t('listeNomsProfil.indiceNom')"
               :indice-langue="t('communs.indiceLangue')"
               :texte-aucun-nom="t('communs.texteAucunNom')"

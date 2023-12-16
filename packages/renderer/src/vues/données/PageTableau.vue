@@ -36,7 +36,7 @@
           :longueur-max="40"
         />
         <DialogueNoms
-          :indice-nom="t('objet.indiceNom')"
+          :etiquette-nom="t('objet.étiquetteNom')"
           :indice-langue="t('objet.indiceLangue')"
           :texte-aucun-nom="t('objet.texteAucunNom')"
           :noms-initiaux="nomsTableau"

@@ -33,6 +33,7 @@
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
+              :etiquette-nom="t('communs.étiquetteNom')"
               :indice-nom="t('communs.indiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
@@ -43,6 +44,7 @@
             <liste-noms
               :texte-aucun-nom="t('nuées.nouvelle.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
+              :etiquette-nom="t('nuées.nouvelle.texteÉtiquetteDescription')"
               :indice-nom="t('nuées.nouvelle.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"

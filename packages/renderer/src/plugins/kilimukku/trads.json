@@ -7,11 +7,12 @@
       "retour": "Retour",
       "anonyme": "Anonyme",
       "effacer": "Effacer",
-      "indiceNom": "Nom",
+      "étiquetteNom": "Nom",
       "indiceLangue": "Langue",
       "texteAucunNom": "Ajouter un nom ci-dessus",
       "erreurLangue": "Ce texte doit être en {langue}.",
       "rechercher": "Rechercher",
+      "autresLangues": "En autres langues",
       "troisPetitsPoints": "...",
       "langagesInformatiques": {
         "ts": {"abr": "ts"},
@@ -72,7 +73,7 @@
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
     },
     "listeNomsProfil": {
-      "indiceNom": "Votre nom"
+      "étiquetteNom": "Votre nom"
     },
     "kilimukku": {
       "contribuer": "Contribuer",
@@ -308,8 +309,12 @@
     "motsClefs": {
       "nouveau": {
         "titreNoms": "சிறப்பு சொலின் பெயர்",
-        "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
-        "titreConfirmation": "உருவாக்க்ம",
+        "indiceNom": "உதாரணமாக - \"நீரியல்\", \"சமூகவியல்\", அல்லது \"குடிமக்கள் அறிவியல்\"",
+        "sousTitreNoms": "எத்தனை மொழிகள் தெரிந்தாலும் உள்ளிடுங்கள்",
+        "titreDescriptions": "சிறப்பு சொலின் விளக்கம்",
+        "indiceDescription": "எந்த மாதிரி தரவுகளுடன் இணைக்கப்படும்?",
+        "sousTitreDescriptions": "இந்த சிறக்கு சொல்லின் பொருள் என்ன?",
+        "titreConfirmation": "அவ்வளவு தான்",
         "texteBtnCréation": "உருவாக்கு",
         "sousTitreConfirmation": "சிறப்பு சொலின் தகவல்களை அப்புறமாகவும் திரத்தலாம்",
         "texteCréer": "சிறப்பு சொல் உருவாக்கிறதற்கு கீழே அழுத்தவும்",
@@ -479,11 +484,11 @@
       }
     },
     "listeNomsProfil": {
-      "indiceNom": "உங்கள் பெயர்",
+      "étiquetteNom": "உங்கள் பெயர்",
       "indiceLangue": "பெயரின் மொழி"
     },
     "objet": {
-      "indiceNom": "பெயர்",
+      "étiquetteNom": "பெயர்",
       "indiceLangue": "மொழி",
       "texteAucunNom": "பெயர் ஒன்றும் இல்லை",
       "titreDialogueNoms": "பெயர்களின் பட்டியல்",

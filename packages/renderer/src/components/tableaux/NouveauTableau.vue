@@ -26,6 +26,7 @@
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
+              :etiquette-nom="t('communs.étiquetteNom')"
               :indice-nom="t('communs.indiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
