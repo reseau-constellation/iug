@@ -25,15 +25,31 @@
         <v-col :cols="mdAndUp ? 8 : 12">
           <v-locale-provider :rtl="nouvelleLangueDÀG">
             <v-text-field
+              v-if="!longue"
               v-model="nouveauNom"
               class="pt-1"
               density="compact"
               variant="underlined"
               :rules="règlesNouveauNom"
-              :label="indiceNom"
+              :label="etiquetteNom"
+              :hint="indiceNom"
               @blur="ajouterNom"
               @keydown.enter="ajouterNom"
             ></v-text-field>
+            <v-textarea
+              v-else
+              v-model="nouveauNom"
+              class="pt-1"
+              density="compact"
+              variant="underlined"
+              rows="2"
+              auto-grow
+              :rules="règlesNouveauNom"
+              :label="etiquetteNom"
+              :hint="indiceNom"
+              @blur="ajouterNom"
+              @keydown.enter="ajouterNom"
+            ></v-textarea>
           </v-locale-provider>
         </v-col>
       </v-row>
@@ -43,17 +59,18 @@
     <v-divider class="mb-2" />
     <p class="text-overline">{{ t('communs.autresLangues') }}</p>
     <v-list
-      max-height="200"
+      :max-height="longue ? 100 : 200"
       style="overflow-y: scroll"
     >
       <v-scroll-y-transition group>
-        <ItemNom
+        <item-nom
           v-for="nom in listeNoms"
           :id="nom.id"
           :key="nom.id"
           :langue="nom.lng"
           :nom="nom.nom"
           :autorisation-modification="autorisationModification"
+          :longue="longue"
           @changer-nom="changerNom"
           @effacer="effacerNom"
         />
@@ -89,10 +106,12 @@ const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
   nomsInitiaux: {[lng: string]: string};
+  etiquetteNom: string;
   indiceNom: string;
   indiceLangue: string;
   texteAucunNom: string;
   autorisationModification: boolean;
+  longue?: boolean
 }>();
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
@@ -184,8 +203,8 @@ const règlesNouveauNom = computed<string[] | undefined>(() => {
 });
 
 const ajoutPrêt = computed(() => {
-  if (nouvelleLangue.value && nouveauNom.value && !règlesNouveauNom.value?.length) {
-    return {valNouvelleLangue: nouvelleLangue.value, valNouveauNom: nouveauNom.value};
+  if (nouvelleLangue.value && nouveauNom.value.trim() && !règlesNouveauNom.value?.length) {
+    return {valNouvelleLangue: nouvelleLangue.value.trim(), valNouveauNom: nouveauNom.value};
   } else {
     return undefined;
   }
