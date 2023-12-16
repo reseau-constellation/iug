@@ -331,7 +331,7 @@
                     :key="lng"
                     :lng="lng"
                     :traduc="traduc"
-                    @click="suggestion = traduc"
+                    @suggerer="suggestion = traduc"
                   />
                   <v-list-item v-if="!traductionsClefAutresLangues.length">
                     <template #title>{{ t('kilimukku.suggestions.aucuneTrouvée') }}</template>
