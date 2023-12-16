@@ -1,8 +1,7 @@
 <template>
   <v-card
-    class="text-start ma-2"
+    class="text-start"
     variant="outlined"
-    max-width="250"
   >
     <v-card-item>
       <v-card-title>

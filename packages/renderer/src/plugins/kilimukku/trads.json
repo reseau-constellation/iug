@@ -66,6 +66,20 @@
         "bienvenu": "Bienvenu à Constellation",
         "sousTitreBienvenu": "On est heureux de vous voir !",
         "cestParti": "C'est parti !"
+      },
+      "page": {
+        "découvrir": {
+          "titre": "Découvrir"
+        },
+        "graphiques": {
+          "titre": "Mon progrès"
+        },
+        "apprendre": {
+          "titre": "Apprendre"
+        },
+        "notifications": {
+          "titre": "Notifications"
+        }
       }
     },
 
