@@ -1,4 +1,4 @@
-import {app, BrowserWindow, shell} from 'electron';
+import {app, BrowserWindow} from 'electron';
 import {join} from 'path';
 import {URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
@@ -59,13 +59,6 @@ export async function restoreOrCreateWindow() {
     window = await createWindow();
     gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
     connecterHttp();
-
-    // Nécessaire pour que les liens mailto fonctionnent dans Électron
-    // Voir : https://stackoverflow.com/questions/32402327/how-can-i-force-external-links-from-browser-window-to-open-in-a-default-browser
-    window.webContents.setWindowOpenHandler(({url}) => {
-      shell.openExternal(url);
-      return {action: 'deny'};
-    });
   }
 
   if (window.isMinimized()) {

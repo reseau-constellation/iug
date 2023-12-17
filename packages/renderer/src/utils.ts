@@ -1,9 +1,9 @@
 export const ouvrirLien = (lien: string) => {
-  window.open(lien); // À faire : tester sous Électron
+  window.open(lien, '_blank'); // À faire : tester sous Électron
 };
 
 export async function copier(texte: string): Promise<void> {
-  await navigator.clipboard?.writeText(texte); // À faire : ça fonctionne pas avec Électron
+  await navigator.clipboard?.writeText(texte); // À faire : tester sous Électron en production
 }
 
 export type fichierPublicationGitHub = {

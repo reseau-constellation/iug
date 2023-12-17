@@ -27,8 +27,8 @@ type Permissions =
  */
 const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
   import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL
-    ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, new Set()]]
-    : [],
+    ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, new Set<Permissions>(['clipboard-sanitized-write'])]]
+    : [['https://appli.réseau-constellation.ca', new Set(['clipboard-sanitized-write'])]],
 );
 
 /**
@@ -41,7 +41,9 @@ const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
  *   href="https://github.com/"
  * >
  */
-const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>(['https://github.com']);
+const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>(
+  ['https://github.com', 'https://docu.xn--rseau-constellation-bzb.ca'],
+);
 
 app.on('web-contents-created', (_, contents) => {
   /**
@@ -94,10 +96,10 @@ app.on('web-contents-created', (_, contents) => {
    * @see https://www.electronjs.org/docs/latest/tutorial/security#15-do-not-use-openexternal-with-untrusted-content
    */
   contents.setWindowOpenHandler(({url}) => {
-    const {origin} = new URL(url);
+    const {origin, protocol} = new URL(url);
 
     // @ts-expect-error Type checking is performed in runtime.
-    if (ALLOWED_EXTERNAL_ORIGINS.has(origin)) {
+    if (protocol === 'mailto:' || ALLOWED_EXTERNAL_ORIGINS.has(origin)) {
       // Open url in default browser.
       shell.openExternal(url).catch(console.error);
     } else if (import.meta.env.DEV) {
