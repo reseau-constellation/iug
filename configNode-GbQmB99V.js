@@ -1,0 +1,2 @@
+import{w as t}from"./index-Ne83OWzf.js";import{w as s,A as e}from"./const-SCUV_Z3_.js";import{w as p}from"./index-ojhUIVv7.js";import{w as a}from"./index-MlUy5vZS.js";import o from"wrtc";import"./index-DJne7QPf.js";const r=p({wrtc:o}),b={libp2p:{transports:[a(),t(),r.transport,s({wrtc:o})],peerDiscovery:[r.discovery],addresses:{listen:e}}};export{b as default};
+//# sourceMappingURL=configNode-GbQmB99V.js.map
