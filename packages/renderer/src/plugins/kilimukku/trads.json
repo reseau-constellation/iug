@@ -12,7 +12,7 @@
       "texteAucunNom": "Ajouter un nom ci-dessus",
       "erreurLangue": "Ce texte doit être en {langue}.",
       "rechercher": "Rechercher",
-      "autresLangues": "En autres langues",
+      "autresLangues": "Toutes les langues ({n})",
       "troisPetitsPoints": "...",
       "langagesInformatiques": {
         "ts": {"abr": "ts"},
@@ -79,6 +79,9 @@
         },
         "notifications": {
           "titre": "Notifications"
+        },
+        "récents": {
+          "titre": "Documents récents"
         }
       }
     },
