@@ -111,7 +111,7 @@ const props = defineProps<{
   indiceLangue: string;
   texteAucunNom: string;
   autorisationModification: boolean;
-  longue?: boolean
+  longue?: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;

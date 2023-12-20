@@ -12,6 +12,7 @@
         <PanelNotifications />
       </v-col>
     </v-row>
+    <PanelRecents />
     <v-row>
       <v-col cols="12">
         <PanelGraphiques />
@@ -28,12 +29,12 @@ import PanelNotifications from '/@/components/accueil/PanelNotifications.vue';
 import PanelApprendre from '/@/components/accueil/PanelApprendre.vue';
 import PanelGraphiques from '/@/components/accueil/PanelGraphiques.vue';
 import PanelDécouvrir from '/@/components/accueil/PanelDécouvrir.vue';
+import PanelRecents from '/@/components/accueil/PanelRécents.vue';
 
-import { useDisplay } from 'vuetify';
+import {useDisplay} from 'vuetify';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const {mdAndUp} = useDisplay();
-
 </script>

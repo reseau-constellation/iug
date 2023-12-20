@@ -389,7 +389,7 @@ import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 
 import {enregistrerÉcoute} from '/@/components/utils';
-import { watchEffect } from 'vue';
+import {watchEffect} from 'vue';
 
 const constl = inject<ClientConstellation>('constl');
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
@@ -422,17 +422,17 @@ onMounted(async () => {
 // Contrôles
 const langueSource = ref<string>();
 const langueCible = ref(மொழி.value);
-watchEffect(()=>{
+watchEffect(() => {
   if (!langueSource.value)
-    langueSource.value  = மாற்றுமொழிகள்.value[0] || கிடைக்கும்_மொழி_குறியீடுகள்.value[0];
+    langueSource.value = மாற்றுமொழிகள்.value[0] || கிடைக்கும்_மொழி_குறியீடுகள்.value[0];
 });
 
-watch(langueSource, (nouvelle, avant)=>{
+watch(langueSource, (nouvelle, avant) => {
   if (nouvelle === langueCible.value && avant) {
     langueCible.value = avant;
   }
 });
-watch(langueCible, (nouvelle, avant)=>{
+watch(langueCible, (nouvelle, avant) => {
   if (nouvelle === langueSource.value && avant) {
     langueSource.value = avant;
   }

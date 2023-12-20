@@ -275,3 +275,18 @@ export class MultiChercheur {
     this.fOublierRecherche = fOublierRecherche;
   }
 }
+
+export const icôneObjet = (typeObjet?: string): string | undefined => {
+  switch (typeObjet) {
+    case 'motClef':
+      return 'mdi-key';
+    case 'tableau':
+      return 'mdi-table';
+    case 'bd':
+      return 'mdi-database-outline';
+    case 'projet':
+      return 'mdi-folder-outline';
+    case 'nuée':
+      return 'mdi-account-group-outline';
+  }
+};

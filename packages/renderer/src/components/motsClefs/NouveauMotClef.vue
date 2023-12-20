@@ -25,9 +25,7 @@
         <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
-        <v-window
-          v-model="étape"
-        >
+        <v-window v-model="étape">
           <v-window-item :key="0">
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"

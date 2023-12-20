@@ -19,7 +19,7 @@
     </v-card-item>
     <v-card-text>
       <v-list
-        style="overflow-y: auto;"
+        style="overflow-y: auto"
         height="100"
       >
         <v-list-item v-if="!notifications.length">
@@ -37,9 +37,9 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import type { Info, InfoAvecId } from '/@/état/infos';
+import type {Info, InfoAvecId} from '/@/état/infos';
 
-import { computed, ref } from 'vue';
+import {computed, ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -55,23 +55,26 @@ const notifications = ref<InfoAvecId<Info>[]>([
     id: 'abc',
   },
   {
-    info: {type: 'mettreÀJour',
-    détails: {
-      dernièreVersionDisponible: '1.0.0',
-      versionActuelle: '0.0.1',
-    }},
+    info: {
+      type: 'mettreÀJour',
+      détails: {
+        dernièreVersionDisponible: '1.0.0',
+        versionActuelle: '0.0.1',
+      },
+    },
     id: 'def',
   },
   {
-    info: {type: 'mettreÀJour',
-    détails: {
-      dernièreVersionDisponible: '1.0.0',
-      versionActuelle: '0.0.1',
-    }},
+    info: {
+      type: 'mettreÀJour',
+      détails: {
+        dernièreVersionDisponible: '1.0.0',
+        versionActuelle: '0.0.1',
+      },
+    },
     id: 'def',
   },
 ]);
 
-const nNotificationsFormattée = எண்ணை_வடிவூட்டு(computed(()=>notifications.value.length));
-
+const nNotificationsFormattée = எண்ணை_வடிவூட்டு(computed(() => notifications.value.length));
 </script>

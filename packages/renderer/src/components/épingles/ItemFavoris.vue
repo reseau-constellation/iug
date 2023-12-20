@@ -55,7 +55,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {inject, ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '../utils';
+import {enregistrerÉcoute, icôneObjet} from '../utils';
 import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -91,20 +91,7 @@ enregistrerÉcoute(
   }),
 );
 const icôneTypeItem = computed(() => {
-  switch (typeObjet.value) {
-    case 'bd':
-      return 'mdi-database';
-    case 'motClef':
-      return 'mdi-key';
-    case 'variable':
-      return 'mdi-variable';
-    case 'projet':
-      return 'mdi-folder-outline';
-    case 'nuée':
-      return 'mdi-account-group-outline';
-    default:
-      return 'mdi-pin-outline';
-  }
+  return icôneObjet(typeObjet.value) || 'mdi-pin-outline';
 });
 
 // Épingle

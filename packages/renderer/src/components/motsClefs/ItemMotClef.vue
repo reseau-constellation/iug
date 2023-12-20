@@ -1,7 +1,7 @@
 <template>
   <v-list-item
     class="text-start"
-    prepend-icon="mdi-key"
+    :prepend-icon="icôneObjet('motClef')"
     density="compact"
   >
     <template #title>
@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import type {ClientConstellation} from '@constl/ipa';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {enregistrerÉcoute, icôneObjet} from '/@/components/utils';
 
 import {ref, inject} from 'vue';
 

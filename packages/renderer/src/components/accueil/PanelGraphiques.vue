@@ -10,13 +10,8 @@
       </v-card-title>
     </v-card-item>
     <v-card-text>
-      Aucune historique
-      Nombre de bases de données
-      Nombre de projets
-      Nombre de nuées
-      
-      Nombre de réplications de mes données
-      Nombre de connaissances
+      Aucune historique Nombre de bases de données Nombre de projets Nombre de nuées Nombre de
+      réplications de mes données Nombre de connaissances
     </v-card-text>
   </v-card>
 </template>
@@ -25,6 +20,4 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
-
-
 </script>

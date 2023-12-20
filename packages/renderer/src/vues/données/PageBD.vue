@@ -525,16 +525,16 @@ import type {bds, types} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 
-import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import {computed, inject, ref} from 'vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, inject, ref, onMounted} from 'vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {enregistrerÉcoute} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import texteTronqué from '/@/components/communs/TexteTronqué.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
@@ -577,6 +577,11 @@ const {isRtl} = useRtl();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
+const historiqueDocuments = utiliserHistoriqueDocuments();
+
+onMounted(()=>{
+  historiqueDocuments.documentOuvert({id: props.id, à: Date.now()});
+});
 
 // Visualisation
 const imageVide = obtImageDéco('vide');

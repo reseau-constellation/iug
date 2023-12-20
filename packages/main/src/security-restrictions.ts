@@ -27,7 +27,12 @@ type Permissions =
  */
 const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
   import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL
-    ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, new Set<Permissions>(['clipboard-sanitized-write'])]]
+    ? [
+        [
+          new URL(import.meta.env.VITE_DEV_SERVER_URL).origin,
+          new Set<Permissions>(['clipboard-sanitized-write']),
+        ],
+      ]
     : [['https://appli.réseau-constellation.ca', new Set(['clipboard-sanitized-write'])]],
 );
 
@@ -41,9 +46,10 @@ const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
  *   href="https://github.com/"
  * >
  */
-const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>(
-  ['https://github.com', 'https://docu.xn--rseau-constellation-bzb.ca'],
-);
+const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>([
+  'https://github.com',
+  'https://docu.xn--rseau-constellation-bzb.ca',
+]);
 
 app.on('web-contents-created', (_, contents) => {
   /**

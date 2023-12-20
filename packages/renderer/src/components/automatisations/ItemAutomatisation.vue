@@ -29,7 +29,7 @@ import {computed, inject, ref, onMounted} from 'vue';
 
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {enregistrerÉcoute, icôneObjet} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
@@ -98,18 +98,7 @@ const icôneTypeObjet = computed(() => {
   if (props.spécification.type === 'importation') {
     return 'mdi-table';
   } else {
-    switch (props.spécification.typeObjet) {
-      case 'tableau':
-        return 'mdi-table';
-      case 'bd':
-        return 'mdi-database-outline';
-      case 'projet':
-        return 'mdi-folder-outline';
-      case 'nuée':
-        return 'mdi-bird';
-      default:
-        throw new Error(JSON.stringify(props.spécification));
-    }
+    return icôneObjet(props.spécification.typeObjet);
   }
 });
 

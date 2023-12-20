@@ -146,7 +146,7 @@ import type {ClientConstellation} from '@constl/ipa';
 
 import {computed, inject, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
-import { useOnline } from '@vueuse/core';
+import {useOnline} from '@vueuse/core';
 
 import QrcodeVue from 'qrcode.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
