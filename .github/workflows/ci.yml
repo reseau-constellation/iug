@@ -8,6 +8,8 @@ on:
     branches:
       - main
       - 'renovate/**'
+    tags:
+      - v*
     paths-ignore:
       - '.github/**'
       - '!.github/workflows/ci.yml'
@@ -37,6 +39,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  debogage:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.ref }}
+      - run: echo ${{ github.ref_name }}
+      - run: echo ${{ !startsWith(github.ref, 'refs/tags/') }}
   typechecking:
     uses: ./.github/workflows/typechecking.yml
   tests:
