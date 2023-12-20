@@ -13,11 +13,8 @@
       </v-col>
     </v-row>
     <PanelRecents />
-    <v-row>
-      <v-col cols="12">
-        <PanelGraphiques />
-      </v-col>
-    </v-row>
+
+    <PanelGraphiques />
   </v-container>
 </template>
 
