@@ -27,6 +27,7 @@
       </v-card-item>
       <v-card-text>
         <v-window
+          v-if="enLigne"
           v-model="étape"
           style="overflow-y: scroll"
         >
@@ -113,6 +114,9 @@
             />
           </v-window-item>
         </v-window>
+        <div v-else>
+          {{ t('dispositifs.inviter.horsLigne') }}
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-btn
@@ -140,19 +144,19 @@
 <script setup lang="ts">
 import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
+import {computed, inject, ref, watchEffect} from 'vue';
+import {useDisplay, useRtl} from 'vuetify';
+import { useOnline } from '@vueuse/core';
 
 import QrcodeVue from 'qrcode.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {useDisplay, useRtl} from 'vuetify';
-import {watchEffect} from 'vue';
-
 const constl = inject<ClientConstellation>('constl');
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
+const enLigne = useOnline();
 
 // Navigation
 const dialogue = ref(false);
@@ -228,7 +232,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
     case 'codeR2':
       return {actif: false, visible: false};
     default:
-      return {actif: true, visible: true};
+      return {actif: enLigne.value, visible: true};
   }
 });
 
@@ -238,7 +242,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
     case 'cheminement':
       return {actif: false, visible: false};
     default:
-      return {actif: true, visible: true};
+      return {actif: enLigne.value, visible: true};
   }
 });
 
