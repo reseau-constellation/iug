@@ -6,7 +6,7 @@
     "name": "Julien Jean Malard-Adam",
     "url": "https://github.com/julienmalard"
   },
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "packages/main/dist/index.cjs",
   "scripts": {
     "build": "pnpm run build:main && pnpm run build:preload && pnpm run build:renderer",
