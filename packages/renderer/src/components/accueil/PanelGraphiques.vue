@@ -1,27 +1,93 @@
 <template>
   <v-row>
     <v-col cols="12">
+      <p class="text-h4">
+        {{ t('accueil.page.graphiques.titre') }}
+      </p>
+    </v-col>
+    <v-col cols="12">
       <v-card
         class="text-start"
         variant="outlined"
-        height="600"
       >
-        <v-card-item>
-          <v-card-title>
-            {{ t('accueil.page.graphiques.titre') }}
-          </v-card-title>
-        </v-card-item>
         <v-card-text>
-          Aucune historique Nombre de bases de données Nombre de projets Nombre de nuées Nombre de
-          réplications de mes données Nombre de connaissances
+            <graphique-historique-ligne titre="Mes bases de données" :vals="{mesBds: []}" />
+            {{ obtHistorique("mesBds") }}
+          <graphique-historique-ligne titre="Mes projets" :vals="{mesBds: []}" />
+          <graphique-historique-ligne titre="Mes nuées" :vals="{mesBds: []}" />
+          <graphique-historique-ligne titre="Réplications des mes données" :vals="{mesBds: []}" />
+          <graphique-historique-ligne titre="Mes connaissances" :vals="{mesBds: []}" />
+          <graphique-historique-ligne titre="Mon réseau" :vals="{mesBds: []}" />
         </v-card-text>
       </v-card>
     </v-col>
   </v-row>
 </template>
 <script lang="ts" setup>
+import type { ClientConstellation, réseau } from '@constl/ipa';
+import { computed, ref,watchEffect, inject } from 'vue';
+import { storeToRefs } from 'pinia';
+
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
+import { utiliserHistorique } from '/@/état/historique';
+import { enregistrerÉcoute } from '../utils';
+
+import GraphiqueHistoriqueLigne from "./GraphiqueHistoriqueLigne.vue";
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const historique = utiliserHistorique({});
+
+const constl = inject<ClientConstellation>('constl');
+
+const {obtHistorique } = storeToRefs(historique);
+
+const bds = ref<string[]>();
+const nBds = computed(()=>bds.value?.length);
+enregistrerÉcoute(
+  constl?.bds.suivreBds({f: x=>bds.value = x}),
+);
+watchEffect(()=>{
+  historique.observer({clef: 'mesBds', val: nBds.value});
+});
+
+
+const projets = ref<string[]>();
+const nProjets = computed(()=>projets.value?.length);
+enregistrerÉcoute(
+  constl?.projets.suivreProjets({f: x=>projets.value = x}),
+);
+watchEffect(()=>{
+  historique.observer({clef: 'mesProjets', val: nProjets.value});
+});
+
+const nuées = ref<string[]>();
+const nNuées = computed(()=>nuées.value?.length);
+enregistrerÉcoute(
+  constl?.nuées.suivreNuées({f: x=>nuées.value = x}),
+);
+watchEffect(()=>{
+  historique.observer({clef: 'mesNuées', val: nNuées.value});
+});
+
+const membresFiables = ref<string[]>();
+const nMembresFiables = computed(()=>membresFiables.value?.length);
+enregistrerÉcoute(
+  constl?.réseau.suivreFiables({f: x=>membresFiables.value = x}),
+);
+watchEffect(()=>{
+  historique.observer({clef: 'mesConnaissances', val: nMembresFiables.value});
+});
+
+const membresRéseau = ref<réseau.infoMembreRéseau[]>();
+const nMembresRéseau = computed(()=>membresRéseau.value?.length);
+enregistrerÉcoute(
+  constl?.réseau.suivreComptesRéseau({f: x=>membresRéseau.value = x, profondeur: 1}),
+);
+watchEffect(()=>{
+  historique.observer({clef: 'monRéseau', val: nMembresRéseau.value});
+});
+
+
 </script>
