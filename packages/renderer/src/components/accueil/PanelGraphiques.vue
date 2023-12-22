@@ -11,13 +11,32 @@
         variant="outlined"
       >
         <v-card-text>
-            <graphique-historique-ligne titre="Mes bases de données" :vals="{mesBds: []}" />
-            {{ obtHistorique("mesBds") }}
-          <graphique-historique-ligne titre="Mes projets" :vals="{mesBds: []}" />
-          <graphique-historique-ligne titre="Mes nuées" :vals="{mesBds: []}" />
-          <graphique-historique-ligne titre="Réplications des mes données" :vals="{mesBds: []}" />
-          <graphique-historique-ligne titre="Mes connaissances" :vals="{mesBds: []}" />
-          <graphique-historique-ligne titre="Mon réseau" :vals="{mesBds: []}" />
+          <graphique-historique-ligne
+            titre="Mes bases de données"
+            :vals="obtHistorique('mesBds')"
+            couleur="#6e40aa"
+          />
+          <graphique-historique-ligne
+            titre="Mes projets" 
+            couleur="#bf3caf"
+          />
+          <graphique-historique-ligne
+            titre="Mes nuées"
+            :vals="obtHistorique('mesNuées')"
+            couleur="#fe4b83"
+          />
+          <graphique-historique-ligne
+            titre="Réplications des mes données" 
+            couleur="#ff7847"
+          />
+          <graphique-historique-ligne
+            titre="Mes connaissances" 
+            couleur="#e2b72f"
+          />
+          <graphique-historique-ligne
+            titre="Mon réseau" 
+            couleur="#aff05b"
+          />
         </v-card-text>
       </v-card>
     </v-col>
@@ -33,7 +52,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import { utiliserHistorique } from '/@/état/historique';
 import { enregistrerÉcoute } from '../utils';
 
-import GraphiqueHistoriqueLigne from "./GraphiqueHistoriqueLigne.vue";
+import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});

@@ -2,7 +2,6 @@
   <v-row>
     <v-col cols="12">
       <p class="text-h4">
-        {{ t('accueil.page.graphiques.titre') }}
         {{ t('accueil.page.récents.titre') }}
       </p>
       <v-card-title>
