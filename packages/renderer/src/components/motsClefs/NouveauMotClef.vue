@@ -13,7 +13,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ titreCarte }}
+          {{ t(titreCarte) }}
           <v-spacer />
           <v-btn
             variant="flat"
@@ -22,7 +22,7 @@
             @click="fermer"
           />
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
         <v-window v-model="étape">
@@ -118,11 +118,11 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('motsClefs.nouveau.titreNoms');
+      return 'motsClefs.nouveau.titreNoms';
     case 'descriptions':
-      return t('motsClefs.nouveau.titreDescriptions');
+      return 'motsClefs.nouveau.titreDescriptions';
     case 'confirmation':
-      return t('motsClefs.nouveau.titreConfirmation');
+      return 'motsClefs.nouveau.titreConfirmation';
     default:
       return '';
   }
@@ -132,11 +132,11 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('motsClefs.nouveau.sousTitreNoms');
+      return 'motsClefs.nouveau.sousTitreNoms';
     case 'descriptions':
-      return t('motsClefs.nouveau.sousTitreDescriptions');
+      return 'motsClefs.nouveau.sousTitreDescriptions';
     case 'confirmation':
-      return t('motsClefs.nouveau.sousTitreConfirmation');
+      return 'motsClefs.nouveau.sousTitreConfirmation';
     default:
       return '';
   }

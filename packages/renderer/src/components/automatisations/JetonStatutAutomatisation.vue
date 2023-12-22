@@ -14,7 +14,7 @@
         {{ icôneStatut.icône }}
       </v-icon>
     </template>
-    {{ texteStatut }}
+    {{ t(texteStatut) }}
   </v-chip>
 </template>
 <script setup lang="ts">
@@ -60,7 +60,7 @@ onUnmounted(() => {
 const texteStatut = computed(() => {
   switch (props.statut.type) {
     case 'écoute':
-      return t('auto.jetonStatut.écoute');
+      return 'auto.jetonStatut.écoute';
     case 'sync':
       return t('auto.jetonStatut.sync', {depuis: maintenant.value - props.statut.depuis});
     case 'programmée':
@@ -71,7 +71,7 @@ const texteStatut = computed(() => {
           dans: props.statut.prochaineProgramméeÀ - maintenant.value,
         });
       } else {
-        return t('auto.jetonStatut.erreur');
+        return 'auto.jetonStatut.erreur';
       }
     default:
       throw new Error(props.statut);

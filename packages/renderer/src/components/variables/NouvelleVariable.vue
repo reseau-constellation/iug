@@ -13,9 +13,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -145,15 +145,15 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'catégorie':
-      return t('variables.nouvelle.titreCatégorie');
+      return 'variables.nouvelle.titreCatégorie';
     case 'noms':
-      return t('variables.nouvelle.titreNoms');
+      return 'variables.nouvelle.titreNoms';
     case 'descriptions':
-      return t('variables.nouvelle.titreDescriptions');
+      return 'variables.nouvelle.titreDescriptions';
     case 'unités':
-      return t('variables.nouvelle.titreUnités');
+      return 'variables.nouvelle.titreUnités';
     case 'confirmation':
-      return t('variables.nouvelle.titreConfirmation');
+      return 'variables.nouvelle.titreConfirmation';
     default:
       return '';
   }
@@ -163,15 +163,15 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'catégorie':
-      return t('variables.nouvelle.sousTitreCatégorie');
+      return 'variables.nouvelle.sousTitreCatégorie';
     case 'noms':
-      return t('variables.nouvelle.sousTitreNoms');
+      return 'variables.nouvelle.sousTitreNoms';
     case 'descriptions':
-      return t('variables.nouvelle.sousTitreDescriptions');
+      return 'variables.nouvelle.sousTitreDescriptions';
     case 'unités':
-      return t('variables.nouvelle.sousTitreUnités');
+      return 'variables.nouvelle.sousTitreUnités';
     case 'confirmation':
-      return t('variables.nouvelle.sousTitreConfirmation');
+      return 'variables.nouvelle.sousTitreConfirmation';
     default:
       return '';
   }

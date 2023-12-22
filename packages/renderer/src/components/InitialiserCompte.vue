@@ -12,9 +12,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -332,19 +332,19 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('accueil.initialiserCompte.titreCheminement');
+      return 'accueil.initialiserCompte.titreCheminement';
     case 'noms':
-      return t('accueil.initialiserCompte.titreNoms');
+      return 'accueil.initialiserCompte.titreNoms';
     case 'image':
-      return t('accueil.initialiserCompte.titreImage');
+      return 'accueil.initialiserCompte.titreImage';
     case 'compteÀRejoindre':
       return t('accueil.initialiserCompte.titreCompteÀRejoindre');
     case 'motDePasse':
-      return t('accueil.initialiserCompte.titreMotDePasse');
+      return 'accueil.initialiserCompte.titreMotDePasse';
     case 'persister':
-      return t('accueil.initialiserCompte.titrePersister');
+      return 'accueil.initialiserCompte.titrePersister';
     case 'cestParti':
-      return t('accueil.initialiserCompte.titreCestParti');
+      return 'accueil.initialiserCompte.titreCestParti';
     default:
       return '';
   }
@@ -354,9 +354,9 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('accueil.initialiserCompte.sousTitreCheminement');
+      return 'accueil.initialiserCompte.sousTitreCheminement';
     case 'noms':
-      return t('accueil.initialiserCompte.sousTitreNoms');
+      return 'accueil.initialiserCompte.sousTitreNoms';
     default:
       return '';
   }

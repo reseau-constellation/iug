@@ -13,9 +13,9 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ titreCarte }}
+          {{ t(titreCarte) }}
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -111,7 +111,7 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('tableaux.nouveau.titreNoms');
+      return 'tableaux.nouveau.titreNoms';
     default:
       return '';
   }
@@ -121,7 +121,7 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('tableaux.nouveau.sousTitreNoms');
+      return 'tableaux.nouveau.sousTitreNoms';
     default:
       return '';
   }

@@ -10,7 +10,7 @@
     {{ nomTraduit || t('communs.anonyme') }}
     <template #append>
       <v-tooltip
-        :text="messageConfiance"
+        :text="t(messageConfiance)"
         location="bottom"
       >
         <template #activator="{props: propsActivateur}">
@@ -76,15 +76,15 @@ enregistrerÉcoute(
 
 const messageConfiance = computed(() => {
   if (confiance.value < 0) {
-    return t('membres.confiance.bloqué');
+    return 'membres.confiance.bloqué';
   } else if (confiance.value === 0) {
-    return t('membres.confiance.inconnu');
+    return 'membres.confiance.inconnu';
   } else if (confiance.value < 0.33) {
-    return t('membres.confiance.peuDinteraction');
+    return 'membres.confiance.peuDinteraction';
   } else if (confiance.value < 0.67) {
-    return t('membres.confiance.interactionMoyenne');
+    return 'membres.confiance.interactionMoyenne';
   } else if (confiance.value < 1) {
-    return t('membres.confiance.beaucoupDinteraction');
+    return 'membres.confiance.beaucoupDinteraction';
   } else if (confiance.value === 1) {
     return props.compte === monCompte.value
       ? t('membres.moi')

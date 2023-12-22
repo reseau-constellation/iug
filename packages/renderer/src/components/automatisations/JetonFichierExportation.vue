@@ -15,7 +15,7 @@
         mdi-alert
       </v-icon>
     </template>
-    {{ texteStatut }}
+    {{ t(texteStatut) }}
   </v-chip>
 </template>
 
@@ -63,9 +63,9 @@ const fichierRésolu = computed(() => {
 // Texte statut
 const texteStatut = computed<string>(() => {
   if (fichier.value === undefined) {
-    return t('automatisation.rechercheFichier');
+    return 'automatisation.rechercheFichier';
   } else if (fichier.value === null) {
-    return t('automatisations.fichierIntrouvable');
+    return 'automatisations.fichierIntrouvable';
   } else {
     return path.parse(fichier.value).base;
   }

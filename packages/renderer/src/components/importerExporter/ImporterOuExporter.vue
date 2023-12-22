@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ titreCarte }}
+          {{ t(titreCarte) }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -21,7 +21,7 @@
             @click="dialogue = false"
           />
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -307,29 +307,29 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'importerOuExporter':
-      return t('communs.importerOuExporter.titreImporterOuExporter');
+      return 'communs.importerOuExporter.titreImporterOuExporter';
     case 'objetConstellation':
-      return t('communs.importerOuExporter.titreObjetConstellation');
+      return 'communs.importerOuExporter.titreObjetConstellation';
     case 'sourceImportation':
-      return t('communs.importerOuExporter.titreSourceImportation');
+      return 'communs.importerOuExporter.titreSourceImportation';
     case 'correspondancesImportation':
-      return t('communs.importerOuExporter.titreCorrespondancesImportation');
+      return 'communs.importerOuExporter.titreCorrespondancesImportation';
     case 'dossierExportation':
-      return t('communs.importerOuExporter.titreDossierExportation');
+      return 'communs.importerOuExporter.titreDossierExportation';
     case 'inclureSFIPExportation':
-      return t('communs.importerOuExporter.titreInclureSFIPExportation');
+      return 'communs.importerOuExporter.titreInclureSFIPExportation';
     case 'languesExportation':
-      return t('communs.importerOuExporter.titreLanguesExportation');
+      return 'communs.importerOuExporter.titreLanguesExportation';
     case 'formatDocExportation':
-      return t('communs.importerOuExporter.titreFormatDocExportation');
+      return 'communs.importerOuExporter.titreFormatDocExportation';
     case 'voulezVousAutomatiser':
-      return t('communs.importerOuExporter.titreVoulezVousAutomatiser');
+      return 'communs.importerOuExporter.titreVoulezVousAutomatiser';
     case 'fréquence':
-      return t('communs.importerOuExporter.titreFréquence');
+      return 'communs.importerOuExporter.titreFréquence';
     case 'dispositif':
-      return t('communs.importerOuExporter.titreDispositif');
+      return 'communs.importerOuExporter.titreDispositif';
     case 'confirmation':
-      return t('communs.importerOuExporter.titreconfirmation');
+      return 'communs.importerOuExporter.titreconfirmation';
     default:
       return '';
   }
@@ -339,29 +339,29 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'importerOuExporter':
-      return t('communs.importerOuExporter.sousTitreImporterOuExporter');
+      return 'communs.importerOuExporter.sousTitreImporterOuExporter';
     case 'objetConstellation':
-      return t('communs.importerOuExporter.sousTitreObjetConstellation');
+      return 'communs.importerOuExporter.sousTitreObjetConstellation';
     case 'sourceImportation':
-      return t('communs.importerOuExporter.sousTitreSourceImportation');
+      return 'communs.importerOuExporter.sousTitreSourceImportation';
     case 'correspondancesImportation':
-      return t('communs.importerOuExporter.sousTitreCorrespondancesImportation');
+      return 'communs.importerOuExporter.sousTitreCorrespondancesImportation';
     case 'dossierExportation':
-      return t('communs.importerOuExporter.sousTitreDossierExportation');
+      return 'communs.importerOuExporter.sousTitreDossierExportation';
     case 'inclureSFIPExportation':
-      return t('communs.importerOuExporter.sousTitreInclureSFIPExportation');
+      return 'communs.importerOuExporter.sousTitreInclureSFIPExportation';
     case 'languesExportation':
-      return t('communs.importerOuExporter.sousTitreLanguesExportation');
+      return 'communs.importerOuExporter.sousTitreLanguesExportation';
     case 'formatDocExportation':
-      return t('communs.importerOuExporter.sousTitreFormatDocExportation');
+      return 'communs.importerOuExporter.sousTitreFormatDocExportation';
     case 'voulezVousAutomatiser':
-      return t('communs.importerOuExporter.sousTitreVoulezVousAutomatiser');
+      return 'communs.importerOuExporter.sousTitreVoulezVousAutomatiser';
     case 'fréquence':
-      return t('communs.importerOuExporter.sousTitreFréquence');
+      return 'communs.importerOuExporter.sousTitreFréquence';
     case 'dispositif':
-      return t('communs.importerOuExporter.sousTitreDispositif');
+      return 'communs.importerOuExporter.sousTitreDispositif';
     case 'confirmation':
-      return t('communs.importerOuExporter.sousTitreconfirmation');
+      return 'communs.importerOuExporter.sousTitreconfirmation';
     default:
       return '';
   }

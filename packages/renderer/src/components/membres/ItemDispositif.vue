@@ -14,7 +14,7 @@
       </v-icon>
     </template>
     <template #title> {{ nomDispositif || t('dispositifs.sansNom') }} </template>
-    <template #subtitle> {{ sousTitre }} </template>
+    <template #subtitle> {{ t(sousTitre) }} </template>
     <jeton-membre
       v-if="idCompte"
       :compte="idCompte"
@@ -63,7 +63,7 @@ onMounted(async () => {
 
 const sousTitre = computed(() => {
   if (props.idDispositif === ceDispositif.value) {
-    return t('dispositifs.ceDispositif');
+    return 'dispositifs.ceDispositif';
   } else {
     return texteVuIlYA.value;
   }

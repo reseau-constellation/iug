@@ -12,9 +12,9 @@
       >
         <v-card-item>
           <v-card-title class="text-h5 justify-space-between">
-            <span>{{ titreCarte }}</span>
+            <span>{{ t(titreCarte) }}</span>
           </v-card-title>
-          <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+          <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
         </v-card-item>
         <v-card-text>
           <v-window
@@ -225,17 +225,17 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'BorneFixeOuDynamique':
-      return t('règles.nouvelleRègle.titreBorneFixeOuDynamique');
+      return 'règles.nouvelleRègle.titreBorneFixeOuDynamique';
     case 'CatégorieFixeOuDynamique':
-      return t('règles.nouvelleRègle.titreCatégorieFixeOuDynamique');
+      return 'règles.nouvelleRègle.titreCatégorieFixeOuDynamique';
     case 'TypeRègle':
-      return t('règles.nouvelleRègle.titreTypeRègle');
+      return 'règles.nouvelleRègle.titreTypeRègle';
     case 'Confirmer':
-      return t('règles.nouvelleRègle.titreConfirmer');
+      return 'règles.nouvelleRègle.titreConfirmer';
     case 'ValeurBorne':
-      return t('règles.nouvelleRègle.titreValeurBorne');
+      return 'règles.nouvelleRègle.titreValeurBorne';
     case 'ValeurCatégorie':
-      return t('règles.nouvelleRègle.titreValeurCatégorie');
+      return 'règles.nouvelleRègle.titreValeurCatégorie';
     default:
       return '';
   }
@@ -245,17 +245,17 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'BorneFixeOuDynamique':
-      return t('règles.nouvelleRègle.sousTitreBorneFixeOuDynamique');
+      return 'règles.nouvelleRègle.sousTitreBorneFixeOuDynamique';
     case 'CatégorieFixeOuDynamique':
-      return t('règles.nouvelleRègle.sousTitreCatégorieFixeOuDynamique');
+      return 'règles.nouvelleRègle.sousTitreCatégorieFixeOuDynamique';
     case 'TypeRègle':
-      return t('règles.nouvelleRègle.sousTitreTypeRègle');
+      return 'règles.nouvelleRègle.sousTitreTypeRègle';
     case 'Confirmer':
-      return t('règles.nouvelleRègle.sousTitreConfirmer');
+      return 'règles.nouvelleRègle.sousTitreConfirmer';
     case 'ValeurBorne':
-      return t('règles.nouvelleRègle.sousTitreValeurBorne');
+      return 'règles.nouvelleRègle.sousTitreValeurBorne';
     case 'ValeurCatégorie':
-      return t('règles.nouvelleRègle.sousTitreValeurCatégorie');
+      return 'règles.nouvelleRègle.sousTitreValeurCatégorie';
     default:
       return '';
   }

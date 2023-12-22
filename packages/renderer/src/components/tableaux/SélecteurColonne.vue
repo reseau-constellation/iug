@@ -12,9 +12,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -103,9 +103,9 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'Tableau':
-      return t('tableaux.colonnes.sélecteur.titreTableau');
+      return 'tableaux.colonnes.sélecteur.titreTableau';
     case 'Colonne':
-      return t('tableaux.colonnes.sélecteur.titreColonne');
+      return 'tableaux.colonnes.sélecteur.titreColonne';
     default:
       return '';
   }
@@ -115,9 +115,9 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'Tableau':
-      return t('tableaux.colonnes.sélecteur.sousTitreTableau');
+      return 'tableaux.colonnes.sélecteur.sousTitreTableau';
     case 'Colonne':
-      return t('tableaux.colonnes.sélecteur.sousTitreColonne');
+      return 'tableaux.colonnes.sélecteur.sousTitreColonne';
     default:
       return '';
   }

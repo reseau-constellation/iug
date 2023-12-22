@@ -13,7 +13,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ titreCarte }}
+          {{ t(titreCarte) }}
           <v-spacer />
           <v-btn
             variant="flat"
@@ -22,7 +22,7 @@
             @click="fermer"
           />
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -192,15 +192,15 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('nuées.nouvelle.titreNoms');
+      return 'nuées.nouvelle.titreNoms';
     case 'descriptions':
-      return t('nuées.nouvelle.titreDescriptions');
+      return 'nuées.nouvelle.titreDescriptions';
     case 'autorisation':
-      return t('nuées.nouvelle.titreAutorisation');
+      return 'nuées.nouvelle.titreAutorisation';
     case 'tableaux':
-      return t('nuées.nouvelle.titreTableaux');
+      return 'nuées.nouvelle.titreTableaux';
     case 'confirmation':
-      return t('nuées.nouvelle.titreConfirmation');
+      return 'nuées.nouvelle.titreConfirmation';
     default:
       return '';
   }
@@ -210,15 +210,15 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
-      return t('nuées.nouvelle.sousTitreNoms');
+      return 'nuées.nouvelle.sousTitreNoms';
     case 'descriptions':
-      return t('nuées.nouvelle.sousTitreDescriptions');
+      return 'nuées.nouvelle.sousTitreDescriptions';
     case 'autorisation':
-      return t('nuées.nouvelle.sousTitreAutorisation');
+      return 'nuées.nouvelle.sousTitreAutorisation';
     case 'tableaux':
-      return t('nuées.nouvelle.sousTitreTableaux');
+      return 'nuées.nouvelle.sousTitreTableaux';
     case 'confirmation':
-      return t('nuées.nouvelle.sousTitreConfirmation');
+      return 'nuées.nouvelle.sousTitreConfirmation';
     default:
       return '';
   }

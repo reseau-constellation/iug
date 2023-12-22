@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ titreCarte }}
+          {{ t(titreCarte) }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -22,7 +22,7 @@
           ></v-btn>
         </v-card-title>
         <v-card-subtitle>
-          {{ sousTitreCarte }}
+          {{ t(sousTitreCarte) }}
         </v-card-subtitle>
       </v-card-item>
       <v-card-text>
@@ -178,11 +178,11 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('dispositifs.inviter.titreCheminement');
+      return 'dispositifs.inviter.titreCheminement';
     case 'manuelle':
-      return t('dispositifs.inviter.titreManuelle');
+      return 'dispositifs.inviter.titreManuelle';
     case 'codeR2':
-      return t('dispositifs.inviter.titreCodeR2');
+      return 'dispositifs.inviter.titreCodeR2';
     default:
       return '';
   }
@@ -192,11 +192,11 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('dispositifs.inviter.sousTitreCheminement');
+      return 'dispositifs.inviter.sousTitreCheminement';
     case 'manuelle':
-      return t('dispositifs.inviter.sousTitreManuelle');
+      return 'dispositifs.inviter.sousTitreManuelle';
     case 'codeR2':
-      return t('dispositifs.inviter.sousTitreCodeR2');
+      return 'dispositifs.inviter.sousTitreCodeR2';
     default:
       return '';
   }

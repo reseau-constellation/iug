@@ -23,13 +23,13 @@
             :cest-moi="id === monCompte"
           />
         </template>
-        {{ messageConfiance }}
+        {{ t(messageConfiance) }}
       </v-chip>
     </template>
   </carte-confiance-membre>
   <v-tooltip
     v-else
-    :text="messageConfiance"
+    :text="t(messageConfiance)"
   >
     <template #activator="{props: propsActivateur}">
       <icône-confiance
@@ -51,7 +51,7 @@
             :cest-moi="id === monCompte"
           />
         </template>
-        {{ messageConfiance }}
+        {{ t(messageConfiance) }}
       </v-chip>
     </template>
   </v-tooltip>
@@ -95,15 +95,15 @@ enregistrerÉcoute(
 // Message
 const messageConfiance = computed(() => {
   if (confiance.value < 0) {
-    return t('membres.confiance.bloqué');
+    return 'membres.confiance.bloqué';
   } else if (confiance.value === 0) {
-    return t('membres.confiance.inconnu');
+    return 'membres.confiance.inconnu';
   } else if (confiance.value < 0.33) {
-    return t('membres.confiance.peuDinteraction');
+    return 'membres.confiance.peuDinteraction';
   } else if (confiance.value < 0.67) {
-    return t('membres.confiance.interactionMoyenne');
+    return 'membres.confiance.interactionMoyenne';
   } else if (confiance.value < 1) {
-    return t('membres.confiance.beaucoupDinteraction');
+    return 'membres.confiance.beaucoupDinteraction';
   } else if (confiance.value === 1) {
     return props.id === monCompte.value ? t('membres.moi') : t('membres.confiance.connaissance');
   } else {

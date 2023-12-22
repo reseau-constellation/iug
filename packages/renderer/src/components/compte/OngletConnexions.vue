@@ -25,7 +25,7 @@
         </v-radio>
       </v-radio-group>
       <division-carte
-        :titre="titreDivision"
+        :titre="t(titreDivision)"
         :en-attente="!connexionsSFIP"
       />
       <div v-if="typeConnexions === 'Constellation'">
@@ -88,9 +88,9 @@ const typeConnexions = ref<'SFIP' | 'Constellation'>('Constellation');
 const titreDivision = computed(() => {
   switch (typeConnexions.value) {
     case 'SFIP':
-      return t('pages.compte.connexions.titreSFIP');
+      return 'pages.compte.connexions.titreSFIP';
     case 'Constellation':
-      return t('pages.compte.connexions.titreConstellation');
+      return 'pages.compte.connexions.titreConstellation';
     default:
       return '';
   }

@@ -13,9 +13,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -228,21 +228,21 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('bds.nouvelle.titreCheminement');
+      return 'bds.nouvelle.titreCheminement';
     case 'gabaritBd':
-      return t('bds.nouvelle.titreGabaritBd');
+      return 'bds.nouvelle.titreGabaritBd';
     case 'gabaritNuée':
-      return t('bds.nouvelle.titreGabaritNuée');
+      return 'bds.nouvelle.titreGabaritNuée';
     case 'noms':
-      return t('bds.nouvelle.titreNoms');
+      return 'bds.nouvelle.titreNoms';
     case 'descriptions':
-      return t('bds.nouvelle.titreFescriptions');
+      return 'bds.nouvelle.titreFescriptions';
     case 'motsClefs':
-      return t('bds.nouvelle.titreMotsClefs');
+      return 'bds.nouvelle.titreMotsClefs';
     case 'licence':
-      return t('bds.nouvelle.titreLicence');
+      return 'bds.nouvelle.titreLicence';
     case 'confirmation':
-      return t('bds.nouvelle.titreConfirmation');
+      return 'bds.nouvelle.titreConfirmation';
     default:
       return '';
   }
@@ -252,21 +252,21 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'cheminement':
-      return t('bds.nouvelle.sousTitreCheminement');
+      return 'bds.nouvelle.sousTitreCheminement';
     case 'gabaritBd':
-      return t('bds.nouvelle.sousTitreGabaritBd');
+      return 'bds.nouvelle.sousTitreGabaritBd';
     case 'gabaritNuée':
-      return t('bds.nouvelle.sousTitreGabaritNuée');
+      return 'bds.nouvelle.sousTitreGabaritNuée';
     case 'noms':
-      return t('bds.nouvelle.sousTitreNoms');
+      return 'bds.nouvelle.sousTitreNoms';
     case 'descriptions':
-      return t('bds.nouvelle.sousTitreFescriptions');
+      return 'bds.nouvelle.sousTitreFescriptions';
     case 'motsClefs':
-      return t('bds.nouvelle.sousTitreMotsClefs');
+      return 'bds.nouvelle.sousTitreMotsClefs';
     case 'licence':
-      return t('bds.nouvelle.sousTitreLicence');
+      return 'bds.nouvelle.sousTitreLicence';
     case 'confirmation':
-      return t('bds.nouvelle.sousTitreConfirmation');
+      return 'bds.nouvelle.sousTitreConfirmation';
     default:
       return '';
   }

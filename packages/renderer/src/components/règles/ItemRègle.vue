@@ -1,10 +1,10 @@
 <template>
   <v-list-item>
     <v-list-item-title>
-      {{ typeRègle }}
+      {{ t(typeRègle) }}
     </v-list-item-title>
     <v-list-item-subtitle>
-      {{ infoRègle }}
+      {{ t(infoRègle) }}
     </v-list-item-subtitle>
     <v-list-item-action>
       <v-btn
@@ -34,13 +34,13 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const typeRègle = computed(() => {
   switch (props.regle.règle.typeRègle) {
     case 'catégorie':
-      return t('règles.types.catégorie');
+      return 'règles.types.catégorie';
     case 'bornes':
-      return t('règles.types.bornes');
+      return 'règles.types.bornes';
     case 'existe':
-      return t('règles.types.existe');
+      return 'règles.types.existe';
     case 'valeurCatégorique':
-      return t('règles.types.valeurCatégorique');
+      return 'règles.types.valeurCatégorique';
     default:
       return '';
   }
@@ -57,9 +57,9 @@ const infoRègle = computed(() => {
     case 'bornes':
       return t('règles.infos.bornes', {val: règle.détails.val, op: règle.détails.op});
     case 'existe':
-      return t('règles.infos.existe');
+      return 'règles.infos.existe';
     case 'valeurCatégorique':
-      return t('règles.infos.valeurCatégorique');
+      return 'règles.infos.valeurCatégorique';
     default:
       return '';
   }

@@ -12,9 +12,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window

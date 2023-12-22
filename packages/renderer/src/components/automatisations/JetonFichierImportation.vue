@@ -15,7 +15,7 @@
         mdi-alert
       </v-icon>
     </template>
-    {{ texteStatut }}
+    {{ t(texteStatut) }}
   </v-chip>
 </template>
 <script setup lang="ts">
@@ -69,9 +69,9 @@ const icône = computed(() => {
 const texteStatut = computed<string>(() => {
   if (props.spécification.source.typeSource === 'fichier') {
     if (fichier.value === undefined) {
-      return t('automatisation.rechercheFichier');
+      return 'automatisation.rechercheFichier';
     } else if (fichier.value === null) {
-      return t('automatisations.fichierIntrouvable');
+      return 'automatisations.fichierIntrouvable';
     } else {
       return path.parse(fichier.value).base;
     }

@@ -12,9 +12,9 @@
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
-          <span>{{ titreCarte }}</span>
+          <span>{{ t(titreCarte) }}</span>
         </v-card-title>
-        <v-card-subtitle> {{ sousTitreCarte }} </v-card-subtitle>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
       <v-card-text>
         <v-window
@@ -144,13 +144,13 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'présentation':
-      return t('nuées.générerCode.titrePrésentation');
+      return 'nuées.générerCode.titrePrésentation';
     case 'licenceParDéfaut':
-      return t('nuées.générerCode.titreLicenceParDéfaut');
+      return 'nuées.générerCode.titreLicenceParDéfaut';
     case 'bdPrincipale':
-      return t('nuées.générerCode.titreBdPrincipale');
+      return 'nuées.générerCode.titreBdPrincipale';
     case 'codeGénéré':
-      return t('nuées.générerCode.titreCodeGénéré');
+      return 'nuées.générerCode.titreCodeGénéré';
     default:
       return '';
   }
@@ -160,13 +160,13 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'présentation':
-      return t('nuées.générerCode.sousTitrePrésentation');
+      return 'nuées.générerCode.sousTitrePrésentation';
     case 'licenceParDéfaut':
-      return t('nuées.générerCode.sousTitreLicenceParDéfaut');
+      return 'nuées.générerCode.sousTitreLicenceParDéfaut';
     case 'bdPrincipale':
-      return t('nuées.générerCode.sousTitreBdPrincipale');
+      return 'nuées.générerCode.sousTitreBdPrincipale';
     case 'codeGénéré':
-      return t('nuées.générerCode.sousTitreCodeGénéré');
+      return 'nuées.générerCode.sousTitreCodeGénéré';
     default:
       return '';
   }
