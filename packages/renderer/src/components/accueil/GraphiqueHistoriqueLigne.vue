@@ -27,10 +27,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, reactive, ref, watchEffect } from 'vue';
+import { type Ref, onBeforeUnmount, onMounted, reactive, ref, watchEffect } from 'vue';
 import {axisBottom, axisLeft, line, max, scaleLinear, scaleTime, select, extent, curveBasis} from 'd3';
 import { computed } from 'vue';
 import { எண்களைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+
 
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
@@ -43,6 +44,16 @@ const svgRef = ref(null);
 const assezDeDonnées = computed(()=>{
   return data.value.length > 1;
 });
+
+const formatteurs: {[chiffre: string]: Ref<string>} = {};
+
+const formatterChiffre = (x: number): string => {
+  if (!formatteurs[x.toString()]) {
+    formatteurs[x.toString()] = எண்ணை_வடிவூட்டு(x);
+  }
+  return formatteurs[x.toString()].value;
+  
+};
 
 // https://dev.to/muratkemaldar/using-vue-3-with-d3-composition-api-3h1g
 onMounted(()=>{
@@ -91,8 +102,8 @@ onMounted(()=>{
           .append('text');
 
         const yAxis = axisLeft(y);
-        // À faire - éviter fuite mémoire
-        yAxis.tickFormat(x=>எண்ணை_வடிவூட்டு(x.valueOf()).value);
+
+        yAxis.tickFormat(x=>formatterChiffre(x.valueOf()));
         svg.select<SVGSVGElement>('.y-axis').call(yAxis);
     });
 });
