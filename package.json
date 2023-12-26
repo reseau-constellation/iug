@@ -66,7 +66,7 @@
     "vite-plugin-commonjs-externals": "^0.1.4",
     "vite-plugin-vuetify": "^2.0.0",
     "vitest": "1.1.0",
-    "vue-tsc": "1.8.26"
+    "vue-tsc": "1.8.27"
   },
   "dependencies": {
     "@achingbrain/nat-port-mapper": "1.0.8",
