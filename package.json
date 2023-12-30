@@ -108,7 +108,7 @@
     "semaphore-async-await": "^1.5.1",
     "tslib": "^2.6.2",
     "uuid": "^9.0.1",
-    "vue": "3.4.0",
+    "vue": "3.4.1",
     "vue-router": "^4.2.5",
     "vuetify": "^3.4.7",
     "webfontloader": "^1.6.28",
