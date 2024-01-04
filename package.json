@@ -60,7 +60,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-resolve-id": "^1.0.2",
     "simple-git-hooks": "2.9.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.3",
     "unplugin-auto-expose": "0.0.5",
     "vite": "5.0.10",
     "vite-plugin-commonjs-externals": "^0.1.4",
