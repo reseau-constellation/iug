@@ -1,0 +1,2 @@
+import{w as t}from"./index-FsaKRh2d.js";import{w as s,A as e}from"./const-sYS79nrG.js";import{w as p}from"./index-jo-hhVYV.js";import{w as i}from"./index-C1ul2ujc.js";import o from"wrtc";import"./index-n8X8qB5B.js";import"./browser-sii-o_Yk.js";const r=p({wrtc:o}),S={libp2p:{transports:[i(),t(),r.transport,s({wrtc:o})],peerDiscovery:[r.discovery],addresses:{listen:e}}};export{S as default};
+//# sourceMappingURL=configNode-HnOmlVoN.js.map
