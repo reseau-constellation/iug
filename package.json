@@ -60,7 +60,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-resolve-id": "^1.0.2",
     "simple-git-hooks": "2.9.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.3",
     "unplugin-auto-expose": "0.0.5",
     "vite": "5.0.10",
     "vite-plugin-commonjs-externals": "^0.1.4",
@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@achingbrain/nat-port-mapper": "1.0.8",
-    "@constl/ipa": "0.9.17",
+    "@constl/ipa": "0.9.19",
     "@constl/mandataire": "^0.1.15",
     "@constl/mandataire-electron-principal": "^0.2.14",
     "@constl/mandataire-electron-rendu": "^0.2.14",
