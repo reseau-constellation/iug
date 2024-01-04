@@ -275,7 +275,7 @@ const créerColonne = async () => {
     idVariable,
     index: index.value,
     idColonne: props.idColonne,
-    règles: règlesColonne.value,
+    règles: règlesColonne.value as valid.règleVariableAvecId[],
   });
 
   fermer();

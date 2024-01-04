@@ -286,9 +286,13 @@ const tableaux = ref<
   {
     clef: string;
     noms: {[langue: string]: string};
-    cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
+    cols: {
+      info: tblx.InfoCol; 
+      règles: valid.règleVariableAvecId[]
+    }[];
   }[]
 >([]);
+
 const ajouterTableau = ({
   noms,
   cols,
@@ -331,16 +335,12 @@ const ajouterColonneTableau = ({
     id: uuidv4(),
     variable: idVariable,
     index,
-    règles,
   };
-
-  throw new Error('À faire' + clefTableau + JSON.stringify(nouvelleColonne));
-  /**
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
-      ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
+      ? {clef: t.clef, noms: t.noms, cols: [...t.cols, {info: nouvelleColonne, règles}]}
       : t;
-  }); */
+  });
 };
 
 const effacerColonneTableau = ({
@@ -406,13 +406,11 @@ const créerNuée = async () => {
 
       // Ajotuer les règles colonne
       for (const règle of col.règles) {
-        throw new Error('À faire' + JSON.stringify(règle));
-        /**
         await constl?.nuées.ajouterRègleTableauNuée({
           idTableau,
           idColonne,
           règle: règle.règle,
-        }); */
+        });
       }
     }
   }
