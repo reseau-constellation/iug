@@ -120,7 +120,7 @@ const config = {
   },
   build: {
     sourcemap: true,
-    target: pourÉlectron ? `chrome${chrome}` : 'es2020',
+    target: pourÉlectron ? `chrome${chrome}` : 'esnext',
     outDir: pourÉlectron ? 'dist' : 'dist/web',
     assetsDir: '.',
     rollupOptions: {
