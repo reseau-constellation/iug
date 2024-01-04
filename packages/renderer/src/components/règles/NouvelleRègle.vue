@@ -171,7 +171,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {valid, variables, types} from '@constl/ipa';
+import type {valid, variables} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -371,7 +371,7 @@ const valBorneDynamiqueColonne = ref<string>();
 
 // Règle catégorique
 const typeCatégorie = ref<'dynamique' | 'fixe'>();
-const valCatégorieFixe = ref<types.élémentsBd[]>();
+const valCatégorieFixe = ref<(string | number | boolean)[]>();
 const valCatégorieDynamique = ref<{tableau: string; colonne: string}>();
 
 const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
