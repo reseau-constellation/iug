@@ -133,6 +133,9 @@ const config = {
   },
   optimizeDeps: {
     exclude: dépendsÀExclure,
+    esbuildOptions: {
+      target: 'esnext',
+    },
   },
   test: {
     environment: 'happy-dom',
