@@ -72,12 +72,12 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {automatisation, bds} from '@constl/ipa';
+import type {bds} from '@constl/ipa';
 
 import {computed, ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
@@ -95,21 +95,10 @@ const props = defineProps<{
 const constl = constellation();
 
 // Autorisation
-const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
-enregistrerÉcoute(
-  constl.suivrePermission({
-    idObjet: props.idObjet,
-    f: x => (monAutorisation.value = x),
-  }),
-);
+const monAutorisation = écouter(constl.suivrePermission, {idObjet: props.idObjet});
 
 // Automatisations
-const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
-enregistrerÉcoute(
-  constl.automatisations.suivreAutomatisations({
-    f: x => (automatisations.value = x),
-  }),
-);
+const automatisations = écouter(constl.automatisations.suivreAutomatisations);
 
 // Cas spécial pour les bases de données - on inclut aussi les tableaux !
 const tableauxBd = ref<bds.infoTableauAvecId[]>();

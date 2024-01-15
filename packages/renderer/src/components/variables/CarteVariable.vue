@@ -205,7 +205,7 @@ const sauvegarderCatégorie = async () => {
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreAuteursVariable({
+  constl.réseau.suivreAuteursVariable({
     idVariable: props.id,
     f: x => (auteurs.value = x),
   }),

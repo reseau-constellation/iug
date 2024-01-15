@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import IcôneConfiance from './IcôneConfiance.vue';
@@ -77,13 +77,12 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Mon compte
-const monCompte = ref<string>();
-enregistrerÉcoute(constl.suivreIdCompte({f: id => (monCompte.value = id)}));
+const monCompte = écouter(constl.suivreIdCompte);
 
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
-  constl.réseau?.suivreConfianceMonRéseauPourMembre({
+  constl.réseau.suivreConfianceMonRéseauPourMembre({
     idCompte: props.id,
     f: x => (confiance.value = x),
     profondeur: 5,

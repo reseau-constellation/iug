@@ -45,7 +45,7 @@ import {ref, onMounted, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 
 import ImageProfil from './communs/ImageProfil.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './membres/utils';
@@ -59,14 +59,8 @@ const constl = constellation();
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.profil.suivreNoms, {}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    f: x => (noms.value = x),
-  }),
-);
 
 // Dispositif
 const idDispositif = ref<string>();

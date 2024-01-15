@@ -103,7 +103,7 @@ const connexionsSFIP = ref<
   }[]
 >();
 enregistrerÉcoute(
-  constl.réseau?.suivreConnexionsPostesSFIP({
+  constl.réseau.suivreConnexionsPostesSFIP({
     f: x => (connexionsSFIP.value = x),
   }),
 );
@@ -111,7 +111,7 @@ enregistrerÉcoute(
 // Connexions Constellation
 const connexionsConstellation = ref<réseau.statutDispositif[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreConnexionsDispositifs({
+  constl.réseau.suivreConnexionsDispositifs({
     f: x => (connexionsConstellation.value = x),
   }),
 );

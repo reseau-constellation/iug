@@ -84,7 +84,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreAuteursMotClef({
+  constl.réseau.suivreAuteursMotClef({
     idMotClef: props.id,
     f: x => (auteurs.value = x),
   }),

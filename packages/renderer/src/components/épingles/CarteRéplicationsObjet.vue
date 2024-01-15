@@ -147,7 +147,7 @@ const dialogue = ref(false);
 // Réplications
 const réplications = ref<réseau.infoRéplications>();
 enregistrerÉcoute(
-  constl.réseau?.suivreRéplications({
+  constl.réseau.suivreRéplications({
     idObjet: props.id,
     f: x => (réplications.value = x),
     profondeur: 10,

@@ -35,10 +35,10 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute, icôneObjet} from '../utils';
+import {constellation, icôneObjet, écouter} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
@@ -50,25 +50,13 @@ const {அகராதியிலிருந்து_மொழிபெயர
 
 const constl = constellation();
 
-const noms = ref<{[langue: string]: string}>({});
+// Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
+const noms = écouter(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const historiqueDocuments = utiliserHistoriqueDocuments();
 
-enregistrerÉcoute(
-  constl.motsClefs.suivreNomsMotClef({
-    idMotClef: props.id,
-    f: x => (noms.value = x),
-  }),
-); // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-
-const typeObjet = ref<'motClef' | 'variable' | 'bd' | 'projet' | 'nuée'>();
-enregistrerÉcoute(
-  constl.suivreTypeObjet({
-    idObjet: props.id,
-    f: x => (typeObjet.value = x),
-  }),
-);
+const typeObjet = écouter(constl.suivreTypeObjet, {idObjet: props.id});
 const icôneTypeItem = computed(() => {
   const icône = icôneObjet(typeObjet.value);
   return icône || 'mdi-file-document-outline';

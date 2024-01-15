@@ -157,12 +157,12 @@ const dialogue = ref(false);
 const fiables = ref<string[]>();
 const bloqués = ref<réseau.infoBloqué[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreBloqués({
+  constl.réseau.suivreBloqués({
     f: x => (bloqués.value = x),
   }),
 );
 enregistrerÉcoute(
-  constl.réseau?.suivreFiables({
+  constl.réseau.suivreFiables({
     f: x => (fiables.value = x),
   }),
 );
@@ -184,22 +184,22 @@ watchEffect(() => {
 const sauvegarder = async () => {
   switch (statutRelationSélectionné.value) {
     case 'fiable':
-      await constl.réseau?.faireConfianceAuMembre({idCompte: props.id});
+      await constl.réseau.faireConfianceAuMembre({idCompte: props.id});
       break;
     case 'bloquéPublique':
     case 'bloquéPrivé':
-      await constl.réseau?.bloquerMembre({
+      await constl.réseau.bloquerMembre({
         idCompte: props.id,
         privé: statutRelationSélectionné.value === 'bloquéPrivé',
       });
       break;
     case 'inconnu':
       if (statutRelation.value === 'fiable') {
-        await constl.réseau?.nePlusFaireConfianceAuMembre({
+        await constl.réseau.nePlusFaireConfianceAuMembre({
           idCompte: props.id,
         });
       } else {
-        await constl.réseau?.débloquerMembre({
+        await constl.réseau.débloquerMembre({
           idCompte: props.id,
         });
       }

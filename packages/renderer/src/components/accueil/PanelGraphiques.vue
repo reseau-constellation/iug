@@ -50,7 +50,7 @@ import {storeToRefs} from 'pinia';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {constellation, enregistrerÉcoute} from '../utils';
+import {constellation, enregistrerÉcoute, écouter} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 
@@ -62,30 +62,26 @@ const constl = constellation();
 
 const {obtHistorique} = storeToRefs(historique);
 
-const bds = ref<string[]>();
+const bds = écouter(constl.bds.suivreBds);
 const nBds = computed(() => bds.value?.length);
-enregistrerÉcoute(constl.bds.suivreBds({f: x => (bds.value = x)}));
 watchEffect(() => {
   historique.observer({clef: 'mesBds', val: nBds.value});
 });
 
-const projets = ref<string[]>();
+const projets = écouter(constl.projets.suivreProjets);
 const nProjets = computed(() => projets.value?.length);
-enregistrerÉcoute(constl.projets.suivreProjets({f: x => (projets.value = x)}));
 watchEffect(() => {
   historique.observer({clef: 'mesProjets', val: nProjets.value});
 });
 
-const nuées = ref<string[]>();
+const nuées = écouter(constl.nuées.suivreNuées);
 const nNuées = computed(() => nuées.value?.length);
-enregistrerÉcoute(constl.nuées.suivreNuées({f: x => (nuées.value = x)}));
 watchEffect(() => {
   historique.observer({clef: 'mesNuées', val: nNuées.value});
 });
 
-const membresFiables = ref<string[]>();
+const membresFiables = écouter(constl.réseau.suivreFiables);
 const nMembresFiables = computed(() => membresFiables.value?.length);
-enregistrerÉcoute(constl.réseau.suivreFiables({f: x => (membresFiables.value = x)}));
 watchEffect(() => {
   historique.observer({clef: 'mesConnaissances', val: nMembresFiables.value});
 });

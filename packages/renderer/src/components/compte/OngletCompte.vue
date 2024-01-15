@@ -154,7 +154,7 @@ enregistrerÉcoute(
 
 const statutDispositifs = ref<réseau.statutDispositif[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreConnexionsDispositifs({
+  constl.réseau.suivreConnexionsDispositifs({
     f: x => (statutDispositifs.value = x),
   }),
 );

@@ -78,7 +78,7 @@ enregistrerÉcoute(
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreAuteursMotClef({
+  constl.réseau.suivreAuteursMotClef({
     idMotClef: props.résultat.id,
     f: x => (auteurs.value = x),
   }),

@@ -160,7 +160,7 @@ enregistrerRecherche({
     nOuProfondeur: number;
     réfRésultat: Ref<types.résultatRecherche<types.infoRésultat>[] | undefined>;
   }) =>
-    constl.réseau?.rechercherMembres({
+    constl.réseau.rechercherMembres({
       nRésultatsDésirés: nOuProfondeur,
       f: x =>
         (réfRésultat.value = x.sort((a, b) =>

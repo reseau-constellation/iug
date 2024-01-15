@@ -36,7 +36,7 @@ const constl = constellation();
 const réplications = ref<réseau.infoRéplications>();
 
 enregistrerÉcoute(
-  constl.réseau?.suivreRéplications({
+  constl.réseau.suivreRéplications({
     idObjet: props.id,
     f: r => (réplications.value = r),
     profondeur: 10,

@@ -65,7 +65,7 @@ enregistrerÉcoute(constl.suivreIdCompte({f: id => (monCompte.value = id)}));
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
-  constl.réseau?.suivreConfianceMonRéseauPourMembre({
+  constl.réseau.suivreConfianceMonRéseauPourMembre({
     idCompte: props.compte,
     f: x => (confiance.value = x),
     profondeur: 5,

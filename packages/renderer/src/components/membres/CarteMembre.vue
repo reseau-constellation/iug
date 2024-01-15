@@ -216,7 +216,7 @@ enregistrerÉcoute(
 // Bds
 const bdsMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreBdsMembre({
+  constl.réseau.suivreBdsMembre({
     idCompte: props.id,
     f: bds => (bdsMembre.value = bds),
   }),
@@ -225,7 +225,7 @@ enregistrerÉcoute(
 // Projets
 const projetsMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreProjetsMembre({
+  constl.réseau.suivreProjetsMembre({
     idCompte: props.id,
     f: projets => (projetsMembre.value = projets),
   }),
@@ -234,7 +234,7 @@ enregistrerÉcoute(
 // Nuées
 const nuéesMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreNuéesMembre({
+  constl.réseau.suivreNuéesMembre({
     idCompte: props.id,
     f: nuées => (nuéesMembre.value = nuées),
   }),

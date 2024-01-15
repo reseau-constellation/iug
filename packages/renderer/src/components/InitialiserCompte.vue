@@ -388,7 +388,7 @@ const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
 const comptesEnLigne = ref<réseau.infoMembreRéseau[]>([]);
 
-const monIdCompte = écouter(constl.suivreIdCompte, {});
+const monIdCompte = écouter(constl.suivreIdCompte);
 
 const connexionsSFIP = écouter(constl.réseau.suivreConnexionsPostesSFIP, {});
 enregistrerÉcoute(

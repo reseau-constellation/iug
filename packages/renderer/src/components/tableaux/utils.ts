@@ -2,8 +2,6 @@ import type {valid} from '@constl/ipa';
 
 import {constellation} from '../utils';
 
-const constl = constellation();
-
 export const créerColonneTableau = async ({
   idTableau,
   idVariable,
@@ -17,6 +15,7 @@ export const créerColonneTableau = async ({
   index?: boolean;
   règles: valid.règleVariableAvecId[];
 }) => {
+  const constl = constellation();
   const idColonneFinale = await constl.tableaux.ajouterColonneTableau({
     idTableau,
     idVariable: idVariable,

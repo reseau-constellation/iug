@@ -6,10 +6,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {automatisation} from '@constl/ipa';
-
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
@@ -22,12 +20,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Automatisations
-const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
-enregistrerÉcoute(
-  constl.automatisations.suivreAutomatisations({
-    f: x => (automatisations.value = x),
-  }),
-);
+const automatisations = écouter(constl.automatisations.suivreAutomatisations);
 const automatisationsObjet = computed(() => {
   return automatisations.value
     ? automatisations.value.filter(

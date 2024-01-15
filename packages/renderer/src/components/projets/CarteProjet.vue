@@ -11,10 +11,7 @@
   ></base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-import {ref} from 'vue';
-
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
@@ -23,13 +20,7 @@ const props = defineProps<{id: string}>();
 const constl = constellation();
 
 // Nom projet
-const noms = ref<{[langue: string]: string}>({});
-enregistrerÉcoute(
-  constl.projets.suivreNomsProjet({
-    idProjet: props.id,
-    f: x => (noms.value = x),
-  }),
-);
+const noms = écouter(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
@@ -42,14 +33,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Descriptions projet
-const descriptions = ref<{[lng: string]: string}>({});
-
-enregistrerÉcoute(
-  constl.projets.suivreDescriptionsProjet({
-    idProjet: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
+const descriptions = écouter(constl.projets.suivreDescriptionsProjet, {idProjet: props.id}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -66,13 +50,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = ref<types.infoAuteur[]>();
-enregistrerÉcoute(
-  constl.réseau?.suivreAuteursProjet({
-    idProjet: props.id,
-    f: x => (auteurs.value = x),
-  }),
-);
+const auteurs = écouter(constl.réseau.suivreAuteursProjet, {idProjet: props.id});
 
 // Effacer
 const effacerProjet = async () => {

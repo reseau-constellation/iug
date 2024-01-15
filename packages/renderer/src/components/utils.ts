@@ -1,8 +1,8 @@
-import type {ComputedRef, DeepReadonly, Ref} from 'vue';
+import type {ComputedRef, Ref} from 'vue';
 import type {types, ClientConstellation} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
-import {computed, inject, onMounted, onUnmounted, readonly, ref, watch, watchEffect} from 'vue';
+import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const constellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
@@ -10,11 +10,16 @@ export const constellation = (): ClientConstellation => {
   throw new Error("Constellation n'est pas trouvable.");
 };
 
-export const écouter = <T extends {[clef: string]: types.élémentsBd}, U>(
+export const écouter = <
+  U,
+  V extends U | undefined,
+  T extends {[clef: string]: types.élémentsBd} = Record<string, never>,
+>(
   fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<types.schémaFonctionOublier>,
-  args: T,
-): Readonly<Ref<DeepReadonly<U> | undefined>> => {
-  const val = ref<U>();
+  args: T = {} as T,
+  défaut?: V,
+): Ref<U | V> => {
+  const val = ref(défaut) as Ref<U | V>;
 
   let fOublier: types.schémaFonctionOublier | undefined = undefined;
 
@@ -29,7 +34,7 @@ export const écouter = <T extends {[clef: string]: types.élémentsBd}, U>(
     if (fOublier) await fOublier();
   });
 
-  return readonly(val);
+  return val;
 };
 
 export const enregistrerÉcoute = <

@@ -133,7 +133,7 @@ enregistrerÉcoute(
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl.réseau?.suivreAuteursVariable({
+  constl.réseau.suivreAuteursVariable({
     idVariable: props.résultat.id,
     f: x => (auteurs.value = x),
   }),
