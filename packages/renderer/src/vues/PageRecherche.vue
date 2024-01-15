@@ -117,13 +117,12 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
 import {type Ref, watchEffect} from 'vue';
 
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {MultiChercheur} from '/@/components/utils';
+import {MultiChercheur, constellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import TitrePage from '../components/communs/TitrePage.vue';
@@ -134,7 +133,7 @@ import RésultatRechercheVariable from '/@/components/recherche/RésultatRecherc
 import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -226,7 +225,7 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
         }) => {
-          return await constl?.recherche.rechercherMotsClefsSelonTexte({
+          return await constl.recherche.rechercherMotsClefsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -248,7 +247,7 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
         }) => {
-          return await constl?.recherche.rechercherVariablesSelonTexte({
+          return await constl.recherche.rechercherVariablesSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -274,7 +273,7 @@ watchEffect(async () => {
             >[]
           >;
         }) => {
-          return await constl?.recherche.rechercherBdsSelonTexte({
+          return await constl.recherche.rechercherBdsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -303,7 +302,7 @@ watchEffect(async () => {
             >[]
           >;
         }) => {
-          return await constl?.recherche.rechercherProjetsSelonTexte({
+          return await constl.recherche.rechercherProjetsSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
@@ -329,7 +328,7 @@ watchEffect(async () => {
             >[]
           >;
         }) => {
-          return await constl?.recherche.rechercherNuéesSelonTexte({
+          return await constl.recherche.rechercherNuéesSelonTexte({
             texte: requète,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,

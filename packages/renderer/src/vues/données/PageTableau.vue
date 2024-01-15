@@ -109,15 +109,13 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -127,7 +125,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{idTableau: string; idBd: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {obtImageDéco} = utiliserImagesDéco();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -146,7 +144,7 @@ const petitPousset = computed<{title: string; href?: string; disabled?: boolean}
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
 enregistrerÉcoute(
-  constl?.suivrePermission({
+  constl.suivrePermission({
     idObjet: props.idTableau,
     f: x => (monAutorisation.value = x),
   }),
@@ -157,7 +155,7 @@ const nomsTableau = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 enregistrerÉcoute(
-  constl?.tableaux.suivreNomsTableau({
+  constl.tableaux.suivreNomsTableau({
     idTableau: props.idTableau,
     f: x => (nomsTableau.value = x),
   }),
@@ -169,9 +167,9 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
     nouvelles: nms,
   });
   for (const langue of àEffacer) {
-    await constl?.tableaux.effacerNomTableau({idTableau: props.idTableau, langue});
+    await constl.tableaux.effacerNomTableau({idTableau: props.idTableau, langue});
   }
-  await constl?.tableaux.sauvegarderNomsTableau({
+  await constl.tableaux.sauvegarderNomsTableau({
     idTableau: props.idTableau,
     noms: àAjouter,
   });
@@ -182,7 +180,7 @@ const nomsBd = ref<{[lng: string]: string}>({});
 const nomTraduitBd = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsBd);
 
 enregistrerÉcoute(
-  constl?.bds.suivreNomsBd({
+  constl.bds.suivreNomsBd({
     idBd: props.idBd,
     f: x => (nomsBd.value = x),
   }),
@@ -198,7 +196,7 @@ const srcImgBd = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.bds.suivreImage({
+  constl.bds.suivreImage({
     idBd: props.idBd,
     f: image => (imageBd.value = image),
   }),
@@ -208,9 +206,9 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) => {
   if (image) {
-    await constl?.profil.sauvegarderImage({image: {content: image.contenu, path: image.fichier}});
+    await constl.profil.sauvegarderImage({image: {content: image.contenu, path: image.fichier}});
   } else {
-    await constl?.profil.effacerImage();
+    await constl.profil.effacerImage();
   }
 };
 </script>

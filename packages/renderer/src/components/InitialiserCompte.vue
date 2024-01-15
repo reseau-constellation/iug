@@ -66,7 +66,7 @@
           </v-window-item>
           <v-window-item :value="3">
             <v-fade-transition>
-              <div v-show="connexionsSFIP.length">
+              <div v-show="connexionsSFIP?.length">
                 <p class="mb-4">
                   {{ t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
                 </p>
@@ -101,7 +101,7 @@
               </div>
             </v-fade-transition>
             <v-fade-transition>
-              <div v-show="!connexionsSFIP.length">
+              <div v-show="!connexionsSFIP?.length">
                 {{ t('accueil.initialiserCompte.texteEnConnexion') }}
               </div>
             </v-fade-transition>
@@ -209,13 +209,13 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation, réseau} from '@constl/ipa';
+import type {réseau} from '@constl/ipa';
 
-import {computed, ref, inject} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -233,7 +233,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {mdAndUp} = useDisplay();
 
 const {obtImageDéco} = utiliserImagesDéco();
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Navigation générale
 const dialogue = ref(false);
@@ -387,22 +387,12 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
 const comptesEnLigne = ref<réseau.infoMembreRéseau[]>([]);
-const connexionsSFIP = ref<
-  {
-    adresse: string;
-    pair: string;
-  }[]
->([]);
-const monIdCompte = ref<string>();
 
+const monIdCompte = écouter(constl.suivreIdCompte, {});
+
+const connexionsSFIP = écouter(constl.réseau.suivreConnexionsPostesSFIP, {});
 enregistrerÉcoute(
-  constl?.réseau?.suivreConnexionsPostesSFIP({
-    f: connexions => (connexionsSFIP.value = connexions),
-  }),
-);
-enregistrerÉcoute(constl?.suivreIdCompte({f: idCompte => (monIdCompte.value = idCompte)}));
-enregistrerÉcoute(
-  constl?.réseau?.suivreComptesRéseauEtEnLigne({
+  constl.réseau.suivreComptesRéseauEtEnLigne({
     f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idCompte !== monIdCompte.value)),
     profondeur: Infinity,
   }),
@@ -447,5 +437,5 @@ const créerCompte = async () => {
 };
 
 const idCompte = ref();
-constl?.suivreIdCompte({f: id => (idCompte.value = id)});
+constl.suivreIdCompte({f: id => (idCompte.value = id)});
 </script>

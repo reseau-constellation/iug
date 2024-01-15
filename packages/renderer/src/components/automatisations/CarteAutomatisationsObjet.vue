@@ -73,12 +73,11 @@
 </template>
 <script setup lang="ts">
 import type {automatisation, bds} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, ref, inject, onMounted} from 'vue';
+import {computed, ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
@@ -93,12 +92,12 @@ const props = defineProps<{
   typeObjet: 'nuée' | 'projet' | 'bd' | 'tableau';
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
 enregistrerÉcoute(
-  constl?.suivrePermission({
+  constl.suivrePermission({
     idObjet: props.idObjet,
     f: x => (monAutorisation.value = x),
   }),
@@ -107,7 +106,7 @@ enregistrerÉcoute(
 // Automatisations
 const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
 enregistrerÉcoute(
-  constl?.automatisations.suivreAutomatisations({
+  constl.automatisations.suivreAutomatisations({
     f: x => (automatisations.value = x),
   }),
 );
@@ -117,7 +116,7 @@ const tableauxBd = ref<bds.infoTableauAvecId[]>();
 onMounted(() => {
   if (props.typeObjet === 'bd') {
     enregistrerÉcoute(
-      constl?.bds.suivreTableauxBd({
+      constl.bds.suivreTableauxBd({
         idBd: props.idObjet,
         f: x => (tableauxBd.value = x),
       }),

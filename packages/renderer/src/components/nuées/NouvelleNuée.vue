@@ -164,23 +164,23 @@
 </template>
 <script setup lang="ts">
 import {type tableaux as tblx, type valid} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
+import {constellation} from '/@/components/utils';
 
 const {mdAndUp} = useDisplay();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Navigation
 const dialogue = ref(false);
@@ -287,8 +287,8 @@ const tableaux = ref<
     clef: string;
     noms: {[langue: string]: string};
     cols: {
-      info: tblx.InfoCol; 
-      règles: valid.règleVariableAvecId[]
+      info: tblx.InfoCol;
+      règles: valid.règleVariableAvecId[];
     }[];
   }[]
 >([]);
@@ -362,29 +362,29 @@ const enCréation = ref(false);
 const créerNuée = async () => {
   enCréation.value = true;
 
-  const idNuée = await constl?.nuées.créerNuée({
+  const idNuée = await constl.nuées.créerNuée({
     autorisation: autorisation.value,
   });
   if (!idNuée) throw new Error('Nuée non créée.');
 
-  await constl?.nuées.sauvegarderNomsNuée({
+  await constl.nuées.sauvegarderNomsNuée({
     idNuée,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.nuées.sauvegarderDescriptionsNuée({
+  await constl.nuées.sauvegarderDescriptionsNuée({
     idNuée,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
 
   // Ajouter les tableaux
   for (const tbl of tableaux.value) {
-    const idTableau = await constl?.nuées.ajouterTableauNuée({
+    const idTableau = await constl.nuées.ajouterTableauNuée({
       idNuée,
       clefTableau: tbl.clef,
     });
     if (!idTableau) return;
 
-    await constl?.nuées.ajouterNomsTableauNuée({
+    await constl.nuées.ajouterNomsTableauNuée({
       idTableau,
       noms: tbl.noms,
     });
@@ -392,13 +392,13 @@ const créerNuée = async () => {
     // Ajouter les colonnes
     for (const col of tbl.cols) {
       const idColonne = col.info.id;
-      await constl?.nuées.ajouterColonneTableauNuée({
+      await constl.nuées.ajouterColonneTableauNuée({
         idTableau,
         idVariable: col.info.variable,
         idColonne,
       });
       if (col.info.index)
-        await constl?.nuées.changerColIndexTableauNuée({
+        await constl.nuées.changerColIndexTableauNuée({
           idTableau,
           idColonne,
           val: col.info.index,
@@ -406,7 +406,7 @@ const créerNuée = async () => {
 
       // Ajotuer les règles colonne
       for (const règle of col.règles) {
-        await constl?.nuées.ajouterRègleTableauNuée({
+        await constl.nuées.ajouterRègleTableauNuée({
           idTableau,
           idColonne,
           règle: règle.règle,

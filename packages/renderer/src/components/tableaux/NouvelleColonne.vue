@@ -110,16 +110,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {types, valid, variables} from '@constl/ipa';
 
-import {computed, inject, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {enregistrerÉcoute, enregistrerÉcouteDynamique} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, enregistrerÉcouteDynamique} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
@@ -149,7 +147,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Navigation
 const dialogue = ref(false);
@@ -228,7 +226,7 @@ const lancerSuiviCatégorieBaseVariable = async (idVariable?: string) => {
   if (oublierCatégorieVariable) await oublierCatégorieVariable();
   if (idVariable) {
     oublierCatégorieVariable = await enregistrerÉcoute(
-      constl?.variables.suivreCatégorieVariable({
+      constl.variables.suivreCatégorieVariable({
         idVariable,
         f: x => (catégorieBaseVariableChoisie.value = x.catégorie),
       }),
@@ -248,7 +246,7 @@ const index = ref(false);
 const règlesVariable = enregistrerÉcouteDynamique({
   params: {id: idVariableChoisie},
   fÉcoute: (params, f: types.schémaFonctionSuivi<valid.règleVariableAvecId[]>) =>
-    constl?.variables.suivreRèglesVariable({idVariable: params.id, f}),
+    constl.variables.suivreRèglesVariable({idVariable: params.id, f}),
 });
 
 // Règles colonne

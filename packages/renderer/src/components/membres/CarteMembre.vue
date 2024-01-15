@@ -160,12 +160,10 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {ref, inject} from 'vue';
+import {ref} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
@@ -185,7 +183,7 @@ import MenuContactMembre from './MenuContactMembre.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -201,7 +199,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.profil.suivreNoms({
+  constl.profil.suivreNoms({
     f: x => (noms.value = x),
   }),
 );
@@ -209,7 +207,7 @@ enregistrerÉcoute(
 // Contacts
 const contacts = ref<{type: string; contact: string}[]>();
 enregistrerÉcoute(
-  constl?.profil.suivreContacts({
+  constl.profil.suivreContacts({
     f: x => (contacts.value = x),
     idCompte: props.id,
   }),
@@ -218,7 +216,7 @@ enregistrerÉcoute(
 // Bds
 const bdsMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreBdsMembre({
+  constl.réseau?.suivreBdsMembre({
     idCompte: props.id,
     f: bds => (bdsMembre.value = bds),
   }),
@@ -227,7 +225,7 @@ enregistrerÉcoute(
 // Projets
 const projetsMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreProjetsMembre({
+  constl.réseau?.suivreProjetsMembre({
     idCompte: props.id,
     f: projets => (projetsMembre.value = projets),
   }),
@@ -236,7 +234,7 @@ enregistrerÉcoute(
 // Nuées
 const nuéesMembre = ref<string[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreNuéesMembre({
+  constl.réseau?.suivreNuéesMembre({
     idCompte: props.id,
     f: nuées => (nuéesMembre.value = nuées),
   }),

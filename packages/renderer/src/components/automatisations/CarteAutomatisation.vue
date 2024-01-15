@@ -25,16 +25,15 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {ref, onMounted, inject} from 'vue';
+import {ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -47,7 +46,7 @@ const props = defineProps<{
   statut: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -57,7 +56,7 @@ const noms = ref<{[langue: string]: string}>({});
 onMounted(() => {
   if (props.specification.type === 'importation') {
     enregistrerÉcoute(
-      constl?.tableaux.suivreNomsTableau({
+      constl.tableaux.suivreNomsTableau({
         idTableau: props.specification.idTableau,
         f: x => (noms.value = x),
       }),
@@ -66,7 +65,7 @@ onMounted(() => {
     switch (props.specification.typeObjet) {
       case 'tableau':
         enregistrerÉcoute(
-          constl?.tableaux.suivreNomsTableau({
+          constl.tableaux.suivreNomsTableau({
             idTableau: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
@@ -74,7 +73,7 @@ onMounted(() => {
         break;
       case 'projet':
         enregistrerÉcoute(
-          constl?.projets.suivreNomsProjet({
+          constl.projets.suivreNomsProjet({
             idProjet: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
@@ -82,7 +81,7 @@ onMounted(() => {
         break;
       case 'bd':
         enregistrerÉcoute(
-          constl?.bds.suivreNomsBd({
+          constl.bds.suivreNomsBd({
             idBd: props.specification.idObjet,
             f: x => (noms.value = x),
           }),
@@ -90,7 +89,7 @@ onMounted(() => {
         break;
       case 'nuée':
         enregistrerÉcoute(
-          constl?.nuées.suivreNomsNuée({
+          constl.nuées.suivreNomsNuée({
             idNuée: props.specification.idObjet,
             f: x => (noms.value = x),
           }),

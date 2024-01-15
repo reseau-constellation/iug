@@ -55,19 +55,18 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
 import {watchEffect} from 'vue';
 import {computed} from 'vue';
+import {constellation} from '../utils';
 
 const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -106,7 +105,7 @@ const enModification = ref(false);
 const sauvegarder = async () => {
   if (!nomDispositifChoisi.value || !typeDispositifChoisi.value) return; // À faire: permettre d'effacer le nom ou le type
   enModification.value = true;
-  await constl?.nommerDispositif({
+  await constl.nommerDispositif({
     idDispositif: props.idDispositif,
     nom: nomDispositifChoisi.value,
     type: typeDispositifChoisi.value,

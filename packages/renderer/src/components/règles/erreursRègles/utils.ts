@@ -1,8 +1,6 @@
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {valid} from '@constl/ipa';
-import {type ComputedRef, computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {type ComputedRef, computed, ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 export const utiliserMonAutorisationRègleSourceErreur = ({
   erreur,
@@ -14,11 +12,11 @@ export const utiliserMonAutorisationRègleSourceErreur = ({
     | valid.erreurRègleCatégoriqueColonneInexistante;
   idTableau: string;
 }): ComputedRef<'MODÉRATEUR' | 'MEMBRE' | undefined> => {
-  const constl = inject<ClientConstellation>('constl');
+  const constl = constellation();
 
   const monAutorisationTableau = ref<'MODÉRATEUR' | 'MEMBRE'>();
   enregistrerÉcoute(
-    constl?.suivrePermission({
+    constl.suivrePermission({
       idObjet: idTableau,
       f: x => (monAutorisationTableau.value = x),
     }),
@@ -27,7 +25,7 @@ export const utiliserMonAutorisationRègleSourceErreur = ({
   const monAutorisationVariable = ref<'MODÉRATEUR' | 'MEMBRE'>();
   const idVariableSource = erreur.règle.source.id;
   enregistrerÉcoute(
-    constl?.suivrePermission({
+    constl.suivrePermission({
       idObjet: idVariableSource,
       f: x => (monAutorisationVariable.value = x),
     }),

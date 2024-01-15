@@ -7,5 +7,5 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-defineProps<{nom: string, écriture: string}>();
+defineProps<{nom: string; écriture: string}>();
 </script>

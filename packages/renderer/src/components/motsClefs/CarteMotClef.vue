@@ -19,22 +19,20 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {types} from '@constl/ipa';
-import {inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Nom mot-clef
 const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
-  constl?.motsClefs.suivreNomsMotClef({
+  constl.motsClefs.suivreNomsMotClef({
     idMotClef: props.id,
     f: x => (noms.value = x),
   }),
@@ -45,12 +43,12 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
     nouvelles: nouveauxNoms,
   });
   for (const langue of àEffacer) {
-    await constl?.motsClefs.effacerNomMotClef({
+    await constl.motsClefs.effacerNomMotClef({
       idMotClef: props.id,
       langue,
     });
   }
-  return await constl?.motsClefs.sauvegarderNomsMotClef({
+  return await constl.motsClefs.sauvegarderNomsMotClef({
     idMotClef: props.id,
     noms: àAjouter,
   });
@@ -60,7 +58,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.motsClefs.suivreDescriptionsMotClef({
+  constl.motsClefs.suivreDescriptionsMotClef({
     idMotClef: props.id,
     f: x => (descriptions.value = x),
   }),
@@ -72,12 +70,12 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     nouvelles: descrs,
   });
   for (const langue of àEffacer) {
-    await constl?.motsClefs.effacerDescriptionMotClef({
+    await constl.motsClefs.effacerDescriptionMotClef({
       id: props.id,
       langue,
     });
   }
-  return await constl?.motsClefs.sauvegarderDescriptionsMotClef({
+  return await constl.motsClefs.sauvegarderDescriptionsMotClef({
     idMotClef: props.id,
     descriptions: àAjouter,
   });
@@ -86,7 +84,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreAuteursMotClef({
+  constl.réseau?.suivreAuteursMotClef({
     idMotClef: props.id,
     f: x => (auteurs.value = x),
   }),
@@ -94,6 +92,6 @@ enregistrerÉcoute(
 
 // Effacer
 const effacerMotClef = async () => {
-  await constl?.motsClefs.effacerMotClef({idMotClef: props.id});
+  await constl.motsClefs.effacerMotClef({idMotClef: props.id});
 };
 </script>

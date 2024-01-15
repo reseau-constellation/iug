@@ -11,19 +11,18 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 
 import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
-import {enregistrerRecherche} from '/@/components/utils';
+import {constellation, enregistrerRecherche} from '/@/components/utils';
 import {watchEffect} from 'vue';
 
 const émettre = defineEmits<{
   (é: 'selectionnee', idNuée?: string): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Sélection
 const idNuéeSélectionnée = ref<string>();
@@ -44,13 +43,13 @@ enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche.rechercherNuéesSelonTexte({
+    await constl.recherche.rechercherNuéesSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche.rechercherNuées({
+    return await constl.recherche.rechercherNuées({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

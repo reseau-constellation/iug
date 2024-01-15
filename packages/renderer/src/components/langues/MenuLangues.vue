@@ -65,18 +65,17 @@
 import {useRtl} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import type {ClientConstellation} from '@constl/ipa';
-
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {computed} from 'vue';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const constellationPrète = ref(false);
-constl?.obtIdCompte().then(() => (constellationPrète.value = true));
+constl.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});

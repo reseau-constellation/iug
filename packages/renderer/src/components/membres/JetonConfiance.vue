@@ -58,11 +58,9 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
+import {computed, ref} from 'vue';
 
-import {computed, inject, ref} from 'vue';
-
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import IcôneConfiance from './IcôneConfiance.vue';
@@ -73,19 +71,19 @@ const props = defineProps<{
   styleJeton: 'jeton' | 'icône';
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Mon compte
 const monCompte = ref<string>();
-enregistrerÉcoute(constl?.suivreIdCompte({f: id => (monCompte.value = id)}));
+enregistrerÉcoute(constl.suivreIdCompte({f: id => (monCompte.value = id)}));
 
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
-  constl?.réseau?.suivreConfianceMonRéseauPourMembre({
+  constl.réseau?.suivreConfianceMonRéseauPourMembre({
     idCompte: props.id,
     f: x => (confiance.value = x),
     profondeur: 5,

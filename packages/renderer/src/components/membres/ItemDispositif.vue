@@ -26,22 +26,21 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import LienObjet from '../communs/LienObjet.vue';
 import {obtIcôneDispositifDeType, utiliserIlYA, utiliserNomEtTypeDispositif} from './utils';
 import JetonMembre from './JetonMembre.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {onMounted} from 'vue';
+import {constellation} from '../utils';
 
 const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
@@ -58,7 +57,7 @@ const icôneDispositif = computed(() => {
 const {ilYAMs: vuIlYA, texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.vuA, t});
 const ceDispositif = ref<string>();
 onMounted(async () => {
-  ceDispositif.value = await constl?.obtIdDispositif();
+  ceDispositif.value = await constl.obtIdDispositif();
 });
 
 const sousTitre = computed(() => {

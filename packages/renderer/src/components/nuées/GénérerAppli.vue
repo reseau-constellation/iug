@@ -111,9 +111,9 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation, bds} from '@constl/ipa';
+import type {bds} from '@constl/ipa';
 
-import {computed, inject, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import JSZip from 'jszip';
@@ -124,8 +124,9 @@ import VCodeBlock from '@wdns/vue-code-block';
 
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {GABARIT_CODE} from '/@/consts';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி} = மொழிகளைப்_பயன்படுத்து();
@@ -221,7 +222,7 @@ const clefTableauNuée = ref<string>();
 const schémaSpécificationBdsNuée = ref<bds.schémaSpécificationBd>();
 
 watchEffect(async () => {
-  schémaSpécificationBdsNuée.value = await constl?.nuées.générerSchémaBdNuée({
+  schémaSpécificationBdsNuée.value = await constl.nuées.générerSchémaBdNuée({
     idNuée: props.idNuee,
     licence: licenceDéfaut.value,
   });

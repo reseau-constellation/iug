@@ -13,22 +13,21 @@
   />
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
 
 import {watchEffect} from 'vue';
+import {constellation} from '/@/components/utils';
 
 const props = defineProps<{val: {cid: string; ext: string}}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Image
 const srcImg = ref<string>();
 watchEffect(async () => {
-  const fichier = await constl?.obtFichierSFIP({id: props.val.cid, max: 10000});
+  const fichier = await constl.obtFichierSFIP({id: props.val.cid, max: 10000});
 
   if (fichier) {
     return URL.createObjectURL(new Blob([fichier], {type: 'image'}));

@@ -4,8 +4,7 @@
       <p class="text-h4">
         {{ t('accueil.page.récents.titre') }}
       </p>
-      <v-card-title>
-      </v-card-title>
+      <v-card-title> </v-card-title>
     </v-col>
     <v-col :cols="mdAndUp ? 4 : 12">
       <v-card

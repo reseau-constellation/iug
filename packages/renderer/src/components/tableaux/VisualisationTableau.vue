@@ -224,12 +224,11 @@
 </template>
 <script setup lang="ts">
 import type {tableaux, variables, valid, types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {ref, inject, computed} from 'vue';
+import {ref, computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '../utils';
+import {constellation, enregistrerÉcoute} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
@@ -242,7 +241,7 @@ import {créerColonneTableau} from '/@/components/tableaux/utils';
 
 const props = defineProps<{idTableau: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -253,7 +252,7 @@ const éditer = ref(false);
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
 enregistrerÉcoute(
-  constl?.suivrePermission({
+  constl.suivrePermission({
     idObjet: props.idTableau,
     f: x => (monAutorisation.value = x),
   }),
@@ -262,7 +261,7 @@ enregistrerÉcoute(
 // Colonnes du tableau
 const colonnes = ref<tableaux.InfoColAvecCatégorie[]>();
 enregistrerÉcoute(
-  constl?.tableaux.suivreColonnesTableau({
+  constl.tableaux.suivreColonnesTableau({
     idTableau: props.idTableau,
     f: x => (colonnes.value = x),
   }),
@@ -298,19 +297,19 @@ const triable = (catégorieBase: variables.catégorieBaseVariables): boolean => 
 const éléments = ref<tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]>();
 const filesSélectionnées = ref<string[]>([]);
 enregistrerÉcoute(
-  constl?.tableaux.suivreDonnées({
+  constl.tableaux.suivreDonnées({
     idTableau: props.idTableau,
     f: x => (éléments.value = x),
   }),
 );
 const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdListeDonnées}) => {
-  await constl?.tableaux.ajouterÉlément({
+  await constl.tableaux.ajouterÉlément({
     idTableau: props.idTableau,
     vals,
   });
 };
 const effacerÉlément = async (idÉlément: string) => {
-  await constl?.tableaux.effacerÉlément({
+  await constl.tableaux.effacerÉlément({
     idTableau: props.idTableau,
     idÉlément,
   });
@@ -328,7 +327,7 @@ const modifierÉlément = async ({
   val: types.élémentsBd;
   idÉlément: string;
 }) => {
-  await constl?.tableaux.modifierÉlément({
+  await constl.tableaux.modifierÉlément({
     idTableau: props.idTableau,
     vals: {[col]: val},
     idÉlément,
@@ -338,7 +337,7 @@ const modifierÉlément = async ({
 // Validation
 const erreursValidation = ref<valid.erreurValidation[]>();
 enregistrerÉcoute(
-  constl?.tableaux.suivreValidDonnées({
+  constl.tableaux.suivreValidDonnées({
     idTableau: props.idTableau,
     f: x => (erreursValidation.value = x),
   }),

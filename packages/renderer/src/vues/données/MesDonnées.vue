@@ -200,9 +200,8 @@
 
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {ref, inject} from 'vue';
+import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -214,7 +213,7 @@ import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
 import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
-import {enregistrerRecherche, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerRecherche, enregistrerÉcoute} from '/@/components/utils';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
@@ -225,7 +224,7 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -267,7 +266,7 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
 // Mots-clefs
 const mesMotsClefs = ref<string[]>();
 enregistrerÉcoute(
-  constl?.motsClefs.suivreMotsClefs({
+  constl.motsClefs.suivreMotsClefs({
     f: x => (mesMotsClefs.value = x),
   }),
 );
@@ -275,7 +274,7 @@ enregistrerÉcoute(
 // Variables
 const mesVariables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.variables.suivreVariables({
+  constl.variables.suivreVariables({
     f: x => (mesVariables.value = x),
   }),
 );
@@ -283,7 +282,7 @@ enregistrerÉcoute(
 // Bds
 const mesBds = ref<string[]>();
 enregistrerÉcoute(
-  constl?.bds.suivreBds({
+  constl.bds.suivreBds({
     f: x => (mesBds.value = x),
   }),
 );
@@ -291,7 +290,7 @@ enregistrerÉcoute(
 // Projets
 const mesProjets = ref<string[]>();
 enregistrerÉcoute(
-  constl?.projets.suivreProjets({
+  constl.projets.suivreProjets({
     f: x => (mesProjets.value = x),
   }),
 );
@@ -299,7 +298,7 @@ enregistrerÉcoute(
 // Nuées
 const mesNuées = ref<string[]>();
 enregistrerÉcoute(
-  constl?.nuées.suivreNuées({
+  constl.nuées.suivreNuées({
     f: x => (mesNuées.value = x),
   }),
 );
@@ -316,7 +315,7 @@ enregistrerRecherche({
   requète: texteRecherche,
   réfRésultat: résulatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche.rechercherBdsSelonTexte({
+    return await constl.recherche.rechercherBdsSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,

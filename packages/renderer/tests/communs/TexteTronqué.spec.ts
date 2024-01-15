@@ -3,7 +3,7 @@ import {expect, test} from 'vitest';
 import TexteTronqué from '../../src/components/communs/TexteTronqué.vue';
 import vuetify from '../../src/plugins/vuetify';
 import கிளிமூக்கை_உருவாக்கு from '@lassi-js/kilimukku-vue';
-import { attendreQue } from '../utils';
+import {attendreQue} from '../utils';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
   return mount(composante, {
@@ -50,7 +50,7 @@ test('Composante TexteTronqué - texte un peu trop long', async () => {
   });
 
   const élTexte = enveloppe.get('span');
-  await attendreQue(()=>!élTexte.text().endsWith('troisPetitsPoints'));
+  await attendreQue(() => !élTexte.text().endsWith('troisPetitsPoints'));
 
   expect(élTexte.text()).toBe('Texte trop...');
 });
@@ -65,7 +65,7 @@ test('Composante TexteTronqué - texte beaucoup trop long', async () => {
   });
 
   const élTexte = enveloppe.get('span');
-  await attendreQue(()=>!élTexte.text().endsWith('troisPetitsPoints'));
+  await attendreQue(() => !élTexte.text().endsWith('troisPetitsPoints'));
 
   expect(élTexte.text()).toBe('Texte beau...');
 });
@@ -80,7 +80,7 @@ test('Composante TexteTronqué - unicode', async () => {
   });
 
   const élTexte = enveloppe.get('span');
-  await attendreQue(()=>!élTexte.text().endsWith('troisPetitsPoints'));
+  await attendreQue(() => !élTexte.text().endsWith('troisPetitsPoints'));
 
   expect(élTexte.text()).toBe('இந்த உரை மிக்...');
 });

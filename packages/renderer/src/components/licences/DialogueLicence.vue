@@ -155,9 +155,8 @@
 
 <script setup lang="ts">
 import type {licences} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 import JetonDroit from './JetonDroitLicence.vue';
 import JetonLimitation from './JetonLimitationLicence.vue';
@@ -165,7 +164,7 @@ import JetonCondition from './JetonConditionLicence.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps({
   licence: {type: String, required: false, default: undefined},
@@ -175,7 +174,7 @@ const émettre = defineEmits<{
   (é: 'changerLicence', licence: string): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -193,7 +192,7 @@ const licenceChangée = computed(() => licenceChoisie.value !== props.licence);
 // Caractéristiques licences
 const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
 enregistrerÉcoute(
-  constl?.licences.suivreLicences({
+  constl.licences.suivreLicences({
     f: x => (infoLicences.value = x),
   }),
 );

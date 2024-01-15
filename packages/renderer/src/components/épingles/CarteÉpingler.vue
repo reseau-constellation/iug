@@ -169,15 +169,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import {type favoris} from '@constl/ipa';
 
-import {inject, ref, computed, watch} from 'vue';
+import {ref, computed, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
@@ -193,7 +191,7 @@ const props = defineProps({
   },
 });
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -244,7 +242,7 @@ const optionsÉpingle: {
 // Dispositifs
 const dispositifs = ref<string[]>();
 enregistrerÉcoute(
-  constl?.suivreDispositifs({
+  constl.suivreDispositifs({
     f: x => (dispositifs.value = x),
   }),
 );
@@ -252,7 +250,7 @@ enregistrerÉcoute(
 // Statut favoris
 const statutFavoris = ref<favoris.ÉlémentFavoris>();
 enregistrerÉcoute(
-  constl?.favoris.suivreÉtatFavori({
+  constl.favoris.suivreÉtatFavori({
     idObjet: props.id,
     f: statut => (statutFavoris.value = statut),
   }),
@@ -361,14 +359,14 @@ const épingler = async () => {
     };
     if (dispositifsFichiers.value) épingle.dispositifsFichiers = dispositifsFichiers.value;
 
-    await constl?.favoris.épinglerFavori(épingle);
+    await constl.favoris.épinglerFavori(épingle);
   } else {
     await désépingler();
   }
   fermer();
 };
 const désépingler = async () => {
-  await constl?.favoris.désépinglerFavori({idObjet: props.id});
+  await constl.favoris.désépinglerFavori({idObjet: props.id});
 };
 
 // Fermer

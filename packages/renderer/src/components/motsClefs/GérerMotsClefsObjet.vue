@@ -80,10 +80,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {inject, onUnmounted, ref, watchEffect} from 'vue';
+import {onUnmounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-
-import type {ClientConstellation} from '@constl/ipa';
 
 import type {types} from '@constl/ipa';
 
@@ -92,6 +90,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import ItemMotClef from './ItemMotClef.vue';
 import JetonMotClef from './JetonMotClef.vue';
 import NouveauMotClef from './NouveauMotClef.vue';
+import {constellation} from '../utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -100,7 +99,7 @@ const {mdAndUp} = useDisplay();
 const props = defineProps<{originaux: string[]}>();
 const émettre = defineEmits<{(é: 'sauvegarder', motsClefs: string[]): void}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Navigation
 const dialogue = ref(false);
@@ -129,7 +128,7 @@ watchEffect(async () => {
   if (fOublierRecherche) await fOublierRecherche();
 
   if (requèteRecherche.value) {
-    const retour = await constl?.recherche.rechercherMotsClefsSelonTexte({
+    const retour = await constl.recherche.rechercherMotsClefsSelonTexte({
       texte: requèteRecherche.value,
       f: x => (résultatRechercheMotsClefs.value = x),
       nRésultatsDésirés: 10,

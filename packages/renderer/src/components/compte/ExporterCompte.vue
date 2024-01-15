@@ -48,13 +48,12 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {mdAndUp} = useDisplay();
 
@@ -66,7 +65,7 @@ const dialogue = ref(false);
 
 // Contrôles
 const exporterCompte = async () => {
-  await constl?.exporterDispositif({
+  await constl.exporterDispositif({
     nomFichier: `Mon compte Constellation ${Date.now().toLocaleString()}.zip`,
   });
 };

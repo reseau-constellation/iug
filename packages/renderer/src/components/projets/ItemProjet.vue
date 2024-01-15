@@ -8,16 +8,14 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {ref, inject, computed} from 'vue';
+import {ref, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -26,7 +24,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.projets.suivreNomsProjet({
+  constl.projets.suivreNomsProjet({
     idProjet: props.id,
     f: x => (noms.value = x),
   }),
@@ -37,7 +35,7 @@ const descriptions = ref<{[lng: string]: string}>({});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 enregistrerÉcoute(
-  constl?.projets.suivreDescriptionsProjet({
+  constl.projets.suivreDescriptionsProjet({
     idProjet: props.id,
     f: x => (noms.value = x),
   }),
@@ -53,7 +51,7 @@ const srcImgProjet = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.projets.suivreImage({
+  constl.projets.suivreImage({
     idProjet: props.id,
     f: image => (imageProjet.value = image),
   }),

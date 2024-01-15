@@ -7,17 +7,15 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {ref, inject, computed} from 'vue';
+import {ref, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -29,7 +27,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.projets.suivreNomsProjet({
+  constl.projets.suivreNomsProjet({
     idProjet: props.id,
     f: x => (noms.value = x),
   }),
@@ -45,7 +43,7 @@ const srcImgProjet = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.projets.suivreImage({
+  constl.projets.suivreImage({
     idProjet: props.id,
     f: image => (imageProjet.value = image),
   }),

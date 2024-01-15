@@ -375,7 +375,6 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import correspTexte from 'approx-string-match';
 
 import type {கிளிமூக்கு, மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
-import type {ClientConstellation} from '@constl/ipa';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -388,10 +387,10 @@ import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {watchEffect} from 'vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
 
 const {mdAndUp} = useDisplay();
@@ -416,7 +415,7 @@ const dialogue = ref(false);
 // Général
 const monCompte = ref<string>();
 onMounted(async () => {
-  monCompte.value = await constl?.obtIdCompte();
+  monCompte.value = await constl.obtIdCompte();
 });
 
 // Contrôles

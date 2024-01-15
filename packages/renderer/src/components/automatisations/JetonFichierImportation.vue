@@ -20,11 +20,11 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
 import path from 'path';
-import {computed, ref, inject, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation} from '../utils';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationImporter;
@@ -32,7 +32,8 @@ const props = defineProps<{
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
-const constl = inject<ClientConstellation>('constl');
+
+const constl = constellation();
 
 // Statut source
 const enProgrès = computed<boolean>(() => {
@@ -50,7 +51,7 @@ const sourceRésolue = computed(() => {
 const fichier = ref<string | null>();
 watchEffect(async () => {
   if (props.spécification.source.typeSource === 'fichier') {
-    fichier.value = await constl?.automatisations.résoudreAdressePrivéeFichier({
+    fichier.value = await constl.automatisations.résoudreAdressePrivéeFichier({
       clef: props.spécification.source.adresseFichier,
     });
   }

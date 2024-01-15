@@ -61,22 +61,20 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, inject, watchEffect} from 'vue';
+import {onMounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-
-import type {ClientConstellation} from '@constl/ipa';
 
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '../components/utils';
+import {constellation, enregistrerÉcoute} from '../components/utils';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const {பதிப்பை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
@@ -93,10 +91,10 @@ onMounted(() => {
 });
 
 const constellationPrète = ref(false);
-constl?.obtIdCompte().then(() => (constellationPrète.value = true));
+constl.obtIdCompte().then(() => (constellationPrète.value = true));
 
 const nomsProfil = ref<{[lng: string]: string}>();
-enregistrerÉcoute(constl?.profil.suivreNoms({f: noms => (nomsProfil.value = noms)}));
+enregistrerÉcoute(constl.profil.suivreNoms({f: noms => (nomsProfil.value = noms)}));
 
 watchEffect(() => {
   if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();

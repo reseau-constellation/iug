@@ -132,10 +132,9 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref, watchEffect} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {computed, ref, watchEffect} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -145,7 +144,7 @@ const props = defineProps<{
   id: string;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -158,12 +157,12 @@ const dialogue = ref(false);
 const fiables = ref<string[]>();
 const bloqués = ref<réseau.infoBloqué[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreBloqués({
+  constl.réseau?.suivreBloqués({
     f: x => (bloqués.value = x),
   }),
 );
 enregistrerÉcoute(
-  constl?.réseau?.suivreFiables({
+  constl.réseau?.suivreFiables({
     f: x => (fiables.value = x),
   }),
 );
@@ -185,22 +184,22 @@ watchEffect(() => {
 const sauvegarder = async () => {
   switch (statutRelationSélectionné.value) {
     case 'fiable':
-      await constl?.réseau?.faireConfianceAuMembre({idCompte: props.id});
+      await constl.réseau?.faireConfianceAuMembre({idCompte: props.id});
       break;
     case 'bloquéPublique':
     case 'bloquéPrivé':
-      await constl?.réseau?.bloquerMembre({
+      await constl.réseau?.bloquerMembre({
         idCompte: props.id,
         privé: statutRelationSélectionné.value === 'bloquéPrivé',
       });
       break;
     case 'inconnu':
       if (statutRelation.value === 'fiable') {
-        await constl?.réseau?.nePlusFaireConfianceAuMembre({
+        await constl.réseau?.nePlusFaireConfianceAuMembre({
           idCompte: props.id,
         });
       } else {
-        await constl?.réseau?.débloquerMembre({
+        await constl.réseau?.débloquerMembre({
           idCompte: props.id,
         });
       }

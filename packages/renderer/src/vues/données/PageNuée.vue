@@ -45,10 +45,8 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref, onMounted} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {ref, onMounted} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -57,17 +55,17 @@ import TitrePage from '/@/components/communs/TitrePage.vue';
 import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
 import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
 
-import { utiliserHistoriqueDocuments } from '/@/état/historiqueDocuments';
+import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const historiqueDocuments = utiliserHistoriqueDocuments();
 
-onMounted(()=>{
+onMounted(() => {
   historiqueDocuments.documentOuvert({id: props.id, à: Date.now()});
 });
 
@@ -78,7 +76,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.nuées.suivreNomsNuée({
+  constl.nuées.suivreNomsNuée({
     idNuée: props.id,
     f: x => (noms.value = x),
   }),

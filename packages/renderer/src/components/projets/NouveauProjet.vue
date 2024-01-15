@@ -103,9 +103,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
@@ -113,8 +111,9 @@ import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useRouter} from 'vue-router';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -211,20 +210,20 @@ const enCréation = ref(false);
 const créerBd = async () => {
   enCréation.value = true;
 
-  const idProjet = await constl?.projets.créerProjet();
+  const idProjet = await constl.projets.créerProjet();
   if (!idProjet) throw new Error('Projet non créé.');
 
-  await constl?.projets.sauvegarderNomsProjet({
+  await constl.projets.sauvegarderNomsProjet({
     idProjet,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.projets.sauvegarderDescriptionsProjet({
+  await constl.projets.sauvegarderDescriptionsProjet({
     idProjet,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
-  await constl?.projets.ajouterMotsClefsProjet({idProjet, idsMotsClefs: motsClefs.value});
+  await constl.projets.ajouterMotsClefsProjet({idProjet, idsMotsClefs: motsClefs.value});
   await Promise.all(
-    bds.value.map(async idBd => await constl?.projets.ajouterBdProjet({idProjet, idBd})),
+    bds.value.map(async idBd => await constl.projets.ajouterBdProjet({idProjet, idBd})),
   );
 
   fermer();

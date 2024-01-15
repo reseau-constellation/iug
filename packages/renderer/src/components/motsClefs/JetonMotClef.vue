@@ -10,18 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
+import {constellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
 
-import {enregistrerÉcoute, icôneObjet} from '/@/components/utils';
-
-import {ref, inject} from 'vue';
+import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -32,7 +30,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.motsClefs.suivreNomsMotClef({
+  constl.motsClefs.suivreNomsMotClef({
     idMotClef: props.id,
     f: x => (noms.value = x),
   }),

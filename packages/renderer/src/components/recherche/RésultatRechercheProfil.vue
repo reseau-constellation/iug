@@ -36,13 +36,12 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonContactMembre from '../membres/JetonContactMembre.vue';
@@ -51,7 +50,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -67,7 +66,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.profil.suivreNoms({
+  constl.profil.suivreNoms({
     idCompte: props.résultat.id,
     f: x => (noms.value = x),
   }),

@@ -22,17 +22,17 @@
 </template>
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
-import {inject, ref} from 'vue';
+
+import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
-import {enregistrerÉcoute} from '../components/utils';
+import {constellation, enregistrerÉcoute} from '../components/utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -43,7 +43,7 @@ const imgFavoris = obtImageDéco('automatisation');
 // Mes favoris
 const mesFavoris = ref<favoris.ÉlémentFavorisAvecObjet[]>();
 enregistrerÉcoute(
-  constl?.favoris.suivreFavoris({
+  constl.favoris.suivreFavoris({
     f: x => (mesFavoris.value = x),
   }),
 );

@@ -68,17 +68,16 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {computed, ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
 import ItemConnexionSFIP from './ItemConnexionSFIP.vue';
 import CarteMembre from '../membres/CarteMembre.vue';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -104,7 +103,7 @@ const connexionsSFIP = ref<
   }[]
 >();
 enregistrerÉcoute(
-  constl?.réseau?.suivreConnexionsPostesSFIP({
+  constl.réseau?.suivreConnexionsPostesSFIP({
     f: x => (connexionsSFIP.value = x),
   }),
 );
@@ -112,7 +111,7 @@ enregistrerÉcoute(
 // Connexions Constellation
 const connexionsConstellation = ref<réseau.statutDispositif[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreConnexionsDispositifs({
+  constl.réseau?.suivreConnexionsDispositifs({
     f: x => (connexionsConstellation.value = x),
   }),
 );

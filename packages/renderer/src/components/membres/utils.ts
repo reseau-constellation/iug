@@ -1,19 +1,8 @@
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {types} from '@constl/ipa';
 
-import {
-  type Ref,
-  type ComputedRef,
-  computed,
-  ref,
-  watchEffect,
-  inject,
-  onMounted,
-  onUnmounted,
-} from 'vue';
+import {type Ref, type ComputedRef, computed, ref, watchEffect, onMounted, onUnmounted} from 'vue';
 
-import {enregistrerÉcoute} from '../utils';
+import {constellation, enregistrerÉcoute} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -41,13 +30,13 @@ export const utiliserNomEtTypeDispositif = ({
   idDispositif: string | Ref<string | undefined>;
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
-  const constl = inject<ClientConstellation>('constl');
+  const constl = constellation();
   const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
   const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
   const monCompte = ref<string>();
   enregistrerÉcoute(
-    constl?.suivreIdCompte({
+    constl.suivreIdCompte({
       f: x => (monCompte.value = x),
     }),
   );
@@ -65,7 +54,7 @@ export const utiliserNomEtTypeDispositif = ({
     if (!valIdDispositif) return;
 
     fOublier = await enregistrerÉcoute(
-      constl?.suivreNomDispositif({
+      constl.suivreNomDispositif({
         idCompte: valIdCompte,
         idDispositif: valIdDispositif,
         f: x => (nomEtType.value = x),

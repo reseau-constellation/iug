@@ -31,18 +31,16 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {ref, inject, computed} from 'vue';
+import {ref, computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -54,7 +52,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.profil.suivreNoms({
+  constl.profil.suivreNoms({
     idCompte: props.compte,
     f: x => (noms.value = x),
   }),
@@ -62,12 +60,12 @@ enregistrerÉcoute(
 
 // Mon compte
 const monCompte = ref<string>();
-enregistrerÉcoute(constl?.suivreIdCompte({f: id => (monCompte.value = id)}));
+enregistrerÉcoute(constl.suivreIdCompte({f: id => (monCompte.value = id)}));
 
 // Confiance
 const confiance = ref(0);
 enregistrerÉcoute(
-  constl?.réseau?.suivreConfianceMonRéseauPourMembre({
+  constl.réseau?.suivreConfianceMonRéseauPourMembre({
     idCompte: props.compte,
     f: x => (confiance.value = x),
     profondeur: 5,

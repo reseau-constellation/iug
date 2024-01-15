@@ -29,12 +29,10 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {types} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
@@ -42,7 +40,7 @@ import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -51,7 +49,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const noms = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.nuées.suivreNomsNuée({
+  constl.nuées.suivreNomsNuée({
     idNuée: props.id,
     f: x => (noms.value = x),
   }),
@@ -60,9 +58,9 @@ enregistrerÉcoute(
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
-    await constl?.nuées.effacerNomNuée({idNuée: props.id, langue});
+    await constl.nuées.effacerNomNuée({idNuée: props.id, langue});
   }
-  await constl?.nuées.sauvegarderNomsNuée({
+  await constl.nuées.sauvegarderNomsNuée({
     idNuée: props.id,
     noms: àAjouter,
   });
@@ -72,7 +70,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.nuées.suivreDescriptionsNuée({
+  constl.nuées.suivreDescriptionsNuée({
     idNuée: props.id,
     f: x => (descriptions.value = x),
   }),
@@ -84,9 +82,9 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     nouvelles: descrs,
   });
   for (const langue of àEffacer) {
-    await constl?.nuées.effacerDescriptionNuée({idNuée: props.id, langue});
+    await constl.nuées.effacerDescriptionNuée({idNuée: props.id, langue});
   }
-  await constl?.nuées.sauvegarderDescriptionsNuée({
+  await constl.nuées.sauvegarderDescriptionsNuée({
     idNuée: props.id,
     descriptions: àAjouter,
   });
@@ -95,7 +93,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreAuteursBd({
+  constl.réseau?.suivreAuteursBd({
     idBd: props.id,
     f: x => (auteurs.value = x),
   }),
@@ -103,6 +101,6 @@ enregistrerÉcoute(
 
 // Effacer
 const effacerNuée = async () => {
-  await constl?.nuées.effacerNuée({idNuée: props.id});
+  await constl.nuées.effacerNuée({idNuée: props.id});
 };
 </script>

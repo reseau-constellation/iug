@@ -35,21 +35,19 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import SérieJetons from '../communs/SérieJetons.vue';
 import CarteVariable from '../variables/CarteVariable.vue';
 import ItemVariable from '../variables/ItemVariable.vue';
 import JetonVariable from '../variables/JetonVariable.vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -58,7 +56,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 // Nom tableau
 const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
-  constl?.tableaux.suivreNomsTableau({
+  constl.tableaux.suivreNomsTableau({
     idTableau: props.id,
     f: x => (noms.value = x),
   }),
@@ -68,7 +66,7 @@ const nomTableau = அகராதியிலிருந்து_மொழி
 // Variables
 const variables = ref<string[]>();
 enregistrerÉcoute(
-  constl?.tableaux.suivreVariables({
+  constl.tableaux.suivreVariables({
     idTableau: props.id,
     f: x => (variables.value = x),
   }),

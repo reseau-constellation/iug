@@ -51,11 +51,10 @@
 
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute, icôneObjet} from '../utils';
+import {constellation, enregistrerÉcoute, icôneObjet} from '../utils';
 import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -69,14 +68,14 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Noms objet
 const noms = ref<{[langue: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.motsClefs.suivreNomsMotClef({
+  constl.motsClefs.suivreNomsMotClef({
     idMotClef: props.epingle.idObjet,
     f: x => (noms.value = x),
   }),
@@ -85,7 +84,7 @@ enregistrerÉcoute(
 // Type objet
 const typeObjet = ref<'motClef' | 'variable' | 'bd' | 'projet' | 'nuée'>();
 enregistrerÉcoute(
-  constl?.suivreTypeObjet({
+  constl.suivreTypeObjet({
     idObjet: props.epingle.idObjet,
     f: x => (typeObjet.value = x),
   }),
@@ -97,7 +96,7 @@ const icôneTypeItem = computed(() => {
 // Épingle
 const épinglé = ref<favoris.épingleDispositif>();
 enregistrerÉcoute(
-  constl?.favoris.suivreEstÉpingléSurDispositif({
+  constl.favoris.suivreEstÉpingléSurDispositif({
     idObjet: props.epingle.idObjet,
     f: x => (épinglé.value = x),
   }),
@@ -105,6 +104,6 @@ enregistrerÉcoute(
 
 // Contrôle
 const effacerFavoris = async () => {
-  await constl?.favoris.désépinglerFavori({idObjet: props.epingle.idObjet});
+  await constl.favoris.désépinglerFavori({idObjet: props.epingle.idObjet});
 };
 </script>

@@ -75,11 +75,10 @@
 </template>
 <script setup lang="ts">
 import type {types, variables, valid} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
@@ -91,7 +90,7 @@ import {catégoriesBase} from './utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -99,7 +98,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Autorisation
 const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
 enregistrerÉcoute(
-  constl?.suivrePermission({
+  constl.suivrePermission({
     idObjet: props.id,
     f: x => (monAutorisation.value = x),
   }),
@@ -108,7 +107,7 @@ enregistrerÉcoute(
 // Nom variable
 const noms = ref<{[langue: string]: string}>({});
 enregistrerÉcoute(
-  constl?.variables.suivreNomsVariable({
+  constl.variables.suivreNomsVariable({
     idVariable: props.id,
     f: x => (noms.value = x),
   }),
@@ -119,12 +118,12 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
     nouvelles: nouveauxNoms,
   });
   for (const langue of àEffacer) {
-    await constl?.variables.effacerNomVariable({
+    await constl.variables.effacerNomVariable({
       idVariable: props.id,
       langue,
     });
   }
-  return await constl?.variables.sauvegarderNomsVariable({
+  return await constl.variables.sauvegarderNomsVariable({
     idVariable: props.id,
     noms: àAjouter,
   });
@@ -134,7 +133,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 const descriptions = ref<{[lng: string]: string}>({});
 
 enregistrerÉcoute(
-  constl?.variables.suivreDescriptionsVariable({
+  constl.variables.suivreDescriptionsVariable({
     idVariable: props.id,
     f: x => (descriptions.value = x),
   }),
@@ -146,12 +145,12 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
     nouvelles: descrs,
   });
   for (const langue of àEffacer) {
-    await constl?.variables.effacerDescriptionVariable({
+    await constl.variables.effacerDescriptionVariable({
       idVariable: props.id,
       langue,
     });
   }
-  return await constl?.variables.sauvegarderDescriptionsVariable({
+  return await constl.variables.sauvegarderDescriptionsVariable({
     idVariable: props.id,
     descriptions: àAjouter,
   });
@@ -163,7 +162,7 @@ const icône = computed(() =>
 );
 const catégorie = ref<variables.catégorieVariables>();
 enregistrerÉcoute(
-  constl?.variables.suivreCatégorieVariable({
+  constl.variables.suivreCatégorieVariable({
     idVariable: props.id,
     f: x => (catégorie.value = x),
   }),
@@ -196,7 +195,7 @@ const catégorieChangée = computed<boolean>(() => {
 
 const sauvegarderCatégorie = async () => {
   if (choixCatégorie.value && catégorieChangée.value) {
-    await constl?.variables.sauvegarderCatégorieVariable({
+    await constl.variables.sauvegarderCatégorieVariable({
       idVariable: props.id,
       catégorie: choixCatégorie.value,
     });
@@ -206,7 +205,7 @@ const sauvegarderCatégorie = async () => {
 // Auteurs
 const auteurs = ref<types.infoAuteur[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreAuteursVariable({
+  constl.réseau?.suivreAuteursVariable({
     idVariable: props.id,
     f: x => (auteurs.value = x),
   }),
@@ -215,7 +214,7 @@ enregistrerÉcoute(
 // Règles
 const règles = ref<valid.règleVariableAvecId<valid.règleVariable>[]>();
 enregistrerÉcoute(
-  constl?.variables.suivreRèglesVariable({
+  constl.variables.suivreRèglesVariable({
     idVariable: props.id,
     f: x => (règles.value = x),
   }),
@@ -223,6 +222,6 @@ enregistrerÉcoute(
 
 // Effacer
 const effacerVariable = async () => {
-  await constl?.variables.effacerVariable({idVariable: props.id});
+  await constl.variables.effacerVariable({idVariable: props.id});
 };
 </script>

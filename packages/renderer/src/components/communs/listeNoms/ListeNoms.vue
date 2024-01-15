@@ -82,7 +82,11 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {
+  எண்களைப்_பயன்படுத்து,
+  கிளிமூக்கை_பயன்படுத்து,
+  மொழிகளைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -117,7 +121,6 @@ const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;
 }>();
 
-
 // Noms
 const noms = ref<{[lng: string]: string}>({});
 onMounted(() => {
@@ -141,7 +144,7 @@ watchEffect(() => {
   });
 });
 
-const nNomsFormatté = எண்ணை_வடிவூட்டு(computed(()=>listeNoms.value.length));
+const nNomsFormatté = எண்ணை_வடிவூட்டு(computed(() => listeNoms.value.length));
 
 // Langues
 const languesDisponibles = computed(() => {

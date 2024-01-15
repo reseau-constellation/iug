@@ -86,19 +86,19 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import type {ClientConstellation} from '@constl/ipa';
 
 import {obtIcôneContact} from './utils';
 import {computed} from 'vue';
+import {constellation} from '../utils';
 
 const props = defineProps<{dejaPresents: string[]}>();
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -133,7 +133,7 @@ const sauvegarder = async () => {
   sauvegardeEnCours.value = true;
   if (!valeurEtTypeFinaux.value) return;
 
-  await constl?.profil.sauvegarderContact({
+  await constl.profil.sauvegarderContact({
     type: valeurEtTypeFinaux.value.type,
     contact: valeurEtTypeFinaux.value.valeur,
   });

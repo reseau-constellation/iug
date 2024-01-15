@@ -124,9 +124,8 @@
 </template>
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {ref, inject} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -137,9 +136,9 @@ import RejoindreCompte from './RejoindreCompte.vue';
 import FermerCompte from './FermerCompte.vue';
 import ExporterCompte from './ExporterCompte.vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -148,14 +147,14 @@ const {mdAndUp} = useDisplay();
 // Dispositifs
 const dispositifs = ref<string[]>();
 enregistrerÉcoute(
-  constl?.suivreDispositifs({
+  constl.suivreDispositifs({
     f: x => (dispositifs.value = x),
   }),
 );
 
 const statutDispositifs = ref<réseau.statutDispositif[]>();
 enregistrerÉcoute(
-  constl?.réseau?.suivreConnexionsDispositifs({
+  constl.réseau?.suivreConnexionsDispositifs({
     f: x => (statutDispositifs.value = x),
   }),
 );

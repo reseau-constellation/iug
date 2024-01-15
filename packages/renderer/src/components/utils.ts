@@ -1,8 +1,36 @@
-import type {types} from '@constl/ipa';
+import type {ComputedRef, DeepReadonly, Ref} from 'vue';
+import type {types, ClientConstellation} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
-import type {ComputedRef, Ref} from 'vue';
-import {computed, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import {computed, inject, onMounted, onUnmounted, readonly, ref, watch, watchEffect} from 'vue';
+
+export const constellation = (): ClientConstellation => {
+  const constl = inject<ClientConstellation>('constl');
+  if (constl) return constl;
+  throw new Error("Constellation n'est pas trouvable.");
+};
+
+export const écouter = <T extends {[clef: string]: types.élémentsBd}, U>(
+  fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<types.schémaFonctionOublier>,
+  args: T,
+): Readonly<Ref<DeepReadonly<U> | undefined>> => {
+  const val = ref<U>();
+
+  let fOublier: types.schémaFonctionOublier | undefined = undefined;
+
+  const argsFinaux = {
+    ...args,
+    f: (x: U) => (val.value = x),
+  };
+  onMounted(async () => {
+    fOublier = await fonc(argsFinaux);
+  });
+  onUnmounted(async () => {
+    if (fOublier) await fOublier();
+  });
+
+  return readonly(val);
+};
 
 export const enregistrerÉcoute = <
   T extends

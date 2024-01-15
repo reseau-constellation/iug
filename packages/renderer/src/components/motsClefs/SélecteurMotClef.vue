@@ -12,12 +12,11 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
-import {enregistrerRecherche} from '/@/components/utils';
+import {constellation, enregistrerRecherche} from '/@/components/utils';
 import {watchEffect} from 'vue';
 import {computed} from 'vue';
 
@@ -26,7 +25,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idsMotsClefs: string[]): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Sélection
 const idsMotsClefsSélectionnées = ref<string[]>([]);
@@ -45,13 +44,13 @@ enregistrerRecherche({
   requète: requèteRecherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche.rechercherMotsClefsSelonTexte({
+    await constl.recherche.rechercherMotsClefsSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche.rechercherMotsClefs({
+    return await constl.recherche.rechercherMotsClefs({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

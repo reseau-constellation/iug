@@ -54,13 +54,12 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {mdAndUp} = useDisplay();
 
@@ -75,7 +74,7 @@ const effaçageEnCours = ref(false);
 
 const effacerCompte = async () => {
   effaçageEnCours.value = true;
-  await constl?.effacerDispositif();
+  await constl.effacerDispositif();
   dialogue.value = false;
   effaçageEnCours.value = false;
   location.reload();

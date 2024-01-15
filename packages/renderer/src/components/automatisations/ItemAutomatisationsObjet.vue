@@ -7,17 +7,16 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {computed, ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   idObjet: string;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -25,7 +24,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Automatisations
 const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
 enregistrerÉcoute(
-  constl?.automatisations.suivreAutomatisations({
+  constl.automatisations.suivreAutomatisations({
     f: x => (automatisations.value = x),
   }),
 );

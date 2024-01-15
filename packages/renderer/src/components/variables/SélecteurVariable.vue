@@ -42,11 +42,10 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {inject, ref} from 'vue';
+import {ref} from 'vue';
 import JetonVariable from './JetonVariable.vue';
-import {enregistrerRecherche} from '/@/components/utils';
+import {constellation, enregistrerRecherche} from '/@/components/utils';
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import NouvelleVariable from './NouvelleVariable.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -56,7 +55,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idVar: string): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -70,13 +69,13 @@ enregistrerRecherche({
   requète: recherche,
   réfRésultat: résultatsRecherche,
   fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl?.recherche.rechercherVariablesSelonTexte({
+    await constl.recherche.rechercherVariablesSelonTexte({
       texte: requète,
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     }),
   fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl?.recherche.rechercherVariables({
+    return await constl.recherche.rechercherVariables({
       f: x => (réfRésultat.value = x),
       nRésultatsDésirés: nOuProfondeur,
     });

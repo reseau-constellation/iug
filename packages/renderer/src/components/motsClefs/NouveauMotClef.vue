@@ -94,14 +94,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {computed, inject, ref} from 'vue';
-import type {ClientConstellation} from '@constl/ipa';
+import {computed, ref} from 'vue';
 
 import {useDisplay} from 'vuetify';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation} from '../utils';
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
@@ -201,14 +201,14 @@ const enCréation = ref(false);
 const créerMotClef = async () => {
   enCréation.value = true;
 
-  const idMotClef = await constl?.motsClefs.créerMotClef();
+  const idMotClef = await constl.motsClefs.créerMotClef();
   if (!idMotClef) throw new Error('Mot clef non créé.');
 
-  await constl?.motsClefs.sauvegarderNomsMotClef({
+  await constl.motsClefs.sauvegarderNomsMotClef({
     idMotClef: idMotClef,
     noms: Object.fromEntries(Object.entries(noms.value)),
   });
-  await constl?.motsClefs.sauvegarderDescriptionsMotClef({
+  await constl.motsClefs.sauvegarderDescriptionsMotClef({
     idMotClef: idMotClef,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });

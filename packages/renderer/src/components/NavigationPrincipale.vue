@@ -41,12 +41,11 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-import {inject, ref, onMounted, computed} from 'vue';
+import {ref, onMounted, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 import ImageProfil from './communs/ImageProfil.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './membres/utils';
@@ -55,7 +54,7 @@ import TexteTronque from './communs/TexteTronqué.vue';
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -64,7 +63,7 @@ const noms = ref<{[lng: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 enregistrerÉcoute(
-  constl?.profil.suivreNoms({
+  constl.profil.suivreNoms({
     f: x => (noms.value = x),
   }),
 );
@@ -72,7 +71,7 @@ enregistrerÉcoute(
 // Dispositif
 const idDispositif = ref<string>();
 onMounted(async () => {
-  idDispositif.value = await constl?.obtIdDispositif();
+  idDispositif.value = await constl.obtIdDispositif();
 });
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
   idDispositif: idDispositif,

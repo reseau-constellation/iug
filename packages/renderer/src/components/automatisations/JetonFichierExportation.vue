@@ -21,11 +21,11 @@
 
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import type {ClientConstellation} from '@constl/ipa';
 
 import path from 'path';
-import {computed, ref, inject, onMounted, watchEffect} from 'vue';
+import {computed, ref, onMounted, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation} from '../utils';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationExporter;
@@ -33,12 +33,13 @@ const props = defineProps<{
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
-const constl = inject<ClientConstellation>('constl');
+
+const constl = constellation();
 const dispositifPrésent = ref<string>();
 
 // Dispositifs
 onMounted(async () => {
-  dispositifPrésent.value = await constl?.obtIdDispositif();
+  dispositifPrésent.value = await constl.obtIdDispositif();
 });
 const surCeDispositif = computed<boolean>(() => {
   return (
@@ -52,7 +53,7 @@ const enProgrès = computed<boolean>(() => {
   return surCeDispositif.value && fichier.value === undefined;
 });
 watchEffect(async () => {
-  fichier.value = await constl?.automatisations.résoudreAdressePrivéeFichier({
+  fichier.value = await constl.automatisations.résoudreAdressePrivéeFichier({
     clef: props.spécification.dossier,
   });
 });

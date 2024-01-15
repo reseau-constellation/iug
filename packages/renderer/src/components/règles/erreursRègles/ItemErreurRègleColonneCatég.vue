@@ -32,13 +32,11 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {valid} from '@constl/ipa';
 
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
@@ -51,7 +49,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Nom tableau référence catégorie
 const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.tableau);
@@ -59,7 +57,7 @@ const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.
 const nomsTableau = ref<{[langue: string]: string}>({});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 enregistrerÉcoute(
-  constl?.tableaux.suivreNomsTableau({
+  constl.tableaux.suivreNomsTableau({
     idTableau: idTableauRéf.value,
     f: x => (nomsTableau.value = x),
   }),
@@ -94,14 +92,14 @@ const changerColonne = async ({
     };
   await effacerRègle();
   if (source.type === 'tableau') {
-    await constl?.tableaux.ajouterRègleTableau({
+    await constl.tableaux.ajouterRègleTableau({
       idTableau: props.idTableau,
       idColonne: props.erreur.règle.colonne,
       règle: nouvelleRègle,
     });
   } else {
     const idVariableSource = props.erreur.règle.source.id;
-    await constl?.variables.ajouterRègleVariable({
+    await constl.variables.ajouterRègleVariable({
       idVariable: idVariableSource,
       règle: nouvelleRègle,
     });
@@ -113,13 +111,13 @@ const effacerRègle = async () => {
   if (!monAutorisation.value) return;
 
   if (source.type === 'tableau') {
-    await constl?.tableaux.effacerRègleTableau({
+    await constl.tableaux.effacerRègleTableau({
       idTableau: props.idTableau,
       idRègle: props.erreur.règle.règle.id,
     });
   } else {
     const idVariableSource = props.erreur.règle.source.id;
-    await constl?.variables.effacerRègleVariable({
+    await constl.variables.effacerRègleVariable({
       idVariable: idVariableSource,
       idRègle: props.erreur.règle.règle.id,
     });

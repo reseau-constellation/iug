@@ -5,16 +5,14 @@
   />
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {utiliserImagesDéco} from '/@/composables/images';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const imageProfil = ref<Uint8Array | null>();
 const srcImgProfil = computed(() => {
@@ -25,7 +23,7 @@ const srcImgProfil = computed(() => {
   }
 });
 enregistrerÉcoute(
-  constl?.profil.suivreImage({
+  constl.profil.suivreImage({
     idCompte: props.id,
     f: image => (imageProfil.value = image),
   }),

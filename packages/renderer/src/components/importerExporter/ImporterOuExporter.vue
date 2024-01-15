@@ -133,20 +133,19 @@
 <script setup lang="ts">
 import type {automatisation, bds, types} from '@constl/ipa';
 import type {clefsExtraction} from '@constl/ipa/dist/src/importateur/json';
-import type {ClientConstellation} from '@constl/ipa';
 
-import {computed, ref, inject} from 'vue';
+import {computed, ref} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
-import {enregistrerÉcouteDynamique} from '../utils';
+import {constellation, enregistrerÉcouteDynamique} from '../utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 const {mdAndUp} = useDisplay();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const props = defineProps<{
   type?: 'importation' | 'exportation';
@@ -387,7 +386,7 @@ const colonnesTableauConstellation = enregistrerÉcouteDynamique({
     idBd: idObjet,
   },
   fÉcoute: (params: {idBd: string}, f: types.schémaFonctionSuivi<bds.infoTableauAvecId[]>) =>
-    constl?.bds.suivreTableauxBd({
+    constl.bds.suivreTableauxBd({
       idBd: params.idBd,
       f,
     }),
@@ -553,7 +552,7 @@ const ajouterAutomatisation = async () => {
         if (typeObjet.value === 'bd' && !idTableauImportation.value)
           throw new Error('Source tableau importation non définie.');
 
-        await constl?.automatisations.ajouterAutomatisationImporter({
+        await constl.automatisations.ajouterAutomatisationImporter({
           idTableau: typeObjet.value === 'tableau' ? idObjet.value : idTableauImportation.value!,
           source: sourceImportation.value,
           fréquence: fréquence.value,
@@ -571,7 +570,7 @@ const ajouterAutomatisation = async () => {
       throw new Error('Inclure fichiers SFIP exportation non spécifié.');
     if (!dispositifAutomatisation.value) throw new Error('Dispositif exportation non défini.');
 
-    await constl?.automatisations.ajouterAutomatisationExporter({
+    await constl.automatisations.ajouterAutomatisationExporter({
       id: idObjet.value,
       typeObjet: typeObjet.value,
       formatDoc: formatDocExportation.value,
@@ -600,9 +599,9 @@ const confirmer = async () => {
         dispositif: dispositifAutomatisation.value,
         source: sourceImportation.value,
       };
-      const données = await constl?.automatisations.obtDonnéesImportation(spécificationImporter);
+      const données = await constl.automatisations.obtDonnéesImportation(spécificationImporter);
       if (données) {
-        await constl?.tableaux.importerDonnées({
+        await constl.tableaux.importerDonnées({
           idTableau: idObjet.value,
           données,
         });
@@ -612,12 +611,12 @@ const confirmer = async () => {
 
       switch (typeObjet.value) {
         case 'tableau': {
-          const données = await constl?.tableaux.exporterDonnées({
+          const données = await constl.tableaux.exporterDonnées({
             idTableau: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds.exporterDocumentDonnées({
+          await constl.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -626,12 +625,12 @@ const confirmer = async () => {
           break;
         }
         case 'bd': {
-          const données = await constl?.bds.exporterDonnées({
+          const données = await constl.bds.exporterDonnées({
             idBd: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds.exporterDocumentDonnées({
+          await constl.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -640,12 +639,12 @@ const confirmer = async () => {
           break;
         }
         case 'projet': {
-          const données = await constl?.projets.exporterDonnées({
+          const données = await constl.projets.exporterDonnées({
             idProjet: idObjet.value,
             langues: languesExportation.value,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.projets.exporterDocumentDonnées({
+          await constl.projets.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,
@@ -654,13 +653,13 @@ const confirmer = async () => {
           break;
         }
         case 'nuée': {
-          const données = await constl?.nuées.exporterDonnéesNuée({
+          const données = await constl.nuées.exporterDonnéesNuée({
             idNuée: idObjet.value,
             langues: languesExportation.value,
             nRésultatsDésirés: 1000,
           });
           if (!données) throw new Error('Constellation non définie.');
-          await constl?.bds.exporterDocumentDonnées({
+          await constl.bds.exporterDocumentDonnées({
             données,
             formatDoc: formatDocExportation.value,
             inclureFichiersSFIP: inclureSFIPExportation.value,

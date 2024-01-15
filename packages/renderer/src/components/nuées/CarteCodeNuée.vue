@@ -10,15 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import type {ClientConstellation, bds} from '@constl/ipa';
+import type {bds} from '@constl/ipa';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
-import {computed, inject, ref} from 'vue';
-import {enregistrerÉcoute} from '../utils';
+import {computed, ref} from 'vue';
+import {constellation, enregistrerÉcoute} from '../utils';
 
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
-const constl = inject<ClientConstellation>('constl');
+
+const constl = constellation();
 
 const languesPréférées = computed(() => {
   return [மொழி.value, ...மாற்றுமொழிகள்.value];
@@ -98,7 +99,7 @@ constellationR::avecClientEtServeur(
 
 const infoTableaux = ref<bds.infoTableauAvecId[]>();
 enregistrerÉcoute(
-  constl?.nuées.suivreTableauxNuée({
+  constl.nuées.suivreTableauxNuée({
     idNuée: props.id,
     f: x => (infoTableaux.value = x),
   }),

@@ -35,12 +35,10 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute, icôneObjet} from '../utils';
+import {constellation, enregistrerÉcoute, icôneObjet} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
@@ -50,7 +48,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const noms = ref<{[langue: string]: string}>({});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
@@ -58,7 +56,7 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 const historiqueDocuments = utiliserHistoriqueDocuments();
 
 enregistrerÉcoute(
-  constl?.motsClefs.suivreNomsMotClef({
+  constl.motsClefs.suivreNomsMotClef({
     idMotClef: props.id,
     f: x => (noms.value = x),
   }),
@@ -66,7 +64,7 @@ enregistrerÉcoute(
 
 const typeObjet = ref<'motClef' | 'variable' | 'bd' | 'projet' | 'nuée'>();
 enregistrerÉcoute(
-  constl?.suivreTypeObjet({
+  constl.suivreTypeObjet({
     idObjet: props.id,
     f: x => (typeObjet.value = x),
   }),

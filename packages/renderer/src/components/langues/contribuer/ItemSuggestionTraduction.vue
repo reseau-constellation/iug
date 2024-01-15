@@ -34,13 +34,11 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
-
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 
-import {computed, inject, ref} from 'vue';
+import {computed, ref} from 'vue';
 
-import {enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -51,7 +49,7 @@ const émettre = defineEmits<{
   (e: 'effacer'): void;
 }>();
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
@@ -60,7 +58,7 @@ const nomsCompte = ref<{[langue: string]: string}>({});
 const nomCompte = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsCompte);
 
 enregistrerÉcoute(
-  constl?.profil.suivreNoms({
+  constl.profil.suivreNoms({
     idCompte: props.compte,
     f: noms => (nomsCompte.value = noms),
   }),
@@ -77,7 +75,7 @@ const effacer = () => {
 // Autorisations
 const monCompte = ref<string>();
 enregistrerÉcoute(
-  constl?.suivreIdCompte({
+  constl.suivreIdCompte({
     f: id => (monCompte.value = id),
   }),
 );

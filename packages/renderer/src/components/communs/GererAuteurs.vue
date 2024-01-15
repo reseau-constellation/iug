@@ -88,15 +88,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {ClientConstellation} from '@constl/ipa';
 import type {types} from '@constl/ipa';
 
 import type {Ref} from 'vue';
-import {inject, ref, computed} from 'vue';
+import {ref, computed} from 'vue';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerRecherche} from '/@/components/utils';
+import {constellation, enregistrerRecherche} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
@@ -116,7 +115,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const constl = inject<ClientConstellation>('constl');
+const constl = constellation();
 
 // Navigation
 const dialogue = ref(false);
@@ -142,7 +141,7 @@ enregistrerRecherche({
     nOuProfondeur: number;
     réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[] | undefined>;
   }) =>
-    constl?.recherche.rechercherProfilsSelonTexte({
+    constl.recherche.rechercherProfilsSelonTexte({
       texte: requète,
       nRésultatsDésirés: nOuProfondeur,
       f: x =>
@@ -161,7 +160,7 @@ enregistrerRecherche({
     nOuProfondeur: number;
     réfRésultat: Ref<types.résultatRecherche<types.infoRésultat>[] | undefined>;
   }) =>
-    constl?.réseau?.rechercherMembres({
+    constl.réseau?.rechercherMembres({
       nRésultatsDésirés: nOuProfondeur,
       f: x =>
         (réfRésultat.value = x.sort((a, b) =>
