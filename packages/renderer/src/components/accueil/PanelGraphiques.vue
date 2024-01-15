@@ -43,14 +43,13 @@
   </v-row>
 </template>
 <script lang="ts" setup>
-import type {réseau} from '@constl/ipa';
-import {computed, ref, watchEffect} from 'vue';
+import {computed, watchEffect} from 'vue';
 import {storeToRefs} from 'pinia';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {constellation, enregistrerÉcoute, écouter} from '../utils';
+import {constellation, écouter} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 
@@ -86,11 +85,8 @@ watchEffect(() => {
   historique.observer({clef: 'mesConnaissances', val: nMembresFiables.value});
 });
 
-const membresRéseau = ref<réseau.infoMembreRéseau[]>();
+const membresRéseau = écouter(constl.réseau.suivreComptesRéseau);
 const nMembresRéseau = computed(() => membresRéseau.value?.length);
-enregistrerÉcoute(
-  constl.réseau.suivreComptesRéseau({f: x => (membresRéseau.value = x), profondeur: 1}),
-);
 watchEffect(() => {
   historique.observer({clef: 'monRéseau', val: nMembresRéseau.value});
 });

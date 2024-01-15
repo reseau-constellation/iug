@@ -21,16 +21,12 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {favoris} from '@constl/ipa';
-
-import {ref} from 'vue';
-
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
-import {constellation, enregistrerÉcoute} from '../components/utils';
+import {constellation, écouter} from '../components/utils';
 
 const constl = constellation();
 
@@ -41,10 +37,5 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgFavoris = obtImageDéco('automatisation');
 
 // Mes favoris
-const mesFavoris = ref<favoris.ÉlémentFavorisAvecObjet[]>();
-enregistrerÉcoute(
-  constl.favoris.suivreFavoris({
-    f: x => (mesFavoris.value = x),
-  }),
-);
+const mesFavoris = écouter(constl.favoris.suivreFavoris);
 </script>

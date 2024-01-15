@@ -128,7 +128,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -150,15 +150,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {smAndUp, mdAndUp} = useDisplay();
 
 // Mon ID compte
-const idCompte = ref<string>();
-enregistrerÉcoute(
-  constl.suivreIdCompte({
-    f: id => (idCompte.value = id),
-  }),
-);
+const idCompte = écouter(constl.suivreIdCompte);
 
 // Image profil
-const imageProfil = ref<Uint8Array | null>();
+const imageProfil = écouter(constl.profil.suivreImage);
 const srcImgProfil = computed(() => {
   if (imageProfil.value) {
     return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
@@ -166,11 +161,6 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.profil.suivreImage({
-    f: image => (imageProfil.value = image),
-  }),
-);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
@@ -186,13 +176,8 @@ const sauvegarderImage = async (image?: {contenu: ArrayBuffer; fichier: string})
 // Nom profil
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.profil.suivreNoms, {}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    f: x => (noms.value = x),
-  }),
-);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -205,12 +190,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Contacts
-const contacts = ref<{type: string; contact: string}[]>();
-enregistrerÉcoute(
-  constl.profil.suivreContacts({
-    f: x => (contacts.value = x),
-  }),
-);
+const contacts = écouter(constl.profil.suivreContacts);
 
 // Onglets
 const onglet = ref('compte');

@@ -68,7 +68,7 @@ import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '../components/utils';
+import {constellation, écouter} from '../components/utils';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -93,8 +93,7 @@ onMounted(() => {
 const constellationPrète = ref(false);
 constl.obtIdCompte().then(() => (constellationPrète.value = true));
 
-const nomsProfil = ref<{[lng: string]: string}>();
-enregistrerÉcoute(constl.profil.suivreNoms({f: noms => (nomsProfil.value = noms)}));
+const nomsProfil = écouter(constl.profil.suivreNoms);
 
 watchEffect(() => {
   if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();

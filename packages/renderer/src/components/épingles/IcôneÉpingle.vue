@@ -10,12 +10,10 @@
   <v-icon :icon="icône"></v-icon>
 </template>
 <script setup lang="ts">
-import type {favoris} from '@constl/ipa';
-
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {ref, computed} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, écouter} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -25,21 +23,9 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Statut favoris
-const statutFavoris = ref<favoris.ÉlémentFavoris>();
-enregistrerÉcoute(
-  constl.favoris.suivreÉtatFavori({
-    idObjet: props.id,
-    f: statut => (statutFavoris.value = statut),
-  }),
-);
+const statutFavoris = écouter(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
 
-const estÉpingléSurCeDispositif = ref(false);
-enregistrerÉcoute(
-  constl.favoris.suivreEstÉpingléSurDispositif({
-    idObjet: props.id,
-    f: statut => (estÉpingléSurCeDispositif.value = statut.bd),
-  }),
-);
+const estÉpingléSurCeDispositif = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {idObjet: props.id});
 
 const icône = computed(() => {
   if (statutFavoris.value) {

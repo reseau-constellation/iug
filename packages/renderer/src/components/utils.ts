@@ -13,9 +13,13 @@ export const constellation = (): ClientConstellation => {
 export const écouter = <
   U,
   V extends U | undefined,
+  W extends
+  | types.schémaFonctionOublier
+  | types.schémaRetourFonctionRechercheParProfondeur
+  | types.schémaRetourFonctionRechercheParN,
   T extends {[clef: string]: types.élémentsBd} = Record<string, never>,
 >(
-  fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<types.schémaFonctionOublier>,
+  fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<W>,
   args: T = {} as T,
   défaut?: V,
 ): Ref<U | V> => {
@@ -28,7 +32,12 @@ export const écouter = <
     f: (x: U) => (val.value = x),
   };
   onMounted(async () => {
-    fOublier = await fonc(argsFinaux);
+    const résultat = await fonc(argsFinaux);
+    if (résultat instanceof Function) {
+      fOublier = résultat;
+    } else {
+      fOublier = résultat?.fOublier;
+    }
   });
   onUnmounted(async () => {
     if (fOublier) await fOublier();

@@ -51,15 +51,13 @@
 
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
+import {computed} from 'vue';
 
-import {ref} from 'vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute, icôneObjet} from '../utils';
+import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation, icôneObjet, écouter} from '../utils';
 import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteEffacer from '../communs/CarteEffacer.vue';
-import {computed} from 'vue';
 
 const props = defineProps<{epingle: favoris.ÉlémentFavorisAvecObjet}>();
 
@@ -71,36 +69,18 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = constellation();
 
 // Noms objet
-const noms = ref<{[langue: string]: string}>({});
+// Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
+const noms = écouter(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.motsClefs.suivreNomsMotClef({
-    idMotClef: props.epingle.idObjet,
-    f: x => (noms.value = x),
-  }),
-); // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-
 // Type objet
-const typeObjet = ref<'motClef' | 'variable' | 'bd' | 'projet' | 'nuée'>();
-enregistrerÉcoute(
-  constl.suivreTypeObjet({
-    idObjet: props.epingle.idObjet,
-    f: x => (typeObjet.value = x),
-  }),
-);
+const typeObjet = écouter(constl.suivreTypeObjet, {idObjet: props.epingle.idObjet});
 const icôneTypeItem = computed(() => {
   return icôneObjet(typeObjet.value) || 'mdi-pin-outline';
 });
 
 // Épingle
-const épinglé = ref<favoris.épingleDispositif>();
-enregistrerÉcoute(
-  constl.favoris.suivreEstÉpingléSurDispositif({
-    idObjet: props.epingle.idObjet,
-    f: x => (épinglé.value = x),
-  }),
-);
+const épinglé = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {idObjet: props.epingle.idObjet});
 
 // Contrôle
 const effacerFavoris = async () => {

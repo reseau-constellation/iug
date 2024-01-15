@@ -72,9 +72,9 @@
                 </p>
                 <v-select
                   v-model="compteÀRejoindre"
-                  :items="comptesEnLigne.map(x => x.idCompte)"
-                  :loading="!comptesEnLigne.length"
-                  :disabled="!comptesEnLigne.length"
+                  :items="comptesEnLigneSansMoi.map(x => x.idCompte)"
+                  :loading="!comptesEnLigneSansMoi.length"
+                  :disabled="!comptesEnLigneSansMoi.length"
                   :label="t('accueil.initialiserCompte.indiceCompte')"
                   variant="outlined"
                 >
@@ -92,7 +92,7 @@
                 </v-select>
                 <p class="my-3 text-disabled">
                   {{
-                    (comptesEnLigne.length
+                    (comptesEnLigneSansMoi.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
                       t('accueil.initialiserCompte.indiceEssaieDeConnecter')
@@ -209,13 +209,11 @@
 </template>
 
 <script setup lang="ts">
-import type {réseau} from '@constl/ipa';
-
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
-import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -386,17 +384,12 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 // Rejoindre compte
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
-const comptesEnLigne = ref<réseau.infoMembreRéseau[]>([]);
+const comptesEnLigne = écouter(constl.réseau.suivreComptesRéseauEtEnLigne, {}, []);
+const comptesEnLigneSansMoi = computed(()=>comptesEnLigne.value.filter(c => c.idCompte !== monIdCompte.value));
 
 const monIdCompte = écouter(constl.suivreIdCompte);
 
 const connexionsSFIP = écouter(constl.réseau.suivreConnexionsPostesSFIP, {});
-enregistrerÉcoute(
-  constl.réseau.suivreComptesRéseauEtEnLigne({
-    f: comptes => (comptesEnLigne.value = comptes.filter(c => c.idCompte !== monIdCompte.value)),
-    profondeur: Infinity,
-  }),
-);
 
 // Persister les données
 const persisterDonnées = async () => {

@@ -206,14 +206,14 @@ import {ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import TitrePage from '../../components/communs/TitrePage.vue';
+import {constellation, enregistrerRecherche, écouter} from '/@/components/utils';
+import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
 import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
 import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
-import {constellation, enregistrerRecherche, enregistrerÉcoute} from '/@/components/utils';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
@@ -264,44 +264,19 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
 ];
 
 // Mots-clefs
-const mesMotsClefs = ref<string[]>();
-enregistrerÉcoute(
-  constl.motsClefs.suivreMotsClefs({
-    f: x => (mesMotsClefs.value = x),
-  }),
-);
+const mesMotsClefs = écouter(constl.motsClefs.suivreMotsClefs);
 
 // Variables
-const mesVariables = ref<string[]>();
-enregistrerÉcoute(
-  constl.variables.suivreVariables({
-    f: x => (mesVariables.value = x),
-  }),
-);
+const mesVariables = écouter(constl.variables.suivreVariables);
 
 // Bds
-const mesBds = ref<string[]>();
-enregistrerÉcoute(
-  constl.bds.suivreBds({
-    f: x => (mesBds.value = x),
-  }),
-);
+const mesBds = écouter(constl.bds.suivreBds);
 
 // Projets
-const mesProjets = ref<string[]>();
-enregistrerÉcoute(
-  constl.projets.suivreProjets({
-    f: x => (mesProjets.value = x),
-  }),
-);
+const mesProjets = écouter(constl.projets.suivreProjets);
 
 // Nuées
-const mesNuées = ref<string[]>();
-enregistrerÉcoute(
-  constl.nuées.suivreNuées({
-    f: x => (mesNuées.value = x),
-  }),
-);
+const mesNuées = écouter(constl.nuées.suivreNuées);
 
 // Recherche
 const texteRecherche = ref<string>();

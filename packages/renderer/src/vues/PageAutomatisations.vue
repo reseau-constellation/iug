@@ -25,9 +25,6 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {automatisation} from '@constl/ipa';
-
-import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -35,7 +32,7 @@ import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
-import {constellation, enregistrerÉcoute} from '../components/utils';
+import {constellation, écouter} from '../components/utils';
 
 const constl = constellation();
 
@@ -46,10 +43,5 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgAutomatisations = obtImageDéco('automatisation');
 
 // Automatisations
-const automatisations = ref<automatisation.SpécificationAutomatisation[]>();
-enregistrerÉcoute(
-  constl.automatisations.suivreAutomatisations({
-    f: x => (automatisations.value = x),
-  }),
-);
+const automatisations = écouter(constl.automatisations.suivreAutomatisations);
 </script>

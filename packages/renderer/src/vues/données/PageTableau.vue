@@ -109,13 +109,13 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -142,24 +142,16 @@ const petitPousset = computed<{title: string; href?: string; disabled?: boolean}
 ]);
 
 // Autorisation
-const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
-enregistrerÉcoute(
-  constl.suivrePermission({
+const monAutorisation = écouter(constl.suivrePermission, {
     idObjet: props.idTableau,
-    f: x => (monAutorisation.value = x),
-  }),
-);
+});
 
 // Nom du tableau
-const nomsTableau = ref<{[lng: string]: string}>({});
+const nomsTableau = écouter(constl.tableaux.suivreNomsTableau, {
+    idTableau: props.idTableau,
+  }, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
-enregistrerÉcoute(
-  constl.tableaux.suivreNomsTableau({
-    idTableau: props.idTableau,
-    f: x => (nomsTableau.value = x),
-  }),
-);
 
 const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -176,18 +168,11 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
 };
 
 // Nom de la BD
-const nomsBd = ref<{[lng: string]: string}>({});
+const nomsBd = écouter(constl.bds.suivreNomsBd, {idBd: props.idBd}, {});
 const nomTraduitBd = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsBd);
 
-enregistrerÉcoute(
-  constl.bds.suivreNomsBd({
-    idBd: props.idBd,
-    f: x => (nomsBd.value = x),
-  }),
-);
-
 // Image
-const imageBd = ref<Uint8Array | null>();
+const imageBd = écouter(constl.bds.suivreImage, {idBd: props.idBd});
 const srcImgBd = computed(() => {
   if (imageBd.value) {
     return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
@@ -195,12 +180,6 @@ const srcImgBd = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.bds.suivreImage({
-    idBd: props.idBd,
-    f: image => (imageBd.value = image),
-  }),
-);
 
 const imgDéfaut = obtImageDéco('logoBD');
 

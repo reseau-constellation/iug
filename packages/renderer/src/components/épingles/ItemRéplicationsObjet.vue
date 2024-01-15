@@ -18,11 +18,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {réseau} from '@constl/ipa';
-
-import {ref} from 'vue';
-
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 
@@ -33,15 +29,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const constl = constellation();
 
-const réplications = ref<réseau.infoRéplications>();
-
-enregistrerÉcoute(
-  constl.réseau.suivreRéplications({
-    idObjet: props.id,
-    f: r => (réplications.value = r),
-    profondeur: 10,
-  }),
-);
+const réplications = écouter(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
 
 const nRéplications = computed(() => réplications.value?.dispositifs.length || 0);
 </script>
