@@ -143,15 +143,18 @@ const petitPousset = computed<{title: string; href?: string; disabled?: boolean}
 
 // Autorisation
 const monAutorisation = écouter(constl.suivrePermission, {
-    idObjet: props.idTableau,
+  idObjet: props.idTableau,
 });
 
 // Nom du tableau
-const nomsTableau = écouter(constl.tableaux.suivreNomsTableau, {
+const nomsTableau = écouter(
+  constl.tableaux.suivreNomsTableau,
+  {
     idTableau: props.idTableau,
-  }, {});
+  },
+  {},
+);
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
-
 
 const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({

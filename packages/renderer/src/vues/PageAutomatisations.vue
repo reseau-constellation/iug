@@ -25,7 +25,6 @@
   </v-container>
 </template>
 <script setup lang="ts">
-
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import TitrePage from '/@/components/communs/TitrePage.vue';

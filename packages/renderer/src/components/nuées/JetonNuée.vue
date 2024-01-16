@@ -7,11 +7,11 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import {ref, computed} from 'vue';
+import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute} from '/@/components/utils';
+import {écouter} from '/@/components/utils';
 import {constellation} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
@@ -24,18 +24,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.nuées.suivreNomsNuée({
-    idNuée: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Image
-const imageNuée = ref<Uint8Array | null>();
+const imageNuée = écouter(constl.nuées.suivreImage, {idNuée: props.id});
 const srcImgNuée = computed(() => {
   if (imageNuée.value) {
     return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));
@@ -43,12 +36,6 @@ const srcImgNuée = computed(() => {
     return undefined;
   }
 });
-/*enregistrerÉcoute(
-  constl.nuées.suivreImage({
-    idBd: props.id,
-    f: image => (imageNuée.value = image),
-  }),
-);*/
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

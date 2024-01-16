@@ -13,7 +13,7 @@
 import {ref, computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
 
@@ -49,7 +49,7 @@ enregistrerÉcoute(
 );
 
 // Image
-const imageNuée = ref<Uint8Array | null>();
+const imageNuée = écouter(constl.nuées.suivreImage, {idNuée: props.id});
 const srcImgNuée = computed(() => {
   if (imageNuée.value) {
     return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));
@@ -57,12 +57,6 @@ const srcImgNuée = computed(() => {
     return undefined;
   }
 });
-/*enregistrerÉcoute(
-  constl.nuées.suivreImage({
-    idBd: props.id,
-    f: image => (imageNuée.value = image),
-  }),
-);*/
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

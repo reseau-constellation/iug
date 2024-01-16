@@ -8,10 +8,10 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {ref, computed} from 'vue';
+import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -20,29 +20,15 @@ const constl = constellation();
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.projets.suivreNomsProjet({
-    idProjet: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Description du projet
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = écouter(constl.projets.suivreDescriptionsProjet, {idProjet: props.id}, {});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
-enregistrerÉcoute(
-  constl.projets.suivreDescriptionsProjet({
-    idProjet: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Image
-const imageProjet = ref<Uint8Array | null>();
+const imageProjet = écouter(constl.projets.suivreImage, {idProjet: props.id});
 const srcImgProjet = computed(() => {
   if (imageProjet.value) {
     return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));
@@ -50,12 +36,6 @@ const srcImgProjet = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.projets.suivreImage({
-    idProjet: props.id,
-    f: image => (imageProjet.value = image),
-  }),
-);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

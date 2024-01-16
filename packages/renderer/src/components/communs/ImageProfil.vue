@@ -5,16 +5,16 @@
   />
 </template>
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 import {utiliserImagesDéco} from '/@/composables/images';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 
 const constl = constellation();
 
-const imageProfil = ref<Uint8Array | null>();
+const imageProfil = écouter(constl.profil.suivreImage, {idCompte: props.id});
 const srcImgProfil = computed(() => {
   if (imageProfil.value) {
     return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
@@ -22,12 +22,6 @@ const srcImgProfil = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.profil.suivreImage({
-    idCompte: props.id,
-    f: image => (imageProfil.value = image),
-  }),
-);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');

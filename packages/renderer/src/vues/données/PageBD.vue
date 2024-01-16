@@ -519,8 +519,6 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {bds, types} from '@constl/ipa';
-
 import {useDisplay, useRtl} from 'vuetify';
 
 import {computed, ref, onMounted} from 'vue';
@@ -528,7 +526,7 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
@@ -585,24 +583,11 @@ onMounted(() => {
 const imageVide = obtImageDéco('vide');
 
 // Autorisation
-const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
-enregistrerÉcoute(
-  constl.suivrePermission({
-    idObjet: props.id,
-    f: x => (monAutorisation.value = x),
-  }),
-);
+const monAutorisation = écouter(constl.suivrePermission, {idObjet: props.id});
 
 // Nom de la Bd
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.bds.suivreNomsBd, {idBd: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.bds.suivreNomsBd({
-    idBd: props.id,
-    f: x => (noms.value = x),
-  }),
-);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -616,15 +601,8 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Description de la Bd
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = écouter(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
-
-enregistrerÉcoute(
-  constl.bds.suivreDescriptionsBd({
-    idBd: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -641,7 +619,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Image
-const imageBd = ref<Uint8Array | null>();
+const imageBd = écouter(constl.bds.suivreImage, {idBd: props.id});
 const srcImgBd = computed(() => {
   if (imageBd.value) {
     return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
@@ -649,12 +627,6 @@ const srcImgBd = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.bds.suivreImage({
-    idBd: props.id,
-    f: image => (imageBd.value = image),
-  }),
-);
 
 const imgDéfaut = obtImageDéco('logoBD');
 
@@ -667,22 +639,10 @@ const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) =>
 };
 
 // Variables
-const variables = ref<string[]>();
-enregistrerÉcoute(
-  constl.bds.suivreVariablesBd({
-    idBd: props.id,
-    f: vars => (variables.value = vars),
-  }),
-);
+const variables = écouter(constl.bds.suivreVariablesBd, {idBd: props.id});
 
 // Mots-clefs
-const motsClefs = ref<string[]>();
-enregistrerÉcoute(
-  constl.bds.suivreMotsClefsBd({
-    idBd: props.id,
-    f: x => (motsClefs.value = x),
-  }),
-);
+const motsClefs = écouter(constl.bds.suivreMotsClefsBd, {idBd: props.id});
 const sauvegarderMotsClefs = async (àJour: string[]) => {
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
@@ -705,35 +665,17 @@ enregistrerÉcoute(
 */
 
 // Tableaux
-const tableaux = ref<bds.infoTableauAvecId[]>();
+const tableaux = écouter(constl.bds.suivreTableauxBd, {idBd: props.id});
 const tableauxOrdonnés = computed(() => {
   if (!tableaux.value) return;
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
 });
-enregistrerÉcoute(
-  constl.bds.suivreTableauxBd({
-    idBd: props.id,
-    f: x => (tableaux.value = x),
-  }),
-);
 
 // Auteurs
-const auteurs = ref<types.infoAuteur[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreAuteursBd({
-    idBd: props.id,
-    f: x => (auteurs.value = x),
-  }),
-);
+const auteurs = écouter(constl.réseau.suivreAuteursBd, {idBd: props.id});
 
 // Licence
-const licence = ref<string>();
-enregistrerÉcoute(
-  constl.bds.suivreLicenceBd({
-    idBd: props.id,
-    f: x => (licence.value = x),
-  }),
-);
+const licence = écouter(constl.bds.suivreLicenceBd, {idBd: props.id});
 const changerLicence = async (nouvelleLicence: string) => {
   await constl.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
 };

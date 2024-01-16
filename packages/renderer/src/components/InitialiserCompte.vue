@@ -385,7 +385,9 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
 const comptesEnLigne = écouter(constl.réseau.suivreComptesRéseauEtEnLigne, {}, []);
-const comptesEnLigneSansMoi = computed(()=>comptesEnLigne.value.filter(c => c.idCompte !== monIdCompte.value));
+const comptesEnLigneSansMoi = computed(() =>
+  comptesEnLigne.value.filter(c => c.idCompte !== monIdCompte.value),
+);
 
 const monIdCompte = écouter(constl.suivreIdCompte);
 

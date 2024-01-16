@@ -14,7 +14,9 @@
       <template #activator="{props: propsMenu}">
         <v-chip
           v-bind="propsMenu"
+          label
           variant="outlined"
+          size="small"
           class="me-2 mb-2"
         >
           <v-icon start>mdi-plus</v-icon>

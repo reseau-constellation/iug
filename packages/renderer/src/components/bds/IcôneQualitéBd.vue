@@ -10,10 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import type {bds} from '@constl/ipa';
-
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, écouter} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
 const props = defineProps<{id: string}>();
@@ -21,13 +19,7 @@ const props = defineProps<{id: string}>();
 const constl = constellation();
 
 // Qualité BD
-const qualité = ref<bds.infoScore>();
-enregistrerÉcoute(
-  constl.bds.suivreQualitéBd({
-    idBd: props.id,
-    f: x => (qualité.value = x),
-  }),
-);
+const qualité = écouter(constl.bds.suivreQualitéBd, {idBd: props.id});
 const score = computed(() => {
   return qualité.value?.total;
 });

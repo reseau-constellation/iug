@@ -33,10 +33,10 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {ref, computed} from 'vue';
+import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
@@ -53,29 +53,15 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la Bd
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.bds.suivreNomsBd, {idBd: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.bds.suivreNomsBd({
-    idBd: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Description de la Bd
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = écouter(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
-enregistrerÉcoute(
-  constl.bds.suivreDescriptionsBd({
-    idBd: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
-
 // Image
-const imageBd = ref<Uint8Array | null>();
+const imageBd = écouter(constl.bds.suivreImage, {idBd: props.id});
 const srcImgBd = computed(() => {
   if (imageBd.value) {
     return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
@@ -83,22 +69,11 @@ const srcImgBd = computed(() => {
     return undefined;
   }
 });
-enregistrerÉcoute(
-  constl.bds.suivreImage({
-    idBd: props.id,
-    f: image => (imageBd.value = image),
-  }),
-);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
 
 // Variables
-const variables = ref<string[]>();
-enregistrerÉcoute(
-  constl.bds.suivreVariablesBd({
-    idBd: props.id,
-    f: vars => (variables.value = vars),
-  }),
-);
+const variables = écouter(constl.bds.suivreVariablesBd, {idBd: props.id});
+
 </script>

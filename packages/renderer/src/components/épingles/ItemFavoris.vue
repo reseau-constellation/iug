@@ -80,7 +80,9 @@ const icôneTypeItem = computed(() => {
 });
 
 // Épingle
-const épinglé = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {idObjet: props.epingle.idObjet});
+const épinglé = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {
+  idObjet: props.epingle.idObjet,
+});
 
 // Contrôle
 const effacerFavoris = async () => {

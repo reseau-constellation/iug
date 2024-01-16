@@ -172,7 +172,7 @@
 import type {types} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, écouter} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -216,13 +216,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const dialogue = ref(false);
 
 // Autorisation
-const monAutorisation = ref<'MODÉRATEUR' | 'MEMBRE' | undefined>();
-enregistrerÉcoute(
-  constl.suivrePermission({
-    idObjet: props.id,
-    f: x => (monAutorisation.value = x),
-  }),
-);
+const monAutorisation = écouter(constl.suivrePermission, {idObjet: props.id});
 
 // Nom
 const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.noms));

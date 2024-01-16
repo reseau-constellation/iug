@@ -24,8 +24,8 @@
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, écouter} from '/@/components/utils';
 import {
   கிளிமூக்கை_பயன்படுத்து,
   எண்களைப்_பயன்படுத்து,
@@ -46,15 +46,8 @@ const {எண்ணை_வடிவூட்டு} = எண்களைப்_�
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = écouter(constl.profil.suivreNoms, {idCompte: props.compte}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    idCompte: props.compte,
-    f: x => (noms.value = x),
-  }),
-);
 
 // Nombre de dispositifs
 const nDispositifsFormatté = எண்ணை_வடிவூட்டு(computed(() => props.dispositifs.length));

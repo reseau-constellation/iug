@@ -14,15 +14,15 @@ export const écouter = <
   U,
   V extends U | undefined,
   W extends
-  | types.schémaFonctionOublier
-  | types.schémaRetourFonctionRechercheParProfondeur
-  | types.schémaRetourFonctionRechercheParN,
-  T extends {[clef: string]: types.élémentsBd} = Record<string, never>,
+    | types.schémaFonctionOublier
+    | types.schémaRetourFonctionRechercheParProfondeur
+    | types.schémaRetourFonctionRechercheParN,
+  T extends {[clef: string]: types.élémentsBd | undefined} = Record<string, never>,
 >(
   fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<W>,
   args: T = {} as T,
   défaut?: V,
-): Ref<U | V> => {
+): ComputedRef<U | V> => {
   const val = ref(défaut) as Ref<U | V>;
 
   let fOublier: types.schémaFonctionOublier | undefined = undefined;
@@ -43,7 +43,7 @@ export const écouter = <
     if (fOublier) await fOublier();
   });
 
-  return val;
+  return computed(()=>val.value);
 };
 
 export const enregistrerÉcoute = <

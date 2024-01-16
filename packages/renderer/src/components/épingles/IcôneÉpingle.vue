@@ -25,7 +25,9 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Statut favoris
 const statutFavoris = écouter(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
 
-const estÉpingléSurCeDispositif = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {idObjet: props.id});
+const estÉpingléSurCeDispositif = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {
+  idObjet: props.id,
+});
 
 const icône = computed(() => {
   if (statutFavoris.value) {
