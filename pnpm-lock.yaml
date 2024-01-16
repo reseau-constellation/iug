@@ -16,7 +16,7 @@ dependencies:
     version: 0.1.15
   '@constl/mandataire-electron-principal':
     specifier: ^0.2.14
-    version: 0.2.14(@constl/ipa@0.9.24)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.2.2)
+    version: 0.2.14(@constl/ipa@0.9.24)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.1.3)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.2.14
     version: 0.2.14
@@ -191,8 +191,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 27.2.2
-    version: 27.2.2
+    specifier: 28.1.3
+    version: 28.1.3
   electron-builder:
     specifier: 24.9.1
     version: 24.9.1
@@ -692,7 +692,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.24)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@27.2.2):
+  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.24)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.1.3):
     resolution: {integrity: sha512-n2w2akrrcuBS1L1lUXYf9uY9JjQ8OCiBUuWl2gbGJH4OMqPXRtinNXyHO52LRu3Pb2PDamL+vWn2BT1gYkckNg==}
     peerDependencies:
       '@constl/ipa': ^0.9.16
@@ -703,7 +703,7 @@ packages:
       '@constl/ipa': 0.9.24(wrtc@0.4.7)
       '@constl/mandataire': 0.1.15
       '@constl/serveur': 0.3.5(@constl/ipa@0.9.24)
-      electron: 27.2.2
+      electron: 28.1.3
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -5192,8 +5192,8 @@ packages:
       - supports-color
     dev: false
 
-  /electron@27.2.2:
-    resolution: {integrity: sha512-MdKwS3PGUzBpuBR1yDVb4hVzHx7Rv2PXiIP+2lK/o9F3xQtPYCZwy078Sw7utAt5ipvQKFrWhvH08WDOzyMjQw==}
+  /electron@28.1.3:
+    resolution: {integrity: sha512-NSFyTo6SndTPXzU18XRePv4LnjmuM9rF5GMKta1/kPmi02ISoSRonnD7wUlWXD2x53XyJ6d/TbSVesMW6sXkEQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
@@ -10279,8 +10279,6 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
     bundledDependencies:
       - node-pre-gyp
