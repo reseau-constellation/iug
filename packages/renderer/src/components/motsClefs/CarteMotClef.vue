@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
@@ -28,7 +28,7 @@ const props = defineProps<{id: string}>();
 const constl = constellation();
 
 // Nom mot-clef
-const noms = écouter(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
 
 const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -48,7 +48,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 };
 
 // Descriptions mot-clef
-const descriptions = écouter(constl.motsClefs.suivreDescriptionsMotClef, {idMotClef: props.id}, {});
+const descriptions = suivre(constl.motsClefs.suivreDescriptionsMotClef, {idMotClef: props.id}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -68,7 +68,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = écouter(constl.réseau.suivreAuteursMotClef, {
+const auteurs = suivre(constl.réseau.suivreAuteursMotClef, {
   idMotClef: props.id,
 });
 

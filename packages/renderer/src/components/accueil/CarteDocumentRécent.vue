@@ -38,7 +38,7 @@
 import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, icôneObjet, écouter} from '../utils';
+import {constellation, icôneObjet, suivre} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
@@ -51,12 +51,12 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const constl = constellation();
 
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-const noms = écouter(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const historiqueDocuments = utiliserHistoriqueDocuments();
 
-const typeObjet = écouter(constl.suivreTypeObjet, {idObjet: props.id});
+const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.id});
 const icôneTypeItem = computed(() => {
   const icône = icôneObjet(typeObjet.value);
   return icône || 'mdi-file-document-outline';

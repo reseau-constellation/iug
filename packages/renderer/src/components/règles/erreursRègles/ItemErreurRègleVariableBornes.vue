@@ -44,11 +44,11 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
@@ -67,25 +67,13 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const constl = constellation();
 
 // Nom de ce tableau
-const nomsTableau = ref<{[langue: string]: string}>({});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau}, {});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
-enregistrerÉcoute(
-  constl.tableaux.suivreNomsTableau({
-    idTableau: props.idTableau,
-    f: x => (nomsTableau.value = x),
-  }),
-);
 
 // Nom variable référence
 const idVariable = computed(() => props.erreur.règle.règle.règle.détails.val);
-const nomsVariable = ref<{[langue: string]: string}>({});
+const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: idVariable.value}, {});
 const nomVariable = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
-enregistrerÉcoute(
-  constl.variables.suivreNomsVariable({
-    idVariable: idVariable.value,
-    f: x => (nomsTableau.value = x),
-  }),
-);
 
 // Autorisation
 const monAutorisation = utiliserMonAutorisationRègleSourceErreur({

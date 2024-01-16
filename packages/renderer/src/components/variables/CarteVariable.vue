@@ -78,7 +78,7 @@ import type {variables} from '@constl/ipa';
 
 import {computed, ref, watchEffect} from 'vue';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
@@ -96,10 +96,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Autorisation
-const monAutorisation = écouter(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
 
 // Nom variable
-const noms = écouter(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
 
 const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -119,7 +119,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 };
 
 // Descriptions variable
-const descriptions = écouter(constl.variables.suivreDescriptionsVariable, {idVariable: props.id}, {});
+const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {idVariable: props.id}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -142,7 +142,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = écouter(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
 
 const choixCatégorieListe = ref(false);
 const choixCatégorieBase = ref<variables.catégorieBaseVariables>();
@@ -179,10 +179,10 @@ const sauvegarderCatégorie = async () => {
 };
 
 // Auteurs
-const auteurs = écouter(constl.réseau.suivreAuteursVariable, {idVariable: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.id});
 
 // Règles
-const règles = écouter(constl.variables.suivreRèglesVariable, {idVariable: props.id});
+const règles = suivre(constl.variables.suivreRèglesVariable, {idVariable: props.id});
 
 // Effacer
 const effacerVariable = async () => {

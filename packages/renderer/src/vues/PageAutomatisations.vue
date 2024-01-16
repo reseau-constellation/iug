@@ -31,7 +31,7 @@ import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
-import {constellation, écouter} from '../components/utils';
+import {constellation, suivre} from '../components/utils';
 
 const constl = constellation();
 
@@ -42,5 +42,5 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgAutomatisations = obtImageDéco('automatisation');
 
 // Automatisations
-const automatisations = écouter(constl.automatisations.suivreAutomatisations);
+const automatisations = suivre(constl.automatisations.suivreAutomatisations);
 </script>

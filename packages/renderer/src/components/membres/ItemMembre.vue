@@ -19,7 +19,7 @@
 import {computed} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import LienObjet from '../communs/LienObjet.vue';
@@ -34,7 +34,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = écouter(constl.profil.suivreNoms, {idCompte: props.compte}, {});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: props.compte}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Visibilité

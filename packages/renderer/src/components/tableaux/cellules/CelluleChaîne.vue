@@ -10,10 +10,10 @@
   />
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
+import {type ComputedRef} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
 
@@ -24,12 +24,6 @@ const constl = constellation();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Texte traduit
-const textes = ref<{[langue: string]: string}>({});
-enregistrerÉcoute(
-  constl.suivreBdDic({
-    id: props.val,
-    f: x => (textes.value = x as {[langue: string]: string}),
-  }),
-);
+const textes: ComputedRef<{[langue: string]: string}> = suivre(constl.suivreBdDic, {id: props.val},  {});
 const texteTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(textes);
 </script>

@@ -16,10 +16,8 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type {licences} from '@constl/ipa';
-
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const constl = constellation();
@@ -30,12 +28,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const props = defineProps<{licence: string | undefined}>();
 
 // Info licence
-const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
-enregistrerÉcoute(
-  constl.licences.suivreLicences({
-    f: x => (infoLicences.value = x),
-  }),
-);
+const infoLicences = suivre(constl.licences.suivreLicences);
 const licenceApprouvée = computed(() => {
   return (
     props.licence && infoLicences.value && Object.keys(infoLicences.value).includes(props.licence)

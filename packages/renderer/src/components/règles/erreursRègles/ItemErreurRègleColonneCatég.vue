@@ -34,9 +34,9 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
@@ -54,14 +54,8 @@ const constl = constellation();
 // Nom tableau référence catégorie
 const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.tableau);
 
-const nomsTableau = ref<{[langue: string]: string}>({});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: idTableauRéf.value}, {});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
-enregistrerÉcoute(
-  constl.tableaux.suivreNomsTableau({
-    idTableau: idTableauRéf.value,
-    f: x => (nomsTableau.value = x),
-  }),
-);
 
 // Id colonne référence catégorie
 const idColonne = computed(() => props.erreur.règle.règle.règle.détails.colonne);

@@ -70,7 +70,7 @@
 import type {réseau} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
@@ -96,25 +96,10 @@ const titreDivision = computed(() => {
 });
 
 // Connexions SFIP
-const connexionsSFIP = ref<
-  {
-    adresse: string;
-    pair: string;
-  }[]
->();
-enregistrerÉcoute(
-  constl.réseau.suivreConnexionsPostesSFIP({
-    f: x => (connexionsSFIP.value = x),
-  }),
-);
+const connexionsSFIP = suivre(constl.réseau.suivreConnexionsPostesSFIP);
 
 // Connexions Constellation
-const connexionsConstellation = ref<réseau.statutDispositif[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreConnexionsDispositifs({
-    f: x => (connexionsConstellation.value = x),
-  }),
-);
+const connexionsConstellation = suivre(constl.réseau.suivreConnexionsDispositifs);
 const connexionsMembres = computed<{idCompte: string; dispositifs: réseau.statutDispositif[]}[]>(
   () => {
     const membres = [

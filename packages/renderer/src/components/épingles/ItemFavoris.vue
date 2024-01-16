@@ -54,7 +54,7 @@ import type {favoris} from '@constl/ipa';
 import {computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, icôneObjet, écouter} from '../utils';
+import {constellation, icôneObjet, suivre} from '../utils';
 import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
 import CarteEffacer from '../communs/CarteEffacer.vue';
@@ -70,17 +70,17 @@ const constl = constellation();
 
 // Noms objet
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-const noms = écouter(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Type objet
-const typeObjet = écouter(constl.suivreTypeObjet, {idObjet: props.epingle.idObjet});
+const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.epingle.idObjet});
 const icôneTypeItem = computed(() => {
   return icôneObjet(typeObjet.value) || 'mdi-pin-outline';
 });
 
 // Épingle
-const épinglé = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {
+const épinglé = suivre(constl.favoris.suivreEstÉpingléSurDispositif, {
   idObjet: props.epingle.idObjet,
 });
 

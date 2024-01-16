@@ -77,7 +77,7 @@ import type {bds} from '@constl/ipa';
 import {computed, ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
+import {constellation, enregistrerÉcoute, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
@@ -95,10 +95,10 @@ const props = defineProps<{
 const constl = constellation();
 
 // Autorisation
-const monAutorisation = écouter(constl.suivrePermission, {idObjet: props.idObjet});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idObjet});
 
 // Automatisations
-const automatisations = écouter(constl.automatisations.suivreAutomatisations);
+const automatisations = suivre(constl.automatisations.suivreAutomatisations);
 
 // Cas spécial pour les bases de données - on inclut aussi les tableaux !
 const tableauxBd = ref<bds.infoTableauAvecId[]>();

@@ -175,7 +175,7 @@ import {ref, computed, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
@@ -240,21 +240,10 @@ const optionsÉpingle: {
 ];
 
 // Dispositifs
-const dispositifs = ref<string[]>();
-enregistrerÉcoute(
-  constl.suivreDispositifs({
-    f: x => (dispositifs.value = x),
-  }),
-);
+const dispositifs = suivre(constl.suivreDispositifs);
 
 // Statut favoris
-const statutFavoris = ref<favoris.ÉlémentFavoris>();
-enregistrerÉcoute(
-  constl.favoris.suivreÉtatFavori({
-    idObjet: props.id,
-    f: statut => (statutFavoris.value = statut),
-  }),
-);
+const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
 
 watch(statutFavoris, () => {
   if (statutFavoris.value) {

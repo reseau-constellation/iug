@@ -7,7 +7,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
@@ -20,7 +20,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Automatisations
-const automatisations = écouter(constl.automatisations.suivreAutomatisations);
+const automatisations = suivre(constl.automatisations.suivreAutomatisations);
 const automatisationsObjet = computed(() => {
   return automatisations.value
     ? automatisations.value.filter(

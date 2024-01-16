@@ -35,12 +35,11 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
-import SérieJetons from '../communs/SérieJetons.vue';
-import CarteVariable from '../variables/CarteVariable.vue';
-import ItemVariable from '../variables/ItemVariable.vue';
-import JetonVariable from '../variables/JetonVariable.vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import {constellation, suivre} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -54,21 +53,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Nom tableau
-const noms = ref<{[langue: string]: string}>({});
-enregistrerÉcoute(
-  constl.tableaux.suivreNomsTableau({
-    idTableau: props.id,
-    f: x => (noms.value = x),
-  }),
-);
+const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id}, {});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Variables
-const variables = ref<string[]>();
-enregistrerÉcoute(
-  constl.tableaux.suivreVariables({
-    idTableau: props.id,
-    f: x => (variables.value = x),
-  }),
-);
+const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.id});
+
 </script>

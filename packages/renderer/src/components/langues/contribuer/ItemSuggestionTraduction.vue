@@ -36,9 +36,9 @@
 <script setup lang="ts">
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -53,16 +53,9 @@ const constl = constellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-//
-const nomsCompte = ref<{[langue: string]: string}>({});
+// Noms du compte
+const nomsCompte = suivre(constl.profil.suivreNoms, {idCompte: props.compte}, {});
 const nomCompte = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsCompte);
-
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    idCompte: props.compte,
-    f: noms => (nomsCompte.value = noms),
-  }),
-);
 
 // Actions
 const utiliser = () => {
@@ -73,12 +66,7 @@ const effacer = () => {
 };
 
 // Autorisations
-const monCompte = ref<string>();
-enregistrerÉcoute(
-  constl.suivreIdCompte({
-    f: id => (monCompte.value = id),
-  }),
-);
+const monCompte = suivre(constl.suivreIdCompte);
 const autorisé = computed(() => {
   return props.compte === monCompte.value;
 });

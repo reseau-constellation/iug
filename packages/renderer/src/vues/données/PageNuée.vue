@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import {onMounted} from 'vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -72,6 +72,6 @@ onMounted(() => {
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = écouter(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 </script>

@@ -51,7 +51,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -109,13 +109,13 @@ const infoSourceVariable = sourceObjetConnexe('variable');
 const infoSourceMotClef = sourceObjetConnexe('motClef');
 
 // Nom
-const noms = écouter(constl.bds.suivreNomsBd, {idBd: props.résultat.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.résultat.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = écouter(constl.bds.suivreDescriptionsBd, {idBd: props.résultat.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.résultat.id}, {});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs
-const auteurs = écouter(constl.réseau.suivreAuteursVariable, {idVariable: props.résultat.id});
+const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.résultat.id});
 </script>

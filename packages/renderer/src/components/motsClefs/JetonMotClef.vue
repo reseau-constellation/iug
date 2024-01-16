@@ -10,9 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import {constellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
-
-import {ref} from 'vue';
+import {constellation, icôneObjet, suivre} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -26,13 +24,6 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Nom du mot-clef
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.motsClefs.suivreNomsMotClef({
-    idMotClef: props.id,
-    f: x => (noms.value = x),
-  }),
-);
 </script>

@@ -29,10 +29,7 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
-import {ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
@@ -46,14 +43,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Nom de la nuée
-const noms = ref<{[lng: string]: string}>({});
-
-enregistrerÉcoute(
-  constl.nuées.suivreNomsNuée({
-    idNuée: props.id,
-    f: x => (noms.value = x),
-  }),
-);
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -67,14 +57,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Descriptions nuée
-const descriptions = ref<{[lng: string]: string}>({});
-
-enregistrerÉcoute(
-  constl.nuées.suivreDescriptionsNuée({
-    idNuée: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
+const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.id}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -91,13 +74,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = ref<types.infoAuteur[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreAuteursBd({
-    idBd: props.id,
-    f: x => (auteurs.value = x),
-  }),
-);
+const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
 
 // Effacer
 const effacerNuée = async () => {

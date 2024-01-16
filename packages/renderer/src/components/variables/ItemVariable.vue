@@ -12,11 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import type {variables} from '@constl/ipa';
+import {computed} from 'vue';
 
-import {computed, ref} from 'vue';
-
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
@@ -33,22 +31,9 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = ref<variables.catégorieVariables>();
-enregistrerÉcoute(
-  constl.variables.suivreCatégorieVariable({
-    idVariable: props.id,
-    f: x => (catégorie.value = x),
-  }),
-);
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
 
 // Nom
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.variables.suivreNomsVariable({
-    idVariable: props.id,
-    f: x => (noms.value = x),
-  }),
-);
 </script>

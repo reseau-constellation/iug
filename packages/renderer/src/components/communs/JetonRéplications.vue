@@ -13,10 +13,8 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import type {réseau} from '@constl/ipa';
-
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {computed} from 'vue';
+import {constellation, suivre} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -29,14 +27,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Réplications
-const réplications = ref<réseau.infoRéplications>();
-enregistrerÉcoute(
-  constl.réseau.suivreRéplications({
-    idObjet: props.id,
-    f: x => (réplications.value = x),
-    profondeur: 5,
-  }),
-);
+const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 5});
 const nRéplicationsDispositifs = computed(() => {
   return réplications.value?.dispositifs.length || 0;
 });

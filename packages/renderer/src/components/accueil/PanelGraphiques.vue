@@ -49,7 +49,7 @@ import {storeToRefs} from 'pinia';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {constellation, écouter} from '../utils';
+import {constellation, suivre} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 
@@ -61,31 +61,31 @@ const constl = constellation();
 
 const {obtHistorique} = storeToRefs(historique);
 
-const bds = écouter(constl.bds.suivreBds);
+const bds = suivre(constl.bds.suivreBds);
 const nBds = computed(() => bds.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'mesBds', val: nBds.value});
 });
 
-const projets = écouter(constl.projets.suivreProjets);
+const projets = suivre(constl.projets.suivreProjets);
 const nProjets = computed(() => projets.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'mesProjets', val: nProjets.value});
 });
 
-const nuées = écouter(constl.nuées.suivreNuées);
+const nuées = suivre(constl.nuées.suivreNuées);
 const nNuées = computed(() => nuées.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'mesNuées', val: nNuées.value});
 });
 
-const membresFiables = écouter(constl.réseau.suivreFiables);
+const membresFiables = suivre(constl.réseau.suivreFiables);
 const nMembresFiables = computed(() => membresFiables.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'mesConnaissances', val: nMembresFiables.value});
 });
 
-const membresRéseau = écouter(constl.réseau.suivreComptesRéseau);
+const membresRéseau = suivre(constl.réseau.suivreComptesRéseau);
 const nMembresRéseau = computed(() => membresRéseau.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'monRéseau', val: nMembresRéseau.value});

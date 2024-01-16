@@ -54,7 +54,7 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 import type {ComputedRef} from 'vue';
 
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
@@ -63,7 +63,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonBd from '../bds/JetonBd.vue';
@@ -146,33 +146,13 @@ const infoSourceMotClef = sourceObjetConnexe('motClef');
 const infoSourceBdDirecte = sourceObjetConnexe('bd');
 
 // Nom
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.résultat.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.projets.suivreNomsProjet({
-    idProjet: props.résultat.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Descriptions
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {idProjet: props.résultat.id}, {});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
-enregistrerÉcoute(
-  constl.projets.suivreDescriptionsProjet({
-    idProjet: props.résultat.id,
-    f: x => (descriptions.value = x),
-  }),
-);
-
 // Auteurs
-const auteurs = ref<types.infoAuteur[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreAuteursProjet({
-    idProjet: props.résultat.id,
-    f: x => (auteurs.value = x),
-  }),
-);
+const auteurs = suivre(constl.réseau.suivreAuteursProjet, {idProjet: props.résultat.id});
 </script>

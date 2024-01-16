@@ -154,8 +154,6 @@
 </template>
 
 <script setup lang="ts">
-import type {licences} from '@constl/ipa';
-
 import {computed, ref, watchEffect} from 'vue';
 
 import JetonDroit from './JetonDroitLicence.vue';
@@ -164,7 +162,7 @@ import JetonCondition from './JetonConditionLicence.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 const props = defineProps({
   licence: {type: String, required: false, default: undefined},
@@ -190,12 +188,7 @@ watchEffect(() => {
 const licenceChangée = computed(() => licenceChoisie.value !== props.licence);
 
 // Caractéristiques licences
-const infoLicences = ref<{[clef: string]: licences.InfoLicence}>();
-enregistrerÉcoute(
-  constl.licences.suivreLicences({
-    f: x => (infoLicences.value = x),
-  }),
-);
+const infoLicences = suivre(constl.licences.suivreLicences);
 const licencesDispos = computed<string[]>(() => {
   return infoLicences.value ? Object.keys(infoLicences.value) : [];
 });

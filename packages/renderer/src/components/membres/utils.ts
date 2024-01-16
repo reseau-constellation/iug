@@ -2,7 +2,7 @@ import type {types} from '@constl/ipa';
 
 import {type Ref, type ComputedRef, computed, ref, watchEffect, onMounted, onUnmounted} from 'vue';
 
-import {constellation, enregistrerÉcoute} from '../utils';
+import {constellation, enregistrerÉcoute, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -34,12 +34,7 @@ export const utiliserNomEtTypeDispositif = ({
   const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
   const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-  const monCompte = ref<string>();
-  enregistrerÉcoute(
-    constl.suivreIdCompte({
-      f: x => (monCompte.value = x),
-    }),
-  );
+  const monCompte = suivre(constl.suivreIdCompte);
 
   const nomEtType = ref<{type?: string; nom?: string}>();
   let fOublier: types.schémaFonctionOublier | undefined;

@@ -37,11 +37,11 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonContactMembre from '../membres/JetonContactMembre.vue';
@@ -62,13 +62,6 @@ const source = computed(() => {
 });
 
 // Nom
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: props.résultat.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    idCompte: props.résultat.id,
-    f: x => (noms.value = x),
-  }),
-);
 </script>

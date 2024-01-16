@@ -58,9 +58,9 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
-import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import IcôneConfiance from './IcôneConfiance.vue';
@@ -77,17 +77,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Mon compte
-const monCompte = écouter(constl.suivreIdCompte);
+const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const confiance = ref(0);
-enregistrerÉcoute(
-  constl.réseau.suivreConfianceMonRéseauPourMembre({
-    idCompte: props.id,
-    f: x => (confiance.value = x),
-    profondeur: 5,
-  }),
-);
+const confiance = suivre(constl.réseau.suivreConfianceMonRéseauPourMembre, {idCompte: props.id, profondeur: 5}, 0);
 
 // Message
 const messageConfiance = computed(() => {

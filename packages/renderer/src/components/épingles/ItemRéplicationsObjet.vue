@@ -18,7 +18,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 
@@ -29,7 +29,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const constl = constellation();
 
-const réplications = écouter(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
+const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
 
 const nRéplications = computed(() => réplications.value?.dispositifs.length || 0);
 </script>

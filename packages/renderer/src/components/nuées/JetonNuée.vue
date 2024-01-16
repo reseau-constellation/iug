@@ -11,7 +11,7 @@ import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {écouter} from '/@/components/utils';
+import {suivre} from '/@/components/utils';
 import {constellation} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
@@ -24,11 +24,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = écouter(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Image
-const imageNuée = écouter(constl.nuées.suivreImage, {idNuée: props.id});
+const imageNuée = suivre(constl.nuées.suivreImage, {idNuée: props.id});
 const srcImgNuée = computed(() => {
   if (imageNuée.value) {
     return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));

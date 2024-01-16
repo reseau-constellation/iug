@@ -26,7 +26,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
-import {constellation, écouter} from '../components/utils';
+import {constellation, suivre} from '../components/utils';
 
 const constl = constellation();
 
@@ -37,5 +37,5 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgFavoris = obtImageDéco('automatisation');
 
 // Mes favoris
-const mesFavoris = écouter(constl.favoris.suivreFavoris);
+const mesFavoris = suivre(constl.favoris.suivreFavoris);
 </script>

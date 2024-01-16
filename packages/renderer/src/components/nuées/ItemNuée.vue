@@ -10,10 +10,10 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {ref, computed} from 'vue';
+import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
 
@@ -27,29 +27,15 @@ const {அகராதியிலிருந்து_மொழிபெயர
 
 // Nom de la nuée
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.nuées.suivreNomsNuée({
-    idNuée: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Description de la nuée
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.id}, {});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
-enregistrerÉcoute(
-  constl.nuées.suivreDescriptionsNuée({
-    idNuée: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
-
 // Image
-const imageNuée = écouter(constl.nuées.suivreImage, {idNuée: props.id});
+const imageNuée = suivre(constl.nuées.suivreImage, {idNuée: props.id});
 const srcImgNuée = computed(() => {
   if (imageNuée.value) {
     return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));

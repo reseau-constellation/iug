@@ -13,7 +13,7 @@
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {computed} from 'vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -23,9 +23,9 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Statut favoris
-const statutFavoris = écouter(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
+const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
 
-const estÉpingléSurCeDispositif = écouter(constl.favoris.suivreEstÉpingléSurDispositif, {
+const estÉpingléSurCeDispositif = suivre(constl.favoris.suivreEstÉpingléSurDispositif, {
   idObjet: props.id,
 });
 

@@ -133,7 +133,7 @@ import RejoindreCompte from './RejoindreCompte.vue';
 import FermerCompte from './FermerCompte.vue';
 import ExporterCompte from './ExporterCompte.vue';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 const constl = constellation();
 
@@ -142,7 +142,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {mdAndUp} = useDisplay();
 
 // Dispositifs
-const dispositifs = écouter(constl.suivreDispositifs);
+const dispositifs = suivre(constl.suivreDispositifs);
 
-const statutDispositifs = écouter(constl.réseau.suivreConnexionsDispositifs);
+const statutDispositifs = suivre(constl.réseau.suivreConnexionsDispositifs);
 </script>

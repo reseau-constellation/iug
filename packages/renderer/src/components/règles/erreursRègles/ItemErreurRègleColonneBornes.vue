@@ -45,13 +45,13 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import {créerColonneTableau} from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
@@ -65,14 +65,8 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const constl = constellation();
 
 // Nom de ce tableau
-const nomsTableau = ref<{[langue: string]: string}>({});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau}, {});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
-enregistrerÉcoute(
-  constl.tableaux.suivreNomsTableau({
-    idTableau: props.idTableau,
-    f: x => (nomsTableau.value = x),
-  }),
-);
 
 // Id colonne référence
 const idColonneRéf = computed(() => props.erreur.règle.règle.règle.détails.val);

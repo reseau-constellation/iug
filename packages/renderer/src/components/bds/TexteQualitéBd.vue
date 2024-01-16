@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import {computed} from 'vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -25,7 +25,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
 // Qualité BD
-const qualité = écouter(constl.bds.suivreQualitéBd, {idBd: props.id});
+const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.id});
 const score = computed(() => {
   return qualité.value?.total;
 });

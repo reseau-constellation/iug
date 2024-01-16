@@ -120,12 +120,10 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {réseau} from '@constl/ipa';
-
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '../utils';
+import {constellation, suivre} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -145,14 +143,7 @@ const constl = constellation();
 const dialogue = ref(false);
 
 // Réplications
-const réplications = ref<réseau.infoRéplications>();
-enregistrerÉcoute(
-  constl.réseau.suivreRéplications({
-    idObjet: props.id,
-    f: x => (réplications.value = x),
-    profondeur: 10,
-  }),
-);
+const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
 
 const dispositifs = computed(() => {
   return réplications.value?.dispositifs;

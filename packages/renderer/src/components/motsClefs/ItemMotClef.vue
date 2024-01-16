@@ -16,9 +16,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {constellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
-
-import {ref} from 'vue';
+import {constellation, icôneObjet, suivre} from '/@/components/utils';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 
@@ -34,24 +32,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Nom du mot-clef
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.motsClefs.suivreNomsMotClef({
-    idMotClef: props.id,
-    f: x => (noms.value = x),
-  }),
-);
-
 // Descriptions
-const descriptions = ref<{[lng: string]: string}>({});
+const descriptions = suivre(constl.motsClefs.suivreDescriptionsMotClef, {idMotClef: props.id}, {});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
-enregistrerÉcoute(
-  constl.motsClefs.suivreDescriptionsMotClef({
-    idMotClef: props.id,
-    f: x => (descriptions.value = x),
-  }),
-);
 </script>

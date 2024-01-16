@@ -10,7 +10,7 @@ export const constellation = (): ClientConstellation => {
   throw new Error("Constellation n'est pas trouvable.");
 };
 
-export const écouter = <
+export const suivre = <
   U,
   V extends U | undefined,
   W extends

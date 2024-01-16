@@ -11,7 +11,7 @@ import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -23,11 +23,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = écouter(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Image
-const imageProjet = écouter(constl.projets.suivreImage, {idProjet: props.id});
+const imageProjet = suivre(constl.projets.suivreImage, {idProjet: props.id});
 const srcImgProjet = computed(() => {
   if (imageProjet.value) {
     return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));

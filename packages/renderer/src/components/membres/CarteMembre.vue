@@ -163,7 +163,7 @@
 import {ref} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
@@ -195,48 +195,18 @@ const dialogue = ref(false);
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[lng: string]: string}>({});
+const noms = suivre(constl.profil.suivreNoms, {}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
-enregistrerÉcoute(
-  constl.profil.suivreNoms({
-    f: x => (noms.value = x),
-  }),
-);
-
 // Contacts
-const contacts = ref<{type: string; contact: string}[]>();
-enregistrerÉcoute(
-  constl.profil.suivreContacts({
-    f: x => (contacts.value = x),
-    idCompte: props.id,
-  }),
-);
+const contacts = suivre(constl.profil.suivreContacts, {idCompte: props.id});
 
 // Bds
-const bdsMembre = ref<string[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreBdsMembre({
-    idCompte: props.id,
-    f: bds => (bdsMembre.value = bds),
-  }),
-);
+const bdsMembre = suivre(constl.réseau.suivreBdsMembre, {idCompte: props.id});
 
 // Projets
-const projetsMembre = ref<string[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreProjetsMembre({
-    idCompte: props.id,
-    f: projets => (projetsMembre.value = projets),
-  }),
-);
+const projetsMembre = suivre(constl.réseau.suivreProjetsMembre, {idCompte: props.id});
 
 // Nuées
-const nuéesMembre = ref<string[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreNuéesMembre({
-    idCompte: props.id,
-    f: nuées => (nuéesMembre.value = nuées),
-  }),
-);
+const nuéesMembre = suivre(constl.réseau.suivreNuéesMembre, {idCompte: props.id});
 </script>

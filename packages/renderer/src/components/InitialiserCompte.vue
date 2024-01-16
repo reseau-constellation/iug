@@ -213,7 +213,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -384,14 +384,14 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 // Rejoindre compte
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
-const comptesEnLigne = écouter(constl.réseau.suivreComptesRéseauEtEnLigne, {}, []);
+const comptesEnLigne = suivre(constl.réseau.suivreComptesRéseauEtEnLigne, {}, []);
 const comptesEnLigneSansMoi = computed(() =>
   comptesEnLigne.value.filter(c => c.idCompte !== monIdCompte.value),
 );
 
-const monIdCompte = écouter(constl.suivreIdCompte);
+const monIdCompte = suivre(constl.suivreIdCompte);
 
-const connexionsSFIP = écouter(constl.réseau.suivreConnexionsPostesSFIP, {});
+const connexionsSFIP = suivre(constl.réseau.suivreConnexionsPostesSFIP, {});
 
 // Persister les données
 const persisterDonnées = async () => {

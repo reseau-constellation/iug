@@ -131,10 +131,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {réseau} from '@constl/ipa';
-
 import {computed, ref, watchEffect} from 'vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -154,18 +152,8 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 // Statut relation
-const fiables = ref<string[]>();
-const bloqués = ref<réseau.infoBloqué[]>();
-enregistrerÉcoute(
-  constl.réseau.suivreBloqués({
-    f: x => (bloqués.value = x),
-  }),
-);
-enregistrerÉcoute(
-  constl.réseau.suivreFiables({
-    f: x => (fiables.value = x),
-  }),
-);
+const fiables = suivre(constl.réseau.suivreFiables);
+const bloqués = suivre(constl.réseau.suivreBloqués);
 
 const statutRelation = computed<'fiable' | 'bloquéPrivé' | 'bloquéPublique' | 'inconnu'>(() => {
   if (fiables.value?.includes(props.id)) {

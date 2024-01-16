@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
@@ -32,9 +32,9 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = écouter(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
 
 // Nom
-const noms = écouter(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 </script>

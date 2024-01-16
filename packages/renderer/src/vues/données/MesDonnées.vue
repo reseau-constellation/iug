@@ -206,7 +206,7 @@ import {ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {constellation, enregistrerRecherche, écouter} from '/@/components/utils';
+import {constellation, enregistrerRecherche, suivre} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
@@ -264,19 +264,19 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
 ];
 
 // Mots-clefs
-const mesMotsClefs = écouter(constl.motsClefs.suivreMotsClefs);
+const mesMotsClefs = suivre(constl.motsClefs.suivreMotsClefs);
 
 // Variables
-const mesVariables = écouter(constl.variables.suivreVariables);
+const mesVariables = suivre(constl.variables.suivreVariables);
 
 // Bds
-const mesBds = écouter(constl.bds.suivreBds);
+const mesBds = suivre(constl.bds.suivreBds);
 
 // Projets
-const mesProjets = écouter(constl.projets.suivreProjets);
+const mesProjets = suivre(constl.projets.suivreProjets);
 
 // Nuées
-const mesNuées = écouter(constl.nuées.suivreNuées);
+const mesNuées = suivre(constl.nuées.suivreNuées);
 
 // Recherche
 const texteRecherche = ref<string>();

@@ -128,7 +128,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -150,10 +150,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {smAndUp, mdAndUp} = useDisplay();
 
 // Mon ID compte
-const idCompte = écouter(constl.suivreIdCompte);
+const idCompte = suivre(constl.suivreIdCompte);
 
 // Image profil
-const imageProfil = écouter(constl.profil.suivreImage);
+const imageProfil = suivre(constl.profil.suivreImage);
 const srcImgProfil = computed(() => {
   if (imageProfil.value) {
     return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
@@ -176,7 +176,7 @@ const sauvegarderImage = async (image?: {contenu: ArrayBuffer; fichier: string})
 // Nom profil
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = écouter(constl.profil.suivreNoms, {}, {});
+const noms = suivre(constl.profil.suivreNoms, {}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
@@ -190,7 +190,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Contacts
-const contacts = écouter(constl.profil.suivreContacts);
+const contacts = suivre(constl.profil.suivreContacts);
 
 // Onglets
 const onglet = ref('compte');

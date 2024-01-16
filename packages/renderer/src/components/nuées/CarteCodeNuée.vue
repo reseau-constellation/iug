@@ -10,12 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import type {bds} from '@constl/ipa';
-
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
-import {computed, ref} from 'vue';
-import {constellation, enregistrerÉcoute} from '../utils';
+import {computed} from 'vue';
+import {constellation, suivre} from '../utils';
 
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
@@ -97,13 +95,9 @@ constellationR::avecClientEtServeur(
   };
 });
 
-const infoTableaux = ref<bds.infoTableauAvecId[]>();
-enregistrerÉcoute(
-  constl.nuées.suivreTableauxNuée({
+const infoTableaux = suivre(constl.nuées.suivreTableauxNuée, {
     idNuée: props.id,
-    f: x => (infoTableaux.value = x),
-  }),
-);
+  });
 const clefTableau = computed(() => {
   return infoTableaux.value?.find(tbl => tbl.id === props.id)?.clef;
 });

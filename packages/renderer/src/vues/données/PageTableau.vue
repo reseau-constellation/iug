@@ -115,7 +115,7 @@ import {useDisplay, useRtl} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-import {constellation, écouter} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -142,12 +142,12 @@ const petitPousset = computed<{title: string; href?: string; disabled?: boolean}
 ]);
 
 // Autorisation
-const monAutorisation = écouter(constl.suivrePermission, {
+const monAutorisation = suivre(constl.suivrePermission, {
   idObjet: props.idTableau,
 });
 
 // Nom du tableau
-const nomsTableau = écouter(
+const nomsTableau = suivre(
   constl.tableaux.suivreNomsTableau,
   {
     idTableau: props.idTableau,
@@ -171,11 +171,11 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
 };
 
 // Nom de la BD
-const nomsBd = écouter(constl.bds.suivreNomsBd, {idBd: props.idBd}, {});
+const nomsBd = suivre(constl.bds.suivreNomsBd, {idBd: props.idBd}, {});
 const nomTraduitBd = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsBd);
 
 // Image
-const imageBd = écouter(constl.bds.suivreImage, {idBd: props.idBd});
+const imageBd = suivre(constl.bds.suivreImage, {idBd: props.idBd});
 const srcImgBd = computed(() => {
   if (imageBd.value) {
     return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
