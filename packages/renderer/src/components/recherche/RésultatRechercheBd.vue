@@ -18,12 +18,12 @@
       :auteurs="auteurs"
       :n-max="1"
     ></AuteursObjet>
-    <jeton-id-objet :id="résultat.id">
+    <jeton-id-objet :id="resultat.id">
       <TexteSurligneRecherche
         v-if="infoSourceId"
         :info="infoSourceId"
       />
-      <span v-else>{{ résultat.id }}</span>
+      <span v-else>{{ resultat.id }}</span>
     </jeton-id-objet>
     <JetonVariable
       v-if="infoSourceVariable"
@@ -56,7 +56,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
-  résultat: types.résultatRecherche<
+  resultat: types.résultatRecherche<
     types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
   >;
 }>();
@@ -70,7 +70,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Sources résultat directes (nom, description, id de la bd)
 const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {
   return computed(() => {
-    const {de: sourceRésultat, info} = props.résultat.résultatObjectif;
+    const {de: sourceRésultat, info} = props.resultat.résultatObjectif;
     if (info.type === 'texte' && sourceRésultat === de) {
       return info;
     } else {
@@ -94,7 +94,7 @@ const sourceObjetConnexe = (
   | undefined
 > => {
   return computed(() => {
-    const {de: sourceRésultat, clef, info} = props.résultat.résultatObjectif;
+    const {de: sourceRésultat, clef, info} = props.resultat.résultatObjectif;
     if (info.type === 'résultat' && sourceRésultat === de && clef) {
       return {
         id: clef,
@@ -109,13 +109,13 @@ const infoSourceVariable = sourceObjetConnexe('variable');
 const infoSourceMotClef = sourceObjetConnexe('motClef');
 
 // Nom
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.résultat.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.resultat.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.résultat.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.resultat.id}, {});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.résultat.id});
+const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.resultat.id});
 </script>

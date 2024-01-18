@@ -1,7 +1,7 @@
 <template>
   <v-autocomplete
     v-model="variableChoisie"
-    v-model:search="recherche"
+    v-model:search="requète"
     :items="résultatsRecherche?.filter(x => !(interdites || []).includes(x.id))"
     variant="outlined"
     @update:model-value="x => sélectionnée(x)"
@@ -41,11 +41,9 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 import JetonVariable from './JetonVariable.vue';
-import {constellation, enregistrerRecherche} from '/@/components/utils';
+import {constellation, rechercher} from '/@/components/utils';
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import NouvelleVariable from './NouvelleVariable.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -62,24 +60,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 // Recherche
 const variableChoisie = ref<string>();
-const recherche = ref<string>();
-const résultatsRecherche = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
-
-enregistrerRecherche({
-  requète: recherche,
-  réfRésultat: résultatsRecherche,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl.recherche.rechercherVariablesSelonTexte({
-      texte: requète,
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    }),
-  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl.recherche.rechercherVariables({
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    });
-  },
+const requète = ref('');
+const {résultats: résultatsRecherche} = rechercher({
+  requète,
+  fRecherche: constl.recherche.rechercherVariablesSelonTexte,
+  clefRequète: 'texte',
 });
 
 const sélectionnée = (idVar: string) => {

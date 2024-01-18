@@ -3,6 +3,7 @@ import type {types, ClientConstellation} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
 import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import Semaphore from 'semaphore-async-await';
 
 export const constellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
@@ -124,96 +125,70 @@ export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
   return computed(() => résultat.value); // Pour enlever la tentation de l'éditer directement
 };
 
-export const enregistrerRecherche = <T, V, U extends V>({
+export const rechercher  = <
+  T, 
+  U, 
+  C extends string,
+>({
   requète,
-  réfRésultat,
   fRecherche,
-  fRechercheDéfaut,
+  clefRequète,
 }: {
   requète: Ref<T | undefined>;
-  réfRésultat: Ref<U[] | undefined>;
-  fRecherche: ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }: {
-    requète: T;
-    nOuProfondeur: number;
-    réfRésultat: Ref<U[] | undefined>;
-  }) => Promise<
-    | types.schémaRetourFonctionRechercheParN
-    | types.schémaRetourFonctionRechercheParProfondeur
-    | undefined
-  >;
-  fRechercheDéfaut?: ({
-    nOuProfondeur,
-    réfRésultat,
-  }: {
-    nOuProfondeur: number;
-    réfRésultat: Ref<V[] | undefined>;
-  }) => Promise<
-    | types.schémaRetourFonctionRechercheParN
-    | types.schémaRetourFonctionRechercheParProfondeur
-    | undefined
-  >;
-}): Ref<number> => {
+  fRecherche: (args: {
+    f: (x: U[]) => void,
+    nRésultatsDésirés: number
+  }& {
+    [k in typeof clefRequète]: string}) => Promise<types.schémaRetourFonctionRechercheParN>;
+  clefRequète: C;
+}): {résultats: Ref<U[] | undefined>, n: Ref<number>} => {
+  const réfRésultat: Ref<U[] | undefined> = ref();
   let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
-  let fChangerNOuProfondeur: (n: number) => Promise<void>;
+  let fChangerN: (n: number) => Promise<void>;
 
   const nOuProfondeurRésultats = ref(10);
 
-  const vérifierSiParProfondeur = (
-    x: types.schémaRetourFonctionRechercheParN | types.schémaRetourFonctionRechercheParProfondeur,
-  ): x is types.schémaRetourFonctionRechercheParProfondeur => {
-    // @ts-expect-error Je ne sais pas comment faire ça
-    return !!x['fChangerProfondeur'];
-  };
-
+  const verrou = new Semaphore(1);
+  let annulé = false;
+  
   const lancerRecherche = async () => {
+    await verrou.acquire();
     if (fOublierRecherche) await fOublierRecherche();
+    if (annulé) return;
     if (requète.value) {
+      //@ts-expect-error Je ne sais pas comment faire ça
       const retour = await fRecherche({
-        requète: requète.value,
-        nOuProfondeur: nOuProfondeurRésultats.value,
-        réfRésultat,
+        [clefRequète]: requète.value,
+        nRésultatsDésirés: nOuProfondeurRésultats.value,
+        f: x => réfRésultat.value = x,
       });
 
       if (retour) {
         fOublierRecherche = retour.fOublier;
-        fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
-          ? retour.fChangerProfondeur
-          : retour.fChangerN;
+        fChangerN = retour.fChangerN;
       }
     } else {
-      if (fRechercheDéfaut) {
-        const retour = await fRechercheDéfaut({
-          nOuProfondeur: nOuProfondeurRésultats.value,
-          réfRésultat,
-        });
-
-        if (retour) {
-          fOublierRecherche = retour.fOublier;
-          fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
-            ? retour.fChangerProfondeur
-            : retour.fChangerN;
-        }
-      } else {
-        réfRésultat.value = [];
-      }
+      réfRésultat.value = [];
     }
+    verrou.release();
   };
 
   watch(requète, lancerRecherche);
   lancerRecherche();
   watchEffect(async () => {
-    if (fChangerNOuProfondeur) fChangerNOuProfondeur(nOuProfondeurRésultats.value);
+    if (fChangerN) fChangerN(nOuProfondeurRésultats.value);
   });
 
   onUnmounted(async () => {
+    annulé = true;
+    await verrou.acquire();
     if (fOublierRecherche) await fOublierRecherche();
   });
 
-  return nOuProfondeurRésultats;
+  return {
+    résultats: réfRésultat,
+    n: nOuProfondeurRésultats,
+  };
 };
 
 export class MultiChercheur {

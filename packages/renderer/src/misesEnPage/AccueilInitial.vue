@@ -93,9 +93,9 @@ onMounted(() => {
 const constellationPrète = ref(false);
 constl.obtIdCompte().then(() => (constellationPrète.value = true));
 
-const nomsProfil = suivre(constl.profil.suivreNoms);
+const compteInitialisé = suivre(constl.profil.suivreInitialisé);
 
 watchEffect(() => {
-  if (animationTerminée.value && nomsProfil.value && Object.keys(nomsProfil.value).length) entrer();
+  if (animationTerminée.value && compteInitialisé.value) entrer();
 });
 </script>

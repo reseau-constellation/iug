@@ -420,6 +420,7 @@ const créerCompte = async () => {
       const {contenu, fichier} = imageSélectionnée.value;
       await constl.profil?.sauvegarderImage({image: {content: contenu, path: fichier}});
     }
+    await constl.profil.initialiser();
   } else {
     if (!compteÀRejoindre.value || !codeSecret.value) return;
     await constl.demanderEtPuisRejoindreCompte({

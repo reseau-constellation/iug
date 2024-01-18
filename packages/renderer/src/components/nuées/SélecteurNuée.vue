@@ -1,7 +1,7 @@
 <template>
   <v-autocomplete
     v-model="idNuéeSélectionnée"
-    v-model:search="requèteRecherche"
+    v-model:search="requète"
     :items="résultatsRecherche"
   >
     <template #item="{item}">
@@ -10,12 +10,10 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 
 import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
-import {constellation, enregistrerRecherche} from '/@/components/utils';
+import {constellation, rechercher} from '/@/components/utils';
 import {watchEffect} from 'vue';
 
 const émettre = defineEmits<{
@@ -31,28 +29,10 @@ watchEffect(() => {
 });
 
 // Contrôles recherche
-const requèteRecherche = ref<string>();
-const résultatsRecherche =
-  ref<
-    types.résultatRecherche<
-      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
-    >[]
-  >();
-
-enregistrerRecherche({
-  requète: requèteRecherche,
-  réfRésultat: résultatsRecherche,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl.recherche.rechercherNuéesSelonTexte({
-      texte: requète,
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    }),
-  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl.recherche.rechercherNuées({
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    });
-  },
+const requète = ref('');
+const {résultats: résultatsRecherche} = rechercher({
+  requète,
+  fRecherche: constl.recherche.rechercherNuéesSelonTexte,
+  clefRequète: 'texte',
 });
 </script>

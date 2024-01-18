@@ -1,7 +1,7 @@
 <template>
   <v-autocomplete
     v-model="idsMotsClefsSélectionnées"
-    v-model:search="requèteRecherche"
+    v-model:search="requète"
     :items="résultatsPermisRecherche"
     :multiple="multiples"
   >
@@ -11,12 +11,10 @@
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
-import {constellation, enregistrerRecherche} from '/@/components/utils';
+import {constellation, rechercher} from '/@/components/utils';
 import {watchEffect} from 'vue';
 import {computed} from 'vue';
 
@@ -34,26 +32,14 @@ watchEffect(() => {
 });
 
 // Contrôles recherche
-const requèteRecherche = ref<string>();
-const résultatsRecherche = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
+const requète = ref('');
+const {résultats: résultatsRecherche} = rechercher({
+  requète: requète,
+  fRecherche: constl.recherche.rechercherMotsClefsSelonTexte,
+  clefRequète: 'texte',
+});
 const résultatsPermisRecherche = computed(() => {
   return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
 
-enregistrerRecherche({
-  requète: requèteRecherche,
-  réfRésultat: résultatsRecherche,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl.recherche.rechercherMotsClefsSelonTexte({
-      texte: requète,
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    }),
-  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl.recherche.rechercherMotsClefs({
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    });
-  },
-});
 </script>

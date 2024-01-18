@@ -23,7 +23,7 @@
           <template #activator="{props: propsActivateur}">
             <v-text-field
               v-bind="propsActivateur"
-              v-model="requèteRecherche"
+              v-model="requète"
               hide-details
               variant="outlined"
               density="compact"
@@ -90,12 +90,11 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import type {Ref} from 'vue';
 import {ref, computed} from 'vue';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerRecherche} from '/@/components/utils';
+import {constellation, rechercher} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
@@ -127,53 +126,26 @@ const fermer = () => {
 const ajouterCommeModérateur = ref(false);
 
 // Membres
-const membres = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
-const requèteRecherche = ref<string>();
-enregistrerRecherche({
-  requète: requèteRecherche,
-  réfRésultat: membres,
-  fRecherche: async ({
-    requète,
-    nOuProfondeur,
-    réfRésultat,
-  }: {
-    requète: string;
-    nOuProfondeur: number;
-    réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[] | undefined>;
-  }) =>
-    constl.recherche.rechercherProfilsSelonTexte({
-      texte: requète,
-      nRésultatsDésirés: nOuProfondeur,
-      f: x =>
-        (réfRésultat.value = x.sort((a, b) =>
-          a.résultatObjectif.score > b.résultatObjectif.score
-            ? -1
-            : a.résultatObjectif.score < b.résultatObjectif.score
-              ? 1
-              : 0,
-        )),
-    }),
-  fRechercheDéfaut: async ({
-    nOuProfondeur,
-    réfRésultat,
-  }: {
-    nOuProfondeur: number;
-    réfRésultat: Ref<types.résultatRecherche<types.infoRésultat>[] | undefined>;
-  }) =>
-    constl.réseau.rechercherMembres({
-      nRésultatsDésirés: nOuProfondeur,
-      f: x =>
-        (réfRésultat.value = x.sort((a, b) =>
-          a.résultatObjectif.score > b.résultatObjectif.score
-            ? -1
-            : a.résultatObjectif.score < b.résultatObjectif.score
-              ? 1
-              : 0,
-        )),
-    }),
+const requète = ref<string>();
+const {résultats: membres} = rechercher({
+  requète,
+  fRecherche: constl.recherche.rechercherProfilsSelonTexte,
+  clefRequète: 'texte',
 });
+const membresOrdonnées = computed(()=>{
+  const listeMembres = membres.value;
+  if (!listeMembres) return undefined;
+  return listeMembres.sort((a, b) =>
+          a.résultatObjectif.score > b.résultatObjectif.score
+            ? -1
+            : a.résultatObjectif.score < b.résultatObjectif.score
+              ? 1
+              : 0,
+        );
+});
+
 const membresDisponibles = computed(() => {
-  return membres.value?.filter(m => {
+  return membresOrdonnées.value?.filter(m => {
     if (sélectionnés.value.includes(m.id)) return false;
 
     if (ajouterCommeModérateur.value) {

@@ -6,17 +6,15 @@
     :multiple="multiples"
   >
     <template #item="{item}">
-      <RésultatRechercheBd :résultat="item.raw" />
+      <ResultatRechercheBd :resultat="item.raw" />
     </template>
   </v-autocomplete>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 
-import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
-import {constellation, enregistrerRecherche} from '/@/components/utils';
+import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+import {constellation, rechercher} from '/@/components/utils';
 import {watchEffect} from 'vue';
 import {computed} from 'vue';
 
@@ -34,31 +32,14 @@ watchEffect(() => {
 });
 
 // Contrôles recherche
-const requèteRecherche = ref<string>();
-const résultatsRecherche =
-  ref<
-    types.résultatRecherche<
-      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
-    >[]
-  >();
+const requèteRecherche = ref('');
 const résultatsPermisRecherche = computed(() => {
   return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
 
-enregistrerRecherche({
+const {résultats: résultatsRecherche} = rechercher({
   requète: requèteRecherche,
-  réfRésultat: résultatsRecherche,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) =>
-    await constl.recherche.rechercherBdsSelonTexte({
-      texte: requète,
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    }),
-  fRechercheDéfaut: async ({nOuProfondeur, réfRésultat}) => {
-    return await constl.recherche.rechercherBds({
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    });
-  },
+  fRecherche: constl.recherche.rechercherBdsSelonTexte,
+  clefRequète: 'texte',
 });
 </script>

@@ -8,7 +8,7 @@
       <v-card variant="flat">
         <v-card-text class="pt-0">
           <v-text-field
-            v-model="texteRecherche"
+            v-model="requète"
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
             clearable
@@ -109,18 +109,38 @@
                         <v-divider />
                       </template>
                     </NouvelleBd>
-                    <CarteBd
-                      v-for="bd in mesBds"
-                      :id="bd"
-                      :key="bd"
+                    <span
+                      v-if="requète"
                     >
-                      <template #activator="{props}">
-                        <ItemBd
-                          v-bind="props"
-                          :id="bd"
-                        />
-                      </template>
-                    </CarteBd>
+                      <CarteBd
+                        v-for="bd in résultatsRechercheBds"
+                        :id="bd.id"
+                        :key="bd.id"
+                      >
+                        <template #activator="{props}">
+                          <ResultatRechercheBd
+                            v-bind="props"
+                            :resultat="bd"
+                          />
+                        </template>
+                      </CarteBd>
+                    </span>
+                    <span
+                      v-else
+                    >
+                      <CarteBd
+                        v-for="bd in mesBds"
+                        :id="bd"
+                        :key="bd"
+                      >
+                        <template #activator="{props}">
+                          <ItemBd
+                            v-bind="props"
+                            :id="bd"
+                          />
+                        </template>
+                      </CarteBd>
+                    </span>
                   </v-list>
                 </v-card-text>
               </v-card>
@@ -199,14 +219,12 @@
 </template>
 
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {constellation, enregistrerRecherche, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
@@ -223,6 +241,8 @@ import CarteProjet from '/@/components/projets/CarteProjet.vue';
 import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
+import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+
 
 const constl = constellation();
 
@@ -279,22 +299,11 @@ const mesProjets = suivre(constl.projets.suivreProjets);
 const mesNuées = suivre(constl.nuées.suivreNuées);
 
 // Recherche
-const texteRecherche = ref<string>();
-const résulatsRecherche =
-  ref<
-    types.résultatRecherche<
-      types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
-    >[]
-  >();
-enregistrerRecherche({
-  requète: texteRecherche,
-  réfRésultat: résulatsRecherche,
-  fRecherche: async ({requète, nOuProfondeur, réfRésultat}) => {
-    return await constl.recherche.rechercherBdsSelonTexte({
-      texte: requète,
-      f: x => (réfRésultat.value = x),
-      nRésultatsDésirés: nOuProfondeur,
-    });
-  },
+const requète = ref('');
+const {résultats: résultatsRechercheBds} = rechercher({
+  requète,
+  fRecherche: constl.recherche.rechercherBdsSelonTexte,
+  clefRequète: 'texte',
+  // toutLeRéseau: false,
 });
 </script>
