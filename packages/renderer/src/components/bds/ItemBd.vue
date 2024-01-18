@@ -75,5 +75,4 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 // Variables
 const variables = suivre(constl.bds.suivreVariablesBd, {idBd: props.id});
-
 </script>

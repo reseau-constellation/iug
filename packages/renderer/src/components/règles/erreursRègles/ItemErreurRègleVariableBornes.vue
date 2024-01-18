@@ -72,7 +72,11 @@ const nomTableau = அகராதியிலிருந்து_மொழி
 
 // Nom variable référence
 const idVariable = computed(() => props.erreur.règle.règle.règle.détails.val);
-const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: idVariable.value}, {});
+const nomsVariable = suivre(
+  constl.variables.suivreNomsVariable,
+  {idVariable: idVariable.value},
+  {},
+);
 const nomVariable = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
 
 // Autorisation

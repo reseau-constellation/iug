@@ -44,7 +44,7 @@ export const suivre = <
     if (fOublier) await fOublier();
   });
 
-  return computed(()=>val.value);
+  return computed(() => val.value);
 };
 
 export const enregistrerÉcoute = <
@@ -125,23 +125,22 @@ export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
   return computed(() => résultat.value); // Pour enlever la tentation de l'éditer directement
 };
 
-export const rechercher  = <
-  T, 
-  U, 
-  C extends string,
->({
+export const rechercher = <T, U, C extends string>({
   requète,
   fRecherche,
   clefRequète,
 }: {
   requète: Ref<T | undefined>;
-  fRecherche: (args: {
-    f: (x: U[]) => void,
-    nRésultatsDésirés: number
-  }& {
-    [k in typeof clefRequète]: string}) => Promise<types.schémaRetourFonctionRechercheParN>;
+  fRecherche: (
+    args: {
+      f: (x: U[]) => void;
+      nRésultatsDésirés: number;
+    } & {
+      [k in typeof clefRequète]: string;
+    },
+  ) => Promise<types.schémaRetourFonctionRechercheParN>;
   clefRequète: C;
-}): {résultats: Ref<U[] | undefined>, n: Ref<number>} => {
+}): {résultats: Ref<U[] | undefined>; n: Ref<number>} => {
   const réfRésultat: Ref<U[] | undefined> = ref();
   let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
   let fChangerN: (n: number) => Promise<void>;
@@ -150,7 +149,7 @@ export const rechercher  = <
 
   const verrou = new Semaphore(1);
   let annulé = false;
-  
+
   const lancerRecherche = async () => {
     await verrou.acquire();
     if (fOublierRecherche) await fOublierRecherche();
@@ -160,7 +159,7 @@ export const rechercher  = <
       const retour = await fRecherche({
         [clefRequète]: requète.value,
         nRésultatsDésirés: nOuProfondeurRésultats.value,
-        f: x => réfRésultat.value = x,
+        f: x => (réfRésultat.value = x),
       });
 
       if (retour) {

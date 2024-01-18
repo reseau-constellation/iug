@@ -66,7 +66,11 @@ const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.rés
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {idVariable: props.résultat.id}, {});
+const descriptions = suivre(
+  constl.variables.suivreDescriptionsVariable,
+  {idVariable: props.résultat.id},
+  {},
+);
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs

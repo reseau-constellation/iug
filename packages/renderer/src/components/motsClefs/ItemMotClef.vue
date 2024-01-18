@@ -38,5 +38,4 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 // Descriptions
 const descriptions = suivre(constl.motsClefs.suivreDescriptionsMotClef, {idMotClef: props.id}, {});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
-
 </script>

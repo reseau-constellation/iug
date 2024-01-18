@@ -118,5 +118,4 @@ const descriptionTraduite = அகராதியிலிருந்து_ம
 
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursNuée, {idNuée: props.résultat.id});
-
 </script>

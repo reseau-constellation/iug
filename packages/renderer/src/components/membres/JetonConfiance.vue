@@ -80,7 +80,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const confiance = suivre(constl.réseau.suivreConfianceMonRéseauPourMembre, {idCompte: props.id, profondeur: 5}, 0);
+const confiance = suivre(
+  constl.réseau.suivreConfianceMonRéseauPourMembre,
+  {idCompte: props.id, profondeur: 5},
+  0,
+);
 
 // Message
 const messageConfiance = computed(() => {

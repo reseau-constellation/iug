@@ -109,9 +109,7 @@
                         <v-divider />
                       </template>
                     </NouvelleBd>
-                    <span
-                      v-if="requète"
-                    >
+                    <span v-if="requète">
                       <CarteBd
                         v-for="bd in résultatsRechercheBds"
                         :id="bd.id"
@@ -125,9 +123,7 @@
                         </template>
                       </CarteBd>
                     </span>
-                    <span
-                      v-else
-                    >
+                    <span v-else>
                       <CarteBd
                         v-for="bd in mesBds"
                         :id="bd"
@@ -242,7 +238,6 @@ import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
-
 
 const constl = constellation();
 

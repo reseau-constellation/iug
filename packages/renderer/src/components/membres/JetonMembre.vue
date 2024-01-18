@@ -55,8 +55,11 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const confiance = suivre(constl.réseau.suivreConfianceMonRéseauPourMembre, {idCompte: props.compte,
-    profondeur: 5}, 0);
+const confiance = suivre(
+  constl.réseau.suivreConfianceMonRéseauPourMembre,
+  {idCompte: props.compte, profondeur: 5},
+  0,
+);
 
 const messageConfiance = computed(() => {
   if (confiance.value < 0) {

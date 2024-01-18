@@ -96,8 +96,8 @@ constellationR::avecClientEtServeur(
 });
 
 const infoTableaux = suivre(constl.nuées.suivreTableauxNuée, {
-    idNuée: props.id,
-  });
+  idNuée: props.id,
+});
 const clefTableau = computed(() => {
   return infoTableaux.value?.find(tbl => tbl.id === props.id)?.clef;
 });

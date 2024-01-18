@@ -58,5 +58,4 @@ const nomTableau = அகராதியிலிருந்து_மொழி
 
 // Variables
 const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.id});
-
 </script>

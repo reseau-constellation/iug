@@ -132,16 +132,16 @@ const {résultats: membres} = rechercher({
   fRecherche: constl.recherche.rechercherProfilsSelonTexte,
   clefRequète: 'texte',
 });
-const membresOrdonnées = computed(()=>{
+const membresOrdonnées = computed(() => {
   const listeMembres = membres.value;
   if (!listeMembres) return undefined;
   return listeMembres.sort((a, b) =>
-          a.résultatObjectif.score > b.résultatObjectif.score
-            ? -1
-            : a.résultatObjectif.score < b.résultatObjectif.score
-              ? 1
-              : 0,
-        );
+    a.résultatObjectif.score > b.résultatObjectif.score
+      ? -1
+      : a.résultatObjectif.score < b.résultatObjectif.score
+        ? 1
+        : 0,
+  );
 });
 
 const membresDisponibles = computed(() => {

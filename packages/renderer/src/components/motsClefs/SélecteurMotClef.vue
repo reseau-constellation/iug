@@ -41,5 +41,4 @@ const {résultats: résultatsRecherche} = rechercher({
 const résultatsPermisRecherche = computed(() => {
   return résultatsRecherche.value?.filter(r => !(props.interdites || []).includes(r.id));
 });
-
 </script>

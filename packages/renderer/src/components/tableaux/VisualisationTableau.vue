@@ -225,7 +225,7 @@
 <script setup lang="ts">
 import type {tableaux, variables, types} from '@constl/ipa';
 
-import type { Ref} from 'vue';
+import type {Ref} from 'vue';
 import {ref, computed, type ComputedRef} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -254,7 +254,9 @@ const éditer = ref(false);
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
 
 // Colonnes du tableau
-const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {idTableau: props.idTableau}) as ComputedRef<tableaux.InfoColAvecCatégorie[]>;
+const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {
+  idTableau: props.idTableau,
+}) as ComputedRef<tableaux.InfoColAvecCatégorie[]>;
 
 // Entêtes
 const entêtes = computed(() => {
@@ -283,7 +285,9 @@ const triable = (catégorieBase: variables.catégorieBaseVariables): boolean => 
 };
 
 // Éléments
-const éléments = suivre(constl.tableaux.suivreDonnées, {idTableau: props.idTableau}) as Ref<tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]>;
+const éléments = suivre(constl.tableaux.suivreDonnées, {idTableau: props.idTableau}) as Ref<
+  tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]
+>;
 const filesSélectionnées = ref<string[]>([]);
 
 const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdListeDonnées}) => {
