@@ -1,2 +1,1 @@
-import{w as o}from"./index-xMlaZgtg.js";import{w as r}from"./index-kjy263JT.js";import"./index-wr59-EDT.js";import"./browser-PGHVSA1T.js";const i={libp2p:{transports:[o(),r()]}};export{i as default};
-//# sourceMappingURL=configTravailleur-splHMr9w.js.map
+import{w as r,__tla as a}from"./index-xMlaZgtg.js";import{w as _,__tla as l}from"./index-kjy263JT.js";import{__tla as o}from"./index-wr59-EDT.js";import{__tla as s}from"./browser-PGHVSA1T.js";let t,e=Promise.all([(()=>{try{return a}catch{}})(),(()=>{try{return l}catch{}})(),(()=>{try{return o}catch{}})(),(()=>{try{return s}catch{}})()]).then(async()=>{t={libp2p:{transports:[r(),_()]}}});export{e as __tla,t as default};

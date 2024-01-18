@@ -1,2 +1,1 @@
-import{x as e,a2 as a}from"./index-wr59-EDT.js";const t=e(a);export{t as r};
-//# sourceMappingURL=path-TnDa5oq_.js.map
+import{x as t,a2 as r,__tla as e}from"./index-wr59-EDT.js";let a,l=Promise.all([(()=>{try{return e}catch{}})()]).then(async()=>{a=t(r)});export{l as __tla,a as r};
