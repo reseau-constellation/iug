@@ -16,7 +16,7 @@ dependencies:
     version: 0.1.15
   '@constl/mandataire-electron-principal':
     specifier: ^0.2.14
-    version: 0.2.14(@constl/ipa@0.9.25)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.1.4)
+    version: 0.2.14(@constl/ipa@0.9.25)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.0)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.2.14
     version: 0.2.14
@@ -191,8 +191,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 28.1.4
-    version: 28.1.4
+    specifier: 28.2.0
+    version: 28.2.0
   electron-builder:
     specifier: 24.9.1
     version: 24.9.1
@@ -695,7 +695,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.25)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.1.4):
+  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@0.9.25)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.0):
     resolution: {integrity: sha512-n2w2akrrcuBS1L1lUXYf9uY9JjQ8OCiBUuWl2gbGJH4OMqPXRtinNXyHO52LRu3Pb2PDamL+vWn2BT1gYkckNg==}
     peerDependencies:
       '@constl/ipa': ^0.9.16
@@ -706,7 +706,7 @@ packages:
       '@constl/ipa': 0.9.25(wrtc@0.4.7)
       '@constl/mandataire': 0.1.15
       '@constl/serveur': 0.3.5(@constl/ipa@0.9.25)
-      electron: 28.1.4
+      electron: 28.2.0
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -5360,8 +5360,8 @@ packages:
       - supports-color
     dev: false
 
-  /electron@28.1.4:
-    resolution: {integrity: sha512-WE6go611KOhtH6efRPMnVC7FE7DCKnQ3ZyHFeI1DbaCy8OU4UjZ8/CZGcuZmZgRdxSBEHoHdgaJkWRHZzF0FOg==}
+  /electron@28.2.0:
+    resolution: {integrity: sha512-22SylXQQ9IHtwLw4D+Z4Si7OUpeDtpHfJVTjy3yv53iLg5zJKKPOCWT4ZwgYGHQZ0eldyBrYBHF/P9FPd2CcVQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
