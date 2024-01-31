@@ -32,7 +32,7 @@
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,vue,json}\""
   },
   "devDependencies": {
-    "@constl/utils-tests": "^0.2.3",
+    "@constl/utils-tests": "^1.0.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/d3": "^7.4.3",
     "@types/deep-equal": "^1.0.4",
