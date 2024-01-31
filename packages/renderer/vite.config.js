@@ -7,7 +7,6 @@ import {renderer} from 'unplugin-auto-expose';
 import {join} from 'node:path';
 import {injectAppVersion} from '../../version/inject-app-version-plugin.mjs';
 import {copyFileSync} from 'fs';
-import topLevelAwait from 'vite-plugin-top-level-await';
 
 import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
 import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill';
@@ -32,7 +31,7 @@ const générerExtentions = () => {
     vuetify({
       autoImport: true,
     }),
-    topLevelAwait(),
+
   ];
   if (pourÉlectron) {
     extentions.push(
@@ -122,7 +121,7 @@ const config = {
   },
   build: {
     sourcemap: true,
-    target: pourÉlectron ? `chrome${chrome}` : 'es2020',
+    target: pourÉlectron ? `chrome${chrome}` : 'esnext',
     outDir: pourÉlectron ? 'dist' : 'dist/web',
     assetsDir: '.',
     rollupOptions: {
@@ -136,7 +135,7 @@ const config = {
   optimizeDeps: {
     exclude: dépendsÀExclure,
     esbuildOptions: {
-      target: 'es2020',
+      target: 'esnext',
     },
   },
   test: {
