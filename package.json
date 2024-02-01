@@ -48,7 +48,7 @@
     "@vitest/coverage-istanbul": "^1.2.0",
     "@vue/test-utils": "2.4.4",
     "cross-env": "7.0.3",
-    "electron": "28.2.0",
+    "electron": "28.2.1",
     "electron-builder": "24.9.1",
     "eslint": "8.56.0",
     "eslint-plugin-vue": "9.21.1",
