@@ -51,7 +51,7 @@
     "electron": "28.2.0",
     "electron-builder": "24.9.1",
     "eslint": "8.56.0",
-    "eslint-plugin-vue": "9.21.0",
+    "eslint-plugin-vue": "9.21.1",
     "happy-dom": "13.3.8",
     "nano-staged": "0.8.0",
     "node-pre-gyp": "^0.17.0",
