@@ -146,6 +146,7 @@
     },
     "membres": {
       "contacts": "Contacts",
+      "contact": "Site internet",
       "confiance": {
         "bloqué": "Bloqué",
         "inconnu": "Inconnu",

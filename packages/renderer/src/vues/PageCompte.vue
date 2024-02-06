@@ -54,7 +54,7 @@
       <template #activator="{props: propsActivateur}">
         <v-chip
           v-bind="propsActivateur"
-          class="mx-2 text-disabled"
+          class="mx-2"
           variant="outlined"
           label
           append-icon="mdi-plus"

@@ -2,13 +2,13 @@
   <v-container class="text-center">
     <TitrePage :titre="t('communs.constellation')" />
     <v-row class="mt-2">
-      <v-col :cols="mdAndUp ? 4 : 12">
+      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
         <PanelDécouvrir />
       </v-col>
-      <v-col :cols="mdAndUp ? 4 : 12">
+      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
         <PanelApprendre />
       </v-col>
-      <v-col :cols="mdAndUp ? 4 : 12">
+      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
         <PanelNotifications />
       </v-col>
     </v-row>
@@ -33,5 +33,5 @@ import {useDisplay} from 'vuetify';
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
-const {mdAndUp} = useDisplay();
+const {mdAndUp, smAndUp} = useDisplay();
 </script>
