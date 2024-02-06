@@ -26,19 +26,19 @@
             <v-list>
               <v-list-item
                 prepend-icon="mdi-creation-outline"
-                :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 :title="t('bds.nouvelle.créerNouvelle')"
                 @click="() => suivreCheminementNouvelle()"
               />
               <v-list-item
                 prepend-icon="mdi-table"
-                :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 :title="t('bds.nouvelle.copierDeBd')"
                 @click="() => suivreCheminementGabarit('bd')"
               />
               <v-list-item
                 prepend-icon="mdi-table-multiple"
-                :append-icon="isRtl ? 'chevron-left' : 'chevron-right'"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 :title="t('bds.nouvelle.copierDeNuée')"
                 @click="() => suivreCheminementGabarit('nuée')"
               />
