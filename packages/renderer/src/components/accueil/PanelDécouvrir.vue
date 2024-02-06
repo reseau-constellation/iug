@@ -14,15 +14,17 @@
         class="ma-2"
         prepend-icon="mdi-database"
         :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
+        @click="()=>$router.push(encodeURI('./recherche'))"
       >
-        Les données
+        {{ t('accueil.page.découvrir.données') }}
       </v-btn>
       <v-btn
         class="ma-2"
         prepend-icon="mdi-chat-outline"
         :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
+        @click="() => ouvrirLien(encodeURI(URL_COMMUNAUTÉ))"
       >
-        Notre communauté
+        {{ t('accueil.page.découvrir.communauté') }}
       </v-btn>
     </v-card-text>
   </v-card>
@@ -30,6 +32,8 @@
 <script lang="ts" setup>
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import { useRtl, useTheme } from 'vuetify';
+import { ouvrirLien } from '/@/utils';
+import { URL_COMMUNAUTÉ } from '/@/consts';
 
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

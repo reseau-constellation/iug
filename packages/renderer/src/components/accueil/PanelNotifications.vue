@@ -24,7 +24,7 @@
         height="100"
       >
         <v-list-item v-if="!notifications.length">
-          <v-list-item-title>Aucune notification</v-list-item-title>
+          <v-list-item-title>{{ t('accueil.page.notifications.aucune') }}</v-list-item-title>
         </v-list-item>
         <v-list-item
           v-for="notif in notifications"

@@ -4,6 +4,8 @@ export const IPA_TÉLÉCHARGEMENTS = 'https://api.github.com/repos/reseau-conste
 
 export const URL_DOCUMENTATION = 'https://docu.réseau-constellation.ca';
 export const URL_APPLI = 'https://appli.réseau-constellation.ca';
+export const URL_TUTORIELS = 'https://docu.réseau-constellation.ca/exemples/créationCompte.html';
+export const URL_COMMUNAUTÉ = 'https://matrix.to/#/!poDYzupTbvLiBsnQSr:matrix.org?via=matrix.org';
 
 export const COURRIEL_SIGNALEMENTS = 'julien.malard@mail.mcgill.ca';
 

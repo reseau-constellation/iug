@@ -15,8 +15,9 @@
         class="ma-2"
         prepend-icon="mdi-school-outline"
         :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
+        @click="() => ouvrirLien(URL_TUTORIELS)"
       >
-        Suivre un tutoriel
+        {{ t('accueil.page.apprendre.tutoriel') }}
       </v-btn>
       <v-btn
         class="ma-2"
@@ -24,7 +25,7 @@
         :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
         @click="() => ouvrirLien(URL_DOCUMENTATION)"
       >
-        La documentation
+        {{ t('accueil.page.apprendre.docu') }}
       </v-btn>
     </v-card-text>
   </v-card>
@@ -32,7 +33,7 @@
 <script lang="ts" setup>
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
-import {URL_DOCUMENTATION} from '/@/consts';
+import {URL_DOCUMENTATION, URL_TUTORIELS} from '/@/consts';
 import { onMounted, ref } from 'vue';
 import { useRtl } from 'vuetify';
 

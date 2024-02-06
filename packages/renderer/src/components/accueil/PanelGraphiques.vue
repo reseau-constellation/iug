@@ -12,29 +12,29 @@
       >
         <v-card-text>
           <graphique-historique-ligne
-            titre="Mes bases de données"
+            :titre="t('accueil.page.graphiques.bds')"
             :vals="obtHistorique('mesBds')"
             couleur="#6e40aa"
           />
           <graphique-historique-ligne
-            titre="Mes projets"
+            :titre="t('accueil.page.graphiques.projets')"
             couleur="#bf3caf"
           />
           <graphique-historique-ligne
-            titre="Mes nuées"
+            :titre="t('accueil.page.graphiques.nuées')"
             :vals="obtHistorique('mesNuées')"
             couleur="#fe4b83"
           />
           <graphique-historique-ligne
-            titre="Réplications des mes données"
+            :titre="t('accueil.page.graphiques.réplications')"
             couleur="#ff7847"
           />
           <graphique-historique-ligne
-            titre="Mes connaissances"
+            :titre="t('accueil.page.graphiques.connaissances')"
             couleur="#e2b72f"
           />
           <graphique-historique-ligne
-            titre="Mon réseau"
+            :titre="t('accueil.page.graphiques.réseau')"
             couleur="#aff05b"
           />
         </v-card-text>

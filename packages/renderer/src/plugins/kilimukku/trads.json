@@ -69,19 +69,34 @@
       },
       "page": {
         "découvrir": {
-          "titre": "Découvrir"
+          "titre": "Découvrir",
+          "données": "Les données",
+          "communauté": "Notre communauté"
         },
         "graphiques": {
-          "titre": "Mon activité"
+          "titre": "Mon activité",
+          "bds": "Mes bases de données",
+          "projets": "Mes projets",
+          "nuées": "Mes nuées",
+          "réplications": "Réplications des mes données",
+          "connaissances": "Mes connaissances",
+          "réseau": "Mon réseau"
         },
         "apprendre": {
-          "titre": "Apprendre"
+          "titre": "Apprendre",
+          "tutoriel": "Suivre un tutoriel",
+          "docu": "La documentation"
         },
         "notifications": {
-          "titre": "Notifications"
+          "titre": "Notifications",
+          "aucune": "Aucune notification"
         },
         "récents": {
-          "titre": "Documents récents"
+          "titre": "Documents récents",
+          "nouveau": "Nouveau document",
+          "nouvelleBd": "Base de données",
+          "nouveauProjet": "Projet",
+          "nouvelleNuée": "Science citoyenne"
         }
       }
     },

@@ -13,7 +13,7 @@
       >
         <v-card-item>
           <v-card-title>
-            <v-avatar><v-icon>mdi-plus</v-icon></v-avatar>Nouveau document
+            <v-avatar><v-icon>mdi-plus</v-icon></v-avatar>{{ t('accueil.page.récents.nouveau') }}
           </v-card-title>
         </v-card-item>
         <v-card-text>
@@ -23,7 +23,7 @@
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('bd')"
-                  title="Base de données"
+                  :title="t('accueil.page.récents.nouvelleBd')"
                 ></v-list-item>
               </template>
             </nouvelle-bd>
@@ -32,7 +32,7 @@
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('projet')"
-                  title="Projet"
+                  :title="t('accueil.page.récents.nouveauProjet')"
                 ></v-list-item>
               </template>
             </nouveau-projet>
@@ -41,7 +41,7 @@
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('nuée')"
-                  title="Science citoyenne"
+                  :title="t('accueil.page.récents.nouvelleNuée')"
                 ></v-list-item>
               </template>
             </nouvelle-nuee>
