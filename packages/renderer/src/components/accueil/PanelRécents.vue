@@ -6,7 +6,7 @@
       </p>
       <v-card-title> </v-card-title>
     </v-col>
-    <v-col :cols="mdAndUp ? 4 : 12">
+    <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
       <v-card
         class="text-start"
         height="230"
@@ -52,7 +52,7 @@
     <v-col
       v-for="r in récentsÀMontrer"
       :key="r.id"
-      :cols="smAndUp ? 4 : 12"
+      :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)"
     >
       <carte-document-recent
         :id="r.id"

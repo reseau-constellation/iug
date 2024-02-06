@@ -8,7 +8,7 @@
     <v-col cols="12">
       <v-card
         class="text-start"
-        variant="outlined"
+        variant="elevated"
       >
         <v-card-text>
           <graphique-historique-ligne
@@ -43,7 +43,7 @@
   </v-row>
 </template>
 <script lang="ts" setup>
-import {computed, watchEffect} from 'vue';
+import {computed, onMounted, ref, watchEffect} from 'vue';
 import {storeToRefs} from 'pinia';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -60,6 +60,11 @@ const historique = utiliserHistorique({});
 const constl = constellation();
 
 const {obtHistorique} = storeToRefs(historique);
+
+const imageFond = ref<string>();
+onMounted(async ()=>{
+  imageFond.value = (await import('/@/assets/fonds/trianglify-lowres.png')).default;
+});
 
 const bds = suivre(constl.bds.suivreBds);
 const nBds = computed(() => bds.value?.length);
