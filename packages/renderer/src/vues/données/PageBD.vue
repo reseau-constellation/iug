@@ -632,7 +632,7 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) => {
   if (image) {
-    await constl.profil.sauvegarderImage({image: {content: image.contenu, path: image.fichier}});
+    await constl.profil.sauvegarderImage({image: {contenu: new Uint8Array(image.contenu), nomFichier: image.fichier}});
   } else {
     await constl.profil.effacerImage();
   }

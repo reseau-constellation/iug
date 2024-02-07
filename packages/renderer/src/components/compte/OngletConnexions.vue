@@ -57,9 +57,9 @@
         >
           <ItemConnexionSFIP
             v-for="c in connexionsSFIP"
-            :key="c.adresse"
-            :pair="c.pair"
-            :adresse="c.adresse"
+            :key="c"
+            :pair="c"
+            :adresse="c"
           />
         </v-list>
       </div>

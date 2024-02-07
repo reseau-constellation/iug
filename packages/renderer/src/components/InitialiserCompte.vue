@@ -418,7 +418,7 @@ const créerCompte = async () => {
     }
     if (imageSélectionnée.value) {
       const {contenu, fichier} = imageSélectionnée.value;
-      await constl.profil?.sauvegarderImage({image: {content: contenu, path: fichier}});
+      await constl.profil?.sauvegarderImage({image: { contenu: new Uint8Array(contenu), nomFichier: fichier}});
     }
     await constl.profil.initialiser();
   } else {

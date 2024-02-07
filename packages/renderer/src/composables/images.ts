@@ -94,9 +94,6 @@ export const utiliserImagesDéco = function (thème?: string): {
           );
         }
       }
-      console.log(name.value);
-      
-      console.log(imageDéco.value);
     });
     return imageDéco;
   };
