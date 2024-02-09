@@ -11,9 +11,18 @@
       </v-card-title>
       <v-card-subtitle>{{ texteVuIlYA }}</v-card-subtitle>
     </v-card-item>
-    <v-card-text class="d-flex align-center text-center">
+    <v-card-text class="align-center text-center">
+      <image-editable
+        class="my-0"
+        :src-image="srcImg"
+        :img-defaut="imgDéfaut"
+        :editable="false"
+        :taille-avatar="mdAndUp ? 175 : 100"
+        :max-taille-image="300"
+      />
+
       <v-btn
-        class="ma-auto"
+        class="mx-auto"
         color="primary"
         variant="text"
         append-icon="mdi-open-in-new"
@@ -36,17 +45,22 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
+import { useDisplay } from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation, icôneObjet, suivre} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
+import ImageEditable from '../communs/ImageEditable.vue';
+import { utiliserImagesDéco } from '/@/composables/images';
 
 const props = defineProps<{id: string; a: number}>();
 
+const { mdAndUp } = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
+const {obtImageDéco} = utiliserImagesDéco();
 
 const constl = constellation();
 
@@ -61,6 +75,17 @@ const icôneTypeItem = computed(() => {
   const icône = icôneObjet(typeObjet.value);
   return icône || 'mdi-file-document-outline';
 });
+
+// À faire : différencier par type d'objet
+const image = suivre(constl.bds.suivreImage, {idBd: props.id});
+const srcImg = computed(() => {
+  if (image.value) {
+    return URL.createObjectURL(new Blob([image.value], {type: 'image'}));
+  } else {
+    return undefined;
+  }
+});
+const imgDéfaut = obtImageDéco('logoBD');
 
 const {texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.a, t});
 

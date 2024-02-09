@@ -11,7 +11,7 @@
     </template>
   </v-autocomplete>
   <v-list>
-    <NouveauMotClef @nouveau="(id)=>sélectionner(id)">
+    <NouveauMotClef @nouveau="id => sélectionner(id)">
       <template #activator="{props: propsActivateur}">
         <v-list-item
           v-bind="propsActivateur"
@@ -31,7 +31,7 @@ import {constellation, rechercher} from '/@/components/utils';
 import {watchEffect} from 'vue';
 import {computed} from 'vue';
 import NouveauMotClef from './NouveauMotClef.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{multiples: boolean; interdites?: string[]}>();
 const émettre = defineEmits<{
@@ -64,6 +64,4 @@ const sélectionner = ({id}: {id: string}) => {
   console.log(id);
   // à faire
 };
-
-
 </script>

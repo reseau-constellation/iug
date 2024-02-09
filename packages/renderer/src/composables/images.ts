@@ -1,11 +1,17 @@
 import type {Ref} from 'vue';
 import {computed, ref, watchEffect} from 'vue';
-import { useTheme } from 'vuetify';
+import {useTheme} from 'vuetify';
 import {utiliserÉtatThème} from '/@/état/thème';
 import {storeToRefs} from 'pinia';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-const imagesThème: {[key: string]: {[key: string]: Promise<typeof import('*.svg')> | {[key: string]: Promise<typeof import('*.svg')>}}} = {
+const imagesThème: {
+  [key: string]: {
+    [key: string]:
+      | Promise<typeof import('*.svg')>
+      | {[key: string]: Promise<typeof import('*.svg')>};
+  };
+} = {
   constr: {
     unDraw: import('/@/assets/undraw/undraw_under_construction_46pa.svg'),
     வவவ: import('/@/assets/வவவ/குயவர்.svg'),
@@ -68,7 +74,7 @@ export const utiliserImagesDéco = function (thème?: string): {
 } {
   const obtImageDéco = (clef: string): Ref<string | undefined> => {
     const étatThème = utiliserÉtatThème();
-    const { name } = useTheme();
+    const {name} = useTheme();
     const {thèmeImages} = storeToRefs(étatThème);
     const imageDéco = ref<string>();
     const thèmeFinal = computed(() => thème || thèmeImages.value);
@@ -80,7 +86,8 @@ export const utiliserImagesDéco = function (thème?: string): {
         clef = options[Math.floor(Math.random() * options.length)];
       }
       if (imagesThème[clef]) {
-        const spécImage = imagesThème[clef][thèmeFinal.value] || Object.values(imagesThème[clef])[0];
+        const spécImage =
+          imagesThème[clef][thèmeFinal.value] || Object.values(imagesThème[clef])[0];
         if (spécImage.then) {
           // eslint-disable-next-line @typescript-eslint/consistent-type-imports
           (spécImage as Promise<typeof import('.svg')>).then(
@@ -88,7 +95,7 @@ export const utiliserImagesDéco = function (thème?: string): {
           );
         } else {
           // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-          const spécParThème = (spécImage as {[clef: string]: Promise<typeof import('.svg')>});
+          const spécParThème = spécImage as {[clef: string]: Promise<typeof import('.svg')>};
           (spécParThème[name.value] || Object.values(spécParThème)[0]).then(
             svg => (imageDéco.value = svg?.default),
           );

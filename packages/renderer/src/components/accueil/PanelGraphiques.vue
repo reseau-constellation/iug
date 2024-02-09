@@ -62,7 +62,7 @@ const constl = constellation();
 const {obtHistorique} = storeToRefs(historique);
 
 const imageFond = ref<string>();
-onMounted(async ()=>{
+onMounted(async () => {
   imageFond.value = (await import('/@/assets/fonds/trianglify-lowres.png')).default;
 });
 

@@ -2,13 +2,13 @@
   <v-container class="text-center">
     <TitrePage :titre="t('communs.constellation')" />
     <v-row class="mt-2">
-      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
+      <v-col :cols="mdAndUp ? 4 : smAndUp ? 6 : 12">
         <PanelDécouvrir />
       </v-col>
-      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
+      <v-col :cols="mdAndUp ? 4 : smAndUp ? 6 : 12">
         <PanelApprendre />
       </v-col>
-      <v-col :cols="mdAndUp ? 4 : (smAndUp ? 6: 12)">
+      <v-col :cols="mdAndUp ? 4 : smAndUp ? 6 : 12">
         <PanelNotifications />
       </v-col>
     </v-row>

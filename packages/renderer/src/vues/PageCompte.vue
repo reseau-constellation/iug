@@ -167,7 +167,9 @@ const imgDéfaut = obtImageDéco('profil');
 
 const sauvegarderImage = async (image?: {contenu: ArrayBuffer; fichier: string}) => {
   if (image) {
-    await constl.profil.sauvegarderImage({image: {contenu: new Uint8Array(image.contenu), nomFichier: image.fichier}});
+    await constl.profil.sauvegarderImage({
+      image: {contenu: new Uint8Array(image.contenu), nomFichier: image.fichier},
+    });
   } else {
     await constl.profil.effacerImage();
   }

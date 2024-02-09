@@ -95,7 +95,7 @@
                     (comptesEnLigneSansMoi.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -418,7 +418,9 @@ const créerCompte = async () => {
     }
     if (imageSélectionnée.value) {
       const {contenu, fichier} = imageSélectionnée.value;
-      await constl.profil?.sauvegarderImage({image: { contenu: new Uint8Array(contenu), nomFichier: fichier}});
+      await constl.profil?.sauvegarderImage({
+        image: {contenu: new Uint8Array(contenu), nomFichier: fichier},
+      });
     }
     await constl.profil.initialiser();
   } else {
