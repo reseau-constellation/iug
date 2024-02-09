@@ -31,7 +31,6 @@ const générerExtentions = () => {
     vuetify({
       autoImport: true,
     }),
-
   ];
   if (pourÉlectron) {
     extentions.push(
