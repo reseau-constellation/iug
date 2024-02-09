@@ -9,32 +9,32 @@ dependencies:
     specifier: 1.0.13
     version: 1.0.13
   '@constl/ipa':
-    specifier: 1.0.1-76af3ada9.0
-    version: 1.0.1-76af3ada9.0(react-native@0.73.4)(wrtc@0.4.7)
+    specifier: 1.0.1-ec2b9d2da.0
+    version: 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
   '@constl/mandataire':
     specifier: ^0.1.15
     version: 0.1.15
   '@constl/mandataire-electron-principal':
     specifier: ^0.2.14
-    version: 0.2.14(@constl/ipa@1.0.1-76af3ada9.0)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.1)
+    version: 0.2.14(@constl/ipa@1.0.1-ec2b9d2da.0)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.1)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.2.14
     version: 0.2.14
   '@constl/serveur':
     specifier: ^0.3.5
-    version: 0.3.5(@constl/ipa@1.0.1-76af3ada9.0)
+    version: 0.3.5(@constl/ipa@1.0.1-ec2b9d2da.0)
   '@esbuild-plugins/node-globals-polyfill':
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.20.0)
   '@lassi-js/kili':
     specifier: ^0.3.6
-    version: 0.3.6(@constl/ipa@1.0.1-76af3ada9.0)
+    version: 0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0)
   '@lassi-js/kilimukku':
     specifier: ^1.1.1
     version: 1.1.1(wrtc@0.4.7)
   '@lassi-js/kilimukku-vue':
     specifier: 1.0.13-77a4897.0
-    version: 1.0.13-77a4897.0(@constl/ipa@1.0.1-76af3ada9.0)(react-native@0.73.4)(vue@3.4.15)(wrtc@0.4.7)
+    version: 1.0.13-77a4897.0(@constl/ipa@1.0.1-ec2b9d2da.0)(react-native@0.73.4)(vue@3.4.15)(wrtc@0.4.7)
   '@mdi/font':
     specifier: ^7.4.47
     version: 7.4.47
@@ -70,7 +70,7 @@ dependencies:
     version: 6.1.7
   ennikkai:
     specifier: ^2.2.5
-    version: 2.2.5(@constl/ipa@1.0.1-76af3ada9.0)
+    version: 2.2.5(@constl/ipa@1.0.1-ec2b9d2da.0)
   events:
     specifier: ^3.3.0
     version: 3.3.0
@@ -97,7 +97,7 @@ dependencies:
     version: 4.8.0
   nuchabal:
     specifier: ^3.1.8
-    version: 3.1.8(@constl/ipa@1.0.1-76af3ada9.0)
+    version: 3.1.8(@constl/ipa@1.0.1-ec2b9d2da.0)
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.15)
@@ -2009,7 +2009,80 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@1.0.1-76af3ada9.0)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.1):
+  /@constl/ipa@1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7):
+    resolution: {integrity: sha512-fxtECyyQUN5kUGOoggXLhK6PWUjQTnPNN5diR33JPMH1LL1eWMv2cKIqtZGRZ5ozHYnwszAsonSEPIvAMHQVNA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      wrtc: ^0.4.7
+    dependencies:
+      '@achingbrain/nat-port-mapper': 1.0.8
+      '@chainsafe/libp2p-gossipsub': 11.2.1
+      '@chainsafe/libp2p-noise': 15.0.0
+      '@chainsafe/libp2p-yamux': 6.0.2
+      '@chriscdn/promise-semaphore': 2.0.9
+      '@constl/bohr-db': 1.1.0(react-native@0.73.4)
+      '@constl/electron-webrtc-relay': 0.2.3
+      '@constl/mandataire': 0.1.15
+      '@constl/utils-ipa': 1.0.0
+      '@helia/block-brokers': 2.0.1
+      '@helia/unixfs': 3.0.0
+      '@ipld/dag-cbor': 9.1.0
+      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0)
+      '@libp2p/bootstrap': 10.0.15
+      '@libp2p/circuit-relay-v2': 1.0.15
+      '@libp2p/identify': 1.0.14
+      '@libp2p/interface-transport': 4.0.3
+      '@libp2p/tcp': 9.0.15
+      '@libp2p/webrtc': 4.0.19(react-native@0.73.4)
+      '@libp2p/webrtc-direct': 6.0.0
+      '@libp2p/websockets': 8.0.15
+      '@libp2p/webtransport': 4.0.19
+      '@localfirst/auth': 5.4.1
+      '@localfirst/crypto': 5.4.1
+      '@orbitdb/core': 2.0.1
+      '@orbitdb/feed-db': 1.0.0(react-native@0.73.4)
+      '@orbitdb/ordered-keyvalue-db': 1.0.0(react-native@0.73.4)
+      '@orbitdb/set-db': 1.0.0(react-native@0.73.4)
+      ajv: 8.12.0
+      approx-string-match: 2.0.0
+      axios: 1.6.7
+      blockstore-level: 1.1.7
+      browser-fs-access: 0.35.0
+      chokidar: 3.6.0
+      crypto-js: 4.2.0
+      deep-equal: 2.2.3
+      deepcopy: 2.1.0
+      ennikkai: 2.2.5(@constl/ipa@1.0.1-ec2b9d2da.0)
+      env-paths: 3.0.0
+      events: 3.3.0
+      genversion: 3.2.0
+      geojson-validation: 1.0.2
+      helia: 3.0.1(react-native@0.73.4)
+      indexed-db-stream: 1.0.0
+      iso-constants: github.com/inverted-capital/iso-constants/2af6fdfb2cacaa03ebd58543703918783e62649f
+      it-to-buffer: 4.0.5
+      jszip: 3.10.1
+      lodash: 4.17.21
+      multiformats: 13.0.1
+      node-pre-gyp: 0.17.0
+      prom-client: 15.1.0
+      ssim: 0.0.0
+      tslib: 2.6.2
+      uint8arrays: 5.0.2
+      uuid: 9.0.1
+      wherearewe: 2.0.1
+      wrtc: 0.4.7
+      xlsx: '@cdn.sheetjs.com/xlsx-0.19.1/xlsx-0.19.1.tgz'
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - react-native
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /@constl/mandataire-electron-principal@0.2.14(@constl/ipa@1.0.1-ec2b9d2da.0)(@constl/mandataire@0.1.15)(@constl/serveur@0.3.5)(electron@28.2.1):
     resolution: {integrity: sha512-n2w2akrrcuBS1L1lUXYf9uY9JjQ8OCiBUuWl2gbGJH4OMqPXRtinNXyHO52LRu3Pb2PDamL+vWn2BT1gYkckNg==}
     peerDependencies:
       '@constl/ipa': ^0.9.16
@@ -2017,9 +2090,9 @@ packages:
       '@constl/serveur': ^0.3.5
       electron: ^27.0.4
     dependencies:
-      '@constl/ipa': 1.0.1-76af3ada9.0(react-native@0.73.4)(wrtc@0.4.7)
+      '@constl/ipa': 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
       '@constl/mandataire': 0.1.15
-      '@constl/serveur': 0.3.5(@constl/ipa@1.0.1-76af3ada9.0)
+      '@constl/serveur': 0.3.5(@constl/ipa@1.0.1-ec2b9d2da.0)
       electron: 28.2.1
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
@@ -2055,7 +2128,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/serveur@0.3.5(@constl/ipa@1.0.1-76af3ada9.0):
+  /@constl/serveur@0.3.5(@constl/ipa@1.0.1-ec2b9d2da.0):
     resolution: {integrity: sha512-hm/B7zXE0ZQX77i5Q0Rtd56HbJPi6KIW0mhB2A4/6CCKvAEouQ1CnB2t0/Mm0krCxP30TkfAJDps6z/FtjKifA==}
     engines: {node: '>=20'}
     hasBin: true
@@ -2063,7 +2136,7 @@ packages:
       '@constl/ipa': ^0.9.8
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.12
-      '@constl/ipa': 1.0.1-76af3ada9.0(react-native@0.73.4)(wrtc@0.4.7)
+      '@constl/ipa': 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
       bufferutil: 4.0.8
       chalk: 5.3.0
       core-js: 3.35.1
@@ -2947,6 +3020,20 @@ packages:
       - supports-color
     dev: false
 
+  /@lassi-js/kili@0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0):
+    resolution: {integrity: sha512-tahzK8iaCfg/sNAqbZKnow5W1PoQDXiTBXvFkTUqwn6zPbbvY/a8L6kDWm6ZwWqWQ4VupqC59kMSslLgGuNOAA==}
+    peerDependencies:
+      '@constl/ipa': ^0.9.15
+    dependencies:
+      '@achingbrain/nat-port-mapper': 1.0.8
+      '@constl/ipa': 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
+      '@constl/utils-ipa': 0.2.4
+      '@orbitdb/core': 1.0.2
+      deepcopy: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@lassi-js/kili@0.3.7-6e0bcf1.0(@constl/ipa@1.0.1-76af3ada9.0):
     resolution: {integrity: sha512-LDlVNgcOZeg13RSupOoiJuyRRvk1QzZGtJSG18ZgGU6xzlXPHbftOq1UBJADUdktTtRzn5O9lnp3FVPP1/yI1Q==}
     peerDependencies:
@@ -2961,18 +3048,18 @@ packages:
       - supports-color
     dev: false
 
-  /@lassi-js/kilimukku-vue@1.0.13-77a4897.0(@constl/ipa@1.0.1-76af3ada9.0)(react-native@0.73.4)(vue@3.4.15)(wrtc@0.4.7):
+  /@lassi-js/kilimukku-vue@1.0.13-77a4897.0(@constl/ipa@1.0.1-ec2b9d2da.0)(react-native@0.73.4)(vue@3.4.15)(wrtc@0.4.7):
     resolution: {integrity: sha512-iuGKQ8VjMxxFvTaRXwqz7VZ8t9LP4clWWbcMbVZZQyPCMMYkLZbMEUI7YighLA4HoCcOb6JgxoYJgw7UuH29wQ==}
     peerDependencies:
       vue: ^3.3.8
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
-      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-76af3ada9.0)
+      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0)
       '@lassi-js/kilimukku': 1.1.2-1e580ac.0(react-native@0.73.4)(wrtc@0.4.7)
-      ennikkai: 2.2.5(@constl/ipa@1.0.1-76af3ada9.0)
+      ennikkai: 2.2.5(@constl/ipa@1.0.1-ec2b9d2da.0)
       js-cookie: 3.0.5
       lodash: 4.17.21
-      nuchabal: 3.1.8(@constl/ipa@1.0.1-76af3ada9.0)
+      nuchabal: 3.1.8(@constl/ipa@1.0.1-ec2b9d2da.0)
       uuid: 9.0.1
       vue: 3.4.15(typescript@5.3.3)
     transitivePeerDependencies:
@@ -8327,6 +8414,19 @@ packages:
       - supports-color
     dev: false
 
+  /ennikkai@2.2.5(@constl/ipa@1.0.1-ec2b9d2da.0):
+    resolution: {integrity: sha512-zzyBrfQlzTJKv9OhzdC4+QbqIaqOsmjsJf4lxqGF6PSuDaPDJewKSUOEcE90sOU3rcMWE9IFtxwgCq+Jw4t7lA==}
+    peerDependencies:
+      '@constl/ipa': ^0.9.6
+    dependencies:
+      '@constl/ipa': 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0)
+      deepmerge: 4.3.1
+      events: 3.3.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
@@ -12263,13 +12363,13 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nuchabal@3.1.8(@constl/ipa@1.0.1-76af3ada9.0):
+  /nuchabal@3.1.8(@constl/ipa@1.0.1-ec2b9d2da.0):
     resolution: {integrity: sha512-DoTViqE8cAAn8aRWgIQWcK1q4KswRYbaIYvwn6objPGebgIgXh+bi5Mqu3Gkz1n52Q0GTmcNxE4Le/HHtIR7cw==}
     peerDependencies:
       '@constl/ipa': ^0.9.13
     dependencies:
-      '@constl/ipa': 1.0.1-76af3ada9.0(react-native@0.73.4)(wrtc@0.4.7)
-      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-76af3ada9.0)
+      '@constl/ipa': 1.0.1-ec2b9d2da.0(react-native@0.73.4)(wrtc@0.4.7)
+      '@lassi-js/kili': 0.3.6(@constl/ipa@1.0.1-ec2b9d2da.0)
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
@@ -14897,8 +14997,6 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
     bundledDependencies:
       - node-pre-gyp
