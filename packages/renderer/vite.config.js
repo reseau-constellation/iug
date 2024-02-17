@@ -92,13 +92,14 @@ const générerAliasRésolution = () => {
       './buffer-globalThis': 'crypto-browserify',
       stream: 'rollup-plugin-node-polyfills/polyfills/stream',
       os: 'rollup-plugin-node-polyfills/polyfills/os',
+      process: 'rollup-plugin-node-polyfills/polyfills/process-es6',
       '#preload': join(PACKAGE_ROOT, 'src') + '/polyfillPreload',
     });
   }
 };
 
 // Pareil pour Électron ou non, parce qu'ici il s'agit de la partie interface (rendu)
-const dépendsÀExclure = ['chokidar', 'wrtc'];
+const dépendsÀExclure = ['chokidar', 'wrtc', '@libp2p/tcp', '@libp2p/mdns', 'env-paths'];
 
 /**
  * @type {import('vite').UserConfig}
