@@ -44,15 +44,14 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import {utiliserÉtatInfos, type Info, type InfoAvecId} from '/@/état/infos';
+import {utiliserÉtatInfos} from '/@/état/infos';
 
-import {computed, ref} from 'vue';
+import {computed} from 'vue';
 import {useTheme} from 'vuetify';
 
 import ItemInfo from './infos/ItemInfo.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {onMounted} from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
@@ -60,19 +59,6 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {name} = useTheme();
 
 const étatInfos = utiliserÉtatInfos();
-
-onMounted(() => {
-  étatInfos.ajouterInfo({
-    type: 'mettreÀJour',
-    détails: {
-      dernièreVersionDisponible: '1.0.0',
-      versionActuelle: import.meta.env.VITE_APP_VERSION,
-    },
-  });
-  étatInfos.ajouterInfo({
-    type: 'installer',
-  });
-});
 
 const notifications = computed(() => étatInfos.infos);
 

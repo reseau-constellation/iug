@@ -5,12 +5,16 @@ import PagePrincipale from './misesEnPage/PagePrincipale.vue';
 import AccueilInitial from './misesEnPage/AccueilInitial.vue';
 import MenuLangues from './components/langues/MenuLangues.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { lancerInfos } from './components/accueil/infos/utils';
 
 const initialisé = ref(false);
 
 // Direction texte
 const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 const dàg = வலதிலிருந்து_இடது_மொழி();
+
+lancerInfos();
+
 </script>
 
 <template>

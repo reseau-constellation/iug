@@ -19,6 +19,7 @@ export type InfoMettreÀJour = {
   détails: {
     dernièreVersionDisponible: string;
     versionActuelle: string;
+    urlTéléchargement: string;
   };
 };
 
@@ -27,8 +28,11 @@ export const utiliserÉtatInfos = defineStore('Infos', () => {
   const infos = computed(() => {
     return _infos.value.sort((a, b) => (a.à > b.à ? 1 : -1));
   });
-  const ajouterInfo = (nouv: Info) =>
-    (_infos.value = [{id: uuidv4(), info: nouv, lu: false, à: Date.now()}, ...infos.value]);
+  const ajouterInfo = (nouv: Info) =>{
+    const id = uuidv4();
+    _infos.value = [{id, info: nouv, lu: false, à: Date.now()}, ...infos.value];
+    return id;
+  };
   const lireInfo = (idInfo: string) => {
     const info = _infos.value.find(i => i.id === idInfo);
     if (!info) throw new Error(`Info avec id ${idInfo} introuvable.`);

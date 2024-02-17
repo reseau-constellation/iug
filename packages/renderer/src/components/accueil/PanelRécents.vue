@@ -12,8 +12,8 @@
       >
         <v-card-item>
           <v-card-title>
-            <v-avatar><v-icon>mdi-plus</v-icon></v-avatar
-            >{{ t('accueil.page.récents.nouveau') }}
+            <v-avatar><v-icon>mdi-plus</v-icon></v-avatar>
+            {{ t('accueil.page.récents.nouveau') }}
           </v-card-title>
         </v-card-item>
         <v-card-text>
@@ -61,7 +61,7 @@
     </v-col>
     <v-col
       v-if="récentsEnPlus.length"
-      :cols="smAndUp ? 4 : 12"
+      :cols="mdAndUp ? 4 : smAndUp ? 6 : 12"
     >
       <v-dialog>
         <template #activator="{props: propsActivateur}">
@@ -72,7 +72,7 @@
             height="230"
           >
             <span class="pa-4 ma-auto text-h4 text-center">
-              {{ t('accueil.page.récents.voirPlus') }} Voir plus
+              {{ t('accueil.page.récents.voirPlus') }}
               <br />
               <v-icon>mdi-plus</v-icon>
             </span>
@@ -80,9 +80,9 @@
         </template>
         <v-card>
           <v-card-item>
-            <v-card-title
-              >{{ t('accueil.page.récents.documentsRécents') }} Documents récents</v-card-title
-            >
+            <v-card-title>
+              {{ t('accueil.page.récents.documentsRécents') }}
+            </v-card-title>
           </v-card-item>
           <v-card-text style="overflow-y: auto">
             <v-list>
@@ -99,7 +99,7 @@
     </v-col>
     <v-col
       v-if="!récents.length"
-      :cols="mdAndUp ? 8 : 12"
+      :cols="mdAndUp ? 8 : smAndUp ? 6 : 12"
     >
       <v-card
         class="d-flex align-center text-center"
@@ -107,7 +107,7 @@
         height="230"
       >
         <span class="pa-4 ma-auto text-h4 text-center text-disabled">
-          {{ t('accueil.page.récents.aucunRécent') }} Vous n'avez aucun document récemment ouvert.
+          {{ t('accueil.page.récents.aucunRécent') }}
         </span>
       </v-card>
     </v-col>

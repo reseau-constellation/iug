@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <v-card
@@ -81,9 +81,9 @@
                   <template #selection="{item}">
                     <JetonMembre :compte="item.value" />
                   </template>
-                  <template #item="{item, props}">
+                  <template #item="{item, props: propsActivateur}">
                     <ItemMembre
-                      v-bind="props"
+                      v-bind="propsActivateur"
                       :compte="item.value"
                       :montrer-anonymes="true"
                       simple
@@ -95,7 +95,7 @@
                     (comptesEnLigneSansMoi.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -225,6 +225,8 @@ import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonMembre from './membres/JetonMembre.vue';
 
+const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
+
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
@@ -235,7 +237,6 @@ const constl = constellation();
 
 // Navigation générale
 const dialogue = ref(false);
-const étape = ref(0);
 const listeÉtapes = [
   'cheminement',
   'noms',
@@ -245,7 +246,10 @@ const listeÉtapes = [
   'persister',
   'cestParti',
 ] as const;
-const cheminement = ref<'nouveau' | 'connecter'>();
+const étape = ref(
+  props.cheminement === undefined ? 0 : listeÉtapes.indexOf(props.cheminement === 'connecter' ? 'compteÀRejoindre' : 'noms'),
+);
+const cheminement = ref<'nouveau' | 'connecter' | undefined>(props.cheminement);
 
 const suivant = () => {
   const é = listeÉtapes[étape.value];
@@ -307,7 +311,11 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
 
 const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
+  const cheminementSpécifié = props.cheminement !== undefined;
   switch (é) {
+    case 'compteÀRejoindre':
+      case 'noms':
+      return { actif: !cheminementSpécifié, visible: !cheminementSpécifié};
     case 'cheminement':
       return {actif: false, visible: false};
     case 'cestParti':

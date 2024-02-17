@@ -38,7 +38,7 @@
         append-icon="mdi-close"
         @click="() => effacerDeLHistorique()"
       >
-        effacer
+        {{ t('communs.effacer') }}
       </v-btn>
     </v-card-actions>
   </v-card>
