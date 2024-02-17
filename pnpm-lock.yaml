@@ -15,11 +15,11 @@ dependencies:
     specifier: ^0.1.16
     version: 0.1.16
   '@constl/mandataire-electron-principal':
-    specifier: ^0.3.2
-    version: 0.3.2(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3)
+    specifier: ^0.4.3
+    version: 0.4.3(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3)
   '@constl/mandataire-electron-rendu':
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: ^0.4.3
+    version: 0.4.3
   '@constl/serveur':
     specifier: ^0.3.7
     version: 0.3.7(@constl/ipa@1.0.0)
@@ -227,8 +227,8 @@ devDependencies:
     specifier: 5.3.3
     version: 5.3.3
   unplugin-auto-expose:
-    specifier: 0.2.2
-    version: 0.2.2(rollup@4.12.0)
+    specifier: 0.3.0
+    version: 0.3.0(rollup@4.12.0)
   vite:
     specifier: 5.1.3
     version: 5.1.3(@types/node@20.11.19)
@@ -350,7 +350,7 @@ packages:
     resolution: {integrity: sha512-qrSfCYxYQB5owCmGLbl8XRpX1ytXlpueOb0N0UmQwA073KZxejgQTzAmJezxvpwQD9uGtK2shHdi55QT+MbjIw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.6
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.22
       jsesc: 2.5.2
@@ -428,13 +428,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.6
 
   /@babel/helper-hoist-variables@7.22.5:
     resolution: {integrity: sha512-wGjk9QZVzvknA6yKIUURb8zY3grXCcOZt+/7Wcy8O2uctxhplmUPkOdlgoNhmdVee2c92JXbf1xpMtVNbfoxRw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.6
 
   /@babel/helper-member-expression-to-functions@7.23.0:
     resolution: {integrity: sha512-6gfrPwh7OuT6gZyJZvd6WbTfrqAo7vm4xCzAXOusKqq/vWdKXphTpj5klHKNmRUU6/QRGlBsyU9mAIPaWHlqJA==}
@@ -509,7 +509,7 @@ packages:
     resolution: {integrity: sha512-AsUnxuLhRYsisFiaJwvp1QF+I3KjD5FOxut14q/GzovUe6orHLesW2C7d754kRm53h5gqrz6sFl6sxc4BVtE/g==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/types': 7.23.9
+      '@babel/types': 7.23.6
 
   /@babel/helper-string-parser@7.23.4:
     resolution: {integrity: sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==}
@@ -548,6 +548,14 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
       js-tokens: 4.0.0
+
+  /@babel/parser@7.23.6:
+    resolution: {integrity: sha512-Z2uID7YJ7oNvAI20O9X0bblw7Qqs8Q2hFy0R9tAfnfLkp5MW0UH9eUvnDSnFwKZ0AvgS1ucqR4KzvVHgnke1VQ==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+    dependencies:
+      '@babel/types': 7.23.6
+    dev: true
 
   /@babel/parser@7.23.9:
     resolution: {integrity: sha512-9tcKgqKbs3xGJ+NtKF2ndOBBLVwPjl1SHxPQkd36r3Dlirw3xWUeGaTbqr7uGZcTaxkVNwc+03SVP7aCdWrTlA==}
@@ -1590,6 +1598,24 @@ packages:
       '@babel/parser': 7.23.9
       '@babel/types': 7.23.9
 
+  /@babel/traverse@7.23.7:
+    resolution: {integrity: sha512-tY3mM8rH9jM0YHFGyfC0/xf+SB5eKUu7HPj7/k3fpi9dAlsMc5YbQvDi0Sh2QTPXqMhyaAtzAr807TIyfQrmyg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/code-frame': 7.23.5
+      '@babel/generator': 7.23.6
+      '@babel/helper-environment-visitor': 7.22.20
+      '@babel/helper-function-name': 7.23.0
+      '@babel/helper-hoist-variables': 7.22.5
+      '@babel/helper-split-export-declaration': 7.22.6
+      '@babel/parser': 7.23.6
+      '@babel/types': 7.23.6
+      debug: 4.3.4
+      globals: 11.12.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@babel/traverse@7.23.9:
     resolution: {integrity: sha512-I/4UJ9vs90OkBtY6iiiTORVMyIhJ4kAVmsKo9KFc8UOxMeUfi2hvtIBsET5u9GizXE6/GFSuKCTNfgCswuEjRg==}
     engines: {node: '>=6.9.0'}
@@ -1606,6 +1632,14 @@ packages:
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
+
+  /@babel/types@7.23.6:
+    resolution: {integrity: sha512-+uarb83brBzPKN38NX1MkB6vb6+mwvR6amUulqAE7ccQw1pEl+bCia9TbdG1lsnFP7lZySvUn37CHyXQdfTwzg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-string-parser': 7.23.4
+      '@babel/helper-validator-identifier': 7.22.20
+      to-fast-properties: 2.0.0
 
   /@babel/types@7.23.9:
     resolution: {integrity: sha512-dQjSq/7HaSjRM43FFGnv5keM2HsxpmyV1PfaSVm0nzzjwwTmjOe6J4bC8e3+pTEIgHaHj+1ZlLThRJ2auc/w1Q==}
@@ -1806,8 +1840,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.3.2(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3):
-    resolution: {integrity: sha512-1b5jU1KXD1rjUnbyPUNuFi9M+T1qfNm+wgWGlloyBPsXJ/gW6cGXyjDC4DVicI/scuMRkGYAeYtTn0Q7nl+m1g==}
+  /@constl/mandataire-electron-principal@0.4.3(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3):
+    resolution: {integrity: sha512-bYdZvD5VAijiNAO71RhPnU75cBJHLDlDqfNOtkn6T+lhy1mBl9fwAULfV12r/NrCExo5vkq8BbWSuyFFjYCnTw==}
     peerDependencies:
       '@constl/ipa': 1.0.0
       '@constl/mandataire': ^0.1.15
@@ -1818,13 +1852,14 @@ packages:
       '@constl/mandataire': 0.1.16
       '@constl/serveur': 0.3.7(@constl/ipa@1.0.0)
       electron: 28.2.3
+      events: 3.3.0
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
     dev: false
 
-  /@constl/mandataire-electron-rendu@0.3.2:
-    resolution: {integrity: sha512-EAr0DVJzO+/eZaAzWDFBq0ZR0mAiQuhrffOiQ3KrBooEIQ/0AA28AUhIB8wdLuaRohYkxneviHle7lNpjXu7Ig==}
+  /@constl/mandataire-electron-rendu@0.4.3:
+    resolution: {integrity: sha512-Sxcu8quYLWb/4gbg91HP1I829anz2AlUL5BbK4N0iyANqaUjqWzhMltO9G/okBZrwEcdi7lKaORFR4dgZSxl4g==}
     dependencies:
       '@constl/mandataire': 0.1.16
       events: 3.3.0
@@ -11970,12 +12005,12 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  /unplugin-auto-expose@0.2.2(rollup@4.12.0):
-    resolution: {integrity: sha512-fejQx9wYAPbNH24zeWcCpwSqOPbq79a2xzn6s5n28qykEVIPVKxhvAQLpgS2R8s5yT657JvtGqUeKifxK0c5YQ==}
+  /unplugin-auto-expose@0.3.0(rollup@4.12.0):
+    resolution: {integrity: sha512-zg/Z7EkxXu5gOP9+MHaSPOlV9ZgunOcjPGc89kAhZA9l/+sJ98StnXZhElWADRW8ziSk54Guci4A6agg3254+Q==}
     dependencies:
-      '@babel/parser': 7.23.9
-      '@babel/traverse': 7.23.9
-      '@babel/types': 7.23.9
+      '@babel/parser': 7.23.6
+      '@babel/traverse': 7.23.7
+      '@babel/types': 7.23.6
       magic-string-ast: 0.3.0
       unimport: 3.7.1(rollup@4.12.0)
       unplugin: 1.6.0

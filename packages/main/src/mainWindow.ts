@@ -1,6 +1,6 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'path';
-import {URL} from 'url';
+import {fileURLToPath, URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
 
@@ -12,7 +12,7 @@ async function createWindow() {
       contextIsolation: true,
       sandbox: false, // Sandbox disabled because the demo of preload script depend on the Node.js api
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
-      preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
+      preload: join(app.getAppPath(), 'packages/preload/dist/index.mjs'),
     },
   });
 
@@ -33,16 +33,15 @@ async function createWindow() {
   });
 
   /**
-   * URL for main window.
-   * Vite dev server for development.
-   * `file://../renderer/index.html` for production and test.
+   * Load from the local file system for production and test.
+   *
+   * Use BrowserWindow.loadFile() instead of BrowserWindow.loadURL() for WhatWG URL API limitations
+   * when path contains special characters like `#`.
+   * Let electron handle the path quirks.
+   * @see https://github.com/nodejs/node/issues/12682
+   * @see https://github.com/electron/electron/issues/6869
    */
-  const pageUrl =
-    import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
-      ? import.meta.env.VITE_DEV_SERVER_URL
-      : new URL('../renderer/dist/index.html', 'file://' + __dirname).toString();
-
-  await browserWindow.loadURL(pageUrl);
+  await browserWindow.loadFile(fileURLToPath(new URL('./../../renderer/dist/index.html', import.meta.url)));
 
   return browserWindow;
 }
