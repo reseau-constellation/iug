@@ -52,7 +52,7 @@
             class="text-center"
           >
             <v-otp-input
-              :model-value="invitation?.codeSecret"
+              :model-value="invitation?.codeSecret || ''"
               :length="8"
               type="text"
               disabled
