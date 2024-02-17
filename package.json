@@ -78,7 +78,7 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@lassi-js/kili": "^0.3.6",
     "@lassi-js/kilimukku": "^1.1.1",
-    "@lassi-js/kilimukku-vue": "1.0.13-77a4897.0",
+    "@lassi-js/kilimukku-vue": "1.1.0",
     "@mdi/font": "^7.4.47",
     "@vueuse/core": "^10.7.2",
     "@wdns/vue-code-block": "^2.3.1",
