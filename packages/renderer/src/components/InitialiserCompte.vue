@@ -247,7 +247,9 @@ const listeÉtapes = [
   'cestParti',
 ] as const;
 const étape = ref(
-  props.cheminement === undefined ? 0 : listeÉtapes.indexOf(props.cheminement === 'connecter' ? 'compteÀRejoindre' : 'noms'),
+  props.cheminement === undefined
+    ? 0
+    : listeÉtapes.indexOf(props.cheminement === 'connecter' ? 'compteÀRejoindre' : 'noms'),
 );
 const cheminement = ref<'nouveau' | 'connecter' | undefined>(props.cheminement);
 
@@ -314,8 +316,8 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const cheminementSpécifié = props.cheminement !== undefined;
   switch (é) {
     case 'compteÀRejoindre':
-      case 'noms':
-      return { actif: !cheminementSpécifié, visible: !cheminementSpécifié};
+    case 'noms':
+      return {actif: !cheminementSpécifié, visible: !cheminementSpécifié};
     case 'cheminement':
       return {actif: false, visible: false};
     case 'cestParti':

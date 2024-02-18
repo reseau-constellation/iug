@@ -34,7 +34,6 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const {பதிப்பை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const versionAppliFormattée = பதிப்பை_வடிவூட்டு(VERSION_APPLI);
@@ -47,7 +46,5 @@ const nouvelleVersionFormattée = computed(() => {
 
 const urlTéléchargement = ref(URL_TÉLÉCHARGEMENTS);
 
-onMounted(async () => {
-  
-});
+onMounted(async () => {});
 </script>

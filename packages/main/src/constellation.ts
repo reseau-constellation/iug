@@ -1,4 +1,4 @@
-import { GestionnaireFenêtres } from '@constl/mandataire-electron-principal';
+import {GestionnaireFenêtres} from '@constl/mandataire-electron-principal';
 
 const enDéveloppement = process.env.NODE_ENV !== 'production';
 

@@ -4,11 +4,12 @@ import {useTheme} from 'vuetify';
 import {utiliserÉtatThème} from '/@/état/thème';
 import {storeToRefs} from 'pinia';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 const imagesThème: {
   [key: string]: {
     [key: string]:
-      | Promise<typeof import('*.svg')>
+      // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+    | Promise<typeof import('*.svg')>
+      // eslint-disable-next-line @typescript-eslint/consistent-type-imports
       | {[key: string]: Promise<typeof import('*.svg')>};
   };
 } = {

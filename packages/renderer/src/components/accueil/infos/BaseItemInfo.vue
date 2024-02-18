@@ -59,33 +59,32 @@
     </template>
   </v-list-item>
 </template>
-  <script setup lang="ts">
-  import type {InfoAvecId, Info} from '/@/état/infos';
-  
-  import {ref} from 'vue';
-  import {useDisplay, useRtl} from 'vuetify';
-  
-  import {utiliserÉtatInfos} from '/@/état/infos';
-  
-  const props = defineProps<{
-    info: InfoAvecId<Info>;
-    titre: string;
-    sousTitre: string;
-    texteAction: string;
-  }>();
-  
-  const {isRtl} = useRtl();
-  const {mdAndUp} = useDisplay();
-  const étatInfos = utiliserÉtatInfos();
-  
-  const dialogue = ref(false);
-  
-  const lire = () => {
-    étatInfos.lireInfo(props.info.id);
-  };
-  
-  const fermer = () => {
-    étatInfos.effacerInfo(props.info.id);
-  };
-  </script>
-  
+<script setup lang="ts">
+import type {InfoAvecId, Info} from '/@/état/infos';
+
+import {ref} from 'vue';
+import {useDisplay, useRtl} from 'vuetify';
+
+import {utiliserÉtatInfos} from '/@/état/infos';
+
+const props = defineProps<{
+  info: InfoAvecId<Info>;
+  titre: string;
+  sousTitre: string;
+  texteAction: string;
+}>();
+
+const {isRtl} = useRtl();
+const {mdAndUp} = useDisplay();
+const étatInfos = utiliserÉtatInfos();
+
+const dialogue = ref(false);
+
+const lire = () => {
+  étatInfos.lireInfo(props.info.id);
+};
+
+const fermer = () => {
+  étatInfos.effacerInfo(props.info.id);
+};
+</script>

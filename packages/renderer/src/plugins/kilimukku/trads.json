@@ -95,6 +95,11 @@
             "sousTitre": "Ne perdez pas vos données !",
             "texteAction": "En savoir plus",
             "détails": "Connectez votre compte à une version installée pour accéder à toutes les fonctionnalitées de Constellation (meilleure connectivité, sauvegardes automatisées, plus de mémoire et j'en passe...) et diminuer le risque de perte de données en cas de perte ou de réinitialisation de votre téléphone ou navigateur."
+          },
+          "mettreÀJour": {
+            "titre": "Constellation {dispo} est disponible",
+            "sousTitre": "Vous êtes sur version {actuelle}",
+            "texteAction": "Installer"
           }
         },
         "récents": {

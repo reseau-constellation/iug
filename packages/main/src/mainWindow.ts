@@ -41,7 +41,9 @@ async function createWindow() {
    * @see https://github.com/nodejs/node/issues/12682
    * @see https://github.com/electron/electron/issues/6869
    */
-  await browserWindow.loadFile(fileURLToPath(new URL('./../../renderer/dist/index.html', import.meta.url)));
+  await browserWindow.loadFile(
+    fileURLToPath(new URL('./../../renderer/dist/index.html', import.meta.url)),
+  );
 
   return browserWindow;
 }
@@ -51,7 +53,7 @@ async function createWindow() {
  */
 export async function restoreOrCreateWindow() {
   let window = BrowserWindow.getAllWindows().find(
-    w => !w.isDestroyed() && w.title !== 'WRTC Relay',  // Vérification 'WRTC Relay' probablement plus nécessaire
+    w => !w.isDestroyed() && w.title !== 'WRTC Relay', // Vérification 'WRTC Relay' probablement plus nécessaire
   );
 
   if (window === undefined) {
