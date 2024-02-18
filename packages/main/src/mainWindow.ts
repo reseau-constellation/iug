@@ -33,17 +33,27 @@ async function createWindow() {
   });
 
   /**
-   * Load from the local file system for production and test.
-   *
-   * Use BrowserWindow.loadFile() instead of BrowserWindow.loadURL() for WhatWG URL API limitations
-   * when path contains special characters like `#`.
-   * Let electron handle the path quirks.
-   * @see https://github.com/nodejs/node/issues/12682
-   * @see https://github.com/electron/electron/issues/6869
+   * Load the main page of the main window.
    */
-  await browserWindow.loadFile(
-    fileURLToPath(new URL('./../../renderer/dist/index.html', import.meta.url)),
-  );
+  if (import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined) {
+    /**
+     * Load from the Vite dev server for development.
+     */
+    await browserWindow.loadURL(import.meta.env.VITE_DEV_SERVER_URL);
+  } else {
+    /**
+     * Load from the local file system for production and test.
+     *
+     * Use BrowserWindow.loadFile() instead of BrowserWindow.loadURL() for WhatWG URL API limitations
+     * when path contains special characters like `#`.
+     * Let electron handle the path quirks.
+     * @see https://github.com/nodejs/node/issues/12682
+     * @see https://github.com/electron/electron/issues/6869
+     */
+    await browserWindow.loadFile(
+      fileURLToPath(new URL('./../../renderer/dist/index.html', import.meta.url)),
+    );
+  }
 
   return browserWindow;
 }
