@@ -15,11 +15,11 @@ dependencies:
     specifier: ^0.1.16
     version: 0.1.16
   '@constl/mandataire-electron-principal':
-    specifier: ^0.4.3
-    version: 0.4.3(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3)
+    specifier: ^0.4.4
+    version: 0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3)
   '@constl/mandataire-electron-rendu':
-    specifier: ^0.4.3
-    version: 0.4.3
+    specifier: ^0.4.4
+    version: 0.4.4
   '@constl/serveur':
     specifier: ^0.3.7
     version: 0.3.7(@constl/ipa@1.0.0)
@@ -1840,8 +1840,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.3(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3):
-    resolution: {integrity: sha512-bYdZvD5VAijiNAO71RhPnU75cBJHLDlDqfNOtkn6T+lhy1mBl9fwAULfV12r/NrCExo5vkq8BbWSuyFFjYCnTw==}
+  /@constl/mandataire-electron-principal@0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3):
+    resolution: {integrity: sha512-IY7VbR+Nn8Komgq2kLJeF6djLQL/b/4MRvVLokDkcuxN7oX65sGficFmCEmCdl3v0/rRhgTO7U1oziym5VHPLA==}
     peerDependencies:
       '@constl/ipa': 1.0.0
       '@constl/mandataire': ^0.1.15
@@ -1852,14 +1852,13 @@ packages:
       '@constl/mandataire': 0.1.16
       '@constl/serveur': 0.3.7(@constl/ipa@1.0.0)
       electron: 28.2.3
-      events: 3.3.0
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
     dev: false
 
-  /@constl/mandataire-electron-rendu@0.4.3:
-    resolution: {integrity: sha512-Sxcu8quYLWb/4gbg91HP1I829anz2AlUL5BbK4N0iyANqaUjqWzhMltO9G/okBZrwEcdi7lKaORFR4dgZSxl4g==}
+  /@constl/mandataire-electron-rendu@0.4.4:
+    resolution: {integrity: sha512-rMUmlAW+uBjY8GKIUVP1MxvQW33WzZ48QMzuv4hv48uMOnMJ5x+CebmN1w0ihGlUUiI1z6cIlpzOZoateG6iRw==}
     dependencies:
       '@constl/mandataire': 0.1.16
       events: 3.3.0

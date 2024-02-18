@@ -27,11 +27,11 @@ const config = {
     minify: process.env.MODE !== 'development',
     lib: {
       entry: 'src/index.ts',
-      formats: ['es'],
+      formats: ['cjs'],
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name].mjs',
+        entryFileNames: '[name].cjs',
       },
       external: ['wrtc'],
     },
