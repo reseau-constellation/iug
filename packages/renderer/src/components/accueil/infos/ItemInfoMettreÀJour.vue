@@ -10,7 +10,7 @@
         color="primary"
         variant="tonal"
         append-icon="mdi-download"
-        @click="() => ouvrirLien(URL_TÉLÉCHARGEMENTS)"
+        @click="() => ouvrirLien(info.info.détails.urlTéléchargement)"
       >
         Installer maintenant
       </v-btn>
@@ -23,7 +23,6 @@ import type {InfoAvecId, InfoMettreÀJour} from '/@/état/infos';
 import {computed} from 'vue';
 
 import {ouvrirLien} from '/@/utils';
-import {URL_TÉLÉCHARGEMENTS} from '/@/consts';
 import BaseItemInfo from './BaseItemInfo.vue';
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
