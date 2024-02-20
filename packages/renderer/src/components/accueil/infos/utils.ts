@@ -68,6 +68,7 @@ export const lancerInfosMisesÀJour = () => {
   onMounted(() => {
     intervale = window.setInterval(vérifierMisesÀJour, 1000 * 60 * 60 * 1);
   });
+  vérifierMisesÀJour();
   onUnmounted(() => {
     intervale && clearInterval(intervale);
   });
