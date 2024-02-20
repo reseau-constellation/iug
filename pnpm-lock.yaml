@@ -16,7 +16,7 @@ dependencies:
     version: 0.1.16
   '@constl/mandataire-electron-principal':
     specifier: ^0.4.4
-    version: 0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3)
+    version: 0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.0.0)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.4.4
     version: 0.4.4
@@ -188,8 +188,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 28.2.3
-    version: 28.2.3
+    specifier: 29.0.0
+    version: 29.0.0
   electron-builder:
     specifier: 24.9.1
     version: 24.9.1
@@ -1840,7 +1840,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@28.2.3):
+  /@constl/mandataire-electron-principal@0.4.4(@constl/ipa@1.0.0)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.0.0):
     resolution: {integrity: sha512-IY7VbR+Nn8Komgq2kLJeF6djLQL/b/4MRvVLokDkcuxN7oX65sGficFmCEmCdl3v0/rRhgTO7U1oziym5VHPLA==}
     peerDependencies:
       '@constl/ipa': 1.0.0
@@ -1851,7 +1851,7 @@ packages:
       '@constl/ipa': 1.0.0(react-native@0.73.4)(wrtc@0.4.7)
       '@constl/mandataire': 0.1.16
       '@constl/serveur': 0.3.7(@constl/ipa@1.0.0)
-      electron: 28.2.3
+      electron: 29.0.0
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -4481,11 +4481,6 @@ packages:
       '@types/dns-packet': 5.6.5
       '@types/node': 20.11.19
 
-  /@types/node@18.19.17:
-    resolution: {integrity: sha512-SzyGKgwPzuWp2SHhlpXKzCX0pIOfcI4V2eF37nNBJOhwlegQ83omtVQ1XxZpDE06V/d6AQvfQdPfnw0tRC//Ng==}
-    dependencies:
-      undici-types: 5.26.5
-
   /@types/node@20.11.19:
     resolution: {integrity: sha512-7xMnVEcZFu0DikYjWOlRq7NTPETrm7teqUT2WkQjrTIkEgUyyGdWsj/Zg8bEJt5TNklzbPD1X3fqfsHw3SpapQ==}
     dependencies:
@@ -6800,14 +6795,14 @@ packages:
       - supports-color
     dev: false
 
-  /electron@28.2.3:
-    resolution: {integrity: sha512-he9nGphZo03ejDjYBXpmFVw0KBKogXvR2tYxE4dyYvnfw42uaFIBFrwGeenvqoEOfheJfcI0u4rFG6h3QxDwnA==}
+  /electron@29.0.0:
+    resolution: {integrity: sha512-HhrRC5vWb6fAbWXP3A6ABwKUO9JvYSC4E141RzWFgnDBqNiNtabfmgC8hsVeCR65RQA2MLSDgC8uP52I9zFllQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@electron/get': 2.0.3
-      '@types/node': 18.19.17
+      '@types/node': 20.11.19
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -12463,7 +12458,7 @@ packages:
   /wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
 
   /wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
@@ -12507,8 +12502,6 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: false
     bundledDependencies:
       - node-pre-gyp
