@@ -249,7 +249,6 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgDonnées = obtImageDéco('logoBD');
 
 // Sélection
-const typeDonnées = ref(0);
 const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
   {
     icône: 'mdi-key',
@@ -277,6 +276,7 @@ const itemsTypesDonnées: {icône: string; texte: string; clef: string}[] = [
     clef: 'nuées',
   },
 ];
+const typeDonnées = ref(itemsTypesDonnées.findIndex(x=>x.clef==='bds'));
 
 // Mots-clefs
 const mesMotsClefs = suivre(constl.motsClefs.suivreMotsClefs);
