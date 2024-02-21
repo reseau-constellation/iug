@@ -28,9 +28,9 @@ export const utiliserÉtatInfos = defineStore('Infos', () => {
   const infos = computed(() => {
     return _infos.value.sort((a, b) => (a.à > b.à ? 1 : -1));
   });
-  const ajouterInfo = (nouv: Info) => {
-    const id = uuidv4();
-    _infos.value = [{id, info: nouv, lu: false, à: Date.now()}, ...infos.value];
+  const ajouterInfo = (nouv: Info, clef?: string) => {
+    const id = clef || uuidv4();
+    _infos.value = [{id, info: nouv, lu: false, à: Date.now()}, ...infos.value.filter(info => info.id !== id)];
     return id;
   };
   const lireInfo = (idInfo: string) => {

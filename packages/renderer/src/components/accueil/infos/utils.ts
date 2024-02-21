@@ -60,7 +60,7 @@ export const lancerInfosMisesÀJour = () => {
           versionActuelle: versionPrésente,
           urlTéléchargement,
         },
-      });
+      }, 'mettreÀJour');
     }
   };
 
@@ -94,7 +94,7 @@ export const lancerInfosTélécharger = () => {
       if (!idInfo)
         idInfo = étatInfos.ajouterInfo({
           type: 'installer',
-        });
+        }, 'installer');
     } else {
       étatInfos.effacerInfo(idInfo);
     }
