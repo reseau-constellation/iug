@@ -1,38 +1,40 @@
 import {mount} from '@vue/test-utils';
 import {expect, test} from 'vitest';
 
-import TitrePage from '../../src/components/communs/TitrePage.vue';
+import ImageProfil from '../../src/components/communs/ImageProfil.vue';
 
 import vuetify from '../../src/plugins/vuetify';
+import {constellationTest} from '../utils';
+import {createPinia} from 'pinia';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
   return mount(composante, {
     ...options,
     global: {
-      plugins: [vuetify],
+      plugins: [vuetify, constellationTest, createPinia()],
     },
   });
 };
 
-test('Composante TitrePage - titre', async () => {
-  expect(TitrePage).toBeTruthy();
-
-  const titre = 'Mon titre de page';
-  const enveloppe = mountFunction(TitrePage, {
-    props: {titre},
+test('Composante ImageProfil - sans id compte', async () => {
+  console.log('ici');
+  expect(ImageProfil).toBeTruthy();
+  console.log('là');
+  const enveloppe = mountFunction(ImageProfil, {
+    props: {},
   });
 
-  const élTitre = enveloppe.get('h1');
+  const élImage = enveloppe.get('img');
 
-  expect(élTitre.text()).toBe(titre);
+  expect(élImage.text()).toBe('');
 });
 
 test('Composante TitrePage - sousTitre', async () => {
-  expect(TitrePage).toBeTruthy();
+  expect(ImageProfil).toBeTruthy();
 
   const titre = 'Mon titre de page';
   const sousTitre = 'Mon sous-titre de page';
-  const enveloppe = mountFunction(TitrePage, {
+  const enveloppe = mountFunction(ImageProfil, {
     props: {titre, sousTitre},
   });
 
@@ -42,12 +44,12 @@ test('Composante TitrePage - sousTitre', async () => {
 });
 
 test('Composante TitrePage - image', async () => {
-  expect(TitrePage).toBeTruthy();
+  expect(ImageProfil).toBeTruthy();
 
-  const titre = 'Mon titre de page';
+  // const titre = 'Mon titre de page';
   const image = 'urlImage.png';
-  const enveloppe = mountFunction(TitrePage, {
-    props: {titre, image},
+  const enveloppe = mountFunction(ImageProfil, {
+    props: {},
   });
 
   const élSousTitre = enveloppe.get('img');
