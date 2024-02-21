@@ -15,7 +15,7 @@ export const attendreQue = (f: () => boolean): Promise<void> => {
 
 export const constellationTest = {
   install: (app: App) => {
-    const client = créerConstellation();
+    const client = créerConstellation({ dossier: './testConstl' });
     app.config.globalProperties.$constl = client;
     app.provide('constl', client);
   },
