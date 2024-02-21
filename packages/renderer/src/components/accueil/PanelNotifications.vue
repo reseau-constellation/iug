@@ -61,9 +61,8 @@ const {name} = useTheme();
 const étatInfos = utiliserÉtatInfos();
 
 const notifications = computed(() => étatInfos.infos);
-const nNotificationsNonLues = computed(()=>notifications.value.filter(n=>!n.lu).length);
+const nNotificationsNonLues = computed(() => notifications.value.filter(n => !n.lu).length);
 const nNotificationsNonLuesFormattée = எண்ணை_வடிவூட்டு(nNotificationsNonLues);
-
 </script>
 <style scoped>
 .carte-découverte {

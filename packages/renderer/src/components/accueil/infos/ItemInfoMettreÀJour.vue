@@ -1,7 +1,9 @@
 <template>
   <base-item-info
-    :titre="t('accueil.page.notifications.mettreÀJour.titre', {dispo: nouvelleVersionFormattée} )"
-    :sous-titre="t('accueil.page.notifications.mettreÀJour.sousTitre', {actuelle: versionAppliFormattée})"
+    :titre="t('accueil.page.notifications.mettreÀJour.titre', {dispo: nouvelleVersionFormattée})"
+    :sous-titre="
+      t('accueil.page.notifications.mettreÀJour.sousTitre', {actuelle: versionAppliFormattée})
+    "
     :texte-action="t('accueil.page.notifications.mettreÀJour.texteAction')"
     :info="info"
   >

@@ -14,36 +14,45 @@
         <v-list>
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.connexion.titre')"
-            :subtitle="t('accueil.page.notifications.connecterInstallé.avantages.connexion.sousTitre')"
+            :subtitle="
+              t('accueil.page.notifications.connecterInstallé.avantages.connexion.sousTitre')
+            "
             prepend-icon="mdi-wifi"
-          /> 
+          />
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.titre')"
-            :subtitle="t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.sousTitre')"
+            :subtitle="
+              t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.sousTitre')
+            "
             prepend-icon="mdi-content-save"
-          /> 
+          />
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.mémoire.titre')"
-            :subtitle="t('accueil.page.notifications.connecterInstallé.avantages.mémoire.sousTitre')"
+            :subtitle="
+              t('accueil.page.notifications.connecterInstallé.avantages.mémoire.sousTitre')
+            "
             prepend-icon="mdi-wifi"
-          /> 
+          />
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.plus.titre')"
             :subtitle="t('accueil.page.notifications.connecterInstallé.avantages.plus.sousTitre')"
             prepend-icon="mdi-plus"
-          /> 
+          />
         </v-list>
         <v-timeline
           class="my-6"
           side="end"
           truncate-line="both"
+          :density="mdAndUp ? 'default' : 'compact'"
         >
           <v-timeline-item
             icon="mdi-download"
             dot-color="primary"
           >
             <div>
-              <div class="text-h6">{{ t('accueil.page.notifications.connecterInstallé.étape1.titre') }}</div>
+              <div class="text-h6">{{
+                t('accueil.page.notifications.connecterInstallé.étape1.titre')
+              }}</div>
               <p>
                 {{ t('accueil.page.notifications.connecterInstallé.étape1.texte') }}
               </p>
@@ -57,14 +66,15 @@
                 {{ t('accueil.page.notifications.connecterInstallé.étape1.télécharger') }}
               </v-btn>
             </div>
-            
           </v-timeline-item>
           <v-timeline-item
             icon="mdi-lan-connect"
             dot-color="primary"
           >
             <div>
-              <div class="text-h6">{{ t('accueil.page.notifications.connecterInstallé.étape2.titre') }}</div>
+              <div class="text-h6">{{
+                t('accueil.page.notifications.connecterInstallé.étape2.titre')
+              }}</div>
               <p>
                 {{ t('accueil.page.notifications.connecterInstallé.étape2.texte') }}
               </p>
@@ -78,12 +88,15 @@
                     :append-icon="connectéÀAuMoinsUnOrdi ? 'mdi-check' : 'mdi-lan-connect'"
                     :active="!connectéÀAuMoinsUnOrdi"
                   >
-                    {{ connectéÀAuMoinsUnOrdi ? t('accueil.page.notifications.connecterInstallé.étape2.connecté') : t('accueil.page.notifications.connecterInstallé.étape2.code') }}
+                    {{
+                      connectéÀAuMoinsUnOrdi
+                        ? t('accueil.page.notifications.connecterInstallé.étape2.connecté')
+                        : t('accueil.page.notifications.connecterInstallé.étape2.code')
+                    }}
                   </v-btn>
                 </template>
               </inviter-dispositif>
             </div>
-              
           </v-timeline-item>
         </v-timeline>
       </span>
@@ -93,7 +106,7 @@
 <script setup lang="ts">
 import type {InfoAvecId, InfoInstaller} from '/@/état/infos';
 
-import { onMounted } from 'vue';
+import {onMounted} from 'vue';
 
 import BaseItemInfo from './BaseItemInfo.vue';
 import {constellation, suivre} from '../../utils';
@@ -103,11 +116,13 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {obtenirDernièreVersion} from '/@/components/accueil/infos/utils';
 import {ouvrirLien, plateforme} from '/@/utils';
 import {URL_TÉLÉCHARGEMENTS} from '/@/consts';
+import {useDisplay} from 'vuetify/lib/framework.mjs';
 
 defineProps<{
   info: InfoAvecId<InfoInstaller>;
 }>();
 
+const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
 
@@ -128,9 +143,9 @@ onMounted(async () => {
   const v = await obtenirDernièreVersion();
   urlVersionPlusRécente.value = v?.urlTéléchargement;
 });
-const urlTélécharger = computed<string>(()=>{
+const urlTélécharger = computed<string>(() => {
   if (surOrdi) {
-    return urlVersionPlusRécente.value || URL_TÉLÉCHARGEMENTS; 
+    return urlVersionPlusRécente.value || URL_TÉLÉCHARGEMENTS;
   }
   return URL_TÉLÉCHARGEMENTS;
 });

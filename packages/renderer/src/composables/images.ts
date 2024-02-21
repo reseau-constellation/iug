@@ -6,8 +6,7 @@ import {storeToRefs} from 'pinia';
 
 const imagesThème: {
   [key: string]: {
-    [key: string]:
-      // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+    [key: string]: // eslint-disable-next-line @typescript-eslint/consistent-type-imports
     | Promise<typeof import('*.svg')>
       // eslint-disable-next-line @typescript-eslint/consistent-type-imports
       | {[key: string]: Promise<typeof import('*.svg')>};
