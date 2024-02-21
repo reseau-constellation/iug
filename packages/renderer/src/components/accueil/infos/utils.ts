@@ -5,11 +5,10 @@ import {constellation, suivre} from '../../utils';
 import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import axios from 'axios';
 import semver from 'semver';
-import type {publicationGitHub} from '/@/utils';
-import {surLinux, surMac, surWindows} from '#preload';
+import {plateforme, type publicationGitHub} from '/@/utils';
 
 const versionPrésente = import.meta.env.VITE_APP_VERSION;
-const obtenirDernièreVersion = async (): Promise<
+export const obtenirDernièreVersion = async (): Promise<
   {versionPlusRécente: string; urlTéléchargement: string} | undefined
 > => {
   const jsonTéléchargements = (await axios.get(IPA_TÉLÉCHARGEMENTS)).data as publicationGitHub[];
@@ -31,13 +30,14 @@ const obtenirDernièreVersion = async (): Promise<
     ? {versionPlusRécente, urlTéléchargement}
     : undefined;
 };
+const surPlateforme = plateforme();
 
 const extentionCompatible = (ext: string): boolean => {
-  if (surLinux) {
+  if (surPlateforme.so === 'linux') {
     return ext === 'AppImage';
-  } else if (surMac) {
+  } else if (surPlateforme.so === 'mac') {
     return ext === 'dmg';
-  } else if (surWindows) {
+  } else if (surPlateforme.so === 'windows') {
     return ext === 'exe';
   } else {
     return false;
