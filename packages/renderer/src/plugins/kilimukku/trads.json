@@ -80,7 +80,8 @@
           "nuées": "Mes nuées",
           "réplications": "Réplications des mes données",
           "connaissances": "Mes connaissances",
-          "réseau": "Mon réseau"
+          "réseau": "Mon réseau",
+          "sansDonnées": "Il n'y a pas encore assez de données à visualiser"
         },
         "apprendre": {
           "titre": "Apprendre",
@@ -256,6 +257,7 @@
     "accueil": {
       "démarrer": "தொடக்கம்",
       "version": "பதிப்பு {version}",
+      "piedDePage": "விண்மீன் பங்களிப்பாளர்கள்",
       "initialiserCompte": {
         "titreCheminement": "கணக்கு ஏற்கனவே இருக்கிறதா?",
         "sousTitreCheminement": "புது கணக்கை உருவாக்கலாமா, ஏற்கனவே இருக்கும் கணக்கில் உள்ளிடலாமா?",

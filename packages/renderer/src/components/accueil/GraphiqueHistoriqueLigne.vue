@@ -21,7 +21,7 @@
       height="230"
     >
       <span class="pa-4 ma-auto text-h6 text-center text-disabled">
-        Il n'y a pas encore assez de données à visualiser
+        {{ t('accueil.page.graphiques.sansDonnées') }}
       </span>
     </v-card>
   </div>
@@ -40,15 +40,18 @@ import {
   curveBasis,
 } from 'd3';
 import {computed} from 'vue';
-import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
-const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   titre: string;
   vals?: {date: string; val: number}[];
   couleur?: string;
 }>();
+
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+
 const données = computed(() =>
   (props.vals || []).map(x => ({date: new Date(parseInt(x.date)), value: x.val})),
 );
