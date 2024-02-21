@@ -1,3 +1,7 @@
+import {isElectronRenderer, isBrowser} from 'wherearewe';
+import {os} from 'platform';
+import {surLinux, surMac, surWindows} from '#preload';
+
 export const ouvrirLien = (lien: string) => {
   window.open(lien, '_blank'); // À faire : tester sous Électron
 };
@@ -109,4 +113,44 @@ export const ajusterTexteTraductible = ({
     Object.entries(nouvelles).filter(([lng, val]) => anciennes[lng] !== val),
   );
   return {àEffacer, àAjouter};
+};
+
+export type InfoPlateforme = {
+  plateforme: 'électron' | 'navigateur' | undefined;
+  so: 'windows' | 'linux' | 'mac' | 'iOS' | 'androïde' | undefined;
+};
+
+export const plateforme = (): InfoPlateforme => {
+  if (isElectronRenderer) {
+    const so = surLinux ? 'linux' : surMac ? 'mac' : surWindows ? 'windows' : undefined;
+    return {
+      plateforme: 'électron',
+      so,
+    };
+  } else if (isBrowser) {
+    let so: InfoPlateforme['so'] = undefined;
+    if (os?.family?.includes('Windows')) {
+      so = 'windows';
+    } else if (os?.family?.includes('OS X')) {
+      so = 'mac';
+    } else if (
+      os?.family &&
+      ['Linux', 'Ubuntu', 'Debian', 'Fedora', 'Red Hat', 'SuSE'].includes(os.family)
+    ) {
+      so = 'linux';
+    } else if (os?.family?.includes('iOS')) {
+      so = 'iOS';
+    } else if (os?.family?.includes('Android')) {
+      so = 'androïde';
+    }
+    return {
+      plateforme: 'navigateur',
+      so,
+    };
+  } else {
+    return {
+      plateforme: undefined,
+      so: undefined,
+    };
+  }
 };
