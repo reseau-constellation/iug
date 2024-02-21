@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -57,23 +57,6 @@
               type="text"
               disabled
             />
-            <v-btn
-              v-if="!invitationTexte"
-              class="mt-2"
-              :text="t('dispositifs.inviter.générerInvitation')"
-              :loading="générationEnCours"
-              variant="outlined"
-              append-icon="mdi-reload"
-              @click="() => générerInvitation()"
-            />
-            <v-btn
-              v-else
-              class="mt-2"
-              :text="t('dispositifs.inviter.annulerInvitation')"
-              variant="outlined"
-              append-icon="mdi-cancel"
-              @click="() => révoquerInvitation()"
-            />
           </v-window-item>
           <v-window-item
             :value="2"
@@ -95,23 +78,6 @@
                 style="position: fixed; height: 200px; width: 200px"
               />
             </div>
-            <v-btn
-              v-if="!invitationTexte"
-              class="mt-2"
-              :text="t('dispositifs.inviter.générerInvitation')"
-              :loading="générationEnCours"
-              variant="outlined"
-              append-icon="mdi-reload"
-              @click="() => générerInvitation()"
-            />
-            <v-btn
-              v-else
-              class="mt-2"
-              :text="t('dispositifs.inviter.annulerInvitation')"
-              variant="outlined"
-              append-icon="mdi-cancel"
-              @click="() => révoquerInvitation()"
-            />
           </v-window-item>
         </v-window>
         <div v-else>
@@ -166,10 +132,12 @@ const listeÉtapes = ['cheminement', 'manuelle', 'codeR2'] as const;
 const cheminement = ref<'manuelle' | 'codeR2'>();
 
 const suivreCheminementManuel = () => {
+  if (!invitation.value) générerInvitation();
   cheminement.value = 'manuelle';
   étape.value = listeÉtapes.indexOf('manuelle');
 };
 const suivreCheminementCodeR2 = () => {
+  if (!invitation.value) générerInvitation();
   cheminement.value = 'codeR2';
   étape.value = listeÉtapes.indexOf('codeR2');
 };
@@ -264,13 +232,15 @@ const invitationTexte = computed(() => {
 
 // Annulation
 const révoquerInvitation = async () => {
+  await constl.révoquerInvitationRejoindreCompte({});
   invitation.value = undefined;
-  // await constl.révoquerInvitation()
 };
+
 // Pour la sécurité, automatiquement révoquer l'invitation si l'on ferme le dialogue
 watchEffect(async () => {
   if (!dialogue.value) {
     await révoquerInvitation();
+    étape.value = 0;
   }
 });
 </script>
