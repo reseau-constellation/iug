@@ -94,7 +94,36 @@
             "titre": "Connectez votre compte",
             "sousTitre": "Ne perdez pas vos données !",
             "texteAction": "En savoir plus",
-            "détails": "Connectez votre compte à une version installée pour accéder à toutes les fonctionnalitées de Constellation (meilleure connectivité, sauvegardes automatisées, plus de mémoire et j'en passe...) et diminuer le risque de perte de données en cas de perte ou de réinitialisation de votre téléphone ou navigateur."
+            "détails": "C'est mieux d'installer Constellation sur ordinateur. Cela vous donne :",
+            "avantages": {
+              "connexion": {
+                "titre": "Une meilleure connexion",
+                "sousTitre": "Retrouvez plus facilement les autres membres du réseau"
+              },
+              "sauvegardes": {
+                "titre": "Des sauvegardes automatisées",
+                "sousTitre": "Importez et exportez vos données en continu"
+              },
+              "mémoire": {
+                "titre": "Plus de mémoire",
+                "sousTitre": "Hors navigateur, il y a plus d'espace"
+              },
+              "plus": {
+                "titre": "...et beaucoup plus !",
+                "sousTitre": "Intégrations avec Python, autogénération d'applis..."
+              }
+            },
+            "étape1": {
+              "titre": "Installer sur ordi",
+              "texte": "Premièrement, installez et ouvrez Constellation sur un ordinateur.",
+              "télécharger": "Télécharger"
+            },
+            "étape2": {
+              "titre": "Connecter votre compte",
+              "texte": "Choisissez « Rejoindre un compte » sur l'ordinateur, puis entrez le code que vous générerez ci-dessous.",
+              "connecté": "Compte connecté",
+              "code": "Générer code"
+            }
           },
           "mettreÀJour": {
             "titre": "Constellation {dispo} est disponible",
@@ -339,7 +368,17 @@
     "dispositifs": {
       "sansNom": "பெயரில்லாத சாதனம்",
       "ajouter": "சாதனத்தைச் சேரு",
-      "ceDispositif": "இதே சாதனம்"
+      "ceDispositif": "இதே சாதனம்",
+      "inviter": {
+        "titreCheminement": "புது சாதனை சேர்தல்",
+        "sousTitreCheminement": "ரகசீய குறியீட்டாக சாதனத்தை சேரு",
+        "manuellement": "கைமுறையாக சேரு",
+        "codeR2": "குறியீட்டாக சேரு",
+        "titreManuelle": "கைமுறையான சேர்தல்",
+        "sousTitreManuelle": "வேறு சாதனத்தில் குறியீட்டை உள்ளிடு",
+        "titreCodeR2": "குறியீட்டாக சேரு",
+        "sousTitreCodeR2": "புகைப்படக்கருவியை பயன்படுத்து"
+      }
     },
     "auteurs": {
       "carteGérer": {
