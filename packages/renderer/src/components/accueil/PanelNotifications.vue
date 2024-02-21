@@ -9,12 +9,12 @@
       <v-card-title>
         {{ t('accueil.page.notifications.titre') }}
         <v-avatar
-          v-if="notifications.length"
+          v-if="nNotificationsNonLues"
           class="mx-2"
           color="error"
           size="20"
         >
-          {{ nNotificationsFormattée }}
+          {{ nNotificationsNonLuesFormattée }}
         </v-avatar>
       </v-card-title>
     </v-card-item>
@@ -61,8 +61,9 @@ const {name} = useTheme();
 const étatInfos = utiliserÉtatInfos();
 
 const notifications = computed(() => étatInfos.infos);
+const nNotificationsNonLues = computed(()=>notifications.value.filter(n=>!n.lu).length);
+const nNotificationsNonLuesFormattée = எண்ணை_வடிவூட்டு(nNotificationsNonLues);
 
-const nNotificationsFormattée = எண்ணை_வடிவூட்டு(computed(() => notifications.value.length));
 </script>
 <style scoped>
 .carte-découverte {
