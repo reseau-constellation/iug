@@ -1,5 +1,5 @@
 export const URL_SIGNALEMENTS = 'https://github.com/reseau-constellation/iug/issues';
-export const URL_TÉLÉCHARGEMENTS = 'https://github.com/reseau-constellation/iug/releases';
+export const URL_TÉLÉCHARGEMENTS = 'https://réseau-constellation.ca/télécharger';
 export const IPA_TÉLÉCHARGEMENTS = 'https://api.github.com/repos/reseau-constellation/iug/releases';
 
 export const URL_DOCUMENTATION = 'https://docu.réseau-constellation.ca';
