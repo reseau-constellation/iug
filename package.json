@@ -6,7 +6,7 @@
     "name": "Julien Jean Malard-Adam",
     "url": "https://github.com/julienmalard"
   },
-  "version": "0.2.4",
+  "version": "1.0.0",
   "type": "module",
   "main": "packages/main/dist/index.cjs",
   "scripts": {
