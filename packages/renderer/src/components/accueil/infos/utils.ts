@@ -34,7 +34,7 @@ const surPlateforme = plateforme();
 
 const extentionCompatible = (ext: string): boolean => {
   if (surPlateforme.so === 'linux') {
-    return ext === 'AppImage';
+    return ext === 'deb';
   } else if (surPlateforme.so === 'mac') {
     return ext === 'dmg';
   } else if (surPlateforme.so === 'windows') {
@@ -53,14 +53,17 @@ export const lancerInfosMisesÀJour = () => {
     const dernièreVersion = await obtenirDernièreVersion();
     if (dernièreVersion) {
       const {versionPlusRécente, urlTéléchargement} = dernièreVersion;
-      étatInfos.ajouterInfo({
-        type: 'mettreÀJour',
-        détails: {
-          dernièreVersionDisponible: versionPlusRécente,
-          versionActuelle: versionPrésente,
-          urlTéléchargement,
+      étatInfos.ajouterInfo(
+        {
+          type: 'mettreÀJour',
+          détails: {
+            dernièreVersionDisponible: versionPlusRécente,
+            versionActuelle: versionPrésente,
+            urlTéléchargement,
+          },
         },
-      }, 'mettreÀJour');
+        'mettreÀJour',
+      );
     }
   };
 
@@ -92,9 +95,12 @@ export const lancerInfosTélécharger = () => {
   watchEffect(() => {
     if (!connectéÀAuMoinsUnOrdi.value) {
       if (!idInfo)
-        idInfo = étatInfos.ajouterInfo({
-          type: 'installer',
-        }, 'installer');
+        idInfo = étatInfos.ajouterInfo(
+          {
+            type: 'installer',
+          },
+          'installer',
+        );
     } else {
       étatInfos.effacerInfo(idInfo);
     }

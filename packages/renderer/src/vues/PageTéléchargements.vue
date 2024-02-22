@@ -127,7 +127,7 @@ const fichiersChoisis = computed<publicationGitHubAvecVersion[] | undefined>(() 
 onMounted(async () => {
   const json: publicationGitHub[] = (await axios.get(IPA_TÉLÉCHARGEMENTS)).data;
 
-  const extentions = ['AppImage', 'dmg', 'exe'];
+  const extentions = ['deb', 'dmg', 'exe'];
 
   versions.value = json.map(v => v.name);
   fichiers.value = json
@@ -144,7 +144,7 @@ const systèmesOpératoirs: infoSO[] = [
   {
     nom: 'Linux',
     logo: import('/@/assets/logosSO/Linux.png'),
-    exts: ['AppImage'],
+    exts: ['deb'],
   },
   {
     nom: 'macOS',

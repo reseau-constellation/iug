@@ -42,7 +42,7 @@ const versionFormattée = பதிப்பை_வடிவூட்டு(prop
 
 // SO
 const exts = {
-  Linux: ['AppImage'],
+  Linux: ['deb'],
   macOS: ['dmg'],
   Windows: ['exe'],
 };
