@@ -1,5 +1,6 @@
+import type {ClientConstellation} from '@constl/ipa/dist/client';
+import {type MockedClass, vi} from 'vitest';
 import type {App} from 'vue';
-import {créerConstellation} from '@constl/ipa';
 
 export const attendreQue = (f: () => boolean): Promise<void> => {
   return new Promise(résoudre => {
@@ -13,10 +14,16 @@ export const attendreQue = (f: () => boolean): Promise<void> => {
   });
 };
 
-export const constellationTest = {
-  install: (app: App) => {
-    const client = créerConstellation({ dossier: './testConstl' });
-    app.config.globalProperties.$constl = client;
-    app.provide('constl', client);
-  },
+export const fausseConstellation = (
+  simuler: (client: MockedClass<typeof ClientConstellation>) => void,
+) => {
+  const Client = vi.fn() as unknown as MockedClass<typeof ClientConstellation>;
+  simuler(Client);
+  const client = new Client();
+  return {
+    install: (app: App) => {
+      app.config.globalProperties.$constl = client;
+      app.provide('constl', client);
+    },
+  };
 };
