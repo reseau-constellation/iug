@@ -24,14 +24,14 @@
             :subtitle="
               t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.sousTitre')
             "
-            prepend-icon="mdi-content-save"
+            prepend-icon="mdi-file-sync-outline"
           />
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.mémoire.titre')"
             :subtitle="
               t('accueil.page.notifications.connecterInstallé.avantages.mémoire.sousTitre')
             "
-            prepend-icon="mdi-wifi"
+            prepend-icon="mdi-content-save"
           />
           <v-list-item
             :title="t('accueil.page.notifications.connecterInstallé.avantages.plus.titre')"
