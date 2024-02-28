@@ -66,7 +66,6 @@ describe('Test fenêtre appli', function () {
     await constellationPrêt({page});
   });
 
-
   test('Créer compte', async () => {
     const btnDémarrer = await constellationPrêt({page});
     console.log('Constellation prêt');
@@ -93,6 +92,7 @@ describe('Test fenêtre appli', function () {
     console.log('Au suivant');
     
     // Création compte
+    await new Promise(résoudre => setTimeout(résoudre, 1000));
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
     console.log('Btn création compte', btnCréerCompte);
     
