@@ -12,11 +12,11 @@ export const surÉlectron = async (): Promise<{
 }> => {
   // Utiliser un dossier temporaire pour le compte Constellation dans les tests
   const {
-  //  dossier, 
+    dossier, 
     fEffacer,
   } = await dossiers.dossierTempo();
 
-  const appli = await electron.launch({args: ['.']}); // , env: {DOSSIER_CONSTL: dossier}});
+  const appli = await electron.launch({args: ['.'], env: {...process.env, DOSSIER_CONSTL: dossier}});
 
   const fermer = async () => {
     try {
