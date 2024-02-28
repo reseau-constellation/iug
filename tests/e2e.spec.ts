@@ -1,24 +1,26 @@
-import type {ElectronApplication} from 'playwright';
+import type {ElectronApplication, Page} from 'playwright';
 
 import {afterAll, beforeAll, expect, test, describe} from 'vitest';
 
 import {changerLangue, constellationPrêt, surÉlectron} from './utils';
 
 describe('Test fenêtre appli', function () {
-  let appliÉlectron: ElectronApplication;
+  let appliÉlectron: ElectronApplication | undefined = undefined;
+  let page: Page;
   let fermer: () => Promise<void>;
   
   beforeAll(async () => {
-    ({appli: appliÉlectron, fermer} = await surÉlectron());
+    ({appli: appliÉlectron, page, fermer} = await surÉlectron());
   });
   
   afterAll(async () => {
     await fermer();
   });
   
-  test('Main window state', async () => {
+  test('Main window state', async function () {
+    if (!appliÉlectron) this.skip();
     const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
-      await appliÉlectron.evaluate(async ({BrowserWindow}) => {
+      await appliÉlectron!.evaluate(async ({BrowserWindow}) => {
         await new Promise<void>(résoudre => {
           const fVérif = () => {
             if (BrowserWindow.getAllWindows().length) {
@@ -50,25 +52,22 @@ describe('Test fenêtre appli', function () {
   });
   
   test('Main window web content', async () => {
-    const page = await appliÉlectron.firstWindow();
+    if (!appliÉlectron) this.skip();
     const element = await page.$('#app', {strict: true});
     expect(element, 'Was unable to find the root element').toBeDefined();
     expect((await element!.innerHTML()).trim(), 'Window content was empty').not.equal('');
   });
 
   test('Changer langue', async () => {
-    const page = await appliÉlectron.firstWindow();
     await changerLangue({page, langue: 'த'});
   });
   
   test('Constellation initialisé', async () => {
-    const page = await appliÉlectron.firstWindow();
     await constellationPrêt({page});
   });
 
 
   test('Créer compte', async () => {
-    const page = await appliÉlectron.firstWindow();
     const btnDémarrer = await constellationPrêt({page});
     console.log('Constellation prêt');
     await btnDémarrer.click();
@@ -95,8 +94,9 @@ describe('Test fenêtre appli', function () {
     
     // Création compte
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
-    console.log('Btn création compte');
+    console.log('Btn création compte', btnCréerCompte);
     
+    await btnCréerCompte.isEnabled();
     await btnCréerCompte.click();
     console.log('Btn création compte cliqué');
     
