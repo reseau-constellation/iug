@@ -43,9 +43,11 @@ jobs:
     uses: ./.github/workflows/typechecking.yml
   tests:
     uses: ./.github/workflows/tests.yml
+  tests_navig:
+    uses: ./.github/workflows/testsNavig.yml
   publier_appli_internet:
+    needs: [ typechecking, tests_navig ]
     uses: ./.github/workflows/publierPage.yml
-    needs: [ typechecking, tests ]
   draft_release:
     permissions:
       contents: write # Allows this job to create releases

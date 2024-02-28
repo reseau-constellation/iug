@@ -1,0 +1,42 @@
+name: Tests navig
+on: [ workflow_call ]
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: 'bash'
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        navig: [ firefox ]  # [ webkit, chromium]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - uses: pnpm/action-setup@v3.0.0
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        # with:
+        #   cache: 'pnpm'
+      - run: pnpm install
+
+      - run: pnpm test:webkit
+        if: ${{ matrix.os === 'webkit' }}
+
+      - run: pnpm test:chrome
+        if: ${{ matrix.os === 'chromium' }}
+
+      - run: pnpm test:firefox
+        if: ${{ matrix.os === 'firefox' }}
+
+      # Publier couverture tests
+      - name: Envoyer couverure à Codecov
+        uses: codecov/codecov-action@v4

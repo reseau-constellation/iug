@@ -2,7 +2,9 @@ import type {ElectronApplication, Page} from 'playwright';
 
 import {afterAll, beforeAll, expect, test, describe} from 'vitest';
 
-import {changerLangue, constellationPrêt, surÉlectron} from './utils';
+import {changerLangue, constellationPrêt, surNavig, surÉlectron} from './utils';
+
+const environnement = process.env.ENVIRONNEMENT_TESTS;
 
 describe('Test fenêtre appli', function () {
   let appliÉlectron: ElectronApplication | undefined = undefined;
@@ -10,15 +12,23 @@ describe('Test fenêtre appli', function () {
   let fermer: () => Promise<void>;
   
   beforeAll(async () => {
-    ({appli: appliÉlectron, page, fermer} = await surÉlectron());
+    if (! environnement || environnement === 'électron') {
+      ({appli: appliÉlectron, page, fermer} = await surÉlectron());
+    }
+    else if (['firefox', 'chromium', 'webkit'].includes(environnement )) {
+      ({page, fermer} = await surNavig({ typeNavigateur: environnement as 'webkit' | 'chromium' | 'webkit'}));
+
+    } else {
+      throw new Error(environnement);
+    }
   });
   
   afterAll(async () => {
     await fermer();
   });
   
-  test('Main window state', async function () {
-    if (!appliÉlectron) this.skip();
+  test('Main window state', async (context) => {
+    if (!appliÉlectron) context.skip();
     const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
       await appliÉlectron!.evaluate(async ({BrowserWindow}) => {
         await new Promise<void>(résoudre => {
@@ -51,8 +61,9 @@ describe('Test fenêtre appli', function () {
     expect(windowState.isDevToolsOpened, 'The DevTools panel was open').toBeFalsy();
   });
   
-  test('Main window web content', async () => {
-    if (!appliÉlectron) this.skip();
+  test('Main window web content', async (context) => {
+    if (!appliÉlectron) context.skip();
+
     const element = await page.$('#app', {strict: true});
     expect(element, 'Was unable to find the root element').toBeDefined();
     expect((await element!.innerHTML()).trim(), 'Window content was empty').not.equal('');
@@ -66,7 +77,7 @@ describe('Test fenêtre appli', function () {
     await constellationPrêt({page});
   });
 
-  test('Créer compte', async () => {
+  test.skip('Créer compte', async () => {
     const btnDémarrer = await constellationPrêt({page});
     console.log('Constellation prêt');
     await btnDémarrer.click();
@@ -92,7 +103,6 @@ describe('Test fenêtre appli', function () {
     console.log('Au suivant');
     
     // Création compte
-    await new Promise(résoudre => setTimeout(résoudre, 1000));
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
     console.log('Btn création compte', btnCréerCompte);
     

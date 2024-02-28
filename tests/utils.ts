@@ -1,8 +1,10 @@
-import type {ElectronApplication, Page} from 'playwright';
-import {_electron as electron} from 'playwright';
+import type {Browser, ElectronApplication, Page} from 'playwright';
+import {_electron as electron, chromium, webkit, firefox } from 'playwright';
 
 import {dossiers} from '@constl/utils-tests';
 import {Nuchabäl} from 'nuchabal';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 
 const nuchabäl = new Nuchabäl({});
 
@@ -32,7 +34,38 @@ export const surÉlectron = async (): Promise<{
   return {appli, page, fermer};
 };
 
-export const surNavig = () => {};
+export const surNavig = async ({typeNavigateur}: {typeNavigateur: 'webkit' | 'chromium' | 'firefox'}): Promise<{
+  page: Page;
+  fermer: () => Promise<void>;
+}> => {
+  let navigateur: Browser;
+  switch (typeNavigateur) {
+    case 'chromium':
+      navigateur = await chromium.launch({headless: false});
+      break;
+    case 'firefox':
+      navigateur = await firefox.launch({headless: false});
+      break;
+    case 'webkit':
+      navigateur = await webkit.launch({headless: false});
+      break;
+    default:
+      throw new Error(typeNavigateur);
+  }
+
+  const page = await navigateur.newPage();
+  const __dirname = dirname(fileURLToPath(import.meta.url));
+  const fichierHtml = path.join(__dirname, '..', 'packages', 'renderer', 'dist', 'web', 'index.html');
+  
+  await page.goto(`file://${fichierHtml}`);
+
+  const fermer = async () => {
+    await page.close();
+    await navigateur.close();
+  };
+
+  return {page, fermer};
+};
 
 export const constellationPrêt = async ({page}: {page: Page}) => {
   return await page.waitForSelector('.v-btn--variant-outlined');
@@ -40,7 +73,9 @@ export const constellationPrêt = async ({page}: {page: Page}) => {
 
 export const changerLangue = async ({page, langue}: {page: Page; langue: string}) => {
   const nomLangue = nuchabäl.rubiChabäl({runuk: langue});
+  console.log('ici 1');
   const btnLangues = await page.waitForSelector('.mdi-earth');
+  console.log('ici 2');
   await btnLangues.click();
 
   if (nomLangue) {
