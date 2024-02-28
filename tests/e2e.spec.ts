@@ -1,27 +1,38 @@
+import { dossiers } from '@constl/utils-tests';
 import type {ElectronApplication} from 'playwright';
 import {_electron as electron} from 'playwright';
 import {afterAll, beforeAll, expect, test} from 'vitest';
 
 let electronApp: ElectronApplication;
+let dossier: string;
+let fEffacer: () => void;
 
 beforeAll(async () => {
-  electronApp = await electron.launch({args: ['.']});
+  // Utiliser un dossier temporaire pour le compte Constellation dans les tests
+  ({ dossier, fEffacer } = await dossiers.dossierTempo());
+  electronApp = await electron.launch({args: ['.'], env: {DOSSIER_CONSTL: dossier }});
 });
 
 afterAll(async () => {
-  await electronApp.close();
+  try {
+    await electronApp.close();
+  } finally {
+    fEffacer?.();
+  }
 });
 
 test('Main window state', async () => {
   const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
     await electronApp.evaluate(async ({BrowserWindow}) => {
       await new Promise<void>(résoudre => {
-        const intervale = setInterval(() => {
+        const fVérif = () => {
           if (BrowserWindow.getAllWindows().length) {
             clearInterval(intervale);
             résoudre();
           }
-        }, 1000);
+        };
+        const intervale = setInterval(fVérif, 1000);
+        fVérif();
       });
       const mainWindow = BrowserWindow.getAllWindows()[0];
 
@@ -49,6 +60,13 @@ test('Main window web content', async () => {
   expect(element, 'Was unable to find the root element').toBeDefined();
   expect((await element!.innerHTML()).trim(), 'Window content was empty').not.equal('');
 });
+
+test('Constellation initialisé', async () => {
+  const page = await electronApp.firstWindow();
+  const btnDémarrer = await page.waitForSelector('.v-btn--variant-outlined');
+  await btnDémarrer.click();
+});
+
 /**
 test('Preload versions', async () => {
   const page = await electronApp.firstWindow();
