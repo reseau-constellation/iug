@@ -16,7 +16,7 @@ dependencies:
     version: 0.1.16
   '@constl/mandataire-electron-principal':
     specifier: ^0.4.6
-    version: 0.4.6(@constl/ipa@1.0.2)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.1.0)
+    version: 0.4.6(@constl/ipa@1.0.2)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.0.1)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.4.6
     version: 0.4.6
@@ -194,8 +194,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 29.1.0
-    version: 29.1.0
+    specifier: 29.0.1
+    version: 29.0.1
   electron-builder:
     specifier: 24.12.0
     version: 24.12.0
@@ -1729,8 +1729,6 @@ packages:
       uint8arraylist: 2.4.8
       uint8arrays: 5.0.2
       wherearewe: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   /@chainsafe/libp2p-yamux@6.0.2:
     resolution: {integrity: sha512-S5OkLHqYhEVMQQ4BTgnRANEIbGTQhaC23glCgBwGdeoTRtMpIozwDiPfljFLCm0RYWdCRJw9oFztO95KUHjptA==}
@@ -1925,7 +1923,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.2)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.1.0):
+  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.2)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.0.1):
     resolution: {integrity: sha512-WwOC8ZKEY/jEXkakz2PpUbqzlQbEoEmRyjftAgx1F+czlI19YhUmshVvEXcSfU1lCwkP2JjVA6KoofEXd6Yrqg==}
     peerDependencies:
       '@constl/ipa': 1.0.0
@@ -1936,7 +1934,7 @@ packages:
       '@constl/ipa': 1.0.2(react-native@0.73.5)(wrtc@0.4.7)
       '@constl/mandataire': 0.1.16
       '@constl/serveur': 0.3.7(@constl/ipa@1.0.2)
-      electron: 29.1.0
+      electron: 29.0.1
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -2624,6 +2622,8 @@ packages:
       interface-store: 5.1.8
       multiformats: 13.1.0
       progress-events: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
 
   /@helia/unixfs@3.0.1:
     resolution: {integrity: sha512-NgT0gk3oswUK+8IEnJDl6IGv5catSQq6IQ1VrO68ZBpJPpo49CyFCqN5CO8IC3QL3wi4JyJ0sTLXemMVkUsTVA==}
@@ -2957,8 +2957,6 @@ packages:
       protons-runtime: 5.4.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   /@libp2p/dcutr@1.0.13:
     resolution: {integrity: sha512-b/aHsizMzcXYUI0G4Pl2GnMZneh4mPSOUebvzofhHfjR92lJ2DANhEkIhV1liJAWdjdulDLFHW63tDEOBxA23A==}
@@ -3140,8 +3138,6 @@ packages:
       multiformats: 13.1.0
       sanitize-filename: 1.6.3
       uint8arrays: 5.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   /@libp2p/logger@2.1.1:
     resolution: {integrity: sha512-2UbzDPctg3cPupF6jrv6abQnAUTrbLybNOj0rmmrdGm1cN2HJ1o/hBu0sXuq4KF9P1h/eVRn1HIRbVIEKnEJrA==}
@@ -3234,8 +3230,6 @@ packages:
       protons-runtime: 5.4.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.0.2
-    transitivePeerDependencies:
-      - supports-color
 
   /@libp2p/peer-id@3.0.6:
     resolution: {integrity: sha512-iN1Ia5gH2U1V/GOVRmLHmVY6fblxzrOPUoZrMYjHl/K4s+AiI7ym/527WDeQvhQpD7j3TfDwcAYforD2dLGpLw==}
@@ -6915,8 +6909,8 @@ packages:
       - supports-color
     dev: false
 
-  /electron@29.1.0:
-    resolution: {integrity: sha512-giJVIm0sWVp+8V1GXrKqKTb+h7no0P3ooYqEd34AD9wMJzGnAeL+usj+R0155/0pdvvP1mgydnA7lcaFA2M9lw==}
+  /electron@29.0.1:
+    resolution: {integrity: sha512-hsQr9clm8NCAMv4uhHlXThHn52UAgrHgyz3ubBAxZIPuUcpKVDtg4HPmx4hbmHIbYICI5OyLN3Ztp7rS+Dn4Lw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
@@ -12754,6 +12748,8 @@ packages:
       node-pre-gyp: 0.13.0
     optionalDependencies:
       domexception: 1.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
     bundledDependencies:
       - node-pre-gyp
