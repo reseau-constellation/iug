@@ -41,13 +41,17 @@ export const surNavig = async ({typeNavigateur}: {typeNavigateur: 'webkit' | 'ch
   let navigateur: Browser;
   switch (typeNavigateur) {
     case 'chromium':
-      navigateur = await chromium.launch({headless: false});
+      navigateur = await chromium.launch({
+        args: ['--disable-web-security'],
+      });
       break;
     case 'firefox':
-      navigateur = await firefox.launch({headless: false});
+      navigateur = await firefox.launch();
       break;
     case 'webkit':
-      navigateur = await webkit.launch({headless: false});
+      navigateur = await webkit.launch({
+        args: ['--disable-web-security'],
+      });
       break;
     default:
       throw new Error(typeNavigateur);
