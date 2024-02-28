@@ -9,7 +9,6 @@ import PageRecherche from '/@/vues/PageRecherche.vue';
 import PageFavoris from '/@/vues/PageFavoris.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
 import PageSignalements from '/@/vues/PageSignalements.vue';
-import PageTéléchargements from '/@/vues/PageTéléchargements.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -66,11 +65,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/signalements',
     name: 'Signalements',
     component: PageSignalements,
-  },
-  {
-    path: encodeURI('/téléchargements'),
-    name: 'Téléchargements',
-    component: PageTéléchargements,
   },
 ];
 
