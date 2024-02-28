@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    :style="'position: absolute;' + (isRtl ? 'left:' : 'right:') + '20px; top: 20px'"
+    :style="'position: absolute;' + (isRtl ? 'left:' : 'right:') + '20px; top: 20px; z-index:100'"
     icon="mdi-earth"
     size="small"
   >
