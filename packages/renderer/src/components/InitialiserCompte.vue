@@ -27,6 +27,7 @@
                 class="ma-3"
                 variant="flat"
                 color="primary"
+                prepend-icon="mdi-creation-outline"
                 @click="suivreCheminementNouveauCompte"
               >
                 {{ t('accueil.initialiserCompte.nouveauCompte') }}
@@ -34,6 +35,7 @@
               <v-btn
                 class="ma-3"
                 variant="outlined"
+                prepend-icon="mdi-lan-connect"
                 @click="suivreCheminementConnecterCompte"
               >
                 {{ t('accueil.initialiserCompte.connecter') }}
