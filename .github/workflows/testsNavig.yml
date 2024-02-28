@@ -29,13 +29,13 @@ jobs:
       - run: pnpm install
 
       - run: pnpm test:webkit
-        if: ${{ matrix.os === 'webkit' }}
+        if: ${{ matrix.os == 'webkit' }}
 
       - run: pnpm test:chrome
-        if: ${{ matrix.os === 'chromium' }}
+        if: ${{ matrix.os == 'chromium' }}
 
       - run: pnpm test:firefox
-        if: ${{ matrix.os === 'firefox' }}
+        if: ${{ matrix.os == 'firefox' }}
 
       # Publier couverture tests
       - name: Envoyer couverure à Codecov
