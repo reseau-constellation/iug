@@ -2,7 +2,7 @@ name: Tests navig
 on: [ workflow_call ]
 
 concurrency:
-  group: tests-${{ github.ref }}
+  group: tests-navig-${{ github.ref }}
   cancel-in-progress: true
 
 defaults:
@@ -10,7 +10,7 @@ defaults:
     shell: 'bash'
 
 jobs:
-  tests:
+  tests_navig:
     strategy:
       fail-fast: false
       matrix:
