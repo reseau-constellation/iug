@@ -55,7 +55,7 @@ describe('Test fenêtre appli', function () {
     expect(element, 'Was unable to find the root element').toBeDefined();
     expect((await element!.innerHTML()).trim(), 'Window content was empty').not.equal('');
   });
-  
+
   test('Changer langue', async () => {
     const page = await appliÉlectron.firstWindow();
     await changerLangue({page, langue: 'த'});
@@ -70,39 +70,54 @@ describe('Test fenêtre appli', function () {
   test('Créer compte', async () => {
     const page = await appliÉlectron.firstWindow();
     const btnDémarrer = await constellationPrêt({page});
+    console.log('Constellation prêt');
     await btnDémarrer.click();
+    console.log('Démarré cliqué');
     const btnNouveau = await page.waitForSelector('.mdi-creation-outline');
+    console.log('Btn nouveau compte sélectionné');
     await btnNouveau.click();
+    console.log('Btn nouveau compte cliqué');
     
     // Nom utilisatrice
     await page.getByLabel('உங்கள் பெயர்').fill('நான் தான்');
+    console.log('Nom écrit');
     await page.keyboard.press('Enter');
+    console.log('Nom inscrit');
     
     const btnSuivant = page.getByText('அடுத்தது');
+    console.log('Btn suivant');
     await btnSuivant.click();
+    console.log('Suivant');
     
     // Image
     await btnSuivant.click();
-
+    console.log('Au suivant');
+    
     // Création compte
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
-
+    console.log('Btn création compte');
+    
     await btnCréerCompte.click();
-
+    console.log('Btn création compte cliqué');
+    
     const menuNavig = await page.waitForSelector('.v-navigation-drawer__content');
+    console.log('Navigation');
     await menuNavig.hover();
-
+    console.log('Souris sur navigation');
+    
     const nomUtilisatrice = page.getByText('நான் தான்');
+    console.log('Nom utilisatrice', nomUtilisatrice);
     expect(await nomUtilisatrice.innerText()).to.equal('நான் தான்');
   });
+
 });
 
 /**
 test('Preload versions', async () => {
-  const page = await electronApp.firstWindow();
+  const page = await appliÉlectron.firstWindow();
   const renderedVersions = await page.locator('#process-versions').innerText();
 
-  const expectedVersions = await electronApp.evaluate(() => process.versions);
+  const expectedVersions = await appliÉlectron.evaluate(() => process.versions);
 
   for (const expectedVersionsKey in expectedVersions) {
     expect(renderedVersions).include(
@@ -110,7 +125,7 @@ test('Preload versions', async () => {
     );
   }
 });
-
+  
 test('Preload nodeCrypto', async () => {
   const page = await electronApp.firstWindow();
 
