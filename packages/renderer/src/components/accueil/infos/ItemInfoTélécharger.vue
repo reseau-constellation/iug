@@ -65,6 +65,7 @@
               >
                 {{ t('accueil.page.notifications.connecterInstallé.étape1.télécharger') }}
               </v-btn>
+              <indice-installation-apple v-if="surPlateforme.so === 'mac'" />
             </div>
           </v-timeline-item>
           <v-timeline-item
@@ -114,6 +115,7 @@ import {computed, ref} from 'vue';
 import InviterDispositif from '../../compte/InviterDispositif.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {obtenirDernièreVersion} from '/@/components/accueil/infos/utils';
+import IndiceInstallationApple from '/@/components/accueil/infos/IndiceInstallationApple.vue';
 import {ouvrirLien, plateforme} from '/@/utils';
 import {URL_TÉLÉCHARGEMENTS} from '/@/consts';
 import {useDisplay} from 'vuetify/lib/framework.mjs';

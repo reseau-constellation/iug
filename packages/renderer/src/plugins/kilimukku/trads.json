@@ -117,7 +117,13 @@
             "étape1": {
               "titre": "Installer sur ordi",
               "texte": "Premièrement, installez et ouvrez Constellation sur un ordinateur.",
-              "télécharger": "Télécharger"
+              "télécharger": "Télécharger",
+              "apple": {
+                "titre": "Info pour installation sur macOS",
+                "texte": "Nous rechignons de payer 100 $ annuellement à Apple  pour le privilège de développer des logiciels pour leur plateforme. Constellation doit donc être installée en tant que programme non vérifié par Apple.",
+                "btn": "Voir comment",
+                "lienExterne": "https://duckduckgo.com/?q=macos+installer+application+non+sign%C3%A9&t=ffab&atb=v308-1&ia=web"
+              }
             },
             "étape2": {
               "titre": "Connecter votre compte",
