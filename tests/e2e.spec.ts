@@ -10,24 +10,24 @@ describe('Test fenêtre appli', function () {
   let appliÉlectron: ElectronApplication | undefined = undefined;
   let page: Page;
   let fermer: () => Promise<void>;
-  
-  beforeAll(async () => {
-    if (! environnement || environnement === 'électron') {
-      ({appli: appliÉlectron, page, fermer} = await surÉlectron());
-    }
-    else if (['firefox', 'chromium', 'webkit'].includes(environnement )) {
-      ({page, fermer} = await surNavig({ typeNavigateur: environnement as 'webkit' | 'chromium' | 'webkit'}));
 
+  beforeAll(async () => {
+    if (!environnement || environnement === 'électron') {
+      ({appli: appliÉlectron, page, fermer} = await surÉlectron());
+    } else if (['firefox', 'chromium', 'webkit'].includes(environnement)) {
+      ({page, fermer} = await surNavig({
+        typeNavigateur: environnement as 'webkit' | 'chromium' | 'webkit',
+      }));
     } else {
       throw new Error(environnement);
     }
   });
-  
+
   afterAll(async () => {
     await fermer();
   });
-  
-  test('Main window state', async (context) => {
+
+  test('Main window state', async context => {
     if (!appliÉlectron) context.skip();
     const windowState: {isVisible: boolean; isDevToolsOpened: boolean; isCrashed: boolean} =
       await appliÉlectron!.evaluate(async ({BrowserWindow}) => {
@@ -42,26 +42,26 @@ describe('Test fenêtre appli', function () {
           fVérif();
         });
         const mainWindow = BrowserWindow.getAllWindows()[0];
-  
+
         const getState = () => ({
           isVisible: mainWindow.isVisible(),
           isDevToolsOpened: mainWindow.webContents.isDevToolsOpened(),
           isCrashed: mainWindow.webContents.isCrashed(),
         });
-  
+
         return new Promise(resolve => {
           if (mainWindow.isVisible()) {
             resolve(getState());
           } else mainWindow.once('ready-to-show', () => setTimeout(() => resolve(getState()), 0));
         });
       });
-  
+
     expect(windowState.isCrashed, 'The app has crashed').toBeFalsy();
     expect(windowState.isVisible, 'The main window was not visible').toBeTruthy();
     expect(windowState.isDevToolsOpened, 'The DevTools panel was open').toBeFalsy();
   });
-  
-  test('Main window web content', async (context) => {
+
+  test('Main window web content', async context => {
     if (!appliÉlectron) context.skip();
 
     const element = await page.$('#app', {strict: true});
@@ -72,7 +72,7 @@ describe('Test fenêtre appli', function () {
   test('Changer langue', async () => {
     await changerLangue({page, langue: 'த'});
   });
-  
+
   test('Constellation initialisé', async () => {
     await constellationPrêt({page});
   });
@@ -86,40 +86,39 @@ describe('Test fenêtre appli', function () {
     console.log('Btn nouveau compte sélectionné');
     await btnNouveau.click();
     console.log('Btn nouveau compte cliqué');
-    
+
     // Nom utilisatrice
     await page.getByLabel('உங்கள் பெயர்').fill('நான் தான்');
     console.log('Nom écrit');
     await page.keyboard.press('Enter');
     console.log('Nom inscrit');
-    
+
     const btnSuivant = page.getByText('அடுத்தது');
     console.log('Btn suivant');
     await btnSuivant.click();
     console.log('Suivant');
-    
+
     // Image
     await btnSuivant.click();
     console.log('Au suivant');
-    
+
     // Création compte
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
     console.log('Btn création compte', btnCréerCompte);
-    
+
     await btnCréerCompte.isEnabled();
     await btnCréerCompte.click();
     console.log('Btn création compte cliqué');
-    
+
     const menuNavig = await page.waitForSelector('.v-navigation-drawer__content');
     console.log('Navigation');
     await menuNavig.hover();
     console.log('Souris sur navigation');
-    
+
     const nomUtilisatrice = page.getByText('நான் தான்');
     console.log('Nom utilisatrice', nomUtilisatrice);
     expect(await nomUtilisatrice.innerText()).to.equal('நான் தான்');
   });
-
 });
 
 /**

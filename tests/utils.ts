@@ -1,10 +1,10 @@
 import type {Browser, ElectronApplication, Page} from 'playwright';
-import {_electron as electron, chromium, webkit, firefox } from 'playwright';
+import {_electron as electron, chromium, webkit, firefox} from 'playwright';
 
 import {dossiers} from '@constl/utils-tests';
 import {Nuchabäl} from 'nuchabal';
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
+import {fileURLToPath} from 'url';
+import path, {dirname} from 'path';
 
 const nuchabäl = new Nuchabäl({});
 
@@ -14,13 +14,13 @@ export const surÉlectron = async (): Promise<{
   fermer: () => Promise<void>;
 }> => {
   // Utiliser un dossier temporaire pour le compte Constellation dans les tests
-  const {
-    dossier, 
-    fEffacer,
-  } = await dossiers.dossierTempo();
+  const {dossier, fEffacer} = await dossiers.dossierTempo();
 
   // Inclure {...process.env} est nécessaire pour les tests sur Linux
-  const appli = await electron.launch({args: ['.'], env: {...process.env, DOSSIER_CONSTL: dossier}});
+  const appli = await electron.launch({
+    args: ['.'],
+    env: {...process.env, DOSSIER_CONSTL: dossier},
+  });
   const page = await appli.firstWindow();
 
   const fermer = async () => {
@@ -34,7 +34,11 @@ export const surÉlectron = async (): Promise<{
   return {appli, page, fermer};
 };
 
-export const surNavig = async ({typeNavigateur}: {typeNavigateur: 'webkit' | 'chromium' | 'firefox'}): Promise<{
+export const surNavig = async ({
+  typeNavigateur,
+}: {
+  typeNavigateur: 'webkit' | 'chromium' | 'firefox';
+}): Promise<{
   page: Page;
   fermer: () => Promise<void>;
 }> => {
@@ -59,8 +63,16 @@ export const surNavig = async ({typeNavigateur}: {typeNavigateur: 'webkit' | 'ch
 
   const page = await navigateur.newPage();
   const __dirname = dirname(fileURLToPath(import.meta.url));
-  const fichierHtml = path.join(__dirname, '..', 'packages', 'renderer', 'dist', 'web', 'index.html');
-  
+  const fichierHtml = path.join(
+    __dirname,
+    '..',
+    'packages',
+    'renderer',
+    'dist',
+    'web',
+    'index.html',
+  );
+
   await page.goto(`file://${fichierHtml}`);
 
   const fermer = async () => {
