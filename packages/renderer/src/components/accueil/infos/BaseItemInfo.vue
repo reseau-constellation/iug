@@ -37,9 +37,10 @@
             {{ sousTitre }}
           </v-card-subtitle>
         </v-card-item>
-        <v-card-text>
+        <v-card-text style="overflow-y:scroll">
           <slot name="contenu" />
         </v-card-text>
+        <v-divider />
         <v-card-actions>
           <v-spacer />
           <v-btn
