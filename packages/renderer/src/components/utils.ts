@@ -168,7 +168,7 @@ export const rechercher = <T, U, C extends string>({
 
     if (fOublierRecherche) await fOublierRecherche();
     if (annulé) return;
-    if (requète.value) {
+    if (requète.value !==  undefined) {
       //@ts-expect-error Je ne sais pas comment faire ça
       const retour = await fRecherche({
         [clefRequète]: requète.value,
