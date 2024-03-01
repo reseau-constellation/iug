@@ -9,8 +9,7 @@
 
     <v-card
       class="mx-auto"
-      min-width="350"
-      :max-width="mdAndUp ? 750 : 300"
+      :min-width="mdAndUp ? 750 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -77,6 +76,7 @@
               :indice-nom="t('bds.nouvelle.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"
+              longue
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>
