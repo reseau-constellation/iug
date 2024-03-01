@@ -33,8 +33,8 @@ dependencies:
     specifier: ^1.1.3
     version: 1.1.3(react-native@0.73.5)(wrtc@0.4.7)
   '@lassi-js/kilimukku-vue':
-    specifier: 1.1.0
-    version: 1.1.0(@constl/ipa@1.0.2)(react-native@0.73.5)(vue@3.4.21)(wrtc@0.4.7)
+    specifier: 1.1.1
+    version: 1.1.1(@constl/ipa@1.0.2)(react-native@0.73.5)(vue@3.4.21)(wrtc@0.4.7)
   '@mdi/font':
     specifier: ^7.4.47
     version: 7.4.47
@@ -2822,8 +2822,8 @@ packages:
       - supports-color
     dev: false
 
-  /@lassi-js/kilimukku-vue@1.1.0(@constl/ipa@1.0.2)(react-native@0.73.5)(vue@3.4.21)(wrtc@0.4.7):
-    resolution: {integrity: sha512-DvF6QlgZtMVzw0SQDdZ7j/DTFqR7auQ2AsN85Qqq6BDLuCefIPkVMHVSmlgn7pOTFd6PZNrsDus3HzHOB0/OqA==}
+  /@lassi-js/kilimukku-vue@1.1.1(@constl/ipa@1.0.2)(react-native@0.73.5)(vue@3.4.21)(wrtc@0.4.7):
+    resolution: {integrity: sha512-YWXSLsbrMNcAedtiYEZx9XIJLw1Gjvz0oBvc36C4ALqp54PcuLe74nbPZ9cURNFqFYzldT6DNK+N/pyrnCIqgA==}
     peerDependencies:
       vue: ^3.4.19
     dependencies:
