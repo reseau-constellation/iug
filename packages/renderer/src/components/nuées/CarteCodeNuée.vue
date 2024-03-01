@@ -27,9 +27,9 @@ const props = defineProps<{id: string}>();
 
 const codes = computed(() => {
   return {
-    ts: `import { générerClient, type nuées } from "@constl/ipa";
+    ts: `import { créerConstellation, type nuées } from "@constl/ipa";
 
-const client = générerClient({});
+const client = créerConstellation({});
 
 const analyser = async (données: nuées.donnéesNuéeExportation) => {
     console.log(données)  // Faire quelque chose de plus intelligent ici :)

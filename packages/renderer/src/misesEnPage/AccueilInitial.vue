@@ -53,7 +53,7 @@ import {constellation, suivre} from '../components/utils';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 const constl = constellation();
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;

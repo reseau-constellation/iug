@@ -97,10 +97,10 @@ import {utiliserHistoriqueLangues} from '/@/état/historiqueLangues';
 import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
+const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 const historiqueLangues = utiliserHistoriqueLangues();
 

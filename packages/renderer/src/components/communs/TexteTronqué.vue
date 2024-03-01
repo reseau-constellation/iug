@@ -9,7 +9,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 const props = defineProps<{texte: string; longueurMax: number}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 const texteTronqué = computed(() => {
   if ([...props.texte].length > props.longueurMax) {

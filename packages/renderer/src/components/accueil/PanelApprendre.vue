@@ -38,7 +38,7 @@ import {onMounted, ref} from 'vue';
 import {useRtl} from 'vuetify';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {isRtl} = useRtl();
 
 const imageFond = ref<string>();

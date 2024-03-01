@@ -40,7 +40,7 @@ const props = defineProps<{id: string}>();
 const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Nom de la nuée
 const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});

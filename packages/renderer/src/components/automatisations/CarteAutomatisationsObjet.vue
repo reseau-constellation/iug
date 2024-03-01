@@ -84,7 +84,7 @@ import ItemAutomatisation from './ItemAutomatisation.vue';
 import ImporterOuExporter from '../importerExporter/ImporterOuExporter.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 const props = defineProps<{

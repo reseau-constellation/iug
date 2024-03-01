@@ -404,10 +404,10 @@ const {
   மொழியாக்கம்_பயன்படுத்து,
   மொழி_முன்னேற்றத்தை_பயன்படுத்து,
 } = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து({});
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து({});
+const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);
@@ -464,7 +464,7 @@ const progrèsSuggéré = computed(() => {
 });
 
 // Liste clefs à traduire
-const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து({});
+const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து();
 const clefsPourListe = computed(() => {
   if (!clefsDisponibles.value) return;
   let toutesClefs: string[] = clefsDisponibles.value;
@@ -546,7 +546,7 @@ const suggestionsDisponibles = computed(() => {
   );
 });
 const imgVide = obtImageDéco('vide');
-const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து({});
+const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து();
 const suggestionsLangueCibleClef = computed(() => {
   const {value: lngCible} = langueCible;
   return (
