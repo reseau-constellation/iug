@@ -4,6 +4,7 @@
     v-model:search="requète"
     :items="résultatsPermisRecherche"
     :multiple="multiples"
+    :label="t('motsClefs.recherche.étiquette')"
     variant="outlined"
   >
     <template #item="{item}">

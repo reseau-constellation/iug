@@ -1,52 +1,36 @@
 <template>
-  <v-list-item>
-    <template #prepend>
-      <v-icon>{{ icôneTypeItem }}</v-icon>
+  <CarteEpingler :id="epingle.idObjet">
+    <template #activator="{props: propsActivateurCarteÉpingle}">
+      <v-tooltip
+        open-delay="200"
+        location="bottom"
+      >
+        <template #activator="{props: propsActivateurIndice}">
+          <v-list-item
+            v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}"
+          >
+            <template #prepend>
+              <v-icon>{{ icôneTypeItem }}</v-icon>
+            </template>
+            <v-list-item-title>
+              {{ nomTraduit || sansNom }}
+              <lien-objet :id="epingle.idObjet" />
+            </v-list-item-title>
+            <template #append>
+              <v-btn
+                class="my-2"
+                size="x-small"
+                variant="outlined"
+                icon="mdi-open-in-new"
+                @click="$router.push(encodeURI(`/données/${typeObjet}/${encodeURIComponent(epingle.idObjet)}`))"
+              >
+              </v-btn>
+            </template>
+          </v-list-item>
+        </template>
+      </v-tooltip>
     </template>
-    <v-list-item-title>
-      <TexteTronqué
-        :texte="nomTraduit || epingle.idObjet"
-        :longueur-max="30"
-      />
-    </v-list-item-title>
-    <v-list-item-action>
-      <CarteEpingler :id="epingle.idObjet">
-        <template #activator="{props: propsActivateurCarteÉpingle}">
-          <v-tooltip
-            v-bind="propsActivateurCarteÉpingle"
-            open-delay="200"
-            location="bottom"
-          >
-            <template #activator="{props: propsActivateurIndice}">
-              <v-btn
-                v-bind="propsActivateurIndice"
-                :icon="épinglé && épinglé.bd ? 'mdi-pin' : 'mdi-pin-outline'"
-              />
-            </template>
-            {{ t(épinglé && épinglé.bd ? 'favoris.indiceÉpinglé' : 'favoris.indiceNonÉpinglé') }}
-          </v-tooltip>
-        </template>
-      </CarteEpingler>
-      <CarteEffacer @effacer="effacerFavoris">
-        <template #activator="{props: propsActivateurCarteEffacer}">
-          <v-tooltip
-            v-bind="propsActivateurCarteEffacer"
-            open-delay="200"
-            location="bottom"
-          >
-            <template #activator="{props: propsActivateurIndiceEffacer}">
-              <v-btn
-                v-bind="propsActivateurIndiceEffacer"
-                icon="mdi-delete"
-                color="error"
-              />
-            </template>
-            <span>{{ t('favoris.effacer.indiceEffacer') }}</span>
-          </v-tooltip>
-        </template>
-      </CarteEffacer>
-    </v-list-item-action>
-  </v-list-item>
+  </CarteEpingler>
 </template>
 
 <script setup lang="ts">
@@ -55,9 +39,8 @@ import {computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation, icôneObjet, suivre} from '../utils';
-import TexteTronqué from '../communs/TexteTronqué.vue';
 import CarteEpingler from './CarteÉpingler.vue';
-import CarteEffacer from '../communs/CarteEffacer.vue';
+import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{epingle: favoris.ÉlémentFavorisAvecObjet}>();
 
@@ -72,6 +55,22 @@ const constl = constellation();
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
 const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
+const sansNom = computed(()=>{
+  switch (typeObjet.value) {
+    case 'bd':
+      return t('bds.sansNom');
+    case 'motClef':
+      return t('motsClefs.sansNom');
+    case 'nuée':
+      return t('nuées.sansNom');
+    case 'variable':
+      return t('variables.sansNom');
+    case 'projet':
+      return t('projets.sansNom');
+    default:
+      return t('baseCarteObjet.sansNom');
+  }
+});
 
 // Type objet
 const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.epingle.idObjet});
@@ -79,13 +78,4 @@ const icôneTypeItem = computed(() => {
   return icôneObjet(typeObjet.value) || 'mdi-pin-outline';
 });
 
-// Épingle
-const épinglé = suivre(constl.favoris.suivreEstÉpingléSurDispositif, {
-  idObjet: props.epingle.idObjet,
-});
-
-// Contrôle
-const effacerFavoris = async () => {
-  await constl.favoris.désépinglerFavori({idObjet: props.epingle.idObjet});
-};
 </script>

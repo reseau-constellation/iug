@@ -9,7 +9,8 @@
 
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      min-width="350"
+      :max-width="mdAndUp ? 750 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -236,7 +237,7 @@ const titreCarte = computed(() => {
     case 'noms':
       return 'bds.nouvelle.titreNoms';
     case 'descriptions':
-      return 'bds.nouvelle.titreFescriptions';
+      return 'bds.nouvelle.titreDescriptions';
     case 'motsClefs':
       return 'bds.nouvelle.titreMotsClefs';
     case 'licence':
@@ -260,7 +261,7 @@ const sousTitreCarte = computed(() => {
     case 'noms':
       return 'bds.nouvelle.sousTitreNoms';
     case 'descriptions':
-      return 'bds.nouvelle.sousTitreFescriptions';
+      return 'bds.nouvelle.sousTitreDescriptions';
     case 'motsClefs':
       return 'bds.nouvelle.sousTitreMotsClefs';
     case 'licence':

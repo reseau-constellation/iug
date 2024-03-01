@@ -5,6 +5,7 @@
       "auto": "Automatique",
       "suivant": "Suivant",
       "retour": "Retour",
+      "ouvrir": "Ouvrir",
       "anonyme": "Anonyme",
       "effacer": "Effacer",
       "étiquetteNom": "Nom",
@@ -222,7 +223,29 @@
       }
     },
     "bds": {
-      "qualité": "Qualité "
+      "qualité": "Qualité ",
+      "nouvelle": {
+        "titreCheminement": "Nouvelle base de données",
+        "sousTitreCheminement": "Créez un bd vide ou utilisez un gabarit",
+        "créerNouvelle": "Nouvelle BD vide",
+        "copierDeBd": "Copier une BD existante",
+        "copierDeNuée": "À partir d'une Nuée",
+        "titreNoms": "Le nom de votre BD",
+        "sousTitreNoms": "Vous pourrez toujours le modifier plus tard",
+        "titreDescriptions": "Description de la BD",
+        "sousTitreDescriptions": "À quoi votre BD servira-t-elle ?",
+        "titreMotsClefs": "Ajoutez des mots-clefs",
+        "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre BD"
+      }
+    },
+    "motsClefs": {
+      "nouveau": {
+        "btn": "Nouveau mot-clef"
+      },
+      "recherche": {
+        "aucunRetrouvé": "Aucun mot-clef retrouvé",
+        "étiquette": "Recherchez un mot-clef"
+      }
     }
   },
 

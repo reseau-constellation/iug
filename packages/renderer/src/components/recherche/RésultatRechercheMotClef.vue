@@ -12,7 +12,7 @@
         v-if="source === 'descr'"
         :info="résultat.résultatObjectif.info"
       />
-      <span v-else>{{ descriptionTraduite || t('motsClefs.aucunNom') }}</span>
+      <span v-else>{{ descriptionTraduite || t('motsClefs.aucuneDescription') }}</span>
     </v-list-item-subtitle>
     <AuteursObjet
       :auteurs="auteurs"
