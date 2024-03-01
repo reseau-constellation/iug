@@ -26,11 +26,7 @@
             variant="outlined"
             append-icon="mdi-open-in-new"
             @click="
-              ouvrirLien(
-                t(
-                  'accueil.page.notifications.connecterInstallé.étape1.apple.lienExterne',
-                ),
-              )
+              ouvrirLien(t('accueil.page.notifications.connecterInstallé.étape1.apple.lienExterne'))
             "
           >
             {{ t('accueil.page.notifications.connecterInstallé.étape1.apple.btn') }}

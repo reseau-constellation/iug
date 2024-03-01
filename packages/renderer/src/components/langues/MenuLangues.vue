@@ -32,7 +32,7 @@
           v-if="!constellationPrète"
           height="1"
           color="primary"
-          :indeterminate="!constellationPrète"
+          indeterminate
         ></v-progress-linear>
         <v-divider v-else />
         <v-text-field

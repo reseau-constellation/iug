@@ -6,6 +6,7 @@
     size="small"
   >
     {{ nomTraduit || t('motsClefs.sansNom') }}
+    <slot></slot>
   </v-chip>
 </template>
 

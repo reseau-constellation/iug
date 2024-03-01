@@ -6,9 +6,7 @@
         location="bottom"
       >
         <template #activator="{props: propsActivateurIndice}">
-          <v-list-item
-            v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}"
-          >
+          <v-list-item v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}">
             <template #prepend>
               <v-icon>{{ icôneTypeItem }}</v-icon>
             </template>
@@ -22,7 +20,11 @@
                 size="x-small"
                 variant="outlined"
                 icon="mdi-open-in-new"
-                @click="$router.push(encodeURI(`/données/${typeObjet}/${encodeURIComponent(epingle.idObjet)}`))"
+                @click="
+                  $router.push(
+                    encodeURI(`/données/${typeObjet}/${encodeURIComponent(epingle.idObjet)}`),
+                  )
+                "
               >
               </v-btn>
             </template>
@@ -55,7 +57,7 @@ const constl = constellation();
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
 const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-const sansNom = computed(()=>{
+const sansNom = computed(() => {
   switch (typeObjet.value) {
     case 'bd':
       return t('bds.sansNom');
@@ -77,5 +79,4 @@ const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.epingle.idObjet
 const icôneTypeItem = computed(() => {
   return icôneObjet(typeObjet.value) || 'mdi-pin-outline';
 });
-
 </script>

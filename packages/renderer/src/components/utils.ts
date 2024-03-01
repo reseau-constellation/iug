@@ -140,8 +140,10 @@ export const rechercher = <T, U, C extends string>({
     },
   ) => Promise<types.schémaRetourFonctionRechercheParN>;
   clefRequète: C;
-}): {résultats: Ref<U[] | undefined>; n: Ref<number>} => {
+}): {résultats: Ref<U[] | undefined>; n: Ref<number>; onTravaille: Ref<boolean>} => {
   const réfRésultat: Ref<U[] | undefined> = ref();
+  const onTravaille = ref(true);
+
   let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
   let fChangerN: (n: number) => Promise<void>;
 
@@ -151,7 +153,19 @@ export const rechercher = <T, U, C extends string>({
   let annulé = false;
 
   const lancerRecherche = async () => {
+    const requèteAvant = requète.value;
+    onTravaille.value = true;
+
+    // Attendre une seconde pour laisser aux personnes le temps d'écrire
+    await new Promise(résoudre => setTimeout(résoudre, 1000));
+
+    // Arrêter maintenant si la requète n'est plus à jour
     await verrou.acquire();
+    if (requèteAvant !== requète.value) {
+      verrou.release();
+      return;
+    }
+
     if (fOublierRecherche) await fOublierRecherche();
     if (annulé) return;
     if (requète.value) {
@@ -159,15 +173,17 @@ export const rechercher = <T, U, C extends string>({
       const retour = await fRecherche({
         [clefRequète]: requète.value,
         nRésultatsDésirés: nOuProfondeurRésultats.value,
-        f: x => (réfRésultat.value = x),
+        f: x => {
+          réfRésultat.value = x;
+          onTravaille.value = false;
+        },
       });
 
-      if (retour) {
-        fOublierRecherche = retour.fOublier;
-        fChangerN = retour.fChangerN;
-      }
+      fOublierRecherche = retour.fOublier;
+      fChangerN = retour.fChangerN;
     } else {
       réfRésultat.value = [];
+      onTravaille.value = false;
     }
     verrou.release();
   };
@@ -187,6 +203,7 @@ export const rechercher = <T, U, C extends string>({
   return {
     résultats: réfRésultat,
     n: nOuProfondeurRésultats,
+    onTravaille,
   };
 };
 
