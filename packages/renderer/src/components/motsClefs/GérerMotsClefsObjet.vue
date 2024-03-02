@@ -120,7 +120,7 @@ const sauvegarder = () => {
 // Ajout de mots-clef
 const motClefSélectionné = ref<string>();
 const requèteRecherche = ref<string>();
-const résultatRechercheMotsClefs = ref<types.résultatRecherche<types.infoRésultatTexte>[]>();
+const résultatRechercheMotsClefs = ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>();
 
 let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
 

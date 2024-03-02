@@ -223,7 +223,7 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
+          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
         }) => {
           return await constl.recherche.rechercherMotsClefsSelonTexte({
             texte: requète,
@@ -245,7 +245,7 @@ watchEffect(async () => {
         }: {
           requète: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte>[]>;
+          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
         }) => {
           return await constl.recherche.rechercherVariablesSelonTexte({
             texte: requète,
@@ -269,7 +269,7 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
-              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
+              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
             >[]
           >;
         }) => {
@@ -297,8 +297,8 @@ watchEffect(async () => {
             types.résultatRecherche<
               | types.infoRésultatTexte
               | types.infoRésultatRecherche<
-                  types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
-                >
+                  types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
+                >|types.infoRésultatVide
             >[]
           >;
         }) => {
@@ -324,7 +324,7 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
-              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
+              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
             >[]
           >;
         }) => {

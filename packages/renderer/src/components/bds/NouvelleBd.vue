@@ -81,7 +81,7 @@
             />
           </v-window-item>
           <v-window-item :value="5">
-            <SelecteurMotClef
+            <selecteur-mot-clef
               multiples
               :interdites="motsClefs"
               @selectionnee="ids => (motsClefs = ids)"
@@ -123,17 +123,11 @@
             </v-list>
           </v-window-item>
           <v-window-item :value="7">
-            <dialogue-licence
+            <choix-licence
               :licence="licence"
+              permission-modifier
               @changer-licence="l => (licence = l)"
-            >
-              <template #activator="{props}">
-                <JetonLicence
-                  v-bind="props"
-                  :licence="licence"
-                />
-              </template>
-            </dialogue-licence>
+            />
           </v-window-item>
           <v-window-item :value="8">
             <div class="text-center">
@@ -195,8 +189,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import SelecteurBd from './SélecteurBd.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import JetonLicence from '/@/components/licences/JetonLicence.vue';
-import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
+import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';

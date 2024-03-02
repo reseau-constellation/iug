@@ -44,14 +44,16 @@
             />
           </v-window-item>
           <v-window-item :value="2">
-            <SelecteurMotClef
+            <selecteur-mot-clef
               multiples
+              :interdits="motsClefs"
               @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>
           <v-window-item :value="3">
-            <SelecteurBd
+            <selecteur-bd
               multiples
+              :interdites="bds"
               @selectionnee="ids => (bds = ids)"
             />
           </v-window-item>
@@ -65,7 +67,7 @@
                   class="mt-3"
                   variant="outlined"
                   :loading="enCréation"
-                  @click="() => créerBd()"
+                  @click="() => créerProjet()"
                 >
                   {{ t('projets.nouveau.texteBtnCréation') }}
                 </v-btn>
@@ -207,7 +209,7 @@ const ouvrirAprèsCréation = ref(false);
 
 const enCréation = ref(false);
 
-const créerBd = async () => {
+const créerProjet = async () => {
   enCréation.value = true;
 
   const idProjet = await constl.projets.créerProjet();

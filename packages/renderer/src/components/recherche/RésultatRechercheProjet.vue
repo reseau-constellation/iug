@@ -9,8 +9,8 @@
     </v-list-item-title>
     <v-list-item-subtitle>
       <TexteSurligneRecherche
-        v-if="infoSourcDescr"
-        :info="infoSourcDescr"
+        v-if="infoSourceDescr"
+        :info="infoSourceDescr"
       />
       <span v-else>{{ descriptionTraduite || t('nuées.aucuneDescription') }}</span>
     </v-list-item-subtitle>
@@ -96,7 +96,7 @@ const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undef
 };
 
 const infoSourceNom = sourceDirecte('nom');
-const infoSourcDescr = sourceDirecte('descr');
+const infoSourceDescr = sourceDirecte('descr');
 const infoSourceId = sourceDirecte('id');
 
 // Source BD directe

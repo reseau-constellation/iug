@@ -9,8 +9,8 @@
     </v-list-item-title>
     <v-list-item-subtitle>
       <TexteSurligneRecherche
-        v-if="infoSourcDescr"
-        :info="infoSourcDescr"
+        v-if="infoSourceDescr"
+        :info="infoSourceDescr"
       />
       <span v-else>{{ descriptionTraduite || t('bds.aucuneDescription') }}</span>
     </v-list-item-subtitle>
@@ -57,7 +57,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const props = defineProps<{
   resultat: types.résultatRecherche<
-    types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
+    types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide> | types.infoRésultatVide
   >;
 }>();
 
@@ -80,7 +80,7 @@ const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undef
 };
 
 const infoSourceNom = sourceDirecte('nom');
-const infoSourcDescr = sourceDirecte('descr');
+const infoSourceDescr = sourceDirecte('descr');
 const infoSourceId = sourceDirecte('id');
 
 // Sources objets connexes
@@ -96,10 +96,17 @@ const sourceObjetConnexe = (
   return computed(() => {
     const {de: sourceRésultat, clef, info} = props.resultat.résultatObjectif;
     if (info.type === 'résultat' && sourceRésultat === de && clef) {
-      return {
-        id: clef,
-        info,
-      };
+      if (info.info.type === 'texte') {
+        return {
+          id: clef,
+          info: {
+            type: info.type,
+            de: info.de,
+            info: info.info,
+          },
+        };
+      }
+      return undefined;
     } else {
       return undefined;
     }

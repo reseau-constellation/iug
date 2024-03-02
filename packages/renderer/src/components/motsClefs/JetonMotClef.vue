@@ -4,6 +4,7 @@
     :prepend-icon="icôneObjet('motClef')"
     variant="outlined"
     size="small"
+    label
   >
     {{ nomTraduit || t('motsClefs.sansNom') }}
     <slot></slot>
