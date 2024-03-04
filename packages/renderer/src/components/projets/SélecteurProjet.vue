@@ -34,7 +34,7 @@
       </carte-projet>
     </template>
     <template #nouveau="{nouveau}">
-      <nouvelle-projet @nouveau="nouveau">
+      <nouveau-projet @nouveau="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
@@ -43,7 +43,7 @@
           >
           </v-list-item>
         </template>
-      </nouvelle-projet>
+      </nouveau-projet>
     </template>
   </selecteur-objet>
 </template>
@@ -57,7 +57,7 @@ import {constellation, rechercher} from '/@/components/utils';
 
 import JetonProjet from './JetonProjet.vue';
 import CarteProjet from './CarteProjet.vue';
-import NouvelleProjet from './NouvelleProjet.vue';
+import NouveauProjet from './NouveauProjet.vue';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 defineProps<{multiples: boolean; interdites?: string[]}>();
