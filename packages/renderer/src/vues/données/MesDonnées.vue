@@ -8,7 +8,7 @@
       <v-card variant="flat">
         <v-card-text class="pt-0">
           <v-text-field
-            v-model="requète"
+            v-model="requête"
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
             clearable
@@ -109,7 +109,7 @@
                         <v-divider />
                       </template>
                     </NouvelleBd>
-                    <span v-if="requète">
+                    <span v-if="requête">
                       <CarteBd
                         v-for="bd in résultatsRechercheBds"
                         :id="bd.id"
@@ -118,7 +118,7 @@
                         <template #activator="{props}">
                           <ResultatRechercheBd
                             v-bind="props"
-                            :resultat="bd"
+                            :résultat="bd"
                           />
                         </template>
                       </CarteBd>
@@ -163,9 +163,9 @@
                       :id="projet"
                       :key="projet"
                     >
-                      <template #activator="{props}">
+                      <template #activator="{props: propsActivateur}">
                         <ItemProjet
-                          v-bind="props"
+                          v-bind="propsActivateur"
                           :id="projet"
                         />
                       </template>
@@ -294,11 +294,11 @@ const mesProjets = suivre(constl.projets.suivreProjets);
 const mesNuées = suivre(constl.nuées.suivreNuées);
 
 // Recherche
-const requète = ref('');
+const requête = ref('');
 const {résultats: résultatsRechercheBds} = rechercher({
-  requète,
+  requête,
   fRecherche: constl.recherche.rechercherBdsSelonTexte,
-  clefRequète: 'texte',
+  clefRequête: 'texte',
   // toutLeRéseau: false,
 });
 </script>

@@ -379,9 +379,9 @@ ${codeSchémaBdTsJs.value}
 const enGénération = ref(false);
 const générerPaquetComplet = async (): Promise<void> => {
   enGénération.value = true;
-  const {requèteHttp} = await import('#preload');
+  const {requêteHttp} = await import('#preload');
   // Télécharger gabarit correspondant de GitHub
-  const racineGabarit = await requèteHttp(GABARIT_CODE, {responseType: 'arraybuffer'});
+  const racineGabarit = await requêteHttp(GABARIT_CODE, {responseType: 'arraybuffer'});
 
   const zipRacineGabarit = await JSZip.loadAsync(racineGabarit as ArrayBuffer);
   const racineProjet = Object.keys(zipRacineGabarit.files)[0];

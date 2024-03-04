@@ -4,6 +4,33 @@
     :title="nomTraduit"
     :subtitle="descrTraduite"
   >
+    <série-jetons
+      :n-max="3"
+      :items="bds"
+    >
+      <template #jeton="{id: idVariable}">
+        <carte-bd :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <jeton-bd
+              v-bind="propsActivateur"
+              :id="idVariable"
+              size="small"
+            />
+          </template>
+        </carte-bd>
+      </template>
+      <template #itemListe="{id: idVariable}">
+        <carte-bd :id="idVariable">
+          <template #activator="{props: propsActivateur}">
+            <item-bd
+              v-bind="propsActivateur"
+              :id="idVariable"
+            />
+          </template>
+        </carte-bd>
+      </template>
+    </série-jetons>
+
     <slot></slot>
   </v-list-item>
 </template>
@@ -12,6 +39,10 @@ import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation, suivre} from '/@/components/utils';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import JetonBd from '/@/components/bds/JetonBd.vue';
+import ItemBd from '/@/components/bds/ItemBd.vue';
+import CarteBd from '/@/components/bds/CarteBd.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -39,4 +70,8 @@ const srcImgProjet = computed(() => {
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
+
+// Bds
+const bds = suivre(constl.projets.suivreBdsProjet, {idProjet: props.id});
+
 </script>

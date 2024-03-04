@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 750 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -52,7 +52,7 @@
           </v-window-item>
           <v-window-item :value="3">
             <selecteur-bd
-              multiples
+              :multiples="false"
               :interdites="bds"
               @selectionnee="ids => (bds = ids)"
             />
@@ -131,6 +131,16 @@ const listeÉtapes = ['noms', 'descriptions', 'motsClefs', 'ajouterBds', 'confir
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'noms':
+      return 'projet.nouveau.titreNoms';
+    case 'descriptions':
+      return 'projet.nouveau.titreDescriptions';
+    case 'motsClefs':
+      return 'projet.nouveau.titreMotsClefs';
+    case 'ajouterBds':
+      return 'projet.nouveau.titreAjouterBds';
+    case 'confirmation':
+      return 'projet.nouveau.titreConfirmation';
     default:
       return '';
   }
@@ -139,6 +149,16 @@ const titreCarte = computed(() => {
 const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'noms':
+      return 'projet.nouveau.sousTitreNoms';
+    case 'descriptions':
+      return 'projet.nouveau.sousTitreDescriptions';
+    case 'motsClefs':
+      return 'projet.nouveau.sousTitreMotsClefs';
+    case 'ajouterBds':
+      return 'projet.nouveau.sousTitreAjouterBds';
+    case 'confirmation':
+      return 'projet.nouveau.sousTitreConfirmation';
     default:
       return '';
   }

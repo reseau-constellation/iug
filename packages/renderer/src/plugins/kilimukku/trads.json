@@ -235,7 +235,9 @@
         "titreDescriptions": "Description de la BD",
         "sousTitreDescriptions": "À quoi votre BD servira-t-elle ?",
         "titreMotsClefs": "Ajoutez des mots-clefs",
-        "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre BD"
+        "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre BD",
+        "titreLicence": "La licence",
+        "sousTitreLicence": "Choisissez la licence sous laquelle vos données seront disponibles"
       }
     },
     "motsClefs": {
@@ -874,6 +876,8 @@
       "avertissement": "கீழே உள்ள தகவல் உரிமச் சுருக்கம் மட்டுமே என்பதால் தகவல்களில் பிழைகள் இருக்கலாம். இது சட்ட ஆலோசனை அல்ல. முழு உரிமத்தையும் படிக்குமாறு நாங்கள் பரிந்துரைக்கிறோம்.",
       "lire": "உரிமத்தைப் படி",
       "aucunLien": "இணைப்பு இல்லை",
+      "choisir": "ஒரு உருமத்தைத் தேர்ந்தெடுக்கவும்",
+      "aucune": "இந்த தரவுகளுக்காக எந்த உரிமத்தையும் கண்டுப்பிடிக்க முடியவில்லை",
       "carte": {
         "titre": "உரிமம்"
       }

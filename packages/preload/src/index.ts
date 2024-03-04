@@ -4,7 +4,7 @@
 
 export {surLinux, surMac, surWindows, plateforme} from './so.js';
 
-export {requèteHttp} from './http.js';
+export {requêteHttp} from './http.js';
 
 export {
   envoyerMessageÀConstellation,

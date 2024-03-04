@@ -72,8 +72,8 @@ const props = defineProps<{
   résultat: types.résultatRecherche<
     | types.infoRésultatTexte
     | types.infoRésultatRecherche<
-        types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte>
-      >
+        types.infoRésultatTexte |types.infoRésultatVide | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+      >|types.infoRésultatVide
   >;
 }>();
 
@@ -109,10 +109,16 @@ const infoSourceBdIndirecte = computed(
     | undefined => {
     const {de, clef, info} = props.résultat.résultatObjectif;
     if (info.type === 'résultat' && de === 'bd' && clef && info.info.type === 'résultat') {
-      return {
-        id: clef,
-        info: info.info,
-      };
+      if (info.info.info.type === 'texte') {
+        return {
+          id: clef,
+          info: {
+            type: info.info.type,
+            de: info.info.de,
+            info: info.info.info,
+          },
+        };
+      } else return undefined;
     } else {
       return undefined;
     }

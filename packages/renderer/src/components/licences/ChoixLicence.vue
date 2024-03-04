@@ -20,87 +20,95 @@
       {{ obtAbrLicence(item.value) }}
     </template>
   </v-select>
-
-  <p class="mt-3 mb-0">
-    <v-alert
-      :text="t('licences.avertissement')"
-      type="warning"
-      variant="outlined"
-      density="compact"
+  <span v-if="licence">
+    
+    <p class="mt-3 mb-0">
+      <v-alert
+        :text="t('licences.avertissement')"
+        type="warning"
+        variant="outlined"
+        density="compact"
+      >
+        <div>
+          <v-btn
+            class="mx-auto my-3"
+            variant="outlined"
+            size="small"
+            :disabled="!obtLienLicence(licence)"
+            @click="ouvrirLienLicence(licence)"
+          >
+            <v-icon start>mdi-scale-balance</v-icon>
+            <div v-if="obtLienLicence(licence)">
+              {{ t('licences.lire') }}
+              <v-icon end>mdi-open-in-new</v-icon>
+            </div>
+            <div v-else>{{ t('licences.aucunLien') }}</div>
+          </v-btn>
+        </div>
+      </v-alert>
+    </p>
+  
+    <v-divider />
+  
+    <p class="mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
+    <v-skeleton-loader
+      v-if="!droits"
+      type="chip@3"
+    />
+    <p
+      v-else-if="!droits.length"
+      class="text--disabled"
     >
-      <div>
-        <v-btn
-          class="mx-auto my-3"
-          variant="outlined"
-          size="small"
-          :disabled="!obtLienLicence(licence)"
-          @click="ouvrirLienLicence(licence)"
-        >
-          <v-icon start>mdi-scale-balance</v-icon>
-          <div v-if="obtLienLicence(licence)">
-            {{ t('licences.lire') }}
-            <v-icon end>mdi-open-in-new</v-icon>
-          </div>
-          <div v-else>{{ t('licences.aucunLien') }}</div>
-        </v-btn>
-      </div>
-    </v-alert>
-  </p>
-
-  <v-divider />
-
-  <p class="mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
-  <v-skeleton-loader
-    v-if="!droits"
-    type="chip@3"
-  />
-  <p
-    v-else-if="!droits.length"
-    class="text--disabled"
+      {{ t('licences.droits.aucune') }}
+    </p>
+    <jeton-droit
+      v-for="d in droits"
+      :key="d"
+      :droit="d"
+    />
+    <p class="mb-0 text-h6">
+      {{ t('licences.conditions.sousTitre') }}
+    </p>
+    <v-skeleton-loader
+      v-if="!conditions"
+      type="chip@3"
+    />
+    <p
+      v-else-if="!conditions.length"
+      class="text--disabled"
+    >
+      {{ t('licences.conditions.aucune') }}
+    </p>
+    <jeton-condition
+      v-for="c in conditions"
+      :key="c"
+      :condition="c"
+    />
+    <p class="mb-0 text-h6">
+      {{ t('licences.limitations.sousTitre') }}
+    </p>
+    <v-skeleton-loader
+      v-if="!limitations"
+      type="chip@3"
+    />
+    <p
+      v-else-if="!limitations.length"
+      class="text--disabled"
+    >
+      {{ t('licences.limitations.aucune') }}
+    </p>
+    <jeton-limitation
+      v-for="l in limitations"
+      :key="l"
+      :limitation="l"
+    />
+  </span>
+  <h2
+    v-else
+    class="mb-2 text-center text-disabled"
   >
-    {{ t('licences.droits.aucune') }}
-  </p>
-  <jeton-droit
-    v-for="d in droits"
-    :key="d"
-    :droit="d"
-  />
-  <p class="mb-0 text-h6">
-    {{ t('licences.conditions.sousTitre') }}
-  </p>
-  <v-skeleton-loader
-    v-if="!conditions"
-    type="chip@3"
-  />
-  <p
-    v-else-if="!conditions.length"
-    class="text--disabled"
-  >
-    {{ t('licences.conditions.aucune') }}
-  </p>
-  <jeton-condition
-    v-for="c in conditions"
-    :key="c"
-    :condition="c"
-  />
-  <p class="mb-0 text-h6">
-    {{ t('licences.limitations.sousTitre') }}
-  </p>
-  <v-skeleton-loader
-    v-if="!limitations"
-    type="chip@3"
-  />
-  <p
-    v-else-if="!limitations.length"
-    class="text--disabled"
-  >
-    {{ t('licences.limitations.aucune') }}
-  </p>
-  <jeton-limitation
-    v-for="l in limitations"
-    :key="l"
-    :limitation="l"
-  />
+    {{ permissionModifier ? t('licences.choisir') : t('licences.aucune') }}
+  </h2>
 </template>
 
 <script setup lang="ts">

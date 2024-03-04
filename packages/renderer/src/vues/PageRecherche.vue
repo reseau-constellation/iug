@@ -214,19 +214,19 @@ watchEffect(async () => {
   switch (étiquetteTypeDonnées) {
     case 'motsClefs': {
       await chercheur.lancerRecherche({
-        requète: texteRecherche,
+        requête: texteRecherche,
         réfRésultat: résultatsRechercheMotsClefs,
         fRecherche: async ({
-          requète,
+          requête,
           nOuProfondeur,
           réfRésultat,
         }: {
-          requète: string;
+          requête: string;
           nOuProfondeur: number;
           réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
         }) => {
           return await constl.recherche.rechercherMotsClefsSelonTexte({
-            texte: requète,
+            texte: requête,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
           });
@@ -236,19 +236,19 @@ watchEffect(async () => {
     }
     case 'variables': {
       await chercheur.lancerRecherche({
-        requète: texteRecherche,
+        requête: texteRecherche,
         réfRésultat: résultatsRechercheVariables,
         fRecherche: async ({
-          requète,
+          requête,
           nOuProfondeur,
           réfRésultat,
         }: {
-          requète: string;
+          requête: string;
           nOuProfondeur: number;
           réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
         }) => {
           return await constl.recherche.rechercherVariablesSelonTexte({
-            texte: requète,
+            texte: requête,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
           });
@@ -258,14 +258,14 @@ watchEffect(async () => {
     }
     case 'bds': {
       await chercheur.lancerRecherche({
-        requète: texteRecherche,
+        requête: texteRecherche,
         réfRésultat: résultatsRechercheBd,
         fRecherche: async ({
-          requète,
+          requête,
           nOuProfondeur,
           réfRésultat,
         }: {
-          requète: string;
+          requête: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
@@ -274,7 +274,7 @@ watchEffect(async () => {
           >;
         }) => {
           return await constl.recherche.rechercherBdsSelonTexte({
-            texte: requète,
+            texte: requête,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
           });
@@ -284,14 +284,14 @@ watchEffect(async () => {
     }
     case 'projets': {
       await chercheur.lancerRecherche({
-        requète: texteRecherche,
+        requête: texteRecherche,
         réfRésultat: résultatsRechercheProjets,
         fRecherche: async ({
-          requète,
+          requête,
           nOuProfondeur,
           réfRésultat,
         }: {
-          requète: string;
+          requête: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
@@ -303,7 +303,7 @@ watchEffect(async () => {
           >;
         }) => {
           return await constl.recherche.rechercherProjetsSelonTexte({
-            texte: requète,
+            texte: requête,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
           });
@@ -313,14 +313,14 @@ watchEffect(async () => {
     }
     case 'nuées': {
       await chercheur.lancerRecherche({
-        requète: texteRecherche,
+        requête: texteRecherche,
         réfRésultat: résultatsRechercheNuée,
         fRecherche: async ({
-          requète,
+          requête,
           nOuProfondeur,
           réfRésultat,
         }: {
-          requète: string;
+          requête: string;
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
@@ -329,7 +329,7 @@ watchEffect(async () => {
           >;
         }) => {
           return await constl.recherche.rechercherNuéesSelonTexte({
-            texte: requète,
+            texte: requête,
             f: x => (réfRésultat.value = x),
             nRésultatsDésirés: nOuProfondeur,
           });

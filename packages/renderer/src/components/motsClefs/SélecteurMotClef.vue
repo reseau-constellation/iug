@@ -1,64 +1,40 @@
 <template>
-  <v-menu
-    location="bottom"
-    transition="slide-y-transition"
+  <selecteur-objet
+    :multiples="multiples"
+    :interdites="interdits"
+    :resultats-recherche="résultats"
+    :on-travaille="onTravaille"
+    :texte-etiquette-recherche="t('motsClefs.recherche.étiquette')"
+    :texte-aucun-résultat="t('motsClefs.recherche.aucunRésultat')"
+    @selectionnee="ids => idsMotsClefsSélectionnés = ids"
+    @requête-modifiee="(r) => requête = r"
   >
-    <template #activator="{props: propsActivateur}">
-      <v-text-field
-        v-model="requète"
-        v-bind="propsActivateur"
-        class="pt-2"
-        :label="t('motsClefs.recherche.étiquette')"
-        variant="outlined"
-        prepend-inner-icon="mdi-magnify"
-        hide-details
-        clearable
-      >
-        <template #prepend-inner>
-          <carte-mot-clef 
-            v-if="!multiples && idsMotsClefsSélectionnées.length"
-            :id="idsMotsClefsSélectionnées[0]"
-          >
-            <jeton-mot-clef
-              :id="idsMotsClefsSélectionnées[0]"
-            >
-              <v-icon
-                class="ms-2"
-                icon="mdi-close"
-                size="small"
-                variant="flat"
-                @click="() => désélectionner({id: idsMotsClefsSélectionnées[0]})"
-              />
-            </jeton-mot-clef>
-          </carte-mot-clef>
-        </template>
-      </v-text-field>
-    </template>
-    <v-list>
-      <v-progress-linear
-        v-show="onTravaille"
-        class="mb-3"
-        height="1"
-        color="primary"
-        indeterminate
-        absolute
-      />
-      <v-expand-transition>
-        <v-list-item
-          v-show="!onTravaille && !résultatsPermisRecherche?.length"
-          class="text-h6 text-center text-disabled"
-        >
-          {{ t('motsClefs.recherche.aucunRésultat') }}
-        </v-list-item>
-      </v-expand-transition>
+    <template #résultat="{résultat, click}">
       <ResultatRechercheMotClef
-        v-for="r in résultatsPermisRecherche"
-        :key="r.id"
-        :résultat="r"
-        @click="() => sélectionner({id: r.id})"
+        :résultat="résultat"
+        @click="click"
       />
-      <v-divider />
-      <NouveauMotClef @nouveau="id => sélectionner(id)">
+    </template>
+    <template #jeton-objet="{id, deselectionner}">
+      <carte-mot-clef :id="id">
+        <template #activator="{props: propsActivateur}">
+          <jeton-mot-clef
+            :id="id"
+            v-bind="{props: propsActivateur}"
+          >
+            <v-icon
+              class="ms-2"
+              icon="mdi-close"
+              size="small"
+              variant="flat"
+              @click="() => deselectionner({id})"
+            />
+          </jeton-mot-clef>
+        </template>
+      </carte-mot-clef>
+    </template>
+    <template #nouveau="{nouveau}">
+      <nouveau-mot-clef @nouveau="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
@@ -67,80 +43,46 @@
           >
           </v-list-item>
         </template>
-      </NouveauMotClef>
-    </v-list>
-  </v-menu>
-  <v-list
-    v-if="multiples"
-    class="mt-4"
-  >
-    <carte-mot-clef 
-      v-for="motClef in idsMotsClefsSélectionnées"
-      :id="motClef"
-      :key="motClef"
-    >
-      <jeton-mot-clef
-        :id="motClef"
-      >
-        <v-icon
-          class="ms-2"
-          icon="mdi-close"
-          size="small"
-          variant="flat"
-          @click="() => désélectionner({id: motClef})"
-        />
-      </jeton-mot-clef>
-    </carte-mot-clef>
-  </v-list>
+      </nouveau-mot-clef>
+    </template>
+  </selecteur-objet>
 </template>
 <script setup lang="ts">
-import {computed, watchEffect, ref} from 'vue';
+import {ref, watchEffect} from 'vue';
 
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
+import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
+
 import {constellation, rechercher} from '/@/components/utils';
 
 import NouveauMotClef from './NouveauMotClef.vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonMotClef from './JetonMotClef.vue';
 import CarteMotClef from './CarteMotClef.vue';
 
-const props = defineProps<{multiples: boolean; interdits?: string[]}>();
-const émettre = defineEmits<{
-  (é: 'selectionnee', idsMotsClefs: string[]): void;
-}>();
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-const constl = constellation();
+defineProps<{multiples: boolean; interdits?: string[]}>();
+const émettre = defineEmits<{
+  (é: 'selectionnee', idsBds: string[]): void;
+}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
+const constl = constellation();
+
 // Sélection
-const idsMotsClefsSélectionnées = ref<string[]>([]);
+const idsMotsClefsSélectionnés = ref<string[]>([]);
 watchEffect(() => {
-  émettre('selectionnee', idsMotsClefsSélectionnées.value);
+  émettre('selectionnee', idsMotsClefsSélectionnés.value);
 });
 
 // Contrôles recherche
-const requète = ref('');
-const {résultats: résultatsRecherche, onTravaille} = rechercher({
-  requète: requète,
+const requête = ref('');
+const {résultats, onTravaille} = rechercher({
+  requête: requête,
   fRecherche: constl.recherche.rechercherMotsClefsSelonTexte,
-  clefRequète: 'texte',
+  clefRequête: 'texte',
 });
 
-const résultatsPermisRecherche = computed(() => {
-  return résultatsRecherche.value?.filter(r => !(props.interdits || []).includes(r.id));
-});
-
-const sélectionner = ({id}: {id: string}) => {
-  if (props.multiples) {
-    idsMotsClefsSélectionnées.value = [...idsMotsClefsSélectionnées.value, id];
-  } else {
-    idsMotsClefsSélectionnées.value = [id];
-  }
-  requète.value = '';
-};
-const désélectionner = ({id}: {id: string}) => {
-  idsMotsClefsSélectionnées.value = idsMotsClefsSélectionnées.value.filter(mc => mc !== id);
-};
 </script>

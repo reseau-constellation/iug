@@ -101,7 +101,7 @@ import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation} from '../utils';
 
-const émettre = defineEmits<{(é: 'nouveau', args: {id: string}): void}>();
+const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 
 const constl = constellation();
 
@@ -214,7 +214,7 @@ const créerMotClef = async () => {
     idMotClef: idMotClef,
     descriptions: Object.fromEntries(Object.entries(descriptions.value)),
   });
-  émettre('nouveau', {id: idMotClef});
+  émettre('nouveau', idMotClef);
   fermer();
 };
 

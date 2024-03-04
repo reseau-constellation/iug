@@ -35,7 +35,7 @@
           >
             <v-card-text>
               <v-text-field
-                v-model="requèteRecherche"
+                v-model="requêteRecherche"
                 variant="outlined"
               >
               </v-text-field>
@@ -119,7 +119,7 @@ const sauvegarder = () => {
 
 // Ajout de mots-clef
 const motClefSélectionné = ref<string>();
-const requèteRecherche = ref<string>();
+const requêteRecherche = ref<string>();
 const résultatRechercheMotsClefs = ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>();
 
 let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
@@ -127,9 +127,9 @@ let fOublierRecherche: types.schémaFonctionOublier | undefined = undefined;
 watchEffect(async () => {
   if (fOublierRecherche) await fOublierRecherche();
 
-  if (requèteRecherche.value) {
+  if (requêteRecherche.value) {
     const retour = await constl.recherche.rechercherMotsClefsSelonTexte({
-      texte: requèteRecherche.value,
+      texte: requêteRecherche.value,
       f: x => (résultatRechercheMotsClefs.value = x),
       nRésultatsDésirés: 10,
     });

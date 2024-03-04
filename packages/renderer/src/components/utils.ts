@@ -126,20 +126,20 @@ export const enregistrerÉcouteDynamique = <T extends {[prm: string]: Ref}, U>({
 };
 
 export const rechercher = <T, U, C extends string>({
-  requète,
+  requête,
   fRecherche,
-  clefRequète,
+  clefRequête,
 }: {
-  requète: Ref<T | undefined>;
+  requête: Ref<T | undefined>;
   fRecherche: (
     args: {
       f: (x: U[]) => void;
       nRésultatsDésirés: number;
     } & {
-      [k in typeof clefRequète]: string;
+      [k in typeof clefRequête]: string;
     },
   ) => Promise<types.schémaRetourFonctionRechercheParN>;
-  clefRequète: C;
+  clefRequête: C;
 }): {résultats: Ref<U[] | undefined>; n: Ref<number>; onTravaille: Ref<boolean>} => {
   const réfRésultat: Ref<U[] | undefined> = ref();
   const onTravaille = ref(true);
@@ -153,25 +153,25 @@ export const rechercher = <T, U, C extends string>({
   let annulé = false;
 
   const lancerRecherche = async () => {
-    const requèteAvant = requète.value;
+    const requêteAvant = requête.value;
     onTravaille.value = true;
 
     // Attendre une seconde pour laisser aux personnes le temps d'écrire
     await new Promise(résoudre => setTimeout(résoudre, 1000));
 
-    // Arrêter maintenant si la requète n'est plus à jour
+    // Arrêter maintenant si la requête n'est plus à jour
     await verrou.acquire();
-    if (requèteAvant !== requète.value) {
+    if (requêteAvant !== requête.value) {
       verrou.release();
       return;
     }
 
     if (fOublierRecherche) await fOublierRecherche();
     if (annulé) return;
-    if (requète.value !==  undefined) {
+    if (requête.value !==  undefined) {
       //@ts-expect-error Je ne sais pas comment faire ça
       const retour = await fRecherche({
-        [clefRequète]: requète.value,
+        [clefRequête]: requête.value,
         nRésultatsDésirés: nOuProfondeurRésultats.value,
         f: x => {
           réfRésultat.value = x;
@@ -188,7 +188,7 @@ export const rechercher = <T, U, C extends string>({
     verrou.release();
   };
 
-  watch(requète, lancerRecherche);
+  watch(requête, lancerRecherche);
   lancerRecherche();
   watchEffect(async () => {
     if (fChangerN) fChangerN(nOuProfondeurRésultats.value);
@@ -218,19 +218,19 @@ export class MultiChercheur {
     });
   }
   async lancerRecherche<T>({
-    requète,
+    requête,
     réfRésultat,
     fRecherche,
     fRechercheDéfaut,
   }: {
-    requète: Ref<T | undefined>;
+    requête: Ref<T | undefined>;
     réfRésultat: Ref;
     fRecherche: ({
-      requète,
+      requête,
       nOuProfondeur,
       réfRésultat,
     }: {
-      requète: T;
+      requête: T;
       nOuProfondeur: number;
       réfRésultat: Ref;
     }) => Promise<
@@ -267,9 +267,9 @@ export class MultiChercheur {
 
     const lancerRecherche = async () => {
       if (fOublierRecherche) await fOublierRecherche();
-      if (requète.value) {
+      if (requête.value) {
         const retour = await fRecherche({
-          requète: requète.value,
+          requête: requête.value,
           nOuProfondeur: this.nOuProfondeur.value,
           réfRésultat,
         });
@@ -299,7 +299,7 @@ export class MultiChercheur {
       }
     };
 
-    watch(requète, lancerRecherche);
+    watch(requête, lancerRecherche);
     lancerRecherche();
     watchEffect(async () => {
       if (fChangerNOuProfondeur) fChangerNOuProfondeur(this.nOuProfondeur.value);

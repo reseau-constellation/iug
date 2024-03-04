@@ -8,7 +8,14 @@
     @ajuster-noms="ajusterNoms"
     @ajuster-descriptions="ajusterDescriptions"
     @effacer="effacerProjet"
-  ></base-carte-objet>
+  >
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+  </base-carte-objet>
 </template>
 <script setup lang="ts">
 import {constellation, suivre} from '/@/components/utils';

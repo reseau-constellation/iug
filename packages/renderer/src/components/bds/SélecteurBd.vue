@@ -6,24 +6,44 @@
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('bds.recherche.étiquette')"
     :texte-aucun-résultat="t('bds.recherche.aucunRésultat')"
-    :texte-nouveau="t('bds.nouveau.btn')"
     @selectionnee="ids => idsBdsSélectionnées = ids"
-    @requete-modifiee="(r) => requête = r"
+    @requête-modifiee="(r) => requête = r"
   >
-    <template #resultat="{resultat, click}">
+    <template #résultat="{résultat, click}">
       <ResultatRechercheBd
-        :resultat="resultat"
+        :résultat="résultat"
         @click="click"
       />
     </template>
-    <template #jeton-objet="{id}">
-      <jeton-bd :id="id" />
+    <template #jeton-objet="{id, deselectionner}">
+      <carte-bd :id="id">
+        <template #activator="{props: propsActivateur}">
+          <jeton-bd
+            :id="id"
+            v-bind="{props: propsActivateur}"
+          >
+            <v-icon
+              class="ms-2"
+              icon="mdi-close"
+              size="small"
+              variant="flat"
+              @click="() => deselectionner({id})"
+            />
+          </jeton-bd>
+        </template>
+      </carte-bd>
     </template>
-    <template #carte-objet="{id}">
-      <carte-bd :id="id" />
-    </template>
-    <template #dialogue-nouveau>
-      <nouvelle-bd />
+    <template #nouveau="{nouveau}">
+      <nouvelle-bd @nouveau="nouveau">
+        <template #activator="{props: propsActivateur}">
+          <v-list-item
+            v-bind="propsActivateur"
+            :title="t('bds.nouveau.btn')"
+            prepend-icon="mdi-plus" 
+          >
+          </v-list-item>
+        </template>
+      </nouvelle-bd>
     </template>
   </selecteur-objet>
 </template>
@@ -59,8 +79,8 @@ watchEffect(() => {
 // Contrôles recherche
 const requête = ref();
 const {résultats, onTravaille} = rechercher({
-  requète: requête,
+  requête: requête,
   fRecherche: constl.recherche.rechercherBdsSelonTexte,
-  clefRequète: 'texte',
+  clefRequête: 'texte',
 });
 </script>

@@ -5,7 +5,7 @@
   >
     <template #activator="{props: propsActivateur}">
       <v-text-field
-        v-model="requète"
+        v-model="requête"
         v-bind="propsActivateur"
         class="pt-2"
         :label="props.texteEtiquetteRecherche"
@@ -17,25 +17,13 @@
         <template #prepend-inner>
           <span
             v-if="!multiples && idsObjetsSélectionnés.length"
+            class="mx-3"
           >
             <slot
               :id="idsObjetsSélectionnés[0]"
-              name="carte-objet"
-            >
-              <slot
-                :id="idsObjetsSélectionnés[0]"
-                name="jeton-objet"
-              >
-                <v-icon
-                  class="ms-2"
-                  icon="mdi-close"
-                  size="small"
-                  variant="flat"
-                  @click="() => désélectionner({id: idsObjetsSélectionnés[0]})"
-                />
-              </slot>
-            </slot>
-            
+              name="jeton-objet"
+              :deselectionner="désélectionner"
+            ></slot>
           </span>
         </template>
       </v-text-field>
@@ -51,7 +39,7 @@
       />
       <v-expand-transition>
         <v-list-item
-          v-show="!onTravaille && !résultatsPermisRecherche?.length"
+          v-show="!résultatsPermisRecherche?.length"
           class="text-h6 text-center text-disabled"
         >
           {{ props.texteAucunRésultat }}
@@ -62,23 +50,16 @@
         :key="r.id"
       >
         <slot
-          name="resultat"
-          v-bind="{resultat: r}"
-          :resultat="r"
+          name="résultat"
+          :résultat="r"
           :click="() => sélectionner({id: r.id})"
         ></slot>
       </span>
       <v-divider />
       <slot 
-        name="dialogue-nouveau"
-        @nouveau="(id: string) => sélectionner({id})"
-      >
-        <v-list-item
-          :title="texteNouveau"
-          prepend-icon="mdi-plus"
-        >
-        </v-list-item>
-      </slot>
+        name="nouveau"
+        :nouveau="(id: string) => sélectionner({id})"
+      />
     </v-list>
   </v-menu>
   <v-list
@@ -91,21 +72,9 @@
     >
       <slot
         :id="objet"
-        name="carte-objet"
-      >
-        <slot
-          :id="objet"
-          name="jeton-objet"
-        >
-          <v-icon
-            class="ms-2"
-            icon="mdi-close"
-            size="small"
-            variant="flat"
-            @click="() => désélectionner({id: objet})"
-          />
-        </slot>
-      </slot>
+        name="jeton-objet"
+        :deselectionner="désélectionner"
+      />
     </span>
   </v-list>
 </template>
@@ -114,17 +83,16 @@ import type { types } from '@constl/ipa';
 import {computed, watchEffect, ref} from 'vue';
 
 const props = defineProps<{
-  multiples: boolean; 
+  multiples?: boolean; 
   interdites?: string[], 
   resultatsRecherche: T[] | undefined,
   onTravaille: boolean
   texteEtiquetteRecherche: string, 
   texteAucunRésultat: string, 
-  texteNouveau: string,
 }>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsObjets: string[]): void;
-  (é: 'requete-modifiee', requete: string): void;
+  (é: 'requête-modifiee', requête: string): void;
 }>();
 
 // Sélection
@@ -134,7 +102,10 @@ watchEffect(() => {
 });
 
 // Contrôles recherche
-const requète = ref('');
+const requête = ref('');
+watchEffect(()=>{
+  émettre('requête-modifiee', requête.value);
+});
 
 const résultatsPermisRecherche = computed(() => {
   return props.resultatsRecherche?.filter(r => !(props.interdites || []).includes(r.id));
@@ -146,7 +117,7 @@ const sélectionner = ({id}: {id: string}) => {
   } else {
     idsObjetsSélectionnés.value = [id];
   }
-  requète.value = '';
+  requête.value = '';
 };
 const désélectionner = ({id}: {id: string}) => {
   idsObjetsSélectionnés.value = idsObjetsSélectionnés.value.filter(mc => mc !== id);

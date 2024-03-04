@@ -83,6 +83,7 @@
               />
               <SelecteurVariable
                 v-else-if="typeBornes === 'dynamiqueVariable'"
+                :multiples="false"
                 @selectionnee="x => (valBorneDynamiqueVariable = x)"
               />
               <SelecteurColonne
@@ -366,7 +367,7 @@ const utiliserBorne = (type: 'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe') 
 
 const opBorne = ref<valid.typeOp>();
 const valBorneFixe = ref<number>();
-const valBorneDynamiqueVariable = ref<string>();
+const valBorneDynamiqueVariable = ref<string[]>();
 const valBorneDynamiqueColonne = ref<string>();
 
 // Règle catégorique
@@ -418,12 +419,12 @@ const confirmer = async () => {
         break;
       }
       case 'dynamiqueVariable': {
-        if (!valBorneDynamiqueVariable.value)
+        if (!valBorneDynamiqueVariable.value?.length)
           throw new Error('Valeur borne dynamique variable non définie');
         const détailsBorne: valid.détailsRègleBornesDynamiqueVariable = {
           type: 'dynamiqueVariable',
           op: opBorne.value,
-          val: valBorneDynamiqueVariable.value,
+          val: valBorneDynamiqueVariable.value[0],
         };
         détails = détailsBorne;
         break;

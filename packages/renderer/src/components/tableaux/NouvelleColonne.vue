@@ -31,7 +31,8 @@
           <v-window-item :value="0">
             <SelecteurVariable
               :interdites="variablesInterdites"
-              @selectionnee="choisirVariable"
+              :multiples="false"
+              @selectionnee="ids => choisirVariable(ids[0])"
             />
           </v-window-item>
           <v-window-item :value="1">

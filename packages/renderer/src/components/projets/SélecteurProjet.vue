@@ -1,24 +1,24 @@
 <template>
   <selecteur-objet
     :multiples="multiples"
-    :interdites="interdits"
+    :interdites="interdites"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
-    :texte-etiquette-recherche="t('variables.recherche.étiquette')"
-    :texte-aucun-résultat="t('variables.recherche.aucunRésultat')"
-    @selectionnee="ids => idsVariablesSélectionnés = ids"
+    :texte-etiquette-recherche="t('projets.recherche.étiquette')"
+    :texte-aucun-résultat="t('projets.recherche.aucunRésultat')"
+    @selectionnee="ids => idsProjetsSélectionnées = ids"
     @requête-modifiee="(r) => requête = r"
   >
     <template #résultat="{résultat, click}">
-      <ResultatRechercheVariable
+      <ResultatRechercheProjet
         :résultat="résultat"
         @click="click"
       />
     </template>
     <template #jeton-objet="{id, deselectionner}">
-      <carte-variable :id="id">
+      <carte-projet :id="id">
         <template #activator="{props: propsActivateur}">
-          <jeton-variable
+          <jeton-projet
             :id="id"
             v-bind="{props: propsActivateur}"
           >
@@ -29,41 +29,40 @@
               variant="flat"
               @click="() => deselectionner({id})"
             />
-          </jeton-variable>
+          </jeton-projet>
         </template>
-      </carte-variable>
+      </carte-projet>
     </template>
     <template #nouveau="{nouveau}">
-      <nouveau-variable @nouveau="nouveau">
+      <nouvelle-projet @nouveau="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
-            :title="t('variables.nouveau.btn')"
-            prepend-icon="mdi-plus"
+            :title="t('projets.nouveau.btn')"
+            prepend-icon="mdi-plus" 
           >
           </v-list-item>
         </template>
-      </nouveau-variable>
+      </nouvelle-projet>
     </template>
   </selecteur-objet>
 </template>
 <script setup lang="ts">
 import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
+import ResultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
 import {constellation, rechercher} from '/@/components/utils';
 
-import NouveauVariable from './NouvelleVariable.vue';
-import JetonVariable from './JetonVariable.vue';
-import CarteVariable from './CarteVariable.vue';
-
+import JetonProjet from './JetonProjet.vue';
+import CarteProjet from './CarteProjet.vue';
+import NouvelleProjet from './NouvelleProjet.vue';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; interdits?: string[]}>();
+defineProps<{multiples: boolean; interdites?: string[]}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idsVariables: string[]): void;
+  (é: 'selectionnee', idsProjets: string[]): void;
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -72,17 +71,16 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = constellation();
 
 // Sélection
-const idsVariablesSélectionnés = ref<string[]>([]);
+const idsProjetsSélectionnées = ref<string[]>([]);
 watchEffect(() => {
-  émettre('selectionnee', idsVariablesSélectionnés.value);
+  émettre('selectionnee', idsProjetsSélectionnées.value);
 });
 
 // Contrôles recherche
-const requête = ref('');
+const requête = ref();
 const {résultats, onTravaille} = rechercher({
   requête: requête,
-  fRecherche: constl.recherche.rechercherVariablesSelonTexte,
+  fRecherche: constl.recherche.rechercherProjetsSelonTexte,
   clefRequête: 'texte',
 });
-
 </script>

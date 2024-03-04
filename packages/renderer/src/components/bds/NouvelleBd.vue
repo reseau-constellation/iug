@@ -55,7 +55,10 @@
             />
           </v-window-item>
           <v-window-item :value="2">
-            <SelecteurNuee @selectionnee="id => id && choisirGabaritNuée(id)" />
+            <SelecteurNuee
+              :multiples="false"
+              @selectionnee="id => id.length && choisirGabaritNuée(id[0])"
+            />
           </v-window-item>
           <v-window-item :value="3">
             <liste-noms
@@ -128,8 +131,21 @@
               permission-modifier
               @changer-licence="l => (licence = l)"
             />
+            <v-checkbox
+              v-show="licence"
+              v-model="licenceContenuPareil"
+              :label="t('licences.pareilPourContenu')"
+              color="primary"
+            />
           </v-window-item>
           <v-window-item :value="8">
+            <choix-licence
+              :licence="licenceContenu"
+              permission-modifier
+              @changer-licence="l => (licenceContenu = l)"
+            />
+          </v-window-item>
+          <v-window-item :value="9">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
                 {{ t('bds.nouvelle.texteCréer') }}
@@ -144,9 +160,10 @@
                   {{ t('bds.nouvelle.texteBtnCréation') }}
                 </v-btn>
               </p>
-              <v-checkbox v-model="ouvrirAprèsCréation">
-                {{ t('bds.nouvelle.ouvrirAprèsCréation') }}
-              </v-checkbox>
+              <v-checkbox
+                v-model="ouvrirAprèsCréation"
+                :label="t('bds.nouvelle.ouvrirAprèsCréation')"
+              />
             </div>
           </v-window-item>
         </v-window>
@@ -216,6 +233,7 @@ const listeÉtapes = [
   'motsClefs',
   'tableaux',
   'licence',
+  'licenceContenu',
   'confirmation',
 ] as const;
 
@@ -236,6 +254,8 @@ const titreCarte = computed(() => {
       return 'bds.nouvelle.titreMotsClefs';
     case 'licence':
       return 'bds.nouvelle.titreLicence';
+    case 'licenceContenu':
+      return 'bds.nouvelle.titreLicenceContenu';
     case 'confirmation':
       return 'bds.nouvelle.titreConfirmation';
     default:
@@ -260,6 +280,8 @@ const sousTitreCarte = computed(() => {
       return 'bds.nouvelle.sousTitreMotsClefs';
     case 'licence':
       return 'bds.nouvelle.sousTitreLicence';
+    case 'licenceContenu':
+      return 'bds.nouvelle.sousTitreLicenceContenu';
     case 'confirmation':
       return 'bds.nouvelle.sousTitreConfirmation';
     default:
@@ -284,6 +306,10 @@ const suivant = () => {
     case 'gabaritNuée':
       // On saute directement à la confirmation de la licence pour les gabarits
       étape.value = listeÉtapes.indexOf('licence');
+      break;
+
+    case 'licence':
+      étape.value = listeÉtapes.indexOf(licenceContenuPareil.value ? 'confirmation' : 'licenceContenu');
       break;
 
     default:
@@ -311,6 +337,10 @@ const retour = () => {
       );
       break;
 
+    case 'confirmation':
+      étape.value = listeÉtapes.indexOf(licenceContenuPareil.value ? 'licence' : 'licenceContenu');
+      break;
+
     default:
       étape.value--;
       break;
@@ -330,6 +360,8 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
       return {actif: Object.keys(noms.value).length > 0, visible: true};
     case 'licence':
       return {actif: !!licence.value, visible: true};
+    case 'licenceContenu':
+      return {actif: !!licenceContenu.value, visible: true};
     case 'confirmation':
       return {actif: false, visible: false};
     default:
@@ -385,6 +417,7 @@ const motsClefs = ref<string[]>([]);
 
 // Licences
 const licence = ref<string>();
+const licenceContenuPareil = ref(true);
 const licenceContenu = ref<string>();
 
 // Tableaux
@@ -461,7 +494,7 @@ const prêtÀCréer = computed(() => {
   return {licenceChoisie: licence.value};
 });
 
-const ouvrirAprèsCréation = ref(false);
+const ouvrirAprèsCréation = ref(true);
 
 const enCréation = ref(false);
 

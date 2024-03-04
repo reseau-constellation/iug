@@ -2,11 +2,13 @@
   <v-chip
     variant="outlined"
     class="me-2 mb-2"
+    label
   >
     <v-avatar start>
       <v-img :src="srcImgBd || imgDéfaut"></v-img>
     </v-avatar>
     {{ nomTraduit || t('bds.sansNom') }}
+    <slot></slot>
   </v-chip>
 </template>
 <script setup lang="ts">

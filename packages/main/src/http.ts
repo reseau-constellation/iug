@@ -1,7 +1,7 @@
 import axios, {type AxiosRequestConfig, type AxiosResponse} from 'axios';
 import {type IpcMainInvokeEvent, ipcMain} from 'electron';
 
-const requèteHttp = async (
+const requêteHttp = async (
   _événement: IpcMainInvokeEvent,
   args: {url: string; config?: AxiosRequestConfig},
 ): Promise<AxiosResponse['data']> => {
@@ -9,5 +9,5 @@ const requèteHttp = async (
 };
 
 export const connecterHttp = () => {
-  ipcMain.handle('requèteHttp', requèteHttp);
+  ipcMain.handle('requêteHttp', requêteHttp);
 };

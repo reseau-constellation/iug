@@ -23,7 +23,7 @@
           <template #activator="{props: propsActivateur}">
             <v-text-field
               v-bind="propsActivateur"
-              v-model="requète"
+              v-model="requête"
               hide-details
               variant="outlined"
               density="compact"
@@ -126,11 +126,11 @@ const fermer = () => {
 const ajouterCommeModérateur = ref(false);
 
 // Membres
-const requète = ref<string>();
+const requête = ref<string>();
 const {résultats: membres} = rechercher({
-  requète,
+  requête,
   fRecherche: constl.recherche.rechercherProfilsSelonTexte,
-  clefRequète: 'texte',
+  clefRequête: 'texte',
 });
 const membresOrdonnées = computed(() => {
   const listeMembres = membres.value;
