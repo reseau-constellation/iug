@@ -32,7 +32,7 @@
         @image-changee="image => modifierImage(image)"
       />
 
-      <v-card-title class="d-flex">
+      <v-card-title class="text-center">
         <DialogueNoms
           :etiquette-nom="t('objet.étiquetteNom')"
           :indice-nom="t('objet.indiceNom')"
@@ -45,8 +45,11 @@
           @ajuster-noms="ajusterNoms"
         >
           <template #activator="{props: propsActivateur}">
-            <span v-bind="propsActivateur">
-              {{ nomTraduit || t('communs.baseCarteObjet.sansNom') }}
+            <span
+              v-bind="propsActivateur"
+              class="text-h4"
+            >
+              {{ nomTraduit || t('bds.sansNom') }}
               <v-btn
                 :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
                 variant="flat"
@@ -58,6 +61,47 @@
         <lien-objet :id="id" />
 
         <v-spacer />
+      </v-card-title>
+      
+      <div class="text-center">
+        <SérieJetons
+          :n-max="5"
+          :items="motsClefs"
+        >
+          <template #jeton="{id: idMotClef}">
+            <carte-mot-clef :id="idMotClef">
+              <template #activator="{props: propsActivateur}">
+                <JetonMotClef
+                  v-bind="propsActivateur"
+                  :id="idMotClef"
+                />
+              </template>
+            </carte-mot-clef>
+          </template>
+          <template #itemListe="{id: idMotClef}">
+            <carte-mot-clef :id="idMotClef">
+              <template #activator="{props: propsActivateur}">
+                <item-mot-clef
+                  v-bind="propsActivateur"
+                  :id="idMotClef"
+                />
+              </template>
+            </carte-mot-clef>
+          </template>
+        </SérieJetons>
+        <span
+          v-if="motsClefs && !motsClefs.length"
+          class="text-disabled"
+        >
+          {{ t('bds.aucunMotClef') }}
+        </span>
+        <EditeurMotsClefs
+          v-if="monAutorisation && motsClefs"
+          :originaux="motsClefs"
+          @sauvegarder="ids => sauvegarderMotsClefs(ids)"
+        />
+      </div>
+      <div class="text-center">
         <CarteEpingler :id="id">
           <template #activator="{props: propsActivateurCarte}">
             <v-tooltip
@@ -157,267 +201,160 @@
             </v-tooltip>
           </template>
         </carte-effacer>
-      </v-card-title>
+      </div>
 
       <v-divider />
       <v-card-text>
-        <v-card
-          flat
-          class="mx-3 mb-3"
+        <DialogueNoms
+          :etiquette-nom="t('objet.étiquetteDescription')"
+          :indice-nom="t('objet.indiceDescription')"
+          :indice-langue="t('objet.indiceLangue')"
+          :texte-aucun-nom="t('objet.texteAucuneDescription')"
+          :noms-initiaux="descriptions"
+          :titre="t('objet.titreDialogueDescriptions')"
+          :sous-titre="t('objet.sousTitreDialogueDescriptions')"
+          :autorisation-modification="!!monAutorisation"
+          longue
+          @ajuster-noms="ajusterDescriptions"
         >
-          <DialogueNoms
-            :etiquette-nom="t('objet.étiquetteDescription')"
-            :indice-nom="t('objet.indiceDescription')"
-            :indice-langue="t('objet.indiceLangue')"
-            :texte-aucun-nom="t('objet.texteAucuneDescription')"
-            :noms-initiaux="descriptions"
-            :titre="t('objet.titreDialogueDescriptions')"
-            :sous-titre="t('objet.sousTitreDialogueDescriptions')"
-            :autorisation-modification="!!monAutorisation"
-            @ajuster-noms="ajusterDescriptions"
+          <template #activator="{props: propsActivateur}">
+            <span :class="{'text-disabled': !descrTraduite}">{{
+              descrTraduite || t('communs.baseCarteObjet.sansDescription')
+            }}</span>
+            <v-btn
+              v-bind="propsActivateur"
+              :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
+              variant="flat"
+              size="small"
+            ></v-btn>
+          </template>
+        </DialogueNoms>
+
+        <p class="mb-0 text-overline">
+          {{ t('bds.info') }}
+        </p>
+        <v-divider class="mb-2" />
+        <div class="d-flex flex-wrap">
+          <v-card
+            v-if="false"
+            flat
+            width="200"
+            class="mb-3"
           >
-            <template #activator="{props: propsActivateur}">
-              <span :class="{'text-disabled': !descrTraduite}">{{
-                descrTraduite || t('communs.baseCarteObjet.sansDescription')
-              }}</span>
-              <v-btn
-                v-bind="propsActivateur"
-                :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
-                variant="flat"
-                size="small"
-              ></v-btn>
-            </template>
-          </DialogueNoms>
-
-          <p class="mb-0 text-overline">
-            {{ t('pages.bds.info') }}
-          </p>
-          <div class="d-flex flex-wrap">
-            <v-card
-              v-if="false"
-              flat
-              width="200"
-              class="mb-3"
-            >
-              <carte-qualite-bd>
-                <template #activator="{props: propsActivateur}">
-                  <item-qualite-bd
-                    v-bind="propsActivateur"
-                    :id="id"
-                  />
-                </template>
-              </carte-qualite-bd>
-            </v-card>
-            <v-card
-              flat
-              width="200"
-              class="mb-3"
-            >
-              <gerer-auteurs
-                :id="id"
-                :auteurs="auteurs"
-                :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
-              >
-                <template #activator="{props: propsActivateur}">
-                  <item-auteurs
-                    v-bind="propsActivateur"
-                    :auteurs="auteurs"
-                  />
-                </template>
-              </gerer-auteurs>
-            </v-card>
-            <v-card
-              flat
-              width="200"
-              class="mb-3"
-            >
-              <dialogue-licence
-                :licence="licence"
-                :permission-modifier="monAutorisation === 'MODÉRATEUR'"
-                @changer-licence="changerLicence"
-              >
-                <template #activator="{props: propsActivateur}">
-                  <item-licence
-                    v-bind="propsActivateur"
-                    :licence="licence"
-                    @changer-licence="changerLicence"
-                  />
-                </template>
-              </dialogue-licence>
-            </v-card>
-            <v-card
-              flat
-              width="200"
-              class="mb-3"
-            >
-              <CarteRéplicationsObjet :id="id">
-                <template #activator="{props: propsActivateur}">
-                  <ItemRéplicationsObjet
-                    v-bind="propsActivateur"
-                    :id="id"
-                  />
-                </template>
-              </CarteRéplicationsObjet>
-            </v-card>
-            <v-card
-              flat
-              width="200"
-              class="mb-3"
-            >
-              <carte-automatisations
-                :id-objet="id"
-                :permission="monAutorisation"
-                type-objet="bd"
-              >
-                <template #activator="{props: propsActivateur}">
-                  <item-automatisations
-                    v-bind="propsActivateur"
-                    :id-objet="id"
-                  />
-                </template>
-              </carte-automatisations>
-            </v-card>
-          </div>
-        </v-card>
-        <v-card
-          flat
-          class="mx-3 mb-3"
-        >
-          <div class="d-flex flex-wrap">
-            <v-card
-              flat
-              min-width="200"
-              max-width="350"
-              class="mb-3 me-3"
-            >
-              <v-card-item>
-                <v-card-title>
-                  <p class="text-overline">
-                    {{ t('bd.carteBd.variables') }}
-                  </p>
-                </v-card-title>
-              </v-card-item>
-
-              <v-card-text>
-                <SérieJetons
-                  :n-max="5"
-                  :items="variables"
-                >
-                  <template #jeton="{id: idVariable}">
-                    <carte-variable :id="idVariable">
-                      <template #activator="{props: propsActivateur}">
-                        <JetonVariable
-                          v-bind="propsActivateur"
-                          :id="idVariable"
-                        />
-                      </template>
-                    </carte-variable>
-                  </template>
-                  <template #itemListe="{id: idVariable}">
-                    <carte-variable :id="idVariable">
-                      <template #activator="{props: propsActivateur}">
-                        <ItemVariable
-                          v-bind="propsActivateur"
-                          :id="idVariable"
-                        />
-                      </template>
-                    </carte-variable>
-                  </template>
-                </SérieJetons>
-                <p
-                  v-if="!variables?.length"
-                  class="text-disabled"
-                >
-                  {{ t('bds.aucuneVariable') }}
-                </p>
-              </v-card-text>
-            </v-card>
-            <v-card
-              flat
-              min-width="200"
-              max-width="350"
-              class="mb-3 me-3"
-            >
-              <v-card-item>
-                <v-card-title>
-                  <p class="mb-0 text-overline">
-                    {{ t('bds.carteBd.motsClefs') }}
-                  </p>
-                </v-card-title>
-              </v-card-item>
-              <v-card-text>
-                <SérieJetons
-                  :n-max="5"
-                  :items="motsClefs"
-                >
-                  <template #jeton="{id: idMotClef}">
-                    <carte-mot-clef :id="idMotClef">
-                      <template #activator="{props: propsActivateur}">
-                        <JetonMotClef
-                          v-bind="propsActivateur"
-                          :id="idMotClef"
-                        />
-                      </template>
-                    </carte-mot-clef>
-                  </template>
-                  <template #itemListe="{id: idMotClef}">
-                    <carte-mot-clef :id="idMotClef">
-                      <template #activator="{props: propsActivateur}">
-                        <item-mot-clef
-                          v-bind="propsActivateur"
-                          :id="idMotClef"
-                        />
-                      </template>
-                    </carte-mot-clef>
-                  </template>
-                </SérieJetons>
-                <p
-                  v-if="motsClefs && !motsClefs.length"
-                  class="text-disabled"
-                >
-                  {{ t('bds.aucunMotClef') }}
-                </p>
-                <GérerMotsClefsObjet
-                  v-if="monAutorisation && motsClefs"
-                  :originaux="motsClefs"
-                  @sauvegarder="sauvegarderMotsClefs"
+            <carte-qualite-bd>
+              <template #activator="{props: propsActivateur}">
+                <item-qualite-bd
+                  v-bind="propsActivateur"
+                  :id="id"
                 />
-              </v-card-text>
-            </v-card>
-            <v-card
-              flat
-              min-width="200"
-              max-width="350"
-              class="mb-3 me-3"
+              </template>
+            </carte-qualite-bd>
+          </v-card>
+          <v-card
+            flat
+            width="200"
+            class="mb-3"
+          >
+            <gerer-auteurs
+              :id="id"
+              :auteurs="auteurs"
+              :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
             >
-              <v-card-item>
-                <v-card-title>
-                  <p class="mb-0 text-overline">
-                    {{ t('bd.carteBd.géographie') }}
-                  </p>
-                </v-card-title>
-              </v-card-item>
-              <v-card-text>
-                <p
-                  v-if="géog && !géog.length"
-                  class="text--disabled"
-                >
-                  {{ t('bds.aucuneGéog') }}
-                </p>
-                <v-chip
-                  v-for="m in géog"
-                  :key="m"
-                  outlined
-                  small
-                  label
-                  class="mx-1 my-1"
-                >
-                  {{ m }}
-                </v-chip>
-              </v-card-text>
-            </v-card>
-          </div>
-        </v-card>
+              <template #activator="{props: propsActivateur}">
+                <item-auteurs
+                  v-bind="propsActivateur"
+                  :auteurs="auteurs"
+                />
+              </template>
+            </gerer-auteurs>
+          </v-card>
+          <v-card
+            flat
+            width="200"
+            class="mb-3"
+          >
+            <dialogue-licence
+              :licence="licence"
+              :permission-modifier="monAutorisation === 'MODÉRATEUR'"
+              @changer-licence="changerLicence"
+            >
+              <template #activator="{props: propsActivateur}">
+                <item-licence
+                  v-bind="propsActivateur"
+                  :licence="licence"
+                  @changer-licence="changerLicence"
+                />
+              </template>
+            </dialogue-licence>
+          </v-card>
+          <v-card
+            flat
+            width="200"
+            class="mb-3"
+          >
+            <CarteRéplicationsObjet :id="id">
+              <template #activator="{props: propsActivateur}">
+                <ItemRéplicationsObjet
+                  v-bind="propsActivateur"
+                  :id="id"
+                />
+              </template>
+            </CarteRéplicationsObjet>
+          </v-card>
+          <v-card
+            flat
+            width="200"
+            class="mb-3"
+          >
+            <carte-automatisations
+              :id-objet="id"
+              :permission="monAutorisation"
+              type-objet="bd"
+            >
+              <template #activator="{props: propsActivateur}">
+                <item-automatisations
+                  v-bind="propsActivateur"
+                  :id-objet="id"
+                />
+              </template>
+            </carte-automatisations>
+          </v-card>
+        </div>
+        <p class="mb-0 text-overline">
+          {{ t('bds.variables') }}
+        </p>
+        <v-divider class="mb-2" />
+        <SérieJetons
+          :n-max="5"
+          :items="variables"
+        >
+          <template #jeton="{id: idVariable}">
+            <carte-variable :id="idVariable">
+              <template #activator="{props: propsActivateur}">
+                <JetonVariable
+                  v-bind="propsActivateur"
+                  :id="idVariable"
+                />
+              </template>
+            </carte-variable>
+          </template>
+          <template #itemListe="{id: idVariable}">
+            <carte-variable :id="idVariable">
+              <template #activator="{props: propsActivateur}">
+                <ItemVariable
+                  v-bind="propsActivateur"
+                  :id="idVariable"
+                />
+              </template>
+            </carte-variable>
+          </template>
+        </SérieJetons>
+        <p
+          v-if="!variables?.length"
+          class="text-disabled"
+        >
+          {{ t('bds.aucuneVariable') }}
+        </p>
         <v-list>
           <p class="mb-0 text-overline">
             {{ t('bds.tableaux') }}
@@ -493,7 +430,7 @@
             </importer-ou-exporter>
           </div>
 
-          <transition-group
+          <!--<transition-group
             v-else
             name="fade"
             mode="out-in"
@@ -512,8 +449,35 @@
                 )
               "
             />
-          </transition-group>
+          </transition-group>-->
+
+          <v-slide-group
+            v-model="tableauActif"
+            class="mt-4"
+            show-arrows
+            center-active
+          >
+            <v-slide-group-item
+              v-for="ong in tableaux"
+              v-slot="{isSelected, toggle}"
+              :key="ong.clef"
+              :value="ong.clef"
+            >
+              <v-chip
+                class="mx-2"
+                variant="tonal"
+                label
+                :active="false"
+                :color="isSelected ? 'primary' : ''"
+                @click="toggle"
+              >
+                Nom tableau
+              </v-chip>
+            </v-slide-group-item>
+          </v-slide-group>
         </v-list>
+        <v-data-table>
+        </v-data-table>
       </v-card-text>
     </v-card>
   </v-container>
@@ -521,7 +485,7 @@
 <script setup lang="ts">
 import {useDisplay, useRtl} from 'vuetify';
 
-import {computed, ref, onMounted} from 'vue';
+import {computed, ref, onMounted, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -554,12 +518,11 @@ import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
-import GérerMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
+import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
-import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
 import {ajusterTexteTraductible} from '/@/utils';
 
@@ -646,6 +609,7 @@ const variables = suivre(constl.bds.suivreVariablesBd, {idBd: props.id});
 // Mots-clefs
 const motsClefs = suivre(constl.bds.suivreMotsClefsBd, {idBd: props.id});
 const sauvegarderMotsClefs = async (àJour: string[]) => {
+  console.log({àJour});
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
   await constl.bds.ajouterMotsClefsBd({
@@ -656,13 +620,12 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 };
 
 // Géographie
-const géog = ref();
 /* À faire
-enregistrerÉcoute(
-  constl.bds.suivreGéographieBd({
-    idBd: props.id,
-    f: x => (géog.value = x)
-  }),
+cosnt géog = suivre(
+  constl.bds.suivreGéographieBd, 
+  {
+    idBd: props.id
+  },
 );
 */
 
@@ -671,6 +634,15 @@ const tableaux = suivre(constl.bds.suivreTableauxBd, {idBd: props.id});
 const tableauxOrdonnés = computed(() => {
   if (!tableaux.value) return;
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
+});
+const tableauActif = ref<string>();
+watchEffect(()=>{
+  if (!tableauActif.value && tableauxOrdonnés.value?.length) {
+    tableauActif.value = tableauxOrdonnés.value[0].clef;
+  }
+  if (tableauActif.value && !tableauxOrdonnés.value?.map(t=>t.clef).includes(tableauActif.value)) {
+    tableauActif.value = undefined;
+  }
 });
 
 // Auteurs
@@ -685,7 +657,7 @@ const changerLicence = async (nouvelleLicence: string) => {
 // Navigation
 const petitPousset = computed<{title: string; lien?: string; disabled?: boolean}[]>(() => [
   {title: t('navig.mesDonnées') as string, lien: encodeURI('/données/')},
-  {title: nomTraduit.value || props.id, disabled: true},
+  {title: nomTraduit.value || t('bds.aucunNom'), disabled: true},
 ]);
 
 // Actions

@@ -1,7 +1,7 @@
 <template>
   <selecteur-objet
     :multiples="multiples"
-    :interdites="interdits"
+    :originaux="originaux"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('motsClefs.recherche.étiquette')"
@@ -61,9 +61,9 @@ import CarteMotClef from './CarteMotClef.vue';
 
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; interdits?: string[]}>();
+defineProps<{multiples: boolean; originaux?: string[]}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idsBds: string[]): void;
+  (é: 'selectionnee', idsMotsClefs: string[]): void;
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

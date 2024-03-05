@@ -86,7 +86,7 @@
           <v-window-item :value="5">
             <selecteur-mot-clef
               multiples
-              :interdites="motsClefs"
+              :originaux="motsClefs"
               @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>

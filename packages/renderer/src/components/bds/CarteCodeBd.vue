@@ -16,9 +16,9 @@ const props = defineProps<{id: string}>();
 
 const codes = computed(() => {
   return {
-    ts: `import { générerClient } from "@constl/ipa";
+    ts: `import { créerConstellation } from "@constl/ipa";
 
-const client = générerClient({});
+const client = créerConstellation();
 
 const monAnalyse = async (données) => {
   console.log(données)
@@ -39,7 +39,7 @@ with Serveur():
       idBd="${props.id}"
     )
 `,
-    jl: `import Constellation
+    julia: `import Constellation
 
 Constellation.avecServeur() do port
   Constellation.avecClient(port) do client

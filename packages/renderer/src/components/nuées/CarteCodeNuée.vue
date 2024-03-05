@@ -29,7 +29,7 @@ const codes = computed(() => {
   return {
     ts: `import { créerConstellation, type nuées } from "@constl/ipa";
 
-const client = créerConstellation({});
+const client = créerConstellation();
 
 const analyser = async (données: nuées.donnéesNuéeExportation) => {
     console.log(données)  // Faire quelque chose de plus intelligent ici :)
@@ -60,7 +60,7 @@ with Serveur():
     # Analyser ou sauvegarder les données ici...
     données.to_excel("./MesDonnéesExportées.xlsx")
 `,
-    jl: `import Constellation
+    julia: `import Constellation
 
 Constellation.avecServeur() do port
     Constellation.avecClient(port) do client

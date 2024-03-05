@@ -18,7 +18,7 @@
       "langagesInformatiques": {
         "ts": {"abr": "ts"},
         "py": {"abr": "py"},
-        "jl": {"abr": "jl"},
+        "julia": {"abr": "jl"},
         "r": {"abr": "R"}
       }
     },
@@ -245,8 +245,12 @@
         "btn": "Nouveau mot-clef"
       },
       "recherche": {
-        "aucunRetrouvé": "Aucun mot-clef retrouvé",
+        "aucunRésultat": "Aucun mot-clef retrouvé",
         "étiquette": "Recherchez un mot-clef"
+      },
+      "éditeurMotsClefs": {
+        "titre": "Mots-clefs associés",
+        "indice": "Modifier mots-clefs"
       }
     }
   },
@@ -273,7 +277,7 @@
       "langagesInformatiques": {
         "ts": {"abr": "வகை"},
         "py": {"abr": "பை"},
-        "jl": {"abr": "ஜூ"},
+        "julia": {"abr": "ஜூ"},
         "r": {"abr": "ஆர்"}
       }
     },
@@ -446,13 +450,14 @@
     "bds": {
       "sansNom": "பெயர் இல்லாத தரவுத்தளம்",
       "carteBd": {
-        "infos": "தரவுத்தளம் தகவல்கள்",
-        "variables": "மாறிகள்",
         "motsClefs": "சிறப்பு சொற்கள்",
-        "tableaux": "அட்டவணைகள்",
         "ouvrirBd": "தரவுத்தளத்தைத் திற",
         "attenteTableaux": "தேடித்து கொண்டு இருக்கிறோம்..."
       },
+      "info": "தரவுத்தளத் தகவல்கள்",
+      "variables": "மாறிகள்",
+      "aucuneVariable": "எந்த மாறியும் இல்லை",
+      "tableaux": "அட்டவணைகள்",
       "qualité": "தரம்",
       "note": {
         "A": "அ",

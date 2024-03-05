@@ -46,14 +46,14 @@
           <v-window-item :value="2">
             <selecteur-mot-clef
               multiples
-              :interdits="motsClefs"
+              :originaux="motsClefs"
               @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>
           <v-window-item :value="3">
             <selecteur-bd
               :multiples="false"
-              :interdites="bds"
+              :originales="bds"
               @selectionnee="ids => (bds = ids)"
             />
           </v-window-item>

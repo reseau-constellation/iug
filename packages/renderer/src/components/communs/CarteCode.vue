@@ -119,7 +119,7 @@ watch(langage, () => (copié.value = false));
 const installationDéfaut: {[langage: string]: string} = {
   ts: '$ pnpm add @constl/ipa',
   py: '$ poetry add constellationPy',
-  jl: '$ pkg> add Constellation',
+  julia: '$ pkg> add Constellation',
   r: `# install.packages("devtools")
 devtools::install_github("reseau-constellation/client-r")`,
 };

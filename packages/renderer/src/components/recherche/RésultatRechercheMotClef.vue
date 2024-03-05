@@ -16,7 +16,7 @@
       />
       <span v-else>{{ descriptionTraduite || t('motsClefs.aucuneDescription') }}</span>
     </v-list-item-subtitle>
-    <div class="mt-4">
+    <div class="mt-2">
       <AuteursObjet
         :auteurs="auteurs"
         :n-max="1"

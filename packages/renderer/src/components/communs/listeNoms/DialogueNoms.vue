@@ -26,6 +26,7 @@
           :indice-nom="indiceNom"
           :etiquette-nom="etiquetteNom"
           :autorisation-modification="autorisationModification"
+          :longue="longue"
           @ajuster-noms="ajusterNoms"
         ></ListeNoms>
       </v-card-text>
@@ -73,6 +74,7 @@ const props = defineProps<{
   indiceLangue: string;
   texteAucunNom: string;
   autorisationModification: boolean;
+  longue?: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'ajusterNoms', noms: {[lng: string]: string}): void;

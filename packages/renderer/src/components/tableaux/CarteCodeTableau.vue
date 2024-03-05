@@ -25,7 +25,7 @@ const fOublierDonnées = await client.tableaux.suivreDonnéesExportation({
     f: analyser
 });
 `,
-  jl: `
+  julia: `
 
 `,
   r: `

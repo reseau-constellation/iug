@@ -2,6 +2,8 @@
   <v-chip
     variant="outlined"
     class="me-2 mb-2"
+    size="small"
+    label
   >
     <image-profil
       :id="compte"

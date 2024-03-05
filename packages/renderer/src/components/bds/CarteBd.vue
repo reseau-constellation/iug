@@ -96,7 +96,7 @@
         </carte-mot-clef>
       </template>
     </SérieJetons>
-    <GererMotsClefsObjet
+    <EditeurMotsClefs
       v-if="monAutorisation && motsClefs"
       :originaux="motsClefs"
       @sauvegarder="x => sauvegarderMotsClefs(x)"
@@ -141,7 +141,7 @@ import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
-import GererMotsClefsObjet from '/@/components/motsClefs/GérerMotsClefsObjet.vue';
+import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 import JetonRéplications from '/@/components/communs/JetonRéplications.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';

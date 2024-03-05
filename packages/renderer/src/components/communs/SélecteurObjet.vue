@@ -16,11 +16,11 @@
       >
         <template #prepend-inner>
           <span
-            v-if="!multiples && idsObjetsSélectionnés.length"
+            v-if="!multiples && idsSélectionnés.length"
             class="mx-3"
           >
             <slot
-              :id="idsObjetsSélectionnés[0]"
+              :id="idsSélectionnés[0]"
               name="jeton-objet"
               :deselectionner="désélectionner"
             ></slot>
@@ -37,24 +37,25 @@
         indeterminate
         absolute
       />
-      <v-expand-transition>
+      <v-fade-transition group>
         <v-list-item
           v-show="!résultatsPermisRecherche?.length"
+          :key="'aucun'"
           class="text-h6 text-center text-disabled"
         >
           {{ props.texteAucunRésultat }}
         </v-list-item>
-      </v-expand-transition>
-      <span
-        v-for="r in résultatsPermisRecherche"
-        :key="r.id"
-      >
-        <slot
-          name="résultat"
-          :résultat="r"
-          :click="() => sélectionner({id: r.id})"
-        ></slot>
-      </span>
+        <span
+          v-for="r in résultatsPermisRecherche"
+          :key="r.id"
+        >
+          <slot
+            name="résultat"
+            :résultat="r"
+            :click="() => sélectionner({id: r.id})"
+          ></slot>
+        </span>
+      </v-fade-transition>
       <v-divider />
       <slot 
         name="nouveau"
@@ -66,16 +67,18 @@
     v-if="multiples"
     class="mt-4"
   >
-    <span
-      v-for="objet in idsObjetsSélectionnés"
-      :key="objet"
-    >
-      <slot
-        :id="objet"
-        name="jeton-objet"
-        :deselectionner="désélectionner"
-      />
-    </span>
+    <v-scroll-x-transition group>
+      <span
+        v-for="objet in idsSélectionnés"
+        :key="objet"
+      >
+        <slot
+          :id="objet"
+          name="jeton-objet"
+          :deselectionner="désélectionner"
+        />
+      </span>
+    </v-scroll-x-transition>
   </v-list>
 </template>
 <script setup lang="ts" generic="T extends types.résultatRecherche<types.infoRésultat>">
@@ -84,7 +87,8 @@ import {computed, watchEffect, ref} from 'vue';
 
 const props = defineProps<{
   multiples?: boolean; 
-  interdites?: string[], 
+  originaux?: string[];
+  interdits?: string[];
   resultatsRecherche: T[] | undefined,
   onTravaille: boolean
   texteEtiquetteRecherche: string, 
@@ -96,9 +100,9 @@ const émettre = defineEmits<{
 }>();
 
 // Sélection
-const idsObjetsSélectionnés = ref<string[]>([]);
+const idsSélectionnés = ref<string[]>(props.originaux || []);
 watchEffect(() => {
-  émettre('selectionnee', idsObjetsSélectionnés.value);
+  émettre('selectionnee', idsSélectionnés.value);
 });
 
 // Contrôles recherche
@@ -108,18 +112,20 @@ watchEffect(()=>{
 });
 
 const résultatsPermisRecherche = computed(() => {
-  return props.resultatsRecherche?.filter(r => !(props.interdites || []).includes(r.id));
+  return props.resultatsRecherche?.filter(r => !(idsSélectionnés.value).includes(r.id)).filter(
+    r => !props.interdits || !(props.interdits.includes(r.id)),
+  );
 });
 
 const sélectionner = ({id}: {id: string}) => {
   if (props.multiples) {
-    idsObjetsSélectionnés.value = [...idsObjetsSélectionnés.value, id];
+    idsSélectionnés.value = [...idsSélectionnés.value, id];
   } else {
-    idsObjetsSélectionnés.value = [id];
+    idsSélectionnés.value = [id];
   }
   requête.value = '';
 };
 const désélectionner = ({id}: {id: string}) => {
-  idsObjetsSélectionnés.value = idsObjetsSélectionnés.value.filter(mc => mc !== id);
+  idsSélectionnés.value = idsSélectionnés.value.filter(mc => mc !== id);
 };
 </script>

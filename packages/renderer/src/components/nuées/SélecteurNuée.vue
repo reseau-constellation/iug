@@ -1,7 +1,7 @@
 <template>
   <selecteur-objet
     :multiples="multiples"
-    :interdites="interdites"
+    :originaux="originales"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('nuées.recherche.étiquette')"
@@ -60,7 +60,7 @@ import CarteNuée from './CarteNuée.vue';
 import NouvelleNuée from './NouvelleNuée.vue';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; interdites?: string[]}>();
+defineProps<{multiples: boolean; originales?: string[]}>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsNuées: string[]): void;
 }>();

@@ -1,7 +1,8 @@
 <template>
   <selecteur-objet
     :multiples="multiples"
-    :interdites="interdits"
+    :interdites="interdites"
+    :originaux="originales"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('variables.recherche.étiquette')"
@@ -61,7 +62,7 @@ import CarteVariable from './CarteVariable.vue';
 
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; interdits?: string[]}>();
+defineProps<{multiples: boolean; originales?: string[]; interdites?: string[]}>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsVariables: string[]): void;
 }>();

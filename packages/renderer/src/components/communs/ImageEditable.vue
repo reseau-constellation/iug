@@ -26,7 +26,6 @@
           >
             <v-img
               :src="srcImage || imgDefaut"
-              contain
             >
               <v-row
                 :class="{
