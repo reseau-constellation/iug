@@ -57,7 +57,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
-    types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
+    | types.infoRésultatTexte
+    | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+    | types.infoRésultatVide
   >;
 }>();
 
@@ -100,13 +102,13 @@ const sourceObjetConnexe = (
         return {
           id: clef,
           info: {
-              type: info.type,
-              de: info.de,
-              info: info.info,
-            },
-          };
-        }
-        return undefined;
+            type: info.type,
+            de: info.de,
+            info: info.info,
+          },
+        };
+      }
+      return undefined;
     } else {
       return undefined;
     }

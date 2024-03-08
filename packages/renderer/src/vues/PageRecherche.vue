@@ -223,7 +223,9 @@ watchEffect(async () => {
         }: {
           requête: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
+          réfRésultat: Ref<
+            types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>[]
+          >;
         }) => {
           return await constl.recherche.rechercherMotsClefsSelonTexte({
             texte: requête,
@@ -245,7 +247,9 @@ watchEffect(async () => {
         }: {
           requête: string;
           nOuProfondeur: number;
-          réfRésultat: Ref<types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>[]>;
+          réfRésultat: Ref<
+            types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>[]
+          >;
         }) => {
           return await constl.recherche.rechercherVariablesSelonTexte({
             texte: requête,
@@ -269,7 +273,9 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
-              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
+              | types.infoRésultatTexte
+              | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+              | types.infoRésultatVide
             >[]
           >;
         }) => {
@@ -297,8 +303,11 @@ watchEffect(async () => {
             types.résultatRecherche<
               | types.infoRésultatTexte
               | types.infoRésultatRecherche<
-                  types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
-                >|types.infoRésultatVide
+                  | types.infoRésultatTexte
+                  | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+                  | types.infoRésultatVide
+                >
+              | types.infoRésultatVide
             >[]
           >;
         }) => {
@@ -324,7 +333,9 @@ watchEffect(async () => {
           nOuProfondeur: number;
           réfRésultat: Ref<
             types.résultatRecherche<
-              types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>|types.infoRésultatVide
+              | types.infoRésultatTexte
+              | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+              | types.infoRésultatVide
             >[]
           >;
         }) => {

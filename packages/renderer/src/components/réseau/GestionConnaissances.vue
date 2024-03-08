@@ -1,0 +1,167 @@
+<template>
+  <v-dialog v-model="dialogue">
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+    <v-card
+      :max-width="mdAndUp ? 700 : 300"
+      class="mx-auto"
+    >
+      <v-card-item>
+        <v-card-title class="d-flex">
+          {{ t('réseau.connaissances.titreCarte') }}
+        </v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <v-tabs v-model="onglet">
+          <v-tab
+            value="confiance"
+            append-icon="mdi-hands-pray"
+          >
+            {{ t('réseau.connaissances.confiance') }}
+          </v-tab>
+          <v-tab
+            value="bloqué"
+            append-icon="mdi-cancel"
+          >
+            {{ t('réseau.connaissances.bloques') }}
+          </v-tab>
+        </v-tabs>
+        <v-window v-model="onglet">
+          <v-window-item value="confiance">
+            <v-list>
+              <selecteur-membre
+                :multiples="true"
+                :interdits="idMonCompte ? [idMonCompte] : []"
+                :originales="confiance?.map(c=>c.idCompte)"
+                @selectionnee="(ids) => nouvellesDeConfiance = ids"
+              >
+              </selecteur-membre>
+              <item-membre
+                v-for="c in confiance"
+                :key="c.idCompte"
+                :compte="c.idCompte"
+                montrer-anonymes
+              >
+                <template #append>
+                  <v-btn
+                    icon="mdi-delete"
+                    @click="()=>nePlusFaireConfiance(c.idCompte)"
+                  />
+                </template>
+              </item-membre>
+            </v-list>
+          </v-window-item>
+          <v-window-item value="bloqué">
+            <v-list>
+              <selecteur-membre
+                :multiples="false"
+                :interdits="idMonCompte ? [idMonCompte] : []"
+                :originales="bloqués?.map(c=>c.idCompte)"
+                @selectionnee="(ids) => nouvellesBloquées = ids"
+              >
+              </selecteur-membre>
+              <v-checkbox
+                v-model="bloquerPrivé"
+                :label="t('réseau.connaissances.bloquerPrivé')"
+              >
+              </v-checkbox>
+              <item-membre
+                v-for="b in bloqués"
+                :key="b.idCompte"
+                :compte="b.idCompte"
+                montrer-anonymes
+              >
+                <template #append>
+                  <v-switch
+                    :label="t('privé')"
+                    :value="b.privé"
+                    @update:model-value="b.privé ? bloquerPublique(b.idCompte) : bloquerPrivé(b.idCompte)"
+                  />
+                  <v-btn
+                    icon="mdi-delete"
+                    @click="()=>débloquer(b.idCompte)"
+                  />
+                </template>
+              </item-membre>
+            </v-list>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+      <v-divider />
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          variant="outlined"
+          @click="fermer"
+        >
+          {{ t('communs.annuler') }}
+        </v-btn>
+        <v-btn
+          color="primary"
+          variant="outlined"
+          append-icon="mdi-check"
+          @click="sauvegarder"
+        >
+          {{ t('communs.sauvegarder') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import ItemMembre from '../membres/ItemMembre.vue';
+import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
+import { constellation, suivre } from '../utils';
+import { useDisplay } from 'vuetify/lib/framework.mjs';
+
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {mdAndUp} = useDisplay();
+
+const constl = constellation();
+
+const dialogue = ref(false);
+const onglet = ref<'confiance'|'bloqué'>();
+
+const idMonCompte = suivre(constl.suivreIdCompte, {});
+const confiance = suivre(constl.réseau.suivreRelationsImmédiates, {});
+const bloqués = suivre(constl.réseau.suivreBloqués, {});
+
+const nouvellesDeConfiance = ref<string[]>([]);
+const nouvellesBloquées = ref<string[]>([]);
+const bloquerNouveauxPrivé = ref(false);
+
+const débloquer = async (idCompte: string) => {
+  constl.réseau.débloquerMembre({idCompte});
+};
+
+const bloquerPrivé = async (idCompte: string) => {
+  constl.réseau.bloquerMembre({idCompte, privé: true});
+};
+
+const bloquerPublique = async (idCompte: string) => {
+  constl.réseau.bloquerMembre({idCompte, privé: false});
+};
+
+const nePlusFaireConfiance = async  (idCompte: string) => {
+  constl.réseau.nePlusFaireConfianceAuMembre({idCompte});
+};
+
+const sauvegarder = async () => {
+  await Promise.all(nouvellesDeConfiance.value.map(c => constl.réseau.faireConfianceAuMembre({idCompte: c})));
+  await Promise.all(nouvellesBloquées.value.map(b => constl.réseau.bloquerMembre({idCompte: b, privé: bloquerNouveauxPrivé.value})));
+};
+
+const fermer = () => {
+  nouvellesDeConfiance.value = [];
+  nouvellesBloquées.value = [];
+  dialogue.value = false;
+};
+</script>

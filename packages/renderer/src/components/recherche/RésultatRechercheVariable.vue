@@ -7,9 +7,7 @@
       />
       <span v-else>{{ nomTraduit || t('variables.aucunNom') }}</span>
     </v-list-item-title>
-    <v-list-item-subtitle
-      v-if="infoSourceDescr || descriptionTraduite"
-    >
+    <v-list-item-subtitle v-if="infoSourceDescr || descriptionTraduite">
       <TexteSurligneRecherche
         v-if="infoSourceDescr"
         :info="infoSourceDescr"
@@ -44,7 +42,9 @@ import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
-const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>}>();
+const props = defineProps<{
+  résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;
+}>();
 
 const constl = constellation();
 

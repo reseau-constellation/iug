@@ -6,8 +6,8 @@
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('projets.recherche.étiquette')"
     :texte-aucun-résultat="t('projets.recherche.aucunRésultat')"
-    @selectionnee="ids => idsProjetsSélectionnées = ids"
-    @requête-modifiee="(r) => requête = r"
+    @selectionnee="ids => (idsProjetsSélectionnées = ids)"
+    @requête-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheProjet
@@ -39,7 +39,7 @@
           <v-list-item
             v-bind="propsActivateur"
             :title="t('projets.nouveau.btn')"
-            prepend-icon="mdi-plus" 
+            prepend-icon="mdi-plus"
           >
           </v-list-item>
         </template>
@@ -58,7 +58,7 @@ import {constellation, rechercher} from '/@/components/utils';
 import JetonProjet from './JetonProjet.vue';
 import CarteProjet from './CarteProjet.vue';
 import NouveauProjet from './NouveauProjet.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 defineProps<{multiples: boolean; originaux?: string[]}>();
 const émettre = defineEmits<{

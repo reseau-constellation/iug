@@ -22,7 +22,7 @@
           v-model="étape"
           style="overflow-y: scroll"
         >
-          <v-window-item :key="0">
+          <v-window-item :key="listeÉtapes.indexOf('cheminement')">
             <v-list>
               <v-list-item
                 prepend-icon="mdi-creation-outline"
@@ -44,7 +44,7 @@
               />
             </v-list>
           </v-window-item>
-          <v-window-item :value="1">
+          <v-window-item :value="listeÉtapes.indexOf('gabaritBd')">
             <SelecteurBd
               :multiples="false"
               @selectionnee="ids => ids[0] && choisirGabaritBd(ids[0])"
@@ -54,13 +54,13 @@
               :label="t('bds.nouvelle.copierDonnéesBd')"
             />
           </v-window-item>
-          <v-window-item :value="2">
+          <v-window-item :value="listeÉtapes.indexOf('gabaritNuée')">
             <SelecteurNuee
               :multiples="false"
               @selectionnee="id => id.length && choisirGabaritNuée(id[0])"
             />
           </v-window-item>
-          <v-window-item :value="3">
+          <v-window-item :value="listeÉtapes.indexOf('noms')">
             <liste-noms
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
@@ -71,7 +71,7 @@
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
-          <v-window-item :value="4">
+          <v-window-item :value="listeÉtapes.indexOf('descriptions')">
             <liste-noms
               :texte-aucun-nom="t('bds.nouvelle.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
@@ -90,7 +90,7 @@
               @selectionnee="ids => (motsClefs = ids)"
             />
           </v-window-item>
-          <v-window-item :value="6">
+          <v-window-item :value="listeÉtapes.indexOf('tableaux')">
             <nouveau-tableau
               importation-permise
               @sauvegarder="ajouterTableau"
@@ -125,7 +125,7 @@
               />
             </v-list>
           </v-window-item>
-          <v-window-item :value="7">
+          <v-window-item :value="listeÉtapes.indexOf('licence')">
             <choix-licence
               :licence="licence"
               permission-modifier
@@ -138,14 +138,24 @@
               color="primary"
             />
           </v-window-item>
-          <v-window-item :value="8">
+          <v-window-item :value="listeÉtapes.indexOf('licenceContenu')">
             <choix-licence
               :licence="licenceContenu"
               permission-modifier
               @changer-licence="l => (licenceContenu = l)"
             />
           </v-window-item>
-          <v-window-item :value="9">
+          <v-window-item :value="listeÉtapes.indexOf('statut')">
+            <choisir-statut @choisir="stt => (statut = stt)">
+              <template #sélecteur="{choisirNouvelle}">
+                <selecteur-bd
+                  :multiples="false"
+                  @selectionnee="ids => choisirNouvelle(ids[0])"
+                />
+              </template>
+            </choisir-statut>
+          </v-window-item>
+          <v-window-item :value="listeÉtapes.indexOf('confirmation')">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
                 {{ t('bds.nouvelle.texteCréer') }}
@@ -194,7 +204,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, tableaux as tblx, valid} from '@constl/ipa';
+import type {bds, tableaux as tblx, valid, types} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
@@ -210,6 +220,7 @@ import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import {constellation} from '../utils';
 
 const constl = constellation();
@@ -234,6 +245,7 @@ const listeÉtapes = [
   'tableaux',
   'licence',
   'licenceContenu',
+  'statut',
   'confirmation',
 ] as const;
 
@@ -256,6 +268,8 @@ const titreCarte = computed(() => {
       return 'bds.nouvelle.titreLicence';
     case 'licenceContenu':
       return 'bds.nouvelle.titreLicenceContenu';
+    case 'statut':
+      return 'bds.nouvelle.titreStatut';
     case 'confirmation':
       return 'bds.nouvelle.titreConfirmation';
     default:
@@ -282,6 +296,8 @@ const sousTitreCarte = computed(() => {
       return 'bds.nouvelle.sousTitreLicence';
     case 'licenceContenu':
       return 'bds.nouvelle.sousTitreLicenceContenu';
+    case 'statut':
+      return 'bds.nouvelle.sousTitreStatut';
     case 'confirmation':
       return 'bds.nouvelle.sousTitreConfirmation';
     default:
@@ -309,7 +325,7 @@ const suivant = () => {
       break;
 
     case 'licence':
-      étape.value = listeÉtapes.indexOf(licenceContenuPareil.value ? 'confirmation' : 'licenceContenu');
+      étape.value = listeÉtapes.indexOf(licenceContenuPareil.value ? 'statut' : 'licenceContenu');
       break;
 
     default:
@@ -337,7 +353,7 @@ const retour = () => {
       );
       break;
 
-    case 'confirmation':
+    case 'statut':
       étape.value = listeÉtapes.indexOf(licenceContenuPareil.value ? 'licence' : 'licenceContenu');
       break;
 
@@ -425,7 +441,7 @@ const tableaux = ref<
   {
     clef: string;
     noms: {[langue: string]: string};
-    cols: (tblx.InfoCol & {règles: valid.règleVariableAvecId[]})[];
+    cols: {info: tblx.InfoCol, règles: valid.règleVariable[]}[];
   }[]
 >([]);
 const ajouterTableau = () => {
@@ -456,22 +472,22 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[];
+  règles: valid.règleVariable[];
 }) => {
   const nouvelleColonne = {
-    id: uuidv4(),
-    variable: idVariable,
-    index,
+    info: {
+      id: uuidv4(),
+      variable: idVariable,
+      index,
+    },
     règles,
   };
-  throw new Error('À faire' + JSON.stringify(nouvelleColonne) + clefTableau);
-  /**
+
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
       ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
       : t;
   });
-  */
 };
 
 const effacerColonneTableau = ({
@@ -483,10 +499,13 @@ const effacerColonneTableau = ({
 }) => {
   tableaux.value = tableaux.value.map(t => {
     return t.clef === clefTableau
-      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.id !== idColonne)}
+      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.info.id !== idColonne)}
       : t;
   });
 };
+
+// Statut
+const statut = ref<types.schémaStatut>({statut: 'active'});
 
 // Création
 const prêtÀCréer = computed(() => {
@@ -537,17 +556,17 @@ const créerBd = async () => {
 
       // Ajouter les colonnes
       for (const col of tbl.cols) {
-        const idColonne = col.id;
+        const idColonne = col.info.id;
         await constl.tableaux.ajouterColonneTableau({
           idTableau,
-          idVariable: col.variable,
+          idVariable: col.info.variable,
           idColonne,
         });
-        if (col.index)
+        if (col.info.index)
           await constl.tableaux.changerColIndex({
             idTableau,
             idColonne,
-            val: col.index,
+            val: col.info.index,
           });
 
         // Ajotuer les règles colonne
@@ -572,6 +591,11 @@ const créerBd = async () => {
       copierDonnées: copierDonnées.value,
     });
   }
+
+  await constl.bds.changerStatutBd({
+    idBd,
+    statut: statut.value,
+  });
 
   if (!idBd) throw new Error('Bd non créée.');
   fermer();

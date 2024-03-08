@@ -25,10 +25,10 @@
       <v-divider />
 
       <v-card-text>
-        <choix-licence 
+        <choix-licence
           :licence="licenceChoisie"
           :permission-modifier="permissionModifier"
-          @changer-licence="l => licenceChoisie = l" 
+          @changer-licence="l => (licenceChoisie = l)"
         />
       </v-card-text>
       <v-divider></v-divider>

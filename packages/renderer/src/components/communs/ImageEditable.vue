@@ -24,9 +24,7 @@
             :size="tailleAvatar"
             :elevation="isHovering ? 12 : 2"
           >
-            <v-img
-              :src="srcImage || imgDefaut"
-            >
+            <v-img :src="srcImage || imgDefaut">
               <v-row
                 :class="{
                   'ma-0': true,

@@ -16,7 +16,7 @@
         </template>
       </v-tooltip>
     </template>
-    
+
     <v-card
       class="mx-auto"
       :min-width="mdAndUp ? 750 : 300"
@@ -43,7 +43,6 @@
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
@@ -60,10 +59,9 @@ const dialogue = ref(false);
 
 // Logique générale
 const sélectionnés = ref<string[]>(props.originaux);
-const sélectionner = (ids: string[]) => sélectionnés.value = ids;
+const sélectionner = (ids: string[]) => (sélectionnés.value = ids);
 const sauvegarder = () => {
   émettre('sauvegarder', sélectionnés.value);
   dialogue.value = false;
 };
-
 </script>

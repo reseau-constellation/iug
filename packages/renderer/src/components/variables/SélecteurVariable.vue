@@ -1,14 +1,14 @@
 <template>
   <selecteur-objet
     :multiples="multiples"
-    :interdites="interdites"
+    :interdits="interdites"
     :originaux="originales"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('variables.recherche.étiquette')"
     :texte-aucun-résultat="t('variables.recherche.aucunRésultat')"
-    @selectionnee="ids => idsVariablesSélectionnés = ids"
-    @requête-modifiee="(r) => requête = r"
+    @selectionnee="ids => (idsVariablesSélectionnés = ids)"
+    @requête-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheVariable
@@ -60,7 +60,7 @@ import NouveauVariable from './NouvelleVariable.vue';
 import JetonVariable from './JetonVariable.vue';
 import CarteVariable from './CarteVariable.vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 defineProps<{multiples: boolean; originales?: string[]; interdites?: string[]}>();
 const émettre = defineEmits<{
@@ -85,5 +85,4 @@ const {résultats, onTravaille} = rechercher({
   fRecherche: constl.recherche.rechercherVariablesSelonTexte,
   clefRequête: 'texte',
 });
-
 </script>

@@ -6,8 +6,8 @@
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('motsClefs.recherche.étiquette')"
     :texte-aucun-résultat="t('motsClefs.recherche.aucunRésultat')"
-    @selectionnee="ids => idsMotsClefsSélectionnés = ids"
-    @requête-modifiee="(r) => requête = r"
+    @selectionnee="ids => (idsMotsClefsSélectionnés = ids)"
+    @requête-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheMotClef
@@ -59,7 +59,7 @@ import NouveauMotClef from './NouveauMotClef.vue';
 import JetonMotClef from './JetonMotClef.vue';
 import CarteMotClef from './CarteMotClef.vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 defineProps<{multiples: boolean; originaux?: string[]}>();
 const émettre = defineEmits<{
@@ -84,5 +84,4 @@ const {résultats, onTravaille} = rechercher({
   fRecherche: constl.recherche.rechercherMotsClefsSelonTexte,
   clefRequête: 'texte',
 });
-
 </script>

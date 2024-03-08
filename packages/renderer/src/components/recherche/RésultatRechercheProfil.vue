@@ -8,36 +8,36 @@
     </template>
     <template #title>
       <TexteSurligneRecherche
-        v-if="source === 'nom'"
-        :info="résultat.résultatObjectif.info"
+        v-if="infoSourceNom"
+        :info="infoSourceNom"
       />
       <span v-else>{{ nomTraduit || t('communs.anonyme') }}</span>
     </template>
     <v-chip
-      v-if="source === 'id'"
+      v-if="infoSourceId"
       variant="outlined"
       label
       size="small"
       prepend-icon="mdi-link"
     >
       <TexteSurligneRecherche
-        :info="résultat.résultatObjectif.info"
+        :info="infoSourceId"
         :max-taille="25"
       ></TexteSurligneRecherche>
     </v-chip>
     <JetonContactMembre
-      v-if="source === 'contact' && résultat.résultatObjectif.clef"
-      :contact="résultat.résultatObjectif.info.texte"
+      v-if="infoSourceContact && résultat.résultatObjectif.clef"
+      :contact="infoSourceContact.texte"
       :type="résultat.résultatObjectif.clef"
     >
-      <TexteSurligneRecherche :info="résultat.résultatObjectif.info"></TexteSurligneRecherche>
+      <TexteSurligneRecherche :info="infoSourceContact"></TexteSurligneRecherche>
     </JetonContactMembre>
   </v-list-item>
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {computed} from 'vue';
+import {type ComputedRef, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -48,7 +48,7 @@ import JetonContactMembre from '../membres/JetonContactMembre.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte>}>();
+const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>}>();
 
 const constl = constellation();
 
@@ -57,9 +57,20 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Source résultat
-const source = computed(() => {
-  return props.résultat.résultatObjectif.de;
-});
+const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {
+  return computed(() => {
+    const {de: sourceRésultat, info} = props.résultat.résultatObjectif;
+    if (info.type === 'texte' && sourceRésultat === de) {
+      return info;
+    } else {
+      return undefined;
+    }
+  });
+};
+
+const infoSourceNom = sourceDirecte('nom');
+const infoSourceContact = sourceDirecte('contact');
+const infoSourceId = sourceDirecte('id');
 
 // Nom
 const noms = suivre(constl.profil.suivreNoms, {idCompte: props.résultat.id}, {});

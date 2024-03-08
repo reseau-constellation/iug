@@ -2,24 +2,25 @@
   <selecteur-objet
     :multiples="multiples"
     :originaux="originales"
+    :interdits="interdits"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
-    :texte-etiquette-recherche="t('nuées.recherche.étiquette')"
-    :texte-aucun-résultat="t('nuées.recherche.aucunRésultat')"
-    @selectionnee="ids => (idsNuéesSélectionnées = ids)"
+    :texte-etiquette-recherche="t('compte.recherche.étiquette')"
+    :texte-aucun-résultat="t('compte.recherche.aucunRésultat')"
+    @selectionnee="ids => (idsProfilsSélectionnées = ids)"
     @requête-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
-      <ResultatRechercheNuée
+      <ResultatRechercheProfil
         :résultat="résultat"
         @click="click"
       />
     </template>
     <template #jeton-objet="{id, deselectionner}">
-      <carte-nuée :id="id">
+      <carte-membre :id="id">
         <template #activator="{props: propsActivateur}">
-          <jeton-nuée
-            :id="id"
+          <jeton-membre
+            :compte="id"
             v-bind="{props: propsActivateur}"
           >
             <v-icon
@@ -29,40 +30,27 @@
               variant="flat"
               @click="() => deselectionner({id})"
             />
-          </jeton-nuée>
+          </jeton-membre>
         </template>
-      </carte-nuée>
-    </template>
-    <template #nouveau="{nouveau}">
-      <nouvelle-nuée @nouveau="nouveau">
-        <template #activator="{props: propsActivateur}">
-          <v-list-item
-            v-bind="propsActivateur"
-            :title="t('nuées.nouveau.btn')"
-            prepend-icon="mdi-plus"
-          >
-          </v-list-item>
-        </template>
-      </nouvelle-nuée>
+      </carte-membre>
     </template>
   </selecteur-objet>
 </template>
 <script setup lang="ts">
 import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
+import ResultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
 import {constellation, rechercher} from '/@/components/utils';
 
-import JetonNuée from './JetonNuée.vue';
-import CarteNuée from './CarteNuée.vue';
-import NouvelleNuée from './NouvelleNuée.vue';
+import JetonMembre from './JetonMembre.vue';
+import CarteMembre from './CarteMembre.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; originales?: string[]}>();
+defineProps<{multiples: boolean; originales?: string[], interdits?: string[]}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idsNuées: string[]): void;
+  (é: 'selectionnee', idsProfils: string[]): void;
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -71,16 +59,16 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = constellation();
 
 // Sélection
-const idsNuéesSélectionnées = ref<string[]>([]);
+const idsProfilsSélectionnées = ref<string[]>([]);
 watchEffect(() => {
-  émettre('selectionnee', idsNuéesSélectionnées.value);
+  émettre('selectionnee', idsProfilsSélectionnées.value);
 });
 
 // Contrôles recherche
 const requête = ref();
 const {résultats, onTravaille} = rechercher({
   requête: requête,
-  fRecherche: constl.recherche.rechercherNuéesSelonTexte,
+  fRecherche: constl.recherche.rechercherProfilsSelonTexte,
   clefRequête: 'texte',
 });
 </script>

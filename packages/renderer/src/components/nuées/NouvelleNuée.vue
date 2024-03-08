@@ -101,7 +101,7 @@
                 :key="tbl.clef"
                 :clef="tbl.clef"
                 :noms="tbl.noms"
-                :colonnes="tbl.cols.map(x => x.info)"
+                :colonnes="tbl.cols"
                 modification-permise
                 @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
                 @nouvelle-colonne="
@@ -288,7 +288,7 @@ const tableaux = ref<
     noms: {[langue: string]: string};
     cols: {
       info: tblx.InfoCol;
-      règles: valid.règleVariableAvecId[];
+      règles: valid.règleVariable[];
     }[];
   }[]
 >([]);
@@ -298,7 +298,7 @@ const ajouterTableau = ({
   cols,
 }: {
   noms: {[langue: string]: string};
-  cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
+  cols: {info: tblx.InfoCol; règles: valid.règleVariable[]}[];
 }) => {
   tableaux.value = [...tableaux.value, {clef: uuidv4(), noms, cols}];
 };
@@ -329,7 +329,7 @@ const ajouterColonneTableau = ({
   clefTableau: string;
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[];
+  règles: valid.règleVariable[];
 }) => {
   const nouvelleColonne = {
     id: uuidv4(),
@@ -409,7 +409,7 @@ const créerNuée = async () => {
         await constl.nuées.ajouterRègleTableauNuée({
           idTableau,
           idColonne,
-          règle: règle.règle,
+          règle,
         });
       }
     }

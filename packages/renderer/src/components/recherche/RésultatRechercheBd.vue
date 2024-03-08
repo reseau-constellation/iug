@@ -7,23 +7,24 @@
       />
       <span v-else>{{ nomTraduit || t('bds.aucunNom') }}</span>
     </v-list-item-title>
-    <v-list-item-subtitle>
+    <v-list-item-subtitle v-if="infoSourceDescr || descriptionTraduite">
       <TexteSurligneRecherche
         v-if="infoSourceDescr"
         :info="infoSourceDescr"
       />
-      <span v-else>{{ descriptionTraduite || t('bds.aucuneDescription') }}</span>
+      <span v-else>{{ descriptionTraduite }}</span>
     </v-list-item-subtitle>
     <AuteursObjet
       :auteurs="auteurs"
       :n-max="1"
     ></AuteursObjet>
-    <jeton-id-objet :id="résultat.id">
+    <jeton-id-objet
+      v-if="infoSourceId"
+      :id="résultat.id"
+    >
       <TexteSurligneRecherche
-        v-if="infoSourceId"
         :info="infoSourceId"
       />
-      <span v-else>{{ résultat.id }}</span>
     </jeton-id-objet>
     <JetonVariable
       v-if="infoSourceVariable"
@@ -57,7 +58,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
-    types.infoRésultatTexte | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide> | types.infoRésultatVide
+    | types.infoRésultatTexte
+    | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+    | types.infoRésultatVide
   >;
 }>();
 

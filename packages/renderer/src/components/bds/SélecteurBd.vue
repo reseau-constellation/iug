@@ -6,8 +6,8 @@
     :on-travaille="onTravaille"
     :texte-etiquette-recherche="t('bds.recherche.étiquette')"
     :texte-aucun-résultat="t('bds.recherche.aucunRésultat')"
-    @selectionnee="ids => idsBdsSélectionnées = ids"
-    @requête-modifiee="(r) => requête = r"
+    @selectionnee="ids => (idsBdsSélectionnées = ids)"
+    @requête-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheBd
@@ -39,7 +39,7 @@
           <v-list-item
             v-bind="propsActivateur"
             :title="t('bds.nouveau.btn')"
-            prepend-icon="mdi-plus" 
+            prepend-icon="mdi-plus"
           >
           </v-list-item>
         </template>
@@ -58,7 +58,7 @@ import {constellation, rechercher} from '/@/components/utils';
 import JetonBd from './JetonBd.vue';
 import CarteBd from './CarteBd.vue';
 import NouvelleBd from './NouvelleBd.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 defineProps<{multiples: boolean; originales?: string[]}>();
 const émettre = defineEmits<{

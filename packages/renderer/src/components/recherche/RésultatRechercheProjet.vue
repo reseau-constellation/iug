@@ -72,8 +72,11 @@ const props = defineProps<{
   résultat: types.résultatRecherche<
     | types.infoRésultatTexte
     | types.infoRésultatRecherche<
-        types.infoRésultatTexte |types.infoRésultatVide | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
-      >|types.infoRésultatVide
+        | types.infoRésultatTexte
+        | types.infoRésultatVide
+        | types.infoRésultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>
+      >
+    | types.infoRésultatVide
   >;
 }>();
 

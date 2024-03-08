@@ -57,7 +57,7 @@
         </span>
       </v-fade-transition>
       <v-divider />
-      <slot 
+      <slot
         name="nouveau"
         :nouveau="(id: string) => sélectionner({id})"
       />
@@ -82,17 +82,17 @@
   </v-list>
 </template>
 <script setup lang="ts" generic="T extends types.résultatRecherche<types.infoRésultat>">
-import type { types } from '@constl/ipa';
+import type {types} from '@constl/ipa';
 import {computed, watchEffect, ref} from 'vue';
 
 const props = defineProps<{
-  multiples?: boolean; 
+  multiples?: boolean;
   originaux?: string[];
   interdits?: string[];
-  resultatsRecherche: T[] | undefined,
-  onTravaille: boolean
-  texteEtiquetteRecherche: string, 
-  texteAucunRésultat: string, 
+  resultatsRecherche: T[] | undefined;
+  onTravaille: boolean;
+  texteEtiquetteRecherche: string;
+  texteAucunRésultat: string;
 }>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsObjets: string[]): void;
@@ -107,14 +107,14 @@ watchEffect(() => {
 
 // Contrôles recherche
 const requête = ref('');
-watchEffect(()=>{
+watchEffect(() => {
   émettre('requête-modifiee', requête.value);
 });
 
 const résultatsPermisRecherche = computed(() => {
-  return props.resultatsRecherche?.filter(r => !(idsSélectionnés.value).includes(r.id)).filter(
-    r => !props.interdits || !(props.interdits.includes(r.id)),
-  );
+  return props.resultatsRecherche
+    ?.filter(r => !idsSélectionnés.value.includes(r.id))
+    .filter(r => !props.interdits || !props.interdits.includes(r.id));
 });
 
 const sélectionner = ({id}: {id: string}) => {

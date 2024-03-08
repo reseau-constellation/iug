@@ -13,7 +13,7 @@ export const créerColonneTableau = async ({
   idVariable: string;
   idColonne?: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[];
+  règles: valid.règleVariable[];
 }) => {
   const constl = constellation();
   const idColonneFinale = await constl.tableaux.ajouterColonneTableau({
@@ -34,7 +34,7 @@ export const créerColonneTableau = async ({
     await constl.tableaux.ajouterRègleTableau({
       idTableau,
       idColonne: idColonneFinale,
-      règle: règle.règle,
+      règle: règle,
     });
   }
 };

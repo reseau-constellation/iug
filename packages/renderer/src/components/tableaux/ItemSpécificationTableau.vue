@@ -49,13 +49,14 @@
 
     <ItemSpecificationColonne
       v-for="col in colonnes"
-      :id="col.id"
-      :key="col.id"
-      :id-variable="col.variable"
-      :index="col.index"
+      :id="col.info.id"
+      :key="col.info.id"
+      :id-variable="col.info.variable"
+      :index="col.info.index"
+      :règles="col.règles"
       :modification-permise="modificationPermise"
-      @modifier-colonne="info => modifierColonne(col.id, info)"
-      @effacer-colonne="() => effacerColonne(col.id)"
+      @modifier-colonne="info => modifierColonne(col.info.id, info)"
+      @effacer-colonne="() => effacerColonne(col.info.id)"
     />
   </v-list-group>
 </template>
@@ -78,14 +79,14 @@ const props = defineProps<{
   clef: string;
   noms: {[langue: string]: string};
   idTableau?: string;
-  colonnes: tableaux.InfoColAvecCatégorie[];
+  colonnes: {info: tableaux.InfoColAvecCatégorie; règles: valid.règleVariable[]}[];
   modificationPermise: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'modifier-noms', noms: {[langue: string]: string}): void;
   (
     é: 'nouvelle-colonne',
-    info: {idVariable: string; index?: boolean; règles: valid.règleVariableAvecId[]},
+    info: {idVariable: string; index?: boolean; règles: valid.règleVariable[]},
   ): void;
   (é: 'modifier-colonne', info: {idColonne: string; idVariable: string; index?: boolean}): void;
   (é: 'effacer-colonne', idColonne: string): void;
@@ -99,7 +100,7 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 // Variables déjà ajoutées au tableau, qu'on ne veut pas associer à de nouvelles colonnes
 const variablesDéjàAjoutées = computed(() => {
-  return props.colonnes.map(c => c.variable);
+  return props.colonnes.map(c => c.info.variable);
 });
 
 // Modification colonnes
@@ -112,7 +113,7 @@ const effacerColonne = (idColonne: string) => {
 const ajouterColonne = (info: {
   idVariable: string;
   index?: boolean;
-  règles: valid.règleVariableAvecId[];
+  règles: valid.règleVariable[];
 }) => {
   émettre('nouvelle-colonne', info);
 };

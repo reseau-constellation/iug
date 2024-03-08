@@ -7,14 +7,12 @@
       />
       <span v-else>{{ nomTraduit || t('motsClefs.aucunNom') }}</span>
     </v-list-item-title>
-    <v-list-item-subtitle
-      v-if="infoSourceDescr || descriptionTraduite"
-    >
+    <v-list-item-subtitle v-if="infoSourceDescr || descriptionTraduite">
       <TexteSurligneRecherche
         v-if="infoSourceDescr"
         :info="infoSourceDescr"
       />
-      <span v-else>{{ descriptionTraduite || t('motsClefs.aucuneDescription') }}</span>
+      <span v-else>{{ descriptionTraduite }}</span>
     </v-list-item-subtitle>
     <div class="mt-2">
       <AuteursObjet
@@ -50,7 +48,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import LienObjet from '../communs/LienObjet.vue';
 
-const props = defineProps<{résultat: types.résultatRecherche<types.infoRésultatTexte|types.infoRésultatVide>}>();
+const props = defineProps<{
+  résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;
+}>();
 
 const constl = constellation();
 

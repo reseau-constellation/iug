@@ -49,12 +49,12 @@
                 @sauvegarder="r => ajouterRègle(r)"
               >
                 <template #activator="{props: propsActivateurNouvelleRègle}">
-                  <v-list-item v-bind="propsActivateurNouvelleRègle">
-                    <template #prepend>
-                      <v-icon>mdi-plus</v-icon>
-                    </template>
+                  <v-list-item
+                    v-bind="propsActivateurNouvelleRègle"
+                    prepend-icon="mdi-plus"
+                  >
                     <v-list-item-title>
-                      {{ t('') }}
+                      {{ t('tableaux.règles.nouvelle') }}
                     </v-list-item-title>
                   </v-list-item>
                 </template>
@@ -139,7 +139,7 @@ const émettre = defineEmits<{
       idVariable: string;
       idColonne?: string;
       index: boolean;
-      règles: valid.règleVariableAvecId[];
+      règles: valid.règleVariable[];
     },
   ): void;
 }>();
@@ -198,7 +198,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'variable':
-      return {actif: !!idVariableChoisie.value, visible: false};
+      return {actif: !!idVariableChoisie.value, visible: true};
     case 'confirmation':
       return {actif: false, visible: false};
     default:
@@ -274,7 +274,7 @@ const créerColonne = async () => {
     idVariable,
     index: index.value,
     idColonne: props.idColonne,
-    règles: règlesColonne.value as valid.règleVariableAvecId[],
+    règles: règlesColonne.value.map(r=>r.règle),
   });
 
   fermer();

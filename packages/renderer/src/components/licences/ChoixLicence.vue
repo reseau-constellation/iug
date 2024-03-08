@@ -21,7 +21,6 @@
     </template>
   </v-select>
   <span v-if="licence">
-    
     <p class="mt-3 mb-0">
       <v-alert
         :text="t('licences.avertissement')"
@@ -47,9 +46,9 @@
         </div>
       </v-alert>
     </p>
-  
+
     <v-divider />
-  
+
     <p class="mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
     <v-skeleton-loader
       v-if="!droits"
@@ -174,10 +173,9 @@ const ouvrirLienLicence = (l?: string) => {
 };
 
 // Sauvegarder
-watchEffect(()=>{
+watchEffect(() => {
   if (licenceChoisie.value !== props.licence) {
     émettre('changerLicence', licenceChoisie.value);
   }
 });
-
 </script>

@@ -1,7 +1,9 @@
-<template><h1>{{ id }}ici</h1></template>
+<template>
+  <h1>{{ id }}</h1>
+</template>
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { utiliserHistoriqueDocuments } from '/@/état/historiqueDocuments';
+import {onMounted} from 'vue';
+import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 const props = defineProps<{id: string}>();
 

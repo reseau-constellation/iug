@@ -62,7 +62,13 @@
 
         <v-spacer />
       </v-card-title>
-      
+
+      <item-statut
+        v-if="statut && (statut.statut !== 'active' || monAutorisation)"
+        type-objet="bd"
+        :statut="statut"
+      />
+
       <div class="text-center">
         <SérieJetons
           :n-max="5"
@@ -358,20 +364,6 @@
         <v-list>
           <p class="mb-0 text-overline">
             {{ t('bds.tableaux') }}
-            <nouveau-tableau
-              :id-bd="id"
-              importation-permise
-            >
-              <template #activator="{props: propsActivateur}">
-                <v-btn
-                  v-if="monAutorisation"
-                  v-bind="propsActivateur"
-                  icon="mdi-plus"
-                  size="small"
-                  variant="flat"
-                />
-              </template>
-            </nouveau-tableau>
           </p>
           <v-divider />
           <v-skeleton-loader
@@ -464,25 +456,64 @@
               :value="ong.clef"
             >
               <v-chip
-                class="mx-2"
+                class="mx-1"
                 variant="tonal"
                 label
                 :active="false"
                 :color="isSelected ? 'primary' : ''"
                 @click="toggle"
               >
-                Nom tableau
+                {{ ong.clef.slice(0, 10) }}
+
+                <v-icon
+                  class="ms-2"
+                  icon="mdi-pencil"
+                  variant="flat"
+                  size="x-small"
+                />
               </v-chip>
+            </v-slide-group-item>
+            <v-slide-group-item
+              key="nouveau"
+              value="nouveau"
+            >
+              <nouveau-tableau
+                :id-bd="id"
+                importation-permise
+                @sauvegarder="ajouterTableau"
+              >
+                <template #activator="{props: propsActivateur}">
+                  <v-chip
+                    v-if="monAutorisation"
+                    v-bind="propsActivateur"
+                    :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
+                    variant="tonal"
+                    class="mx-1"
+                    label
+                    :disabled="ajoutTableauEnCours"
+                  >
+                    {{ t('tableax.nouveau') }}
+                    <v-progress-circular
+                      v-if="ajoutTableauEnCours"
+                      class="ms-2"
+                      size="15"
+                      width="1"
+                      indeterminate
+                    />
+                  </v-chip>
+                </template>
+              </nouveau-tableau>
             </v-slide-group-item>
           </v-slide-group>
         </v-list>
-        <v-data-table>
-        </v-data-table>
+        <v-data-table> </v-data-table>
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 <script setup lang="ts">
+import type {tableaux as typesTableaux} from '@constl/ipa';
+
 import {useDisplay, useRtl} from 'vuetify';
 
 import {computed, ref, onMounted, watchEffect} from 'vue';
@@ -525,6 +556,8 @@ import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 
 import {ajusterTexteTraductible} from '/@/utils';
+import type {valid} from '@constl/ipa';
+import ItemStatut from '/@/components/communs/ItemStatut.vue';
 
 const props = defineProps<{id: string}>();
 
@@ -603,6 +636,9 @@ const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) =>
   }
 };
 
+// Statut
+const statut = suivre(constl.bds.suivreStatutBd, {idBd: props.id});
+
 // Variables
 const variables = suivre(constl.bds.suivreVariablesBd, {idBd: props.id});
 
@@ -636,14 +672,68 @@ const tableauxOrdonnés = computed(() => {
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
 });
 const tableauActif = ref<string>();
-watchEffect(()=>{
+watchEffect(() => {
   if (!tableauActif.value && tableauxOrdonnés.value?.length) {
     tableauActif.value = tableauxOrdonnés.value[0].clef;
   }
-  if (tableauActif.value && !tableauxOrdonnés.value?.map(t=>t.clef).includes(tableauActif.value)) {
+  if (
+    tableauActif.value &&
+    !tableauxOrdonnés.value?.map(t => t.clef).includes(tableauActif.value)
+  ) {
     tableauActif.value = undefined;
   }
 });
+
+const ajoutTableauEnCours = ref(false);
+const ajouterTableau = async ({
+  noms,
+  cols,
+}: {
+  noms: {
+    [langue: string]: string;
+  };
+  cols: {
+    info: typesTableaux.InfoCol;
+    règles: valid.règleVariable[];
+  }[];
+}) => {
+  ajoutTableauEnCours.value = true;
+  try {
+    const idTableau = await constl.bds.ajouterTableauBd({idBd: props.id});
+    await constl.tableaux.sauvegarderNomsTableau({
+      idTableau,
+      noms,
+    });
+    await Promise.all(
+      cols.map(async col => {
+        await constl.tableaux.ajouterColonneTableau({
+          idTableau,
+          idColonne: col.info.id,
+          idVariable: col.info.variable,
+        });
+        if (col.info.index) {
+          await constl.tableaux.changerColIndex({
+            idTableau,
+            idColonne: col.info.id,
+            val: true,
+          });
+        }
+        await Promise.all(
+          col.règles.map(
+            async r =>
+              await constl.tableaux.ajouterRègleTableau({
+                idTableau,
+                idColonne: col.info.id,
+                règle: r,
+              }),
+          ),
+        );
+      }),
+    );
+  } finally {
+    ajoutTableauEnCours.value = false;
+  }
+};
 
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});

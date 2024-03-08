@@ -33,7 +33,33 @@
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
-          <v-window-item :value="1"> À faire </v-window-item>
+          <v-window-item :value="1">
+            <v-list>
+              <nouvelle-colonne
+                :variables-interdites="variablesDéjàAjoutées"
+                @nouvelle="col => ajouterColonne(col)"
+              >
+                <template #activator="{props: propsActivateur}">
+                  <v-list-item
+                    v-bind="propsActivateur"
+                    :title="t('tableaux.nouveau.ajouterColonne')"
+                    prepend-icon="mdi-table-column-plus-after"
+                  ></v-list-item>
+                </template>
+              </nouvelle-colonne>
+              <ItemSpecificationColonne
+                v-for="col in colonnes"
+                :id="col.info.id" 
+                :key="col.info.id" 
+                :id-variable="col.info.variable"
+                :index="col.info.index"
+                :règles="col.règles"
+                modification-permise
+                @modifier-colonne="modifierColonne"
+                @effacer-colonne="() => effacerColonne(col.info.id)"
+              />
+            </v-list>
+          </v-window-item>
           <v-window-item :value="2">
             <div class="text-center">
               <h3 class="text-h6 font-weight-light mb-2">
@@ -76,22 +102,24 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import type {tableaux as tblx, valid} from '@constl/ipa';
+
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import type {tableaux as tblx, valid} from '@constl/ipa';
-
+import { v4 as uuidv4 } from 'uuid';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import ItemSpecificationColonne from '/@/components/tableaux/ItemSpécificationColonne.vue';
+import NouvelleColonne from './NouvelleColonne.vue';
 
-const props = defineProps<{importationPermise: boolean}>();
 const émettre = defineEmits<{
   (
     é: 'sauvegarder',
     args: {
       noms: {[langue: string]: string};
-      cols: {info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[];
+      cols: {info: tblx.InfoCol; règles: valid.règleVariable[]}[];
     },
   ): void;
 }>();
@@ -105,13 +133,17 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['noms', 'importerDonnées', 'confirmation'] as const;
+const listeÉtapes = ['noms', 'colonnnes', 'confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'noms':
       return 'tableaux.nouveau.titreNoms';
+    case 'colonnnes':
+      return 'tableaux.nouveau.titreColonnes';
+    case 'confirmation':
+      return 'tableaux.nouveau.titreConfirmation';
     default:
       return '';
   }
@@ -122,6 +154,10 @@ const sousTitreCarte = computed(() => {
   switch (é) {
     case 'noms':
       return 'tableaux.nouveau.sousTitreNoms';
+    case 'colonnnes':
+      return 'tableaux.nouveau.sousTitreColonnes';
+    case 'confirmation':
+      return 'tableaux.nouveau.sousTitreConfirmation';
     default:
       return '';
   }
@@ -130,9 +166,6 @@ const sousTitreCarte = computed(() => {
 const retour = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'confirmation':
-      étape.value = listeÉtapes.indexOf(props.importationPermise ? 'importerDonnées' : 'noms');
-      break;
     default:
       étape.value--;
       break;
@@ -142,11 +175,6 @@ const retour = () => {
 const suivant = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'noms':
-      étape.value = listeÉtapes.indexOf(
-        props.importationPermise ? 'importerDonnées' : 'confirmation',
-      );
-      break;
     default:
       étape.value++;
       break;
@@ -182,20 +210,51 @@ const ajusterNoms = (nms: {[lng: string]: string}) => {
 };
 
 // Colonnes
-const cols = ref<{info: tblx.InfoCol; règles: valid.règleVariableAvecId[]}[]>();
+const colonnes = ref<{info: tblx.InfoCol; règles: valid.règleVariable[]}[]>([]);
+const ajouterColonne = ({
+  idVariable,
+  idColonne,
+  index,
+  règles,
+}: {
+    idVariable: string;
+    idColonne?: string | undefined;
+    index: boolean;
+    règles: valid.règleVariable[];
+}) => {
+  colonnes.value = [
+    ...colonnes.value,
+    {
+      info: {
+        id: idColonne || uuidv4(),
+        variable: idVariable,
+        index,
+      },
+      règles,
+    },
+  ];
+};
+const modifierColonne = () => {};
+const effacerColonne = (idColonne: string) => {
+  colonnes.value = colonnes.value.filter(c=>c.info.id !== idColonne);
+};
+
+const variablesDéjàAjoutées = computed(()=>{
+  return colonnes.value.map(c=>c.info.variable);
+});
 
 // Confirmation
 const confirmer = () => {
   émettre('sauvegarder', {
     noms: noms.value,
-    cols: cols.value || [],
+    cols: colonnes.value || [],
   });
   fermer();
 };
 
 const fermer = () => {
   noms.value = {};
-  cols.value = [];
+  colonnes.value = [];
 
   étape.value = 0;
   dialogue.value = false;

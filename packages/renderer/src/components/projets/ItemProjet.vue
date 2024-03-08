@@ -73,5 +73,4 @@ const imgDéfaut = obtImageDéco('logoBD');
 
 // Bds
 const bds = suivre(constl.projets.suivreBdsProjet, {idProjet: props.id});
-
 </script>
