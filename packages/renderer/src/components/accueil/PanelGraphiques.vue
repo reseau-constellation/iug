@@ -32,7 +32,23 @@
           <graphique-historique-ligne
             :titre="t('accueil.page.graphiques.connaissances')"
             couleur="#e2b72f"
-          />
+          >
+            <template #action>
+              <div class="mx-auto text-center text-disabled">
+                <GestionConnaissances>
+                  <template #activator="{props}">
+                    <v-btn
+                      v-bind="props"
+                      variant="outlined"
+                      prepend-icon="mdi-plus"
+                    >
+                      {{ t('accueil.page.graphiques.ajouterConnaissances' ) }}
+                    </v-btn>
+                  </template>
+                </GestionConnaissances>
+              </div>
+            </template>
+          </graphique-historique-ligne>
           <graphique-historique-ligne
             :titre="t('accueil.page.graphiques.réseau')"
             couleur="#aff05b"
@@ -52,6 +68,7 @@ import {utiliserHistorique} from '/@/état/historique';
 import {constellation, suivre} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
+import GestionConnaissances from '/@/components/réseau/GestionConnaissances.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
