@@ -20,9 +20,11 @@
       variant="flat"
       height="230"
     >
-      <span class="pa-4 ma-auto text-h6 text-center text-disabled">
-        {{ t('accueil.page.graphiques.sansDonnées') }}
-      </span>
+      <slot name="action">
+        <span class="mx-auto text-h6 text-center text-disabled">
+          {{ t('accueil.page.graphiques.sansDonnées') }}
+        </span>
+      </slot>
     </v-card>
   </div>
 </template>
@@ -55,12 +57,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const données = computed(() =>
   (props.vals || []).map(x => ({date: new Date(parseInt(x.date)), value: x.val})),
 );
-const data = computed(() => (props.vals ? données.value : autos.value));
-const autos = ref<{date: Date; value: number}[]>([]);
 const svgRef = ref(null);
 
 const assezDeDonnées = computed(() => {
-  return data.value.length > 1;
+  return données.value.length > 1;
 });
 
 const formatteurs: {[chiffre: string]: Ref<string>} = {};
@@ -75,25 +75,22 @@ const formatterChiffre = (x: number): string => {
 // https://dev.to/muratkemaldar/using-vue-3-with-d3-composition-api-3h1g
 onMounted(() => {
   const svg = select(svgRef.value);
-  if (!props.vals)
-    setInterval(() => {
-      autos.value = [...autos.value, {date: new Date(), value: Math.ceil(Math.random() * 10)}];
-    }, 2000);
+
   watchEffect(() => {
     const {width, height} = resizeState.dimensions;
     if (!(width && height)) return;
 
     const x = scaleTime()
-      .domain(extent(data.value, d => d.date) as [Date, Date]) // input values...
+      .domain(extent(données.value, d => d.date) as [Date, Date]) // input values...
       .range([0, width]); // ... output values
 
     const y = scaleLinear()
-      .domain([0, max(data.value, d => d.value)] as [number, number]) // input values...
+      .domain([0, max(données.value, d => d.value)] as [number, number]) // input values...
       .range([height, 0]); // ... output values
 
     svg
       .selectAll<SVGSVGElement, unknown>('.line') // get all "existing" lines in svg
-      .data([data.value]) // sync them with our data
+      .data([données.value]) // sync them with our data
       .join('path')
 
       // everything after .join() is applied to every "new" and "existing" element
