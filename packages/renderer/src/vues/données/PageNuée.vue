@@ -74,4 +74,11 @@ const {அகராதியிலிருந்து_மொழிபெயர
 
 const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
+
+/*
+const estApprouvable = computed(()=>{})
+const activerApprouvable = async () => {
+
+}
+*/
 </script>
