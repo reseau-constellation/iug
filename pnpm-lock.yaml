@@ -12,11 +12,11 @@ dependencies:
     specifier: 1.0.4
     version: 1.0.4(react-native@0.73.5)(wrtc@0.4.7)
   '@constl/mandataire':
-    specifier: ^0.1.16
-    version: 0.1.16
+    specifier: ^1.0.0
+    version: 1.0.1
   '@constl/mandataire-electron-principal':
     specifier: ^0.4.6
-    version: 0.4.6(@constl/ipa@1.0.4)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.1.1)
+    version: 0.4.6(@constl/ipa@1.0.4)(@constl/mandataire@1.0.1)(@constl/serveur@0.3.7)(electron@29.1.1)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.4.6
     version: 0.4.6
@@ -1924,7 +1924,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.4)(@constl/mandataire@0.1.16)(@constl/serveur@0.3.7)(electron@29.1.1):
+  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.4)(@constl/mandataire@1.0.1)(@constl/serveur@0.3.7)(electron@29.1.1):
     resolution: {integrity: sha512-WwOC8ZKEY/jEXkakz2PpUbqzlQbEoEmRyjftAgx1F+czlI19YhUmshVvEXcSfU1lCwkP2JjVA6KoofEXd6Yrqg==}
     peerDependencies:
       '@constl/ipa': 1.0.0
@@ -1933,7 +1933,7 @@ packages:
       electron: ^27.0.4 || ^28.0.0
     dependencies:
       '@constl/ipa': 1.0.4(react-native@0.73.5)(wrtc@0.4.7)
-      '@constl/mandataire': 0.1.16
+      '@constl/mandataire': 1.0.1
       '@constl/serveur': 0.3.7(@constl/ipa@1.0.4)
       electron: 29.1.1
       semaphore-async-await: 1.5.1
@@ -1950,6 +1950,13 @@ packages:
 
   /@constl/mandataire@0.1.16:
     resolution: {integrity: sha512-cOOgRR9KB86JRi873/KoTnMsxeUVJg4rODgRJxoc9Ar6XUArzLinEZVYHu9KchcNWZpDCQbZdIPvvW4F9oG7kA==}
+    dependencies:
+      events: 3.3.0
+      uuid: 9.0.1
+    dev: false
+
+  /@constl/mandataire@1.0.1:
+    resolution: {integrity: sha512-pXFP2ha5llHEgTF21cLjpoJrRKzBoqtTB/z55krTnxvexagHRHM810iSBv4DbfwJwRkRWhbeIbgoXaXCYrl/xg==}
     dependencies:
       events: 3.3.0
       uuid: 9.0.1
