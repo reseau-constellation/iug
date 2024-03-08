@@ -48,7 +48,7 @@ const générerExtentions = () => {
     extentions.push({
       name: 'vite:global-polyfill',
       transformIndexHtml: {
-        transform(html) {
+        handler(html) {
           return {
             html,
             tags: [
