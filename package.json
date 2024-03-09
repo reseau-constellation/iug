@@ -79,7 +79,7 @@
     "@constl/mandataire": "^1.0.0",
     "@constl/mandataire-electron-principal": "^0.4.6",
     "@constl/mandataire-electron-rendu": "^0.4.6",
-    "@constl/serveur": "^0.3.7",
+    "@constl/serveur": "^1.0.0",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@lassi-js/kili": "^0.3.9",
     "@lassi-js/kilimukku": "^1.1.3",

@@ -16,13 +16,13 @@ dependencies:
     version: 1.0.1
   '@constl/mandataire-electron-principal':
     specifier: ^0.4.6
-    version: 0.4.6(@constl/ipa@1.0.5)(@constl/mandataire@1.0.1)(@constl/serveur@0.3.7)(electron@29.1.1)
+    version: 0.4.6(@constl/ipa@1.0.5)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.1)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.4.6
     version: 0.4.6
   '@constl/serveur':
-    specifier: ^0.3.7
-    version: 0.3.7(@constl/ipa@1.0.5)
+    specifier: ^1.0.0
+    version: 1.0.0(@constl/ipa@1.0.5)
   '@esbuild-plugins/node-globals-polyfill':
     specifier: ^0.2.3
     version: 0.2.3(esbuild@0.20.1)
@@ -1938,7 +1938,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.5)(@constl/mandataire@1.0.1)(@constl/serveur@0.3.7)(electron@29.1.1):
+  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.5)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.1):
     resolution: {integrity: sha512-WwOC8ZKEY/jEXkakz2PpUbqzlQbEoEmRyjftAgx1F+czlI19YhUmshVvEXcSfU1lCwkP2JjVA6KoofEXd6Yrqg==}
     peerDependencies:
       '@constl/ipa': 1.0.0
@@ -1948,7 +1948,7 @@ packages:
     dependencies:
       '@constl/ipa': 1.0.5(react-native@0.73.5)(wrtc@0.4.7)
       '@constl/mandataire': 1.0.1
-      '@constl/serveur': 0.3.7(@constl/ipa@1.0.5)
+      '@constl/serveur': 1.0.0(@constl/ipa@1.0.5)
       electron: 29.1.1
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
@@ -1976,12 +1976,12 @@ packages:
       uuid: 9.0.1
     dev: false
 
-  /@constl/serveur@0.3.7(@constl/ipa@1.0.5):
-    resolution: {integrity: sha512-0PK3gf6r42sZW0O/QxSyArUpzJjTmxi+YaBppF46WbhmRbwLptFoM9nbuYKEElhEaCFJ+OrKDl5hvjEHnKaNhA==}
+  /@constl/serveur@1.0.0(@constl/ipa@1.0.5):
+    resolution: {integrity: sha512-RcYp3+la4JIoCnn8rQIXqmoGWVkbvstpWWlnu82cJVkc+oi0SMSWs5U8XqbLSDNgra+7jRpJLre13xsbFprdzA==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
-      '@constl/ipa': 1.0.0
+      '@constl/ipa': ^1.0.0
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.13
       '@constl/ipa': 1.0.5(react-native@0.73.5)(wrtc@0.4.7)
@@ -4624,7 +4624,7 @@ packages:
   /@types/dns-packet@5.6.5:
     resolution: {integrity: sha512-qXOC7XLOEe43ehtWJCMnQXvgcIpv6rPmQ1jXT98Ad8A3TB1Ue50jsCbSSSyuazScEuZ/Q026vHbrOTVkmwA+7Q==}
     dependencies:
-      '@types/node': 20.11.23
+      '@types/node': 20.11.25
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -4719,7 +4719,7 @@ packages:
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.11.23
+      '@types/node': 20.11.25
       xmlbuilder: 15.1.1
     dev: true
     optional: true
