@@ -64,13 +64,14 @@
           </p>
           <v-divider class="mb-4" />
           <v-autocomplete
-            v-model="langueChoisie"
+            v-model="languesChoisies"
             :items="கிடைக்கும்_மொழி_குறியீடுகள்"
             :label="t('pages.compte.options.langue')"
             variant="outlined"
             density="compact"
             hide-details
             prepend-icon="mdi-earth"
+            multiple
             class="pb-5"
           >
             <template #item="{item, props}">
@@ -127,7 +128,7 @@ import ItemNumération from '/@/components/langues/ItemNumération.vue';
 import JetonNumération from '/@/components/langues/JetonNumération.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு} = மொழிகளைப்_பயன்படுத்து();
+const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
 const {தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு, எண்ணுரு_முறைமைகள்} = எண்களைப்_பயன்படுத்து();
 
@@ -150,14 +151,15 @@ watchEffect(() => {
 });
 
 // Langues
-const langueChoisie = ref(மொழி.value);
+const languesChoisies = ref([மொழி.value, ...மாற்றுமொழிகள்.value]);
 const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
 watchEffect(() => {
-  langueChoisie.value = மொழி.value;
+  languesChoisies.value = [மொழி.value, ...மாற்றுமொழிகள்.value];
 });
-watch(langueChoisie, () => {
-  if (மொழி.value !== langueChoisie.value) மொழிகளை_தேர்ந்தெடுக்கொள்ளு(langueChoisie.value);
+watch(languesChoisies, () => {
+  const original = JSON.stringify([மொழி.value, ...மாற்றுமொழிகள்.value]);
+  if (original !== JSON.stringify(languesChoisies.value)) மொழிகளை_தேர்ந்தெடுக்கொள்ளு(languesChoisies.value);
 });
 
 // Numération
