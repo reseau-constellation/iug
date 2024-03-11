@@ -6,8 +6,7 @@
     size="small"
     label
   >
-    {{ nomTraduit || t('motsClefs.sansNom') }}
-    <slot></slot>
+    <slot>{{ nomTraduit || t('motsClefs.sansNom') }}</slot>
   </v-chip>
 </template>
 

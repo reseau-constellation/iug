@@ -1,5 +1,7 @@
 <template>
-  <v-list-item>
+  <v-list-item
+    :prepend-avatar="srcImgBd || imgDéfaut"
+  >
     <v-list-item-title>
       <TexteSurligneRecherche
         v-if="infoSourceNom"
@@ -55,6 +57,7 @@ import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { utiliserImagesDéco } from '/@/composables/images';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
@@ -128,4 +131,18 @@ const descriptionTraduite = அகராதியிலிருந்து_ம
 
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.résultat.id});
+
+// Image
+const imageBd = suivre(constl.bds.suivreImage, {idBd: props.résultat.id});
+const srcImgBd = computed(() => {
+  if (imageBd.value) {
+    return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
+  } else {
+    return undefined;
+  }
+});
+
+const {obtImageDéco} = utiliserImagesDéco();
+const imgDéfaut = obtImageDéco('logoBD');
+
 </script>
