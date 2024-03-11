@@ -923,5 +923,11 @@
     "communs": {
       "constellation": "هم‌اختران"
     }
+  },
+
+  "عرب": {
+    "communs": {
+      "constellation": "كوكبة"
+    }
   }
 }
