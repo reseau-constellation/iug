@@ -43,7 +43,7 @@ dependencies:
     version: 10.9.0(vue@3.4.21)
   '@wdns/vue-code-block':
     specifier: ^2.3.1
-    version: 2.3.1(typescript@5.4.2)
+    version: 2.3.2(typescript@5.4.2)
   assert:
     specifier: ^2.1.0
     version: 2.1.0
@@ -5236,8 +5236,8 @@ packages:
       - vue
     dev: false
 
-  /@wdns/vue-code-block@2.3.1(typescript@5.4.2):
-    resolution: {integrity: sha512-5aaAT5HNADiYCv/msSSFS83/nzMuFrPStR8VligNJcCKA7au2vPWNxQ/p6mYHGDAPYP4g7WwTqh91SPaPg3UFQ==}
+  /@wdns/vue-code-block@2.3.2(typescript@5.4.2):
+    resolution: {integrity: sha512-wFqSzaB+587XbWjq+L+IYZAZsCILNZVgRZ+FAoPH5n1TQoBpxfJGUsG8GrTHHIgiuz7txL79DqvRj3oy+ziC1g==}
     dependencies:
       highlight.js: 11.9.0
       prismjs: 1.29.0
