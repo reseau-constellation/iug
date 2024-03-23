@@ -183,7 +183,7 @@ devDependencies:
     version: 7.3.1(eslint@8.57.0)(typescript@5.4.3)
   '@vitejs/plugin-vue':
     specifier: 5.0.4
-    version: 5.0.4(vite@5.2.3)(vue@3.4.21)
+    version: 5.0.4(vite@5.2.4)(vue@3.4.21)
   '@vitest/coverage-istanbul':
     specifier: ^1.3.1
     version: 1.4.0(vitest@1.4.0)
@@ -236,14 +236,14 @@ devDependencies:
     specifier: 0.3.0
     version: 0.3.0(rollup@4.13.0)
   vite:
-    specifier: 5.2.3
-    version: 5.2.3(@types/node@20.11.30)
+    specifier: 5.2.4
+    version: 5.2.4(@types/node@20.11.30)
   vite-plugin-commonjs-externals:
     specifier: ^0.1.4
-    version: 0.1.4(vite@5.2.3)
+    version: 0.1.4(vite@5.2.4)
   vite-plugin-vuetify:
     specifier: ^2.0.2
-    version: 2.0.3(vite@5.2.3)(vue@3.4.21)(vuetify@3.5.9)
+    version: 2.0.3(vite@5.2.4)(vue@3.4.21)(vuetify@3.5.9)
   vitest:
     specifier: 1.4.0
     version: 1.4.0(@types/node@20.11.30)(happy-dom@14.3.1)
@@ -4924,14 +4924,14 @@ packages:
   /@vascosantos/moving-average@1.1.0:
     resolution: {integrity: sha512-MVEJ4vWAPNbrGLjz7ITnHYg+YXZ6ijAqtH5/cHwSoCpbvuJ98aLXwFfPKAUfZpJMQR5uXB58UJajbY130IRF/w==}
 
-  /@vitejs/plugin-vue@5.0.4(vite@5.2.3)(vue@3.4.21):
+  /@vitejs/plugin-vue@5.0.4(vite@5.2.4)(vue@3.4.21):
     resolution: {integrity: sha512-WS3hevEszI6CEVEx28F8RjTX97k3KsrcY6kvTg7+Whm5y3oYvcqzVeGCU3hxSAn4uY2CLCkeokkGKpoctccilQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.2.3(@types/node@20.11.30)
+      vite: 5.2.4(@types/node@20.11.30)
       vue: 3.4.21(typescript@5.4.3)
     dev: true
 
@@ -12570,7 +12570,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.3(@types/node@20.11.30)
+      vite: 5.2.4(@types/node@20.11.30)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -12582,7 +12582,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-commonjs-externals@0.1.4(vite@5.2.3):
+  /vite-plugin-commonjs-externals@0.1.4(vite@5.2.4):
     resolution: {integrity: sha512-mJ5KzL8F3RqyFh8IhEBfRK6cDY+HXz7HXIDht5c9W+DOKbLpk57CX1LOwnG/Lx3v++ywIcMt51yRuezATV8kaQ==}
     peerDependencies:
       vite: ^4.3.9 || ^5.0.0
@@ -12590,10 +12590,10 @@ packages:
       acorn: 8.11.3
       es-module-lexer: 1.4.1
       magic-string: 0.30.7
-      vite: 5.2.3(@types/node@20.11.30)
+      vite: 5.2.4(@types/node@20.11.30)
     dev: true
 
-  /vite-plugin-vuetify@2.0.3(vite@5.2.3)(vue@3.4.21)(vuetify@3.5.9):
+  /vite-plugin-vuetify@2.0.3(vite@5.2.4)(vue@3.4.21)(vuetify@3.5.9):
     resolution: {integrity: sha512-HbYajgGgb/noaVKNRhnnXIiQZrNXfNIeanUGAwXgOxL6h/KULS40Uf51Kyz8hNmdegF+DwjgXXI/8J1PNS83xw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
@@ -12604,14 +12604,14 @@ packages:
       '@vuetify/loader-shared': 2.0.3(vue@3.4.21)(vuetify@3.5.9)
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.2.3(@types/node@20.11.30)
+      vite: 5.2.4(@types/node@20.11.30)
       vue: 3.4.21(typescript@5.4.3)
       vuetify: 3.5.9(typescript@5.4.3)(vite-plugin-vuetify@2.0.3)(vue@3.4.21)
     transitivePeerDependencies:
       - supports-color
 
-  /vite@5.2.3(@types/node@20.11.30):
-    resolution: {integrity: sha512-+i1oagbvkVIhEy9TnEV+fgXsng13nZM90JQbrcPrf6DvW2mXARlz+DK7DLiDP+qeKoD1FCVx/1SpFL1CLq9Mhw==}
+  /vite@5.2.4(@types/node@20.11.30):
+    resolution: {integrity: sha512-vjFghvHWidBTinu5TCymJk/lRHlR5ljqB83yugr0HA1xspUPdOZHqbqDLnZ8f9/jINrtFHTCYYyIUi+o+Q5iyg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -12689,7 +12689,7 @@ packages:
       strip-literal: 2.0.0
       tinybench: 2.6.0
       tinypool: 0.8.2
-      vite: 5.2.3(@types/node@20.11.30)
+      vite: 5.2.4(@types/node@20.11.30)
       vite-node: 1.4.0(@types/node@20.11.30)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
@@ -12809,7 +12809,7 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.3
-      vite-plugin-vuetify: 2.0.3(vite@5.2.3)(vue@3.4.21)(vuetify@3.5.9)
+      vite-plugin-vuetify: 2.0.3(vite@5.2.4)(vue@3.4.21)(vuetify@3.5.9)
       vue: 3.4.21(typescript@5.4.3)
 
   /walker@1.0.8:
