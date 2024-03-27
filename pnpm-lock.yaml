@@ -16,7 +16,7 @@ dependencies:
     version: 1.0.1
   '@constl/mandataire-electron-principal':
     specifier: ^0.4.6
-    version: 0.4.6(@constl/ipa@1.0.6)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.5)
+    version: 0.4.6(@constl/ipa@1.0.6)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.6)
   '@constl/mandataire-electron-rendu':
     specifier: ^0.4.6
     version: 0.4.6
@@ -194,8 +194,8 @@ devDependencies:
     specifier: 7.0.3
     version: 7.0.3
   electron:
-    specifier: 29.1.5
-    version: 29.1.5
+    specifier: 29.1.6
+    version: 29.1.6
   electron-builder:
     specifier: 24.13.3
     version: 24.13.3(electron-builder-squirrel-windows@24.13.3)
@@ -2165,7 +2165,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.6)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.5):
+  /@constl/mandataire-electron-principal@0.4.6(@constl/ipa@1.0.6)(@constl/mandataire@1.0.1)(@constl/serveur@1.0.0)(electron@29.1.6):
     resolution: {integrity: sha512-WwOC8ZKEY/jEXkakz2PpUbqzlQbEoEmRyjftAgx1F+czlI19YhUmshVvEXcSfU1lCwkP2JjVA6KoofEXd6Yrqg==}
     peerDependencies:
       '@constl/ipa': 1.0.0
@@ -2176,7 +2176,7 @@ packages:
       '@constl/ipa': 1.0.6(react-native@0.73.6)(wrtc@0.4.7)
       '@constl/mandataire': 1.0.1
       '@constl/serveur': 1.0.0(@constl/ipa@1.0.6)
-      electron: 29.1.5
+      electron: 29.1.6
       semaphore-async-await: 1.5.1
       tslib: 2.6.2
       uuid: 9.0.1
@@ -7110,8 +7110,8 @@ packages:
       - supports-color
     dev: false
 
-  /electron@29.1.5:
-    resolution: {integrity: sha512-1uWGRw/ffA62lcrklxGUgVxVtOHojsg/nwsYr+/F9cVjipZJn8iPv/ABGIIexhmUqWcho8BqfTJ4osCBa29gBg==}
+  /electron@29.1.6:
+    resolution: {integrity: sha512-UIYfpHR9gRBFKHyejHuXUVQ7nNzZRnoPVOHlijkvqR+DSLwgJ2ZcVVt0LNduNeO8PhPkY1+6kHonL52OTC1cOw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
