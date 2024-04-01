@@ -15,6 +15,7 @@
     </template>
     <template #title> {{ nomDispositif || t('dispositifs.sansNom') }} </template>
     <template #subtitle> {{ t(sousTitre) }} </template>
+    <p class="mt-4" />
     <jeton-membre
       v-if="idCompte"
       :compte="idCompte"
@@ -22,7 +23,7 @@
     <slot />
     <template #append>
       <lien-objet :id="idDispositif" />
-    </template>
+    </template>        
   </v-list-item>
 </template>
 <script setup lang="ts">

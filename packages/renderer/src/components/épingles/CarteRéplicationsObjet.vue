@@ -28,7 +28,7 @@
       <v-divider />
       <v-card-text style="overflow-y: scroll">
         <v-list>
-          <p class="mb-0 text-overline">
+          <p class="mb-0 text-h6">
             {{ t('réplications.répliquéPar') }}
           </p>
           <v-list-group>
@@ -38,14 +38,14 @@
                 lines="two"
               >
                 <template #prepend>
-                  <v-avatar>{{ nDispositifsFormatté }}</v-avatar>
+                  <v-avatar class="text-h3">{{ nDispositifsFormatté }}</v-avatar>
                 </template>
                 <v-list-item-title>
-                  {{ t('réplications.dispositifs') }}
+                  {{ t('réplications.dispositifs', nDispositifs) }}
                   <v-icon end>mdi-monitor-cellphone</v-icon>
                 </v-list-item-title>
-                <v-list-item-subtitle class="text-success">
-                  {{ t('réplications.enLigne', nDispositifsEnLigne) }}
+                <v-list-item-subtitle class="text-success font-weight-bold">
+                  {{ t('réplications.enLigne', {n: nDispositifsEnLigneFormatté}) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
@@ -59,13 +59,15 @@
               <v-chip
                 :prepend-icon="d.fichiers ? 'mdi-folder-outline' : 'mdi-folder-off-outline'"
                 variant="outlined"
+                size="small"
                 label
+                class="me-2 mb-2"
               >
                 {{ d.fichiers ? t('réplications.avecFichiers') : t('réplications.sansFichiers') }}
               </v-chip>
             </item-dispositif>
           </v-list-group>
-          <p class="mb-0 text-overline">
+          <p class="mb-0 text-h6">
             {{ t('réplications.représentant') }}
           </p>
           <v-list-group>
@@ -78,7 +80,7 @@
                   v-if="membres"
                   #prepend
                 >
-                  <v-avatar>
+                  <v-avatar class="text-h3">
                     {{ nMembresFormatté }}
                   </v-avatar>
                 </template>
@@ -91,9 +93,9 @@
                 </v-list-item-title>
                 <v-list-item-subtitle
                   v-if="membresEnLigne"
-                  class="text-success"
+                  class="text-success font-weight-bold"
                 >
-                  {{ t('réplications.enLigne', nMembresEnLigne) }}
+                  {{ t('réplications.enLigne', {n: nMembresEnLigneFormatté}) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
@@ -155,6 +157,7 @@ const dispositifsEnLigne = computed(() => {
   return réplications.value?.dispositifs.filter(x => !x.vuÀ);
 });
 const nDispositifsEnLigne = computed(() => dispositifsEnLigne.value?.length || 0);
+const nDispositifsEnLigneFormatté = எண்ணை_வடிவூட்டு(nDispositifsEnLigne);
 
 const membres = computed(() => {
   return réplications.value?.membres;
@@ -166,4 +169,5 @@ const membresEnLigne = computed(() => {
   return réplications.value?.membres.filter(x => !x.vuÀ);
 });
 const nMembresEnLigne = computed(() => membresEnLigne.value?.length || 0);
+const nMembresEnLigneFormatté = எண்ணை_வடிவூட்டு(nMembresEnLigne);
 </script>

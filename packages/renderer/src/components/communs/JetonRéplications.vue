@@ -6,7 +6,7 @@
   >
     <v-icon start>mdi-pin-outline</v-icon>
     {{ nRéplicationsDispositifsFormatté }}
-    {{ t('réplications.réplications', nRéplicationsDispositifs) }}
+    {{ t('réplications.réplications', {n: nRéplicationsDispositifsFormatté}, nRéplicationsDispositifs) }}
     <span v-if="nRéplicationsDispositifs > 0">{{
       t('réplications.réplicationsEnLigne', [nRéplicationsEnLigneFormatté])
     }}</span>
