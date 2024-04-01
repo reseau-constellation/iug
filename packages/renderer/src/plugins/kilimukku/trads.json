@@ -627,7 +627,8 @@
     },
     "listeNomsProfil": {
       "étiquetteNom": "உங்கள் பெயர்",
-      "indiceLangue": "பெயரின் மொழி"
+      "indiceLangue": "பெயரின் மொழி",
+      "indiceNom": "உங்கள் பெயர்"
     },
     "objet": {
       "étiquetteNom": "பெயர்",
