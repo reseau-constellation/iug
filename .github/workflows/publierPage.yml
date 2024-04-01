@@ -2,7 +2,7 @@ name: Appli internet
 on: [ workflow_call ]
 
 concurrency:
-  group: typechecking-${{ github.ref }}
+  group: appli-internet-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
