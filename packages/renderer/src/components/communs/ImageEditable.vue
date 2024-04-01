@@ -177,7 +177,7 @@ watchEffect(async () => {
 });
 watchEffect(async () => {
   if (image.value) {
-    const nomFichier = fichier.value?.path.split('/').pop();
+    const nomFichier = fichier.value?.name.split('/').pop();
     if (!imageTropGrande.value && nomFichier) {
       émettre('imageChangee', {contenu: image.value, fichier: nomFichier});
     }
