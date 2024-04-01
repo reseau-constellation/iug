@@ -1,514 +1,578 @@
 <template>
   <v-container>
-    <v-card flat>
-      <v-card-subtitle>
-        <v-breadcrumbs
-          :items="petitPousset"
-          class="pa-0"
-        >
-          <template #divider>
-            <v-icon>{{ isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right' }}</v-icon>
-          </template>
-          <template #title="{item}">
-            <v-breadcrumbs-item
-              :disabled="item.disabled"
-              @click="item.lien && $router.push(item.lien)"
-            >
-              <texteTronqué
-                :texte="item.title"
-                :longueur-max="35"
-              />
-            </v-breadcrumbs-item>
-          </template>
-        </v-breadcrumbs>
-      </v-card-subtitle>
-
-      <image-editable
-        :src-image="srcImgBd"
-        :img-defaut="imgDéfaut"
-        :editable="!!monAutorisation"
-        :taille-avatar="mdAndUp ? 275 : 175"
-        :max-taille-image="MAX_TAILLE_IMAGE"
-        @image-changee="image => modifierImage(image)"
+    <div>
+      <v-breadcrumbs
+        v-if="mdAndUp"
+        :items="petitPousset"
+        class="pa-0"
+      >
+        <template #divider>
+          <v-icon>{{ isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right' }}</v-icon>
+        </template>
+        <template #title="{item}">
+          <v-breadcrumbs-item 
+            :disabled="item.disabled"
+            @click="item.lien && $router.push(item.lien)"
+          >
+            <texteTronqué
+              :texte="item.title"
+              :longueur-max="35"
+            />
+          </v-breadcrumbs-item>
+        </template>
+      </v-breadcrumbs>
+      <v-btn
+        v-else
+        icon="mdi-arrow-left-top"
+        variant="flat"
+        @click="()=>$router.push(encodeURI('/données/'))"
       />
+    </div>
 
-      <v-card-title class="text-center">
-        <DialogueNoms
-          :etiquette-nom="t('objet.étiquetteNom')"
-          :indice-nom="t('objet.indiceNom')"
-          :indice-langue="t('objet.indiceLangue')"
-          :texte-aucun-nom="t('objet.texteAucunNom')"
-          :noms-initiaux="noms"
-          :titre="t('objet.titreDialogueNoms')"
-          :sous-titre="t('objet.sousTitreDialogueNoms')"
-          :autorisation-modification="!!monAutorisation"
-          @ajuster-noms="ajusterNoms"
-        >
-          <template #activator="{props: propsActivateur}">
-            <span
-              v-bind="propsActivateur"
-              class="text-h4"
-            >
-              {{ nomTraduit || t('bds.sansNom') }}
-              <v-btn
-                :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
-                variant="flat"
-                size="small"
-              ></v-btn>
-            </span>
-          </template>
-        </DialogueNoms>
-        <lien-objet :id="id" />
+    <image-editable
+      :src-image="srcImgBd"
+      :img-defaut="imgDéfaut"
+      :editable="!!monAutorisation"
+      :taille-avatar="mdAndUp ? 275 : 175"
+      :max-taille-image="MAX_TAILLE_IMAGE"
+      @image-changee="image => modifierImage(image)"
+    />
 
-        <v-spacer />
-      </v-card-title>
-
-      <item-statut
-        v-if="statut && (statut.statut !== 'active' || monAutorisation)"
-        type-objet="bd"
-        :statut="statut"
-      />
-
-      <div class="text-center">
-        <SérieJetons
-          :n-max="5"
-          :items="motsClefs"
-        >
-          <template #jeton="{id: idMotClef}">
-            <carte-mot-clef :id="idMotClef">
-              <template #activator="{props: propsActivateur}">
-                <JetonMotClef
-                  v-bind="propsActivateur"
-                  :id="idMotClef"
-                />
-              </template>
-            </carte-mot-clef>
-          </template>
-          <template #itemListe="{id: idMotClef}">
-            <carte-mot-clef :id="idMotClef">
-              <template #activator="{props: propsActivateur}">
-                <item-mot-clef
-                  v-bind="propsActivateur"
-                  :id="idMotClef"
-                />
-              </template>
-            </carte-mot-clef>
-          </template>
-        </SérieJetons>
-        <span
-          v-if="motsClefs && !motsClefs.length"
-          class="text-disabled"
-        >
-          {{ t('bds.aucunMotClef') }}
-        </span>
-        <EditeurMotsClefs
-          v-if="monAutorisation && motsClefs"
-          :originaux="motsClefs"
-          @sauvegarder="ids => sauvegarderMotsClefs(ids)"
-        />
-      </div>
-      <div class="text-center">
-        <CarteEpingler :id="id">
-          <template #activator="{props: propsActivateurCarte}">
-            <v-tooltip
-              open-delay="200"
-              location="bottom"
-              :text="t('communs.épingler')"
-            >
-              <template #activator="{props: propsActivateurIndice}">
-                <v-btn
-                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-                  icon
-                  variant="flat"
-                >
-                  <IcôneEpingle :id="id"></IcôneEpingle>
-                </v-btn>
-              </template>
-            </v-tooltip>
-          </template>
-        </CarteEpingler>
-
-        <importer-ou-exporter
-          :info-objet="{id, typeObjet: 'bd'}"
-          :type="monAutorisation ? undefined : 'exportation'"
-        >
-          <template #activator="{props: propsActivateurCarte}">
-            <v-tooltip
-              :text="t('exporter.indice')"
-              :open-delay="200"
-              location="bottom"
-            >
-              <template #activator="{props: propsActivateurIndice}">
-                <v-btn
-                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-                  icon="mdi-download"
-                  variant="flat"
-                />
-              </template>
-            </v-tooltip>
-          </template>
-        </importer-ou-exporter>
-
-        <carte-code-bd :id="id">
-          <template #activator="{props: propsActivateurCarte}">
-            <v-tooltip
-              :text="t('code.indice')"
-              :open-delay="200"
-              location="bottom"
-            >
-              <template #activator="{props: propsActivateurIndice}">
-                <v-btn
-                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-                  icon="mdi-xml"
-                  variant="flat"
-                />
-              </template>
-            </v-tooltip>
-          </template>
-        </carte-code-bd>
-
-        <carte-copier :id="id">
-          <template #activator="{props: propsActivateurCarte}">
-            <v-tooltip
-              open-delay="200"
-              location="bottom"
-              :text="t('copier.indice')"
-            >
-              <template #activator="{props: propsActivateurIndice}">
-                <v-btn
-                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-                  icon="mdi-content-copy"
-                  variant="flat"
-                />
-              </template>
-            </v-tooltip>
-          </template>
-        </carte-copier>
-
-        <carte-effacer
-          v-if="!!monAutorisation"
-          @effacer="effacerBd"
-        >
-          <template #activator="{props: propsActivateurCarte}">
-            <v-tooltip
-              open-delay="200"
-              location="bottom"
-              :text="t('effacer.indice')"
-            >
-              <template #activator="{props: propsActivateurIndice}">
-                <v-btn
-                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
-                  variant="flat"
-                  icon
-                >
-                  <v-icon color="error">mdi-delete</v-icon>
-                </v-btn>
-              </template>
-            </v-tooltip>
-          </template>
-        </carte-effacer>
-      </div>
-
-      <v-divider />
-      <v-card-text>
-        <DialogueNoms
-          :etiquette-nom="t('objet.étiquetteDescription')"
-          :indice-nom="t('objet.indiceDescription')"
-          :indice-langue="t('objet.indiceLangue')"
-          :texte-aucun-nom="t('objet.texteAucuneDescription')"
-          :noms-initiaux="descriptions"
-          :titre="t('objet.titreDialogueDescriptions')"
-          :sous-titre="t('objet.sousTitreDialogueDescriptions')"
-          :autorisation-modification="!!monAutorisation"
-          longue
-          @ajuster-noms="ajusterDescriptions"
-        >
-          <template #activator="{props: propsActivateur}">
-            <span :class="{'text-disabled': !descrTraduite}">{{
-              descrTraduite || t('communs.baseCarteObjet.sansDescription')
-            }}</span>
+    <div class="text-center">
+      <DialogueNoms
+        :etiquette-nom="t('objet.étiquetteNom')"
+        :indice-nom="t('objet.indiceNom')"
+        :indice-langue="t('objet.indiceLangue')"
+        :texte-aucun-nom="t('objet.texteAucunNom')"
+        :noms-initiaux="noms"
+        :titre="t('objet.titreDialogueNoms')"
+        :sous-titre="t('objet.sousTitreDialogueNoms')"
+        :autorisation-modification="!!monAutorisation"
+        @ajuster-noms="ajusterNoms"
+      >
+        <template #activator="{props: propsActivateur}">
+          <span
+            v-bind="propsActivateur"
+            class="text-h4"
+          >
+            {{ nomTraduit || t('bds.sansNom') }}
             <v-btn
-              v-bind="propsActivateur"
               :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
               variant="flat"
               size="small"
             ></v-btn>
-          </template>
-        </DialogueNoms>
+          </span>
+        </template>
+      </DialogueNoms>
+      <lien-objet :id="id" />
 
-        <p class="mb-0 text-overline">
-          {{ t('bds.info') }}
-        </p>
-        <v-divider class="mb-2" />
-        <div class="d-flex flex-wrap">
-          <v-card
-            v-if="false"
-            flat
-            width="200"
-            class="mb-3"
+      <v-spacer />
+    </div>
+
+    
+
+    <div class="text-center">
+      <SérieJetons
+        :n-max="5"
+        :items="motsClefs"
+      >
+        <template #jeton="{id: idMotClef}">
+          <carte-mot-clef :id="idMotClef">
+            <template #activator="{props: propsActivateur}">
+              <JetonMotClef
+                v-bind="propsActivateur"
+                :id="idMotClef"
+              />
+            </template>
+          </carte-mot-clef>
+        </template>
+        <template #itemListe="{id: idMotClef}">
+          <carte-mot-clef :id="idMotClef">
+            <template #activator="{props: propsActivateur}">
+              <item-mot-clef
+                v-bind="propsActivateur"
+                :id="idMotClef"
+              />
+            </template>
+          </carte-mot-clef>
+        </template>
+      </SérieJetons>
+      <span
+        v-if="motsClefs && !motsClefs.length"
+        class="text-disabled"
+      >
+        {{ t('bds.aucunMotClef') }}
+      </span>
+      <EditeurMotsClefs
+        v-if="monAutorisation && motsClefs"
+        :originaux="motsClefs"
+        @sauvegarder="ids => sauvegarderMotsClefs(ids)"
+      />
+    </div>
+    <div class="text-center">
+      <CarteEpingler :id="id">
+        <template #activator="{props: propsActivateurCarte}">
+          <v-tooltip
+            open-delay="200"
+            location="bottom"
+            :text="t('communs.épingler')"
           >
-            <carte-qualite-bd>
-              <template #activator="{props: propsActivateur}">
-                <item-qualite-bd
-                  v-bind="propsActivateur"
-                  :id="id"
-                />
-              </template>
-            </carte-qualite-bd>
-          </v-card>
-          <v-card
-            flat
-            width="200"
-            class="mb-3"
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                icon
+                variant="flat"
+              >
+                <IcôneEpingle :id="id"></IcôneEpingle>
+              </v-btn>
+            </template>
+          </v-tooltip>
+        </template>
+      </CarteEpingler>
+
+      <importer-ou-exporter
+        :info-objet="{id, typeObjet: 'bd'}"
+        :type="monAutorisation ? undefined : 'exportation'"
+      >
+        <template #activator="{props: propsActivateurCarte}">
+          <v-tooltip
+            :text="t('exporter.indice')"
+            :open-delay="200"
+            location="bottom"
           >
-            <gerer-auteurs
-              :id="id"
-              :auteurs="auteurs"
-              :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
-            >
-              <template #activator="{props: propsActivateur}">
-                <item-auteurs
-                  v-bind="propsActivateur"
-                  :auteurs="auteurs"
-                />
-              </template>
-            </gerer-auteurs>
-          </v-card>
-          <v-card
-            flat
-            width="200"
-            class="mb-3"
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                icon="mdi-download"
+                variant="flat"
+              />
+            </template>
+          </v-tooltip>
+        </template>
+      </importer-ou-exporter>
+
+      <carte-code-bd :id="id">
+        <template #activator="{props: propsActivateurCarte}">
+          <v-tooltip
+            :text="t('code.indice')"
+            :open-delay="200"
+            location="bottom"
           >
-            <dialogue-licence
-              :licence="licence"
-              :permission-modifier="monAutorisation === 'MODÉRATEUR'"
-              @changer-licence="changerLicence"
-            >
-              <template #activator="{props: propsActivateur}">
-                <item-licence
-                  v-bind="propsActivateur"
-                  :licence="licence"
-                  @changer-licence="changerLicence"
-                />
-              </template>
-            </dialogue-licence>
-          </v-card>
-          <v-card
-            flat
-            width="200"
-            class="mb-3"
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                icon="mdi-xml"
+                variant="flat"
+              />
+            </template>
+          </v-tooltip>
+        </template>
+      </carte-code-bd>
+
+      <carte-copier :id="id">
+        <template #activator="{props: propsActivateurCarte}">
+          <v-tooltip
+            open-delay="200"
+            location="bottom"
+            :text="t('copier.indice')"
           >
-            <CarteRéplicationsObjet :id="id">
-              <template #activator="{props: propsActivateur}">
-                <ItemRéplicationsObjet
-                  v-bind="propsActivateur"
-                  :id="id"
-                />
-              </template>
-            </CarteRéplicationsObjet>
-          </v-card>
-          <v-card
-            flat
-            width="200"
-            class="mb-3"
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                icon="mdi-content-copy"
+                variant="flat"
+              />
+            </template>
+          </v-tooltip>
+        </template>
+      </carte-copier>
+
+      <carte-effacer
+        v-if="!!monAutorisation"
+        @effacer="effacerBd"
+      >
+        <template #activator="{props: propsActivateurCarte}">
+          <v-tooltip
+            open-delay="200"
+            location="bottom"
+            :text="t('effacer.indice')"
           >
-            <carte-automatisations
-              :id-objet="id"
-              :permission="monAutorisation"
-              type-objet="bd"
-            >
-              <template #activator="{props: propsActivateur}">
-                <item-automatisations
-                  v-bind="propsActivateur"
-                  :id-objet="id"
-                />
-              </template>
-            </carte-automatisations>
-          </v-card>
-        </div>
-        <p class="mb-0 text-overline">
-          {{ t('bds.variables') }}
-        </p>
-        <v-divider class="mb-2" />
-        <SérieJetons
-          :n-max="5"
-          :items="variables"
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                variant="flat"
+                icon
+              >
+                <v-icon color="error">mdi-delete</v-icon>
+              </v-btn>
+            </template>
+          </v-tooltip>
+        </template>
+      </carte-effacer>
+    </div>
+
+    <v-divider />
+    <v-card-text>
+      <DialogueNoms
+        :etiquette-nom="t('objet.étiquetteDescription')"
+        :indice-nom="t('objet.indiceDescription')"
+        :indice-langue="t('objet.indiceLangue')"
+        :texte-aucun-nom="t('objet.texteAucuneDescription')"
+        :noms-initiaux="descriptions"
+        :titre="t('objet.titreDialogueDescriptions')"
+        :sous-titre="t('objet.sousTitreDialogueDescriptions')"
+        :autorisation-modification="!!monAutorisation"
+        longue
+        @ajuster-noms="ajusterDescriptions"
+      >
+        <template #activator="{props: propsActivateur}">
+          <span :class="{'text-disabled': !descrTraduite}">{{
+            descrTraduite || t('communs.baseCarteObjet.sansDescription')
+          }}</span>
+          <v-btn
+            v-bind="propsActivateur"
+            :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
+            variant="flat"
+            size="small"
+          ></v-btn>
+        </template>
+      </DialogueNoms>
+
+      <p class="mt-6 text-h5">
+        {{ t('bds.info') }}
+      </p>
+      <v-divider class="mb-2" />
+      <div class="d-flex flex-wrap">
+        <item-statut
+          v-if="statut && (statut.statut !== 'active' || monAutorisation)"
+          type-objet="bd"
+          :statut="statut"
+        />
+        <v-card
+          v-if="false"
+          flat
+          width="200"
+          class="mb-3"
         >
-          <template #jeton="{id: idVariable}">
-            <carte-variable :id="idVariable">
-              <template #activator="{props: propsActivateur}">
-                <JetonVariable
-                  v-bind="propsActivateur"
-                  :id="idVariable"
-                />
-              </template>
-            </carte-variable>
-          </template>
-          <template #itemListe="{id: idVariable}">
-            <carte-variable :id="idVariable">
-              <template #activator="{props: propsActivateur}">
-                <ItemVariable
-                  v-bind="propsActivateur"
-                  :id="idVariable"
-                />
-              </template>
-            </carte-variable>
-          </template>
-        </SérieJetons>
-        <p
-          v-if="!variables?.length"
-          class="text-disabled"
+          <carte-qualite-bd>
+            <template #activator="{props: propsActivateur}">
+              <item-qualite-bd
+                v-bind="propsActivateur"
+                :id="id"
+              />
+            </template>
+          </carte-qualite-bd>
+        </v-card>
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
         >
-          {{ t('bds.aucuneVariable') }}
+          <gerer-auteurs
+            :id="id"
+            :auteurs="auteurs"
+            :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
+          >
+            <template #activator="{props: propsActivateur}">
+              <item-auteurs
+                v-bind="propsActivateur"
+                :auteurs="auteurs"
+              />
+            </template>
+          </gerer-auteurs>
+        </v-card>
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <dialogue-licence
+            :licence="licence"
+            :permission-modifier="monAutorisation === 'MODÉRATEUR'"
+            @changer-licence="changerLicence"
+          >
+            <template #activator="{props: propsActivateur}">
+              <item-licence
+                v-bind="propsActivateur"
+                :licence="licence"
+                @changer-licence="changerLicence"
+              />
+            </template>
+          </dialogue-licence>
+        </v-card>
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <CarteRéplicationsObjet :id="id">
+            <template #activator="{props: propsActivateur}">
+              <ItemRéplicationsObjet
+                v-bind="propsActivateur"
+                :id="id"
+              />
+            </template>
+          </CarteRéplicationsObjet>
+        </v-card>
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <carte-automatisations
+            :id-objet="id"
+            :permission="monAutorisation"
+            type-objet="bd"
+          >
+            <template #activator="{props: propsActivateur}">
+              <item-automatisations
+                v-bind="propsActivateur"
+                :id-objet="id"
+              />
+            </template>
+          </carte-automatisations>
+        </v-card>
+      </div>
+      <p class="mt-6 text-h5">
+        {{ t('bds.variables') }}
+      </p>
+      <v-divider class="mb-2" />
+      <SérieJetons
+        :n-max="5"
+        :items="variables"
+      >
+        <template #jeton="{id: idVariable}">
+          <carte-variable :id="idVariable">
+            <template #activator="{props: propsActivateur}">
+              <JetonVariable
+                v-bind="propsActivateur"
+                :id="idVariable"
+              />
+            </template>
+          </carte-variable>
+        </template>
+        <template #itemListe="{id: idVariable}">
+          <carte-variable :id="idVariable">
+            <template #activator="{props: propsActivateur}">
+              <ItemVariable
+                v-bind="propsActivateur"
+                :id="idVariable"
+              />
+            </template>
+          </carte-variable>
+        </template>
+      </SérieJetons>
+      <p
+        v-if="!variables?.length"
+        class="text-disabled"
+      >
+        {{ t('bds.aucuneVariable') }}
+      </p>
+      <v-list>
+        <p class="mt-6 text-h5">
+          {{ t('bds.tableaux') }}
         </p>
-        <v-list>
-          <p class="mb-0 text-overline">
+        <v-divider />
+        <v-skeleton-loader
+          v-if="tableaux === null"
+          type="paragraph"
+        />
+        <div
+          v-else-if="tableaux && !tableaux.length"
+          class="text-center"
+        >
+          <p class="text-h5 mt-5">
             {{ t('bds.tableaux') }}
           </p>
-          <v-divider />
-          <v-skeleton-loader
-            v-if="tableaux === null"
-            type="paragraph"
+          <v-img
+            :src="imageVide"
+            class="my-5"
+            contain
+            height="175px"
           />
-          <div
-            v-else-if="tableaux && !tableaux.length"
-            class="text-center"
+          <nouveau-tableau
+            :id-bd="id"
+            importation-permise
           >
-            <p class="text-h5 mt-5">
-              {{ t('bds.tableaux') }}
-            </p>
-            <v-img
-              :src="imageVide"
-              class="my-5"
-              contain
-              height="175px"
-            />
-            <nouveau-tableau
-              :id-bd="id"
-              importation-permise
-            >
-              <template #activator="{props: propsActivateur}">
-                <v-btn
-                  v-if="monAutorisation"
-                  v-bind="propsActivateur"
-                  color="primary"
-                  class="mx-2"
-                  variant="outlined"
-                >
-                  <template #prepend>
-                    <v-icon
-                      icon="mdi-table"
-                      start
-                    />
-                  </template>
-                  {{ t('bds.ajouterTableau') }}
-                </v-btn>
-              </template>
-            </nouveau-tableau>
-            <importer-ou-exporter
-              type="importation"
-              :automatiser="true"
-              :info-objet="{id, typeObjet: 'bd'}"
-            >
+            <template #activator="{props: propsActivateur}">
               <v-btn
                 v-if="monAutorisation"
+                v-bind="propsActivateur"
                 color="primary"
                 class="mx-2"
                 variant="outlined"
-                icon="mdi-import"
               >
-                {{ t('bds.importation') }}
-              </v-btn>
-            </importer-ou-exporter>
-          </div>
-
-          <!--<transition-group
-            v-else
-            name="fade"
-            mode="out-in"
-            class="d-flex flex-wrap justify-center"
-          >
-            <item-tableau
-              v-for="tableau in tableauxOrdonnés"
-              :id="tableau.id"
-              :key="tableau.id"
-              :id-bd="id"
-              @click="
-                $router.push(
-                  `/bd/visualiser/${encodeURIComponent(id)}/tableau/${encodeURIComponent(
-                    tableau.id,
-                  )}`,
-                )
-              "
-            />
-          </transition-group>-->
-
-          <v-slide-group
-            v-model="tableauActif"
-            class="mt-4"
-            show-arrows
-            center-active
-          >
-            <v-slide-group-item
-              v-for="ong in tableaux"
-              v-slot="{isSelected, toggle}"
-              :key="ong.clef"
-              :value="ong.clef"
-            >
-              <v-chip
-                class="mx-1"
-                variant="tonal"
-                label
-                :active="false"
-                :color="isSelected ? 'primary' : ''"
-                @click="toggle"
-              >
-                {{ ong.clef.slice(0, 10) }}
-
-                <v-icon
-                  class="ms-2"
-                  icon="mdi-pencil"
-                  variant="flat"
-                  size="x-small"
-                />
-              </v-chip>
-            </v-slide-group-item>
-            <v-slide-group-item
-              key="nouveau"
-              value="nouveau"
-            >
-              <nouveau-tableau
-                :id-bd="id"
-                importation-permise
-                @sauvegarder="ajouterTableau"
-              >
-                <template #activator="{props: propsActivateur}">
-                  <v-chip
-                    v-if="monAutorisation"
-                    v-bind="propsActivateur"
-                    :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
-                    variant="tonal"
-                    class="mx-1"
-                    label
-                    :disabled="ajoutTableauEnCours"
-                  >
-                    {{ t('tableax.nouveau') }}
-                    <v-progress-circular
-                      v-if="ajoutTableauEnCours"
-                      class="ms-2"
-                      size="15"
-                      width="1"
-                      indeterminate
-                    />
-                  </v-chip>
+                <template #prepend>
+                  <v-icon
+                    icon="mdi-table"
+                    start
+                  />
                 </template>
-              </nouveau-tableau>
-            </v-slide-group-item>
-          </v-slide-group>
-        </v-list>
-        <v-data-table> </v-data-table>
-      </v-card-text>
-    </v-card>
+                {{ t('bds.ajouterTableau') }}
+              </v-btn>
+            </template>
+          </nouveau-tableau>
+          <importer-ou-exporter
+            type="importation"
+            :automatiser="true"
+            :info-objet="{id, typeObjet: 'bd'}"
+          >
+            <v-btn
+              v-if="monAutorisation"
+              color="primary"
+              class="mx-2"
+              variant="outlined"
+              icon="mdi-import"
+            >
+              {{ t('bds.importation') }}
+            </v-btn>
+          </importer-ou-exporter>
+        </div>
+
+        <!--<transition-group
+          v-else
+          name="fade"
+          mode="out-in"
+          class="d-flex flex-wrap justify-center"
+        >
+          <item-tableau
+            v-for="tableau in tableauxOrdonnés"
+            :id="tableau.id"
+            :key="tableau.id"
+            :id-bd="id"
+            @click="
+              $router.push(
+                `/bd/visualiser/${encodeURIComponent(id)}/tableau/${encodeURIComponent(
+                  tableau.id,
+                )}`,
+              )
+            "
+          />
+        </transition-group>-->
+        <v-tabs
+          v-model="tableauActif"
+          class="mt-2"
+        >
+          <v-tab
+            v-for="ong in tableaux"
+            :key="ong.clef"
+            :value="ong.clef"
+            color="primary"
+            si
+            ze="small"
+          >
+            <TexteTronque
+              :texte="ong.clef"
+              :longueur-max="13"
+            />
+            <v-icon
+              class="ms-2"
+              icon="mdi-pencil"
+              variant="flat"
+              size="small"
+            />
+          </v-tab>
+          
+          <nouveau-tableau
+            :id-bd="id"
+            importation-permise
+            @sauvegarder="ajouterTableau"
+          >
+            <template #activator="{props: propsActivateur}">
+              <v-tab
+                v-if="monAutorisation"
+                v-bind="propsActivateur"
+                :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
+                variant="tonal"
+                class="mx-1"
+                label
+                :disabled="ajoutTableauEnCours"
+              >
+                {{ t('tableaux.nouveau') }}
+                <v-progress-circular
+                  v-if="ajoutTableauEnCours"
+                  class="ms-2"
+                  size="15"
+                  width="1"
+                  indeterminate
+                />
+              </v-tab>
+            </template>
+          </nouveau-tableau>  
+        </v-tabs>
+        <v-slide-group
+          v-model="tableauActif"
+          class="mt-4"
+          show-arrows
+          center-active
+        >
+          <v-slide-group-item
+            v-for="ong in tableaux"
+            v-slot="{isSelected, toggle}"
+            :key="ong.clef"
+            :value="ong.clef"
+          >
+            <v-chip
+              class="mx-1"
+              variant="tonal"
+              label
+              :active="false"
+              :color="isSelected ? 'primary' : ''"
+              @click="toggle"
+            >
+              {{ ong.clef.slice(0, 10) }}
+
+              <v-icon
+                class="ms-2"
+                icon="mdi-pencil"
+                variant="flat"
+                size="x-small"
+              />
+            </v-chip>
+          </v-slide-group-item>
+          <v-slide-group-item
+            key="nouveau"
+            value="nouveau"
+          >
+            <nouveau-tableau
+              :id-bd="id"
+              importation-permise
+              @sauvegarder="ajouterTableau"
+            >
+              <template #activator="{props: propsActivateur}">
+                <v-chip
+                  v-if="monAutorisation"
+                  v-bind="propsActivateur"
+                  :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
+                  variant="tonal"
+                  class="mx-1"
+                  label
+                  :disabled="ajoutTableauEnCours"
+                >
+                  {{ t('tableaux.nouveau') }}
+                  <v-progress-circular
+                    v-if="ajoutTableauEnCours"
+                    class="ms-2"
+                    size="15"
+                    width="1"
+                    indeterminate
+                  />
+                </v-chip>
+              </template>
+            </nouveau-tableau>
+          </v-slide-group-item>
+        </v-slide-group>
+      </v-list>
+      <v-window v-model="tableauActif">
+        <v-window-item
+          v-for="tableau in tableaux"
+          :key="tableau.clef"
+          :value="tableau.clef"
+        >
+          <v-data-table> </v-data-table>
+        </v-window-item>
+      </v-window>
+    </v-card-text>
   </v-container>
 </template>
 <script setup lang="ts">
@@ -558,6 +622,9 @@ import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 import type {valid} from '@constl/ipa';
 import ItemStatut from '/@/components/communs/ItemStatut.vue';
+
+import TexteTronque from '/@/components/communs/TexteTronqué.vue';
+
 
 const props = defineProps<{id: string}>();
 
@@ -746,8 +813,8 @@ const changerLicence = async (nouvelleLicence: string) => {
 
 // Navigation
 const petitPousset = computed<{title: string; lien?: string; disabled?: boolean}[]>(() => [
-  {title: t('navig.mesDonnées') as string, lien: encodeURI('/données/')},
-  {title: nomTraduit.value || t('bds.aucunNom'), disabled: true},
+  {title: t('navigation.données') as string, lien: encodeURI('/données/')},
+  {title: nomTraduit.value || t('bds.sansNom'), disabled: true},
 ]);
 
 // Actions
