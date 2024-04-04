@@ -12,7 +12,7 @@
         <template #title="{item}">
           <v-breadcrumbs-item 
             :disabled="item.disabled"
-            @click="item.lien && $router.push(item.lien)"
+            @click="item.href && $router.push(item.href)"
           >
             <texteTronqué
               :texte="item.title"
@@ -812,8 +812,8 @@ const changerLicence = async (nouvelleLicence: string) => {
 };
 
 // Navigation
-const petitPousset = computed<{title: string; lien?: string; disabled?: boolean}[]>(() => [
-  {title: t('navigation.données') as string, lien: encodeURI('/données/')},
+const petitPousset = computed<{title: string; href?: string; disabled?: boolean}[]>(() => [
+  {title: t('navigation.données') as string, href: encodeURI('/données/')},
   {title: nomTraduit.value || t('bds.sansNom'), disabled: true},
 ]);
 
