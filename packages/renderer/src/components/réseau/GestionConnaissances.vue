@@ -65,7 +65,7 @@
               >
               </selecteur-membre>
               <v-checkbox
-                v-model="bloquerPrivé"
+                v-model="bloquerNouveauxPrivé"
                 :label="t('réseau.connaissances.bloquerPrivé')"
               >
               </v-checkbox>
