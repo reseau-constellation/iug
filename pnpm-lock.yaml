@@ -30,7 +30,7 @@ dependencies:
     specifier: ^0.3.9
     version: 0.3.9(@constl/ipa@1.0.10)
   '@lassi-js/kilimukku':
-    specifier: ^1.1.3
+    specifier: ^1.1.6
     version: 1.1.6(react-native@0.73.6)(wrtc@0.4.7)
   '@lassi-js/kilimukku-vue':
     specifier: 1.1.2
@@ -2036,7 +2036,7 @@ packages:
       '@constl/mandataire': 0.1.16
       '@constl/utils-ipa': 1.0.0
       '@helia/block-brokers': 2.0.3
-      '@helia/unixfs': 3.0.2
+      '@helia/unixfs': 3.0.3
       '@ipld/dag-cbor': 9.2.0
       '@lassi-js/kili': 0.3.9(@constl/ipa@1.0.0)
       '@libp2p/autonat': 1.0.14
@@ -2704,6 +2704,33 @@ packages:
       - supports-color
     dev: false
 
+  /@helia/unixfs@3.0.3:
+    resolution: {integrity: sha512-1oWNDXQhhiQxyR2Jk8SuTuQDCPBhCdaDL7bsozDHLHPEt8+igYztfVFCfWD2tmC4jlDXGNZ4wWOE+vxETAv04Q==}
+    dependencies:
+      '@helia/interface': 4.1.0
+      '@ipld/dag-pb': 4.1.0
+      '@libp2p/interface': 1.1.5
+      '@libp2p/logger': 4.0.8
+      '@multiformats/murmur3': 2.1.8
+      hamt-sharding: 3.0.6
+      interface-blockstore: 5.2.10
+      ipfs-unixfs: 11.1.4
+      ipfs-unixfs-exporter: 13.5.0
+      ipfs-unixfs-importer: 15.2.5
+      it-all: 3.0.4
+      it-glob: 2.0.6
+      it-last: 3.0.4
+      it-pipe: 3.0.1
+      merge-options: 3.0.4
+      multiformats: 13.1.0
+      progress-events: 1.0.0
+      sparse-array: 1.3.2
+      uint8arrays: 5.0.3
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /@herbcaudill/eventemitter42@0.3.1:
     resolution: {integrity: sha512-GTe0EupM4v+0Iet2UmFz5ZsPz8MZm/FbYx1yTJ9OyeVbCe5etkEKA2pntuFAjamp08c8Sh2p+QcM5AGMWi3sdA==}
     dev: false
@@ -2910,7 +2937,7 @@ packages:
       vue: ^3.4.19
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
-      '@lassi-js/kili': 0.3.10(@constl/ipa@1.0.10)
+      '@lassi-js/kili': 0.3.11(@constl/ipa@1.0.10)
       '@lassi-js/kilimukku': 1.1.3(react-native@0.73.6)(wrtc@0.4.7)
       ennikkai: 2.2.7(@constl/ipa@1.0.10)
       js-cookie: 3.0.5
@@ -8537,8 +8564,40 @@ packages:
       - supports-color
     dev: false
 
+  /ipfs-unixfs-importer@15.2.5:
+    resolution: {integrity: sha512-K8tybgmhOthQ/ThPcjohYnTaVhv1hi3YKo+gPREBXcMUUG7Yd2HYfz1jExuOfhaMzICl0hDKwUMJsaU6FXMJew==}
+    dependencies:
+      '@ipld/dag-pb': 4.1.0
+      '@multiformats/murmur3': 2.1.8
+      err-code: 3.0.1
+      hamt-sharding: 3.0.6
+      interface-blockstore: 5.2.10
+      interface-store: 5.1.8
+      ipfs-unixfs: 11.1.4
+      it-all: 3.0.4
+      it-batch: 3.0.4
+      it-first: 3.0.4
+      it-parallel-batch: 3.0.4
+      multiformats: 13.1.0
+      progress-events: 1.0.0
+      rabin-wasm: 0.1.5
+      uint8arraylist: 2.4.8
+      uint8arrays: 5.0.3
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /ipfs-unixfs@11.1.3:
     resolution: {integrity: sha512-sy6Koojwm/EcM8yvDlycRYA89C8wIcLcGTMMpqnCPUtqTCdl+JxsuPNCBgAu7tmO8Nipm7Tv7f0g/erxTGKKRA==}
+    dependencies:
+      err-code: 3.0.1
+      protons-runtime: 5.4.0
+      uint8arraylist: 2.4.8
+    dev: false
+
+  /ipfs-unixfs@11.1.4:
+    resolution: {integrity: sha512-RE4nyx5qgG2w7JOLj0Y0D7SfAR1ZkEdramNaBx0OSD4DlQ2Y2NORgc4FHfej3Pgy31v+QISDVP1pQJhdv3bUUg==}
     dependencies:
       err-code: 3.0.1
       protons-runtime: 5.4.0
