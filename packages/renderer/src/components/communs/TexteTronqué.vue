@@ -1,5 +1,14 @@
 <template>
-  <span>{{ texteTronqué }}</span>
+  <v-tooltip
+    location="bottom"
+    :open-delay="500"
+    :disabled="texteTronqué === texte"
+  >
+    <template #activator="{props: propsActivateur}">
+      <span v-bind="propsActivateur">{{ texteTronqué }}</span>
+    </template>
+    {{ texte }}
+  </v-tooltip>
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
@@ -20,4 +29,5 @@ const texteTronqué = computed(() => {
     return props.texte;
   }
 });
+
 </script>
