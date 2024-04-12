@@ -42,7 +42,7 @@
                       variant="outlined"
                       prepend-icon="mdi-plus"
                     >
-                      {{ t('accueil.page.graphiques.ajouterConnaissances' ) }}
+                      {{ t('accueil.page.graphiques.ajouterConnaissances') }}
                     </v-btn>
                   </template>
                 </GestionConnaissances>

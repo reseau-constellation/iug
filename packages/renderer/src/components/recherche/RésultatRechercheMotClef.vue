@@ -1,7 +1,5 @@
 <template>
-  <v-list-item
-    prepend-icon="mdi-key"
-  >
+  <v-list-item prepend-icon="mdi-key">
     <v-list-item-title>
       <TexteSurligneRecherche
         v-if="infoSourceNom"

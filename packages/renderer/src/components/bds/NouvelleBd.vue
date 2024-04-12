@@ -441,7 +441,7 @@ const tableaux = ref<
   {
     clef: string;
     noms: {[langue: string]: string};
-    cols: {info: tblx.InfoCol, règles: valid.règleVariable[]}[];
+    cols: {info: tblx.InfoCol; règles: valid.règleVariable[]}[];
   }[]
 >([]);
 const ajouterTableau = () => {

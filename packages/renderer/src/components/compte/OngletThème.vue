@@ -159,7 +159,8 @@ watchEffect(() => {
 });
 watch(languesChoisies, () => {
   const original = JSON.stringify([மொழி.value, ...மாற்றுமொழிகள்.value]);
-  if (original !== JSON.stringify(languesChoisies.value)) மொழிகளை_தேர்ந்தெடுக்கொள்ளு(languesChoisies.value);
+  if (original !== JSON.stringify(languesChoisies.value))
+    மொழிகளை_தேர்ந்தெடுக்கொள்ளு(languesChoisies.value);
 });
 
 // Numération

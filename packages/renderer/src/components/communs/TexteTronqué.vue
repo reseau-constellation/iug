@@ -29,5 +29,4 @@ const texteTronqué = computed(() => {
     return props.texte;
   }
 });
-
 </script>

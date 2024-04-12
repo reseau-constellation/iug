@@ -5,6 +5,7 @@
     :descriptions="descriptions"
     :auteurs="auteurs"
     :fichiers-epinglables="false"
+    icone="mdi-key"
     @ajuster-noms="nms => ajusterNoms(nms)"
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
     @effacer="effacerMotClef"

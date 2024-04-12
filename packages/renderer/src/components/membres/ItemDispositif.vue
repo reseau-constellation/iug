@@ -23,7 +23,7 @@
     <slot />
     <template #append>
       <lien-objet :id="idDispositif" />
-    </template>        
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">

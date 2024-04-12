@@ -1,7 +1,5 @@
 <template>
-  <v-list-item
-    :prepend-avatar="srcImgBd || imgDéfaut"
-  >
+  <v-list-item :prepend-avatar="srcImgBd || imgDéfaut">
     <v-list-item-title>
       <TexteSurligneRecherche
         v-if="infoSourceNom"
@@ -24,9 +22,7 @@
       v-if="infoSourceId"
       :id="résultat.id"
     >
-      <TexteSurligneRecherche
-        :info="infoSourceId"
-      />
+      <TexteSurligneRecherche :info="infoSourceId" />
     </jeton-id-objet>
     <JetonVariable
       v-if="infoSourceVariable"
@@ -57,7 +53,7 @@ import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {constellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import { utiliserImagesDéco } from '/@/composables/images';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
@@ -144,5 +140,4 @@ const srcImgBd = computed(() => {
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
-
 </script>
