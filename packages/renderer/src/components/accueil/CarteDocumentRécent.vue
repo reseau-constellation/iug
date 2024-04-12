@@ -1,27 +1,28 @@
 <template>
-  <v-card
-    class="text-start"
-    style="height: 100%"
-  >
+  <v-card class="text-start">
     <v-card-item>
       <v-card-title>
+        {{ nomTraduit || t(sansNom) }}
         <v-avatar>
           <v-icon>{{ icôneTypeItem }}</v-icon>
         </v-avatar>
-        {{ nomTraduit || t('communs.baseCarteObjet.sansNom') }}
       </v-card-title>
       <v-card-subtitle>{{ texteVuIlYA }}</v-card-subtitle>
     </v-card-item>
     <v-card-text class="align-center text-center">
-      <image-editable
-        class="my-0"
-        :src-image="srcImg"
-        :img-defaut="imgDéfaut"
-        :editable="false"
-        :taille-avatar="mdAndUp ? 175 : 100"
-        :max-taille-image="300"
-      />
-
+      <v-avatar
+        class="mb-3"
+        :size="mdAndUp ? 125 : 100"
+      >
+        <v-img
+          class="my-0"
+          :src="srcImg || imgDéfaut"
+        />
+      </v-avatar>
+    </v-card-text>
+    <v-divider />
+    <v-card-actions>
+      <v-spacer />
       <v-btn
         class="mx-auto"
         color="primary"
@@ -29,12 +30,8 @@
         append-icon="mdi-open-in-new"
         @click="$router.push(encodeURI(`/données/${typeObjet}/${encodeURIComponent(id)}`))"
       >
-        ouvrir
+        {{ t('communs.ouvrir') }}
       </v-btn>
-    </v-card-text>
-    <v-divider />
-    <v-card-actions>
-      <v-spacer />
       <v-btn
         append-icon="mdi-close"
         @click="() => effacerDeLHistorique()"
@@ -52,14 +49,13 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 import {constellation, icôneObjet, suivre} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
-import ImageEditable from '../communs/ImageEditable.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{id: string; a: number}>();
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t, மொ: t_} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
@@ -75,6 +71,9 @@ const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.id});
 const icôneTypeItem = computed(() => {
   const icône = icôneObjet(typeObjet.value);
   return icône || 'mdi-file-document-outline';
+});
+const sansNom = computed(() => {
+  return `${typeObjet.value}s.sansNom`;
 });
 
 // À faire : différencier par type d'objet
