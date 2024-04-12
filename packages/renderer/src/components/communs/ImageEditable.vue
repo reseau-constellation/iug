@@ -37,6 +37,7 @@
                 style="background-color: black"
               >
                 <div
+                  v-if="editable"
                   class="align-self-center"
                   style="height: 100%"
                 >
@@ -93,7 +94,7 @@ import convert from 'image-file-resize';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
-  srcImage?: string;
+  srcImage?: string | null;
   imgDefaut?: string;
   maxTailleImage: number;
   tailleAvatar: number;
