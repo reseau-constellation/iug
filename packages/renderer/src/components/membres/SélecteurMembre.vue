@@ -5,8 +5,8 @@
     :interdits="interdits"
     :resultats-recherche="résultats"
     :on-travaille="onTravaille"
-    :texte-etiquette-recherche="t('compte.recherche.étiquette')"
-    :texte-aucun-résultat="t('compte.recherche.aucunRésultat')"
+    :texte-etiquette-recherche="t('membres.recherche.étiquette')"
+    :texte-aucun-résultat="t('membres.recherche.aucunRésultat')"
     @selectionnee="ids => (idsProfilsSélectionnées = ids)"
     @requête-modifiee="r => (requête = r)"
   >
@@ -48,7 +48,7 @@ import JetonMembre from './JetonMembre.vue';
 import CarteMembre from './CarteMembre.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-defineProps<{multiples: boolean; originales?: string[], interdits?: string[]}>();
+defineProps<{multiples: boolean; originales?: string[]; interdits?: string[]}>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsProfils: string[]): void;
 }>();
