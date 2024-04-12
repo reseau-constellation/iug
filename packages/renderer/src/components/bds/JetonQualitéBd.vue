@@ -1,20 +1,19 @@
 <template>
-  <v-chip
-    class="mb-2 me-2"
+  <v-chip 
     variant="outlined"
     label
   >
     <template #prepend>
-      <icône-qualité-bd :id="id" />
+      <icone-qualite-bd :id="id" />
     </template>
 
-    <texte-qualité-bd :id="id" />
+    <texte-qualite-bd :id="id" />
   </v-chip>
 </template>
 
 <script setup lang="ts">
-import IcôneQualitéBd from './IcôneQualitéBd.vue';
-import TexteQualitéBd from './TexteQualitéBd.vue';
+import IconeQualiteBd from './IcôneQualitéBd.vue';
+import TexteQualiteBd from './TexteQualitéBd.vue';
 
 defineProps<{id: string}>();
 </script>
