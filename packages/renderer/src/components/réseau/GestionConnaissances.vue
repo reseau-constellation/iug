@@ -21,13 +21,13 @@
             value="confiance"
             append-icon="mdi-hands-pray"
           >
-            {{ t('réseau.connaissances.confiance') }}
+            {{ t('membres.confiance.membresDeConfiance') }}
           </v-tab>
           <v-tab
             value="bloqué"
             append-icon="mdi-cancel"
           >
-            {{ t('réseau.connaissances.bloques') }}
+            {{ t('membres.confiance.membresBloqués') }}
           </v-tab>
         </v-tabs>
         <v-window v-model="onglet">
@@ -36,8 +36,8 @@
               <selecteur-membre
                 :multiples="true"
                 :interdits="idMonCompte ? [idMonCompte] : []"
-                :originales="confiance?.map(c=>c.idCompte)"
-                @selectionnee="(ids) => nouvellesDeConfiance = ids"
+                :originales="confiance?.map(c => c.idCompte)"
+                @selectionnee="ids => (nouvellesDeConfiance = ids)"
               >
               </selecteur-membre>
               <item-membre
@@ -49,7 +49,7 @@
                 <template #append>
                   <v-btn
                     icon="mdi-delete"
-                    @click="()=>nePlusFaireConfiance(c.idCompte)"
+                    @click="() => nePlusFaireConfiance(c.idCompte)"
                   />
                 </template>
               </item-membre>
@@ -60,14 +60,27 @@
               <selecteur-membre
                 :multiples="false"
                 :interdits="idMonCompte ? [idMonCompte] : []"
-                :originales="bloqués?.map(c=>c.idCompte)"
-                @selectionnee="(ids) => nouvellesBloquées = ids"
+                :originales="bloqués?.map(c => c.idCompte)"
+                @selectionnee="ids => (nouvellesBloquées = ids)"
               >
               </selecteur-membre>
               <v-checkbox
                 v-model="bloquerNouveauxPrivé"
-                :label="t('réseau.connaissances.bloquerPrivé')"
+                color="primary"
               >
+                <template #label>
+                  {{ t('membres.confiance.bloquerPrivé') }}
+                  <v-tooltip location="bottom">
+                    <template #activator="{props: propsActivateur}">
+                      <v-icon
+                        v-bind="propsActivateur"
+                        icon="mdi-information-outline"
+                        end
+                      />
+                    </template>
+                    {{ t('membres.confiance.indiceBloquerPrivé') }}
+                  </v-tooltip>
+                </template>
               </v-checkbox>
               <item-membre
                 v-for="b in bloqués"
@@ -79,11 +92,13 @@
                   <v-switch
                     :label="t('privé')"
                     :value="b.privé"
-                    @update:model-value="b.privé ? bloquerPublique(b.idCompte) : bloquerPrivé(b.idCompte)"
+                    @update:model-value="
+                      b.privé ? bloquerPublique(b.idCompte) : bloquerPrivé(b.idCompte)
+                    "
                   />
                   <v-btn
                     icon="mdi-delete"
-                    @click="()=>débloquer(b.idCompte)"
+                    @click="() => débloquer(b.idCompte)"
                   />
                 </template>
               </item-membre>
@@ -113,13 +128,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import {ref} from 'vue';
 
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemMembre from '../membres/ItemMembre.vue';
 import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
-import { constellation, suivre } from '../utils';
-import { useDisplay } from 'vuetify/lib/framework.mjs';
+import {constellation, suivre} from '../utils';
+import {useDisplay} from 'vuetify/lib/framework.mjs';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -128,7 +143,7 @@ const {mdAndUp} = useDisplay();
 const constl = constellation();
 
 const dialogue = ref(false);
-const onglet = ref<'confiance'|'bloqué'>();
+const onglet = ref<'confiance' | 'bloqué'>();
 
 const idMonCompte = suivre(constl.suivreIdCompte, {});
 const confiance = suivre(constl.réseau.suivreRelationsImmédiates, {});
@@ -150,13 +165,19 @@ const bloquerPublique = async (idCompte: string) => {
   constl.réseau.bloquerMembre({idCompte, privé: false});
 };
 
-const nePlusFaireConfiance = async  (idCompte: string) => {
+const nePlusFaireConfiance = async (idCompte: string) => {
   constl.réseau.nePlusFaireConfianceAuMembre({idCompte});
 };
 
 const sauvegarder = async () => {
-  await Promise.all(nouvellesDeConfiance.value.map(c => constl.réseau.faireConfianceAuMembre({idCompte: c})));
-  await Promise.all(nouvellesBloquées.value.map(b => constl.réseau.bloquerMembre({idCompte: b, privé: bloquerNouveauxPrivé.value})));
+  await Promise.all(
+    nouvellesDeConfiance.value.map(c => constl.réseau.faireConfianceAuMembre({idCompte: c})),
+  );
+  await Promise.all(
+    nouvellesBloquées.value.map(b =>
+      constl.réseau.bloquerMembre({idCompte: b, privé: bloquerNouveauxPrivé.value}),
+    ),
+  );
 };
 
 const fermer = () => {
