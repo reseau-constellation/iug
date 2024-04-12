@@ -1,6 +1,7 @@
 import {isElectronRenderer, isBrowser} from 'wherearewe';
 import {os} from 'platform';
 import {surLinux, surMac, surWindows} from '#preload';
+import {type ComputedRef, type Ref, computed} from 'vue';
 
 export const ouvrirLien = (lien: string) => {
   window.open(lien, '_blank'); // À faire : tester sous Électron
@@ -153,4 +154,16 @@ export const plateforme = (): InfoPlateforme => {
       so: undefined,
     };
   }
+};
+
+export const sourceImage = (
+  image: Ref<Uint8Array | null | undefined>,
+): ComputedRef<string | null | undefined> => {
+  return computed(() => {
+    if (image.value) {
+      return URL.createObjectURL(new Blob([image.value], {type: 'image'}));
+    } else {
+      return undefined;
+    }
+  });
 };
