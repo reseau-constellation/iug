@@ -1,6 +1,5 @@
 <template>
   <v-chip
-    class="mb-2 me-2"
     variant="outlined"
     label
   >
@@ -12,7 +11,13 @@
         {{ licenceApprouvée ? 'mdi-scale-balance' : 'mdi-alert' }}
       </v-icon>
     </template>
-    {{ licenceApprouvée ? t(`licences.info.${licence}.abr`) : licence }}
+    {{
+      licenceApprouvée
+        ? t(`licences.info.${licence}.abr`)
+        : licence
+          ? licence
+          : t('licences.jetonAucune')
+    }}
   </v-chip>
 </template>
 <script setup lang="ts">

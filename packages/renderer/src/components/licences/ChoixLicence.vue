@@ -21,35 +21,50 @@
     </template>
   </v-select>
   <span v-if="licence">
-    <p class="mt-3 mb-0">
-      <v-alert
-        :text="t('licences.avertissement')"
-        type="warning"
-        variant="outlined"
-        density="compact"
-      >
-        <div>
-          <v-btn
-            class="mx-auto my-3"
-            variant="outlined"
-            size="small"
-            :disabled="!obtLienLicence(licence)"
-            @click="ouvrirLienLicence(licence)"
-          >
-            <v-icon start>mdi-scale-balance</v-icon>
-            <div v-if="obtLienLicence(licence)">
-              {{ t('licences.lire') }}
-              <v-icon end>mdi-open-in-new</v-icon>
-            </div>
-            <div v-else>{{ t('licences.aucunLien') }}</div>
-          </v-btn>
-        </div>
-      </v-alert>
-    </p>
+    <v-alert
+      class="mb-3"
+      type="warning"
+      variant="outlined"
+      density="compact"
+    >
+      <template #title>
+        {{ t('licences.titreAvertissement') }}
+        <v-spacer />
+        <v-btn
+          :icon="détailsAvertissement ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+          size="xsmall"
+          variant="flat"
+          @click="() => (détailsAvertissement = !détailsAvertissement)"
+        ></v-btn>
+      </template>
 
+      <template #text>
+        <v-expand-transition>
+          <div v-show="détailsAvertissement">
+            <p>
+              {{ t('licences.avertissement') }}
+            </p>
+            <v-btn
+              class="mx-auto my-3"
+              variant="outlined"
+              size="small"
+              :disabled="!obtLienLicence(licence)"
+              @click="ouvrirLienLicence(licence)"
+            >
+              <v-icon start>mdi-scale-balance</v-icon>
+              <div v-if="obtLienLicence(licence)">
+                {{ t('licences.lire') }}
+                <v-icon end>mdi-open-in-new</v-icon>
+              </div>
+              <div v-else>{{ t('licences.aucunLien') }}</div>
+            </v-btn>
+          </div>
+        </v-expand-transition>
+      </template>
+    </v-alert>
     <v-divider />
 
-    <p class="mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
+    <p class="mt-2 mb-0 text-h6">{{ t('licences.droits.sousTitre') }}</p>
     <v-skeleton-loader
       v-if="!droits"
       type="chip@3"
@@ -65,7 +80,7 @@
       :key="d"
       :droit="d"
     />
-    <p class="mb-0 text-h6">
+    <p class="mt-2 mb-0 text-h6">
       {{ t('licences.conditions.sousTitre') }}
     </p>
     <v-skeleton-loader
@@ -83,7 +98,7 @@
       :key="c"
       :condition="c"
     />
-    <p class="mb-0 text-h6">
+    <p class="mt-2 mb-0 text-h6">
       {{ t('licences.limitations.sousTitre') }}
     </p>
     <v-skeleton-loader
@@ -133,6 +148,9 @@ const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+// Avertissement
+const détailsAvertissement = ref(false);
 
 // Changement licence
 const licenceChoisie = ref(props.licence);
