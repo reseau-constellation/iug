@@ -8,7 +8,7 @@
     <v-col :cols="mdAndUp ? 4 : smAndUp ? 6 : 12">
       <v-card
         class="text-start"
-        height="230"
+        style="height: 100%"
       >
         <v-card-item>
           <v-card-title>
@@ -69,7 +69,7 @@
             v-bind="propsActivateur"
             class="d-flex align-center text-center"
             variant="flat"
-            height="230"
+            height="100%"
           >
             <span class="pa-4 ma-auto text-h4 text-center">
               {{ t('accueil.page.récents.voirPlus') }}
