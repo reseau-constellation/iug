@@ -3,6 +3,7 @@
     :id="id"
     :noms="noms"
     :descriptions="descriptions"
+    :image="image || imageDéfaut"
     :auteurs="auteurs"
     :fichiers-epinglables="true"
     @ajuster-noms="ajusterNoms"
@@ -17,28 +18,41 @@
     </template>
 
     <division-carte
-      :titre="t('bds.carteBd.infos')"
+      :titre="t('bds.info')"
       :en-attente="false"
     />
 
     <dialogue-licence
       :licence="licence"
+      :licence-contenu="licenceContenu"
       :permission-modifier="!!monAutorisation"
       @changer-licence="changerLicence"
     >
       <template #activator="{props: propsActivateur}">
-        <JetonLicence
+        <jeton-licence
           v-bind="propsActivateur"
+          class="me-2"
           :licence="licence"
         />
       </template>
     </dialogue-licence>
 
-    <JetonQualité :id="id" />
-    <JetonRéplications :id="id" />
+    <jeton-qualite
+      :id="id"
+      class="me-2"
+    />
+    <carte-epingler :id="id">
+      <template #activator="{props: propsActivateur}">
+        <jeton-replications
+          v-bind="propsActivateur"
+          :id="id"
+          class="me-2"
+        />
+      </template>
+    </carte-epingler>
 
     <division-carte
-      :titre="t('bds.carteBd.variables')"
+      :titre="t('bds.variables')"
       :en-attente="!variables"
     />
     <SérieJetons
@@ -66,9 +80,19 @@
         </carte-variable>
       </template>
     </SérieJetons>
+    <v-skeleton-loader
+      v-if="!variables"
+      type="chip@3"
+    />
+    <p
+      v-else-if="!variables.length"
+      class="mb-2 text-center text-disabled"
+    >
+      {{ t('bds.aucuneVariable') }}
+    </p>
 
     <division-carte
-      :titre="t('bds.carteBd.motsClefs')"
+      :titre="t('bds.motsClefs')"
       :en-attente="!motsClefs"
     />
     <SérieJetons
@@ -103,7 +127,7 @@
     />
 
     <division-carte
-      :titre="t('bds.carteBd.tableaux')"
+      :titre="t('bds.tableaux')"
       :en-attente="!tableaux"
     />
     <ItemTableau
@@ -111,8 +135,11 @@
       :id="tableau.id"
       :key="tableau.clef"
     />
-    <p v-if="!tableaux">{{ t('bds.carteBd.attenteTableaux') }}</p>
-    <p v-else-if="!tableaux.length">{{ t('bds.carteBd.aucunTableaux') }}</p>
+    <v-skeleton-loader
+      v-if="!tableaux"
+      type="list-item-avatar-two-line@2"
+    />
+    <p v-else-if="!tableaux.length">{{ t('bds.aucunTableau') }}</p>
 
     <v-divider class="mb-2" />
     <div class="text-center">
@@ -121,7 +148,7 @@
         append-icon="mdi-open-in-new"
         @click="$router.push(encodeURI(`/données/bd/${encodeURIComponent(id)}`))"
       >
-        {{ t('bds.carteBd.ouvrirBd') }}
+        {{ t('bds.ouvrirBd') }}
       </v-btn>
     </div>
   </base-carte-objet>
@@ -143,13 +170,15 @@ import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
 
 import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
-import JetonRéplications from '/@/components/communs/JetonRéplications.vue';
+import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import JetonReplications from '/@/components/communs/JetonRéplications.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
-import JetonQualité from './JetonQualitéBd.vue';
+import JetonQualite from './JetonQualitéBd.vue';
 
-import {ajusterTexteTraductible} from '/@/utils';
+import {ajusterTexteTraductible, sourceImage} from '/@/utils';
+import { utiliserImagesDéco } from '/@/composables/images';
 
 const props = defineProps<{id: string}>();
 
@@ -157,6 +186,7 @@ const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {obtImageDéco} = utiliserImagesDéco();
 
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
@@ -175,8 +205,8 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
   });
 };
 
-// Descriptions mot-clef
-const descriptions = suivre(constl.bds.suivreNomsBd, {idBd: props.id}, {});
+// Descriptions bd
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -192,13 +222,27 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   });
 };
 
+// Image
+const image = sourceImage(suivre(constl.bds.suivreImage, {idBd: props.id}));
+const imageDéfaut = obtImageDéco('logoBD');
+
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
 
 // Licence
 const licence = suivre(constl.bds.suivreLicenceBd, {idBd: props.id});
-const changerLicence = async (nouvelleLicence: string) => {
-  await constl.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
+const licenceContenu = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.id});
+const changerLicence = async ({
+  licence: nouvelleLicence,
+  licenceContenu: nouvelleLicenceContenu,
+}: {
+  licence: string;
+  licenceContenu?: string;
+}) => {
+  await Promise.all([
+    constl.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence}),
+    constl.bds.changerLicenceContenuBd({idBd: props.id, licenceContenu: nouvelleLicenceContenu}),
+  ]);
 };
 
 // Variables

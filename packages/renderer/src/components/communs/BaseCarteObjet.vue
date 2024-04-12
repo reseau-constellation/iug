@@ -12,6 +12,17 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
+          <v-avatar
+            v-if="icone"
+            class="mx-2"
+            :icon="icone"
+          ></v-avatar>
+          <v-avatar
+            v-else-if="image"
+            class="mx-2"
+          >
+            <v-img :src="image" />
+          </v-avatar>
           <DialogueNoms
             :indice-nom="t('objet.indiceNom')"
             :etiquette-nom="t('objet.étiquetteNom')"
@@ -24,7 +35,10 @@
             @ajuster-noms="nms => émettre('ajusterNoms', nms)"
           >
             <template #activator="{props: propsActivateur}">
-              <span v-bind="propsActivateur">
+              <span
+                v-bind="propsActivateur"
+                class="text-h5"
+              >
                 {{ nom || t('communs.baseCarteObjet.sansNom') }}
                 <v-btn
                   :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
@@ -66,7 +80,7 @@
                       <template #prepend>
                         <IcôneEpingle :id="id"></IcôneEpingle>
                       </template>
-                      <v-list-item-title>{{ t('communs.épingler') }}</v-list-item-title>
+                      <v-list-item-title>{{ t('épingler.épingler') }}</v-list-item-title>
                     </v-list-item>
                   </template>
                 </CarteEpingler>
@@ -134,9 +148,11 @@
           <template #activator="{props: propsActivateurAuteurs}">
             <v-chip
               v-bind="propsActivateurAuteurs"
+              class="me-2 mb-2"
               variant="outlined"
               prepend-icon="mdi-plus"
-              class="me-2 mb-2"
+              size="small"
+              label
             >
               {{ t('communs.baseCarteObjet.ajouterAuteur') }}
             </v-chip>
@@ -188,11 +204,14 @@ import DialogueNoms from './listeNoms/DialogueNoms.vue';
 import LienObjet from './LienObjet.vue';
 import CarteCopier from './CarteCopier.vue';
 import CarteEffacer from './CarteEffacer.vue';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{
   id: string;
   noms: {[langue: string]: string};
   descriptions: {[langue: string]: string};
+  image?: string | null;
+  icone?: string;
   fichiersEpinglables: boolean;
   auteurs?: types.infoAuteur[];
   sauvegardePossible?: boolean;
