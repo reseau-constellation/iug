@@ -174,6 +174,9 @@
       }
     },
     "licences": {
+      "contenu": "Licence contenu",
+      "aucune": "Aucune licence",
+      "pareilPourContenu": "Même licence pour contenu",
       "détails": {
         "droits": {
           "partager": "Vous pouvez distribuer ces données",
@@ -195,7 +198,8 @@
           "inclureDroitDauteur": "Une notice de droit d'auteur doit être incluse avec le matériel s'il est distribué",
           "indiquerChangements": "Les modifications au matériel doivent être indiquées lorsqu'il est redistribué",
           "partagerCodeSource": "Le code source doit être partagé avec les distributions du matériel",
-          "usageRéseau": "L'utilisation du matériel pour offrir des services en ligne est considérée en tant que distribution"
+          "usageRéseau": "L'utilisation du matériel pour offrir des services en ligne est considérée en tant que distribution",
+          "ia": "Les modèles d'intelligence artificielle entraînés avec ces données doivent eux aussi être publiés sous licence libre"
         }
       }
     },
@@ -211,6 +215,7 @@
         "boutonCourriel": "Support par courriel"
       }
     },
+
     "membres": {
       "contacts": "Contacts",
       "contact": "Site internet",
@@ -223,8 +228,19 @@
         "connaissance": "Connaissance"
       }
     },
+
     "bds": {
-      "qualité": "Qualité ",
+      "qualité": "Qualité",
+      "note": {
+        "A": "A",
+        "A-": "A-",
+        "B": "B",
+        "B-": "B-",
+        "C+": "C+",
+        "C": "C",
+        "D": "D",
+        "F": "F"
+      },
       "nouvelle": {
         "titreCheminement": "Nouvelle base de données",
         "sousTitreCheminement": "Créez un bd vide ou utilisez un gabarit",
@@ -239,7 +255,8 @@
         "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre BD",
         "titreLicence": "La licence",
         "sousTitreLicence": "Choisissez la licence sous laquelle vos données seront disponibles"
-      }
+      },
+      "aucunMotClef": "Aucun mot-clef"
     },
     "motsClefs": {
       "nouveau": {
@@ -263,7 +280,6 @@
       "retour": "பின்",
       "fermer": "முடி",
       "annuler": "ரத்து",
-      "épingler": "ஒட்டிக்கொள்ளு",
       "copier": "நகல் எடு",
       "sauvegarder": "சேமி",
       "erreurLangue": "இந்த உரை {langue} மொழியில் இருக்கவும்.",
@@ -458,14 +474,12 @@
     },
     "bds": {
       "sansNom": "பெயர் இல்லாத தரவுத்தளம்",
-      "carteBd": {
-        "motsClefs": "சிறப்பு சொற்கள்",
-        "ouvrirBd": "தரவுத்தளத்தைத் திற",
-        "attenteTableaux": "தேடித்து கொண்டு இருக்கிறோம்..."
-      },
+      "motsClefs": "சிறப்பு சொற்கள்",
+      "ouvrirBd": "தரவுத்தளத்தைத் திற",
       "info": "தரவுத்தளத் தகவல்கள்",
       "variables": "மாறிகள்",
       "aucuneVariable": "எந்த மாறியும் இல்லை",
+      "aucunTableau": "எந்த அட்டவணையும் இல்லை",
       "tableaux": "அட்டவணைகள்",
       "qualité": "தரம்",
       "note": {
@@ -547,6 +561,8 @@
     },
     "épingler": {
       "titre": "ஒட்டிக்கொள்ளு",
+      "épingler": "ஒட்டிக்கொள்ளு",
+      "optionsAvancées": "மேம்பட்ட விருப்பங்கள்",
       "dispositifsÉpingle": "ஒட்டிக்கொள்ளும் சாதனங்கள்",
       "dispositifsÉpingleFichier": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
       "aucun": "எந்த சாதனமும் இல்லை",
@@ -577,9 +593,11 @@
       "confiance": {
         "bloqué": "தடுக்கப்பட்டது",
         "inconnu": "தெரியாதவர்",
-        "peuDinteraction": "கொஞ்சம் தொடர்பு",
-        "interactionMoyenne": "ஒரளவுக்கு தொடர்பு",
-        "beaucoupDinteraction": "அடிக்கடி தொடர்பு",
+        "peuDinteraction": "கொஞ்சம் நம்பிக்கை",
+        "interactionMoyenne": "ஒரளவுக்கு நம்பிக்கை",
+        "beaucoupDinteraction": "நன்றான நம்பிக்கை",
+        "membresDeConfiance": "நம்பிக்கையானவர்கள்",
+        "membresBloqués": "தடுத்தப்பட்டவர்கள்",
         "connaissance": "தெரிந்தவர்",
         "faireConfiance": "நம்பிக்கையானவர்",
         "bloquerPublique": "பொது வழியாக தடுக்கப்பட்டவர்",
@@ -623,6 +641,10 @@
         "ilYASemaines": "{n} வாரங்கள் முன்னால் பார்த்தது | ஒரு வாரம் முன்னால் பார்த்தது | {n} வாரங்கள் முன்னால் பார்த்தது",
         "ilYAMois": "{n} மாதங்கள் முன்னால் பார்த்தது | ஒரு மாதம் முன்னால் பார்த்தது | {n} மாதங்கள் முன்னால் பார்த்தது",
         "ilYALongtemps": "பல மாடங்களாக காணதில்லை"
+      },
+      "recherche": {
+        "étiquette": "Rechercher un membre",
+        "aucunRésultat": "Aucun compte retrouvé"
       }
     },
     "listeNomsProfil": {
@@ -878,6 +900,7 @@
         "usagePrivé": "தனிப்பட்ட பயன்பாடு",
         "usageBrevets": "காப்புரிமைகள்"
       },
+
       "conditions": {
         "sousTitre": "விதிமுறை",
         "aucune": "நிபந்தனைகள் இல்லை",
@@ -886,8 +909,10 @@
         "inclureDroitDauteur": "காப்புரிமை",
         "indiquerChangements": "மாற்றங்களைக் குறிக்கவும்",
         "partagerCodeSource": "மூலக் குறியீடு",
-        "usageRéseau": "இணையம் பயன்பாடு சேர்க்கப்பட்டுள்ளது"
+        "usageRéseau": "இணையம் பயன்பாடு சேர்க்கப்பட்டுள்ளது",
+        "ia": "செயற்கை நுண்ணறிவு"
       },
+
       "limitations": {
         "sousTitre": "கட்டுப்பாடுகள்",
         "aucune": "வரம்புகள் இல்லை",
@@ -897,10 +922,13 @@
         "brevetExclu": "காப்புரிமைகள்",
         "sousLicence": "உரிமம் பெற்றது"
       },
+
       "avertissement": "கீழே உள்ள தகவல் உரிமச் சுருக்கம் மட்டுமே என்பதால் தகவல்களில் பிழைகள் இருக்கலாம். இது சட்ட ஆலோசனை அல்ல. முழு உரிமத்தையும் படிக்குமாறு நாங்கள் பரிந்துரைக்கிறோம்.",
+      "titreAvertissement": "எச்சரிக்கை",
       "lire": "உரிமத்தைப் படி",
       "aucunLien": "இணைப்பு இல்லை",
       "choisir": "ஒரு உரிமத்தைத் தேர்ந்தெடுக்கவும்",
+      "jetonAucune": "உரிமமில்லாமல்",
       "aucune": "இந்த தரவுகளுக்காக எந்த உரிமத்தையும் கண்டுப்பிடிக்க முடியவில்லை",
       "carte": {
         "titre": "உரிமம்"
