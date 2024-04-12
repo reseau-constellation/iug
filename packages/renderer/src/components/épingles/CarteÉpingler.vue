@@ -25,118 +25,137 @@
       </v-card-item>
       <v-divider />
       <v-card-text style="overflow-y: scroll">
-        <p class="mb-0 text-h6">
-          {{ t('épingler.dispositifsÉpingle') }}
+        <v-switch
+          v-model="épingléSimple"
+          color="primary"
+          :label="t('épingler.épingler')"
+        ></v-switch>
+        <p>
+          <span class="font-weight-bold">{{ t('épingler.optionsAvancées') }}</span>
+          <v-btn
+            :icon="optionsAvancées ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+            size="xsmall"
+            variant="flat"
+            @click="() => (optionsAvancées = !optionsAvancées)"
+          ></v-btn>
         </p>
-        <v-radio-group v-model="typeDispositifs">
-          <v-radio
-            v-for="opt in optionsÉpingle"
-            :key="opt.valeur"
-            :value="opt.valeur"
-          >
-            <template #label>
-              <div>
-                <v-list-item :subtitle="opt.sousTitre">
-                  <template #title>
-                    <v-icon
-                      :icon="opt.icône"
-                      start
-                      size="small"
-                    ></v-icon>
-                    <span class="font-weight-bold">{{ opt.titre }}</span>
-                  </template>
-                </v-list-item>
-              </div>
-            </template>
-          </v-radio>
-        </v-radio-group>
+
         <v-expand-transition>
-          <v-autocomplete
-            v-show="typeDispositifs === 'SPÉCIFIQUES'"
-            v-model="dispositifsSpécifiques"
-            :items="dispositifs || []"
-            :disabled="!dispositifs"
-            :loading="!dispositifs"
-            :label="t('épingler.indiceSélectionnerDispositif')"
-            density="compact"
-            variant="outlined"
-            multiple
-            chips
-            closable-chips
-          >
-            <template #chip="{props: propsActivateur, item}">
-              <jeton-dispositif
-                v-bind="propsActivateur"
-                :id-dispositif="item.title"
-              />
-            </template>
+          <div v-show="optionsAvancées">
+            <p class="mb-0 text-h6">
+              {{ t('épingler.dispositifsÉpingle') }}
+            </p>
+            <v-radio-group v-model="typeDispositifs">
+              <v-radio
+                v-for="opt in optionsÉpingle"
+                :key="opt.valeur"
+                :value="opt.valeur"
+              >
+                <template #label>
+                  <div>
+                    <v-list-item :subtitle="opt.sousTitre">
+                      <template #title>
+                        <v-icon
+                          :icon="opt.icône"
+                          start
+                          size="small"
+                        ></v-icon>
+                        <span class="font-weight-bold">{{ opt.titre }}</span>
+                      </template>
+                    </v-list-item>
+                  </div>
+                </template>
+              </v-radio>
+            </v-radio-group>
+            <v-expand-transition>
+              <v-autocomplete
+                v-show="typeDispositifs === 'SPÉCIFIQUES'"
+                v-model="dispositifsSpécifiques"
+                :items="dispositifs || []"
+                :disabled="!dispositifs"
+                :loading="!dispositifs"
+                :label="t('épingler.indiceSélectionnerDispositif')"
+                density="compact"
+                variant="outlined"
+                multiple
+                chips
+                closable-chips
+              >
+                <template #chip="{props: propsActivateur, item}">
+                  <jeton-dispositif
+                    v-bind="propsActivateur"
+                    :id-dispositif="item.title"
+                  />
+                </template>
 
-            <template #item="{props: propsActivateur, item}">
-              <item-dispositif
-                v-bind="propsActivateur"
-                :id-dispositif="item.title"
-              />
-            </template>
-          </v-autocomplete>
+                <template #item="{props: propsActivateur, item}">
+                  <item-dispositif
+                    v-bind="propsActivateur"
+                    :id-dispositif="item.title"
+                  />
+                </template>
+              </v-autocomplete>
+            </v-expand-transition>
+            <span v-if="optionFichiers">
+              <p class="mb-0 text-h6">
+                {{ t('épingler.dispositifsÉpingleFichier') }}
+              </p>
+              <v-radio-group
+                v-model="typeDispositifsFichiers"
+                :disabled="typeDispositifs === 'AUCUN'"
+              >
+                <v-radio
+                  v-for="opt in optionsÉpingle"
+                  :key="opt.valeur"
+                  :value="opt.valeur"
+                >
+                  <template #label>
+                    <div>
+                      <v-list-item :subtitle="opt.sousTitre">
+                        <template #title>
+                          <v-icon
+                            :icon="opt.icône"
+                            start
+                            size="small"
+                          ></v-icon>
+                          <span class="font-weight-bold">{{ opt.titre }}</span>
+                        </template>
+                      </v-list-item>
+                    </div>
+                  </template>
+                </v-radio>
+              </v-radio-group>
+              <v-expand-transition>
+                <v-autocomplete
+                  v-show="typeDispositifsFichiers === 'SPÉCIFIQUES'"
+                  v-model="dispositifsFichiersSpécifiques"
+                  :items="dispositifs"
+                  :label="t('épingler.indiceSélectionnerDispositif')"
+                  hide-details
+                  chips
+                  closable-chips
+                  density="compact"
+                  variant="outlined"
+                  multiple
+                >
+                  <template #chip="{props: propsActivateur, item}">
+                    <jeton-dispositif
+                      v-bind="propsActivateur"
+                      :id-dispositif="item.title"
+                    />
+                  </template>
+
+                  <template #item="{props: propsActivateur, item}">
+                    <item-dispositif
+                      v-bind="propsActivateur"
+                      :id-dispositif="item.title"
+                    />
+                  </template>
+                </v-autocomplete>
+              </v-expand-transition>
+            </span>
+          </div>
         </v-expand-transition>
-        <span v-if="optionFichiers">
-          <p class="mb-0 text-h6">
-            {{ t('épingler.dispositifsÉpingleFichier') }}
-          </p>
-          <v-radio-group
-            v-model="typeDispositifsFichiers"
-            :disabled="typeDispositifs === 'AUCUN'"
-          >
-            <v-radio
-              v-for="opt in optionsÉpingle"
-              :key="opt.valeur"
-              :value="opt.valeur"
-            >
-              <template #label>
-                <div>
-                  <v-list-item :subtitle="opt.sousTitre">
-                    <template #title>
-                      <v-icon
-                        :icon="opt.icône"
-                        start
-                        size="small"
-                      ></v-icon>
-                      <span class="font-weight-bold">{{ opt.titre }}</span>
-                    </template>
-                  </v-list-item>
-                </div>
-              </template>
-            </v-radio>
-          </v-radio-group>
-          <v-expand-transition>
-            <v-autocomplete
-              v-show="typeDispositifsFichiers === 'SPÉCIFIQUES'"
-              v-model="dispositifsFichiersSpécifiques"
-              :items="dispositifs"
-              :label="t('épingler.indiceSélectionnerDispositif')"
-              hide-details
-              chips
-              closable-chips
-              density="compact"
-              variant="outlined"
-              multiple
-            >
-              <template #chip="{props: propsActivateur, item}">
-                <jeton-dispositif
-                  v-bind="propsActivateur"
-                  :id-dispositif="item.title"
-                />
-              </template>
-
-              <template #item="{props: propsActivateur, item}">
-                <item-dispositif
-                  v-bind="propsActivateur"
-                  :id-dispositif="item.title"
-                />
-              </template>
-            </v-autocomplete>
-          </v-expand-transition>
-        </span>
       </v-card-text>
       <v-divider />
       <v-card-actions>
@@ -179,6 +198,7 @@ import {constellation, suivre} from '/@/components/utils';
 
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
+import {watchEffect} from 'vue';
 
 const props = defineProps({
   id: {
@@ -199,6 +219,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 // Navigation
 const dialogue = ref(false);
+const optionsAvancées = ref(false);
 
 // Options
 const typeDispositifs = ref<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES'>('TOUS');
@@ -285,7 +306,19 @@ watch(statutFavoris, () => {
   }
 });
 
-// Contrôles
+// Contrôles simples
+const épingléSimple = ref(typeDispositifs.value !== 'AUCUN');
+watchEffect(() => {
+  if (épingléSimple.value) {
+    typeDispositifs.value = 'TOUS';
+    typeDispositifsFichiers.value = 'INSTALLÉ';
+  } else {
+    typeDispositifs.value = 'AUCUN';
+    typeDispositifsFichiers.value = 'AUCUN';
+  }
+});
+
+// Contrôles avancés
 const dispositifsSélectionnés = computed<favoris.typeDispositifs | undefined>(() => {
   if (typeDispositifs.value === 'AUCUN') return undefined;
   return typeDispositifs.value === 'SPÉCIFIQUES'
