@@ -6,6 +6,7 @@
 
     <v-avatar
       v-if="image && imageRonde"
+      class="my-6"
       :size="mdAndUp ? 275 : 175"
     >
       <v-img :src="image" />
