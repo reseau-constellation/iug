@@ -34,13 +34,25 @@
       <v-divider />
       <v-card-actions>
         <v-spacer />
-        <v-btn @click="sauvegarder">{{ t('communs.sauvegarder') }}</v-btn>
+        <v-btn
+          append-icon="mdi-close"
+          @click="fermer"
+        >
+          {{ t('communs.annuler') }}
+        </v-btn>
+        <v-btn
+          :disabled="!modifiés"
+          variant="outlined"
+          @click="sauvegarder"
+        >
+          {{ t('communs.sauvegarder') }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -60,8 +72,15 @@ const dialogue = ref(false);
 // Logique générale
 const sélectionnés = ref<string[]>(props.originaux);
 const sélectionner = (ids: string[]) => (sélectionnés.value = ids);
+
+const modifiés = computed(()=>sélectionnés.value !== props.originaux);
+
 const sauvegarder = () => {
   émettre('sauvegarder', sélectionnés.value);
+  dialogue.value = false;
+};
+const fermer = () => {
+  sélectionnés.value = props.originaux;
   dialogue.value = false;
 };
 </script>
