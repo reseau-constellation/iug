@@ -120,11 +120,32 @@
         </carte-mot-clef>
       </template>
     </SérieJetons>
-    <EditeurMotsClefs
-      v-if="monAutorisation && motsClefs"
-      :originaux="motsClefs"
-      @sauvegarder="x => sauvegarderMotsClefs(x)"
+    <v-skeleton-loader
+      v-if="!motsClefs"
+      type="chip@3"
     />
+    <span v-else>
+      <p 
+        v-if="!motsClefs.length"
+        class="mb-2 text-center text-disabled"
+      >
+        {{ t('bds.aucunMotClef') }}
+        <EditeurMotsClefs
+          v-if="monAutorisation"
+          :originaux="motsClefs"
+          @sauvegarder="x => sauvegarderMotsClefs(x)"
+        />
+      </p>
+      <EditeurMotsClefs
+        v-else-if="monAutorisation"
+        :originaux="motsClefs"
+        @sauvegarder="x => sauvegarderMotsClefs(x)"
+      />
+
+    </span>
+
+
+    
 
     <division-carte
       :titre="t('bds.tableaux')"
