@@ -249,12 +249,23 @@
         "copierDeNuée": "À partir d'une Nuée",
         "titreNoms": "Le nom de votre BD",
         "sousTitreNoms": "Vous pourrez toujours le modifier plus tard",
+        "texteIndiceNom": "Le nom de la base de données",
         "titreDescriptions": "Description de la BD",
         "sousTitreDescriptions": "À quoi votre BD servira-t-elle ?",
+        "texteÉtiquetteDescription": "Description de la BD",
+        "texteIndiceDescription": "Décrire en quelques phrase ce que la base de données contient.",
         "titreMotsClefs": "Ajoutez des mots-clefs",
         "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre BD",
         "titreLicence": "La licence",
-        "sousTitreLicence": "Choisissez la licence sous laquelle vos données seront disponibles"
+        "sousTitreLicence": "Choisissez la licence sous laquelle vos données seront disponibles",
+        "titreStatut": "Statut",
+        "sousTitreStatut": "Spécifier l'état de vos données",
+        "titreGabaritBd": "Créer de gabarit",
+        "sousTitreGabaritBd": "Choisir une BD gabarit",
+        "btn": "Nouvelle base de données"
+      },
+      "recherche": {
+        "aucunRésultat": "Aucune BD retrouvée"
       },
       "aucunMotClef": "Aucun mot-clef"
     },
@@ -269,6 +280,66 @@
       "éditeurMotsClefs": {
         "titre": "Mots-clefs associés",
         "indice": "Modifier mots-clefs"
+      }
+    },
+    "données": {
+      "statut": {
+        "active": "Active",
+        "obsolète": "Obsolète",
+        "jouet": "Jouet",
+        "interne": "Interne",
+        "info": {
+          "active": "Données prêtes à être utilisées",
+          "obsolète": "Données obsolète",
+          "jouet": "Données test, sans importance réelle",
+          "interne": "Données internes à une autre application"
+        }
+      }
+    },
+    "variables": {
+      "nouvelle": {
+        "titreCatégorie": "Catégorie",
+        "sousTitreCatégorie": "Le type de données de la variable",
+        "titreNoms": "Nom",
+        "sousTitreNoms": "Nommer la variable",
+        "texteIndiceNom": "Par exemple, « Date d'échantillonage », « Salinité » ou « Espèce ».",
+        "titreDescriptions": "Description",
+        "sousTitreDescriptions": "Décrire ce que la variable représente",
+        "texteÉtiquetteDescription": "Description variable",
+        "texteIndiceDescription": "Par exemple, « Date que l'échantillon a été recueilli.  »",
+        "catégorie": "Catégorie",
+        "typeListe": "Variable liste",
+        "titreUnités": "Unités",
+        "sousTitreUnités": "Spécifier les unités (optionnel)",
+        "titreConfirmation": "Confirmation",
+        "sousTitreConfirmation": "Confirmer la création de la variable",
+        "texteBtnCréation": "Créer variable"
+      },
+      "catégories": {
+        "numérique": "Numérique",
+        "horoDatage": "Horodatage",
+        "intervaleTemps": "Intervale temps",
+        "chaîne": "Chaîne",
+        "chaîneNonTraductible": "Chaîne non traductible",
+        "booléen": "Booléenne",
+        "géojson": "GéoJSON",
+        "audio": "Audio",
+        "image": "Image",
+        "vidéo": "Vidéo",
+        "fichier": "Fichier"
+      },
+      "indicesCatégories": {
+        "numérique": "Un chiffre",
+        "horoDatage": "Date et heure",
+        "intervaleTemps": "Une plage de temps, entre deux horodatages",
+        "chaîne": "Du texte",
+        "chaîneNonTraductible": "Du texte non traductible",
+        "booléen": "Vrai ou faux",
+        "géojson": "Données géographiques GéoJSON",
+        "audio": "Fichier audio",
+        "image": "Fichier image",
+        "vidéo": "Fichier vidéo",
+        "fichier": "Fichier de n'importe quel format"
       }
     }
   },
@@ -362,7 +433,7 @@
           "thèmeNuit": "ஒளி/இருள்",
           "thèmeImages": "படத்தின் வடிவூட்டம்",
           "langue": "இடைமுக மொழி",
-          "numération": "எண் அமைப்பு",
+          "numération": "எண்ணுறு அமைப்பு",
           "unDraw": "unDraw",
           "வவவ": "வள்ளுவர் வள்ளலார் வட்டம்",
           "entête": "வடிவூட்டம் மற்றும் மொழிகள்",
