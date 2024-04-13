@@ -5,7 +5,7 @@
         v-if="infoSourceNom"
         :info="infoSourceNom"
       />
-      <span v-else>{{ nomTraduit || t('bds.aucunNom') }}</span>
+      <span v-else>{{ nomTraduit || t('bds.sansNom') }}</span>
     </v-list-item-title>
     <v-list-item-subtitle v-if="infoSourceDescr || descriptionTraduite">
       <TexteSurligneRecherche
@@ -14,6 +14,7 @@
       />
       <span v-else>{{ descriptionTraduite }}</span>
     </v-list-item-subtitle>
+    <v-divider class="my-2" />
     <AuteursObjet
       :auteurs="auteurs"
       :n-max="1"
@@ -22,7 +23,10 @@
       v-if="infoSourceId"
       :id="résultat.id"
     >
-      <TexteSurligneRecherche :info="infoSourceId" />
+      <TexteSurligneRecherche
+        :info="infoSourceId"
+        :max-taille="15"
+      />
     </jeton-id-objet>
     <JetonVariable
       v-if="infoSourceVariable"
