@@ -96,7 +96,7 @@
             class="py-5"
           >
             <template #selection="{item}">
-              <jetonNumération :code="item.value" />
+              <JetonNumeration :code="item.value" />
             </template>
             <template #item="{props, item}">
               <ItemNumération
@@ -125,7 +125,7 @@ import {utiliserÉtatThème} from '/@/état/thème';
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemNumération from '/@/components/langues/ItemNumération.vue';
-import JetonNumération from '/@/components/langues/JetonNumération.vue';
+import JetonNumeration from '/@/components/langues/JetonNumération.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();

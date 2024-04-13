@@ -8,6 +8,7 @@
         <template #activator="{props: propsActivateurJetonMembre}">
           <JetonMembre
             v-bind="propsActivateurJetonMembre"
+            class="me-2"
             :compte="idCompte as string"
           />
         </template>

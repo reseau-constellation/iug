@@ -1,5 +1,9 @@
 <template>
-  <v-chip variant="outlined" size="small">
+  <v-chip
+    variant="outlined"
+    size="small"
+    label
+  >
     <slot>
       {{ id.slice(7, 17) + '...' }}
     </slot>
