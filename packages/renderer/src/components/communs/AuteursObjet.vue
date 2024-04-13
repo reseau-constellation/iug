@@ -1,5 +1,5 @@
 <template>
-  <SérieJetons
+  <SerieJetons
     :items="items"
     :n-max="nMax"
   >
@@ -24,7 +24,7 @@
         </template>
       </CarteMembre>
     </template>
-  </SérieJetons>
+  </SerieJetons>
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
@@ -34,7 +34,7 @@ import type {PropType} from 'vue';
 
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
-import SérieJetons from './SérieJetons.vue';
+import SerieJetons from './SérieJetons.vue';
 import CarteMembre from '../membres/CarteMembre.vue';
 
 const props = defineProps({
