@@ -212,8 +212,8 @@
       },
       "rejoindreCompte": {
         "titre": "Rejoindre un compte",
-        "avertissement": "", 
-        "explication": ""
+        "avertissement": "En vous connectant à un différent compte, les données de votre compte actuel sur ce dispositif seront supprimées.", 
+        "explication": "Ceci ne supprimera pas votre compte actuel s'il est déjà lié à un autre dispositif."
       },
       "effacerCompte": {
         "titre": "Effacer compte",
@@ -239,6 +239,7 @@
 
     "membres": {
       "contacts": "Contacts",
+      "aucunContact": "Aucune information de contact disponible",
       "contact": "Site internet",
       "confiance": {
         "bloqué": "Bloqué",

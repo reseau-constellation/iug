@@ -13,7 +13,7 @@
       <v-card-item>
         <v-card-title>
           <ImageProfil :id="id" />
-          <span class="mx-4">{{ nomTraduit || t('communs.anonyme') }}</span>
+          <span class="mx-4">{{ nomTraduit || t(' .anonyme') }}</span>
           <JetonConfiance
             v-if="mdAndUp"
             :id="id"
@@ -31,7 +31,11 @@
           :titre="t('membres.contacts')"
           :en-attente="!contacts"
         />
-        <span v-if="contacts">
+        <v-skeleton-loader
+          v-if="!contacts"
+          type="chip@3"
+        />
+        <span v-else-if="contacts.length">
           <menu-contact-membre
             v-for="{type, contact} in contacts"
             :key="type"
@@ -50,7 +54,7 @@
         </span>
         <p
           v-else
-          class="text-disabled"
+          class="text-center text-disabled"
         >
           {{ t('membres.aucunContact') }}
         </p>
@@ -58,8 +62,12 @@
           :titre="t('membres.bds')"
           :en-attente="!bdsMembre"
         />
+        <v-skeleton-loader
+          v-if="!bdsMembre"
+          type="chip@3"
+        />
         <SérieJetons
-          v-if="bdsMembre?.length"
+          v-else-if="bdsMembre.length"
           :items="bdsMembre"
           :n-max="2"
         >
@@ -96,8 +104,12 @@
           :titre="t('membres.projets')"
           :en-attente="!projetsMembre"
         />
+        <v-skeleton-loader
+          v-if="!projetsMembre"
+          type="chip@3"
+        />
         <SérieJetons
-          v-if="projetsMembre?.length"
+          v-else-if="projetsMembre.length"
           :items="projetsMembre"
           :n-max="5"
         >
@@ -113,7 +125,7 @@
         </SérieJetons>
         <p
           v-else
-          class="text-disabled"
+          class="text-center text-disabled"
         >
           {{ t('membres.aucunProjet') }}
         </p>
@@ -122,8 +134,12 @@
           :titre="t('membres.nuées')"
           :en-attente="!nuéesMembre"
         />
+        <v-skeleton-loader
+          v-if="!nuéesMembre"
+          type="chip@3"
+        />
         <SérieJetons
-          v-if="nuéesMembre?.length"
+          v-else-if="nuéesMembre.length"
           :items="nuéesMembre"
           :n-max="5"
         >
@@ -139,7 +155,7 @@
         </SérieJetons>
         <p
           v-else
-          class="text-disabled"
+          class="text-center text-disabled"
         >
           {{ t('membres.aucuneNuée') }}
         </p>
