@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 750 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
@@ -25,6 +25,7 @@
           <v-window-item :value="0">
             <v-select
               v-model="catégorieBase"
+              class="mt-2"
               :items="catégoriesBase"
               :label="t('variables.nouvelle.catégorie')"
               variant="outlined"
@@ -39,10 +40,15 @@
                   "
                 />
               </template>
+              <template #selection="{item}">
+                {{ t(`variables.catégories.${item.raw}`) }}
+              </template>
             </v-select>
             <v-checkbox
               v-model="catégorieListe"
               :label="t('variables.nouvelle.typeListe')"
+              color="primary"
+              append-icon="mdi-format-list-bulleted"
             />
           </v-window-item>
           <v-window-item :value="1">
@@ -50,7 +56,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('communs.indiceNom')"
+              :indice-nom="t('variables.nouvelle.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -64,6 +70,7 @@
               :indice-nom="t('variables.nouvelle.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"
+              longue
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>
@@ -75,19 +82,14 @@
           </v-window-item>
           <v-window-item :key="4">
             <div class="text-center">
-              <h3 class="text-h6 font-weight-light mb-2">
-                {{ t('variables.nouveau.texteCréer') }}
-              </h3>
-              <p>
-                <v-btn
-                  class="mt-3"
-                  variant="outlined"
-                  :loading="enCréation"
-                  @click="() => créerVariable()"
-                >
-                  {{ t('variables.nouveau.texteBtnCréation') }}
-                </v-btn>
-              </p>
+              <v-btn
+                class="mt-3"
+                variant="outlined"
+                :loading="enCréation"
+                @click="() => créerVariable()"
+              >
+                {{ t('variables.nouvelle.texteBtnCréation') }}
+              </v-btn>
             </div>
           </v-window-item>
         </v-window>
@@ -218,7 +220,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
 const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'noms':
+    case 'catégorie':
       return {actif: false, visible: false};
     case 'confirmation':
       return {actif: !enCréation.value, visible: true};
