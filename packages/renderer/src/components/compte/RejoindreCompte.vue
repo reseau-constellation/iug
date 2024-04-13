@@ -12,9 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          <span class="text-error">
-            {{ t('compte.rejoindreCompte.titre') }}
-          </span>
+          {{ t('compte.rejoindreCompte.titre') }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -26,7 +24,7 @@
       </v-card-item>
       <v-divider></v-divider>
       <v-card-text>
-        <v-window>
+        <v-window v-model="étape">
           <v-window-item>
             <span class="text-error font-weight-bold">{{
               t('compte.rejoindreCompte.avertissement')
@@ -68,6 +66,8 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 // Navigation
 const dialogue = ref(false);
+
+const étape = ref(0);
 
 // Rejoindre compte
 const enProgrès = ref(false);
