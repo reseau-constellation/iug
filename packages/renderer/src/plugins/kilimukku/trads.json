@@ -404,14 +404,14 @@
       "piedDePage": "விண்மீன் பங்களிப்பாளர்கள்",
       "initialiserCompte": {
         "titreCheminement": "கணக்கு ஏற்கனவே இருக்கிறதா?",
-        "sousTitreCheminement": "புது கணக்கை உருவாக்கலாமா, ஏற்கனவே இருக்கும் கணக்கில் உள்ளிடலாமா?",
+        "sousTitreCheminement": "புதிய கணக்கை உருவாக்கலாமா, ஏற்கனவே இருக்கும் கணக்கில் உள்ளிடலாமா?",
         "titreNoms": "உங்கள் பெயரை உள்ளிடுங்கள்",
         "sousTitreNoms": "எத்தனே மொழி, அவ்வளவு மகிழ்ச்சி!",
         "titreImage": "படத்தை உள்ளிடுங்கள்",
         "titreCompteÀRejoindre": "கணக்கில் உள்ளிடு",
         "titrePersister": "உங்கள் தரவுகளை பாதுகாக்கட்டுமா?",
         "titreCestParti": "அவ்வளவு தான்!",
-        "nouveauCompte": "புது கணக்கு",
+        "nouveauCompte": "புதிய கணக்கு",
         "connecter": "கணக்கை இணையு",
         "texteImage": "நீங்கள் விரும்பினால், மேலே தொட்டு உங்கள் பயனாளர் படத்தை தேர்ந்தெடுகொங்கள்.",
         "textePersister": {
@@ -474,11 +474,11 @@
         "bds": "தரவு தளங்கள்",
         "projets": "திட்டங்கள்",
         "nuées": "கூட்டங்கள்",
-        "nouveauMotClef": "புது சிறப்பு சொல்",
-        "nouvelleVariable": "புது மாறி",
-        "nouvelleBd": "புது தரவு தளம்",
-        "nouveauProjet": "புது திட்டம்",
-        "nouvelleNuée": "புது கூட்டம்"
+        "nouveauMotClef": "புதிய சிறப்பு சொல்",
+        "nouvelleVariable": "புதிய மாறி",
+        "nouvelleBd": "புதிய தரவு தளம்",
+        "nouveauProjet": "புதிய திட்டம்",
+        "nouvelleNuée": "புதிய கூட்டம்"
       },
       "recherche": {
         "titre": "தேடல்"
@@ -521,14 +521,15 @@
       "ajouter": "சாதனத்தைச் சேரு",
       "ceDispositif": "இதே சாதனம்",
       "inviter": {
-        "titreCheminement": "புது சாதனை சேர்தல்",
+        "titreCheminement": "புதிய சாதன சேர்தல்",
         "sousTitreCheminement": "ரகசீய குறியீட்டாக சாதனத்தை சேரு",
         "manuellement": "கைமுறையாக சேரு",
         "codeR2": "குறியீட்டாக சேரு",
         "titreManuelle": "கைமுறையான சேர்தல்",
         "sousTitreManuelle": "வேறு சாதனத்தில் குறியீட்டை உள்ளிடு",
         "titreCodeR2": "குறியீட்டாக சேரு",
-        "sousTitreCodeR2": "புகைப்படக்கருவியை பயன்படுத்து"
+        "sousTitreCodeR2": "புகைப்படக்கருவியை பயன்படுத்து",
+        "horsLigne": "நீங்கள் இணையத்தில் இல்லை."
       },
       "type": {
         "téléphone": "கைப்பேசி",
