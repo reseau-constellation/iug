@@ -1,5 +1,8 @@
 <template>
-  <v-chip variant="outlined">
+  <v-chip
+    variant="outlined"
+    label
+  >
     <v-avatar start>
       <v-img :src="srcImgNuée || imgDéfaut"></v-img>
     </v-avatar>
