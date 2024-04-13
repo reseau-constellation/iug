@@ -26,13 +26,25 @@
       </v-card-item>
       <v-divider></v-divider>
       <v-card-text>
-        <v-btn
-          append-icon="mdi-download"
-          variant="outlined"
-          @click="exporterCompte"
-        >
-          {{ t('compte.exporterCompte.exporter') }}
-        </v-btn>
+        <div class="text-center">
+          <v-btn
+            append-icon="mdi-download"
+            variant="outlined"
+            @click="exporterCompte"
+          >
+            {{ t('compte.exporterCompte.exporter') }}
+          </v-btn>
+        </div>
+        <v-expand-transition>
+          <v-alert
+            v-if="erreurExportation"
+            class="my-6"
+            type="error"
+            variant="outlined"
+            :title="t('compte.exporterCompte.titreErreur')"
+            :text="t('compte.exporterCompte.texteErreur')"
+          ></v-alert>
+        </v-expand-transition>
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
@@ -50,23 +62,34 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation} from '../utils';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation, suivre, obt} from '../utils';
 
 const constl = constellation();
 
 const {mdAndUp} = useDisplay();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);
 
 // Contrôles
+const mesNoms = suivre(constl.profil.suivreNoms, undefined, {});
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(mesNoms);
+const idDispositif = obt(constl.obtIdDispositif);
+
+const erreurExportation = ref(false);
+
 const exporterCompte = async () => {
-  await constl.exporterDispositif({
-    nomFichier: `Mon compte Constellation ${Date.now().toLocaleString()}.zip`,
-  });
+  try {
+    await constl.exporterDispositif({
+      nomFichier: `${nomTraduit.value}-${idDispositif.value?.slice(-10)}-${Date.now()}.zip`,
+    });
+  } catch {
+    erreurExportation.value = true;
+  }
 };
 </script>

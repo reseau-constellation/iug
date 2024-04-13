@@ -203,10 +203,31 @@
         }
       }
     },
+    "compte": {
+      "exporterCompte": {
+        "titre": "Exportation de compte",
+        "exporter": "Exporter",
+        "titreErreur": "Erreur exportation",
+        "texteErreur": "Nous n'avons pas pu exporter vos données de compte. Contactez-nous si ça se répète."
+      },
+      "rejoindreCompte": {
+        "titre": "Rejoindre un compte",
+        "avertissement": "", 
+        "explication": ""
+      },
+      "effacerCompte": {
+        "titre": "Effacer compte",
+        "avertissement": "Cette action est irréversible !",
+        "explication": "Ceci effacera toutes les données sur ce dispositif. Si vous avez plusieurs dispositifs liés à ce compte, vous devrez supprimer votre compte sur chacun de ceux-ci.",
+        "btnEffacer": "Effacer mon compte"
+      }
+    },
     "pages": {
       "compte": {
-        "ajouterDispositif": "Connecter un dispositif",
-        "nouveauContact": "Nouveau contact"
+        "nouveauContact": "Nouveau contact",
+        "compte": {
+          "ajouterDispositif": "Connecter un dispositif"
+        }
       },
       "signalements": {
         "titre": "Vous éprouvez des difficultés ?",
@@ -417,8 +438,13 @@
           "mesDispositifs": "என் சாதனங்கள்",
           "optionsAvancées": "மேம்பட்ட விருப்பங்கள்",
           "titreExporterCompte": "கணக்கை எற்றுமதி செய்யு",
+          "sousTitreExporterCompte": "எற்றுமதிக்கப்பட்ட கணக்கு மூலம் கணக்குக்கு அணுகல் மீண்டும் கிடைக்கலாம்",
+          "titreRejoindreCompte": "கணக்கில் உள்ளிடு",
+          "sousTitreRejoindreCompte": "ஏற்கனவே இருக்கும் கணக்கைச் சேரு",
+          "btnRejoindreCompte": "உள்ளிடு",
           "btnExporterCompte": "எற்றுமதி செய்யு",
           "titreEffacerCompte": "கணக்கை நீக்கு",
+          "sousTitreEffacerCompte": "இந்த சாதனத்தை நீக்கு",
           "btnEffacerCompte": "கணக்கை நீக்கு"
         },
         "connexions": {
