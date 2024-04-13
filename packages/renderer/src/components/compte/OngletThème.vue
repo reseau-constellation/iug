@@ -88,7 +88,7 @@
           <v-autocomplete
             v-model="choixNumération"
             :items="[null, ...எண்ணுரு_முறைமைகள்]"
-            :label="t('compte.options.numération')"
+            :label="t('pages.compte.options.numération')"
             variant="outlined"
             density="compact"
             hide-details
