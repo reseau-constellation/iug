@@ -28,7 +28,7 @@
         <v-switch
           v-model="épingléSimple"
           color="primary"
-          :label="t('épingler.épingler')"
+          :label="épingléSimple ? t('épingler.épinglé') : t('épingler.épingler')"
         ></v-switch>
         <p>
           <span class="font-weight-bold">{{ t('épingler.optionsAvancées') }}</span>
@@ -331,6 +331,7 @@ const dispositifsFichiers = computed<favoris.typeDispositifs | undefined>(() => 
     ? dispositifsFichiersSpécifiques.value
     : typeDispositifsFichiers.value;
 });
+
 const ilYEuChangement = computed<boolean>(() => {
   if (statutFavoris.value) {
     return (
@@ -341,6 +342,7 @@ const ilYEuChangement = computed<boolean>(() => {
     return typeDispositifs.value !== 'AUCUN';
   }
 });
+
 const prêtÀÉpingler = computed<boolean>(() => {
   const dispositifsPrêts =
     typeDispositifs.value === 'SPÉCIFIQUES' ? !!dispositifsSpécifiques.value.length : true;
@@ -350,6 +352,7 @@ const prêtÀÉpingler = computed<boolean>(() => {
       : true;
   return dispositifsPrêts && dispositifsFichiersPrêts && ilYEuChangement.value;
 });
+
 const valeursChangées = computed<boolean>(() => {
   if (!statutFavoris.value) return true;
   const {dispositifs, dispositifsFichiers} = statutFavoris.value;

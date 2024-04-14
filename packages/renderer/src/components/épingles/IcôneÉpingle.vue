@@ -1,13 +1,13 @@
 <template>
   <v-tooltip :text="texteIndice">
     <template #activator="{props: propsActivateur}">
-      <slot
-        name="activator"
+      <v-icon 
         v-bind="{props: propsActivateur}"
-      ></slot>
+        :icon="icône"
+      ></v-icon>
     </template>
+    {{ texteIndice }}
   </v-tooltip>
-  <v-icon :icon="icône"></v-icon>
 </template>
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

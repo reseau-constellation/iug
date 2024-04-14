@@ -320,8 +320,6 @@
     },
     "variables": {
       "nouvelle": {
-        "titreCatégorie": "Catégorie",
-        "sousTitreCatégorie": "Le type de données de la variable",
         "titreNoms": "Nom",
         "sousTitreNoms": "Nommer la variable",
         "texteIndiceNom": "Par exemple, « Date d'échantillonage », « Salinité » ou « Espèce ».",
@@ -329,10 +327,14 @@
         "sousTitreDescriptions": "Décrire ce que la variable représente",
         "texteÉtiquetteDescription": "Description variable",
         "texteIndiceDescription": "Par exemple, « Date que l'échantillon a été recueilli.  »",
+        "titreCatégorie": "Catégorie",
+        "sousTitreCatégorie": "Le type de données de la variable",
         "catégorie": "Catégorie",
         "typeListe": "Variable liste",
         "titreUnités": "Unités",
         "sousTitreUnités": "Spécifier les unités (optionnel)",
+        "titreRègles": "Règles",
+        "sousTitreRègles": "Spécifier les valeurs que cette variable peut prendre",
         "titreConfirmation": "Confirmation",
         "sousTitreConfirmation": "Confirmer la création de la variable",
         "texteBtnCréation": "Créer variable"
@@ -362,6 +364,27 @@
         "image": "Fichier image",
         "vidéo": "Fichier vidéo",
         "fichier": "Fichier de n'importe quel format"
+      },
+      "règles": {
+        "nouvelle": "Ajouter une règle",
+        "aucune": "Aucune règle spécifiée"
+      }
+    },
+    "règles": {
+      "nouvelle": {
+        "titreTypeRègle": "Type de  règle",
+        "sousTitreTypeRègle": "Choisir le genre de règle",
+        "titreConfirmer": "Confirmation", 
+        "sousTitreConfirmer": "Confirmer la création de la règle",
+        "confirmer": "Créer règle"
+      },
+      "infos": {
+        "existe": "Cette variable ne doit pas contenir de valeurs manquantes"
+      },
+      "types": {
+        "existe": "Valeurs non-manquantes",
+        "borne": "Bornes",
+        "catégorique": "Catégories"
       }
     }
   },
@@ -451,6 +474,7 @@
         "connexions": {
           "Constellation": "விண்மீன்",
           "SFIP": "ச. க. மு.",
+          "aucuneSFIP": "தற்காலத்தில் எந்த இணைப்பும் இல்லை",
           "indiceSFIP": "சர்விகிரக கணியக்கோப்பு முறைமை",
           "titreSFIP": "ச. க. மு இணைப்புகள்",
           "titreConstellation": "விண்மீன் இணைப்புகள்",
@@ -661,6 +685,7 @@
     "épingler": {
       "titre": "ஒட்டிக்கொள்ளு",
       "épingler": "ஒட்டிக்கொள்ளு",
+      "épinglé": "ஒட்டிக்கொள்ளப்பட்டது",
       "optionsAvancées": "மேம்பட்ட விருப்பங்கள்",
       "dispositifsÉpingle": "ஒட்டிக்கொள்ளும் சாதனங்கள்",
       "dispositifsÉpingleFichier": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
