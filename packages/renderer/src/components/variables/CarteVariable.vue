@@ -65,16 +65,38 @@
       :en-attente="!règles"
     />
     <v-list v-if="règles">
-      <item-règle
+      <item-regle
         v-for="r in règles"
         :key="r.id"
         :regle="r"
-      ></item-règle>
+        :effacable="monAutorisation && r.règle.typeRègle !== 'catégorie'"
+        @effacer="()=>effacerRègle(r.id)"
+      ></item-regle>
+      <v-divider class="mt-2" />
+      <nouvelle-regle
+        v-if="monAutorisation"
+        :source="{
+          type: 'variable',
+        }"
+        :categorie-variable="choixCatégorieBase"
+        @sauvegarder="r => ajouterRègle(r)"
+      >
+        <template #activator="{props: propsActivateurNouvelleRègle}">
+          <v-list-item
+            v-bind="propsActivateurNouvelleRègle"
+            prepend-icon="mdi-plus"
+          >
+            <v-list-item-title>
+              {{ t('variables.règles.nouvelle') }}
+            </v-list-item-title>
+          </v-list-item>
+        </template>
+      </nouvelle-regle>
     </v-list>
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import type {variables} from '@constl/ipa';
+import type {valid, variables} from '@constl/ipa';
 
 import {computed, ref, watchEffect} from 'vue';
 
@@ -84,7 +106,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {ajusterTexteTraductible} from '/@/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
-import ItemRègle from '/@/components/règles/ItemRègle.vue';
+import ItemRegle from '/@/components/règles/ItemRègle.vue';
+import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 
 import {catégoriesBase} from './utils';
 
@@ -187,6 +210,18 @@ const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.
 
 // Règles
 const règles = suivre(constl.variables.suivreRèglesVariable, {idVariable: props.id});
+const ajouterRègle = async (r: valid.règleVariable) => {
+  await constl.variables.ajouterRègleVariable({
+    idVariable: props.id,
+    règle: r,
+  });
+};
+const effacerRègle = async (idRègle: string) => {
+  await constl.variables.effacerRègleVariable({
+    idVariable: props.id,
+    idRègle,
+  });
+};
 
 // Effacer
 const effacerVariable = async () => {

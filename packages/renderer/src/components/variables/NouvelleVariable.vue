@@ -62,7 +62,7 @@
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
-          <v-window-item :value="2">
+          <v-window-item :value="listeÉtapes.indexOf('descriptions')">
             <liste-noms
               :texte-aucun-nom="t('variables.nouvelle.texteAucuneDescription')"
               :indice-langue="t('communs.indiceLangue')"
@@ -74,13 +74,43 @@
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>
-          <v-window-item :value="3">
+          <v-window-item :value="listeÉtapes.indexOf('unités')">
             <v-text-field
               v-model="unités"
               variant="outlined"
             />
           </v-window-item>
-          <v-window-item :key="4">
+          <v-window-item :value="listeÉtapes.indexOf('règles')">
+            <NouvelleRegle
+              :source="{
+                type: 'variable',
+              }"
+              :categorie-variable="catégorieBase"
+              @sauvegarder="r => ajouterRègle(r)"
+            >
+              <template #activator="{props: propsActivateurNouvelleRègle}">
+                <v-list-item
+                  v-bind="propsActivateurNouvelleRègle"
+                  prepend-icon="mdi-plus"
+                >
+                  <v-list-item-title>
+                    {{ t('variables.règles.nouvelle') }}
+                  </v-list-item-title>
+                </v-list-item>
+              </template>
+            </NouvelleRegle>
+            <item-regle
+              v-for="r in règles"
+              :key="r.id"
+              :regle="r"
+              effacable
+              @effacer="() => effacerRègle(r.id)"
+            ></item-regle>
+            <p v-if="!règles.length" class="my-2 text-center text-disabled">
+              {{ t('variables.règles.aucune') }}
+            </p>
+          </v-window-item>
+          <v-window-item :key="listeÉtapes.indexOf('confirmation')">
             <div class="text-center">
               <v-btn
                 class="mt-3"
@@ -118,14 +148,18 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {variables} from '@constl/ipa';
+import type {valid, variables} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import ItemRegle from '/@/components/règles/ItemRègle.vue';
+import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
+
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
+import { v4 as uuidv4 } from 'uuid';
 
 import {catégoriesBase} from './utils';
 import {constellation} from '../utils';
@@ -141,7 +175,7 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['catégorie', 'noms', 'descriptions', 'unités', 'confirmation'] as const;
+const listeÉtapes = ['catégorie', 'noms', 'descriptions', 'unités', 'règles', 'confirmation'] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
@@ -154,6 +188,8 @@ const titreCarte = computed(() => {
       return 'variables.nouvelle.titreDescriptions';
     case 'unités':
       return 'variables.nouvelle.titreUnités';
+    case 'règles':
+      return 'variables.nouvelle.titreRègles';
     case 'confirmation':
       return 'variables.nouvelle.titreConfirmation';
     default:
@@ -172,6 +208,8 @@ const sousTitreCarte = computed(() => {
       return 'variables.nouvelle.sousTitreDescriptions';
     case 'unités':
       return 'variables.nouvelle.sousTitreUnités';
+    case 'règles':
+      return 'variables.nouvelle.sousTitreRègles';
     case 'confirmation':
       return 'variables.nouvelle.sousTitreConfirmation';
     default:
@@ -182,7 +220,7 @@ const sousTitreCarte = computed(() => {
 const retour = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'confirmation':
+    case 'règles':
       étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'unités' : 'descriptions');
       break;
     default:
@@ -195,7 +233,7 @@ const suivant = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'descriptions':
-      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'unités' : 'confirmation');
+      étape.value = listeÉtapes.indexOf(unitésPossible.value ? 'unités' : 'règles');
       break;
     default:
       étape.value++;
@@ -255,6 +293,18 @@ const unitésPossible = computed(() => {
   return catégorieBase.value === 'numérique';
 });
 
+// Règles
+const règles = ref<valid.règleVariableAvecId[]>([]);
+const ajouterRègle = (règle: valid.règleVariable) => {
+  règles.value = [...règles.value, {
+    règle,
+    id: uuidv4(),
+  }];
+};
+const effacerRègle = (id: string) => {
+  règles.value = règles.value.filter(r=>r.id !== id);
+};
+
 // Création
 const enCréation = ref(false);
 const créerVariable = async () => {
@@ -263,19 +313,24 @@ const créerVariable = async () => {
   if (!catégorie.value) return;
 
   const idVariable = await constl.variables.créerVariable({catégorie: catégorie.value});
-  if (!idVariable) throw new Error('Variable non créée.');
 
-  await constl.variables.sauvegarderNomsVariable({
-    idVariable,
-    noms: Object.fromEntries(Object.entries(noms.value)),
-  });
-  await constl.variables.sauvegarderDescriptionsVariable({
-    idVariable,
-    descriptions: Object.fromEntries(Object.entries(descriptions.value)),
-  });
+  const promesses: Promise<unknown>[] = [
+    constl.variables.sauvegarderNomsVariable({
+      idVariable,
+      noms: Object.fromEntries(Object.entries(noms.value)),
+    }),
+    constl.variables.sauvegarderDescriptionsVariable({
+      idVariable,
+      descriptions: Object.fromEntries(Object.entries(descriptions.value)),
+    }),
+    ...règles.value.map(r => constl.variables.ajouterRègleVariable({
+      idVariable, 
+      règle: r.règle,
+    })),
+  ];
 
   if (unités.value) {
-    await constl.variables.sauvegarderUnitésVariable({idVariable, idUnité: unités.value});
+    promesses.push(constl.variables.sauvegarderUnitésVariable({idVariable, idUnité: unités.value}));
   }
 
   fermer();

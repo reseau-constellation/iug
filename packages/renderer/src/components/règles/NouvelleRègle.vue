@@ -5,170 +5,164 @@
         name="activator"
         v-bind="{props: propsActivateur}"
       ></slot>
-
-      <v-card
-        class="mx-auto"
-        :max-width="mdAndUp ? 500 : 300"
-      >
-        <v-card-item>
-          <v-card-title class="text-h5 justify-space-between">
-            <span>{{ t(titreCarte) }}</span>
-          </v-card-title>
-          <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
-        </v-card-item>
-        <v-card-text>
-          <v-window
-            v-model="étape"
-            style="overflow-y: scroll"
-          >
-            <v-window-item :value="0">
-              <div class="text-center">
-                <v-btn
-                  class="ma-3"
-                  variant="flat"
-                  color="primary"
-                  @click="() => suivreCheminementRègleExiste()"
-                >
-                  {{ t('règles.nouvelleRègle.règleExiste') }}
-                </v-btn>
-                <v-btn
-                  :disabled="!règleBornePossible"
-                  class="ma-3"
-                  variant="outlined"
-                  @click="() => suivreCheminementRègleBorne()"
-                >
-                  {{ t('règles.nouvelleRègle.règleBorne') }}
-                </v-btn>
-                <v-btn
-                  class="ma-3"
-                  variant="outlined"
-                  @click="() => suivreCheminementRègleCatégorique()"
-                >
-                  {{ t('règles.nouvelleRègle.règleCatégorique') }}
-                </v-btn>
-              </div>
-            </v-window-item>
-            <v-window-item :value="1">
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                @click="() => utiliserBorne('fixe')"
-              >
-                {{ t('règles.nouvelleRègle.borneFixes') }}
-              </v-btn>
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                @click="() => utiliserBorne('dynamiqueVariable')"
-              >
-                {{ t('règles.nouvelleRègle.borneDynamiqueVariable') }}
-              </v-btn>
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                :disabled="!idTableauPourRègle"
-                @click="() => utiliserBorne('dynamiqueColonne')"
-              >
-                {{ t('règles.nouvelleRègle.borneDynamiqueColonne') }}
-              </v-btn>
-            </v-window-item>
-            <v-window-item :value="2">
-              <v-select
-                v-model="opBorne"
-                :items="['>', '>=', '<', '<=']"
-              />
-              <v-input
-                v-if="typeBornes === 'fixe'"
-                v-model="valBorneFixe"
-              />
-              <SelecteurVariable
-                v-else-if="typeBornes === 'dynamiqueVariable'"
-                :multiples="false"
-                @selectionnee="x => (valBorneDynamiqueVariable = x)"
-              />
-              <SelecteurColonne
-                v-else-if="typeBornes === 'dynamiqueColonne'"
-                :id-tableau="idTableauPourRègle"
-                :tableau-changeable="false"
-                @selectionnee="x => (valBorneDynamiqueColonne = x.idColonne)"
-              />
-            </v-window-item>
-            <v-window-item :value="3">
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                @click="() => utiliserCatégorie('fixe')"
-              >
-                {{ t('règles.nouvelleRègle.catégoriesFixes') }}
-              </v-btn>
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                :disabled="!idTableauPourRègle"
-                @click="() => utiliserCatégorie('dynamique')"
-              >
-                {{ t('règles.nouvelleRègle.catégoriesDynamique') }}
-              </v-btn>
-            </v-window-item>
-            <v-window-item :value="4">
-              <v-combobox
-                v-if="typeCatégorie === 'fixe'"
-                v-model="valCatégorieFixe"
-                multiple
-                chips
-                clearable
-              />
-              <SelecteurColonne
-                v-else
-                :id-tableau="idTableauPourRègle"
-                :tableau-changeable="true"
-                @selectionnee="
-                  x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})
-                "
-              />
-            </v-window-item>
-            <v-window-item :value="5">
-              <div class="text-center">
-                <h3 class="text-h6 font-weight-light mb-2">
-                  {{ t('règles.nouvelleRègle.messageConfirmer') }}
-                </h3>
-                <p>
-                  <v-btn
-                    class="mt-3"
-                    variant="outlined"
-                    @click="() => confirmer()"
-                  >
-                    {{ t('règles.nouvelleRègle.confirmer') }}
-                  </v-btn>
-                </p>
-              </div>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-btn
-            v-show="retourActif.visible"
-            variant="text"
-            :disabled="!retourActif.actif"
-            @click="retour"
-          >
-            {{ t('communs.retour') }}
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            v-show="suivantActif.visible"
-            color="primary"
-            variant="flat"
-            :disabled="!suivantActif.actif"
-            @click="suivant"
-          >
-            {{ t('communs.suivant') }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
     </template>
+    <v-card
+      class="mx-auto"
+      :max-width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="text-h5 justify-space-between">
+          <span>{{ t(titreCarte) }}</span>
+        </v-card-title>
+        <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
+      </v-card-item>
+      <v-card-text>
+        <v-window
+          v-model="étape"
+          style="overflow-y: scroll"
+        >
+          <v-window-item :value="0">
+            <div class="text-center">
+              <v-btn
+                class="ma-3"
+                variant="flat"
+                color="primary"
+                @click="() => suivreCheminementRègleExiste()"
+              >
+                {{ t('règles.types.existe') }}
+              </v-btn>
+              <v-btn
+                :disabled="!règleBornePossible"
+                class="ma-3"
+                variant="outlined"
+                @click="() => suivreCheminementRègleBorne()"
+              >
+                {{ t('règles.types.borne') }}
+              </v-btn>
+              <v-btn
+                class="ma-3"
+                variant="outlined"
+                @click="() => suivreCheminementRègleCatégorique()"
+              >
+                {{ t('règles.types.catégorique') }}
+              </v-btn>
+            </div>
+          </v-window-item>
+          <v-window-item :value="1">
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+              @click="() => utiliserBorne('fixe')"
+            >
+              {{ t('règles.nouvelle.borneFixes') }}
+            </v-btn>
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+              @click="() => utiliserBorne('dynamiqueVariable')"
+            >
+              {{ t('règles.nouvelle.borneDynamiqueVariable') }}
+            </v-btn>
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+              :disabled="!idTableauPourRègle"
+              @click="() => utiliserBorne('dynamiqueColonne')"
+            >
+              {{ t('règles.nouvelle.borneDynamiqueColonne') }}
+            </v-btn>
+          </v-window-item>
+          <v-window-item :value="2">
+            <v-select
+              v-model="opBorne"
+              :items="['>', '>=', '<', '<=']"
+            />
+            <v-input
+              v-if="typeBornes === 'fixe'"
+              v-model="valBorneFixe"
+            />
+            <SelecteurVariable
+              v-else-if="typeBornes === 'dynamiqueVariable'"
+              :multiples="false"
+              @selectionnee="x => (valBorneDynamiqueVariable = x)"
+            />
+            <SelecteurColonne
+              v-else-if="typeBornes === 'dynamiqueColonne'"
+              :id-tableau="idTableauPourRègle"
+              :tableau-changeable="false"
+              @selectionnee="x => (valBorneDynamiqueColonne = x.idColonne)"
+            />
+          </v-window-item>
+          <v-window-item :value="3">
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+              @click="() => utiliserCatégorie('fixe')"
+            >
+              {{ t('règles.nouvelle.catégoriesFixes') }}
+            </v-btn>
+            <v-btn
+              class="ma-3"
+              variant="outlined"
+              :disabled="!idTableauPourRègle"
+              @click="() => utiliserCatégorie('dynamique')"
+            >
+              {{ t('règles.nouvelle.catégoriesDynamique') }}
+            </v-btn>
+          </v-window-item>
+          <v-window-item :value="4">
+            <v-combobox
+              v-if="typeCatégorie === 'fixe'"
+              v-model="valCatégorieFixe"
+              multiple
+              chips
+              clearable
+            />
+            <SelecteurColonne
+              v-else
+              :id-tableau="idTableauPourRègle"
+              :tableau-changeable="true"
+              @selectionnee="
+                x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})
+              "
+            />
+          </v-window-item>
+          <v-window-item :value="5">
+            <div class="text-center">
+                <v-btn
+                  class="mt-3"
+                  variant="outlined"
+                  @click="() => confirmer()"
+                >
+                  {{ t('règles.nouvelle.confirmer') }}
+                </v-btn>
+            </div>
+          </v-window-item>
+        </v-window>
+      </v-card-text>
+      <v-divider></v-divider>
+
+      <v-card-actions>
+        <v-btn
+          v-show="retourActif.visible"
+          variant="text"
+          :disabled="!retourActif.actif"
+          @click="retour"
+        >
+          {{ t('communs.retour') }}
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+          v-show="suivantActif.visible"
+          color="primary"
+          variant="flat"
+          :disabled="!suivantActif.actif"
+          @click="suivant"
+        >
+          {{ t('communs.suivant') }}
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
@@ -226,17 +220,17 @@ const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'BorneFixeOuDynamique':
-      return 'règles.nouvelleRègle.titreBorneFixeOuDynamique';
+      return 'règles.nouvelle.titreBorneFixeOuDynamique';
     case 'CatégorieFixeOuDynamique':
-      return 'règles.nouvelleRègle.titreCatégorieFixeOuDynamique';
+      return 'règles.nouvelle.titreCatégorieFixeOuDynamique';
     case 'TypeRègle':
-      return 'règles.nouvelleRègle.titreTypeRègle';
+      return 'règles.nouvelle.titreTypeRègle';
     case 'Confirmer':
-      return 'règles.nouvelleRègle.titreConfirmer';
+      return 'règles.nouvelle.titreConfirmer';
     case 'ValeurBorne':
-      return 'règles.nouvelleRègle.titreValeurBorne';
+      return 'règles.nouvelle.titreValeurBorne';
     case 'ValeurCatégorie':
-      return 'règles.nouvelleRègle.titreValeurCatégorie';
+      return 'règles.nouvelle.titreValeurCatégorie';
     default:
       return '';
   }
@@ -246,17 +240,17 @@ const sousTitreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
     case 'BorneFixeOuDynamique':
-      return 'règles.nouvelleRègle.sousTitreBorneFixeOuDynamique';
+      return 'règles.nouvelle.sousTitreBorneFixeOuDynamique';
     case 'CatégorieFixeOuDynamique':
-      return 'règles.nouvelleRègle.sousTitreCatégorieFixeOuDynamique';
+      return 'règles.nouvelle.sousTitreCatégorieFixeOuDynamique';
     case 'TypeRègle':
-      return 'règles.nouvelleRègle.sousTitreTypeRègle';
+      return 'règles.nouvelle.sousTitreTypeRègle';
     case 'Confirmer':
-      return 'règles.nouvelleRègle.sousTitreConfirmer';
+      return 'règles.nouvelle.sousTitreConfirmer';
     case 'ValeurBorne':
-      return 'règles.nouvelleRègle.sousTitreValeurBorne';
+      return 'règles.nouvelle.sousTitreValeurBorne';
     case 'ValeurCatégorie':
-      return 'règles.nouvelleRègle.sousTitreValeurCatégorie';
+      return 'règles.nouvelle.sousTitreValeurCatégorie';
     default:
       return '';
   }
@@ -468,5 +462,7 @@ const confirmer = async () => {
     };
     await ajouterRègle(règle);
   }
+  dialogue.value = false;
+  étape.value = 0;
 };
 </script>

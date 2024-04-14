@@ -1,20 +1,20 @@
 <template>
   <v-list-item>
-    <v-list-item-title>
+    <template #title>
       {{ t(typeRègle) }}
-    </v-list-item-title>
-    <v-list-item-subtitle>
+    </template>
+    <template #subtitle>
       {{ t(infoRègle) }}
-    </v-list-item-subtitle>
-    <v-list-item-action>
-      <v-btn
+    </template>
+    <template #append>
+      <v-icon
         v-if="effacable"
         icon="mdi-delete"
         color="error"
-        variant="outlined"
+        variant="flat"
         @click="() => émettre('effacer')"
       />
-    </v-list-item-action>
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
