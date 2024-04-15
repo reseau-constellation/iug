@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -34,7 +34,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('communs.indiceNom')"
+              :indice-nom="t('nuées.nouvelle.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -48,11 +48,12 @@
               :indice-nom="t('nuées.nouvelle.texteIndiceDescription')"
               :noms-initiaux="descriptions"
               :autorisation-modification="true"
+              longue
               @ajuster-noms="ajusterDescriptions"
             />
           </v-window-item>
           <v-window-item :key="2">
-            <v-radio-group>
+            <v-radio-group v-model="autorisation">
               <v-radio
                 value="CJPI"
                 class="my-2"
@@ -122,19 +123,16 @@
           </v-window-item>
           <v-window-item :key="4">
             <div class="text-center">
-              <h3 class="text-h6 font-weight-light mb-2">
-                {{ t('nuées.nouvelle.texteCréer') }}
-              </h3>
-              <p>
-                <v-btn
-                  class="mt-3"
-                  variant="outlined"
-                  :loading="enCréation"
-                  @click="() => créerNuée()"
-                >
-                  {{ t('nuées.nouvelle.texteBtnCréation') }}
-                </v-btn>
-              </p>
+              <v-btn
+                class="mt-3"
+                variant="outlined"
+                :loading="enCréation"
+                @click="() => créerNuée()"
+              >
+                {{ t('nuées.nouvelle.texteBtnCréation') }}
+              </v-btn>
+              <v-checkbox v-model="ouvrirAprèsCréation" :label="t('nuées.nouvelle.ouvrirAprèsCréation')">
+              </v-checkbox>
             </div>
           </v-window-item>
         </v-window>
@@ -174,11 +172,15 @@ import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import {constellation} from '/@/components/utils';
+import { useRouter } from 'vue-router';
 
 const {mdAndUp} = useDisplay();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const router = useRouter();
+
+const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
 const constl = constellation();
 
@@ -247,6 +249,8 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
   switch (é) {
     case 'noms':
       return {actif: !!Object.keys(noms.value).length, visible: true};
+    case 'autorisation':
+      return {actif: autorisation.value !== undefined, visible: true};
     case 'confirmation':
       return {actif: false, visible: false};
     default:
@@ -358,7 +362,10 @@ const effacerColonneTableau = ({
 };
 
 // Création
+const ouvrirAprèsCréation = ref(false);
+
 const enCréation = ref(false);
+
 const créerNuée = async () => {
   enCréation.value = true;
 
@@ -415,7 +422,12 @@ const créerNuée = async () => {
     }
   }
 
+  émettre('nouvelle', idNuée);
+
   fermer();
+
+  if (ouvrirAprèsCréation.value)
+    router.push(encodeURI(`/données/nuée/${encodeURIComponent(idNuée)}`));
 };
 
 // Fermer

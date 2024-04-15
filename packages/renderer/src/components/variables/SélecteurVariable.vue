@@ -35,16 +35,16 @@
       </carte-variable>
     </template>
     <template #nouveau="{nouveau}">
-      <nouveau-variable @nouveau="nouveau">
+      <nouvelle-variable @nouvelle="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
-            :title="t('variables.nouveau.btn')"
+            :title="t('variables.nouvelle.btn')"
             prepend-icon="mdi-plus"
           >
           </v-list-item>
         </template>
-      </nouveau-variable>
+      </nouvelle-variable>
     </template>
   </selecteur-objet>
 </template>
@@ -56,7 +56,7 @@ import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
 import {constellation, rechercher} from '/@/components/utils';
 
-import NouveauVariable from './NouvelleVariable.vue';
+import NouvelleVariable from './NouvelleVariable.vue';
 import JetonVariable from './JetonVariable.vue';
 import CarteVariable from './CarteVariable.vue';
 

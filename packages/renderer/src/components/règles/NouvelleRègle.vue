@@ -32,7 +32,7 @@
                 {{ t('règles.types.existe') }}
               </v-btn>
               <v-btn
-                :disabled="!règleBornePossible"
+                v-if="règleBornePossible"
                 class="ma-3"
                 variant="outlined"
                 @click="() => suivreCheminementRègleBorne()"
@@ -40,6 +40,7 @@
                 {{ t('règles.types.borne') }}
               </v-btn>
               <v-btn
+                v-if="false"
                 class="ma-3"
                 variant="outlined"
                 @click="() => suivreCheminementRègleCatégorique()"
@@ -54,7 +55,7 @@
               variant="outlined"
               @click="() => utiliserBorne('fixe')"
             >
-              {{ t('règles.nouvelle.borneFixes') }}
+              {{ t('règles.nouvelle.borneFixe') }}
             </v-btn>
             <v-btn
               class="ma-3"
@@ -64,9 +65,9 @@
               {{ t('règles.nouvelle.borneDynamiqueVariable') }}
             </v-btn>
             <v-btn
+              v-if="idTableauPourRègle"
               class="ma-3"
               variant="outlined"
-              :disabled="!idTableauPourRègle"
               @click="() => utiliserBorne('dynamiqueColonne')"
             >
               {{ t('règles.nouvelle.borneDynamiqueColonne') }}
@@ -76,10 +77,12 @@
             <v-select
               v-model="opBorne"
               :items="['>', '>=', '<', '<=']"
+              variant="outlined"
             />
-            <v-input
+            <v-text-field
               v-if="typeBornes === 'fixe'"
               v-model="valBorneFixe"
+              variant="outlined"
             />
             <SelecteurVariable
               v-else-if="typeBornes === 'dynamiqueVariable'"
@@ -129,13 +132,13 @@
           </v-window-item>
           <v-window-item :value="5">
             <div class="text-center">
-                <v-btn
-                  class="mt-3"
-                  variant="outlined"
-                  @click="() => confirmer()"
-                >
-                  {{ t('règles.nouvelle.confirmer') }}
-                </v-btn>
+              <v-btn
+                class="mt-3"
+                variant="outlined"
+                @click="() => confirmer()"
+              >
+                {{ t('règles.nouvelle.confirmer') }}
+              </v-btn>
             </div>
           </v-window-item>
         </v-window>
@@ -317,7 +320,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
             ? valBorneFixe.value
             : typeBornes.value === 'dynamiqueColonne'
               ? valBorneDynamiqueColonne.value
-              : valBorneDynamiqueVariable.value),
+              : valBorneDynamiqueVariable.value?.length),
         visible: true,
       };
     case 'ValeurCatégorie':

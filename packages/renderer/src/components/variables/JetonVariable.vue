@@ -6,8 +6,8 @@
     label
     size="small"
   >
+    {{ nomTraduit || t('variables.sansNom') }}
     <slot>
-      {{ nomTraduit || t('variables.sansNom') }}
     </slot>
   </v-chip>
 </template>

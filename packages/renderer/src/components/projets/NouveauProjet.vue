@@ -26,7 +26,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('communs.indiceNom')"
+              :indice-nom="t('projet.nouveau.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -114,6 +114,8 @@ import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useRouter} from 'vue-router';
 import {constellation} from '../utils';
+
+const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 
 const constl = constellation();
 
@@ -247,6 +249,8 @@ const créerProjet = async () => {
   await Promise.all(
     bds.value.map(async idBd => await constl.projets.ajouterBdProjet({idProjet, idBd})),
   );
+
+  émettre('nouveau', idProjet);
 
   fermer();
   if (ouvrirAprèsCréation.value)

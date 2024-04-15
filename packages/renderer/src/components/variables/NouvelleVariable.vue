@@ -106,7 +106,10 @@
               effacable
               @effacer="() => effacerRègle(r.id)"
             ></item-regle>
-            <p v-if="!règles.length" class="my-2 text-center text-disabled">
+            <p
+              v-if="!règles.length"
+              class="my-2 text-center text-disabled"
+            >
               {{ t('variables.règles.aucune') }}
             </p>
           </v-window-item>
@@ -163,6 +166,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import {catégoriesBase} from './utils';
 import {constellation} from '../utils';
+
+const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
 const constl = constellation();
 
@@ -332,6 +337,8 @@ const créerVariable = async () => {
   if (unités.value) {
     promesses.push(constl.variables.sauvegarderUnitésVariable({idVariable, idUnité: unités.value}));
   }
+
+  émettre('nouvelle', idVariable);
 
   fermer();
 };

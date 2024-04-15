@@ -34,7 +34,7 @@
       </carte-nuée>
     </template>
     <template #nouveau="{nouveau}">
-      <nouvelle-nuée @nouveau="nouveau">
+      <nouvelle-nuée @nouvelle="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
