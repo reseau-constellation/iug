@@ -34,11 +34,11 @@
       </carte-bd>
     </template>
     <template #nouveau="{nouveau}">
-      <nouvelle-bd @nouveau="nouveau">
+      <nouvelle-bd @nouvelle="nouveau">
         <template #activator="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
-            :title="t('bds.nouveau.btn')"
+            :title="t('bds.nouvelle.btn')"
             prepend-icon="mdi-plus"
           >
           </v-list-item>
