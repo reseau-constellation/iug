@@ -50,18 +50,28 @@
         </v-list>
       </div>
       <div v-else>
+        <v-skeleton-loader
+          v-if="!connexionsSFIP"
+          type="list-item-avatar-two-line@3"
+        />
         <v-list
-          v-if="connexionsSFIP"
+          v-else-if="connexionsSFIP.length"
           max-height="500"
           style="overflow-y: scroll"
         >
-          <ItemConnexionSFIP
+          <item-connexion-sfip
             v-for="c in connexionsSFIP"
             :key="c.pair"
             :pair="c.pair"
             :adresses="c.adresses"
           />
         </v-list>
+        <p
+          v-else
+          class="my-6 text-center text-disabled text-h6"
+        >
+          {{ t('pages.compte.connexions.aucuneSFIP') }}
+        </p>
       </div>
     </v-card-text>
   </v-card>
@@ -74,7 +84,7 @@ import {constellation, suivre} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
-import ItemConnexionSFIP from './ItemConnexionSFIP.vue';
+import ItemConnexionSfip from './ItemConnexionSFIP.vue';
 import CarteMembre from '../membres/CarteMembre.vue';
 
 const constl = constellation();
