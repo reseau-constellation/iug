@@ -51,7 +51,7 @@
             ></SelecteurBd>
             <v-checkbox
               v-model="copierDonnées"
-              :label="t('bds.nouvelle.copierDonnéesBd')"
+              :label="t('bds.copier.copierDonnéesBd')"
             />
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('gabaritNuée')">
@@ -65,7 +65,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('communs.indiceNom')"
+              :indice-nom="t('bds.nouvelle.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -89,41 +89,6 @@
               :originaux="motsClefs"
               @selectionnee="ids => (motsClefs = ids)"
             />
-          </v-window-item>
-          <v-window-item :value="listeÉtapes.indexOf('tableaux')">
-            <nouveau-tableau
-              importation-permise
-              @sauvegarder="ajouterTableau"
-            >
-              <template #activator="{props: propsActivateur}">
-                <v-btn v-bind="propsActivateur" />
-              </template>
-            </nouveau-tableau>
-
-            <v-list>
-              <ItemSpecificationTableau
-                v-for="tbl in tableaux"
-                :key="tbl.clef"
-                :clef="tbl.clef"
-                :noms="tbl.noms"
-                :colonnes="tbl.cols"
-                modification-permise
-                @modifier-noms="noms => modifierNomsTableau({clefTableau: tbl.clef, noms})"
-                @nouvelle-colonne="
-                  col =>
-                    ajouterColonneTableau({
-                      clefTableau: tbl.clef,
-                      idVariable: col.idVariable,
-                      index: col.index,
-                      règles: col.règles,
-                    })
-                "
-                @effacer-colonne="
-                  idColonne => effacerColonneTableau({clefTableau: tbl.clef, idColonne})
-                "
-                @effacer-tableau="() => effacerTableau(tbl.clef)"
-              />
-            </v-list>
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('licence')">
             <choix-licence
@@ -157,19 +122,14 @@
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('confirmation')">
             <div class="text-center">
-              <h3 class="text-h6 font-weight-light mb-2">
-                {{ t('bds.nouvelle.texteCréer') }}
-              </h3>
-              <p>
-                <v-btn
-                  class="mt-3"
-                  variant="outlined"
-                  :loading="enCréation"
-                  @click="() => créerBd()"
-                >
-                  {{ t('bds.nouvelle.texteBtnCréation') }}
-                </v-btn>
-              </p>
+              <v-btn
+                class="mt-3"
+                variant="outlined"
+                :loading="enCréation"
+                @click="() => créerBd()"
+              >
+                {{ t('bds.nouvelle.texteBtnCréation') }}
+              </v-btn>  
               <v-checkbox
                 v-model="ouvrirAprèsCréation"
                 :label="t('bds.nouvelle.ouvrirAprèsCréation')"
@@ -204,24 +164,23 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, tableaux as tblx, valid, types} from '@constl/ipa';
+import type {bds, types} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
-import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
-import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
-import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import {constellation} from '../utils';
+
+const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
 const constl = constellation();
 
@@ -242,7 +201,6 @@ const listeÉtapes = [
   'noms',
   'descriptions',
   'motsClefs',
-  'tableaux',
   'licence',
   'licenceContenu',
   'statut',
@@ -436,74 +394,6 @@ const licence = ref<string>();
 const licenceContenuPareil = ref(true);
 const licenceContenu = ref<string>();
 
-// Tableaux
-const tableaux = ref<
-  {
-    clef: string;
-    noms: {[langue: string]: string};
-    cols: {info: tblx.InfoCol; règles: valid.règleVariable[]}[];
-  }[]
->([]);
-const ajouterTableau = () => {
-  tableaux.value = [...tableaux.value, {clef: uuidv4(), noms: {}, cols: []}];
-};
-const effacerTableau = (clef: string) => {
-  tableaux.value = tableaux.value.filter(t => t.clef !== clef);
-};
-const modifierNomsTableau = ({
-  clefTableau,
-  noms,
-}: {
-  clefTableau: string;
-  noms: {[langue: string]: string};
-}) => {
-  tableaux.value = tableaux.value.map(t => {
-    return t.clef === clefTableau ? {...t, noms} : t;
-  });
-};
-
-// Colonnes tableaux
-const ajouterColonneTableau = ({
-  clefTableau,
-  idVariable,
-  index,
-  règles,
-}: {
-  clefTableau: string;
-  idVariable: string;
-  index?: boolean;
-  règles: valid.règleVariable[];
-}) => {
-  const nouvelleColonne = {
-    info: {
-      id: uuidv4(),
-      variable: idVariable,
-      index,
-    },
-    règles,
-  };
-
-  tableaux.value = tableaux.value.map(t => {
-    return t.clef === clefTableau
-      ? {clef: t.clef, noms: t.noms, cols: [...t.cols, nouvelleColonne]}
-      : t;
-  });
-};
-
-const effacerColonneTableau = ({
-  clefTableau,
-  idColonne,
-}: {
-  clefTableau: string;
-  idColonne: string;
-}) => {
-  tableaux.value = tableaux.value.map(t => {
-    return t.clef === clefTableau
-      ? {clef: t.clef, noms: t.noms, cols: t.cols.filter(c => c.info.id !== idColonne)}
-      : t;
-  });
-};
-
 // Statut
 const statut = ref<types.schémaStatut>({statut: 'active'});
 
@@ -541,46 +431,6 @@ const créerBd = async () => {
     });
     await constl.bds.ajouterMotsClefsBd({idBd, idsMotsClefs: motsClefs.value});
 
-    // Ajouter les tableaux
-    for (const tbl of tableaux.value) {
-      const idTableau = await constl.bds.ajouterTableauBd({
-        idBd,
-        clefTableau: tbl.clef,
-      });
-      if (!idTableau) return;
-
-      await constl.tableaux.sauvegarderNomsTableau({
-        idTableau,
-        noms: tbl.noms,
-      });
-
-      // Ajouter les colonnes
-      for (const col of tbl.cols) {
-        const idColonne = col.info.id;
-        await constl.tableaux.ajouterColonneTableau({
-          idTableau,
-          idVariable: col.info.variable,
-          idColonne,
-        });
-        if (col.info.index)
-          await constl.tableaux.changerColIndex({
-            idTableau,
-            idColonne,
-            val: col.info.index,
-          });
-
-        // Ajotuer les règles colonne
-        for (const règle of col.règles) {
-          throw new Error('À faire' + JSON.stringify(règle));
-          /**
-          await constl.tableaux.ajouterRègleTableau({
-            idTableau,
-            idColonne,
-            règle: règle.règle,
-          });*/
-        }
-      }
-    }
   } else if (cheminement.value === 'nuée') {
     if (!gabaritNuée.value) return;
     idBd = await constl.bds.créerBdDeSchéma({schéma: gabaritNuée.value});
@@ -597,7 +447,7 @@ const créerBd = async () => {
     statut: statut.value,
   });
 
-  if (!idBd) throw new Error('Bd non créée.');
+  émettre('nouvelle', idBd);
   fermer();
   if (ouvrirAprèsCréation.value) router.push(encodeURI(`/données/bd/${encodeURIComponent(idBd)}`));
 };
