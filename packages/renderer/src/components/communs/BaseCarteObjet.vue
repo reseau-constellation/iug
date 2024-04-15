@@ -58,7 +58,10 @@
             <v-icon>mdi-dots-horizontal</v-icon>
             <v-menu activator="parent">
               <v-list>
-                <carte-copier @copier="copier">
+                <carte-copier
+                  v-if="false"
+                  @copier="copier"
+                >
                   <template #activator="{props: propsActivateur}">
                     <v-list-item
                       v-bind="propsActivateur"
@@ -75,12 +78,11 @@
                   <template #activator="{props: propsActivateur}">
                     <v-list-item
                       v-bind="propsActivateur"
-                      prepend-icon="mdi-pin"
                     >
                       <template #prepend>
-                        <IcôneEpingle :id="id"></IcôneEpingle>
+                        <IconeEpingle :id="id" />
                       </template>
-                      <v-list-item-title>{{ t('épingler.épingler') }}</v-list-item-title>
+                      <v-list-item-title>{{ épinglé ? t('épingler.épinglé') : t('épingler.épingler') }}</v-list-item-title>
                     </v-list-item>
                   </template>
                 </CarteEpingler>
@@ -148,7 +150,7 @@
           <template #activator="{props: propsActivateurAuteurs}">
             <v-chip
               v-bind="propsActivateurAuteurs"
-              class="me-2 mb-2"
+              class="me-2"
               variant="outlined"
               prepend-icon="mdi-plus"
               size="small"
@@ -195,7 +197,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
-import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';
+import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 
 import DivisionCarte from './DivisionCarte.vue';
 import GererAuteurs from './GererAuteurs.vue';
@@ -204,7 +206,6 @@ import DialogueNoms from './listeNoms/DialogueNoms.vue';
 import LienObjet from './LienObjet.vue';
 import CarteCopier from './CarteCopier.vue';
 import CarteEffacer from './CarteEffacer.vue';
-import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{
   id: string;
@@ -242,6 +243,10 @@ const nom = அகராதியிலிருந்து_மொழிபெ�
 
 // Description
 const description = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.descriptions));
+
+// Épingles
+const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
+const épinglé = computed(()=>statutFavoris.value);
 
 // Effacer objet
 const effacer = async () => {
