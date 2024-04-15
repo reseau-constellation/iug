@@ -36,7 +36,11 @@
             />
           </v-window-item>
           <v-window-item :value="1">
-            <v-checkbox></v-checkbox>
+            <v-checkbox
+              v-model="index"
+              :label="t('colonnes.nouvelle.index')"
+              color="primary"
+            ></v-checkbox>
           </v-window-item>
           <v-window-item :value="2">
             <v-list>
@@ -80,7 +84,7 @@
               variant="outlined"
               @click="() => créerColonne()"
             >
-              {{ t('') }}
+              {{ t('colonnes.nouvelle.texteBtnCréation') }}
             </v-btn>
           </v-window-item>
         </v-window>
@@ -161,6 +165,12 @@ const titreCarte = computed(() => {
   switch (é) {
     case 'variable':
       return 'colonnes.nouvelle.titreVariable';
+    case 'index':
+      return 'colonnes.nouvelle.titreIndex';
+    case 'règles':
+      return 'colonnes.nouvelle.titreRègles';
+    case 'confirmation':
+      return 'colonnes.nouvelle.titreConfirmation';
     default:
       return '';
   }
@@ -171,6 +181,12 @@ const sousTitreCarte = computed(() => {
   switch (é) {
     case 'variable':
       return 'colonnes.nouvelle.sousTitreVariable';
+    case 'index':
+      return 'colonnes.nouvelle.sousTitreIndex';
+    case 'règles':
+      return 'colonnes.nouvelle.sousTitreRègles';
+    case 'confirmation':
+      return 'colonnes.nouvelle.sousTitreConfirmation';
     default:
       return '';
   }
@@ -274,7 +290,7 @@ const créerColonne = async () => {
     idVariable,
     index: index.value,
     idColonne: props.idColonne,
-    règles: règlesColonne.value.map(r=>r.règle),
+    règles: règlesColonne.value.map(r => r.règle),
   });
 
   fermer();
@@ -286,5 +302,6 @@ const fermer = () => {
   règlesColonne.value = [];
 
   dialogue.value = false;
+  étape.value = 0;
 };
 </script>

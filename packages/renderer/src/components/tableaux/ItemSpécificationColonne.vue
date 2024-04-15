@@ -3,37 +3,23 @@
     <v-list-item-title>
       {{ nomVariableTraduit }}
     </v-list-item-title>
-    <v-switch
-      v-model="choixIndex"
-      :disabled="!modificationPermise"
-    >
-      <template #label>
-        {{ t('tableaux.colonnes.optionIndex') }}
-        <v-tooltip :text="t('tableaux.colonnes.indiceIndex')">
-          <template #activator="{props: propsActivateur}">
-            <v-icon
-              v-bind="propsActivateur"
-              icon="mdi-information-outline"
-            />
-          </template>
-        </v-tooltip>
-      </template>
-    </v-switch>
-    <v-list-item-action>
+    
+    <template #append>
       <v-btn
         v-if="modificationPermise"
         icon="mdi-delete"
+        variant="flat"
         @click="effacerColonne"
       />
-    </v-list-item-action>
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type { valid } from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 
-import { ref, watchEffect } from 'vue';
+import {ref, watchEffect} from 'vue';
 
-import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation, suivre} from '/@/components/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -54,24 +40,27 @@ const émettre = defineEmits<{
 
 const constl = constellation();
 
-
 const choixVariable = ref<string>(props.idVariable);
-watchEffect(()=>{
+watchEffect(() => {
   choixVariable.value = props.idVariable;
 });
 
 // Nom variable
-const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: props.idVariable}, {});
+const nomsVariable = suivre(
+  constl.variables.suivreNomsVariable,
+  {idVariable: props.idVariable},
+  {},
+);
 const nomVariableTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
 
 // Index
 const choixIndex = ref<boolean>(props.index);
-watchEffect(()=>{
+watchEffect(() => {
   choixIndex.value = props.index;
 });
 
 // Modification
-watchEffect(()=>{
+watchEffect(() => {
   const spécColonne = {
     idVariable: choixVariable.value,
     index: choixIndex.value,

@@ -41,6 +41,7 @@
         </v-tooltip>
       </template>
     </carte-code-nuee>
+    {{  tableaux }}
   </v-container>
 </template>
 
@@ -81,4 +82,8 @@ const activerApprouvable = async () => {
 
 }
 */
+
+// Tableaux
+const tableaux = suivre(constl.nuées.suivreTableauxNuée, {idNuée: props.id});
+
 </script>

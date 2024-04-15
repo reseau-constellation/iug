@@ -89,9 +89,7 @@ export const constellationPrêt = async ({page}: {page: Page}) => {
 
 export const changerLangue = async ({page, langue}: {page: Page; langue: string}) => {
   const nomLangue = nuchabäl.rubiChabäl({runuk: langue});
-  console.log('ici 1');
   const btnLangues = await page.waitForSelector('.mdi-earth');
-  console.log('ici 2');
   await btnLangues.click();
 
   if (nomLangue) {

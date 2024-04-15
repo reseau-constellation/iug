@@ -14,6 +14,13 @@
       <v-card-item>
         <v-card-title class="d-flex">
           {{ t(titreCarte) }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="() => (dialogue = false)"
+          ></v-btn>
         </v-card-title>
         <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
@@ -27,7 +34,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('communs.indiceNom')"
+              :indice-nom="t('tableaux.nouveau.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
@@ -49,8 +56,8 @@
               </nouvelle-colonne>
               <ItemSpecificationColonne
                 v-for="col in colonnes"
-                :id="col.info.id" 
-                :key="col.info.id" 
+                :id="col.info.id"
+                :key="col.info.id"
                 :id-variable="col.info.variable"
                 :index="col.info.index"
                 :règles="col.règles"
@@ -62,18 +69,13 @@
           </v-window-item>
           <v-window-item :value="2">
             <div class="text-center">
-              <h3 class="text-h6 font-weight-light mb-2">
-                {{ t('tableaux.nouveau.texteCréer') }}
-              </h3>
-              <p>
-                <v-btn
-                  class="mt-3"
-                  variant="outlined"
-                  @click="confirmer"
-                >
-                  {{ t('tableaux.nouveau.texteBtnCréation') }}
-                </v-btn>
-              </p>
+              <v-btn
+                class="mt-3"
+                variant="outlined"
+                @click="confirmer"
+              >
+                {{ t('tableaux.nouveau.texteBtnCréation') }}
+              </v-btn>
             </div>
           </v-window-item>
         </v-window>
@@ -107,7 +109,7 @@ import type {tableaux as tblx, valid} from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
@@ -217,10 +219,10 @@ const ajouterColonne = ({
   index,
   règles,
 }: {
-    idVariable: string;
-    idColonne?: string | undefined;
-    index: boolean;
-    règles: valid.règleVariable[];
+  idVariable: string;
+  idColonne?: string | undefined;
+  index: boolean;
+  règles: valid.règleVariable[];
 }) => {
   colonnes.value = [
     ...colonnes.value,
@@ -236,11 +238,11 @@ const ajouterColonne = ({
 };
 const modifierColonne = () => {};
 const effacerColonne = (idColonne: string) => {
-  colonnes.value = colonnes.value.filter(c=>c.info.id !== idColonne);
+  colonnes.value = colonnes.value.filter(c => c.info.id !== idColonne);
 };
 
-const variablesDéjàAjoutées = computed(()=>{
-  return colonnes.value.map(c=>c.info.variable);
+const variablesDéjàAjoutées = computed(() => {
+  return colonnes.value.map(c => c.info.variable);
 });
 
 // Confirmation

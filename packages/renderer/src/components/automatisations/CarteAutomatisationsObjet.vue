@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title>{{ t('automatisations.carte.titre') }}</v-card-title>

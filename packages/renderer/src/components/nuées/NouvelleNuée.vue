@@ -131,7 +131,10 @@
               >
                 {{ t('nuées.nouvelle.texteBtnCréation') }}
               </v-btn>
-              <v-checkbox v-model="ouvrirAprèsCréation" :label="t('nuées.nouvelle.ouvrirAprèsCréation')">
+              <v-checkbox
+                v-model="ouvrirAprèsCréation"
+                :label="t('nuées.nouvelle.ouvrirAprèsCréation')"
+              >
               </v-checkbox>
             </div>
           </v-window-item>

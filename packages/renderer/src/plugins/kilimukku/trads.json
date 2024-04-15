@@ -284,13 +284,59 @@
         "sousTitreStatut": "Spécifier l'état de vos données",
         "titreGabaritBd": "Créer de gabarit",
         "sousTitreGabaritBd": "Choisir une BD gabarit",
-        "btn": "Nouvelle base de données"
+        "btn": "Nouvelle base de données",
+        "titreConfirmation": "Confirmation", 
+        "sousTitreConfirmation": "Confirmer création BD",
+        "texteBtnCréation": "Créer BD",
+        "ouvrirAprèsCréation": "Ouvrir la BD"
+      },
+      "copier": {
+        "copierDonnnées": "Copier aussi les données"
       },
       "recherche": {
+        "étiquette": "Rechercher une base de données",
         "aucunRésultat": "Aucune BD retrouvée"
       },
       "aucunMotClef": "Aucun mot-clef"
     },
+
+    "tableaux": {
+      "nouveau": {
+        "titreNoms": "Nom du tableau",
+        "sousTitreNoms": "Choisissez un nom pour votre tableau",
+        "texteIndiceNom": "Par exemple, « Observations » ou « Sites ».",
+        "titreColonnes": "Ajout de colonnes",
+        "sousTitreColonnes": "Vous pouvez aussi les ajouter plus tard",
+        "ajouterColonne": "Nouvelle colonne",
+        "titreConfirmation": "Confirmation",
+        "sousTitreConfirmation": "Confirmer création tableau",
+        "texteBtnCréation": "Créer tableau"
+      },
+      "règles": {
+        "nouvelle": "Ajouter une règle"
+      }
+    },
+
+    "nuées": {
+      "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».","ouvrirAprèsCréation": "Ouvrir la nuée"
+    },
+
+    "colonnes": {
+      "nouvelle": {
+        "titreVariable": "Choisir variable",
+        "sousTitreVariable": "La variable associée avec la colonne",
+        "titreIndex": "Index",
+        "sousTitreIndex": "Spécifier si c'est une colonne index",
+        "index": "Colonne index",
+        "titreRègles": "Règles colonne",
+        "sousTitreRègles": "Choisir des règles pour la colonne",
+        "titreConfirmation": "Confirmation",
+        "sousTitreConfirmation": "Confirmer création colonne",
+        "texteBtnCréation": "Créer colonne"
+      }
+    },
+    
+
     "motsClefs": {
       "nouveau": {
         "btn": "Nouveau mot-clef"
@@ -337,7 +383,8 @@
         "sousTitreRègles": "Spécifier les valeurs que cette variable peut prendre",
         "titreConfirmation": "Confirmation",
         "sousTitreConfirmation": "Confirmer la création de la variable",
-        "texteBtnCréation": "Créer variable"
+        "texteBtnCréation": "Créer variable",
+        "btn": "Nouvelle variable"
       },
       "catégories": {
         "numérique": "Numérique",
@@ -368,18 +415,29 @@
       "règles": {
         "nouvelle": "Ajouter une règle",
         "aucune": "Aucune règle spécifiée"
+      },
+      "recherche": {
+        "étiquette": "Rechercher une variable",
+        "aucunRésultat": "Aucune variable retrouvée"
       }
     },
     "règles": {
       "nouvelle": {
         "titreTypeRègle": "Type de  règle",
         "sousTitreTypeRègle": "Choisir le genre de règle",
+        "titreBorneFixeOuDynamique": "Type de borne",
+        "sousTitreBorneFixeOuDynamique": "Les bornes peuvent être fixes ou dynamiques",
+        "borneFixe": "Borne fixe",
+        "borneDynamiqueVariable": "Borne dynamique variable",
+        "borneDynamiqueColonne": "Borne dynamique colonne",
         "titreConfirmer": "Confirmation", 
         "sousTitreConfirmer": "Confirmer la création de la règle",
         "confirmer": "Créer règle"
       },
       "infos": {
-        "existe": "Cette variable ne doit pas contenir de valeurs manquantes"
+        "existe": "Cette variable ne doit pas contenir de valeurs manquantes",
+        "bornes": "Cette variable doit être {op} à {val}",
+        "valeurCatégorique": "Valeurs limités selon liste pré-définie"
       },
       "types": {
         "existe": "Valeurs non-manquantes",
@@ -626,6 +684,7 @@
         "sousTitreNoms": "நீங்கள் வேலை செய்யும் இடத்தின் மொழிகளுக்கு முன்னுரிமை கொடுங்கள்",
         "titreDescriptions": "கூட்டத்தின் விளக்கம்",
         "sousTitreDescriptions": "கூட்டத்தின் நோக்கம் விள்ளக்கும் உரை உள்ளிடுங்கள்",
+        "texteÉtiquetteDescription": "கூட்டத்தின் விளக்கம்",
         "texteIndiceDescription": "விளக்கத்தை உள்ளிடுங்கள்",
         "texteAucuneDescription": "மேலே விளக்கத்தை உள்ளிடுங்கள்",
         "titreAutorisation": "கூட்டத்தின் அங்கீகாரம்",
