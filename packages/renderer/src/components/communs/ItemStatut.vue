@@ -9,7 +9,7 @@
       </v-icon>
     </template>
     <v-list-item-title>
-      {{ t(`statut.info.${statut.statut}`) }}
+      {{ t(`données.statut.${statut.statut}`) }}
       <v-btn
         v-if="statut.idNouvelle"
         icon="mdi-open-in-new"

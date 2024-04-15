@@ -10,11 +10,11 @@
           <v-icon>{{ isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right' }}</v-icon>
         </template>
         <template #title="{item}">
-          <v-breadcrumbs-item 
+          <v-breadcrumbs-item
             :disabled="item.disabled"
             @click="item.href && $router.push(item.href)"
           >
-            <texteTronqué
+            <TexteTronque
               :texte="item.title"
               :longueur-max="35"
             />
@@ -25,12 +25,12 @@
         v-else
         icon="mdi-arrow-left-top"
         variant="flat"
-        @click="()=>$router.push(encodeURI('/données/'))"
+        @click="() => $router.push(encodeURI('/données/'))"
       />
     </div>
 
     <image-editable
-      :src-image="srcImgBd"
+      :src-image="image"
       :img-defaut="imgDéfaut"
       :editable="!!monAutorisation"
       :taille-avatar="mdAndUp ? 275 : 175"
@@ -68,8 +68,6 @@
 
       <v-spacer />
     </div>
-
-    
 
     <div class="text-center">
       <SérieJetons
@@ -115,7 +113,7 @@
           <v-tooltip
             open-delay="200"
             location="bottom"
-            :text="t('communs.épingler')"
+            :text="t('épingler.épingler')"
           >
             <template #activator="{props: propsActivateurIndice}">
               <v-btn
@@ -123,7 +121,7 @@
                 icon
                 variant="flat"
               >
-                <IcôneEpingle :id="id"></IcôneEpingle>
+                <IconeEpingle :id="id" />
               </v-btn>
             </template>
           </v-tooltip>
@@ -243,11 +241,24 @@
       </p>
       <v-divider class="mb-2" />
       <div class="d-flex flex-wrap">
-        <item-statut
+        <v-card
           v-if="statut && (statut.statut !== 'active' || monAutorisation)"
-          type-objet="bd"
-          :statut="statut"
-        />
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <carte-statut-bd
+            :id-bd="id"
+          >
+            <template #activator="{props: propsActivateur}">
+              <item-statut
+                v-bind="propsActivateur"
+                type-objet="bd"
+                :statut="statut"
+              />
+            </template>
+          </carte-statut-bd>
+        </v-card>
         <v-card
           v-if="false"
           flat
@@ -288,6 +299,7 @@
         >
           <dialogue-licence
             :licence="licence"
+            :licence-contenu="licenceContenu"
             :permission-modifier="monAutorisation === 'MODÉRATEUR'"
             @changer-licence="changerLicence"
           >
@@ -429,27 +441,8 @@
           </importer-ou-exporter>
         </div>
 
-        <!--<transition-group
-          v-else
-          name="fade"
-          mode="out-in"
-          class="d-flex flex-wrap justify-center"
-        >
-          <item-tableau
-            v-for="tableau in tableauxOrdonnés"
-            :id="tableau.id"
-            :key="tableau.id"
-            :id-bd="id"
-            @click="
-              $router.push(
-                `/bd/visualiser/${encodeURIComponent(id)}/tableau/${encodeURIComponent(
-                  tableau.id,
-                )}`,
-              )
-            "
-          />
-        </transition-group>-->
         <v-tabs
+          v-if="mdAndUp"
           v-model="tableauActif"
           class="mt-2"
         >
@@ -463,16 +456,25 @@
           >
             <TexteTronque
               :texte="ong.clef"
-              :longueur-max="13"
+              :longueur-max="20"
             />
-            <v-icon
-              class="ms-2"
-              icon="mdi-pencil"
-              variant="flat"
-              size="small"
-            />
+            <carte-tableau-bd
+              :id-bd="id"
+              :id-tableau="ong.id"
+              :permission-modifier="!!monAutorisation"
+            >
+              <template #activator="{props: propsActivateur}">
+                <v-icon
+                  v-bind="propsActivateur"
+                  class="ms-2"
+                  icon="mdi-pencil"
+                  variant="flat"
+                  size="small"
+                />
+              </template>
+            </carte-tableau-bd>
           </v-tab>
-          
+
           <nouveau-tableau
             :id-bd="id"
             importation-permise
@@ -483,10 +485,11 @@
                 v-if="monAutorisation"
                 v-bind="propsActivateur"
                 :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
+                :disabled="ajoutTableauEnCours"
                 variant="tonal"
                 class="mx-1"
                 label
-                :disabled="ajoutTableauEnCours"
+                @click.stop
               >
                 {{ t('tableaux.nouveau') }}
                 <v-progress-circular
@@ -498,9 +501,10 @@
                 />
               </v-tab>
             </template>
-          </nouveau-tableau>  
+          </nouveau-tableau>
         </v-tabs>
         <v-slide-group
+          v-else
           v-model="tableauActif"
           class="mt-4"
           show-arrows
@@ -569,14 +573,14 @@
           :key="tableau.clef"
           :value="tableau.clef"
         >
-          <v-data-table> </v-data-table>
+          <tableau-bd :id-tableau="tableau.id" />
         </v-window-item>
       </v-window>
     </v-card-text>
   </v-container>
 </template>
 <script setup lang="ts">
-import type {tableaux as typesTableaux} from '@constl/ipa';
+import type {tableaux as typesTableaux, types } from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 
@@ -590,16 +594,17 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import texteTronqué from '/@/components/communs/TexteTronqué.vue';
+import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
-import IcôneEpingle from '/@/components/épingles/IcôneÉpingle.vue';
+import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
 import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
 import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
@@ -618,21 +623,20 @@ import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsO
 import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
-
-import {ajusterTexteTraductible} from '/@/utils';
-import type {valid} from '@constl/ipa';
+import TableauBd from '/@/components/tableaux/TableauBd.vue';
+import CarteTableauBd from '/@/components/tableaux/CarteTableauBd.vue';
 import ItemStatut from '/@/components/communs/ItemStatut.vue';
 
-import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-
+import {ajusterTexteTraductible, sourceImage} from '/@/utils';
+import type {valid} from '@constl/ipa';
 
 const props = defineProps<{id: string}>();
 
 const constl = constellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
@@ -682,24 +686,18 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Image
-const imageBd = suivre(constl.bds.suivreImage, {idBd: props.id});
-const srcImgBd = computed(() => {
-  if (imageBd.value) {
-    return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const image = sourceImage(suivre(constl.bds.suivreImage, {idBd: props.id}));
 
 const imgDéfaut = obtImageDéco('logoBD');
 
 const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) => {
   if (image) {
-    await constl.profil.sauvegarderImage({
+    await constl.bds.sauvegarderImage({
+      idBd: props.id,
       image: {contenu: new Uint8Array(image.contenu), nomFichier: image.fichier},
     });
   } else {
-    await constl.profil.effacerImage();
+    await constl.bds.effacerImage({idBd: props.id});
   }
 };
 
@@ -807,8 +805,12 @@ const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
 
 // Licence
 const licence = suivre(constl.bds.suivreLicenceBd, {idBd: props.id});
-const changerLicence = async (nouvelleLicence: string) => {
+const licenceContenu = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.id});
+const changerLicence = async ({licence: nouvelleLicence,  licenceContenu: nouvelleLicenceContenu}:  { licence: string; licenceContenu?: string | undefined; }) => {
   await constl.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
+  if (nouvelleLicenceContenu) {
+    await constl.bds.changerLicenceContenuBd({ idBd: props.id, licenceContenu: nouvelleLicenceContenu});
+  }
 };
 
 // Navigation

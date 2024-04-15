@@ -36,7 +36,6 @@ import {ref, watchEffect} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-defineProps<{original?: types.schémaStatut}>();
 const émettre = defineEmits<{
   (é: 'choisir', choix: types.schémaStatut): void;
 }>();
