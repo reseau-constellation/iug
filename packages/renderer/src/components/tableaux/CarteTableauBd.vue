@@ -1,5 +1,8 @@
 <template>
   <carte-tableau
+    :noms="{}"
+    :descriptions="{}"
+    :permission-modifier="false"
     @sauvegarder="changements => sauvegarder(changements)"
     @effacer="() => effacerTableau()"
   >
@@ -23,7 +26,6 @@ const constl = constellation();
 // Contrôles
 const sauvegarder = async ({
   noms,
-  descrs,
 }: {
   noms?: {[langue: string]: string};
   descrs?: {[langue: string]: string};
@@ -31,7 +33,6 @@ const sauvegarder = async ({
   const ajoutNoms = noms
     ? constl.tableaux.sauvegarderNomsTableau({idTableau: props.idTableau, noms})
     : undefined;
-  constl.nuées.index;
   await Promise.all([ajoutNoms]);
 };
 const effacerTableau = async () => {

@@ -303,6 +303,7 @@
 
     "tableaux": {
       "aucun": "Aucun tableau",
+      "importer": "Importer données",
       "nouveau": {
         "titreNoms": "Nom du tableau",
         "sousTitreNoms": "Choisissez un nom pour votre tableau",

@@ -20,7 +20,7 @@
     </template>
     <template #no-data>
       <p class="my-4 text-h6 text-disabled">{{ t('tableaux.aucuneDonnée') }}</p>
-      <carte-importation>
+      <carte-importation :id-tableau="idTableau" :colonnes-tableau="colonnes || []">
         <template #activator="{props: propsActivateur}">
           <v-btn
             v-bind="propsActivateur"

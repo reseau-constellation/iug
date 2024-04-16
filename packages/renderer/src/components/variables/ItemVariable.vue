@@ -3,11 +3,11 @@
     <template #prepend>
       <v-icon>{{ icône }}</v-icon>
     </template>
-    <v-list-item-title>
+    <template #title>
       <slot>
         {{ nomTraduit || t('variables.sansNom') }}
       </slot>
-    </v-list-item-title>
+    </template>
   </v-list-item>
 </template>
 
