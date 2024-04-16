@@ -129,6 +129,7 @@
       </CarteEpingler>
 
       <importer-ou-exporter
+        v-if="false"
         :info-objet="{id, typeObjet: 'bd'}"
         :type="monAutorisation ? undefined : 'exportation'"
       >
@@ -167,7 +168,7 @@
         </template>
       </carte-code-bd>
 
-      <carte-copier :id="id">
+      <carte-copier v-if="false" :id="id">
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
@@ -327,6 +328,7 @@
           </CarteRéplicationsObjet>
         </v-card>
         <v-card
+          v-if="false"
           flat
           width="200"
           class="mb-3"
@@ -385,62 +387,6 @@
           {{ t('bds.tableaux') }}
         </p>
         <v-divider />
-        <v-skeleton-loader
-          v-if="tableaux === null"
-          type="paragraph"
-        />
-        <div
-          v-else-if="tableaux && !tableaux.length"
-          class="text-center"
-        >
-          <p class="text-h5 mt-5">
-            {{ t('bds.tableaux') }}
-          </p>
-          <v-img
-            :src="imageVide"
-            class="my-5"
-            contain
-            height="175px"
-          />
-          <nouveau-tableau
-            :id-bd="id"
-            importation-permise
-          >
-            <template #activator="{props: propsActivateur}">
-              <v-btn
-                v-if="monAutorisation"
-                v-bind="propsActivateur"
-                color="primary"
-                class="mx-2"
-                variant="outlined"
-              >
-                <template #prepend>
-                  <v-icon
-                    icon="mdi-table"
-                    start
-                  />
-                </template>
-                {{ t('bds.ajouterTableau') }}
-              </v-btn>
-            </template>
-          </nouveau-tableau>
-          <importer-ou-exporter
-            type="importation"
-            :automatiser="true"
-            :info-objet="{id, typeObjet: 'bd'}"
-          >
-            <v-btn
-              v-if="monAutorisation"
-              color="primary"
-              class="mx-2"
-              variant="outlined"
-              icon="mdi-import"
-            >
-              {{ t('bds.importation') }}
-            </v-btn>
-          </importer-ou-exporter>
-        </div>
-
         <v-tabs
           v-if="mdAndUp"
           v-model="tableauActif"
@@ -476,8 +422,6 @@
           </v-tab>
 
           <nouveau-tableau
-            :id-bd="id"
-            importation-permise
             @sauvegarder="ajouterTableau"
           >
             <template #activator="{props: propsActivateur}">
@@ -539,8 +483,6 @@
             value="nouveau"
           >
             <nouveau-tableau
-              :id-bd="id"
-              importation-permise
               @sauvegarder="ajouterTableau"
             >
               <template #activator="{props: propsActivateur}">
@@ -566,6 +508,58 @@
             </nouveau-tableau>
           </v-slide-group-item>
         </v-slide-group>
+
+        <div
+          v-if="tableaux && !tableaux.length"
+          class="text-center"
+        >
+          <p class="text-h5 mt-5">
+            {{ t('tableaux.aucun') }}
+          </p>
+          <v-img
+            :src="imageVide"
+            class="my-5"
+            contain
+            height="175px"
+          />
+          <nouveau-tableau
+            @sauvegarder="ajouterTableau"
+          >
+            <template #activator="{props: propsActivateur}">
+              <v-btn
+                v-if="monAutorisation"
+                v-bind="propsActivateur"
+                color="primary"
+                class="mx-2"
+                variant="outlined"
+              >
+                <template #prepend>
+                  <v-icon
+                    icon="mdi-table"
+                    start
+                  />
+                </template>
+                {{ t('tableaux.nouveau') }}
+              </v-btn>
+            </template>
+          </nouveau-tableau>
+          <importer-ou-exporter
+            v-if="false"
+            type="importation"
+            :automatiser="true"
+            :info-objet="{id, typeObjet: 'bd'}"
+          >
+            <v-btn
+              v-if="monAutorisation"
+              color="primary"
+              class="mx-2"
+              variant="outlined"
+              icon="mdi-import"
+            >
+              {{ t('bds.importation') }}
+            </v-btn>
+          </importer-ou-exporter>
+        </div>
       </v-list>
       <v-window v-model="tableauActif">
         <v-window-item

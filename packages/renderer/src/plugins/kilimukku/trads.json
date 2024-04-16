@@ -239,6 +239,7 @@
 
     "membres": {
       "contacts": "Contacts",
+      "anonyme": "Anonyme",
       "aucunContact": "Aucune information de contact disponible",
       "contact": "Site internet",
       "confiance": {
@@ -301,6 +302,7 @@
     },
 
     "tableaux": {
+      "aucun": "Aucun tableau",
       "nouveau": {
         "titreNoms": "Nom du tableau",
         "sousTitreNoms": "Choisissez un nom pour votre tableau",
@@ -314,7 +316,8 @@
       },
       "règles": {
         "nouvelle": "Ajouter une règle"
-      }
+      },
+      "aucuneDonnée": "Aucune donnée"
     },
 
     "nuées": {

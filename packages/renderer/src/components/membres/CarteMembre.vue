@@ -11,14 +11,16 @@
     </template>
     <v-card>
       <v-card-item>
-        <v-card-title>
+        <v-card-title class="d-flex">
           <ImageProfil :id="id" />
-          <span class="mx-4">{{ nomTraduit || t(' .anonyme') }}</span>
+          <span class="mx-4">{{ nomTraduit || t('membres.anonyme') }}</span>
           <JetonConfiance
             v-if="mdAndUp"
             :id="id"
             style-jeton="jeton"
           />
+          <v-spacer />
+          <LienObjet :id="id" />
         </v-card-title>
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
@@ -196,6 +198,7 @@ import JetonConfiance from './JetonConfiance.vue';
 import CarteBd from '../bds/CarteBd.vue';
 import JetonContactMembre from './JetonContactMembre.vue';
 import MenuContactMembre from './MenuContactMembre.vue';
+import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{id: string}>();
 
