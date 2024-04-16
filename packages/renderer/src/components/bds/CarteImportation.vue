@@ -90,9 +90,6 @@
           Importer
         </v-btn>
       </v-card-actions>
-      {{ donnéesFichier?.map(
-        d => Object.fromEntries(Object.entries(d).map(([clef, val])=>[correspondances.find(c=>c.colFichier === clef)?.colTableau || clef, val])),
-    )}}
     </v-card>
   </v-dialog>
 </template>
