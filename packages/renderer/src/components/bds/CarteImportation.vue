@@ -147,14 +147,16 @@ const effacerCorrespondance = (colTableau: string) => {
 };
 const importer = async () => {
     const donnéesÀImporter = donnéesFichier.value?.map(
-        d => Object.fromEntries(Object.entries(d).map(([clef, val])=>[correspondances.value.find(c=>c.colFichier === clef)?.colTableau || clef, val])),
-    ).filter(x => !Object.values(x).some(v=>v===null));
-
+        d => Object.fromEntries(Object.entries(d).filter((([_, val]) => val !== null)).map(([clef, val])=>[correspondances.value.find(c=>c.colFichier === clef)?.colTableau || clef, val])),
+  );
+  
     if (donnéesÀImporter)
         await constl.tableaux.importerDonnées({
             idTableau: props.idTableau,
             données: donnéesÀImporter,
         });
+
+    
 };
  
 </script>
