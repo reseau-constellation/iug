@@ -229,12 +229,14 @@
               v-else
               class="text-center"
             >
-              <p class="my-2 text-h6">Pour commencer, choisissez un message à traduire.</p>
               <img
                 :src="imgMessage"
                 contain
                 :width="mdAndUp ? 400 : 250"
               />
+              <p class="my-2 text-h6 text-disabled">
+                {{ t('kilimukku.choisirMessage') }}
+              </p>
             </div>
           </v-col>
           <v-col

@@ -166,6 +166,7 @@
       "langueSource": "Langue source",
       "langueCible": "Langue cible",
       "aucuneTraduction": "[Aucune traduction]",
+      "choisirMessage": "Pour commencer, choisissez un message à traduire.",
       "titreSuggestions": "Suggestions",
       "aucuneSuggestion": "Nous n'avons trouvé aucune suggestion communautaire pour ce message.",
       "suggérer": "Suggérer",
