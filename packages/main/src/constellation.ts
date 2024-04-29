@@ -1,6 +1,6 @@
 import {GestionnaireFenêtres} from '@constl/mandataire-electron-principal';
 
-const enDéveloppement = process.env.NODE_ENV !== 'production';
+const enDéveloppement = import.meta.env.DEV;
 
 const importationIPA = import('@constl/ipa');
 const importationServeur = import('@constl/serveur');
