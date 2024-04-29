@@ -32,8 +32,7 @@ const config = {
     rollupOptions: {
       output: {
         entryFileNames: '[name].cjs',
-      },
-      external: ['wrtc'],
+      }
     },
     emptyOutDir: true,
     reportCompressedSize: false,

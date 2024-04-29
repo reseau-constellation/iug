@@ -99,7 +99,7 @@ const générerAliasRésolution = () => {
 };
 
 // Pareil pour Électron ou non, parce qu'ici il s'agit de la partie interface (rendu)
-const dépendsÀExclure = ['chokidar', 'wrtc', '@libp2p/tcp', '@libp2p/mdns', 'env-paths'];
+const dépendsÀExclure = ['chokidar', '@libp2p/tcp', '@libp2p/mdns', 'env-paths'];
 
 /**
  * @type {import('vite').UserConfig}
