@@ -1,11 +1,14 @@
 <template>
   <v-card class="text-start">
     <v-card-item>
-      <v-card-title>
+      <v-card-title v-if="noms">
         {{ nomTraduit || t(sansNom) }}
         <v-avatar>
           <v-icon>{{ icôneTypeItem }}</v-icon>
         </v-avatar>
+      </v-card-title>
+      <v-card-title v-else>
+        <v-skeleton-loader type="avatar, text" />
       </v-card-title>
       <v-card-subtitle>{{ texteVuIlYA }}</v-card-subtitle>
     </v-card-item>
@@ -62,7 +65,7 @@ const {obtImageDéco} = utiliserImagesDéco();
 const constl = constellation();
 
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const historiqueDocuments = utiliserHistoriqueDocuments();
