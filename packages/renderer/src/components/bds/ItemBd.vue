@@ -29,6 +29,9 @@
           </template>
         </carte-variable>
       </template>
+      <template #append>
+        <lien-objet :id="id"></lien-objet>
+      </template>
     </série-jetons>
   </v-list-item>
 </template>
@@ -42,6 +45,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '../variables/ItemVariable.vue';
+import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{id: string}>();
 
