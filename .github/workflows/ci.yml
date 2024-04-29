@@ -48,7 +48,7 @@ jobs:
   tests_navig:
     uses: ./.github/workflows/testsNavig.yml
   publier_appli_internet:
-    # needs: [ typechecking, tests_navig ]
+    needs: [ typechecking, tests_navig ]
     uses: ./.github/workflows/publierPage.yml
   draft_release:
     permissions:
