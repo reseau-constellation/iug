@@ -5,8 +5,14 @@
     </template>
     <template #title>
       <slot>
-        <span v-if="nomTraduit">{{ nomTraduit || t('variables.sansNom') }}</span>
+        <span v-if="noms">{{ nomTraduit || t('variables.sansNom') }}</span>
         <v-skeleton-loader v-else type="list-item-two-line"></v-skeleton-loader>
+      </slot>
+    </template>
+    <template #subtitle>
+      <slot>
+        <span v-if="descriptions && descrTraduite">{{ descrTraduite }}</span>
+        <v-skeleton-loader v-else-if="!descriptions" type="list-item-two-line"></v-skeleton-loader>
       </slot>
     </template>
     <template #append>
@@ -41,4 +47,9 @@ const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable
 // Nom
 const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
+
+// Description
+const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {idVariable: props.id});
+const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
+
 </script>

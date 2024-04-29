@@ -5,8 +5,14 @@
   >
     <template #title>
       <slot>
-        <span v-if="nomTraduit">{{ nomTraduit || t('bds.sansNom') }}</span>
+        <span v-if="noms">{{ nomTraduit || t('bds.sansNom') }}</span>
         <v-skeleton-loader v-else type="list-item-two-line"></v-skeleton-loader>
+      </slot>
+    </template>
+    <template #subtitle>
+      <slot>
+        <span v-if="descriptions && descrTraduite">{{ descrTraduite }}</span>
+        <v-skeleton-loader v-else-if="!descriptions" type="list-item-two-line"></v-skeleton-loader>
       </slot>
     </template>
     <série-jetons
@@ -62,11 +68,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la Bd
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Description de la Bd
-const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Image
