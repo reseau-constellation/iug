@@ -1,6 +1,10 @@
 {
   "name": "constl",
-  "description": "Secure boilerplate for Electron app based on Vite",
+  "description": "Interface pour le réseau Constellation.",
+  "repository": {
+    "url": "https://github.com/reseau-constellation/iug"
+  },
+  "homepage": "https://réseau-constellation.ca",
   "author": {
     "email": "julien.malard@mail.mcgill.ca",
     "name": "Julien Jean Malard-Adam",
@@ -14,7 +18,7 @@
     "build:main": "cd ./packages/main && vite build",
     "build:preload": "cd ./packages/preload && vite build",
     "build:renderer": "cd ./packages/renderer && vite build",
-    "compile": "cross-env MODE=production pnpm run build && electron-builder build --config .electron-builder.config.cjs --dir --config.asar=false",
+    "compile": "cross-env MODE=production pnpm run build && electron-builder build --config .electron-builder.config.cjs",
     "compile:web": "cross-env MODE=production WEB=true NODE_OPTIONS='--max-old-space-size=8192' pnpm vite build packages/renderer",
     "test": "pnpm run test:main && pnpm run test:preload && pnpm run test:renderer && pnpm run test:e2e",
     "test:firefox": "pnpm run compile:web && ENVIRONNEMENT_TESTS=firefox vitest run",
@@ -119,7 +123,11 @@
     "vue-router": "^4.3.0",
     "vuetify": "^3.5.14",
     "webfontloader": "^1.6.28",
-    "wherearewe": "^2.0.1",
-    "wrtc": "^0.4.7"
+    "wherearewe": "^2.0.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "node-datachannel": "^0.8.0"
+    }
   }
 }
