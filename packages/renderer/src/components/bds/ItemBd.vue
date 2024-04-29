@@ -1,9 +1,14 @@
 <template>
   <v-list-item
     :prepend-avatar="srcImgBd || imgDéfaut"
-    :title="nomTraduit || t('bds.sansNom')"
     :subtitle="descrTraduite"
   >
+    <template #title>
+      <slot>
+        <span v-if="nomTraduit">{{ nomTraduit || t('bds.sansNom') }}</span>
+        <v-skeleton-loader v-else type="list-item-two-line"></v-skeleton-loader>
+      </slot>
+    </template>
     <série-jetons
       :n-max="3"
       :items="variables"
