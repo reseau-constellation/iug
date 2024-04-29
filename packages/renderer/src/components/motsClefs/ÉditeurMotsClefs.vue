@@ -73,7 +73,7 @@ const dialogue = ref(false);
 const sélectionnés = ref<string[]>(props.originaux);
 const sélectionner = (ids: string[]) => (sélectionnés.value = ids);
 
-const modifiés = computed(()=>sélectionnés.value !== props.originaux);
+const modifiés = computed(() => sélectionnés.value !== props.originaux);
 
 const sauvegarder = () => {
   émettre('sauvegarder', sélectionnés.value);

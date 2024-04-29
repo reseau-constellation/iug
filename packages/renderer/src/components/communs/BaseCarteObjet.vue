@@ -76,13 +76,13 @@
                   :option-fichiers="fichiersEpinglables"
                 >
                   <template #activator="{props: propsActivateur}">
-                    <v-list-item
-                      v-bind="propsActivateur"
-                    >
+                    <v-list-item v-bind="propsActivateur">
                       <template #prepend>
                         <IconeEpingle :id="id" />
                       </template>
-                      <v-list-item-title>{{ épinglé ? t('épingler.épinglé') : t('épingler.épingler') }}</v-list-item-title>
+                      <v-list-item-title>{{
+                        épinglé ? t('épingler.épinglé') : t('épingler.épingler')
+                      }}</v-list-item-title>
                     </v-list-item>
                   </template>
                 </CarteEpingler>
@@ -246,7 +246,7 @@ const description = அகராதியிலிருந்து_மொழ�
 
 // Épingles
 const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
-const épinglé = computed(()=>statutFavoris.value);
+const épinglé = computed(() => statutFavoris.value);
 
 // Effacer objet
 const effacer = async () => {

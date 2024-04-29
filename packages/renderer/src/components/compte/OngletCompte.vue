@@ -57,7 +57,10 @@
               </ExporterCompte>
             </template>
           </v-list-item>
-          <v-divider v-if="false" class="my-2" />
+          <v-divider
+            v-if="false"
+            class="my-2"
+          />
           <v-list-item v-if="false">
             <v-list-item-title class="font-weight-bold">
               {{ t('pages.compte.compte.titreRejoindreCompte') }}

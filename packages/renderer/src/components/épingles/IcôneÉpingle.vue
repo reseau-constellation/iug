@@ -1,7 +1,7 @@
 <template>
   <v-tooltip :text="texteIndice">
     <template #activator="{props: propsActivateur}">
-      <v-icon 
+      <v-icon
         v-bind="{props: propsActivateur}"
         :icon="icône"
       ></v-icon>

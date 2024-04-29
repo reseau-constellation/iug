@@ -212,7 +212,7 @@
       },
       "rejoindreCompte": {
         "titre": "Rejoindre un compte",
-        "avertissement": "En vous connectant à un différent compte, les données de votre compte actuel sur ce dispositif seront supprimées.", 
+        "avertissement": "En vous connectant à un différent compte, les données de votre compte actuel sur ce dispositif seront supprimées.",
         "explication": "Ceci ne supprimera pas votre compte actuel s'il est déjà lié à un autre dispositif."
       },
       "effacerCompte": {
@@ -286,7 +286,7 @@
         "titreGabaritBd": "Créer de gabarit",
         "sousTitreGabaritBd": "Choisir une BD gabarit",
         "btn": "Nouvelle base de données",
-        "titreConfirmation": "Confirmation", 
+        "titreConfirmation": "Confirmation",
         "sousTitreConfirmation": "Confirmer création BD",
         "texteBtnCréation": "Créer BD",
         "ouvrirAprèsCréation": "Ouvrir la BD"
@@ -322,7 +322,8 @@
     },
 
     "nuées": {
-      "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».","ouvrirAprèsCréation": "Ouvrir la nuée"
+      "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».",
+      "ouvrirAprèsCréation": "Ouvrir la nuée"
     },
 
     "colonnes": {
@@ -339,7 +340,6 @@
         "texteBtnCréation": "Créer colonne"
       }
     },
-    
 
     "motsClefs": {
       "nouveau": {
@@ -434,7 +434,7 @@
         "borneFixe": "Borne fixe",
         "borneDynamiqueVariable": "Borne dynamique variable",
         "borneDynamiqueColonne": "Borne dynamique colonne",
-        "titreConfirmer": "Confirmation", 
+        "titreConfirmer": "Confirmation",
         "sousTitreConfirmer": "Confirmer la création de la règle",
         "confirmer": "Créer règle"
       },

@@ -11,9 +11,7 @@
       :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title>
-          Importation
-        </v-card-title>
+        <v-card-title> Importation </v-card-title>
       </v-card-item>
       <v-card-text>
         <v-file-input v-model="fichier"></v-file-input>
@@ -21,19 +19,19 @@
           <v-col :cols="5">
             <v-select
               v-model="choixColTableau"
-              :items="colonnesTableau.map(c=>c.id)"
+              :items="colonnesTableau.map(c => c.id)"
               variant="outlined"
               hide-details
             >
               <template #item="{item, props: propsItem}">
                 <ItemVariable
                   v-bind="propsItem"
-                  :id="colonnesTableau.find(c=>c.id === item.raw)!.variable"
+                  :id="colonnesTableau.find(c => c.id === item.raw)!.variable"
                 />
               </template>
-            
+
               <template #selection="{item}">
-                <JetonVariable :id="colonnesTableau.find(c=>c.id === item.raw)!.variable" />
+                <JetonVariable :id="colonnesTableau.find(c => c.id === item.raw)!.variable" />
               </template>
             </v-select>
           </v-col>
@@ -58,7 +56,7 @@
           :key="crsp.colTableau"
         >
           <v-col :cols="5">
-            <JetonVariable :id="colonnesTableau.find(c=>c.id === crsp.colTableau)!.variable" />
+            <JetonVariable :id="colonnesTableau.find(c => c.id === crsp.colTableau)!.variable" />
           </v-col>
           <v-col :cols="5">
             <v-chip
@@ -73,7 +71,7 @@
             <v-btn
               icon="mdi-delete"
               variant="flat"
-              @click="()=>effacerCorrespondance(crsp.colTableau)"
+              @click="() => effacerCorrespondance(crsp.colTableau)"
             />
           </v-col>
         </v-row>
@@ -94,12 +92,12 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { tableaux } from '@constl/ipa';
+import type {tableaux} from '@constl/ipa';
 
-import { ref } from 'vue';
-import { useDisplay } from 'vuetify';
-import { constellation } from '../utils';
-import { watchEffect } from 'vue';
+import {ref} from 'vue';
+import {useDisplay} from 'vuetify';
+import {constellation} from '../utils';
+import {watchEffect} from 'vue';
 import Papa from 'papaparse';
 import JetonVariable from '../variables/JetonVariable.vue';
 import ItemVariable from '../variables/ItemVariable.vue';
@@ -111,52 +109,59 @@ const dialogue = ref(false);
 const constl = constellation();
 
 const props = defineProps<{
-    idTableau: string;
-    colonnesTableau: tableaux.InfoColAvecCatégorie[];
+  idTableau: string;
+  colonnesTableau: tableaux.InfoColAvecCatégorie[];
 }>();
 
 // Données
 const fichier = ref<File[]>();
 const colonnes = ref<string[]>();
 const donnéesFichier = ref<{[clef: string]: number}[]>();
-watchEffect(async ()=>{
-    if (fichier.value?.length) {   
-        const texte = (new TextDecoder().decode(await fichier.value[0].arrayBuffer()));
-        const json = Papa.parse(texte, {
-            header: true,
-            dynamicTyping: true,
-        }).data;
-        colonnes.value = [...new Set(json.map((x: string)=>Object.keys(x)).flat())] as string[];
-        donnéesFichier.value = json;
-    }
+watchEffect(async () => {
+  if (fichier.value?.length) {
+    const texte = new TextDecoder().decode(await fichier.value[0].arrayBuffer());
+    const json = Papa.parse(texte, {
+      header: true,
+      dynamicTyping: true,
+    }).data;
+    colonnes.value = [...new Set(json.map((x: string) => Object.keys(x)).flat())] as string[];
+    donnéesFichier.value = json;
+  }
 });
 
 // Importation
-const correspondances =  ref<{colFichier: string, colTableau: string}[]>([]);
+const correspondances = ref<{colFichier: string; colTableau: string}[]>([]);
 const choixColFichier = ref<string>();
 const choixColTableau = ref<string>();
 const ajouterCorrespondance = () => {
-    if (choixColFichier.value && choixColTableau.value){
-        correspondances.value = [...correspondances.value, {colFichier: choixColFichier.value, colTableau: choixColTableau.value}];
-    }
-    choixColFichier.value = undefined;
-    choixColTableau.value = undefined;
+  if (choixColFichier.value && choixColTableau.value) {
+    correspondances.value = [
+      ...correspondances.value,
+      {colFichier: choixColFichier.value, colTableau: choixColTableau.value},
+    ];
+  }
+  choixColFichier.value = undefined;
+  choixColTableau.value = undefined;
 };
 const effacerCorrespondance = (colTableau: string) => {
-    correspondances.value = correspondances.value.filter(c => c.colTableau !== colTableau);
+  correspondances.value = correspondances.value.filter(c => c.colTableau !== colTableau);
 };
 const importer = async () => {
-    const donnéesÀImporter = donnéesFichier.value?.map(
-        d => Object.fromEntries(Object.entries(d).filter((([_, val]) => val !== null)).map(([clef, val])=>[correspondances.value.find(c=>c.colFichier === clef)?.colTableau || clef, val])),
+  const donnéesÀImporter = donnéesFichier.value?.map(d =>
+    Object.fromEntries(
+      Object.entries(d)
+        .filter(([_, val]) => val !== null)
+        .map(([clef, val]) => [
+          correspondances.value.find(c => c.colFichier === clef)?.colTableau || clef,
+          val,
+        ]),
+    ),
   );
-  
-    if (donnéesÀImporter)
-        await constl.tableaux.importerDonnées({
-            idTableau: props.idTableau,
-            données: donnéesÀImporter,
-        });
 
-    
+  if (donnéesÀImporter)
+    await constl.tableaux.importerDonnées({
+      idTableau: props.idTableau,
+      données: donnéesÀImporter,
+    });
 };
- 
 </script>

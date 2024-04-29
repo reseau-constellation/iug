@@ -168,7 +168,10 @@
         </template>
       </carte-code-bd>
 
-      <carte-copier v-if="false" :id="id">
+      <carte-copier
+        v-if="false"
+        :id="id"
+      >
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
@@ -248,9 +251,7 @@
           width="200"
           class="mb-3"
         >
-          <carte-statut-bd
-            :id-bd="id"
-          >
+          <carte-statut-bd :id-bd="id">
             <template #activator="{props: propsActivateur}">
               <item-statut
                 v-bind="propsActivateur"
@@ -421,9 +422,7 @@
             </carte-tableau-bd>
           </v-tab>
 
-          <nouveau-tableau
-            @sauvegarder="ajouterTableau"
-          >
+          <nouveau-tableau @sauvegarder="ajouterTableau">
             <template #activator="{props: propsActivateur}">
               <v-tab
                 v-if="monAutorisation"
@@ -482,9 +481,7 @@
             key="nouveau"
             value="nouveau"
           >
-            <nouveau-tableau
-              @sauvegarder="ajouterTableau"
-            >
+            <nouveau-tableau @sauvegarder="ajouterTableau">
               <template #activator="{props: propsActivateur}">
                 <v-chip
                   v-if="monAutorisation"
@@ -522,9 +519,7 @@
             contain
             height="175px"
           />
-          <nouveau-tableau
-            @sauvegarder="ajouterTableau"
-          >
+          <nouveau-tableau @sauvegarder="ajouterTableau">
             <template #activator="{props: propsActivateur}">
               <v-btn
                 v-if="monAutorisation"
@@ -574,7 +569,7 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {tableaux as typesTableaux, types } from '@constl/ipa';
+import type {tableaux as typesTableaux, types} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 
@@ -800,10 +795,19 @@ const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
 // Licence
 const licence = suivre(constl.bds.suivreLicenceBd, {idBd: props.id});
 const licenceContenu = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.id});
-const changerLicence = async ({licence: nouvelleLicence,  licenceContenu: nouvelleLicenceContenu}:  { licence: string; licenceContenu?: string | undefined; }) => {
+const changerLicence = async ({
+  licence: nouvelleLicence,
+  licenceContenu: nouvelleLicenceContenu,
+}: {
+  licence: string;
+  licenceContenu?: string | undefined;
+}) => {
   await constl.bds.changerLicenceBd({idBd: props.id, licence: nouvelleLicence});
   if (nouvelleLicenceContenu) {
-    await constl.bds.changerLicenceContenuBd({ idBd: props.id, licenceContenu: nouvelleLicenceContenu});
+    await constl.bds.changerLicenceContenuBd({
+      idBd: props.id,
+      licenceContenu: nouvelleLicenceContenu,
+    });
   }
 };
 

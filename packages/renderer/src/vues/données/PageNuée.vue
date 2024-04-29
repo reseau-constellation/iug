@@ -41,7 +41,7 @@
         </v-tooltip>
       </template>
     </carte-code-nuee>
-    {{  tableaux }}
+    {{ tableaux }}
     {{ autorisation }}
   </v-container>
 </template>
@@ -88,5 +88,4 @@ const activerApprouvable = async () => {
 const tableaux = suivre(constl.nuées.suivreTableauxNuée, {idNuée: props.id});
 
 const autorisation = suivre(constl.nuées.suivrePhilosophieAutorisation, {idNuée: props.id});
-
 </script>

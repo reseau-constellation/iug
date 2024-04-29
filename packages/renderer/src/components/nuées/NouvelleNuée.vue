@@ -175,7 +175,7 @@ import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import {constellation} from '/@/components/utils';
-import { useRouter } from 'vue-router';
+import {useRouter} from 'vue-router';
 
 const {mdAndUp} = useDisplay();
 

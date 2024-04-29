@@ -32,7 +32,7 @@ const config = {
     rollupOptions: {
       output: {
         entryFileNames: '[name].cjs',
-      }
+      },
     },
     emptyOutDir: true,
     reportCompressedSize: false,

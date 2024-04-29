@@ -125,7 +125,7 @@
       type="chip@3"
     />
     <span v-else>
-      <p 
+      <p
         v-if="!motsClefs.length"
         class="mb-2 text-center text-disabled"
       >
@@ -141,11 +141,7 @@
         :originaux="motsClefs"
         @sauvegarder="x => sauvegarderMotsClefs(x)"
       />
-
     </span>
-
-
-    
 
     <division-carte
       :titre="t('bds.tableaux')"
@@ -199,7 +195,7 @@ import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import JetonQualite from './JetonQualitéBd.vue';
 
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
-import { utiliserImagesDéco } from '/@/composables/images';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{id: string}>();
 

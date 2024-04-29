@@ -162,7 +162,7 @@ import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {catégoriesBase} from './utils';
 import {constellation} from '../utils';
@@ -180,7 +180,14 @@ const {mdAndUp} = useDisplay();
 const dialogue = ref(false);
 
 const étape = ref(0);
-const listeÉtapes = ['catégorie', 'noms', 'descriptions', 'unités', 'règles', 'confirmation'] as const;
+const listeÉtapes = [
+  'catégorie',
+  'noms',
+  'descriptions',
+  'unités',
+  'règles',
+  'confirmation',
+] as const;
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
@@ -301,13 +308,16 @@ const unitésPossible = computed(() => {
 // Règles
 const règles = ref<valid.règleVariableAvecId[]>([]);
 const ajouterRègle = (règle: valid.règleVariable) => {
-  règles.value = [...règles.value, {
-    règle,
-    id: uuidv4(),
-  }];
+  règles.value = [
+    ...règles.value,
+    {
+      règle,
+      id: uuidv4(),
+    },
+  ];
 };
 const effacerRègle = (id: string) => {
-  règles.value = règles.value.filter(r=>r.id !== id);
+  règles.value = règles.value.filter(r => r.id !== id);
 };
 
 // Création
@@ -328,10 +338,12 @@ const créerVariable = async () => {
       idVariable,
       descriptions: Object.fromEntries(Object.entries(descriptions.value)),
     }),
-    ...règles.value.map(r => constl.variables.ajouterRègleVariable({
-      idVariable, 
-      règle: r.règle,
-    })),
+    ...règles.value.map(r =>
+      constl.variables.ajouterRègleVariable({
+        idVariable,
+        règle: r.règle,
+      }),
+    ),
   ];
 
   if (unités.value) {

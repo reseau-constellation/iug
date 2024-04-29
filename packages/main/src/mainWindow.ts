@@ -63,7 +63,7 @@ async function createWindow() {
  */
 export async function restoreOrCreateWindow() {
   let window = BrowserWindow.getAllWindows().find(
-    w => !w.isDestroyed() && w.title !== 'WRTC Relay', // Vérification 'WRTC Relay' probablement plus nécessaire
+    w => !w.isDestroyed(), // && w.title !== 'WRTC Relay', Vérification 'WRTC Relay' probablement plus nécessaire
   );
 
   if (window === undefined) {

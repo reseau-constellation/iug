@@ -3,7 +3,7 @@
     <v-list-item-title>
       {{ nomVariableTraduit }}
     </v-list-item-title>
-    
+
     <template #append>
       <v-btn
         v-if="modificationPermise"

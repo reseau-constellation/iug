@@ -55,7 +55,7 @@ export const obt = <
   args: T = {} as T,
 ): ComputedRef<U | undefined> => {
   const val = ref<U | undefined>();
-  onMounted(async ()=>{
+  onMounted(async () => {
     const résultat = await fonc(args);
     val.value = résultat;
   });

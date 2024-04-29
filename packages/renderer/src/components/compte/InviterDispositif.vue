@@ -80,7 +80,10 @@
             </div>
           </v-window-item>
         </v-window>
-        <div v-else class="text-center text-disabled text-h6">
+        <div
+          v-else
+          class="text-center text-disabled text-h6"
+        >
           {{ t('dispositifs.inviter.horsLigne') }}
         </div>
       </v-card-text>

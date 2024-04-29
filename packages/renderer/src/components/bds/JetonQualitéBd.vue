@@ -1,5 +1,5 @@
 <template>
-  <v-chip 
+  <v-chip
     variant="outlined"
     label
   >

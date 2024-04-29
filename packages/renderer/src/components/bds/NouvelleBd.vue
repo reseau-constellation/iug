@@ -129,7 +129,7 @@
                 @click="() => créerBd()"
               >
                 {{ t('bds.nouvelle.texteBtnCréation') }}
-              </v-btn>  
+              </v-btn>
               <v-checkbox
                 v-model="ouvrirAprèsCréation"
                 :label="t('bds.nouvelle.ouvrirAprèsCréation')"
@@ -169,7 +169,6 @@ import type {bds, types} from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
-
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import SelecteurBd from './SélecteurBd.vue';
@@ -430,7 +429,6 @@ const créerBd = async () => {
       descriptions: Object.fromEntries(Object.entries(descriptions.value)),
     });
     await constl.bds.ajouterMotsClefsBd({idBd, idsMotsClefs: motsClefs.value});
-
   } else if (cheminement.value === 'nuée') {
     if (!gabaritNuée.value) return;
     idBd = await constl.bds.créerBdDeSchéma({schéma: gabaritNuée.value});

@@ -7,8 +7,7 @@
     size="small"
   >
     {{ nomTraduit || t('variables.sansNom') }}
-    <slot>
-    </slot>
+    <slot> </slot>
   </v-chip>
 </template>
 

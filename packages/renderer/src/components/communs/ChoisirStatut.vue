@@ -59,14 +59,13 @@ const icôneStatut = (statut: 'active' | 'obsolète' | 'jouet' | 'interne') => {
     case 'active':
       return 'mdi-check';
     case 'obsolète':
-      return 'mdi-alert-outline'
+      return 'mdi-alert-outline';
     case 'jouet':
-      return 'mdi-teddy-bear'
+      return 'mdi-teddy-bear';
     case 'interne':
-      return 'mdi-xml'
+      return 'mdi-xml';
     default:
       break;
   }
-}
-
+};
 </script>

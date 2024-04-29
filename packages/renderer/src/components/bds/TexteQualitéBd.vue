@@ -5,7 +5,11 @@
       :style="`color:${couleurScore(score !== undefined ? score : null).couleur}`"
       class="font-weight-bold"
     >
-      {{ score !== undefined ? t('bds.note.' + couleurScore(score).note) : t('communs.pointInterrogation') }}
+      {{
+        score !== undefined
+          ? t('bds.note.' + couleurScore(score).note)
+          : t('communs.pointInterrogation')
+      }}
     </span>
   </span>
 </template>

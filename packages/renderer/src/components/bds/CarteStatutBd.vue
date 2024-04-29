@@ -11,7 +11,7 @@
       :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-text>
-        <choisir-statut @choisir="stt => statutChoisi = stt">
+        <choisir-statut @choisir="stt => (statutChoisi = stt)">
           <template #sélecteur="{choisirNouvelle}">
             <selecteur-bd
               :multiples="false"
@@ -41,16 +41,16 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { types } from '@constl/ipa';
+import type {types} from '@constl/ipa';
 
-import { ref } from 'vue';
-import { useDisplay } from 'vuetify';
+import {ref} from 'vue';
+import {useDisplay} from 'vuetify';
 
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import SelecteurBd from './SélecteurBd.vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { constellation, suivre } from '../utils';
-import { watchEffect } from 'vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation, suivre} from '../utils';
+import {watchEffect} from 'vue';
 
 const props = defineProps<{idBd: string}>();
 
@@ -66,7 +66,7 @@ const dialogue = ref(false);
 // Statut
 const statut = suivre(constl.bds.suivreStatutBd, {idBd: props.idBd});
 const statutChoisi = ref<types.schémaStatut>();
-watchEffect(()=>{
+watchEffect(() => {
   statutChoisi.value = statut.value;
 });
 const sauvegarder = async () => {
