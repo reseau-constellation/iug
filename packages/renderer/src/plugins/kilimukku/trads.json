@@ -689,7 +689,7 @@
         "titreDescriptions": "கூட்டத்தின் விளக்கம்",
         "sousTitreDescriptions": "கூட்டத்தின் நோக்கம் விள்ளக்கும் உரை உள்ளிடுங்கள்",
         "texteÉtiquetteDescription": "கூட்டத்தின் விளக்கம்",
-        "texteIndiceDescription": "விளக்கத்தை உள்ளிடுங்கள்",
+        "texteIndiceDescription": "இந்த தரவு கூட்டத்தில் மூல் நோக்கம் என்ன?",
         "texteAucuneDescription": "மேலே விளக்கத்தை உள்ளிடுங்கள்",
         "titreAutorisation": "கூட்டத்தின் அங்கீகாரம்",
         "sousTitreAutorisation": "யாருக்கும் பரிகும் அனுமதி இருக்கும் என்று குறிப்பிடவும்",
@@ -697,10 +697,14 @@
         "indiceParInvitation": "நீங்கள் அனுமத்த நபர்களால் மட்டுமே கூட்டத்தில் பங்களிக்க முடியும்.",
         "ouverteÀTous": "திறந்த அணுகல்",
         "indiceOuverteÀTous": "அனைவரும் கூட்டத்தில் பங்கேற்கலாம். வேண்டும் என்றால், குறிப்பான பயனாளர்களை நீங்கள் தடைக்கலாம்.",
+        "titreTableaux": "அட்டவணைகள்",
+        "sousTitreTableau": "இவற்றை அப்புறமாகவு மாற்றலாம்.",
+        "ajoutTableau": "அட்டவணை சேர்தல்",
         "titreConfirmation": "உருவாக்க்ம",
         "sousTitreConfirmation": "கழுவின் தகவல்களை அப்புறமாகவும் திரத்தலாம்",
         "texteCréer": "கூட்டம் உருவாக்கிறதற்கு கீழே அழுத்தவும்",
-        "texteBtnCréation": "கூட்டத்தை உருவாக்கு"
+        "texteBtnCréation": "கூட்டத்தை உருவாக்கு",
+        "ouvrirAprèsCréation": "உருவாக்கும் பின் கூட்டத்துக்கு செல்லு"
       }
     },
     "lienObjet": {
