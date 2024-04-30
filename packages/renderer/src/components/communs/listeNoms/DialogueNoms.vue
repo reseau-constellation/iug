@@ -55,7 +55,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {computed, ref} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import ListeNoms from './ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -68,7 +68,7 @@ const {mdAndUp} = useDisplay();
 const props = defineProps<{
   titre: string;
   sousTitre: string;
-  nomsInitiaux: {[lng: string]: string};
+  nomsInitiaux: {[lng: string]: string} | undefined;
   etiquetteNom: string;
   indiceNom: string;
   indiceLangue: string;
@@ -84,7 +84,7 @@ const émettre = defineEmits<{
 const dialogue = ref(false);
 const fermer = () => {
   dialogue.value = false;
-  nomsChoisis.value = props.nomsInitiaux;
+  nomsChoisis.value = props.nomsInitiaux || {};
 };
 const sauvegarder = () => {
   émettre('ajusterNoms', nomsChoisis.value);
@@ -92,7 +92,10 @@ const sauvegarder = () => {
 };
 
 // Gestion noms
-const nomsChoisis = ref<{[langue: string]: string}>(props.nomsInitiaux);
+const nomsChoisis = ref<{[langue: string]: string}>(props.nomsInitiaux || {});
+watchEffect(()=>{
+  nomsChoisis.value = props.nomsInitiaux || {};
+});
 const ajusterNoms = (noms: {[langue: string]: string}) => {
   nomsChoisis.value = noms;
 };

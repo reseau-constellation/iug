@@ -80,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {
   எண்களைப்_பயன்படுத்து,
@@ -109,7 +109,7 @@ const {mdAndUp} = useDisplay();
 const nuchabäl = new Nuchabäl({});
 
 const props = defineProps<{
-  nomsInitiaux: {[lng: string]: string};
+  nomsInitiaux: {[lng: string]: string} | undefined;
   etiquetteNom: string;
   indiceNom: string;
   indiceLangue: string;
@@ -122,9 +122,9 @@ const émettre = defineEmits<{
 }>();
 
 // Noms
-const noms = ref<{[lng: string]: string}>({});
-onMounted(() => {
-  noms.value = Object.fromEntries(Object.entries(props.nomsInitiaux));
+const noms = ref(props.nomsInitiaux);
+watchEffect(() => {
+  noms.value = props.nomsInitiaux || {};
 });
 const listeNoms = ref<
   {
@@ -135,7 +135,7 @@ const listeNoms = ref<
 >([]);
 
 watchEffect(() => {
-  listeNoms.value = Object.entries(noms.value).map(([lng, nom]) => {
+  listeNoms.value = Object.entries(noms.value || {}).map(([lng, nom]) => {
     return {
       lng,
       nom,
