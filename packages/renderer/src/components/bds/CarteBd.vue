@@ -31,7 +31,7 @@
       <template #activator="{props: propsActivateur}">
         <jeton-licence
           v-bind="propsActivateur"
-          class="me-2"
+          class="me-2 mb-2"
           :licence="licence"
         />
       </template>
@@ -39,14 +39,14 @@
 
     <jeton-qualite
       :id="id"
-      class="me-2"
+      class="me-2 mb-2"
     />
     <carte-epingler :id="id">
       <template #activator="{props: propsActivateur}">
         <jeton-replications
           v-bind="propsActivateur"
           :id="id"
-          class="me-2"
+          class="me-2 mb-2"
         />
       </template>
     </carte-epingler>
@@ -158,16 +158,16 @@
     />
     <p v-else-if="!tableaux.length">{{ t('bds.aucunTableau') }}</p>
 
-    <v-divider class="mb-2" />
-    <div class="text-center">
+    <template #pied>
       <v-btn
         variant="outlined"
         append-icon="mdi-open-in-new"
+        color="primary"
         @click="$router.push(encodeURI(`/données/bd/${encodeURIComponent(id)}`))"
       >
         {{ t('bds.ouvrirBd') }}
       </v-btn>
-    </div>
+    </template>
   </base-carte-objet>
 </template>
 
