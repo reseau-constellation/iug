@@ -106,12 +106,12 @@ export const ajusterTexteTraductible = ({
   anciennes,
   nouvelles,
 }: {
-  anciennes: {[lng: string]: string};
+  anciennes: {[lng: string]: string} | undefined;
   nouvelles: {[lng: string]: string};
 }): {àEffacer: string[]; àAjouter: {[lng: string]: string}} => {
-  const àEffacer = Object.keys(anciennes).filter(lng => !Object.keys(nouvelles).includes(lng));
+  const àEffacer = Object.keys(anciennes || {}).filter(lng => !Object.keys(nouvelles).includes(lng));
   const àAjouter = Object.fromEntries(
-    Object.entries(nouvelles).filter(([lng, val]) => anciennes[lng] !== val),
+    Object.entries(nouvelles).filter(([lng, val]) => (anciennes || {})[lng] !== val),
   );
   return {àEffacer, àAjouter};
 };
