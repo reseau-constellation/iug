@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :max-width="mdAndUp ? 700 : 300"
+      :max-width="mdAndUp ? 700 : (smAndUp ? 500 : 300)"
       class="mx-auto"
     >
       <v-card-item>
@@ -166,6 +166,8 @@
       <v-divider />
       <v-card-actions>
         <v-spacer />
+        <slot name="pied"></slot>
+
         <v-btn
           v-if="sauvegardePossible"
           variant="flat"
@@ -227,7 +229,7 @@ const émettre = defineEmits<{
 
 const constl = constellation();
 
-const {mdAndUp} = useDisplay();
+const {mdAndUp, smAndUp } = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
