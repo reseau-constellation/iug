@@ -58,7 +58,7 @@ const props = defineProps<{id: string; a: number}>();
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t, மொ: t_} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
@@ -76,7 +76,7 @@ const icôneTypeItem = computed(() => {
   return icône || 'mdi-file-document-outline';
 });
 const sansNom = computed(() => {
-  return `${typeObjet.value}s.sansNom`;
+  return typeObjet.value ? `${typeObjet.value}s.sansNom` : 'communs.sansNom';
 });
 
 // À faire : différencier par type d'objet

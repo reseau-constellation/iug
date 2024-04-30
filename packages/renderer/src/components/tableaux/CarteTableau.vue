@@ -79,8 +79,9 @@
         <v-btn
           v-if="permissionModifier"
           :active="modifié"
-          >{{ t('communs.sauvegarder') }}</v-btn
         >
+          {{ t('communs.sauvegarder') }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

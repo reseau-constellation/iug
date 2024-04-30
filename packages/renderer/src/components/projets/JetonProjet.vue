@@ -23,7 +23,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Image

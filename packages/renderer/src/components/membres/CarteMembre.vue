@@ -214,7 +214,7 @@ const dialogue = ref(false);
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.profil.suivreNoms, {idCompte: props.id}, {});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Contacts

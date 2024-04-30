@@ -122,11 +122,11 @@ const infoSourceVariable = sourceObjetConnexe('variable');
 const infoSourceMotClef = sourceObjetConnexe('motClef');
 
 // Nom
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.résultat.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.résultat.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.résultat.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.résultat.id});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs

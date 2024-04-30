@@ -118,11 +118,11 @@ const infoSourceVariable = sourceObjetConnexe('variable');
 const infoSourceMotClef = sourceObjetConnexe('motClef');
 
 // Nom
-const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.résultat.id}, {});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.résultat.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.résultat.id}, {});
+const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.résultat.id});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs

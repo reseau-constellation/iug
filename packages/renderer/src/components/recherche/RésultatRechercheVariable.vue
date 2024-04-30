@@ -75,14 +75,13 @@ const icône = computed(() =>
 const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.résultat.id});
 
 // Nom
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.résultat.id}, {});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.résultat.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
 const descriptions = suivre(
   constl.variables.suivreDescriptionsVariable,
   {idVariable: props.résultat.id},
-  {},
 );
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 

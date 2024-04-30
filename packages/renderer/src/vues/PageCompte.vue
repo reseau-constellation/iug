@@ -178,7 +178,7 @@ const sauvegarderImage = async (image?: {contenu: ArrayBuffer; fichier: string})
 // Nom profil
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.profil.suivreNoms, {}, {});
+const noms = suivre(constl.profil.suivreNoms);
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {

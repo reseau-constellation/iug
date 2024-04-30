@@ -49,7 +49,6 @@ watchEffect(() => {
 const nomsVariable = suivre(
   constl.variables.suivreNomsVariable,
   {idVariable: props.idVariable},
-  {},
 );
 const nomVariableTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
 

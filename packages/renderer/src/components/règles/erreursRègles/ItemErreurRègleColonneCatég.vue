@@ -54,7 +54,7 @@ const constl = constellation();
 // Nom tableau référence catégorie
 const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.tableau);
 
-const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: idTableauRéf.value}, {});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: idTableauRéf.value});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 // Id colonne référence catégorie

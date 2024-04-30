@@ -74,7 +74,7 @@ onMounted(() => {
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 /*

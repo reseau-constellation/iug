@@ -75,14 +75,13 @@ const infoSourceDescr = sourceDirecte('descr');
 const infoSourceId = sourceDirecte('id');
 
 // Nom
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.résultat.id}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.résultat.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
 const descriptions = suivre(
   constl.motsClefs.suivreDescriptionsMotClef,
   {idMotClef: props.résultat.id},
-  {},
 );
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 

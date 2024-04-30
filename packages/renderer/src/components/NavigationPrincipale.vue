@@ -59,7 +59,7 @@ const constl = constellation();
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.profil.suivreNoms, {}, {});
+const noms = suivre(constl.profil.suivreNoms, {});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Dispositif

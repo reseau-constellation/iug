@@ -34,6 +34,6 @@ const icône = computed(() =>
 const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
 
 // Nom
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 </script>

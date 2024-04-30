@@ -152,7 +152,6 @@ const nomsTableau = suivre(
   {
     idTableau: props.idTableau,
   },
-  {},
 );
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
@@ -171,7 +170,7 @@ const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {
 };
 
 // Nom de la BD
-const nomsBd = suivre(constl.bds.suivreNomsBd, {idBd: props.idBd}, {});
+const nomsBd = suivre(constl.bds.suivreNomsBd, {idBd: props.idBd});
 const nomTraduitBd = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsBd);
 
 // Image

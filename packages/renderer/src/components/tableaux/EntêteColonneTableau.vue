@@ -4,6 +4,7 @@
     :id-colonne="idColonne"
     :id-variable="idVariable"
     :index="index"
+    :regles="règles"
     :permission-modifier="permissionModifier"
   >
     <template #activator="{props: propsActivateur}">
@@ -35,7 +36,6 @@ const noms = suivre(
   {
     idVariable: props.idVariable,
   },
-  {},
 );
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 const nomFinal = computed(() => {

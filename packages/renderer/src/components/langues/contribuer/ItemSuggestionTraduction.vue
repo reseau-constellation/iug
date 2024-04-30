@@ -54,7 +54,7 @@ const constl = constellation();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Noms du compte
-const nomsCompte = suivre(constl.profil.suivreNoms, {idCompte: props.compte}, {});
+const nomsCompte = suivre(constl.profil.suivreNoms, {idCompte: props.compte});
 const nomCompte = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsCompte);
 
 // Actions

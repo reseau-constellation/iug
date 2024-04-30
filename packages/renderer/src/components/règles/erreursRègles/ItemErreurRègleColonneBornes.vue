@@ -65,7 +65,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const constl = constellation();
 
 // Nom de ce tableau
-const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau}, {});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 // Id colonne référence

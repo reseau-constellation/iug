@@ -40,7 +40,7 @@ const constl = constellation();
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = ref<{[langue: string]: string}>({});
+const noms = ref<{[langue: string]: string}>();
 
 onMounted(() => {
   if (props.spécification.type === 'importation') {

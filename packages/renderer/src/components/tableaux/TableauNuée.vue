@@ -53,7 +53,7 @@ const props = defineProps<{idNuée: string; idTableau: string; clefTableau: stri
 
 // Nom
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
-const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value || {}));
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value));
 
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});

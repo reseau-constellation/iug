@@ -642,7 +642,7 @@ const imageVide = obtImageDéco('vide');
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
 
 // Nom de la Bd
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
@@ -657,7 +657,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Description de la Bd
-const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {

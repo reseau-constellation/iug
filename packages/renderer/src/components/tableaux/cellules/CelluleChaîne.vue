@@ -27,7 +27,6 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const textes: ComputedRef<{[langue: string]: string}> = suivre(
   constl.suivreBdDic,
   {id: props.val},
-  {},
 );
 const texteTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(textes);
 </script>

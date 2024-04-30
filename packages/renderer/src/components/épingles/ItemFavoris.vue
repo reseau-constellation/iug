@@ -55,7 +55,7 @@ const constl = constellation();
 
 // Noms objet
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 const sansNom = computed(() => {
   switch (typeObjet.value) {
