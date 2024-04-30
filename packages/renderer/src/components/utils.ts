@@ -1,4 +1,4 @@
-import type {ComputedRef, Ref} from 'vue';
+import {type ComputedRef, type Ref, unref, type MaybeRef} from 'vue';
 import type {types, ClientConstellation} from '@constl/ipa';
 
 import EventEmitter, {once} from 'events';
@@ -11,6 +11,15 @@ export const constellation = (): ClientConstellation => {
   throw new Error("Constellation n'est pas trouvable.");
 };
 
+export type DébalerRéf<T> = T extends Ref<(infer R)> ? R : T;
+export type DébalerRéfsArgs<T> = {[K in keyof T]: DébalerRéf<T[K]>};
+
+const débalerRéfsArgs = <T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>}>(
+  args: T,
+): DébalerRéfsArgs<T> => {
+  return Object.fromEntries(Object.entries(args).map(([clef, val]) => [clef, unref(val)])) as DébalerRéfsArgs<T>;
+};
+
 export const suivre = <
   U,
   V extends U | undefined,
@@ -18,9 +27,9 @@ export const suivre = <
     | types.schémaFonctionOublier
     | types.schémaRetourFonctionRechercheParProfondeur
     | types.schémaRetourFonctionRechercheParN,
-  T extends {[clef: string]: types.élémentsBd | undefined} = Record<string, never>,
+  T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>} = Record<string, never>,
 >(
-  fonc: (args: T & {f: types.schémaFonctionSuivi<U>}) => Promise<W>,
+  fonc: (args: {[K in keyof T]: DébalerRéf<T[K]>} & {f: types.schémaFonctionSuivi<U>}) => Promise<W>,
   args: T = {} as T,
   défaut?: V,
 ): ComputedRef<U | V> => {
@@ -28,18 +37,21 @@ export const suivre = <
 
   let fOublier: types.schémaFonctionOublier | undefined = undefined;
 
-  const argsFinaux = {
-    ...args,
+  const argsFinaux = computed(() => ({
+    ...débalerRéfsArgs(args),
     f: (x: U) => (val.value = x),
-  };
-  onMounted(async () => {
-    const résultat = await fonc(argsFinaux);
+  }));
+
+  watchEffect(async () => {
+    const résultat = await fonc(argsFinaux.value);
+    if (fOublier) await fOublier();
     if (résultat instanceof Function) {
       fOublier = résultat;
     } else {
       fOublier = résultat?.fOublier;
     }
   });
+
   onUnmounted(async () => {
     if (fOublier) await fOublier();
   });
