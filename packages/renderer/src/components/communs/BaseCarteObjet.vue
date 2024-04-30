@@ -39,12 +39,17 @@
                 v-bind="propsActivateur"
                 class="text-h5"
               >
-                {{ nom || t('communs.baseCarteObjet.sansNom') }}
-                <v-btn
-                  :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
-                  variant="flat"
-                  size="small"
-                ></v-btn>
+                <span v-if="noms">{{ nom || t('communs.baseCarteObjet.sansNom') }}
+                  <v-btn
+                    :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
+                    variant="flat"
+                    size="small"
+                  ></v-btn>
+                </span>
+                <v-skeleton-loader
+                  v-else
+                  type="list-item"
+                />
               </span>
             </template>
           </DialogueNoms>
@@ -80,9 +85,11 @@
                       <template #prepend>
                         <IconeEpingle :id="id" />
                       </template>
-                      <v-list-item-title>{{
-                        épinglé ? t('épingler.épinglé') : t('épingler.épingler')
-                      }}</v-list-item-title>
+                      <v-list-item-title>
+                        {{
+                          épinglé ? t('épingler.épinglé') : t('épingler.épingler')
+                        }}
+                      </v-list-item-title>
                     </v-list-item>
                   </template>
                 </CarteEpingler>
@@ -112,9 +119,18 @@
           :titre="t('communs.baseCarteObjet.description')"
           :en-attente="!descriptions"
         />
-        <span :class="{'text-disabled': !description}">{{
-          description || t('communs.baseCarteObjet.sansDescription')
-        }}</span>
+        <span
+          v-if="descriptions"
+          :class="{'text-disabled': !description}"
+        >
+          {{
+            description || t('communs.baseCarteObjet.sansDescription')
+          }}
+        </span>
+        <v-skeleton-loader
+          v-else
+          type="list-item"
+        />
         <DialogueNoms
           :etiquette-nom="t('objet.étiquetteDescription')"
           :indice-nom="t('objet.indiceDescription')"
@@ -124,6 +140,7 @@
           :titre="t('objet.titreDialogueDescriptions')"
           :sous-titre="t('objet.sousTitreDialogueDescriptions')"
           :autorisation-modification="!!monAutorisation"
+          longue
           @ajuster-noms="descrs => émettre('ajusterDescriptions', descrs)"
         >
           <template #activator="{props: propsActivateur}">
@@ -169,7 +186,7 @@
         <slot name="pied"></slot>
 
         <v-btn
-          v-if="sauvegardePossible"
+          v-if="sauvegardePossible && monAutorisation"
           variant="flat"
           color="primary"
           @click="sauvegarder"
@@ -211,8 +228,8 @@ import CarteEffacer from './CarteEffacer.vue';
 
 const props = defineProps<{
   id: string;
-  noms: {[langue: string]: string};
-  descriptions: {[langue: string]: string};
+  noms?: {[langue: string]: string};
+  descriptions?: {[langue: string]: string};
   image?: string | null;
   icone?: string;
   fichiersEpinglables: boolean;

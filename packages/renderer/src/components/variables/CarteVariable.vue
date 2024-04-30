@@ -122,7 +122,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
 
 // Nom variable
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id}, {});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id});
 
 const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -145,7 +145,6 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 const descriptions = suivre(
   constl.variables.suivreDescriptionsVariable,
   {idVariable: props.id},
-  {},
 );
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
