@@ -54,7 +54,7 @@ with Serveur():
         clef_tableau=${clefTableau.value},
         n_résultats_désirés=100,
         # Modifier langues selon vos besoins
-        langues=[[${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]]
+        langues=[${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]
     )
 
     # Analyser ou sauvegarder les données ici...
