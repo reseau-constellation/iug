@@ -357,6 +357,8 @@ const créerVariable = async () => {
 
 // Fermer
 const fermer = () => {
+  catégorieBase.value = undefined;
+  catégorieListe.value = false;
   noms.value = {};
   descriptions.value = {};
   étape.value = 0;
