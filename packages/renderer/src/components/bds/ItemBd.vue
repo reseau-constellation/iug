@@ -50,6 +50,9 @@
         <lien-objet :id="id"></lien-objet>
       </template>
     </série-jetons>
+    <template #append>
+      <lien-objet :id="id" />
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">
