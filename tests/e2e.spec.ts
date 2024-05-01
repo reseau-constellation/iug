@@ -77,7 +77,7 @@ describe('Test fenêtre appli', function () {
     await constellationPrêt({page});
   });
 
-  test.skip('Créer compte', async () => {
+  test('Créer compte', async () => {
     const btnDémarrer = await constellationPrêt({page});
     console.log('Constellation prêt');
     await btnDémarrer.click();
