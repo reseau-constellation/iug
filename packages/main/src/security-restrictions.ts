@@ -1,39 +1,21 @@
+import type {Session} from 'electron';
 import {app, shell} from 'electron';
 import {URL} from 'url';
 
-type Permissions =
-  | 'clipboard-read'
-  | 'clipboard-sanitized-write'
-  | 'media'
-  | 'display-capture'
-  | 'mediaKeySystem'
-  | 'geolocation'
-  | 'idle-detection'
-  | 'keyboardLock'
-  | 'notifications'
-  | 'midi'
-  | 'midiSysex'
-  | 'pointerLock'
-  | 'fullscreen'
-  | 'openExternal'
-  | 'unknown'
-  | 'window-placement'
-  | 'window-management';
+type Permission = Parameters<
+  Exclude<Parameters<Session['setPermissionRequestHandler']>[0], null>
+>[1];
 
 /**
  * A list of origins that you allow open INSIDE the application and permissions for them.
  *
  * In development mode you need allow open `VITE_DEV_SERVER_URL`.
  */
-const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permissions>>(
+const permissions = new Set<Permission>(['clipboard-sanitized-write']);
+const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permission>>(
   import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL
-    ? [
-        [
-          new URL(import.meta.env.VITE_DEV_SERVER_URL).origin,
-          new Set<Permissions>(['clipboard-sanitized-write']),
-        ],
-      ]
-    : [['https://appli.réseau-constellation.ca', new Set(['clipboard-sanitized-write'])]],
+    ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, permissions]]
+    : [['null', permissions]],
 );
 
 /**

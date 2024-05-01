@@ -8,7 +8,7 @@ export const ouvrirLien = (lien: string) => {
 };
 
 export async function copier(texte: string): Promise<void> {
-  await navigator.clipboard?.writeText(texte); // À faire : tester sous Électron en production
+  await navigator.clipboard?.writeText(texte);
 }
 
 export type fichierPublicationGitHub = {
@@ -109,7 +109,9 @@ export const ajusterTexteTraductible = ({
   anciennes: {[lng: string]: string} | undefined;
   nouvelles: {[lng: string]: string};
 }): {àEffacer: string[]; àAjouter: {[lng: string]: string}} => {
-  const àEffacer = Object.keys(anciennes || {}).filter(lng => !Object.keys(nouvelles).includes(lng));
+  const àEffacer = Object.keys(anciennes || {}).filter(
+    lng => !Object.keys(nouvelles).includes(lng),
+  );
   const àAjouter = Object.fromEntries(
     Object.entries(nouvelles).filter(([lng, val]) => (anciennes || {})[lng] !== val),
   );
