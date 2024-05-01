@@ -14,11 +14,7 @@
     </template>
     <template #subtitle>
       <slot>
-        <span v-if="descriptions && descrTraduite">{{ descrTraduite }}</span>
-        <v-skeleton-loader
-          v-else-if="!descriptions"
-          type="list-item-two-line"
-        ></v-skeleton-loader>
+        <span v-if="descrTraduite">{{ descrTraduite }}</span>
       </slot>
     </template>
     <template #append>
