@@ -444,9 +444,9 @@ const générerInfoTableau = (): automatisation.infoImporterFeuilleCalcul => {
 const sourceImportation = computed<
   automatisation.SourceDonnéesImportation<
     automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul
-  >
+  > | undefined
 >(() => {
-  if (!origineImportation.value) throw new Error('Format fichier importation non défini.');
+  if (!origineImportation.value) return undefined;
 
   if (origineImportation.value === 'fichier') {
     if (!fichierImportation.value) throw new Error('Fichier importation non défini.');

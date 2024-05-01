@@ -5,14 +5,11 @@
   >
     <template #top>
       <v-toolbar
-        v-if="false"
         flat
         density="compact"
       >
-        <v-toolbar-title>
-          {{ nomTraduit || t('tableaux.sansNom') }}
-        </v-toolbar-title>
         <v-spacer />
+        <v-btn icon="mdi-table-row-plus-after"></v-btn>
         <v-btn icon="mdi-table-column-plus-after"></v-btn>
         <v-btn icon="mdi-sync"></v-btn>
         <v-btn icon="mdi-download"></v-btn>
@@ -20,7 +17,9 @@
     </template>
     <template #no-data>
       <p class="my-4 text-h6 text-disabled">{{ t('tableaux.aucuneDonnée') }}</p>
-      <carte-importation
+      <importer-ou-exporter
+        type="importation"
+        :info-objet="{id: idTableau, typeObjet: 'tableau'}"
         :id-tableau="idTableau"
         :colonnes-tableau="colonnes || []"
       >
@@ -34,7 +33,7 @@
             {{ t('tableaux.importer') }}
           </v-btn>
         </template>
-      </carte-importation>
+      </importer-ou-exporter>
     </template>
 
     <template
@@ -43,10 +42,10 @@
       #[`header.${c.id}`]
     >
       <entete-colonne-tableau
-        :id-tableau="idTableau"
         :id-colonne="c.id"
         :id-variable="c.variable"
         :index="!!c.index"
+        :regles="règles"
         :permission-modifier="!!autorisation"
       />
     </template>
@@ -60,7 +59,7 @@ import {constellation, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
-import CarteImportation from '/@/components/bds/CarteImportation.vue';
+import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -71,7 +70,7 @@ const props = defineProps<{idTableau: string}>();
 
 // Nom
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
-const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value));
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value)); 
 
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
@@ -93,4 +92,8 @@ const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListe
 const filesTableau = computed(() => {
   return données.value?.map(d => d.données);
 });
+
+// Règles
+const règles = suivre(constl.tableaux.suivreRègles, { idTableau: props.idTableau });
+
 </script>
