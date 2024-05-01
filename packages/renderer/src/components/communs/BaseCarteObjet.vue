@@ -7,7 +7,7 @@
       ></slot>
     </template>
     <v-card
-      :max-width="mdAndUp ? 700 : (smAndUp ? 500 : 300)"
+      :max-width="mdAndUp ? 700 : smAndUp ? 500 : 300"
       class="mx-auto"
     >
       <v-card-item>
@@ -39,7 +39,8 @@
                 v-bind="propsActivateur"
                 class="text-h5"
               >
-                <span v-if="noms">{{ nom || t('communs.baseCarteObjet.sansNom') }}
+                <span v-if="noms"
+                  >{{ nom || t('communs.baseCarteObjet.sansNom') }}
                   <v-btn
                     :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
                     variant="flat"
@@ -86,9 +87,7 @@
                         <IconeEpingle :id="id" />
                       </template>
                       <v-list-item-title>
-                        {{
-                          épinglé ? t('épingler.épinglé') : t('épingler.épingler')
-                        }}
+                        {{ épinglé ? t('épingler.épinglé') : t('épingler.épingler') }}
                       </v-list-item-title>
                     </v-list-item>
                   </template>
@@ -123,9 +122,7 @@
           v-if="descriptions"
           :class="{'text-disabled': !description}"
         >
-          {{
-            description || t('communs.baseCarteObjet.sansDescription')
-          }}
+          {{ description || t('communs.baseCarteObjet.sansDescription') }}
         </span>
         <v-skeleton-loader
           v-else
@@ -246,7 +243,7 @@ const émettre = defineEmits<{
 
 const constl = constellation();
 
-const {mdAndUp, smAndUp } = useDisplay();
+const {mdAndUp, smAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

@@ -93,7 +93,7 @@ const sauvegarder = () => {
 
 // Gestion noms
 const nomsChoisis = ref<{[langue: string]: string}>(props.nomsInitiaux || {});
-watchEffect(()=>{
+watchEffect(() => {
   nomsChoisis.value = props.nomsInitiaux || {};
 });
 const ajusterNoms = (noms: {[langue: string]: string}) => {

@@ -147,12 +147,9 @@ const monAutorisation = suivre(constl.suivrePermission, {
 });
 
 // Nom du tableau
-const nomsTableau = suivre(
-  constl.tableaux.suivreNomsTableau,
-  {
-    idTableau: props.idTableau,
-  },
-);
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {
+  idTableau: props.idTableau,
+});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 const ajusterNomsTableau = async (nms: {[langue: string]: string}) => {

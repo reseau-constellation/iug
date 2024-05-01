@@ -24,9 +24,6 @@ const constl = constellation();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Texte traduit
-const textes: ComputedRef<{[langue: string]: string}> = suivre(
-  constl.suivreBdDic,
-  {id: props.val},
-);
+const textes: ComputedRef<{[langue: string]: string}> = suivre(constl.suivreBdDic, {id: props.val});
 const texteTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(textes);
 </script>

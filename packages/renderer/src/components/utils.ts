@@ -11,13 +11,15 @@ export const constellation = (): ClientConstellation => {
   throw new Error("Constellation n'est pas trouvable.");
 };
 
-export type DébalerRéf<T> = T extends Ref<(infer R)> ? R : T;
+export type DébalerRéf<T> = T extends Ref<infer R> ? R : T;
 export type DébalerRéfsArgs<T> = {[K in keyof T]: DébalerRéf<T[K]>};
 
 const débalerRéfsArgs = <T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>}>(
   args: T,
 ): DébalerRéfsArgs<T> => {
-  return Object.fromEntries(Object.entries(args).map(([clef, val]) => [clef, unref(val)])) as DébalerRéfsArgs<T>;
+  return Object.fromEntries(
+    Object.entries(args).map(([clef, val]) => [clef, unref(val)]),
+  ) as DébalerRéfsArgs<T>;
 };
 
 export const suivre = <
@@ -29,7 +31,9 @@ export const suivre = <
     | types.schémaRetourFonctionRechercheParN,
   T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>} = Record<string, never>,
 >(
-  fonc: (args: {[K in keyof T]: DébalerRéf<T[K]>} & {f: types.schémaFonctionSuivi<U>}) => Promise<W>,
+  fonc: (
+    args: {[K in keyof T]: DébalerRéf<T[K]>} & {f: types.schémaFonctionSuivi<U>},
+  ) => Promise<W>,
   args: T = {} as T,
   défaut?: V,
 ): ComputedRef<U | V> => {

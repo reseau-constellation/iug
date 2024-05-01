@@ -160,10 +160,7 @@ const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.résultat.
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(
-  constl.projets.suivreDescriptionsProjet,
-  {idProjet: props.résultat.id},
-);
+const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {idProjet: props.résultat.id});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs

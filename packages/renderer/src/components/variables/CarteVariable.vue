@@ -142,10 +142,7 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 };
 
 // Descriptions variable
-const descriptions = suivre(
-  constl.variables.suivreDescriptionsVariable,
-  {idVariable: props.id},
-);
+const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {idVariable: props.id});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
