@@ -34,7 +34,7 @@
             couleur="#e2b72f"
           >
             <template #action>
-              <div class="mx-auto text-center text-disabled">
+              <div class="mx-auto mb-6 text-center text-disabled">
                 <GestionConnaissances>
                   <template #activator="{props}">
                     <v-btn
@@ -65,7 +65,7 @@ import {storeToRefs} from 'pinia';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {constellation, suivre} from '../utils';
+import {constellation, rechercher, suivre} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 import GestionConnaissances from '/@/components/réseau/GestionConnaissances.vue';
@@ -107,7 +107,7 @@ watchEffect(() => {
   historique.observer({clef: 'mesConnaissances', val: nMembresFiables.value});
 });
 
-const membresRéseau = suivre(constl.réseau.suivreComptesRéseau);
+const {résultats: membresRéseau} = rechercher(constl.réseau.suivreComptesRéseau);
 const nMembresRéseau = computed(() => membresRéseau.value?.length);
 watchEffect(() => {
   historique.observer({clef: 'monRéseau', val: nMembresRéseau.value});
