@@ -8,7 +8,7 @@
         </v-avatar>
       </v-card-title>
       <v-card-title v-else>
-        <v-skeleton-loader type="avatar, text" />
+        <v-skeleton-loader type="text" />
       </v-card-title>
       <v-card-subtitle>{{ texteVuIlYA }}</v-card-subtitle>
     </v-card-item>
