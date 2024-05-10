@@ -13,8 +13,8 @@
     <v-list-item-subtitle>
       {{
         t('pages.compte.connexions.dispositifs', {
-          nDispositifs: nDispositifsFormatté,
-          nDispositifsEnLigne: nDispositifsEnLigneFormatté,
+          nDispositifs: dispositifs.length,
+          nDispositifsEnLigne,
         })
       }}
     </v-list-item-subtitle>
@@ -26,11 +26,7 @@ import type {réseau} from '@constl/ipa';
 
 import {computed} from 'vue';
 import {constellation, suivre} from '/@/components/utils';
-import {
-  கிளிமூக்கை_பயன்படுத்து,
-  எண்களைப்_பயன்படுத்து,
-  மொழிகளைப்_பயன்படுத்து,
-} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
@@ -41,7 +37,6 @@ const constl = constellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -50,9 +45,7 @@ const noms = suivre(constl.profil.suivreNoms, {idCompte: props.compte});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Nombre de dispositifs
-const nDispositifsFormatté = எண்ணை_வடிவூட்டு(computed(() => props.dispositifs.length));
 const nDispositifsEnLigne = computed(() => {
   return props.dispositifs.filter(d => !d.vuÀ).length;
 });
-const nDispositifsEnLigneFormatté = எண்ணை_வடிவூட்டு(nDispositifsEnLigne);
 </script>

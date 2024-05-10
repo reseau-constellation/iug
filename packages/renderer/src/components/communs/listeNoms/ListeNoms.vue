@@ -57,7 +57,7 @@
   </v-list>
   <span v-show="listeNoms.length">
     <v-divider class="mb-2" />
-    <p class="text-overline">{{ t('communs.autresLangues', {n: nNomsFormatté}) }}</p>
+    <p class="text-overline">{{ t('communs.autresLangues', {n: listeNoms.length}) }}</p>
     <v-list
       :max-height="longue ? 100 : 200"
       style="overflow-y: scroll"
@@ -82,11 +82,7 @@
 <script setup lang="ts">
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {
-  எண்களைப்_பயன்படுத்து,
-  கிளிமூக்கை_பயன்படுத்து,
-  மொழிகளைப்_பயன்படுத்து,
-} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {v4 as uuidv4} from 'uuid';
 
@@ -99,7 +95,6 @@ import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/Gest
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 const historiqueLangues = utiliserHistoriqueLangues();
@@ -143,8 +138,6 @@ watchEffect(() => {
     };
   });
 });
-
-const nNomsFormatté = எண்ணை_வடிவூட்டு(computed(() => listeNoms.value.length));
 
 // Langues
 const languesDisponibles = computed(() => {
