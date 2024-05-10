@@ -74,7 +74,9 @@
             <span class="pa-4 ma-auto text-h4 text-center">
               {{ t('accueil.page.récents.voirPlus') }}
               <br />
-              <v-icon>mdi-plus</v-icon>
+              <p class="text-h2 my-4">
+                {{ t('accueil.page.récents.plusN', [récentsEnPlus.length]) }}
+              </p>
             </span>
           </v-card>
         </template>
@@ -86,12 +88,12 @@
           </v-card-item>
           <v-card-text style="overflow-y: auto">
             <v-list>
-              <v-list-item
+              <item-document-recent
                 v-for="récent in récents"
+                :id="récent.id"
                 :key="récent.id"
-                :title="récent.id"
-              >
-              </v-list-item>
+                :a="récent.à"
+              />
             </v-list>
           </v-card-text>
         </v-card>
@@ -114,7 +116,7 @@
   </v-row>
 </template>
 <script lang="ts" setup>
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {storeToRefs} from 'pinia';
@@ -127,6 +129,7 @@ import NouvelleBd from '../bds/NouvelleBd.vue';
 import NouveauProjet from '../projets/NouveauProjet.vue';
 import NouvelleNuee from '../nuées/NouvelleNuée.vue';
 import CarteDocumentRecent from './CarteDocumentRécent.vue';
+import ItemDocumentRecent from './ItemDocumentRécent.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -136,14 +139,16 @@ const {mdAndUp, smAndUp} = useDisplay();
 const étatHistoriqueDocuments = utiliserHistoriqueDocuments();
 const {récents} = storeToRefs(étatHistoriqueDocuments);
 
-const nMaxRécents = 5;
+const nMaxRécents = ref(5);
 const récentsÀMontrer = computed(() => {
-  return récents.value.length === nMaxRécents
+  return récents.value.length === nMaxRécents.value
     ? récents.value
-    : récents.value.slice(0, nMaxRécents - 1);
+    : récents.value.slice(0, nMaxRécents.value - 1);
 });
 
 const récentsEnPlus = computed(() => {
-  return récents.value.length <= nMaxRécents ? [] : récents.value.slice(nMaxRécents - 1);
+  return récents.value.length <= nMaxRécents.value
+    ? []
+    : récents.value.slice(nMaxRécents.value - 1);
 });
 </script>
