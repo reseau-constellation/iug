@@ -1,10 +1,7 @@
-import type {types} from '@constl/ipa';
+import {type Ref, type ComputedRef, computed, ref, onMounted, onUnmounted, unref} from 'vue';
 
-import {type Ref, type ComputedRef, computed, ref, watchEffect, onMounted, onUnmounted} from 'vue';
-
-import {constellation, enregistrerÉcoute, suivre} from '../utils';
+import {constellation, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
   switch (type) {
@@ -35,27 +32,15 @@ export const utiliserNomEtTypeDispositif = ({
   const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
   const monCompte = suivre(constl.suivreIdCompte);
-
-  const nomEtType = ref<{type?: string; nom?: string}>();
-  let fOublier: types.schémaFonctionOublier | undefined;
-
-  watchEffect(async () => {
-    if (fOublier) await fOublier();
-
-    const valIdCompte =
-      (typeof idCompte === 'string' ? idCompte : idCompte?.value) || monCompte.value;
-    const valIdDispositif = typeof idDispositif === 'string' ? idDispositif : idDispositif.value;
-
-    if (!valIdDispositif) return;
-
-    fOublier = await enregistrerÉcoute(
-      constl.suivreNomDispositif({
-        idCompte: valIdCompte,
-        idDispositif: valIdDispositif,
-        f: x => (nomEtType.value = x),
-      }),
-    );
-  });
+  
+  const nomEtType = suivre(
+    // @ts-expect-error Je ne sais pas comment régler ça...
+    constl.suivreNomDispositif,
+    {
+      idCompte: computed(()=>unref(idCompte) || monCompte.value),
+      idDispositif,
+    },
+  );
 
   const nomDispositif = computed(() => {
     if (!nomEtType.value) return undefined;
@@ -137,8 +122,6 @@ export const utiliserIlYA = ({
   texte: ComputedRef<string>;
   ilYAMs: ComputedRef<number | undefined>;
 } => {
-  const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
-
   // Chronomètre
   const maintenant = ref(new Date().getTime());
   let oublierChronomètre: number | undefined;
@@ -179,10 +162,10 @@ export const utiliserIlYA = ({
     return {ilYA: 0, texte: clefs.ilYALongtemps};
   });
 
-  const vuIlYAFormatté = எண்ணை_வடிவூட்டு(computed(() => info.value.ilYA || 0));
+  const vuIlYANumérique = computed(() => info.value.ilYA || 0);
   const texte = computed(() => {
     if (info.value.ilYA) {
-      return t(info.value.texte, {n: vuIlYAFormatté.value}, info.value.ilYA);
+      return t(info.value.texte, {n: vuIlYANumérique.value}, info.value.ilYA);
     } else {
       return t(info.value.texte);
     }

@@ -41,7 +41,7 @@ import type {tableaux} from '@constl/ipa';
 
 import {computed} from 'vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -60,7 +60,8 @@ const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau})
 
 // Données
 const monCompte = suivre(constl.suivreIdCompte);
-const données = suivre(constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>, {
+const {résultats: données} = rechercher(
+  constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>, {
   idNuée: props.idNuée,
   clefTableau: props.clefTableau,
 });

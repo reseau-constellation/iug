@@ -215,7 +215,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
-import {constellation, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -396,9 +396,11 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 // Rejoindre compte
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
-const comptesEnLigne = suivre(constl.réseau.suivreComptesRéseauEtEnLigne, {}, []);
+const {résultats: comptesEnLigne} = rechercher(
+  constl.réseau.suivreComptesRéseauEtEnLigne
+);
 const comptesEnLigneSansMoi = computed(() =>
-  comptesEnLigne.value.filter(c => c.idCompte !== monIdCompte.value),
+  (comptesEnLigne.value || []).filter(c => c.idCompte !== monIdCompte.value),
 );
 
 const monIdCompte = suivre(constl.suivreIdCompte);

@@ -16,12 +16,11 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import type {bds, types} from '@constl/ipa';
-
 import {ref, watchEffect} from 'vue';
 
 import ItemTableau from './ItemTableau.vue';
-import {constellation, enregistrerÉcoute} from '../utils';
+import {constellation, suivre} from '../utils';
+import { computed } from 'vue';
 
 const props = defineProps<{idBd?: string}>();
 const émettre = defineEmits<{
@@ -31,18 +30,12 @@ const émettre = defineEmits<{
 const constl = constellation();
 
 // Tableaux
-const tableaux = ref<bds.infoTableauAvecId[]>();
-let oublierTableaux: types.schémaFonctionOublier | undefined;
-watchEffect(async () => {
-  if (oublierTableaux) await oublierTableaux();
-  if (props.idBd) {
-    oublierTableaux = await enregistrerÉcoute(
-      constl.bds.suivreTableauxBd({idBd: props.idBd, f: x => (tableaux.value = x)}),
-    );
-  } else {
-    tableaux.value = undefined;
-  }
-});
+const tableaux = suivre(
+  constl.bds.suivreTableauxBd,
+  {
+    idBd: computed(()=>props.idBd),
+  },
+);
 
 // Contrôles
 const idTableauSélectionné = ref<string>();

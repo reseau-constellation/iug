@@ -115,14 +115,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {types, valid, variables} from '@constl/ipa';
+import type {valid} from '@constl/ipa';
 
-import {computed, ref, watchEffect} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {constellation, enregistrerÉcoute, enregistrerÉcouteDynamique} from '/@/components/utils';
+import {constellation, suivre} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
@@ -237,33 +237,20 @@ const idVariableChoisie = ref(props.idVariable);
 const choisirVariable = (idVar: string) => (idVariableChoisie.value = idVar);
 
 // Catégorie variable
-const catégorieBaseVariableChoisie = ref<variables.catégorieBaseVariables>();
-let oublierCatégorieVariable: types.schémaFonctionOublier | undefined;
-const lancerSuiviCatégorieBaseVariable = async (idVariable?: string) => {
-  if (oublierCatégorieVariable) await oublierCatégorieVariable();
-  if (idVariable) {
-    oublierCatégorieVariable = await enregistrerÉcoute(
-      constl.variables.suivreCatégorieVariable({
-        idVariable,
-        f: x => (catégorieBaseVariableChoisie.value = x.catégorie),
-      }),
-    );
-  } else {
-    catégorieBaseVariableChoisie.value = undefined;
-  }
-};
-watchEffect(async () => {
-  await lancerSuiviCatégorieBaseVariable(idVariableChoisie.value);
-});
+const catégorieVariableChoisie = suivre(
+  constl.variables.suivreCatégorieVariable,
+  {
+    idVariable: idVariableChoisie,
+  },
+);
+const catégorieBaseVariableChoisie = computed(()=>catégorieVariableChoisie.value?.catégorie);
 
 // Index
 const index = ref(false);
 
 // Règles variable associée
-const règlesVariable = enregistrerÉcouteDynamique({
-  params: {id: idVariableChoisie},
-  fÉcoute: (params, f: types.schémaFonctionSuivi<valid.règleVariableAvecId[]>) =>
-    constl.variables.suivreRèglesVariable({idVariable: params.id, f}),
+const règlesVariable = suivre(constl.variables.suivreRèglesVariable, {
+  idVariable: idVariableChoisie,
 });
 
 // Règles colonne

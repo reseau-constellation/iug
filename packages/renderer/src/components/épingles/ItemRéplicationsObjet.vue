@@ -12,26 +12,27 @@
         type="chip"
       />
       <span v-else>
-        {{ t('réplications.réplications', {n: nRéplicationsFormatté}, nRéplications) }}
+        {{ t('réplications.réplications', {n: nRéplications}) }}
       </span>
     </v-list-item-title>
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {constellation, suivre} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {constellation, rechercher} from '/@/components/utils';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 
 const props = defineProps<{id: string}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 const constl = constellation();
 
-const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
+const {résultats: réplications} = rechercher(
+  constl.réseau.suivreRéplications, 
+  {idObjet: computed(()=>props.id), profondeur: 10},
+);
 
 const nRéplications = computed(() => réplications.value?.dispositifs.length || 0);
-const nRéplicationsFormatté = எண்ணை_வடிவூட்டு(nRéplications);
 </script>

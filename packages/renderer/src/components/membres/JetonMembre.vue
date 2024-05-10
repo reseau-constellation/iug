@@ -36,7 +36,7 @@ import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string}>();
@@ -56,24 +56,24 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const confiance = suivre(
+const {résultats: confiance} = rechercher(
   constl.réseau.suivreConfianceMonRéseauPourMembre,
   {idCompte: props.compte, profondeur: 5},
-  0,
 );
 
 const messageConfiance = computed(() => {
-  if (confiance.value < 0) {
+  const valConfiance = confiance.value || 0; 
+  if (valConfiance < 0) {
     return 'membres.confiance.bloqué';
-  } else if (confiance.value === 0) {
+  } else if (valConfiance === 0) {
     return 'membres.confiance.inconnu';
-  } else if (confiance.value < 0.33) {
+  } else if (valConfiance < 0.33) {
     return 'membres.confiance.peuDinteraction';
-  } else if (confiance.value < 0.67) {
+  } else if (valConfiance < 0.67) {
     return 'membres.confiance.interactionMoyenne';
-  } else if (confiance.value < 1) {
+  } else if (valConfiance < 1) {
     return 'membres.confiance.beaucoupDinteraction';
-  } else if (confiance.value === 1) {
+  } else if (valConfiance === 1) {
     return props.compte === monCompte.value
       ? t('membres.moi')
       : t('membres.confiance.connaissance');
@@ -84,19 +84,21 @@ const messageConfiance = computed(() => {
 
 // Icône
 const icône = computed(() => {
-  if (confiance.value < 0) {
+  const valConfiance = confiance.value || 0; 
+  if (valConfiance < 0) {
     return 'mdi-cancel';
   } else {
     return props.compte === monCompte.value ? 'mdi-check' : 'mdi-hands-pray';
   }
 });
 const couleurIcône = computed(() => {
-  if (confiance.value < 0) {
+  const valConfiance = confiance.value || 0; 
+  if (valConfiance < 0) {
     return 'error';
   } else if (confiance.value === 1) {
     return 'success';
   } else {
-    return `rgba(22, 151, 246, ${0.1 + confiance.value * 0.9})`;
+    return `rgba(22, 151, 246, ${0.1 + valConfiance * 0.9})`;
   }
 });
 </script>

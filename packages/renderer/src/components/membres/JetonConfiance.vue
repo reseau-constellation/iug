@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import IcôneConfiance from './IcôneConfiance.vue';
@@ -80,25 +80,25 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const confiance = suivre(
+const { résultats: confiance } = rechercher(
   constl.réseau.suivreConfianceMonRéseauPourMembre,
   {idCompte: props.id, profondeur: 5},
-  0,
 );
 
 // Message
 const messageConfiance = computed(() => {
-  if (confiance.value < 0) {
+  const valConfiance =  confiance.value || 0;
+  if (valConfiance < 0) {
     return 'membres.confiance.bloqué';
-  } else if (confiance.value === 0) {
+  } else if (valConfiance === 0) {
     return 'membres.confiance.inconnu';
-  } else if (confiance.value < 0.33) {
+  } else if (valConfiance < 0.33) {
     return 'membres.confiance.peuDinteraction';
-  } else if (confiance.value < 0.67) {
+  } else if (valConfiance < 0.67) {
     return 'membres.confiance.interactionMoyenne';
-  } else if (confiance.value < 1) {
+  } else if (valConfiance < 1) {
     return 'membres.confiance.beaucoupDinteraction';
-  } else if (confiance.value === 1) {
+  } else if (valConfiance === 1) {
     return props.id === monCompte.value ? t('membres.moi') : t('membres.confiance.connaissance');
   } else {
     return '';

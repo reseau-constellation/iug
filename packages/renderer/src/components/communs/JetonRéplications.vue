@@ -14,7 +14,7 @@
 </template>
 <script setup lang="ts">
 import {computed} from 'vue';
-import {constellation, suivre} from '/@/components/utils';
+import {constellation, rechercher, suivre} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -26,7 +26,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Réplications
-const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 5});
+const {résultats: réplications} = rechercher(
+  constl.réseau.suivreRéplications,
+  {idObjet: props.id, profondeur: 5},
+);
 const nRéplicationsDispositifs = computed(() => {
   return réplications.value?.dispositifs.length || 0;
 });

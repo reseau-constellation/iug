@@ -77,10 +77,11 @@ watchEffect(() => {
 });
 
 // Contrôles recherche
-const requête = ref();
-const {résultats, onTravaille} = rechercher({
-  requête: requête,
-  fRecherche: constl.recherche.rechercherNuéesSelonTexte,
-  clefRequête: 'texte',
-});
+const requête = ref('');
+const {résultats, onTravaille} = rechercher(
+  constl.recherche.rechercherNuéesSelonTexte,
+  {
+    texte: requête,
+  },
+);
 </script>

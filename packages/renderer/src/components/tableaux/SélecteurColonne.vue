@@ -70,13 +70,11 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {tableaux, types} from '@constl/ipa';
-
-import {computed, ref, watchEffect} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, enregistrerÉcoute} from '../utils';
+import {constellation, suivre} from '../utils';
 
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
@@ -176,25 +174,12 @@ const idTableauSélectionné = ref(props.idTableau);
 
 // Colonne
 const idColonne = ref<string>();
-const colonnesTableau = ref<tableaux.InfoColAvecCatégorie[]>();
-
-let oublierColonnes: types.schémaFonctionOublier | undefined;
-const lancerSuiviColonnes = async (idTableauSél?: string) => {
-  if (oublierColonnes) await oublierColonnes();
-  if (idTableauSél) {
-    oublierColonnes = await enregistrerÉcoute(
-      constl.tableaux.suivreColonnesTableau({
-        idTableau: idTableauSél,
-        f: x => (colonnesTableau.value = x),
-      }),
-    );
-  } else {
-    colonnesTableau.value = undefined;
-  }
-};
-watchEffect(async () => {
-  await lancerSuiviColonnes(idTableauSélectionné.value);
-});
+const colonnesTableau = suivre(
+  constl.tableaux.suivreColonnesTableau,
+  {
+    idTableau: idTableauSélectionné,
+  },
+);
 
 // Contrôles
 const confirmer = () => {

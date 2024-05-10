@@ -127,11 +127,12 @@ const ajouterCommeModérateur = ref(false);
 
 // Membres
 const requête = ref<string>();
-const {résultats: membres} = rechercher({
-  requête,
-  fRecherche: constl.recherche.rechercherProfilsSelonTexte,
-  clefRequête: 'texte',
-});
+const {résultats: membres} = rechercher(
+  constl.recherche.rechercherProfilsSelonTexte,
+  {
+    texte: requête,
+  },
+);
 const membresOrdonnées = computed(() => {
   const listeMembres = membres.value;
   if (!listeMembres) return undefined;

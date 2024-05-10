@@ -12,6 +12,8 @@
             variant="outlined"
             prepend-inner-icon="mdi-magnify"
             clearable
+            color="primary"
+            :loading="onTravaille"
           />
           <v-chip-group
             v-model="typeDonnées"
@@ -109,34 +111,22 @@
                         <v-divider />
                       </template>
                     </NouvelleBd>
-                    <span v-if="requête">
-                      <CarteBd
-                        v-for="bd in résultatsRechercheBds"
-                        :id="bd.id"
-                        :key="bd.id"
-                      >
-                        <template #activator="{props}">
-                          <ResultatRechercheBd
-                            v-bind="props"
-                            :résultat="bd"
-                          />
-                        </template>
-                      </CarteBd>
-                    </span>
-                    <span v-else>
-                      <CarteBd
-                        v-for="bd in mesBds"
-                        :id="bd"
-                        :key="bd"
-                      >
-                        <template #activator="{props}">
-                          <ItemBd
-                            v-bind="props"
-                            :id="bd"
-                          />
-                        </template>
-                      </CarteBd>
-                    </span>
+                    <CarteBd
+                      v-for="bd in résultatsRechercheBds"
+                      :id="bd.id"
+                      :key="bd.id"
+                    >
+                      <template #activator="{props}">
+                        <ResultatRechercheBd
+                          v-bind="props"
+                          :résultat="bd"
+                        />
+                      </template>
+                    </CarteBd>
+                    <v-skeleton-loader
+                      v-if="onTravaille && !résultatsRechercheBds?.length"
+                      type="list-item-two-line@4"
+                    />
                   </v-list>
                 </v-card-text>
               </v-card>
@@ -232,7 +222,6 @@ import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import CarteBd from '/@/components/bds/CarteBd.vue';
-import ItemBd from '/@/components/bds/ItemBd.vue';
 import CarteProjet from '/@/components/projets/CarteProjet.vue';
 import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
@@ -284,9 +273,6 @@ const mesMotsClefs = suivre(constl.motsClefs.suivreMotsClefs);
 // Variables
 const mesVariables = suivre(constl.variables.suivreVariables);
 
-// Bds
-const mesBds = suivre(constl.bds.suivreBds);
-
 // Projets
 const mesProjets = suivre(constl.projets.suivreProjets);
 
@@ -295,10 +281,11 @@ const mesNuées = suivre(constl.nuées.suivreNuées);
 
 // Recherche
 const requête = ref('');
-const {résultats: résultatsRechercheBds} = rechercher({
-  requête,
-  fRecherche: constl.recherche.rechercherBdsSelonTexte,
-  clefRequête: 'texte',
-  // toutLeRéseau: false,
-});
+const {résultats: résultatsRechercheBds, onTravaille} = rechercher(
+  constl.recherche.rechercherBdsSelonTexte,
+  {
+    texte: requête,
+    toutLeRéseau: false,    
+  },
+);
 </script>
