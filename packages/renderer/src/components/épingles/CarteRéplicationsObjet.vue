@@ -45,7 +45,7 @@
                   <v-icon end>mdi-monitor-cellphone</v-icon>
                 </v-list-item-title>
                 <v-list-item-subtitle class="text-success font-weight-bold">
-                  {{ t('réplications.enLigne', {n: nDispositifsEnLigneFormatté}) }}
+                  {{ t('réplications.enLigne', {n: nDispositifsEnLigne}) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
@@ -95,7 +95,7 @@
                   v-if="membresEnLigne"
                   class="text-success font-weight-bold"
                 >
-                  {{ t('réplications.enLigne', {n: nMembresEnLigneFormatté}) }}
+                  {{ t('réplications.enLigne', {n: nMembresEnLigne}) }}
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
@@ -125,7 +125,7 @@
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '../utils';
+import {constellation, rechercher} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -145,7 +145,10 @@ const constl = constellation();
 const dialogue = ref(false);
 
 // Réplications
-const réplications = suivre(constl.réseau.suivreRéplications, {idObjet: props.id, profondeur: 10});
+const {résultats: réplications} = rechercher(
+  constl.réseau.suivreRéplications, 
+  {idObjet: props.id, profondeur: 10}
+);
 
 const dispositifs = computed(() => {
   return réplications.value?.dispositifs;
@@ -157,7 +160,6 @@ const dispositifsEnLigne = computed(() => {
   return réplications.value?.dispositifs.filter(x => !x.vuÀ);
 });
 const nDispositifsEnLigne = computed(() => dispositifsEnLigne.value?.length || 0);
-const nDispositifsEnLigneFormatté = எண்ணை_வடிவூட்டு(nDispositifsEnLigne);
 
 const membres = computed(() => {
   return réplications.value?.membres;
@@ -169,5 +171,4 @@ const membresEnLigne = computed(() => {
   return réplications.value?.membres.filter(x => !x.vuÀ);
 });
 const nMembresEnLigne = computed(() => membresEnLigne.value?.length || 0);
-const nMembresEnLigneFormatté = எண்ணை_வடிவூட்டு(nMembresEnLigne);
 </script>
