@@ -24,7 +24,7 @@
         </v-chip>
       </template>
       <v-list>
-        <li
+        <span
           v-for="item in extras"
           :key="item.id"
         >
@@ -32,7 +32,7 @@
             name="itemListe"
             v-bind="item"
           ></slot>
-        </li>
+        </span>
       </v-list>
     </v-menu>
   </span>
