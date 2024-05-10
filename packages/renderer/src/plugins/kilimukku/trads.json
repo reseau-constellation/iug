@@ -147,8 +147,9 @@
           "nouveauProjet": "Projet",
           "nouvelleNuée": "Science citoyenne",
           "aucunRécent": "Vous n'avez aucun document récemment ouvert.",
-          "docmentsRécents": "Documents récents",
-          "voirPlus": "Voir plus"
+          "documentsRécents": "Documents récents",
+          "voirPlus": "Voir plus",
+          "plusN": "+ {0}"
         }
       }
     },
