@@ -80,9 +80,9 @@
   },
   "dependencies": {
     "@achingbrain/nat-port-mapper": "1.0.13",
-    "@constl/ipa": "^1.0.12",
+    "@constl/ipa": "^1.0.13",
     "@constl/mandataire": "^1.0.2",
-    "@constl/mandataire-electron-principal": "^1.0.0",
+    "@constl/mandataire-electron-principal": "^1.0.1",
     "@constl/mandataire-electron-rendu": "^1.0.0",
     "@constl/serveur": "^1.0.0",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
