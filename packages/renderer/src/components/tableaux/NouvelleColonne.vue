@@ -64,7 +64,7 @@
                 </template>
               </NouvelleRegle>
 
-              <ItemRegle
+              <item-regle
                 v-for="règle in règlesColonne"
                 :key="règle.id"
                 :regle="règle"
@@ -72,10 +72,11 @@
                 @effacer="() => effacerRègle(règle.id)"
               />
 
-              <ItemRegle
+              <item-regle
                 v-for="règle in règlesVariable"
                 :key="règle.id"
                 :regle="règle"
+                :effacable="false"
               />
             </v-list>
           </v-window-item>

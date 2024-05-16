@@ -18,27 +18,28 @@
           {{ t('automatisations.carte.importations') }}
           <v-divider />
           <v-list>
-            <v-list-item prepend-icon="mdi-plus">
-              <importer-ou-exporter
-                :info-objet="{id: idObjet, typeObjet}"
-                type="importation"
-                automatiser
-              >
-                <v-list-item-title>
-                  {{ t('automatisations.carte.ajouterImportation') }}
-                </v-list-item-title>
-              </importer-ou-exporter>
-            </v-list-item>
+            <nouvelle-importation
+              :info-objet="{id: idObjet, typeObjet}"
+            >
+              <template #activator="{props: propsActivateur}">
+                <v-list-item
+                  v-bind="propsActivateur"
+                  prepend-icon="mdi-upload-outline"
+                  :title="t('automatisations.carte.ajouterImportation')"
+                />
+              </template>
+            </nouvelle-importation>
             <item-automatisation
               v-for="auto in automatisationsImportationObject"
               :key="auto.id"
               :spécification="auto"
             />
-            <v-list-item v-if="!automatisationsImportationObject.length">
-              <v-list-item-title>
-                {{ t('automatisations.carte.aucuneImportation') }}
-              </v-list-item-title>
-            </v-list-item>
+            <p
+              v-if="!automatisationsImportationObject.length"
+              class="text-disabled text-h6 text-center"
+            >
+              {{ t('automatisations.carte.aucuneImportation') }}
+            </p>
           </v-list>
         </span>
 
@@ -61,11 +62,12 @@
             :key="auto.id"
             :spécification="auto"
           />
-          <v-list-item v-if="!automatisationsExportationObject.length">
-            <v-list-item-title>
-              {{ t('automatisations.carte.aucuneExportation') }}
-            </v-list-item-title>
-          </v-list-item>
+          <p
+            v-if="!automatisationsExportationObject.length"
+            class="text-disabled text-h6 text-center"
+          >
+            {{ t('automatisations.carte.aucuneExportation') }}
+          </p>
         </v-list>
       </v-card-text>
     </v-card>
@@ -82,6 +84,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
 import ImporterOuExporter from '../importerExporter/ImporterOuExporter.vue';
+import NouvelleImportation  from '/@/components/automatisations/NouvelleImportation.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -749,6 +749,14 @@
     "automatisations": {
       "item": {
         "titre": "எந்த தானியங்கலும் இல்லை | {n} தானியங்கல் | {n} தானியங்கல்கள்"
+      },
+      "carte": {
+        "titre": "தானியங்கிகள்",
+        "importations": "இறக்குமதி",
+        "exportations": "ஏற்றுமதி",
+        "aucuneImportation": "தற்காலத்தில் எந்த இறக்குமதியும் இல்லை",
+        "aucuneExportation": "தற்காலத்தில் எந்த ஏற்றுமதியும் இல்லை",
+        "ajouterImportation": "புதிய இறக்குமதியைச் சேரு"
       }
     },
     "épingler": {

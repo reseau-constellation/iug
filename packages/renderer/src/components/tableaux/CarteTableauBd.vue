@@ -3,6 +3,7 @@
     :noms="{}"
     :descriptions="{}"
     :permission-modifier="false"
+    :clef="clef"
     @sauvegarder="changements => sauvegarder(changements)"
     @effacer="() => effacerTableau()"
   >
@@ -19,7 +20,7 @@ import {constellation} from '../utils';
 
 import CarteTableau from './CarteTableau.vue';
 
-const props = defineProps<{idTableau: string; idBd: string}>();
+const props = defineProps<{idTableau: string; idBd: string; clef: string}>();
 
 const constl = constellation();
 

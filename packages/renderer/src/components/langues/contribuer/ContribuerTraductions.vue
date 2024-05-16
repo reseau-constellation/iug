@@ -370,13 +370,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {computed, inject, onMounted, ref, watch} from 'vue';
+import type { types } from '@constl/ipa';
+import type { மொழிபெயர்ப்பு_அகராதி_வகை } from '@lassi-js/kilimukku';
+
+import {computed, onMounted, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import correspTexte from 'approx-string-match';
-
-import type {கிளிமூக்கு, மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -389,11 +390,10 @@ import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
-import {watchEffect} from 'vue';
+import {constellation, கிளிமூக்கு, suivre} from '/@/components/utils';
 
 const constl = constellation();
-const கிளி = inject<கிளிமூக்கு>('கிளிமூக்கு');
+const கிளி = கிளிமூக்கு();
 
 const {mdAndUp} = useDisplay();
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
@@ -526,7 +526,7 @@ const suggérer = async () => {
   enTrainDeSuggérer.value = true;
 
   if (clefSélectionnée.value && suggestion.value && langueCible.value) {
-    await கிளி?.மொழிபெயர்ப்பை_பரிந்துரையு({
+    await கிளி.மொழிபெயர்ப்பை_பரிந்துரையு({
       சாபி: clefSélectionnée.value,
       மொழிபெயர்ப்பு: suggestion.value.trim(),
       இலக்கு_மொழி: langueCible.value,
@@ -560,24 +560,19 @@ const suggestionsLangueCibleClef = computed(() => {
   );
 });
 const effacerSuggestion = async (id: string) => {
-  await கிளி?.கிளி?.பரிந்துரையை_நீக்கு({
+  await கிளி.கிளி?.பரிந்துரையை_நீக்கு({
     அடையாளம்: id,
   });
 };
 const nSuggestionsClefLangue = computed(() => suggestionsLangueCibleClef.value.length);
 const nSuggestionsClefLangueFormattée = எண்ணை_வடிவூட்டு(nSuggestionsClefLangue);
 
-const toutesTraductions = ref<மொழிபெயர்ப்பு_அகராதி_வகை>();
+const toutesTraductions = suivre(async ({f}: {f: types.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>}) => await கிளி.மொழிபெயர்ப்புகளை_கேள்ளு({செ: f}));
 const traductionsClefToutesLangues = computed(() => {
   if (clefSélectionnée.value && toutesTraductions.value)
     return toutesTraductions.value[clefSélectionnée.value];
   return [];
 });
-enregistrerÉcoute(
-  கிளி?.மொழிபெயர்ப்புகளை_கேள்ளு({
-    செ: trads => (toutesTraductions.value = trads),
-  }),
-);
 
 const suggestionsAutomatiques = computed(() => {
   if (!texteOriginal.value || !langueSource.value) return [];

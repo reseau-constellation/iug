@@ -9,8 +9,32 @@
         density="compact"
       >
         <v-spacer />
-        <v-btn icon="mdi-table-row-plus-after"></v-btn>
-        <v-btn icon="mdi-table-column-plus-after"></v-btn>
+        <nouvelle-ligne
+          v-if="colonnes && autorisation"
+          :colonnes="colonnes"
+          :regles="règles"
+          @sauvegarder="vals => ajouterLigne(vals)"
+        >
+          <template #activator="{props: propsActivateur}">
+            <v-btn
+              v-bind="propsActivateur"
+              icon="mdi-table-row-plus-after"
+            >
+            </v-btn>
+          </template>
+        </nouvelle-ligne>
+        <nouvelle-colonne
+          :id-tableau="idTableau"
+          :variables-interdites="variables"
+          @nouvelle="col => ajouterColonne(col)"
+        >
+          <template #activator="{props: propsActivateur}">
+            <v-btn
+              v-bind="propsActivateur"
+              icon="mdi-table-column-plus-after"
+            ></v-btn>
+          </template>
+        </nouvelle-colonne>
         <v-btn icon="mdi-sync"></v-btn>
         <v-btn icon="mdi-download"></v-btn>
       </v-toolbar>
@@ -37,13 +61,14 @@
     </template>
 
     <template
-      v-for="c in colonnes"
+      v-for="c in colonnes || []"
       :key="c.id"
       #[`header.${c.id}`]
     >
       <entete-colonne-tableau
         :id-colonne="c.id"
         :id-variable="c.variable"
+        :id-tableau="idTableau"
         :index="!!c.index"
         :regles="règles"
         :permission-modifier="!!autorisation"
@@ -52,28 +77,28 @@
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux} from '@constl/ipa';
+import type {tableaux, valid} from '@constl/ipa';
 
 import {computed} from 'vue';
 import {constellation, suivre} from '../utils';
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import NouvelleColonne from './NouvelleColonne.vue';
+import NouvelleLigne from './NouvelleLigne.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const constl = constellation();
 const props = defineProps<{idTableau: string}>();
 
-// Nom
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
-const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value)); 
-
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
+
+// Variables
+const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
 
 // Colonnes
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>, {
@@ -84,6 +109,36 @@ const entêtes = computed(() => {
     key: c.id,
   }));
 });
+const ajouterColonne = async ({
+  idVariable,
+  idColonne,
+  index,
+  règles,
+}: {
+  idVariable: string;
+  idColonne?: string | undefined;
+  index: boolean;
+  règles: valid.règleVariable[];
+}) => {
+  idColonne = await constl.tableaux.ajouterColonneTableau({
+    idTableau: props.idTableau,
+    idVariable,
+    idColonne,
+  });
+  if (index)
+    await constl.tableaux.changerColIndex({
+      idTableau: props.idTableau,
+      idColonne,
+      val: true,
+    });
+  for (const règle of règles) {
+    await constl.tableaux.ajouterRègleTableau({
+      idTableau: props.idTableau,
+      idColonne,
+      règle,
+    });
+  }
+};
 
 // Données
 const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListeDonnées>, {
@@ -92,8 +147,13 @@ const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListe
 const filesTableau = computed(() => {
   return données.value?.map(d => d.données);
 });
+const ajouterLigne = async (vals: tableaux.élémentBdListeDonnées) => {
+  await constl.tableaux.ajouterÉlément({
+    idTableau: props.idTableau,
+    vals,
+  });
+};
 
 // Règles
-const règles = suivre(constl.tableaux.suivreRègles, { idTableau: props.idTableau });
-
+const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
 </script>

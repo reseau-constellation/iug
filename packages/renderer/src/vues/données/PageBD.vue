@@ -129,7 +129,6 @@
       </CarteEpingler>
 
       <importer-ou-exporter
-        v-if="false"
         :info-objet="{id, typeObjet: 'bd'}"
         :type="monAutorisation ? undefined : 'exportation'"
       >
@@ -329,7 +328,6 @@
           </CarteRéplicationsObjet>
         </v-card>
         <v-card
-          v-if="false"
           flat
           width="200"
           class="mb-3"
@@ -408,6 +406,7 @@
             <carte-tableau-bd
               :id-bd="id"
               :id-tableau="ong.id"
+              :clef="ong.clef"
               :permission-modifier="!!monAutorisation"
             >
               <template #activator="{props: propsActivateur}">
@@ -569,7 +568,7 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import type {tableaux as typesTableaux, types} from '@constl/ipa';
+import type {tableaux as typesTableaux} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 

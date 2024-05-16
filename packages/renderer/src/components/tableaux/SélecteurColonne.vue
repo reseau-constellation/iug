@@ -28,7 +28,7 @@
             />
             <SelecteurTableau
               :id-bd="idBd"
-              @selectionnee="x => (idTableauSélectionné = x)"
+              @selectionne="x => (idTableauSélectionné = x)"
             />
           </v-window-item>
           <v-window-item :value="1">

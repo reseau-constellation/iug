@@ -39,16 +39,15 @@
         </v-checkbox>
         <division-carte :titre="t('colonnes.règles')" />
         <v-list>
-          <item-regle
-            v-for="r in regles"
+          <item-regle-colonne
+            v-for="r in règlesÀAfficher"
             :key="r.règle.id"
             :regle="r"
-            :effacable="monAutorisation && règleEffaçable(r)"
-            @effacer="() => effacerRègle(r.id)"
-          ></item-regle>
+            @effacer="() => effacerRègle(r.règle.id)"
+          ></item-regle-colonne>
           <v-divider class="mt-2" />
           <nouvelle-regle
-            v-if="monAutorisation"
+            v-if="permissionModifier"
             :source="{
               type: 'variable',
             }"
@@ -94,16 +93,21 @@ import type {valid} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import { v4 as uuidv4 } from 'uuid';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
+import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
+import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
+
 import {constellation, suivre} from '../utils';
 
 const props = defineProps<{
   permissionModifier: boolean;
   idVariable: string;
   idColonne: string;
+  idTableau: string;
   regles?: valid.règleColonne[];
   index: boolean;
 }>();
@@ -113,7 +117,10 @@ const émettre = defineEmits<{
     args: {
       index: boolean;
       variable: string;
-      règles: valid.règleVariable[];
+        règles: {
+          nouvelles: valid.règleVariable[];
+          àEffacer: string[];
+        };
     },
   ): void;
 }>();
@@ -142,13 +149,41 @@ const catégorieBaseVariable = computed(() => {
 });
 
 // Règles
-const choixRègles = ref(props.regles);
+const nouvellesRègles = ref<valid.règleVariableAvecId[]>([]);
+const règlesÀEffacer = ref<string[]>([]);
 
-const règleEffaçable = (règle: valid.règleColonne) => {
-  return règle.règle.règle.typeRègle !== 'catégorie' && règle.source.type === 'tableau';
+const règlesÀAfficher = computed<valid.règleColonne[]>(()=>{
+  const nouvelles: valid.règleColonne[] = nouvellesRègles.value.map(r=>({
+      règle: r,
+      source: {
+        type: 'tableau',
+        id: props.idTableau,
+      },
+      colonne: props.idColonne,
+    }));
+  return [
+    ...(props.regles || []),
+    ...nouvelles,
+  ].filter(
+    r => !règlesÀEffacer.value.includes(r.règle.id),
+  );
+});
+
+const effacerRègle = (id: string) => {
+  if (règlesÀEffacer.value.includes(id)) return;
+  if (nouvellesRègles.value?.some( r=> r.id === id)) {
+    nouvellesRègles.value = nouvellesRègles.value?.filter( r=> r.id !== id);
+  } else if (props.regles?.some(r=>r.règle.id === id)) {
+    règlesÀEffacer.value = [id, ...règlesÀEffacer.value];
+  }
+};
+const ajouterRègle = (r: valid.règleVariable) => {
+  nouvellesRègles.value = [{règle: r, id: uuidv4()}, ...(nouvellesRègles.value || [])];
 };
 
-const règlesModifiées = computed(() => {});
+const règlesModifiées = computed(() => {
+  return nouvellesRègles.value.length || règlesÀEffacer.value.length;
+});
 
 // Sauvegarder
 const modifié = computed(() => {
@@ -158,11 +193,16 @@ const sauvegarder = () => {
   émettre('sauvegarder', {
     index: choixIndex.value,
     variable: choixVariable.value,
-    règles: choixRègles.value,
+    règles: {
+      nouvelles: nouvellesRègles.value.map(r=>r.règle),
+      àEffacer: règlesÀEffacer.value,
+    },
   });
   fermer();
 };
 const fermer = () => {
   dialogue.value = false;
+  nouvellesRègles.value = [];
+  règlesÀEffacer.value = [];
 };
 </script>

@@ -69,7 +69,7 @@
         v-for="r in règles"
         :key="r.id"
         :regle="r"
-        :effacable="monAutorisation && r.règle.typeRègle !== 'catégorie'"
+        :effacable="!!(monAutorisation && r.règle.typeRègle !== 'catégorie')"
         @effacer="() => effacerRègle(r.id)"
       ></item-regle>
       <v-divider class="mt-2" />

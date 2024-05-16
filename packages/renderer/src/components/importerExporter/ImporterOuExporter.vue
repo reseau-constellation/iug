@@ -73,7 +73,7 @@
                 color="primary"
                 :disabled="
                   surNavigateur &&
-                  (cheminement === 'exportation' || origineImportation === 'fichier')
+                    (cheminement === 'exportation' || origineImportation === 'fichier')
                 "
               >
                 {{ t('communs.importerOuExporter.automatiser') }}
@@ -131,13 +131,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {automatisation, bds, types} from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
-import {constellation, enregistrerÉcouteDynamique} from '../utils';
+import {constellation, suivre} from '../utils';
 import type {clefsExtraction} from '@constl/ipa/dist/importateur/json';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -381,16 +381,7 @@ const fichierImportation = ref<string>();
 const urlImportation = ref<string>();
 const origineImportation = ref<'url' | 'fichier'>();
 
-const colonnesTableauConstellation = enregistrerÉcouteDynamique({
-  params: {
-    idBd: idObjet,
-  },
-  fÉcoute: (params: {idBd: string}, f: types.schémaFonctionSuivi<bds.infoTableauAvecId[]>) =>
-    constl.bds.suivreTableauxBd({
-      idBd: params.idBd,
-      f,
-    }),
-});
+const colonnesTableauConstellation = suivre(constl.bds.suivreTableauxBd, {idBd: idObjet});
 const idsColonnesTableauConstellation = computed(() => {
   return colonnesTableauConstellation.value?.map(c => c.id);
 });
@@ -442,9 +433,10 @@ const générerInfoTableau = (): automatisation.infoImporterFeuilleCalcul => {
   };
 };
 const sourceImportation = computed<
-  automatisation.SourceDonnéesImportation<
-    automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul
-  > | undefined
+  | automatisation.SourceDonnéesImportation<
+      automatisation.infoImporterJSON | automatisation.infoImporterFeuilleCalcul
+    >
+  | undefined
 >(() => {
   if (!origineImportation.value) return undefined;
 
@@ -592,6 +584,7 @@ const confirmer = async () => {
   if (!props.automatiser) {
     if (cheminement.value === 'importation') {
       if (!dispositifAutomatisation.value) throw new Error('Dispositif importation non défini.');
+      if (!sourceImportation.value) throw new Error('Aucune source d\'importation.');
       const spécificationImporter: automatisation.SpécificationImporter = {
         type: 'importation',
         id: Math.random().toString(), // Sera ignoré de toute façon, car on le l'ajoute pas à une automatisation ici. On devrait revoir les types !

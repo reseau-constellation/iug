@@ -1,4 +1,9 @@
 <template>
+  <SelecteurBd
+    v-if="!idBd"
+    :multiples="false"
+    @selectionnee="bds => bdChoisie = bds[0]"
+  />
   <v-select
     v-model="idTableauSélectionné"
     :loading="!tableaux"
@@ -16,30 +21,36 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import {ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 import ItemTableau from './ItemTableau.vue';
+import JetonTableau from './JetonTableau.vue';
+import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
+
 import {constellation, suivre} from '../utils';
-import { computed } from 'vue';
 
 const props = defineProps<{idBd?: string}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idTableau?: string): void;
+  (é: 'selectionne', idTableau?: string): void;
 }>();
 
 const constl = constellation();
+
+// Bd
+const bdChoisie = ref<string>();
+const bdFinale = computed(()=>bdChoisie.value || props.idBd);
 
 // Tableaux
 const tableaux = suivre(
   constl.bds.suivreTableauxBd,
   {
-    idBd: computed(()=>props.idBd),
+    idBd: bdFinale,
   },
 );
 
 // Contrôles
 const idTableauSélectionné = ref<string>();
 watchEffect(() => {
-  émettre('selectionnee', idTableauSélectionné.value);
+  émettre('selectionne', idTableauSélectionné.value);
 });
 </script>

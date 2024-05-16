@@ -17,11 +17,11 @@
             :indice-nom="t('objet.indiceNom')"
             :indice-langue="t('objet.indiceLangue')"
             :texte-aucun-nom="t('objet.texteAucunNom')"
-            :noms-initiaux="nomsAvecModifs"
+            :noms-initiaux="noms"
             :titre="t('objet.titreDialogueNoms')"
             :sous-titre="t('objet.sousTitreDialogueNoms')"
             :autorisation-modification="permissionModifier"
-            @ajuster-noms="ajusterNoms"
+            @ajuster-noms="noms => nouveauxNoms = noms"
           >
             <template #activator="{props: propsActivateur}">
               <span
@@ -30,7 +30,7 @@
               >
                 {{ nomTraduit || t('bds.sansNom') }}
                 <v-btn
-                  :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
+                  :icon="permissionModifier ? 'mdi-pencil' : 'mdi-earth'"
                   variant="flat"
                   size="small"
                 ></v-btn>
@@ -45,12 +45,12 @@
           :indice-nom="t('objet.indiceDescription')"
           :indice-langue="t('objet.indiceLangue')"
           :texte-aucun-nom="t('objet.texteAucuneDescription')"
-          :noms-initiaux="descriptionsAvecModifs"
+          :noms-initiaux="descriptions"
           :titre="t('objet.titreDialogueDescriptions')"
           :sous-titre="t('objet.sousTitreDialogueDescriptions')"
           :autorisation-modification="permissionModifier"
           longue
-          @ajuster-noms="ajusterDescriptions"
+          @ajuster-noms="descrs => nouvellesDescrs = descrs"
         >
           <template #activator="{props: propsActivateur}">
             <span :class="{'text-disabled': !descrTraduite}">{{
@@ -78,7 +78,8 @@
         <v-btn>t()</v-btn>
         <v-btn
           v-if="permissionModifier"
-          :active="modifié"
+          :disabled="!modifié"
+          @click="()=>sauvegarder()"
         >
           {{ t('communs.sauvegarder') }}
         </v-btn>
@@ -98,15 +99,16 @@ const props = defineProps<{
   permissionModifier: boolean;
   noms: {[langue: string]: string};
   descriptions: {[langue: string]: string};
+  clef: string;
 }>();
 const émettre = defineEmits<{
   (e: 'effacer'): void;
   (
     e: 'sauvegarder',
     args: {
-      noms?: {[langue: string]: string};
-      descrs?: {[langue: string]: string};
-      clef?: string;
+      noms: {[langue: string]: string};
+      descrs: {[langue: string]: string};
+      clef: string;
     },
   ): void;
 }>();
@@ -121,16 +123,37 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const dialogue = ref(false);
 
 // Noms
-const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => nomsAvecModifs));
+const nouveauxNoms = ref<{[langue: string]: string}>({});
+
+const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nouveauxNoms);
+
+const nomsModifiés = computed(()=>{
+  return !Object.values(props.noms).every(([lng, nom]) => nouveauxNoms.value[lng] !== nom) || Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length;
+});
+
+// Descriptions
+const nouvellesDescrs = ref<{[langue: string]: string}>({});
+
+const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nouvellesDescrs);
+
+const descrsModifiées = computed(()=>{
+  return !Object.values(props.descriptions).every(([lng, descr]) => nouvellesDescrs.value[lng] !== descr) || Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length;
+});
+
+// Clef tableau
+const choixClef = ref(props.clef);
+const clefModifiée = computed(()=>choixClef.value !== props.clef);
 
 // Contrôles
 const modifié = computed(() => {
-  return nomsModifiés || descrsModifiées || clefModifiée;
+  return nomsModifiés.value || descrsModifiées || clefModifiée;
 });
 const effacerTableau = () => émettre('effacer');
 const sauvegarder = () => {
   émettre('sauvegarder', {
-    noms: nomsModifiés ? noms : undefined,
+    noms: nouveauxNoms.value,
+    descrs: nouvellesDescrs.value,
+    clef: choixClef.value,
   });
 };
 </script>

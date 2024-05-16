@@ -14,7 +14,10 @@
         />
       </template>
     </nouvelle-colonne>
-    <NouvelleLigne @sauvegarder="x => ajouterÉlément(x)">
+    <NouvelleLigne 
+      :colonnes="colonnes"
+      @sauvegarder="x => ajouterÉlément(x)"
+    >
       <template #activator="{props: propsActivateur}">
         <v-btn
           v-bind="propsActivateur"
@@ -69,7 +72,10 @@
               </v-btn>
             </template>
           </nouvelle-colonne>
-          <NouvelleLigne @sauvegarder="x => ajouterÉlément(x)">
+          <NouvelleLigne
+            :colonnes="colonnes"
+            @sauvegarder="x => ajouterÉlément(x)"
+          >
             <template #activator="{props: propsActivateur}">
               <v-btn
                 v-if="colonnes.length"

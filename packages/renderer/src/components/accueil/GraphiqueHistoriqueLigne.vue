@@ -21,7 +21,7 @@
       height="230"
     >
       <slot name="action">
-        <span class="mx-auto text-h6 text-center text-disabled">
+        <span class="mx-auto mb-6 text-h6 text-center text-disabled">
           {{ t('accueil.page.graphiques.sansDonnées') }}
         </span>
       </slot>
