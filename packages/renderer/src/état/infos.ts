@@ -2,7 +2,7 @@ import {computed, ref} from 'vue';
 import {defineStore} from 'pinia';
 import {v4 as uuidv4} from 'uuid';
 
-export type Info = InfoInstaller | InfoMettreÀJour;
+export type Info = InfoInstaller | InfoMettreÀJour | InfoProtégerDonnnées | InfoUtilisationMémoire;
 export type InfoAvecId<T extends Info = Info> = {
   id: string;
   lu: boolean;
@@ -21,6 +21,18 @@ export type InfoMettreÀJour = {
     versionActuelle: string;
     urlTéléchargement: string;
   };
+};
+
+export type InfoProtégerDonnnées = {
+  type: 'protégerDonnées';
+};
+
+export type InfoUtilisationMémoire = {
+  type: 'utilisationMémoire';
+  détails: {
+    quota: number;
+    utilisation: number;
+  }
 };
 
 export const utiliserÉtatInfos = defineStore('Infos', () => {
