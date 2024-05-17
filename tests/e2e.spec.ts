@@ -94,7 +94,9 @@ describe('Test fenêtre appli', function () {
     await btnSuivant.click();
 
     // Protections données
-    await btnSuivant.click();
+    if (!appliÉlectron) {
+      await btnSuivant.click();
+    }
 
     // Création compte
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
