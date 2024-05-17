@@ -20,5 +20,4 @@ const {அகராதியிலிருந்து_மொழிபெயர
 // Nom tableau
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
 </script>

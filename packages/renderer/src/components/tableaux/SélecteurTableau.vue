@@ -2,7 +2,7 @@
   <SelecteurBd
     v-if="!idBd"
     :multiples="false"
-    @selectionnee="bds => bdChoisie = bds[0]"
+    @selectionnee="bds => (bdChoisie = bds[0])"
   />
   <v-select
     v-model="idTableauSélectionné"
@@ -38,15 +38,12 @@ const constl = constellation();
 
 // Bd
 const bdChoisie = ref<string>();
-const bdFinale = computed(()=>bdChoisie.value || props.idBd);
+const bdFinale = computed(() => bdChoisie.value || props.idBd);
 
 // Tableaux
-const tableaux = suivre(
-  constl.bds.suivreTableauxBd,
-  {
-    idBd: bdFinale,
-  },
-);
+const tableaux = suivre(constl.bds.suivreTableauxBd, {
+  idBd: bdFinale,
+});
 
 // Contrôles
 const idTableauSélectionné = ref<string>();

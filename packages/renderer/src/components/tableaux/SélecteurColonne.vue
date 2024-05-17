@@ -174,12 +174,9 @@ const idTableauSélectionné = ref(props.idTableau);
 
 // Colonne
 const idColonne = ref<string>();
-const colonnesTableau = suivre(
-  constl.tableaux.suivreColonnesTableau,
-  {
-    idTableau: idTableauSélectionné,
-  },
-);
+const colonnesTableau = suivre(constl.tableaux.suivreColonnesTableau, {
+  idTableau: idTableauSélectionné,
+});
 
 // Contrôles
 const confirmer = () => {

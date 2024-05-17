@@ -18,9 +18,7 @@
           {{ t('automatisations.carte.importations') }}
           <v-divider />
           <v-list>
-            <nouvelle-importation
-              :info-objet="{id: idObjet, typeObjet}"
-            >
+            <nouvelle-importation :info-objet="{id: idObjet, typeObjet}">
               <template #activator="{props: propsActivateur}">
                 <v-list-item
                   v-bind="propsActivateur"
@@ -84,7 +82,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
 import ImporterOuExporter from '../importerExporter/ImporterOuExporter.vue';
-import NouvelleImportation  from '/@/components/automatisations/NouvelleImportation.vue';
+import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

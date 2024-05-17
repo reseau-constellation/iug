@@ -12,13 +12,16 @@
         v-if="infoSourceDescr"
         :info="infoSourceDescr"
       />
-      <span v-else>{{ descriptionTraduite || t('nuées.aucuneDescription') }}</span>
+      <span v-else>{{ descriptionTraduite }}</span>
     </v-list-item-subtitle>
     <AuteursObjet
       :auteurs="auteurs"
       :n-max="1"
     ></AuteursObjet>
-    <jeton-id-objet :id="résultat.id">
+    <jeton-id-objet
+      v-if="infoSourceId"
+      :id="résultat.id"
+    >
       <TexteSurligneRecherche
         v-if="infoSourceId"
         :info="infoSourceId"

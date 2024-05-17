@@ -80,14 +80,14 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const { résultats: confiance } = rechercher(
-  constl.réseau.suivreConfianceMonRéseauPourMembre,
-  {idCompte: props.id, profondeur: 5},
-);
+const {résultats: confiance} = rechercher(constl.réseau.suivreConfianceMonRéseauPourMembre, {
+  idCompte: props.id,
+  profondeur: 5,
+});
 
 // Message
 const messageConfiance = computed(() => {
-  const valConfiance =  confiance.value || 0;
+  const valConfiance = confiance.value || 0;
   if (valConfiance < 0) {
     return 'membres.confiance.bloqué';
   } else if (valConfiance === 0) {

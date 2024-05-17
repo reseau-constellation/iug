@@ -238,13 +238,10 @@ const idVariableChoisie = ref(props.idVariable);
 const choisirVariable = (idVar: string) => (idVariableChoisie.value = idVar);
 
 // Catégorie variable
-const catégorieVariableChoisie = suivre(
-  constl.variables.suivreCatégorieVariable,
-  {
-    idVariable: idVariableChoisie,
-  },
-);
-const catégorieBaseVariableChoisie = computed(()=>catégorieVariableChoisie.value?.catégorie);
+const catégorieVariableChoisie = suivre(constl.variables.suivreCatégorieVariable, {
+  idVariable: idVariableChoisie,
+});
+const catégorieBaseVariableChoisie = computed(() => catégorieVariableChoisie.value?.catégorie);
 
 // Index
 const index = ref(false);

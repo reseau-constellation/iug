@@ -21,7 +21,7 @@
             :titre="t('objet.titreDialogueNoms')"
             :sous-titre="t('objet.sousTitreDialogueNoms')"
             :autorisation-modification="permissionModifier"
-            @ajuster-noms="noms => nouveauxNoms = noms"
+            @ajuster-noms="noms => (nouveauxNoms = noms)"
           >
             <template #activator="{props: propsActivateur}">
               <span
@@ -50,7 +50,7 @@
           :sous-titre="t('objet.sousTitreDialogueDescriptions')"
           :autorisation-modification="permissionModifier"
           longue
-          @ajuster-noms="descrs => nouvellesDescrs = descrs"
+          @ajuster-noms="descrs => (nouvellesDescrs = descrs)"
         >
           <template #activator="{props: propsActivateur}">
             <span :class="{'text-disabled': !descrTraduite}">{{
@@ -79,7 +79,7 @@
         <v-btn
           v-if="permissionModifier"
           :disabled="!modifié"
-          @click="()=>sauvegarder()"
+          @click="() => sauvegarder()"
         >
           {{ t('communs.sauvegarder') }}
         </v-btn>
@@ -127,8 +127,11 @@ const nouveauxNoms = ref<{[langue: string]: string}>({});
 
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nouveauxNoms);
 
-const nomsModifiés = computed(()=>{
-  return !Object.values(props.noms).every(([lng, nom]) => nouveauxNoms.value[lng] !== nom) || Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length;
+const nomsModifiés = computed(() => {
+  return (
+    !Object.values(props.noms).every(([lng, nom]) => nouveauxNoms.value[lng] !== nom) ||
+    Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length
+  );
 });
 
 // Descriptions
@@ -136,13 +139,17 @@ const nouvellesDescrs = ref<{[langue: string]: string}>({});
 
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nouvellesDescrs);
 
-const descrsModifiées = computed(()=>{
-  return !Object.values(props.descriptions).every(([lng, descr]) => nouvellesDescrs.value[lng] !== descr) || Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length;
+const descrsModifiées = computed(() => {
+  return (
+    !Object.values(props.descriptions).every(
+      ([lng, descr]) => nouvellesDescrs.value[lng] !== descr,
+    ) || Object.keys(nouveauxNoms.value).length !== Object.keys(props.noms).length
+  );
 });
 
 // Clef tableau
 const choixClef = ref(props.clef);
-const clefModifiée = computed(()=>choixClef.value !== props.clef);
+const clefModifiée = computed(() => choixClef.value !== props.clef);
 
 // Contrôles
 const modifié = computed(() => {

@@ -23,7 +23,7 @@ import {computed} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
-  regle: valid.règleVariableAvecId; 
+  regle: valid.règleVariableAvecId;
   effacable: boolean;
 }>();
 const émettre = defineEmits<{
@@ -67,5 +67,4 @@ const infoRègle = computed(() => {
       return '';
   }
 });
-
 </script>

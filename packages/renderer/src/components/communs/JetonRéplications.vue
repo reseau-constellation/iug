@@ -8,8 +8,7 @@
     <span
       v-if="nRéplicationsDispositifs > 0"
       class="ms-2"
-      >{{ t('réplications.réplicationsEnLigne', [nRéplicationsEnLigne]) }}</span
-    >
+    >{{ t('réplications.réplicationsEnLigne', [nRéplicationsEnLigne]) }}</span>
   </v-chip>
 </template>
 <script setup lang="ts">
@@ -26,10 +25,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Réplications
-const {résultats: réplications} = rechercher(
-  constl.réseau.suivreRéplications,
-  {idObjet: props.id, profondeur: 5},
-);
+const {résultats: réplications} = rechercher(constl.réseau.suivreRéplications, {
+  idObjet: props.id,
+  profondeur: 5,
+});
 const nRéplicationsDispositifs = computed(() => {
   return réplications.value?.dispositifs.length || 0;
 });

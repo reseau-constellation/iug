@@ -61,10 +61,12 @@ const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau})
 // Données
 const monCompte = suivre(constl.suivreIdCompte);
 const {résultats: données} = rechercher(
-  constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>, {
-  idNuée: props.idNuée,
-  clefTableau: props.clefTableau,
-});
+  constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>,
+  {
+    idNuée: props.idNuée,
+    clefTableau: props.clefTableau,
+  },
+);
 const filesTableau = computed(() => {
   return données.value?.map(d => ({
     ...d.élément,

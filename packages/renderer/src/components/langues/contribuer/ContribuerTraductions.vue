@@ -370,8 +370,8 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { types } from '@constl/ipa';
-import type { மொழிபெயர்ப்பு_அகராதி_வகை } from '@lassi-js/kilimukku';
+import type {types} from '@constl/ipa';
+import type {மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 
 import {computed, onMounted, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -567,7 +567,10 @@ const effacerSuggestion = async (id: string) => {
 const nSuggestionsClefLangue = computed(() => suggestionsLangueCibleClef.value.length);
 const nSuggestionsClefLangueFormattée = எண்ணை_வடிவூட்டு(nSuggestionsClefLangue);
 
-const toutesTraductions = suivre(async ({f}: {f: types.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>}) => await கிளி.மொழிபெயர்ப்புகளை_கேள்ளு({செ: f}));
+const toutesTraductions = suivre(
+  async ({f}: {f: types.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>}) =>
+    await கிளி.மொழிபெயர்ப்புகளை_கேள்ளு({செ: f}),
+);
 const traductionsClefToutesLangues = computed(() => {
   if (clefSélectionnée.value && toutesTraductions.value)
     return toutesTraductions.value[clefSélectionnée.value];

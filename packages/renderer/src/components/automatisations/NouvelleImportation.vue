@@ -44,12 +44,12 @@
             <SelecteurBd
               v-if="typeObjet === 'bd'"
               :multiples="false"
-              @selectionnee="bds => idObjet = bds[0]"
+              @selectionnee="bds => (idObjet = bds[0])"
             />
             <SelecteurTableau
               v-else-if="typeObjet === 'tableau'"
               :multiples="false"
-              @selectionne="tableau => idObjet = tableau"
+              @selectionne="tableau => (idObjet = tableau)"
             />
           </v-window-item>
           <v-window-item :value="étapes.indexOf('sourceImportation')">
@@ -74,9 +74,9 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import { computed, ref, watchEffect } from 'vue';
-import { useDisplay } from 'vuetify';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {computed, ref, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import axios from 'axios';
 
@@ -85,7 +85,7 @@ import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 const props = defineProps<{infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'}}>();
 
-const { mdAndUp } = useDisplay();
+const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
@@ -99,9 +99,7 @@ const étapes = [
   'confirmation',
 ] as const;
 
-const étape = ref(
-  étapes.indexOf(props.infoObjet ? 'sourceImportation' : 'objetConstellation'),
-);
+const étape = ref(étapes.indexOf(props.infoObjet ? 'sourceImportation' : 'objetConstellation'));
 
 const titreCarte = computed(() => {
   const é = étapes[étape.value];
@@ -125,13 +123,13 @@ const idObjet = ref(props.infoObjet?.id);
 
 // Source
 const fichier = ref<File[]>();
-const url =  ref<string>();
+const url = ref<string>();
 
-watchEffect(()=>{
-    if (fichier.value) url.value = undefined;
+watchEffect(() => {
+  if (fichier.value) url.value = undefined;
 });
-watchEffect(()=>{
-    if (url.value) fichier.value = undefined;
+watchEffect(() => {
+  if (url.value) fichier.value = undefined;
 });
 
 const donnéesSource = ref<Uint8Array>();
@@ -139,23 +137,22 @@ const formatSource = ref<string>();
 
 const erreurURL = ref(false);
 
-watchEffect(()=>{
-    const nomDocument = fichier.value?.[0].name || url.value;
-    formatSource.value = nomDocument?.split('.').pop();
+watchEffect(() => {
+  const nomDocument = fichier.value?.[0].name || url.value;
+  formatSource.value = nomDocument?.split('.').pop();
 });
-watchEffect(async ()=>{
-    if (url.value) {
-        try {
-            const réponse = await axios.get(url.value);
-            donnéesSource.value = réponse.data;
-        } catch {
-            erreurURL.value = true;
-        }
-    } else if (fichier.value) {
-        donnéesSource.value = new Uint8Array(await fichier.value[0].arrayBuffer());
-    } else {
-        donnéesSource.value = undefined;
+watchEffect(async () => {
+  if (url.value) {
+    try {
+      const réponse = await axios.get(url.value);
+      donnéesSource.value = réponse.data;
+    } catch {
+      erreurURL.value = true;
     }
+  } else if (fichier.value) {
+    donnéesSource.value = new Uint8Array(await fichier.value[0].arrayBuffer());
+  } else {
+    donnéesSource.value = undefined;
+  }
 });
-
 </script>

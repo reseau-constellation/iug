@@ -56,13 +56,13 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
-const {résultats: confiance} = rechercher(
-  constl.réseau.suivreConfianceMonRéseauPourMembre,
-  {idCompte: props.compte, profondeur: 5},
-);
+const {résultats: confiance} = rechercher(constl.réseau.suivreConfianceMonRéseauPourMembre, {
+  idCompte: props.compte,
+  profondeur: 5,
+});
 
 const messageConfiance = computed(() => {
-  const valConfiance = confiance.value || 0; 
+  const valConfiance = confiance.value || 0;
   if (valConfiance < 0) {
     return 'membres.confiance.bloqué';
   } else if (valConfiance === 0) {
@@ -84,7 +84,7 @@ const messageConfiance = computed(() => {
 
 // Icône
 const icône = computed(() => {
-  const valConfiance = confiance.value || 0; 
+  const valConfiance = confiance.value || 0;
   if (valConfiance < 0) {
     return 'mdi-cancel';
   } else {
@@ -92,7 +92,7 @@ const icône = computed(() => {
   }
 });
 const couleurIcône = computed(() => {
-  const valConfiance = confiance.value || 0; 
+  const valConfiance = confiance.value || 0;
   if (valConfiance < 0) {
     return 'error';
   } else if (confiance.value === 1) {

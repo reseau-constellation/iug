@@ -29,10 +29,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const constl = constellation();
 
-const {résultats: réplications} = rechercher(
-  constl.réseau.suivreRéplications, 
-  {idObjet: computed(()=>props.id), profondeur: 10},
-);
+const {résultats: réplications} = rechercher(constl.réseau.suivreRéplications, {
+  idObjet: computed(() => props.id),
+  profondeur: 10,
+});
 
 const nRéplications = computed(() => réplications.value?.dispositifs.length || 0);
 </script>

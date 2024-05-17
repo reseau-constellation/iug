@@ -80,10 +80,7 @@ watchEffect(() => {
 
 // Contrôles recherche
 const requête = ref('');
-const {résultats, onTravaille} = rechercher(
-  constl.recherche.rechercherVariablesSelonTexte,
-  {
-    texte: requête,
-  },
-);
+const {résultats, onTravaille} = rechercher(constl.recherche.rechercherVariablesSelonTexte, {
+  texte: requête,
+});
 </script>

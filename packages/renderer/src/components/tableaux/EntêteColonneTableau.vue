@@ -61,5 +61,4 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 const nomFinal = computed(() => {
   return nomTraduit.value || props.idColonne;
 });
-
 </script>

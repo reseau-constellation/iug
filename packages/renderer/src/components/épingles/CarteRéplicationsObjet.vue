@@ -145,10 +145,10 @@ const constl = constellation();
 const dialogue = ref(false);
 
 // Réplications
-const {résultats: réplications} = rechercher(
-  constl.réseau.suivreRéplications, 
-  {idObjet: props.id, profondeur: 10}
-);
+const {résultats: réplications} = rechercher(constl.réseau.suivreRéplications, {
+  idObjet: props.id,
+  profondeur: 10,
+});
 
 const dispositifs = computed(() => {
   return réplications.value?.dispositifs;

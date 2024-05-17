@@ -285,7 +285,7 @@ const {résultats: résultatsRechercheBds, onTravaille} = rechercher(
   constl.recherche.rechercherBdsSelonTexte,
   {
     texte: requête,
-    toutLeRéseau: false,    
+    toutLeRéseau: false,
   },
 );
 </script>

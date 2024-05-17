@@ -584,7 +584,7 @@ const confirmer = async () => {
   if (!props.automatiser) {
     if (cheminement.value === 'importation') {
       if (!dispositifAutomatisation.value) throw new Error('Dispositif importation non défini.');
-      if (!sourceImportation.value) throw new Error('Aucune source d\'importation.');
+      if (!sourceImportation.value) throw new Error("Aucune source d'importation.");
       const spécificationImporter: automatisation.SpécificationImporter = {
         type: 'importation',
         id: Math.random().toString(), // Sera ignoré de toute façon, car on le l'ajoute pas à une automatisation ici. On devrait revoir les types !

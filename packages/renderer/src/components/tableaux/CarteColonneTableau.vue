@@ -93,7 +93,7 @@ import type {valid} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -117,10 +117,10 @@ const émettre = defineEmits<{
     args: {
       index: boolean;
       variable: string;
-        règles: {
-          nouvelles: valid.règleVariable[];
-          àEffacer: string[];
-        };
+      règles: {
+        nouvelles: valid.règleVariable[];
+        àEffacer: string[];
+      };
     },
   ): void;
 }>();
@@ -152,28 +152,25 @@ const catégorieBaseVariable = computed(() => {
 const nouvellesRègles = ref<valid.règleVariableAvecId[]>([]);
 const règlesÀEffacer = ref<string[]>([]);
 
-const règlesÀAfficher = computed<valid.règleColonne[]>(()=>{
-  const nouvelles: valid.règleColonne[] = nouvellesRègles.value.map(r=>({
-      règle: r,
-      source: {
-        type: 'tableau',
-        id: props.idTableau,
-      },
-      colonne: props.idColonne,
-    }));
-  return [
-    ...(props.regles || []),
-    ...nouvelles,
-  ].filter(
+const règlesÀAfficher = computed<valid.règleColonne[]>(() => {
+  const nouvelles: valid.règleColonne[] = nouvellesRègles.value.map(r => ({
+    règle: r,
+    source: {
+      type: 'tableau',
+      id: props.idTableau,
+    },
+    colonne: props.idColonne,
+  }));
+  return [...(props.regles || []), ...nouvelles].filter(
     r => !règlesÀEffacer.value.includes(r.règle.id),
   );
 });
 
 const effacerRègle = (id: string) => {
   if (règlesÀEffacer.value.includes(id)) return;
-  if (nouvellesRègles.value?.some( r=> r.id === id)) {
-    nouvellesRègles.value = nouvellesRègles.value?.filter( r=> r.id !== id);
-  } else if (props.regles?.some(r=>r.règle.id === id)) {
+  if (nouvellesRègles.value?.some(r => r.id === id)) {
+    nouvellesRègles.value = nouvellesRègles.value?.filter(r => r.id !== id);
+  } else if (props.regles?.some(r => r.règle.id === id)) {
     règlesÀEffacer.value = [id, ...règlesÀEffacer.value];
   }
 };
@@ -194,7 +191,7 @@ const sauvegarder = () => {
     index: choixIndex.value,
     variable: choixVariable.value,
     règles: {
-      nouvelles: nouvellesRègles.value.map(r=>r.règle),
+      nouvelles: nouvellesRègles.value.map(r => r.règle),
       àEffacer: règlesÀEffacer.value,
     },
   });

@@ -14,7 +14,7 @@
         />
       </template>
     </nouvelle-colonne>
-    <NouvelleLigne 
+    <NouvelleLigne
       :colonnes="colonnes"
       @sauvegarder="x => ajouterÉlément(x)"
     >

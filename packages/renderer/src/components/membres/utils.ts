@@ -32,12 +32,12 @@ export const utiliserNomEtTypeDispositif = ({
   const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
   const monCompte = suivre(constl.suivreIdCompte);
-  
+
   const nomEtType = suivre(
     // @ts-expect-error Je ne sais pas comment régler ça...
     constl.suivreNomDispositif,
     {
-      idCompte: computed(()=>unref(idCompte) || monCompte.value),
+      idCompte: computed(() => unref(idCompte) || monCompte.value),
       idDispositif,
     },
   );
