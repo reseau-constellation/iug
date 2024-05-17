@@ -24,8 +24,8 @@ jobs:
           version: latest
 
       - uses: actions/setup-node@v4
-        # with:
-        #   cache: 'pnpm'
+        with:
+          cache: 'pnpm'
       - run: pnpm install --no-frozen-lockfile
 
       - run: pnpm exec playwright install
