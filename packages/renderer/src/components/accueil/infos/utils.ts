@@ -107,7 +107,83 @@ export const lancerInfosTélécharger = () => {
   });
 };
 
+export const lancerInfosProtégerDonnées = () => {
+  if (isElectronRenderer) return;
+
+  const étatInfos = utiliserÉtatInfos();
+
+  const vérifierProtégées = async () => {
+    const protégées = await navigator.storage.persisted();
+
+    let idInfo: string | undefined = undefined;
+    if (!protégées) {
+      idInfo = étatInfos.ajouterInfo(
+        {
+          type: 'protégerDonnées',
+        },
+        'protégerDonnées',
+      );
+    } else {
+      if (idInfo) étatInfos.effacerInfo(idInfo);
+      idInfo = undefined;
+    }
+  };
+
+  let intervale: number;
+  onMounted(() => {
+    intervale = window.setInterval(vérifierProtégées, 1000 * 60);
+  });
+  vérifierProtégées();
+  onUnmounted(() => {
+    intervale && clearInterval(intervale);
+  });
+};
+
+export const lancerInfosUtilisationMémoire = ({ seuil }: {seuil: number}) => {
+  if (isElectronRenderer) return;
+
+  const étatInfos = utiliserÉtatInfos();
+
+  const vérifierUtilisation = async () => {
+    const { quota, usage } = await navigator.storage.estimate();
+
+    let idInfo: string | undefined = undefined;
+    if (quota !== undefined && usage !== undefined) {
+      const utilisation = usage / quota;
+      if (utilisation >= seuil) {
+        idInfo = étatInfos.ajouterInfo(
+          {
+            type: 'utilisationMémoire',
+            détails: {
+              utilisation: usage,
+              quota,
+            },
+          },
+          'utilisationMémoire',
+        );}
+      else {
+        if (idInfo) étatInfos.effacerInfo(idInfo);
+      idInfo = undefined;
+      }
+    } else {
+      if (idInfo) étatInfos.effacerInfo(idInfo);
+      idInfo = undefined;
+    }
+  };
+
+  let intervale: number;
+  onMounted(() => {
+    intervale = window.setInterval(vérifierUtilisation, 1000 * 60);
+  });
+  vérifierUtilisation();
+  onUnmounted(() => {
+    intervale && clearInterval(intervale);
+  });
+};
+
 export const lancerInfos = () => {
   lancerInfosMisesÀJour();
   lancerInfosTélécharger();
+  lancerInfosProtégerDonnées();
+  lancerInfosUtilisationMémoire({seuil: 0.9});
 };

@@ -14,7 +14,7 @@
         append-icon="mdi-download"
         @click="() => ouvrirLien(info.info.détails.urlTéléchargement)"
       >
-        Installer maintenant
+        {{ t('accueil.page.notifications.mettreÀJour.installer') }}
       </v-btn>
     </template>
   </base-item-info>
