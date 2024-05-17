@@ -97,7 +97,7 @@
                     (comptesEnLigneSansMoi.length
                       ? t('accueil.initialiserCompte.indiceComptePasVu')
                       : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                    t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                   }}
                 </p>
               </div>
@@ -117,9 +117,21 @@
             ></v-text-field>
           </v-window-item>
           <v-window-item :value="5">
-            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.1') }} </p>
-            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.2') }} </p>
-            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.3') }} </p>
+            <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.0') }} </p>
+            <span class="font-weight-bold">{{ t('accueil.initialiserCompte.plusDInfo') }}</span>
+            <v-btn
+              :icon="détailsPersister ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+              size="xsmall"
+              variant="flat"
+              @click="() => (détailsPersister = !détailsPersister)"
+            ></v-btn>
+            <v-expand-transition>
+              <div v-show="détailsPersister">
+                <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.1') }} </p>
+                <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.2') }} </p>
+                <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.3') }} </p>
+              </div>
+            </v-expand-transition>
 
             <div
               v-if="donnéesPersistées"
@@ -142,6 +154,7 @@
                 class="mt-3 mx-3"
                 color="primary"
                 variant="flat"
+                append-icon="mdi-content-save-outline"
                 @click="() => persisterDonnées()"
               >
                 {{ t('accueil.initialiserCompte.persister') }}
@@ -149,6 +162,7 @@
               <v-btn
                 class="mt-3 mx-3"
                 variant="outlined"
+                append-icon="mdi-content-save-off-outline"
                 @click="étape++"
               >
                 {{ t('accueil.initialiserCompte.pasPersister') }}
@@ -396,9 +410,7 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 // Rejoindre compte
 const codeSecret = ref<string>();
 const compteÀRejoindre = ref<string>();
-const {résultats: comptesEnLigne} = rechercher(
-  constl.réseau.suivreComptesRéseauEtEnLigne
-);
+const {résultats: comptesEnLigne} = rechercher(constl.réseau.suivreComptesRéseauEtEnLigne);
 const comptesEnLigneSansMoi = computed(() =>
   (comptesEnLigne.value || []).filter(c => c.idCompte !== monIdCompte.value),
 );
@@ -411,12 +423,14 @@ const connexionsSFIP = suivre(constl.réseau.suivreConnexionsPostesSFIP, {});
 const persisterDonnées = async () => {
   const persisté = await navigator.storage.persist();
   if (persisté) {
-    suivant();
     donnéesPersistées.value = true;
   }
+  suivant();
 };
 const donnéesPersistées = ref(false);
 navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
+
+const détailsPersister = ref(false);
 
 // Création ou connexion compte
 const srcImageLogo = ref<string>();

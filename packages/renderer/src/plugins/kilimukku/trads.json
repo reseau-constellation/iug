@@ -56,7 +56,9 @@
         "nouveauCompte": "Nouveau compte",
         "connecter": "Connecter compte",
         "texteImage": "Cliquez ci-dessus pour choisir une image de profil (si vous voulez)",
+        "plusDInfo": "En savoir plus",
         "textePersister": {
+          "0": "Protégez vos données pour assurer que votre navigateur ne les effacera pas sans votre permission.",
           "1": "Si vous étiez sur un système centralisé, comme les Documents Google ou votre courriel, vos données seraient gardées sur un serveur centralisé, et vous devriez demander permission à ce serveur chaque fois que vous voulez modifier ou même accéder vos propres données.",
           "2": "Constellation, au contraire, est un logiciel local. Vos données demeurent sur votre appareil lui-même. (Eh oui, ça fonctionne même sans Internet !) Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés et que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment.",
           "3": "Pour éviter tout risque de larmes plus tard, vous pouvez dire dès maintenant à votre navigateur de ne pas effacer vos données sans votre permission."
@@ -137,7 +139,20 @@
           "mettreÀJour": {
             "titre": "Constellation {dispo} est disponible",
             "sousTitre": "Vous êtes sur version {actuelle}",
-            "texteAction": "Installer"
+            "texteAction": "Installer",
+            "installer": "Installer maintenant"
+          },
+          "protégerDonnées": {
+            "titre": "Protéger mes données",
+            "sousTitre": "Ceci empêchera votre navigateur d'effacer vos données locales  sans votre permission.",
+            "texteAction": "Protéger maintenant",
+            "protéger": "Protéger"
+          },
+          "utilisationMémoire": {
+            "titre": "Utilisation de mémoire",
+            "sousTitre": "{pourcentage}% utilisé",
+            "texteAction": "Réviser",
+            "btnAction": "Aller aux favoris"
           }
         },
         "récents": {
@@ -203,7 +218,9 @@
           "usageRéseau": "L'utilisation du matériel pour offrir des services en ligne est considérée en tant que distribution",
           "ia": "Les modèles d'intelligence artificielle entraînés avec ces données doivent eux aussi être publiés sous licence libre"
         }
-      }
+      },
+      "titrePartageÉgal": "Licence partage égale",
+      "infoPartageÉgal": "La licence de la BD que vous copiez précise que ses dérivées doivent utiliser la même licence. Vous ne pouvez donc pas changer celle-ci."
     },
     "compte": {
       "exporterCompte": {
@@ -294,7 +311,7 @@
         "ouvrirAprèsCréation": "Ouvrir la BD"
       },
       "copier": {
-        "copierDonnnées": "Copier aussi les données"
+        "copierDonnées": "Copier aussi les données"
       },
       "recherche": {
         "étiquette": "Rechercher une base de données",
@@ -324,8 +341,15 @@
     },
 
     "nuées": {
-      "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».",
-      "ouvrirAprèsCréation": "Ouvrir la nuée"
+      "nouvelle": {
+        "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».",
+        "ouvrirAprèsCréation": "Ouvrir la nuée",
+        "btn": "Nouvelle nuée"
+      },
+      "recherche": {
+        "étiquette": "Rechercher une nuée",
+        "aucunRésultat": "Aucune nuée retrouvée"
+      }
     },
 
     "colonnes": {
@@ -362,6 +386,7 @@
         "obsolète": "Obsolète",
         "jouet": "Jouet",
         "interne": "Interne",
+        "inclureNouvelle": "Spécifier une alternative ?",
         "info": {
           "active": "Données prêtes à être utilisées",
           "obsolète": "Données obsolète",
@@ -504,7 +529,8 @@
         "texteImage": "நீங்கள் விரும்பினால், மேலே தொட்டு உங்கள் பயனாளர் படத்தை தேர்ந்தெடுகொங்கள்.",
         "textePersister": {
           "1": "விண்மீன் உங்கள் கூகல் ஆவணங்கள் அல்லது மின்னஞ்சல் கணக்கு மாதிரி ஒரு மையப்படுத்தப்பட்ட அமைப்பு இருந்தால், உங்கள் தரவுகள் எல்லாம் எங்கோ ஒரு மையப்படுத்தப்பட்ட வழங்கியில் சேமிக்கப்படும். தாங்களின் தரவுகளை திருத்தவும் அல்லது பார்க்கவும் என்றால், இந்த வழங்கியின் அனுமதி அவசியமாக வாங்கிவிட்டு தான் உங்களுக்கு சொந்த தரவுகளுக்கு அணுகல் அனுமதி கிடைக்கும்.",
-          "2": "ஆனால் விண்மீன் விநியோகிக்கப்பட்ட ஒரு மென்பொருள் ஆகும். உங்கள் தரவுகள் உங்கள் சாதனத்திலேயே சேமிக்கப்படும் என்பதால் இணையம் தொடர்பு கிடைக்காவிட்டாலும் விண்மீனை பயன்படுத்தலாம். Le seul hic, c'est que certains navigateurs pensent que tous les systèmes sont centralisés et que c'est pas grave s'ils effacent vos donneés locales pour libérer de l'espace dans la mémoire. Sans demander votre permission, évidemment."
+          "2": "ஆனால் விண்மீன் விநியோகிக்கப்பட்ட ஒரு மென்பொருள் ஆகும். உங்கள் தரவுகள் உங்கள் சாதனத்திலேயே சேமிக்கப்படும் என்பதால் இணையம் தொடர்பு கிடைக்காவிட்டாலும் விண்மீனைப் பயன்படுத்தலாம். ஆனால் இது சில உலாவிகளுக்கு தெரியாததால், சில தடவைகள் உங்கள் சேமிக்கப்பட்ட தரவுகளை அனுமதியில்லாமல் நீக்கும்.",
+          "3": "அப்படி துரதிருஷ்டமான ஒரு சந்தர்பம் ஆக கூடாது என்றால், உங்கள் தரவுகளை இப்பொழுதே பாதுகாக்கல்லாம்."
         },
         "persister": "இப்பொவே பாதுகாக்கு",
         "pasPersister": "அப்புறமாக பார்க்கிறேன்",
