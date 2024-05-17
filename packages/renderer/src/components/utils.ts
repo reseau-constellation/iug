@@ -4,7 +4,7 @@ import type {types, ClientConstellation} from '@constl/ipa';
 import EventEmitter, {once} from 'events';
 import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 import deepEqual from 'deep-equal';
-import type { கிளிமூக்கு as கிளிமூக்கு_வகை } from '@lassi-js/kilimukku';
+import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 
 export const constellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
@@ -205,18 +205,17 @@ export const rechercher = <
     onTravaille.value = true;
 
     if (fOublier) {
-      fOublier();  // Très bizare... `await` ici détruit la réactivité
+      fOublier(); // Très bizare... `await` ici détruit la réactivité
       fOublier = undefined;
     }
-    
+
     if (définis.value) {
-      
       // Si les intrants sont dynamiques, stabiliser
       if (dynamique) {
         const stable = await stab.stabiliser(définis.value);
         if (!stable) return;
       }
-      
+
       const retour = await fonc({
         ...définis.value,
         f: x => {
@@ -234,11 +233,12 @@ export const rechercher = <
       onTravaille.value = false;
     }
   });
-  const réfNOuProfondeur = computed<number|undefined>(()=>{
+  const réfNOuProfondeur = computed<number | undefined>(() => {
     return (args['nRésultatsDésirés'] || args['pronfondeur']) as number | undefined;
   });
   watchEffect(async () => {
-    if (fChangerNOuProfondeur && réfNOuProfondeur.value) fChangerNOuProfondeur(réfNOuProfondeur.value);
+    if (fChangerNOuProfondeur && réfNOuProfondeur.value)
+      fChangerNOuProfondeur(réfNOuProfondeur.value);
   });
 
   onUnmounted(async () => {
