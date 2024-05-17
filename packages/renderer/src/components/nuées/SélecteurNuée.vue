@@ -18,7 +18,7 @@
     <template #jeton-objet="{id, deselectionner}">
       <carte-nuée :id="id">
         <template #activator="{props: propsActivateur}">
-          <jeton-nuée
+          <jeton-nuee
             :id="id"
             v-bind="{props: propsActivateur}"
           >
@@ -29,7 +29,7 @@
               variant="flat"
               @click="() => deselectionner({id})"
             />
-          </jeton-nuée>
+          </jeton-nuee>
         </template>
       </carte-nuée>
     </template>
@@ -55,7 +55,7 @@ import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
 import {constellation, rechercher} from '/@/components/utils';
 
-import JetonNuée from './JetonNuée.vue';
+import JetonNuee from './JetonNuée.vue';
 import CarteNuée from './CarteNuée.vue';
 import NouvelleNuée from './NouvelleNuée.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -78,10 +78,7 @@ watchEffect(() => {
 
 // Contrôles recherche
 const requête = ref('');
-const {résultats, onTravaille} = rechercher(
-  constl.recherche.rechercherNuéesSelonTexte,
-  {
-    texte: requête,
-  },
-);
+const {résultats, onTravaille} = rechercher(constl.recherche.rechercherNuéesSelonTexte, {
+  texte: requête,
+});
 </script>

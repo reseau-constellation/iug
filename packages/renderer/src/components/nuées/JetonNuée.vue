@@ -7,6 +7,7 @@
       <v-img :src="srcImgNuée || imgDéfaut"></v-img>
     </v-avatar>
     {{ nomTraduit || t('nuées.sansNom') }}
+    <slot></slot>
   </v-chip>
 </template>
 <script setup lang="ts">

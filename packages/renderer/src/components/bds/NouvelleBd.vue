@@ -51,11 +51,12 @@
             ></SelecteurBd>
             <v-checkbox
               v-model="copierDonnées"
-              :label="t('bds.copier.copierDonnéesBd')"
+              :label="t('bds.copier.copierDonnées')"
+              color="primary"
             />
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('gabaritNuée')">
-            <SelecteurNuee
+            <selecteur-nuee
               :multiples="false"
               @selectionnee="id => id.length && choisirGabaritNuée(id[0])"
             />
@@ -91,22 +92,41 @@
             />
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('licence')">
+            <v-alert
+              v-if="partageÉgale"
+              class="mb-4"
+              variant="outlined"
+              type="info"
+              density="compact"
+              :title="t('licences.titrePartageÉgale')"
+              :text="t('licences.infoPartageÉgale')"
+            />
             <choix-licence
               :licence="licence"
-              permission-modifier
+              :permission-modifier="!partageÉgale"
               @changer-licence="l => (licence = l)"
             />
             <v-checkbox
               v-show="licence"
               v-model="licenceContenuPareil"
               :label="t('licences.pareilPourContenu')"
+              :disabled="!!partageÉgale"
               color="primary"
             />
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('licenceContenu')">
+            <v-alert
+              v-if="partageÉgaleContenu && copierDonnées"
+              class="mb-4"
+              variant="outlined"
+              type="info"
+              density="compact"
+              :title="t('licences.titrePartageÉgale')"
+              :text="t('licences.infoPartageÉgale')"
+            />
             <choix-licence
               :licence="licenceContenu"
-              permission-modifier
+              :permission-modifier="!partageÉgale"
               @changer-licence="l => (licenceContenu = l)"
             />
           </v-window-item>
@@ -164,9 +184,9 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds, types} from '@constl/ipa';
+import {licences, type bds, type types} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 import {useRouter} from 'vue-router';
 
@@ -177,7 +197,7 @@ import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
-import {constellation} from '../utils';
+import {constellation, suivre} from '../utils';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
@@ -357,6 +377,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 // Gabarits
 const gabaritNuée = ref<bds.schémaSpécificationBd>();
 const idBdÀCopier = ref<string>();
+
 const choisirGabaritBd = async (idBd: string) => {
   idBdÀCopier.value = idBd;
 };
@@ -371,7 +392,7 @@ const choisirGabaritNuée = async (idNuée: string) => {
     licenceContenu.value = schéma.licenceContenu;
   }
 };
-const copierDonnées = ref(false);
+const copierDonnées = ref(true);
 
 // Noms
 const noms = ref<{[lng: string]: string}>({});
@@ -389,9 +410,35 @@ const ajusterDescriptions = (desrc: {[lng: string]: string}) => {
 const motsClefs = ref<string[]>([]);
 
 // Licences
+const infoLicences = suivre(constl.licences.suivreLicences);
+
 const licence = ref<string>();
 const licenceContenuPareil = ref(true);
 const licenceContenu = ref<string>();
+
+const licenceBdÀCopier = suivre(constl.bds.suivreLicenceBd, {idBd: idBdÀCopier});
+const partageÉgale = computed(() => {
+  return (
+    licenceBdÀCopier.value &&
+    infoLicences.value?.[licenceBdÀCopier.value]?.conditions.includes(licences.conditions.ÉGAL)
+  );
+});
+watchEffect(() => {
+  if (partageÉgale.value) licence.value = licenceBdÀCopier.value;
+});
+
+const licenceContenuBdÀCopier = suivre(constl.bds.suivreLicenceContenuBd, {idBd: idBdÀCopier});
+const partageÉgaleContenu = computed(() => {
+  return (
+    licenceContenuBdÀCopier.value &&
+    infoLicences.value?.[licenceContenuBdÀCopier.value]?.conditions.includes(
+      licences.conditions.ÉGAL,
+    )
+  );
+});
+watchEffect(() => {
+  if (partageÉgaleContenu.value) licenceContenu.value = licenceContenuBdÀCopier.value;
+});
 
 // Statut
 const statut = ref<types.schémaStatut>({statut: 'active'});
