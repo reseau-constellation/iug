@@ -184,7 +184,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {licences, type bds, type types} from '@constl/ipa';
+import type {bds, types} from '@constl/ipa';
 
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
@@ -420,7 +420,7 @@ const licenceBdÀCopier = suivre(constl.bds.suivreLicenceBd, {idBd: idBdÀCopier
 const partageÉgale = computed(() => {
   return (
     licenceBdÀCopier.value &&
-    infoLicences.value?.[licenceBdÀCopier.value]?.conditions.includes(licences.conditions.ÉGAL)
+    infoLicences.value?.[licenceBdÀCopier.value]?.conditions.includes('partageÉgal')
   );
 });
 watchEffect(() => {
@@ -432,7 +432,7 @@ const partageÉgaleContenu = computed(() => {
   return (
     licenceContenuBdÀCopier.value &&
     infoLicences.value?.[licenceContenuBdÀCopier.value]?.conditions.includes(
-      licences.conditions.ÉGAL,
+      'partageÉgal',
     )
   );
 });
