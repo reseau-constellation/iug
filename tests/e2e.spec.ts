@@ -79,44 +79,35 @@ describe('Test fenêtre appli', function () {
 
   test('Créer compte', async () => {
     const btnDémarrer = await constellationPrêt({page});
-    console.log('Constellation prêt');
     await btnDémarrer.click();
-    console.log('Démarré cliqué');
     const btnNouveau = await page.waitForSelector('.mdi-creation-outline');
-    console.log('Btn nouveau compte sélectionné');
     await btnNouveau.click();
-    console.log('Btn nouveau compte cliqué');
 
     // Nom utilisatrice
     await page.getByLabel('உங்கள் பெயர்').fill('நான் தான்');
-    console.log('Nom écrit');
     await page.keyboard.press('Enter');
-    console.log('Nom inscrit');
 
     const btnSuivant = page.getByText('அடுத்தது');
-    console.log('Btn suivant');
     await btnSuivant.click();
-    console.log('Suivant');
 
     // Image
     await btnSuivant.click();
-    console.log('Au suivant');
+
+    // Protections données
+    await btnSuivant.click();
 
     // Création compte
     const btnCréerCompte = page.getByText('தொடக்கலாம்');
-    console.log('Btn création compte', btnCréerCompte);
 
     await btnCréerCompte.isEnabled();
+
     await btnCréerCompte.click();
-    console.log('Btn création compte cliqué');
 
     const menuNavig = await page.waitForSelector('.v-navigation-drawer__content');
-    console.log('Navigation');
     await menuNavig.hover();
-    console.log('Souris sur navigation');
 
     const nomUtilisatrice = page.getByText('நான் தான்');
-    console.log('Nom utilisatrice', nomUtilisatrice);
+
     expect(await nomUtilisatrice.innerText()).to.equal('நான் தான்');
   });
 });
