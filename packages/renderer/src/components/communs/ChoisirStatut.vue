@@ -14,20 +14,28 @@
       </v-list-item>
     </template>
     <template #selection="{item}">
-      {{ t(`données.statut.${item.raw}`) }}
+      <v-icon
+        start
+        :icon="icôneStatut(item.raw)"
+      ></v-icon> {{ t(`données.statut.${item.raw}`) }}
     </template>
   </v-select>
-  <v-checkbox
-    v-show="statut === 'obsolète'"
-    v-model="inclureNouvelle"
-    :label="t('données.statut.inclureNouvelle')"
-  />
-  <span v-show="statut === 'obsolète' && inclureNouvelle">
-    <slot
-      name="sélecteur"
-      :choisir-nouvelle="(id: string) => (idNouvelle = id)"
+  <v-expand-transition>
+    <v-checkbox
+      v-show="statut === 'obsolète'"
+      v-model="inclureNouvelle"
+      :label="t('données.statut.inclureNouvelle')"
+      color="primary"
     />
-  </span>
+  </v-expand-transition>
+  <v-expand-transition>
+    <span v-show="statut === 'obsolète' && inclureNouvelle">
+      <slot
+        name="sélecteur"
+        :choisir-nouvelle="(id: string) => (idNouvelle = id)"
+      />
+    </span>
+  </v-expand-transition>
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
