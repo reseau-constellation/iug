@@ -288,7 +288,7 @@
         "sousTitreCheminement": "Créez un bd vide ou utilisez un gabarit",
         "créerNouvelle": "Nouvelle BD vide",
         "copierDeBd": "Copier une BD existante",
-        "copierDeNuée": "À partir d'une Nuée",
+        "copierDeNuée": "À partir d'une nuée",
         "titreNoms": "Le nom de votre BD",
         "sousTitreNoms": "Vous pourrez toujours le modifier plus tard",
         "texteIndiceNom": "Le nom de la base de données",
@@ -349,6 +349,28 @@
       "recherche": {
         "étiquette": "Rechercher une nuée",
         "aucunRésultat": "Aucune nuée retrouvée"
+      }
+    },
+
+    "projets": {
+      "nouveau": {
+        "titreNoms": "Le nom de votre projet",
+        "titreDescriptions": "Description du projet",
+        "titreMotsClefs": "Ajoutez des mots-clefs",
+        "titreAjouterBds": "Ajouter des bases de données",
+        "titreConfirmation": "Confirmation",
+        "sousTitreNoms": "Choisissez un nom pour votre projet",
+        "sousTitreDescriptions": "Décrire le genre de données que le projet rassemble",
+        "sousTitreMotsClefs": "Ceux-ci serviront à indexer votre projet",
+        "sousTitreAjouterBds": "Vous pourrez ajouter d'autres bases de données plus tard",
+        "sousTitreConfirmation": "Confirmer création projet",
+        "texteIndiceNom": "Par exemple, « Hydrologie de l'asie » ou « Écologie de l'Amazonie »",
+        "texteAucuneDescription": "Aucune description de projet",
+        "texteÉtiquetteDescription": "Description du projet",
+        "texteIndiceDescription": "Décrire en quelques phrase ce que le projet contient.",
+        "texteCréer": "Confirmer la création du projet",
+        "texteBtnCréation": "Créer projet",
+        "ouvrirAprèsCréation": "Ouvrir le projet"
       }
     },
 

@@ -26,7 +26,7 @@
               :texte-aucun-nom="t('communs.texteAucunNom')"
               :indice-langue="t('communs.indiceLangue')"
               :etiquette-nom="t('communs.étiquetteNom')"
-              :indice-nom="t('projet.nouveau.texteIndiceNom')"
+              :indice-nom="t('projets.nouveau.texteIndiceNom')"
               :noms-initiaux="noms"
               :autorisation-modification="true"
               @ajuster-noms="ajusterNoms"
