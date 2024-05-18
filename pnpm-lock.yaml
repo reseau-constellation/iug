@@ -37,7 +37,7 @@ importers:
         version: 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       '@lassi-js/kilimukku':
         specifier: ^1.1.6
-        version: 1.1.6(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
+        version: 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       '@lassi-js/kilimukku-vue':
         specifier: 1.1.4
         version: 1.1.4(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.21(typescript@5.4.5))
@@ -1534,6 +1534,9 @@ packages:
 
   '@lassi-js/kilimukku@1.1.6':
     resolution: {integrity: sha512-rm9vznG0FEKJ6CcQvknVGUngH6LwNBAkEUZowGl4WjS7qj5o+B1oijyc/94XVFOZnV2RjaBQ8dSd9XY+WZ091Q==}
+
+  '@lassi-js/kilimukku@1.1.7':
+    resolution: {integrity: sha512-ScgHnwz2CLayaSEak4Zc/5TkGJpyFmJaQXodDqRO5Rhe8+nHht/PVsJPn2Cwe/q2TrUegHlG7jgb+QzGL4ctew==}
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -8762,6 +8765,21 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@lassi-js/kilimukku@1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))':
+    dependencies:
+      '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
+      '@constl/utils-ipa': 1.0.0
+      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      uuid: 9.0.1
+      wherearewe: 2.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - encoding
+      - react-native
+      - supports-color
+      - utf-8-validate
+
   '@leichtgewicht/ip-codec@2.0.5': {}
 
   '@libp2p/autonat@1.0.20':
@@ -12749,7 +12767,7 @@ snapshots:
   interface-datastore@8.2.11:
     dependencies:
       interface-store: 5.1.8
-      uint8arrays: 5.0.3
+      uint8arrays: 5.1.0
 
   interface-store@5.1.8: {}
 
