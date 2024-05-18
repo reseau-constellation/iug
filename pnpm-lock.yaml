@@ -25,7 +25,7 @@ importers:
         version: 1.0.1(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@1.0.2)(@constl/serveur@1.0.0(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))))(electron@30.0.6)
       '@constl/mandataire-electron-rendu':
         specifier: ^1.0.0
-        version: 1.0.0
+        version: 1.0.1
       '@constl/serveur':
         specifier: ^1.0.0
         version: 1.0.0(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
@@ -1055,8 +1055,8 @@ packages:
       '@constl/serveur': ^1.0.0
       electron: ^27.0.4 || ^28.0.0
 
-  '@constl/mandataire-electron-rendu@1.0.0':
-    resolution: {integrity: sha512-qgFF5tbWXhZUws+6z8pW0J5HLa9BmkJcCY6ZclU+YyDD4IObxJKY+HRZSZDh3xmFhmZblVdQurnGpxkH5uABKw==}
+  '@constl/mandataire-electron-rendu@1.0.1':
+    resolution: {integrity: sha512-YcxoObaY5MJfqiIQRmP4zBXFWpHGtXUcKx7ikBCAEndCvL3kwClOtdvEr5eYfKyIwDMeUAhrtl1UCq3tI6JzTw==}
 
   '@constl/mandataire@1.0.2':
     resolution: {integrity: sha512-L4HzTXWJOuoTVeGxGQBKOK0fT5hAmMoZan2SU3mCkz5dN1at8R5JOmW9A8lcFWg5TblMHRDj5FRxAqmtIdhBOA==}
@@ -8115,7 +8115,7 @@ snapshots:
       tslib: 2.6.2
       uuid: 9.0.1
 
-  '@constl/mandataire-electron-rendu@1.0.0':
+  '@constl/mandataire-electron-rendu@1.0.1':
     dependencies:
       '@constl/mandataire': 1.0.2
       events: 3.3.0
