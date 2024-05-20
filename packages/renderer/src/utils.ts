@@ -1,6 +1,6 @@
 import {isElectronRenderer, isBrowser} from 'wherearewe';
 import {os} from 'platform';
-import {surLinux, surMac, surWindows} from '#preload';
+import {surLinux, surMac, surWindows, choisirDossier as choisirDossier_} from '#preload';
 import {type ComputedRef, type Ref, computed} from 'vue';
 
 export const ouvrirLien = (lien: string) => {
@@ -168,4 +168,9 @@ export const sourceImage = (
       return undefined;
     }
   });
+};
+
+export const choisirDossier = async (): Promise<string | undefined> => {
+  if (!isElectronRenderer) return undefined;
+  return await choisirDossier_();
 };
