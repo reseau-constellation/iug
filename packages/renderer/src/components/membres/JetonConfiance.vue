@@ -4,10 +4,10 @@
     :id="id"
   >
     <template #activator="{props: propsActivateur}">
-      <icône-confiance
+      <icone-confiance
         v-if="styleJeton === 'icône'"
         v-bind="propsActivateur"
-        :confiance="confiance"
+        :confiance="confiance || 0"
         :cest-moi="id === monCompte"
       />
       <v-chip
@@ -18,8 +18,8 @@
         size="small"
       >
         <template #prepend>
-          <icône-confiance
-            :confiance="confiance"
+          <icone-confiance
+            :confiance="confiance || 0"
             :cest-moi="id === monCompte"
           />
         </template>
@@ -32,10 +32,10 @@
     :text="t(messageConfiance)"
   >
     <template #activator="{props: propsActivateur}">
-      <icône-confiance
+      <icone-confiance
         v-if="styleJeton === 'icône'"
         v-bind="propsActivateur"
-        :confiance="confiance"
+        :confiance="confiance || 0"
         :cest-moi="id === monCompte"
       />
       <v-chip
@@ -46,8 +46,8 @@
         size="small"
       >
         <template #prepend>
-          <icône-confiance
-            :confiance="confiance"
+          <icone-confiance
+            :confiance="confiance || 0"
             :cest-moi="id === monCompte"
           />
         </template>
@@ -63,7 +63,7 @@ import {computed} from 'vue';
 import {constellation, rechercher, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import IcôneConfiance from './IcôneConfiance.vue';
+import IconeConfiance from './IcôneConfiance.vue';
 import CarteConfianceMembre from './CarteConfianceMembre.vue';
 
 const props = defineProps<{

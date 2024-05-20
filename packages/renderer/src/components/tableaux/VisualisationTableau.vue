@@ -142,21 +142,21 @@
           (x: types.élémentsBd[]) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
-      <CelluleChaîneNonTraductible
+      <CelluleChaineNonTraductible
         v-else-if="c.info.catégorie?.catégorie === 'chaîneNonTraductible'"
-        :val="item.données[c.key]"
+        :val="item.données[c.key] as string"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: string) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
-      <CelluleNumérique
+      <cellule-numerique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
-        :val="item.données[c.key]"
+        :val="item.données[c.key] as number"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
-      <CelluleHoroDatage
+      <cellule-horo-datage
         v-else-if="c.info.catégorie?.catégorie === 'horoDatage'"
         :val="item.données[c.key]"
         :editer="éditer"
@@ -170,14 +170,14 @@
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
-      <CelluleBooléenne
+      <cellule-booleenne
         v-else-if="c.info.catégorie?.catégorie === 'booléen'"
-        :val="item.données[c.key]"
+        :val="item.données[c.key] as boolean"
         :editer="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
-      <celluleChaîne
+      <cellule-chaine
         v-else-if="c.info.catégorie?.catégorie === 'chaîne'"
         :val="item.données[c.key]"
         :editer="éditer"
@@ -240,9 +240,9 @@ import {constellation, suivre} from '../utils';
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
 
-import CelluleChaîneNonTraductible from './cellules/CelluleChaîneNonTraductible.vue';
-import CelluleBooléenne from './cellules/CelluleBooléenne.vue';
-import CelluleNumérique from './cellules/CelluleNumérique.vue';
+import CelluleChaineNonTraductible from './cellules/CelluleChaîneNonTraductible.vue';
+import CelluleBooleenne from './cellules/CelluleBooléenne.vue';
+import CelluleNumerique from './cellules/CelluleNumérique.vue';
 
 import {créerColonneTableau} from '/@/components/tableaux/utils';
 

@@ -5,5 +5,5 @@
   />
 </template>
 <script setup lang="ts">
-defineProps<{val: string}>();
+defineProps<{val?: boolean}>();
 </script>
