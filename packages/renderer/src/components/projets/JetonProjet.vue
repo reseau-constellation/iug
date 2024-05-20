@@ -4,6 +4,7 @@
       <v-img :src="srcImgProjet || imgDéfaut"></v-img>
     </v-avatar>
     {{ nomTraduit || t('projets.sansNom') }}
+    <slot></slot>
   </v-chip>
 </template>
 <script setup lang="ts">

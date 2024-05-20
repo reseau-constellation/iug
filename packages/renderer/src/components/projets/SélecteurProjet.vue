@@ -62,7 +62,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 defineProps<{multiples: boolean; originaux?: string[]}>();
 const émettre = defineEmits<{
-  (é: 'selectionnee', idsProjets: string[]): void;
+  (é: 'selectionne', idsProjets: string[]): void;
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -73,7 +73,7 @@ const constl = constellation();
 // Sélection
 const idsProjetsSélectionnées = ref<string[]>([]);
 watchEffect(() => {
-  émettre('selectionnee', idsProjetsSélectionnées.value);
+  émettre('selectionne', idsProjetsSélectionnées.value);
 });
 
 // Contrôles recherche
