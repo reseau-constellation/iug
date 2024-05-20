@@ -38,7 +38,7 @@
                 :key="type"
                 class="mx-2"
                 variant="outlined"
-                :prepend-icon="type === 'tableau' ? 'mdi-table' : 'mdi-database'"
+                :prepend-icon="icôneObjet(type)"
               />
             </v-chip-group>
             <SelecteurBd
@@ -57,13 +57,13 @@
               v-model="fichier"
               class="mt-2"
               variant="outlined"
-              :label="t('Choisissez un fichier...')"
+              :label="t('importations.carte.étiquetteFichier')"
             ></v-file-input>
             <v-text-field
               v-model="url"
               prepend-icon="mdi-web"
               variant="outlined"
-              :label="t('...ou bien un URL')"
+              :label="t('mportations.carte.étiquetteURL')"
             ></v-text-field>
             {{ url }}
             {{ donnéesSource }}
@@ -82,6 +82,7 @@ import axios from 'axios';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
+import { icôneObjet } from '../utils';
 
 const props = defineProps<{infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'}}>();
 
@@ -155,4 +156,5 @@ watchEffect(async () => {
     donnéesSource.value = undefined;
   }
 });
+
 </script>
