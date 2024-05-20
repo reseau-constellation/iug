@@ -44,17 +44,20 @@
         {{ t('automatisations.carte.exportations') }}
         <v-divider />
         <v-list>
-          <v-list-item prepend-icon="mdi-plus">
-            <importer-ou-exporter
-              :info-objet="{id: idObjet, typeObjet}"
-              type="exportation"
-              automatiser
-            >
-              <v-list-item-title>
-                {{ t('automatisations.carte.ajouterExportation') }}
-              </v-list-item-title>
-            </importer-ou-exporter>
-          </v-list-item>
+          <nouvelle-exportation
+            :info-objet="{id: idObjet, typeObjet}"
+          >
+            <template #activator="{props: propsActivateur}">
+              <v-list-item
+                prepend-icon="mdi-download-outline"
+                v-bind="propsActivateur"
+              >
+                <v-list-item-title>
+                  {{ t('automatisations.carte.ajouterExportation') }}
+                </v-list-item-title>
+              </v-list-item>
+            </template>
+          </nouvelle-exportation>
           <item-automatisation
             v-for="auto in automatisationsExportationObject"
             :key="auto.id"
@@ -81,7 +84,7 @@ import {constellation, enregistrerÉcoute, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
-import ImporterOuExporter from '../importerExporter/ImporterOuExporter.vue';
+import NouvelleExportation from '/@/components/automatisations/NouvelleExportation.vue';
 import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

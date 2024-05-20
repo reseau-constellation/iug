@@ -256,6 +256,20 @@
       }
     },
 
+    "importations": {
+      "carte": {
+        "étiquetteFichier": "Choisissez un fichier...",
+        "étiquetteURL": "...ou bien un URL"
+      }
+    },
+
+    "exportations": {
+      "titreObjetConstellation": "Données à exporter",
+      "titreDestination": "Destination",
+      "titreFormat": "Format",
+      "titreConfirmation": "Confirmation"
+    },
+
     "membres": {
       "contacts": "Contacts",
       "anonyme": "Anonyme",
@@ -805,6 +819,12 @@
         "aucuneImportation": "தற்காலத்தில் எந்த இறக்குமதியும் இல்லை",
         "aucuneExportation": "தற்காலத்தில் எந்த ஏற்றுமதியும் இல்லை",
         "ajouterImportation": "புதிய இறக்குமதியைச் சேரு"
+      }
+    },
+    "importations": {
+      "carte": {
+        "étiquetteFichier": "ஒரு கோப்பைத் தேர்ந்தெடுகொங்கள்...",
+        "étiquetteURL": "...இல்லையென்றால் ஒரு இணைப்பை உள்ளிடுங்கள்"
       }
     },
     "épingler": {
