@@ -32,7 +32,10 @@
         />
         <v-divider class="my-4" />
         <p class="text-h6">{{ t('licences.contenu') }}</p>
-        <v-dialog v-model="dialogueLicenceContenu">
+        <v-dialog
+          v-model="dialogueLicenceContenu"
+          :disabled="mêmePourContenu"
+        >
           <template #activator="{props: propsActivateur}">
             <jeton-licence
               v-bind="propsActivateur"
@@ -53,7 +56,7 @@
                 icon="mdi-close"
                 variant="flat"
                 size="small"
-                @click="dialogue = false"
+                @click="dialogueLicenceContenu = false"
               />
             </v-card-title>
             <v-divider />
