@@ -1,5 +1,5 @@
 <template>
-  <v-dialog>
+  <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
@@ -11,7 +11,16 @@
       :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title>{{ t('automatisations.carte.titre') }}</v-card-title>
+        <v-card-title class="d-flex">
+          {{ t('automatisations.carte.titre') }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          />
+        </v-card-title>
       </v-card-item>
       <v-card-text>
         <span v-if="(typeObjet === 'bd' || typeObjet == 'tableau') && monAutorisation">
@@ -97,6 +106,9 @@ const props = defineProps<{
 }>();
 
 const constl = constellation();
+
+// Navigation
+const dialogue = ref(false);
 
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idObjet});
