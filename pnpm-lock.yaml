@@ -34,7 +34,7 @@ importers:
         version: 0.2.3(esbuild@0.21.1)
       '@lassi-js/kili':
         specifier: ^0.3.13
-        version: 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+        version: 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       '@lassi-js/kilimukku':
         specifier: ^1.1.6
         version: 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
@@ -1519,11 +1519,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@lassi-js/kili@0.3.13':
-    resolution: {integrity: sha512-L2k6onihv5S6/rtKfYyiax63tWVJ5sSvrhbFff75NVJvoicGrziw2jUr44qqD8P5W9IUqDhteZ+JuFaw7yasjg==}
-    peerDependencies:
-      '@constl/ipa': ^1.0.12
 
   '@lassi-js/kili@0.3.14':
     resolution: {integrity: sha512-ZMPRnQLdLVHOg342Qqfi8El72jeelUpUXLUEliN92I9zSEI6BsYN0RmZGEY1Dz9+sFOVQw+Vq2YJKuZlmMCghg==}
@@ -8696,15 +8691,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@lassi-js/kili@0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))':
-    dependencies:
-      '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
-      '@constl/utils-ipa': 1.0.0
-      '@orbitdb/core': 2.2.0
-      deepcopy: 2.1.0
-    transitivePeerDependencies:
-      - supports-color
-
   '@lassi-js/kili@0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))':
     dependencies:
       '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
@@ -8717,7 +8703,7 @@ snapshots:
   '@lassi-js/kilimukku-vue@1.1.4(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
-      '@lassi-js/kili': 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       '@lassi-js/kilimukku': 1.1.6(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       ennikkai: 2.2.9(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       js-cookie: 3.0.5
@@ -8738,7 +8724,7 @@ snapshots:
     dependencies:
       '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       '@constl/utils-ipa': 1.0.0
-      '@lassi-js/kili': 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       uuid: 9.0.1
       wherearewe: 2.0.1
     transitivePeerDependencies:
@@ -11831,7 +11817,7 @@ snapshots:
   ennikkai@2.2.9(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))):
     dependencies:
       '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
-      '@lassi-js/kili': 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
@@ -14089,7 +14075,7 @@ snapshots:
   nuchabal@3.2.4(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))):
     dependencies:
       '@constl/ipa': 1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
-      '@lassi-js/kili': 0.3.13(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.20(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       deepmerge: 4.3.1
       events: 3.3.0
     transitivePeerDependencies:
