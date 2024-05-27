@@ -8,7 +8,7 @@
         {{ icône }}
       </v-icon>
     </template>
-    <v-list-item-title>
+    <template #title>
       {{ t(`données.statut.${statut.statut}`) }}
       <v-btn
         v-if="statut.idNouvelle"
@@ -22,7 +22,7 @@
       >
         {{ t('statut.allerÀNouvelle') }}
       </v-btn>
-    </v-list-item-title>
+    </template>
   </v-list-item>
 </template>
 <script setup lang="ts">

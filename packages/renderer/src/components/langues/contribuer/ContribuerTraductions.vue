@@ -15,10 +15,20 @@
         <v-card-title class="d-flex">
           {{ t('kilimukku.titre') }}
           <v-spacer />
+          <gestionnaire-traductions>
+            <template #activator="{props: propsActivateur}">
+              <v-btn
+                v-bind="propsActivateur"
+                icon="mdi-cogs"
+                size="small"
+                variant="flat"
+              ></v-btn>
+            </template>
+          </gestionnaire-traductions>
           <v-btn
             icon="mdi-close"
             size="small"
-            variant="outlined"
+            variant="flat"
             @click="dialogue = false"
           ></v-btn>
         </v-card-title>
@@ -271,7 +281,6 @@
                     v-for="sugg in suggestionsLangueCibleClef"
                     :key="sugg.அடையாளம்"
                     :suggestion="sugg"
-                    :compte="sugg.பங்கேற்பாளர்"
                     class="ps-10"
                     @utiliser="suggestion = sugg.பரிந்துரை.மொழிபெயர்ப்பு"
                     @effacer="effacerSuggestion(sugg.அடையாளம்)"
@@ -364,6 +373,7 @@
         <v-btn
           :text="t('communs.fermer')"
           append-icon="mdi-close"
+          @click="dialogue = false"
         ></v-btn>
       </v-card-actions>
     </v-card>
@@ -389,6 +399,7 @@ import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
+import GestionnaireTraductions from './GestionnaireTraductions.vue';
 
 import {constellation, கிளிமூக்கு, suivre} from '/@/components/utils';
 

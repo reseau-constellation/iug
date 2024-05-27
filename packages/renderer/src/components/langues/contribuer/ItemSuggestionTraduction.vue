@@ -4,10 +4,10 @@
     @click="utiliser"
   >
     <v-list-item-title class="d-flex">
-      <carte-membre :id="compte">
+      <carte-membre :id="suggestion.பங்கேற்பாளர்">
         <template #activator="{props: propsActivateur}">
           <span v-bind="propsActivateur">
-            <image-profil :id="compte" />
+            <image-profil :id="suggestion.பங்கேற்பாளர்" />
             <span class="mx-3">{{ nomCompte }}</span>
           </span>
         </template>
@@ -43,7 +43,7 @@ import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-const props = defineProps<{suggestion: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை; compte: string}>();
+const props = defineProps<{suggestion: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை}>();
 const émettre = defineEmits<{
   (e: 'utiliser'): void;
   (e: 'effacer'): void;
@@ -54,7 +54,7 @@ const constl = constellation();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 // Noms du compte
-const nomsCompte = suivre(constl.profil.suivreNoms, {idCompte: props.compte});
+const nomsCompte = suivre(constl.profil.suivreNoms, {idCompte: props.suggestion.பங்கேற்பாளர்});
 const nomCompte = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsCompte);
 
 // Actions
@@ -68,6 +68,6 @@ const effacer = () => {
 // Autorisations
 const monCompte = suivre(constl.suivreIdCompte);
 const autorisé = computed(() => {
-  return props.compte === monCompte.value;
+  return props.suggestion.பங்கேற்பாளர் === monCompte.value;
 });
 </script>

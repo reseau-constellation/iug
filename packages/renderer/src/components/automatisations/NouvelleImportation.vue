@@ -68,12 +68,133 @@
             {{ url }}
             {{ donnéesSource }}
           </v-window-item>
+          <v-window-item :value="étapes.indexOf('correspondancesImportation')"></v-window-item>
+          <v-window-item :value="étapes.indexOf('automatiser')">
+            <p>{{ t('exportations.carte.automatiser') }}</p>
+            <v-radio-group v-model="optionAutomatiser">
+              <v-radio
+                value="manuelle"
+                class="my-2"
+              >
+                <template #label>
+                  <div>
+                    <p class="font-weight-bold">{{ t('automatisations.fréquence.manuelle') }}</p>
+                    <p class="text-medium-emphasis text-caption">
+                      {{ t('automatisations.fréquence.indiceManuelle') }}
+                    </p>
+                  </div>
+                </template>
+              </v-radio>
+              <v-radio
+                value="dynamique"
+                class="my-2"
+                :disabled="!!url || isBrowser"
+              >
+                <template #label>
+                  <div>
+                    <p class="font-weight-bold">{{ t('automatisations.fréquence.dynamique') }}</p>
+                    <p class="text-medium-emphasis text-caption">
+                      {{ t('automatisations.fréquence.indiceDynamique') }}
+                    </p>
+                    <p
+                      v-if="!!url"
+                      class="my-1 text-medium-emphasis text-caption"
+                    >
+                      <v-icon
+                        icon="mdi-alert-outline"
+                        start
+                      />{{ t('automatisations.fréquence.pasDeSourceURL') }}
+                    </p>
+                    <p
+                      v-else-if="isBrowser"
+                      class="my-1 text-medium-emphasis text-caption"
+                    >
+                      <v-icon
+                        icon="mdi-alert-outline"
+                        start
+                      />{{ t('automatisations.fréquence.pasSurNavig') }}
+                    </p>
+                  </div>
+                </template>
+              </v-radio>
+              <v-radio
+                value="fixe"
+                class="my-2"
+                :disabled="isBrowser"
+              >
+                <template #label>
+                  <div>
+                    <p class="font-weight-bold">{{ t('automatisations.fréquence.fixe') }}</p>
+                    <p class="text-medium-emphasis text-caption">
+                    </p><div class="d-flex vertical-align">
+                      <div
+                        class="text-medium-emphasis text-caption"
+                        style="display:flex;align-items:center;"
+                      >
+                        {{ t('automatisations.fréquence.indiceFixe') }}
+                      </div>
+                      <v-text-field
+                        v-model="choixFréquence"
+                        class="mx-1"
+                        variant="outlined"
+                        density="compact"
+                        hide-details
+                      />
+                      <v-select
+                        v-model="choixUnitéFréquence"
+                        :items="optionsUnitésFréquence"
+                        class="mx-1"
+                        variant="outlined"
+                        density="compact"
+                        hide-details
+                      >
+                        <template #selection="{item}">
+                          {{ t(`automatisations.fréquence.unités.${item.raw}`) }}
+                        </template>
+                        <template #item="{item, props: propsItem}">
+                          <v-list-item
+                            v-bind="propsItem"
+                            :title="t(`automatisations.fréquence.unités.${item.raw}`) "
+                          />
+                        </template>
+                      </v-select>
+                    </div>
+                    <p
+                      v-if="isBrowser"
+                      class="my-1 text-medium-emphasis text-caption"
+                    >
+                      <v-icon
+                        icon="mdi-alert-outline"
+                        start
+                      />{{ t('automatisations.fréquence.pasSurNavig') }}
+                    </p>
+                  </div>
+                </template>
+              </v-radio>
+              <v-radio
+                value="aucune"
+                class="my-2"
+              >
+                <template #label>
+                  <div>
+                    <p class="font-weight-bold">{{ t('automatisations.fréquence.aucune') }}</p>
+                    <p class="text-medium-emphasis text-caption">
+                      {{ t('automatisations.fréquence.indiceAucune') }}
+                    </p>
+                  </div>
+                </template>
+              </v-radio>
+            </v-radio-group>
+          </v-window-item>
+          <v-window-item :value="étapes.indexOf('confirmation')"></v-window-item>
         </v-window>
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
+import type { automatisation } from '@constl/ipa';
+
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -83,6 +204,8 @@ import axios from 'axios';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import { icôneObjet } from '../utils';
+
+import { isBrowser } from 'wherearewe';
 
 const props = defineProps<{infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'}}>();
 
@@ -156,5 +279,14 @@ watchEffect(async () => {
     donnéesSource.value = undefined;
   }
 });
+
+// Automatisation
+const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>('manuelle');
+
+const choixFréquence = ref(1);
+const choixUnitéFréquence = ref<automatisation.fréquence['unités']>('jours');
+const optionsUnitésFréquence: automatisation.fréquence['unités'][] = [
+  'années', 'mois', 'semaines', 'jours', 'heures', 'minutes', 'secondes', 'millisecondes',
+];
 
 </script>

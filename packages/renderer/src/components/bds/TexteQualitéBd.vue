@@ -1,6 +1,6 @@
 <template>
   <span class="ms-2">
-    {{ t('bds.qualité') }}:
+    {{ t('bds.qualité.titre') }}:
     <span
       :style="`color:${couleurScore(score !== undefined ? score : null).couleur}`"
       class="font-weight-bold"

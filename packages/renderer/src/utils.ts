@@ -75,8 +75,8 @@ export interface interfaceCouleurScore {
   note: string;
 }
 
-export function couleurScore(score: number | null): interfaceCouleurScore {
-  if (score === null) return {couleur: '#666666', note: '?'};
+export function couleurScore(score?: number | null): interfaceCouleurScore {
+  if (score === null || score === undefined) return {couleur: 'grey lighten-2', note: '?'};
   score *= 100;
   if (score >= 95) {
     return {couleur: '#1e7145', note: 'A'};

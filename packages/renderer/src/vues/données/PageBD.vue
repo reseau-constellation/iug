@@ -128,13 +128,13 @@
         </template>
       </CarteEpingler>
 
-      <importer-ou-exporter
-        :info-objet="{id, typeObjet: 'bd'}"
-        :type="monAutorisation ? undefined : 'exportation'"
+      <carte-exportations-objet
+        :id-objet="id"
+        type-objet="bd"
       >
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
-            :text="t('exporter.indice')"
+            :text="t('exportations.indice')"
             :open-delay="200"
             location="bottom"
           >
@@ -147,7 +147,7 @@
             </template>
           </v-tooltip>
         </template>
-      </importer-ou-exporter>
+      </carte-exportations-objet>
 
       <carte-code-bd :id="id">
         <template #activator="{props: propsActivateurCarte}">
@@ -261,12 +261,11 @@
           </carte-statut-bd>
         </v-card>
         <v-card
-          v-if="false"
           flat
           width="200"
           class="mb-3"
         >
-          <carte-qualite-bd>
+          <carte-qualite-bd :id-bd="id">
             <template #activator="{props: propsActivateur}">
               <item-qualite-bd
                 v-bind="propsActivateur"
@@ -589,7 +588,7 @@ import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
-import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import CarteExportationsObjet from '/@/components/automatisations/CarteExportationsObjet.vue';
 import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';

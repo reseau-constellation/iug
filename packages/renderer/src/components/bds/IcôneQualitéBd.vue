@@ -1,11 +1,11 @@
 <template>
   <v-progress-circular
     :rotate="score !== undefined ? 270 : undefined"
-    :value="score !== undefined ? score * 100 : 0"
+    :model-value="score !== undefined ? score * 100 : 0"
     :indeterminate="score === undefined"
     :color="score !== undefined ? couleurScore(score).couleur : 'grey lighten-2'"
-    :size="15"
-    :width="3"
+    :size="25"
+    :width="5"
   />
 </template>
 
