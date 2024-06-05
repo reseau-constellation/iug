@@ -47,7 +47,7 @@ export const surNavig = async ({
     case 'chromium':
       navigateur = await chromium.launch({
         args: ['--disable-web-security'],
-//        headless: false,
+        //        headless: false,
       });
       break;
     case 'firefox':

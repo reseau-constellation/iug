@@ -172,11 +172,10 @@
                 <template #label>
                   <div>
                     <p class="font-weight-bold">{{ t('automatisations.fréquence.fixe') }}</p>
-                    <p class="text-medium-emphasis text-caption">
-                    </p><div class="d-flex vertical-align">
+                    <p class="text-medium-emphasis text-caption"> </p><div class="d-flex vertical-align">
                       <div
                         class="text-medium-emphasis text-caption"
-                        style="display:flex;align-items:center;"
+                        style="display: flex; align-items: center"
                       >
                         {{ t('automatisations.fréquence.indiceFixe') }}
                       </div>
@@ -201,7 +200,7 @@
                         <template #item="{item, props: propsItem}">
                           <v-list-item
                             v-bind="propsItem"
-                            :title="t(`automatisations.fréquence.unités.${item.raw}`) "
+                            :title="t(`automatisations.fréquence.unités.${item.raw}`)"
                           />
                         </template>
                       </v-select>
@@ -234,7 +233,7 @@
             </v-radio-group>
           </v-window-item>
           <v-window-item :value="étapes.indexOf('confirmation')">
-            <v-btn @click="()=>exporter()"></v-btn>
+            <v-btn @click="() => exporter()"></v-btn>
           </v-window-item>
         </v-window>
       </v-card-text>
@@ -262,7 +261,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -274,14 +273,17 @@ import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
-import { constellation, icôneObjet } from '../utils';
+import {constellation, icôneObjet} from '../utils';
 
-import { isBrowser } from 'wherearewe';
-import { watchEffect } from 'vue';
-import { plateforme } from '/@/utils';
+import {isBrowser} from 'wherearewe';
+import {watchEffect} from 'vue';
+import {plateforme} from '/@/utils';
 
-const props = defineProps<{infoObjet?: {
-  id: string; typeObjet: 'tableau' | 'bd' | 'projet' | 'nuée' }
+const props = defineProps<{
+  infoObjet?: {
+    id: string;
+    typeObjet: 'tableau' | 'bd' | 'projet' | 'nuée';
+  };
 }>();
 
 const {mdAndUp} = useDisplay();
@@ -306,7 +308,9 @@ const étapes = [
   'confirmation',
 ] as const;
 
-const étape = ref(étapes.indexOf(props.infoObjet ? (isBrowser ? 'format' : 'destination') : 'objetConstellation'));
+const étape = ref(
+  étapes.indexOf(props.infoObjet ? (isBrowser ? 'format' : 'destination') : 'objetConstellation'),
+);
 
 const titreCarte = computed(() => {
   const é = étapes[étape.value];
@@ -390,7 +394,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 const typeObjet = ref(props.infoObjet?.typeObjet);
 const idObjet = ref(props.infoObjet?.id);
 
-// Destination  
+// Destination
 const destination = ref<string>();
 const choisirDestination = async () => {
   if (destination.value === '' || !destination.value) {
@@ -403,9 +407,11 @@ const formatDoc = ref<automatisation.formatTélécharger>('ods');
 const optionsFormatsDoc = ['ods', 'csv', 'txt', 'xlsx', 'xls'];
 
 const langues = ref();
-const languesDisponibles = computed(()=>மொழிகளும்_குறியீடுகளும்.value.map(lng=>lng.மொழி));
-watchEffect(()=>{
-  langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value].map(code => மொழிகளும்_குறியீடுகளும்.value.find(lng=>lng.குறியீடு === code)?.மொழி || code);
+const languesDisponibles = computed(() => மொழிகளும்_குறியீடுகளும்.value.map(lng => lng.மொழி));
+watchEffect(() => {
+  langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value].map(
+    code => மொழிகளும்_குறியீடுகளும்.value.find(lng => lng.குறியீடு === code)?.மொழி || code,
+  );
 });
 
 const inclureDocuments = ref(true);
@@ -414,9 +420,16 @@ const inclureDocuments = ref(true);
 const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>('manuelle');
 
 const choixFréquence = ref(1);
-const choixUnitéFréquence = ref<automatisation.fréquence['unités']>('jours');
-const optionsUnitésFréquence: automatisation.fréquence['unités'][] = [
-  'années', 'mois', 'semaines', 'jours', 'heures', 'minutes', 'secondes', 'millisecondes',
+const choixUnitéFréquence = ref<automatisation.fréquenceFixe['détails']['unités']>('jours');
+const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unités'][] = [
+  'années',
+  'mois',
+  'semaines',
+  'jours',
+  'heures',
+  'minutes',
+  'secondes',
+  'millisecondes',
 ];
 
 // Confirmation
@@ -430,19 +443,34 @@ const exporter = async () => {
         idTableau: idObjet.value,
         langues: langues.value,
       });
-      await constl.bds.exporterDocumentDonnées({ données, formatDoc: formatDoc.value, dossier: destination.value, inclureFichiersSFIP: inclureDocuments.value });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: formatDoc.value,
+        dossier: destination.value,
+        inclureFichiersSFIP: inclureDocuments.value,
+      });
     } else if (typeObjet.value === 'bd') {
       const données = await constl.bds.exporterDonnées({
         idBd: idObjet.value,
         langues: langues.value,
       });
-      await constl.bds.exporterDocumentDonnées({ données, formatDoc: formatDoc.value, dossier: destination.value, inclureFichiersSFIP: inclureDocuments.value });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: formatDoc.value,
+        dossier: destination.value,
+        inclureFichiersSFIP: inclureDocuments.value,
+      });
     } else if (typeObjet.value === 'nuée') {
       const données = await constl.nuées.exporterDonnéesNuée({
         idNuée: idObjet.value,
         langues: langues.value,
       });
-      await constl.bds.exporterDocumentDonnées({ données, formatDoc: formatDoc.value, dossier: destination.value, inclureFichiersSFIP: inclureDocuments.value });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: formatDoc.value,
+        dossier: destination.value,
+        inclureFichiersSFIP: inclureDocuments.value,
+      });
     } else if (typeObjet.value === 'projet') {
       const données = await constl.projets.exporterDonnées({
         idProjet: idObjet.value,
@@ -455,7 +483,6 @@ const exporter = async () => {
         inclureFichiersSFIP: inclureDocuments.value,
       });
     }
-    
   } else {
     await constl.automatisations.ajouterAutomatisationExporter({
       id: idObjet.value,
@@ -464,15 +491,14 @@ const exporter = async () => {
       inclureFichiersSFIP: inclureDocuments.value,
       dossier: destination.value,
       langues: langues.value,
-      /*fréquence: {
+      fréquence: {
         type: optionAutomatiser.value,
         détails: {
-          fréquence: choixFréquence.value,
+          n: choixFréquence.value,
           unités: choixUnitéFréquence.value,
         },
-      },*/
+      },
     });
   }
 };
-
 </script>

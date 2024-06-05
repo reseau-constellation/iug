@@ -921,8 +921,14 @@
         "titre": "உரிமம்"
       }
     },
-    "ennikkai": {
-      "numération": "எண்கள்"
+    "nuchabäl": {
+      "numération": "எண்கள்",
+      "direction": "திசை",
+      "code": "குறியீடு",
+      "codesÉcriture": {
+        "nuchabäl": "நூச்சாபால்",
+        "i1": "சீ.அ.நி."
+      }
     },
     "pages": {
       "signalements": {

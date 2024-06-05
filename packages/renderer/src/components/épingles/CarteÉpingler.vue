@@ -200,6 +200,8 @@ import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import {watchEffect} from 'vue';
 
+import {isEqual} from 'lodash';
+
 const props = defineProps({
   id: {
     type: String,
@@ -357,10 +359,10 @@ const valeursChangées = computed<boolean>(() => {
   if (!statutFavoris.value) return true;
   const {dispositifs, dispositifsFichiers} = statutFavoris.value;
   const dispositifsChangés = Array.isArray(dispositifs)
-    ? new Set(dispositifs) !== new Set(dispositifsSpécifiques.value)
+    ? isEqual(new Set(dispositifs), new Set(dispositifsSpécifiques.value))
     : dispositifs !== typeDispositifs.value;
   const dispositifsFichiersChangés = Array.isArray(dispositifsFichiers)
-    ? new Set(dispositifsFichiers) !== new Set(dispositifsFichiersSpécifiques.value)
+    ? isEqual(new Set(dispositifsFichiers), new Set(dispositifsFichiersSpécifiques.value))
     : dispositifsFichiers !== typeDispositifsFichiers.value;
 
   return dispositifsChangés || dispositifsFichiersChangés;

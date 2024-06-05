@@ -139,13 +139,13 @@ export const lancerInfosProtégerDonnées = () => {
   });
 };
 
-export const lancerInfosUtilisationMémoire = ({ seuil }: {seuil: number}) => {
+export const lancerInfosUtilisationMémoire = ({seuil}: {seuil: number}) => {
   if (isElectronRenderer) return;
 
   const étatInfos = utiliserÉtatInfos();
 
   const vérifierUtilisation = async () => {
-    const { quota, usage } = await navigator.storage.estimate();
+    const {quota, usage} = await navigator.storage.estimate();
 
     let idInfo: string | undefined = undefined;
     if (quota !== undefined && usage !== undefined) {
@@ -160,10 +160,10 @@ export const lancerInfosUtilisationMémoire = ({ seuil }: {seuil: number}) => {
             },
           },
           'utilisationMémoire',
-        );}
-      else {
+        );
+      } else {
         if (idInfo) étatInfos.effacerInfo(idInfo);
-      idInfo = undefined;
+        idInfo = undefined;
       }
     } else {
       if (idInfo) étatInfos.effacerInfo(idInfo);

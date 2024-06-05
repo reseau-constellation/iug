@@ -3,7 +3,7 @@ import {join} from 'path';
 import {fileURLToPath, URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
-import { connecterSystèmeFichiers } from './systèmeFichiers';
+import {connecterSystèmeFichiers} from './systèmeFichiers';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({

@@ -17,7 +17,13 @@
   />
 </template>
 <script setup lang="ts">
-import type {InfoAvecId, InfoMettreÀJour, InfoInstaller, InfoProtégerDonnnées, InfoUtilisationMémoire} from '/@/état/infos';
+import type {
+  InfoAvecId,
+  InfoMettreÀJour,
+  InfoInstaller,
+  InfoProtégerDonnnées,
+  InfoUtilisationMémoire,
+} from '/@/état/infos';
 import ItemInfoTelecharger from './ItemInfoTélécharger.vue';
 import ItemInfoMettreAJour from './ItemInfoMettreÀJour.vue';
 import ItemInfoProtegerDonnees from './ItemInfoProtégerDonnées.vue';

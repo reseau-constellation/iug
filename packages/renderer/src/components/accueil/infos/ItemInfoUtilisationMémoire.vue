@@ -20,11 +20,10 @@
 <script setup lang="ts">
 import {type InfoAvecId, type InfoUtilisationMémoire} from '/@/état/infos';
 
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 import BaseItemInfo from './BaseItemInfo.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
 
 const props = defineProps<{
   info: InfoAvecId<InfoUtilisationMémoire>;
@@ -33,9 +32,8 @@ const props = defineProps<{
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const pourcentage = computed(()=>{
-  const { quota, utilisation } = props.info.info.détails;
+const pourcentage = computed(() => {
+  const {quota, utilisation} = props.info.info.détails;
   return (utilisation / quota) * 100;
 });
-
 </script>

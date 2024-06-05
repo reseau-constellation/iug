@@ -3,7 +3,9 @@
     variant="outlined"
     size="small"
   >
-    {{ code || t('communs.auto') }}
+    <slot>
+      {{ code || t('communs.auto') }}
+    </slot>
     {{ numéroFormatté }}
   </v-chip>
 </template>

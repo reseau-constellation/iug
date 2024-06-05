@@ -113,7 +113,7 @@ const connexionsConstellation = suivre(constl.réseau.suivreConnexionsDispositif
 const connexionsMembres = computed<{idCompte: string; dispositifs: réseau.statutDispositif[]}[]>(
   () => {
     const membres = [
-      ...(new Set(connexionsConstellation.value?.map(c => c.infoDispositif.idCompte)) || []),
+      ...new Set(connexionsConstellation.value?.map(c => c.infoDispositif.idCompte) || []),
     ];
     return membres.map(m => ({
       idCompte: m,

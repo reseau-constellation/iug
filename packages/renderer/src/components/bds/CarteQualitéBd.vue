@@ -67,14 +67,19 @@
                       :color="couleurScore(qualité?.licence).couleur"
                     />
                     <v-icon
-                      :icon="qualité?.licence ? 'mdi-check': 'mdi-alert-circle-outline'"
+                      :icon="qualité?.licence ? 'mdi-check' : 'mdi-alert-circle-outline'"
                       :color="couleurScore(qualité?.licence).couleur"
                     />
                   </v-avatar>
                 </template>
                 <template #title>
-                  {{ qualité?.licence === undefined ? t('bds.qualité.rechercheLicence') : (
-                    qualité.licence ? t('bds.qualité.licenceOuverte') : t('bds.qualité.licenceNonReconnue')) }}
+                  {{
+                    qualité?.licence === undefined
+                      ? t('bds.qualité.rechercheLicence')
+                      : qualité.licence
+                        ? t('bds.qualité.licenceOuverte')
+                        : t('bds.qualité.licenceNonReconnue')
+                  }}
                 </template>
               </v-list-item>
             </template>
@@ -114,9 +119,9 @@
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import { constellation, suivre } from '/@/components/utils';
-import { couleurScore } from '/@/utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {constellation, suivre} from '/@/components/utils';
+import {couleurScore} from '/@/utils';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import DialogueLicence from '../licences/DialogueLicence.vue';
 
 const {mdAndUp} = useDisplay();
@@ -134,11 +139,9 @@ const dialogue = ref(false);
 const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.idBd});
 
 // Licence
-const licenceBd = suivre(constl.bds.suivreLicenceBd, { idBd: props.idBd});
+const licenceBd = suivre(constl.bds.suivreLicenceBd, {idBd: props.idBd});
 const licenceContenuBd = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.idBd});
 
 // Permissions
-const monAutorisation = suivre(constl.suivrePermission, { idObjet: props.idBd });
-
-
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idBd});
 </script>

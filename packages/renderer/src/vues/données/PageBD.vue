@@ -697,7 +697,6 @@ const variables = suivre(constl.bds.suivreVariablesBd, {idBd: props.id});
 // Mots-clefs
 const motsClefs = suivre(constl.bds.suivreMotsClefsBd, {idBd: props.id});
 const sauvegarderMotsClefs = async (àJour: string[]) => {
-  console.log({àJour});
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
   await constl.bds.ajouterMotsClefsBd({

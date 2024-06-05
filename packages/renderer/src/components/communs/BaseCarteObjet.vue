@@ -63,9 +63,7 @@
             <v-icon>mdi-dots-horizontal</v-icon>
             <v-menu activator="parent">
               <v-list>
-                <carte-copier
-                  @copier="copier"
-                >
+                <carte-copier @copier="copier">
                   <template #activator="{props: propsActivateur}">
                     <v-list-item
                       v-bind="propsActivateur"

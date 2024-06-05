@@ -125,11 +125,10 @@
                 <template #label>
                   <div>
                     <p class="font-weight-bold">{{ t('automatisations.fréquence.fixe') }}</p>
-                    <p class="text-medium-emphasis text-caption">
-                    </p><div class="d-flex vertical-align">
+                    <p class="text-medium-emphasis text-caption"> </p><div class="d-flex vertical-align">
                       <div
                         class="text-medium-emphasis text-caption"
-                        style="display:flex;align-items:center;"
+                        style="display: flex; align-items: center"
                       >
                         {{ t('automatisations.fréquence.indiceFixe') }}
                       </div>
@@ -154,7 +153,7 @@
                         <template #item="{item, props: propsItem}">
                           <v-list-item
                             v-bind="propsItem"
-                            :title="t(`automatisations.fréquence.unités.${item.raw}`) "
+                            :title="t(`automatisations.fréquence.unités.${item.raw}`)"
                           />
                         </template>
                       </v-select>
@@ -193,7 +192,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -203,9 +202,9 @@ import axios from 'axios';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import { icôneObjet } from '../utils';
+import {icôneObjet} from '../utils';
 
-import { isBrowser } from 'wherearewe';
+import {isBrowser} from 'wherearewe';
 
 const props = defineProps<{infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'}}>();
 
@@ -284,9 +283,15 @@ watchEffect(async () => {
 const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>('manuelle');
 
 const choixFréquence = ref(1);
-const choixUnitéFréquence = ref<automatisation.fréquence['unités']>('jours');
-const optionsUnitésFréquence: automatisation.fréquence['unités'][] = [
-  'années', 'mois', 'semaines', 'jours', 'heures', 'minutes', 'secondes', 'millisecondes',
+const choixUnitéFréquence = ref<automatisation.fréquenceFixe['détails']['unités']>('jours');
+const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unités'][] = [
+  'années',
+  'mois',
+  'semaines',
+  'jours',
+  'heures',
+  'minutes',
+  'secondes',
+  'millisecondes',
 ];
-
 </script>

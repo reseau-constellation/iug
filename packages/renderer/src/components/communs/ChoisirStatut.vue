@@ -17,7 +17,8 @@
       <v-icon
         start
         :icon="icôneStatut(item.raw)"
-      ></v-icon> {{ t(`données.statut.${item.raw}`) }}
+      ></v-icon>
+      {{ t(`données.statut.${item.raw}`) }}
     </template>
   </v-select>
   <v-expand-transition>

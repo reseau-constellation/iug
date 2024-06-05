@@ -53,9 +53,7 @@
         {{ t('automatisations.carte.exportations') }}
         <v-divider />
         <v-list>
-          <nouvelle-exportation
-            :info-objet="{id: idObjet, typeObjet}"
-          >
+          <nouvelle-exportation :info-objet="{id: idObjet, typeObjet}">
             <template #activator="{props: propsActivateur}">
               <v-list-item
                 prepend-icon="mdi-download-outline"

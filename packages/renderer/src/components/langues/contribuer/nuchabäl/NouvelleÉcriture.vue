@@ -11,4 +11,9 @@
     </v-card>
   </v-dialog>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+defineEmits<{
+  (e: 'suggestion', code: {système: string}): void
+}>();
+</script>

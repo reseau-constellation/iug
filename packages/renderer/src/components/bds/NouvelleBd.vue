@@ -431,9 +431,7 @@ const licenceContenuBdÀCopier = suivre(constl.bds.suivreLicenceContenuBd, {idBd
 const partageÉgaleContenu = computed(() => {
   return (
     licenceContenuBdÀCopier.value &&
-    infoLicences.value?.[licenceContenuBdÀCopier.value]?.conditions.includes(
-      'partageÉgal',
-    )
+    infoLicences.value?.[licenceContenuBdÀCopier.value]?.conditions.includes('partageÉgal')
   );
 });
 watchEffect(() => {

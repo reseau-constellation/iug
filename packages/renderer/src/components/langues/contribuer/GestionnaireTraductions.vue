@@ -22,7 +22,7 @@
           />
         </v-card-title>
       </v-card-item>
-      <v-card-text style="overflow-y:auto">
+      <v-card-text style="overflow-y: auto">
         <v-row>
           <v-col
             class="pb-0"
@@ -53,7 +53,7 @@
           </v-col>
         </v-row>
         <v-list>
-          <groupe-suggestions-traduction 
+          <groupe-suggestions-traduction
             v-for="sugg in nouvellesSuggestionsParClefEtLangue"
             v-bind="sugg"
             :key="sugg.clef + sugg.langue"
@@ -64,7 +64,7 @@
       <v-card-actions>
         <v-btn
           append-icon="mdi-download"
-          @click="()=>exporter()"
+          @click="() => exporter()"
         >
           {{ t('communs.télécharger') }}
         </v-btn>
@@ -73,16 +73,20 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { tableaux, types } from '@constl/ipa';
-import type { அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை } from '@lassi-js/kili';
-import type { பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை, மொழிபெயர்ப்பு_அகராதி_வகை, மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை } from '@lassi-js/kilimukku';
+import type {tableaux, types} from '@constl/ipa';
+import type {அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை} from '@lassi-js/kili';
+import type {
+  பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை,
+  மொழிபெயர்ப்பு_அகராதி_வகை,
+  மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை,
+} from '@lassi-js/kilimukku';
 
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import { rechercher, suivre, கிளிமூக்கு } from '/@/components/utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம் } from '@lassi-js/kilimukku';
+import {rechercher, suivre, கிளிமூக்கு} from '/@/components/utils';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்} from '@lassi-js/kilimukku';
 
 import GroupeSuggestionsTraduction from './GroupeSuggestionsTraduction.vue';
 
@@ -98,11 +102,11 @@ const கிளி = கிளிமூக்கு();
 const dialogue = ref(false);
 
 // Contrôles
-const optionsLangues = computed(()=>{
-  return [...new Set(nouvellesSuggestions.value?.map(s=>s.பரிந்துரை.இலக்கு_மொழி))];
+const optionsLangues = computed(() => {
+  return [...new Set(nouvellesSuggestions.value?.map(s => s.பரிந்துரை.இலக்கு_மொழி))];
 });
-const optionsClefs = computed(()=>{
-  return [...new Set(nouvellesSuggestions.value?.map(s=>s.பரிந்துரை.சாபி))];
+const optionsClefs = computed(() => {
+  return [...new Set(nouvellesSuggestions.value?.map(s => s.பரிந்துரை.சாபி))];
 });
 const choixClef = ref<string[]>([]);
 const choixLangue = ref<string[]>([]);
@@ -110,40 +114,59 @@ const choixLangue = ref<string[]>([]);
 // Traductions
 const {résultats: suggérées} = rechercher(
   async ({f}: {f: types.schémaFonctionSuivi<பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]>}) =>
-  await கிளி.மொழிபெயர்ப்பு_பரிந்துரைகளை_கேள்ளு({செ: f}),
+    await கிளி.மொழிபெயர்ப்பு_பரிந்துரைகளை_கேள்ளு({செ: f}),
 );
-const nouvellesSuggestions = computed(()=>{
-    if (!suggérées.value) return undefined;
-    return suggérées.value.filter(s=>{
-        const { சாபி, இலக்கு_மொழி, தேதி } = s.பரிந்துரை;
-        return !autorisées.value?.find(a=> a.données.சாபி === சாபி && a.données.இலக்கு_மொழி === இலக்கு_மொழி && தேதி.getTime() > a.données.தேதி); 
-    });
-});
-
-const nouvellesSuggestionsParClefEtLangue = computed(()=>{
-    const clefsEtLangues: {clef: string; langue: string; suggestions: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[]}[] = [];
-    nouvellesSuggestions.value?.forEach(
-        s => {
-            const existante = clefsEtLangues.find(x=>x.clef === s.பரிந்துரை.சாபி && x.langue === s.பரிந்துரை.இலக்கு_மொழி);
-            if (existante) {
-                existante.suggestions.push(s);
-            } else {
-                clefsEtLangues.push({
-                    clef: s.பரிந்துரை.சாபி,
-                    langue: s.பரிந்துரை.இலக்கு_மொழி,
-                    suggestions: [s],
-                });
-            }
-        },
+const nouvellesSuggestions = computed(() => {
+  if (!suggérées.value) return undefined;
+  return suggérées.value.filter(s => {
+    const {சாபி, இலக்கு_மொழி, தேதி} = s.பரிந்துரை;
+    return !autorisées.value?.find(
+      a =>
+        a.données.சாபி === சாபி &&
+        a.données.இலக்கு_மொழி === இலக்கு_மொழி &&
+        தேதி.getTime() > a.données.தேதி,
     );
-
-    return clefsEtLangues.filter(x=>(!choixClef.value.length || choixClef.value.includes(x.clef)) && (!choixLangue.value.length || choixLangue.value.includes(x.langue)) );
+  });
 });
 
+const nouvellesSuggestionsParClefEtLangue = computed(() => {
+  const clefsEtLangues: {
+    clef: string;
+    langue: string;
+    suggestions: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[];
+  }[] = [];
+  nouvellesSuggestions.value?.forEach(s => {
+    const existante = clefsEtLangues.find(
+      x => x.clef === s.பரிந்துரை.சாபி && x.langue === s.பரிந்துரை.இலக்கு_மொழி,
+    );
+    if (existante) {
+      existante.suggestions.push(s);
+    } else {
+      clefsEtLangues.push({
+        clef: s.பரிந்துரை.சாபி,
+        langue: s.பரிந்துரை.இலக்கு_மொழி,
+        suggestions: [s],
+      });
+    }
+  });
+
+  return clefsEtLangues.filter(
+    x =>
+      (!choixClef.value.length || choixClef.value.includes(x.clef)) &&
+      (!choixLangue.value.length || choixLangue.value.includes(x.langue)),
+  );
+});
 
 const autorisées = suivre(
-    async ({f}: {f: types.schémaFonctionSuivi<tableaux.élémentDonnées<அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை<மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை>>[]>}) =>
-  await கிளி.கிளி!.அங்கீகரிக்கப்பட்ட_உறுப்படிகளை_கேள்ளு({செ: f}),
+  async ({
+    f,
+  }: {
+    f: types.schémaFonctionSuivi<
+      tableaux.élémentDonnées<
+        அங்கீகரிக்கப்பட்ட_உறுப்படி_வகை<மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை>
+      >[]
+    >;
+  }) => await கிளி.கிளி!.அங்கீகரிக்கப்பட்ட_உறுப்படிகளை_கேள்ளு({செ: f}),
 );
 /*const dicAutorisées = suivre(
   async ({f}: {f: types.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>}) =>
@@ -169,8 +192,11 @@ const toutesTraductions = suivre(
     await கிளி.மொழிபெயர்ப்புகளை_கேள்ளு({செ: f}),
 );
 const exporter = async () => {
-    const traductionsJSON = JSON.stringify(மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்(toutesTraductions.value || {}), undefined, 2);
-    saveAs(new Blob([traductionsJSON], {type: 'text/plain;charset=utf-8'}), 'traducs.json');
+  const traductionsJSON = JSON.stringify(
+    மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்(toutesTraductions.value || {}),
+    undefined,
+    2,
+  );
+  saveAs(new Blob([traductionsJSON], {type: 'text/plain;charset=utf-8'}), 'traducs.json');
 };
-
 </script>

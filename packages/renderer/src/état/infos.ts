@@ -32,7 +32,7 @@ export type InfoUtilisationMémoire = {
   détails: {
     quota: number;
     utilisation: number;
-  }
+  };
 };
 
 export const utiliserÉtatInfos = defineStore('Infos', () => {
