@@ -124,7 +124,7 @@ importers:
         version: 1.5.1
       tslib:
         specifier: ^2.6.2
-        version: 2.6.2
+        version: 2.6.3
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
@@ -6715,9 +6715,6 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
@@ -8644,7 +8641,7 @@ snapshots:
       platform: 1.3.6
       prom-client: 15.1.2
       ssim: 0.0.0
-      tslib: 2.6.2
+      tslib: 2.6.3
       uint8arrays: 5.1.0
       uuid: 9.0.1
       wherearewe: 2.0.1
@@ -8664,7 +8661,7 @@ snapshots:
       '@constl/serveur': 1.0.0(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       electron: 30.0.9
       semaphore-async-await: 1.5.1
-      tslib: 2.6.2
+      tslib: 2.6.3
       uuid: 9.0.1
 
   '@constl/mandataire-electron-rendu@1.0.1':
@@ -11253,7 +11250,7 @@ snapshots:
     dependencies:
       pvtsutils: 1.3.5
       pvutils: 1.1.3
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   assert-plus@1.0.0:
     optional: true
@@ -15036,7 +15033,7 @@ snapshots:
 
   pvtsutils@1.3.5:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   pvutils@1.1.3: {}
 
@@ -15889,8 +15886,6 @@ snapshots:
   ts-api-utils@1.3.0(typescript@5.4.5):
     dependencies:
       typescript: 5.4.5
-
-  tslib@2.6.2: {}
 
   tslib@2.6.3: {}
 
