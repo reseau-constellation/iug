@@ -39,8 +39,8 @@ importers:
         specifier: ^1.1.6
         version: 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       '@lassi-js/kilimukku-vue':
-        specifier: 1.1.4
-        version: 1.1.4(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))
+        specifier: 1.1.5
+        version: 1.1.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
@@ -1619,13 +1619,10 @@ packages:
     peerDependencies:
       '@constl/ipa': ^1.0.14
 
-  '@lassi-js/kilimukku-vue@1.1.4':
-    resolution: {integrity: sha512-uH8WLjD+HeKnDNNYeAMEK2oBAIBAhxWwy0NGmS1IPTIb3d84TkXBdvZmNc3aPL95QgFflCkXRqS5YVWxa9KezA==}
+  '@lassi-js/kilimukku-vue@1.1.5':
+    resolution: {integrity: sha512-qZT4ds4ABed7ul9blBCjE8H6Bh+FDvJ3uF//ViJEbWzRYuw59kgv1N1GuL08HH/oCPJ9mA2l0dTyslyLtYKf2g==}
     peerDependencies:
       vue: ^3.4.19
-
-  '@lassi-js/kilimukku@1.1.6':
-    resolution: {integrity: sha512-rm9vznG0FEKJ6CcQvknVGUngH6LwNBAkEUZowGl4WjS7qj5o+B1oijyc/94XVFOZnV2RjaBQ8dSd9XY+WZ091Q==}
 
   '@lassi-js/kilimukku@1.1.7':
     resolution: {integrity: sha512-ScgHnwz2CLayaSEak4Zc/5TkGJpyFmJaQXodDqRO5Rhe8+nHht/PVsJPn2Cwe/q2TrUegHlG7jgb+QzGL4ctew==}
@@ -9077,34 +9074,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@lassi-js/kilimukku-vue@1.1.4(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))':
+  '@lassi-js/kilimukku-vue@1.1.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
       '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
-      '@lassi-js/kilimukku': 1.1.6(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
+      '@lassi-js/kilimukku': 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       ennikkai: 2.3.0(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
-      js-cookie: 3.0.5
       lodash: 4.17.21
       nuchabal: 3.2.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       uuid: 9.0.1
       vue: 3.4.27(typescript@5.4.5)
     transitivePeerDependencies:
       - '@constl/ipa'
-      - bufferutil
-      - debug
-      - encoding
-      - react-native
-      - supports-color
-      - utf-8-validate
-
-  '@lassi-js/kilimukku@1.1.6(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))':
-    dependencies:
-      '@constl/ipa': 1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
-      '@constl/utils-ipa': 1.0.0
-      '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
-      uuid: 9.0.1
-      wherearewe: 2.0.1
-    transitivePeerDependencies:
       - bufferutil
       - debug
       - encoding
