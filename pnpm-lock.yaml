@@ -97,7 +97,7 @@ importers:
         version: 4.8.1
       nuchabal:
         specifier: ^3.2.5
-        version: 3.2.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+        version: 3.2.6(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       papaparse:
         specifier: ^5.4.1
         version: 5.4.1
@@ -5422,8 +5422,8 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nuchabal@3.2.5:
-    resolution: {integrity: sha512-58UChUw9yRWI2sYB3V/52s4ryOZEq9WFMS7z0Uo2OJ5peIJ3aehGQGl+On7TkBY4lps62JIZdgS46kP/N8Q4SQ==}
+  nuchabal@3.2.6:
+    resolution: {integrity: sha512-0VYYVz9GhN00TpchdF5OBabAUjm4TNhOXMarypcgS4ME3ezSoTksG24YkB1KzoTCA1EOm8ySrOIc41Vmkq/OIg==}
     peerDependencies:
       '@constl/ipa': ^1.0.12
 
@@ -9013,7 +9013,7 @@ snapshots:
       '@lassi-js/kilimukku': 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       ennikkai: 2.3.0(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       lodash: 4.17.21
-      nuchabal: 3.2.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
+      nuchabal: 3.2.6(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
       uuid: 9.0.1
       vue: 3.4.27(typescript@5.4.5)
     transitivePeerDependencies:
@@ -14297,7 +14297,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuchabal@3.2.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))):
+  nuchabal@3.2.6(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))):
     dependencies:
       '@constl/ipa': 1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
