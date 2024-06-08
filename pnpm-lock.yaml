@@ -39,8 +39,8 @@ importers:
         specifier: ^1.1.6
         version: 1.1.7(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))
       '@lassi-js/kilimukku-vue':
-        specifier: 1.1.5
-        version: 1.1.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))
+        specifier: 1.1.6
+        version: 1.1.6(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
@@ -1615,8 +1615,8 @@ packages:
     peerDependencies:
       '@constl/ipa': ^1.0.14
 
-  '@lassi-js/kilimukku-vue@1.1.5':
-    resolution: {integrity: sha512-qZT4ds4ABed7ul9blBCjE8H6Bh+FDvJ3uF//ViJEbWzRYuw59kgv1N1GuL08HH/oCPJ9mA2l0dTyslyLtYKf2g==}
+  '@lassi-js/kilimukku-vue@1.1.6':
+    resolution: {integrity: sha512-bu0AZRTZs2N/AC4NV2AmZIKlK4GWYcH0GjpEwZ8adAEfLPjPWmhviOfDG2jBSFUdyq6ucCOE9XsmAvGLhY9fZw==}
     peerDependencies:
       vue: ^3.4.19
 
@@ -9009,7 +9009,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@lassi-js/kilimukku-vue@1.1.5(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))':
+  '@lassi-js/kilimukku-vue@1.1.6(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0))(vue@3.4.27(typescript@5.4.5))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
       '@lassi-js/kili': 0.3.14(@constl/ipa@1.0.21(bufferutil@4.0.8)(react-native@0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(bufferutil@4.0.8)(react@18.2.0)))
