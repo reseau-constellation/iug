@@ -98,7 +98,7 @@ export function couleurScore(score?: number | null): interfaceCouleurScore {
 }
 
 export const couper = (texte: string, nMax: number, troisPetitsPoints: string) => {
-  if (texte.length <= nMax) return texte;
+  if ([...texte].length <= nMax) return texte;
   else return texte.slice(0, 20) + troisPetitsPoints;
 };
 
