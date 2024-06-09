@@ -119,7 +119,7 @@
     "rollup-plugin-polyfill-node": "^0.13.0",
     "semaphore-async-await": "^1.5.1",
     "tslib": "^2.6.2",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "vue": "3.4.27",
     "vue-router": "^4.3.2",
     "vuetify": "^3.6.4",
