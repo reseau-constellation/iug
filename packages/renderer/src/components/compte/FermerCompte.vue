@@ -4,7 +4,7 @@
       <slot
         name="activator"
         v-bind="{props}"
-      ></slot>
+      />
     </template>
     <v-card
       class="mx-auto"
@@ -21,19 +21,19 @@
             size="small"
             variant="flat"
             @click="dialogue = false"
-          ></v-btn>
+          />
         </v-card-title>
       </v-card-item>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-text>
         <span class="text-error font-weight-bold">{{
           t('compte.effacerCompte.avertissement')
         }}</span>
         {{ t('compte.effacerCompte.explication') }}
       </v-card-text>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-actions>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-btn
           variant="outlined"
           @click="dialogue = false"

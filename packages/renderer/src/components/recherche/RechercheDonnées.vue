@@ -1,5 +1,5 @@
 <template>
   <div>
-    <slot name="enteteResultats"></slot>
+    <slot name="enteteResultats" />
   </div>
 </template>

@@ -12,7 +12,7 @@
         size="xsmall"
         variant="flat"
         @click="() => (détails = !détails)"
-      ></v-btn>
+      />
     </template>
 
     <template #text>

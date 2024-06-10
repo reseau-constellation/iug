@@ -368,9 +368,6 @@ const sousTitreCarte = computed(() => {
 // Objet Constellation
 const idObjet = ref(props.infoObjet?.id);
 const typeObjet = ref(props.infoObjet?.typeObjet);
-const idTableauImportation = ref<string>();
-const typesObjetsPourImportation = ['tableau', 'bd'];
-
 // Exportation
 const dossierExportation = ref<string>();
 const inclureSFIPExportation = ref<boolean>();
@@ -529,5 +526,4 @@ const aussiAjouterAutomatisation = ref<boolean>();
 
 // Confirmer
 const enConfirmation = ref(false);
-
 </script>

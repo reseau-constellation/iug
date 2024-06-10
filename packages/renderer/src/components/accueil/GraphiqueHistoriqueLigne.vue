@@ -63,13 +63,13 @@ const assezDeDonnées = computed(() => {
   return données.value.length > 1;
 });
 
-const formatteurs: {[chiffre: string]: Ref<string>} = {};
+const formatteurs: {[chiffre: string]: Ref<string | undefined>} = {};
 
 const formatterChiffre = (x: number): string => {
   if (!formatteurs[x.toString()]) {
     formatteurs[x.toString()] = எண்ணை_வடிவூட்டு(x);
   }
-  return formatteurs[x.toString()].value;
+  return formatteurs[x.toString()].value || x.toString();
 };
 
 // https://dev.to/muratkemaldar/using-vue-3-with-d3-composition-api-3h1g

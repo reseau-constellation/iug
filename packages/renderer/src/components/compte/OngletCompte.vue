@@ -52,7 +52,7 @@
                     icon="mdi-download"
                     variant="outlined"
                     size="small"
-                  ></v-btn>
+                  />
                 </template>
               </ExporterCompte>
             </template>
@@ -85,7 +85,7 @@
                     icon="mdi-account-plus-outline"
                     variant="outlined"
                     size="small"
-                  ></v-btn>
+                  />
                 </template>
               </RejoindreCompte>
             </template>
@@ -115,7 +115,7 @@
                     icon="mdi-delete"
                     variant="outlined"
                     size="small"
-                  ></v-btn>
+                  />
                 </template>
               </FermerCompte>
             </template>

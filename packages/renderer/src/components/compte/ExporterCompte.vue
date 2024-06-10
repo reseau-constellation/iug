@@ -4,7 +4,7 @@
       <slot
         name="activator"
         v-bind="{props}"
-      ></slot>
+      />
     </template>
     <v-card
       class="mx-auto"
@@ -21,10 +21,10 @@
             size="small"
             variant="flat"
             @click="dialogue = false"
-          ></v-btn>
+          />
         </v-card-title>
       </v-card-item>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-text>
         <div class="text-center">
           <v-btn
@@ -43,12 +43,12 @@
             variant="outlined"
             :title="t('compte.exporterCompte.titreErreur')"
             :text="t('compte.exporterCompte.texteErreur')"
-          ></v-alert>
+          />
         </v-expand-transition>
       </v-card-text>
-      <v-divider></v-divider>
+      <v-divider />
       <v-card-actions>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-btn
           variant="outlined"
           @click="dialogue = false"

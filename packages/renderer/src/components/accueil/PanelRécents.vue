@@ -24,7 +24,7 @@
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('bd')"
                   :title="t('accueil.page.récents.nouvelleBd')"
-                ></v-list-item>
+                />
               </template>
             </nouvelle-bd>
             <nouveau-projet>
@@ -33,7 +33,7 @@
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('projet')"
                   :title="t('accueil.page.récents.nouveauProjet')"
-                ></v-list-item>
+                />
               </template>
             </nouveau-projet>
             <nouvelle-nuee>
@@ -42,7 +42,7 @@
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('nuée')"
                   :title="t('accueil.page.récents.nouvelleNuée')"
-                ></v-list-item>
+                />
               </template>
             </nouvelle-nuee>
           </v-list>

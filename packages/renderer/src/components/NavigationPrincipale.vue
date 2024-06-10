@@ -33,7 +33,7 @@
         v-for="lien in liens"
         :key="lien.chemin"
         :prepend-icon="lien.icône"
-        :title="lien.texte"
+        :title="t(lien.texte)"
         @click="$router.push(encodeURI(lien.chemin))"
       />
     </v-list>
@@ -76,37 +76,37 @@ const icôneDispositif = computed(() => obtIcôneDispositifDeType(typeDispositif
 const liens: {icône: string; chemin: string; texte: string}[] = [
   {
     icône: 'mdi-home',
-    texte: t('navigation.accueil'),
+    texte: 'navigation.accueil',
     chemin: '/',
   },
 
   {
     icône: 'mdi-database',
-    texte: t('navigation.données'),
+    texte: 'navigation.données',
     chemin: '/données',
   },
 
   {
     icône: 'mdi-pin',
-    texte: t('navigation.favoris'),
+    texte: 'navigation.favoris',
     chemin: '/favoris',
   },
 
   {
     icône: 'mdi-magnify',
-    texte: t('navigation.recherche'),
+    texte: 'navigation.recherche',
     chemin: '/recherche',
   },
 
   {
     icône: 'mdi-lightning-bolt',
-    texte: t('navigation.automatisations'),
+    texte: 'navigation.automatisations',
     chemin: '/automatisations',
   },
 
   {
     icône: 'mdi-bug',
-    texte: t('navigation.signalements'),
+    texte: 'navigation.signalements',
     chemin: '/signalements',
   },
 ];

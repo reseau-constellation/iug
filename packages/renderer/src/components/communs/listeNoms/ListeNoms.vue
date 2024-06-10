@@ -88,9 +88,9 @@ import {v4 as uuidv4} from 'uuid';
 
 import ItemNom from './ItemNom.vue';
 
-import {Nuchabäl} from 'nuchabal';
 import {utiliserHistoriqueLangues} from '/@/état/historiqueLangues';
 import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/GestionnaireEnnikkai.vue';
+import {utiliserNuchabäl} from '/@/components/utils';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
@@ -101,7 +101,7 @@ const historiqueLangues = utiliserHistoriqueLangues();
 
 const {mdAndUp} = useDisplay();
 
-const nuchabäl = new Nuchabäl({});
+const nuchabäl = utiliserNuchabäl();
 
 const props = defineProps<{
   nomsInitiaux: {[lng: string]: string} | undefined;
