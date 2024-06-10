@@ -84,6 +84,16 @@
             <template #selection="{item}">
               <jeton-langue :code="item.value" />
             </template>
+            <template #append>
+              <nouvelle-langue @suggestion="({code}) => (languesChoisies = [code])">
+                <template #activator="{props: propsActivateur}">
+                  <v-icon
+                    v-bind="propsActivateur"
+                    icon="mdi-plus"
+                  />
+                </template>
+              </nouvelle-langue>
+            </template>
           </v-autocomplete>
           <v-autocomplete
             v-model="choixNumération"
@@ -99,10 +109,20 @@
               <JetonNumeration :code="item.value" />
             </template>
             <template #item="{props, item}">
-              <ItemNumération
+              <ItemNumeration
                 v-bind="props"
                 :code="item.value"
               />
+            </template>
+            <template #append>
+              <nouvelle-numeration @suggestion="({système}) => (choixNumération = système)">
+                <template #activator="{props: propsActivateur}">
+                  <v-icon
+                    v-bind="propsActivateur"
+                    icon="mdi-plus"
+                  />
+                </template>
+              </nouvelle-numeration>
             </template>
           </v-autocomplete>
         </v-card>
@@ -124,8 +144,10 @@ import {utiliserÉtatThème} from '/@/état/thème';
 
 import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
-import ItemNumération from '/@/components/langues/ItemNumération.vue';
+import NouvelleLangue from '/@/components/langues/contribuer/nuchabäl/NouvelleLangue.vue';
+import ItemNumeration from '/@/components/langues/ItemNumération.vue';
 import JetonNumeration from '/@/components/langues/JetonNumération.vue';
+import NouvelleNumeration from '/@/components/langues/contribuer/ennikkai/NouvelleNumération.vue';
 
 const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();

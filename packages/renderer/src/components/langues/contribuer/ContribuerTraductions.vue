@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
@@ -39,24 +39,37 @@
       <v-card-text class="overflow-auto">
         <v-row>
           <v-col :cols="mdAndUp ? 4 : 12">
-            <v-select
+            <v-autocomplete
               v-model="langueSource"
+              class="pt-2"
               variant="outlined"
               hide-details
               :items="கிடைக்கும்_மொழி_குறியீடுகள்"
               :label="t('kilimukku.langueSource')"
+              :custom-filter="filtrerLangues"
             >
-              <template #item="{item, props}">
-                <ItemLangueProgrès
-                  v-bind="props"
+              <template #item="{item, props: propsItem}">
+                <item-langue-progres
+                  v-bind="propsItem"
                   :code="item.value"
                   :selectionnee="false"
-                ></ItemLangueProgrès>
+                ></item-langue-progres>
               </template>
               <template #selection="{item}">
                 <JetonLangue :code="item.value" />
               </template>
-            </v-select>
+              <template #append>
+                <nouvelle-langue @click.stop>
+                  <template #activator="{props: propsActivateur}">
+                    <v-icon
+                      v-bind="propsActivateur"
+                      icon="mdi-plus"
+                    />
+                  </template>
+                </nouvelle-langue>
+                <v-divider />
+              </template>
+            </v-autocomplete>
           </v-col>
           <v-col
             v-if="mdAndUp"
@@ -64,6 +77,7 @@
             class="text-center"
           >
             <v-btn
+              class="mt-2"
               icon="mdi-swap-horizontal"
               variant="flat"
               :disabled="!langueSource"
@@ -71,28 +85,42 @@
             />
           </v-col>
           <v-col :cols="mdAndUp ? 4 : 12">
-            <v-select
+            <v-autocomplete
               v-model="langueCible"
-              variant="outlined"
-              hide-details
+              :class="{'pt-2': mdAndUp}"
               :items="கிடைக்கும்_மொழி_குறியீடுகள்"
               :label="t('kilimukku.langueCible')"
+              :custom-filter="filtrerLangues"
+              variant="outlined"
+              hide-details
             >
               <template #item="{item, props}">
-                <ItemLangueProgrès
+                <item-langue-progres
                   v-bind="props"
                   :code="item.value"
                   :selectionnee="false"
-                ></ItemLangueProgrès>
+                ></item-langue-progres>
               </template>
               <template #selection="{item}">
                 <JetonLangue :code="item.value" />
               </template>
-            </v-select>
+              <template #append>
+                <nouvelle-langue @click.stop>
+                  <template #activator="{props: propsActivateur}">
+                    <v-icon
+                      v-bind="propsActivateur"
+                      icon="mdi-plus"
+                    />
+                  </template>
+                </nouvelle-langue>
+                <v-divider />
+              </template>
+            </v-autocomplete>
           </v-col>
           <v-col :cols="mdAndUp ? 2 : 12">
             <v-select
               v-model="montrer"
+              :class="{'pt-2': mdAndUp}"
               :label="t('kilimukku.montrer')"
               :items="[
                 {title: t('kilimukku.filtre.toutes'), value: 'toutes'},
@@ -117,6 +145,7 @@
           :model-value="progrèsApprouvé * 100"
           :buffer-value="(progrèsApprouvé + progrèsSuggéré) * 100"
         />
+
         <v-row class="fill-height">
           <v-col :cols="mdAndUp ? 3 : 12">
             <v-list v-if="mdAndUp">
@@ -393,13 +422,15 @@ import {கிளிமூக்கை_பயன்படுத்து, எண
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';
 
-import ItemLangueProgrès from '/@/components/langues/ItemLangueProgrès.vue';
+import ItemLangueProgres from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
 import ItemMessageTraduction from './ItemMessageTraduction.vue';
 import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
 import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
 import GestionnaireTraductions from './GestionnaireTraductions.vue';
+
+import NouvelleLangue from './nuchabäl/NouvelleLangue.vue';
 
 import {constellation, கிளிமூக்கு, suivre} from '/@/components/utils';
 
@@ -420,7 +451,7 @@ const {
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {கிடைக்கும்_மொழி_குறியீடுகள், மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);
@@ -431,7 +462,7 @@ onMounted(async () => {
   monCompte.value = await constl.obtIdCompte();
 });
 
-// Contrôles
+// Contrôles langues
 const langueSource = ref<string>();
 const langueCible = ref(மொழி.value);
 watchEffect(() => {
@@ -449,8 +480,17 @@ watch(langueCible, (nouvelle, avant) => {
     langueSource.value = avant;
   }
 });
-const montrer = ref<'toutes' | 'nonTraduites' | 'sansSuggestion'>('nonTraduites');
-const rechercher = ref('');
+
+// Recherche
+const filtrerLangues = (valeur: string, requète: string) => {
+  return Boolean(
+    valeur.toLowerCase().includes(requète.toLowerCase()) ||
+      மொழிகளும்_குறியீடுகளும்.value
+        .find(lng => lng.குறியீடு === valeur)
+        ?.மொழி?.toLowerCase()
+        .includes(requète.toLowerCase()),
+  );
+};
 
 const échangerLangues = () => {
   const langueCibleAvant = langueCible.value;
@@ -477,6 +517,9 @@ const progrèsSuggéré = computed(() => {
 });
 
 // Liste clefs à traduire
+const montrer = ref<'toutes' | 'nonTraduites' | 'sansSuggestion'>('nonTraduites');
+const rechercher = ref('');
+
 const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து();
 const clefsPourListe = computed(() => {
   if (!clefsDisponibles.value) return;

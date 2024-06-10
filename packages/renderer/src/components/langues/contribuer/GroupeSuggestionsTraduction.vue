@@ -46,7 +46,7 @@
         append-icon="mdi-check"
         @click="() => approuver(sugg)"
       >
-        Approuver
+        {{ t('kilimukku.approuver') }}
       </v-btn>
     </v-list-item>
   </v-list-group>
@@ -71,7 +71,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const கிளி = கிளிமூக்கு();
 
-//
+// Nom
 
 const nom = மொழியின்_பெயர்(props.langue);
 

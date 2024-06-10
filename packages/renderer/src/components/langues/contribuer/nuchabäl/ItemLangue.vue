@@ -13,7 +13,7 @@
       variant="outlined"
       size="small"
     >
-      {{ t('nuchabäl.écriture') }} {{ écriture }}
+      {{ t('nuchabäl.écriture.système') }} {{ écriture }}
     </v-chip>
     <v-chip
       v-for="[sys, cd] in Object.entries(codesFinaux)"
@@ -21,7 +21,7 @@
       variant="outlined"
       size="small"
     >
-      {{ t(`nuchabäl.codesÉcriture.${cd}`) }} {{ cd }}
+      {{ t(`nuchabäl.écriture.codes.${cd}`) }} {{ cd }}
     </v-chip>
     <slot></slot>
   </v-list-item>
@@ -30,7 +30,7 @@
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import JetonNumeration from '/@/components/langues/JetonNumération.vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps<{
   nom: string;
@@ -43,7 +43,7 @@ const props = defineProps<{
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const codesFinaux = computed(()=>{
+const codesFinaux = computed(() => {
   const finaux: {[système: string]: string} = {
     nuchabäl: props.code,
   };

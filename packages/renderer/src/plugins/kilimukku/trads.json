@@ -195,8 +195,94 @@
       "titreSuggestions": "Suggestions",
       "aucuneSuggestion": "Nous n'avons trouvé aucune suggestion communautaire pour ce message.",
       "suggérer": "Suggérer",
+      "approuver": "Approuver",
       "suggestions": {
         "aucuneTrouvée": "Aucune suggestion trouvée"
+      }
+    },
+    "ennikkai": {
+      "nouvelle": {
+        "titre": "Proposition de système d'écriture",
+        "instructionNom": "Comment ce système de numération s'appelle-t-il ?",
+        "étiquetteNom": "Nom du système",
+        "indiceNom": "Par exemple, « ગુજરાતી » ou « देवनागरी »",
+        "instructionType": "Ce système de numération est-il positionnel ou exponentiel ?",
+        "instructionSymboles": "Inscrire , en ordre croissant, tous les symboles numériques de ce système de numération, en commançant par le 0.",
+        "étiquetteTypeSystème": "Type système",
+        "étiquetteSymboles": "Symboles numériques",
+        "étiquetteSymboleBase": "Symbole",
+        "indiceSymboleBase": "Par exemple, « 十 »",
+        "étiquetteValeurBase": "Valeur",
+        "indiceValeurBase": "Par exemple, « 10 »",
+        "instructionBases": "Inscrire les symboles de base, avec leurs valeurs numériques.",
+        "instructionUnicode": "Ce système de numération a-t-il un code Unicode existant ?",
+        "btnUnicode": "Vérifier en ligne",
+        "instructionConfirmation": "Confirmer création du système de numération {nom}.",
+        "erreurNomDupliqué": "Ce nom de système de numération existe déjà dans les données.",
+        "erreurSymbolesRépétés": "Aucun symbole ne peut être répété."
+      },
+      "type": {
+        "இடஞ்சார்": "Positionnel",
+        "அடிமானம்": "Exponentiel"
+      }
+    },
+    "nuchabäl": {
+      "numération": "Numération",
+      "expré": "Expression régulière",
+      "direction": "Direction",
+      
+      "oui": "Oui",
+      "non": "Non",
+      "écriture": {
+        "système": "Écriture",
+        "nouvelle": {
+          "titre": "Proposition de système d'écriture",
+          "btn": "Ajouter une écriture",
+          "instructionsÉchantillon": "Entrez un peu de texte dans n'importe quelle langue qui s'écrit avec ce système d'écriture.",
+          "instructionsDupliquée": "Ce système d'écriture existe peut-être déjà dans Constellation. S'agit-il du {nom} ?",
+          "instructionsDirection": "Dans quelle direction cette écriture doit-elle être écrite ?",
+          "instructionsNom": "Comment cette écriture s'appelle-t-elle ?",
+          "indiceNom": "Écrivez le nom dans l'écriture elle-même. P. ex., « 汉子 »",
+          "instructionsCode": "Proposez un code court pour identifier cette écriture.",
+          "instructionsNumération": "Quel système de numération cette écriture utilise-t-elle ?",
+          "instructionsExpré": "Proposez une expression régulière qui correspond à cette écriture.",
+          "btnExpré": "Pour de l'inspiration",
+          "confirmation": "Confirmer création de l'écriture {nom}.",
+          "btnCréation": "Ajouter écriture",
+          "erreurCodeÉcritureExistant": "Ce code existe déjà pour l'écriture {nom}",
+          "erreurCodeTropLong": "C'est pas un peu long ?"
+        },
+        "codes": {
+          "nuchabäl": "nuch'ab'äl",
+          "i1": "ISO 639-1",
+          "i2": "ISO 639-2",
+          "i3": "ISO 639-3",
+          "gl": "Glottologue"
+        }
+      },
+      "langue": {
+        "nouvelle": {
+          "titre": "Ajout de langue",
+          "instructionÉchantillon": "Entrez un peu de texte dans la langue que vous voulez ajouter.",
+          "sauterÉchantillon": "Sauter",
+          "instructionExistante": "Cette langue existe peut-être déjà dans Constellation. S'agit-il du {nom} ?",
+          "instructionÉcritureExistante": "Cette langue semble utiliser l'écriture {nom}. Est-ce bien exacte ?",
+          "instructionÉcriture": "Avec quelle écriture cette langue s'écrit-elle ?",
+          "instructionNouvelleÉcriture": "Cette langue semble utiliser une écriture qui n'est pas encore dans nos données.",
+          "instructionNom": "Comment cette langue s'appelle-t-elle ?",
+          "indiceNom": "Écrivez le nom dans la langue elle-même. P. ex., « ᱥᱟᱱᱛᱟᱲᱤ »",
+          "instructionCode": "Proposez un code court pour identifier cette langue.",
+          "instructionNumération": "Quel système de numération cette langue utilise-t-elle ?",
+          "instructionCodes": "Cette langue a-t-elle déjà un code ISO ou Glottologue (optionnel) ?",
+          "instructionConfirmation": "Confirmer création de la langue {nom}.",
+          "btnAjout": "Ajouter langue",
+          "erreurCodeExistant": "Ce code existe déjà pour la langue {langue}.",
+          "erreurCodeTropLong": "C'est pas un peu long ?",
+          "erreurÉcriture": "Vous devez écrire en {écriture}."
+        }
+      },
+      "suggestion": {
+        "par": "Par :"
       }
     },
     "licences": {
@@ -922,6 +1008,9 @@
       }
     },
     "nuchabäl": {
+      "nouvelle": {
+        "titre": "புதிய மொழி முன்மொழிவு"
+      },
       "numération": "எண்கள்",
       "direction": "திசை",
       "code": "குறியீடு",

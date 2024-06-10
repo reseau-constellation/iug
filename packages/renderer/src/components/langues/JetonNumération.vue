@@ -2,6 +2,7 @@
   <v-chip
     variant="outlined"
     size="small"
+    label
   >
     <slot>
       {{ code || t('communs.auto') }}
@@ -10,8 +11,8 @@
   </v-chip>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{code: string}>();
 
