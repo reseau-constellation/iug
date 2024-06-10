@@ -1,10 +1,11 @@
 import {type ComputedRef, type Ref, unref, type MaybeRef, type UnwrapRef, isRef} from 'vue';
 import type {types, ClientConstellation} from '@constl/ipa';
+import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
+import type {Nuchabäl} from 'nuchabal';
 
 import EventEmitter, {once} from 'events';
 import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 import deepEqual from 'deep-equal';
-import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 
 export const constellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
@@ -16,6 +17,12 @@ export const கிளிமூக்கு = (): கிளிமூக்கு
   const kilimukku = inject<கிளிமூக்கு_வகை>('கிளிமூக்கு');
   if (kilimukku) return kilimukku;
   throw new Error("Kilimukku n'est pas trouvable.");
+};
+
+export const utiliserNuchabäl = (): Nuchabäl => {
+  const nuchabäl = inject<Nuchabäl>("nuch'ab'äl");
+  if (nuchabäl) return nuchabäl;
+  throw new Error("Nuchab'äl n'est pas trouvable.");
 };
 
 export type DébalerRéf<T> = T extends Ref<infer R> ? R : T;
@@ -85,7 +92,7 @@ export const suivre = <
 
   watchEffect(async () => {
     if (fOublier) {
-      await fOublier();
+      fOublier(); // Très bizare... `await` ici détruit la réactivité
       fOublier = undefined;
     }
     if (définis.value) {
@@ -99,6 +106,8 @@ export const suivre = <
         ...définis.value,
         f: (x: U) => (val.value = x),
       });
+    } else {
+      val.value = undefined as U | V;
     }
   });
 
@@ -366,4 +375,21 @@ export const icôneObjet = (typeObjet?: string): string | undefined => {
     case 'nuée':
       return 'mdi-account-group-outline';
   }
+};
+
+export const détecterLangue = async ({texte}: {texte: string}) => {
+  const {francAll: francAllMin} = await import('franc-min');
+  const résultatMin = francAllMin(texte)[0];
+  console.log(résultatMin);
+  if (résultatMin[1] > 0.9 && résultatMin[0] !== 'und') return résultatMin[0];
+
+  const {francAll} = await import('franc');
+  const résultat = francAll(texte)[0];
+  console.log(résultat);
+  if (résultat[1] > 0.9 && résultat[0] !== 'und') return résultat[0];
+
+  const {francAll: francAllAll} = await import('franc-all');
+  const résultatAll = francAllAll(texte)[0];
+  console.log(résultatAll);
+  if (résultatAll[1] > 0.9 && résultatAll[0] !== 'und') return résultatAll[0];
 };
