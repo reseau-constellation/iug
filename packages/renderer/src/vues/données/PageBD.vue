@@ -536,22 +536,6 @@
               </v-btn>
             </template>
           </nouveau-tableau>
-          <importer-ou-exporter
-            v-if="false"
-            type="importation"
-            :automatiser="true"
-            :info-objet="{id, typeObjet: 'bd'}"
-          >
-            <v-btn
-              v-if="monAutorisation"
-              color="primary"
-              class="mx-2"
-              variant="outlined"
-              icon="mdi-import"
-            >
-              {{ t('bds.importation') }}
-            </v-btn>
-          </importer-ou-exporter>
         </div>
       </v-list>
       <v-window v-model="tableauActif">

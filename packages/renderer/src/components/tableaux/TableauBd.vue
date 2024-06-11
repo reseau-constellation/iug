@@ -1,7 +1,11 @@
 <template>
   <v-data-table
+    v-model="sélectionnées"
     :headers="entêtes"
     :items="filesTableau"
+    :show-select="!!autorisation"
+    multi-sort
+    @update:sort-by="val => ordonnerPar = val"
   >
     <template #top>
       <v-toolbar
@@ -39,9 +43,10 @@
         <v-btn icon="mdi-download"></v-btn>
       </v-toolbar>
     </template>
+
     <template #no-data>
       <p class="my-4 text-h6 text-disabled">{{ t('tableaux.aucuneDonnée') }}</p>
-      <importer-ou-exporter
+      <nouvelle-importation
         type="importation"
         :info-objet="{id: idTableau, typeObjet: 'tableau'}"
         :id-tableau="idTableau"
@@ -57,36 +62,52 @@
             {{ t('tableaux.importer') }}
           </v-btn>
         </template>
-      </importer-ou-exporter>
+      </nouvelle-importation>
     </template>
 
     <template
-      v-for="c in colonnes || []"
-      :key="c.id"
-      #[`header.${c.id}`]
+      v-for="c in entêtes || []"
+      :key="c.key"
+      #[`header.${c.key}`]="{column, isSorted, getSortIcon, toggleSort}"
     >
       <entete-colonne-tableau
-        :id-colonne="c.id"
-        :id-variable="c.variable"
+        :id-colonne="c.key"
+        :id-variable="c.info.variable"
         :id-tableau="idTableau"
-        :index="!!c.index"
+        :index="!!c.info.index"
         :regles="règles"
         :permission-modifier="!!autorisation"
+        :ordonnable="column.sortable"
+        :est-ordonnee="isSorted(column)"
+        :icone-ordonner="getSortIcon(column) as string"
+        @basculer-ordonner="() => toggleSort(column)"
+      />
+    </template>
+
+    <template
+      v-for="c in entêtes"
+      :key="c.key"
+      #[`item.${c.key}`]="{item}"
+    >
+      <cellule-tableau
+        :categorie="c.info.catégorie?.catégorie"
+        :val="item.données[c.key]"
       />
     </template>
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux, valid} from '@constl/ipa';
+import type {tableaux, valid, variables as typesVariables} from '@constl/ipa';
 
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {constellation, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
-import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
+import CelluleTableau from './cellules/CelluleTableau.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -107,8 +128,25 @@ const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAv
 const entêtes = computed(() => {
   return (colonnes.value || []).map(c => ({
     key: c.id,
+    sortable: c.catégorie === undefined ||( c.catégorie?.type === 'simple' ? triable(c.catégorie.catégorie) : false),
+    info: {
+      index: c.index,
+      catégorie: c.catégorie,
+      variable: c.variable,
+    },
   }));
 });
+const triables: typesVariables.catégorieBaseVariables[] = [
+  'booléen',
+  'chaîne',
+  'horoDatage',
+  'intervaleTemps',
+  'numérique',
+];
+const triable = (catégorieBase: typesVariables.catégorieBaseVariables): boolean => {
+  return triables.includes(catégorieBase);
+};
+
 const ajouterColonne = async ({
   idVariable,
   idColonne,
@@ -145,7 +183,14 @@ const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListe
   idTableau: props.idTableau,
 });
 const filesTableau = computed(() => {
-  return données.value?.map(d => d.données);
+  return données.value?.toSorted((a, b) => {
+    if (!ordonnerPar.value) return 0;
+    else {
+      return ordonnerPar.value.map(o => {
+        return a.données[o.key] > b.données[o.key] ? (o.order === 'asc' ? 1 : -1) : (a.données[o.key] < b.données[o.key] ? (o.order === 'asc' ? -1 : 1) : 0);
+      }).find(x=>x !== 0) || 0;
+    }
+  });
 });
 const ajouterLigne = async (vals: tableaux.élémentBdListeDonnées) => {
   await constl.tableaux.ajouterÉlément({
@@ -153,6 +198,12 @@ const ajouterLigne = async (vals: tableaux.élémentBdListeDonnées) => {
     vals,
   });
 };
+
+const ordonnerPar = ref<{key: string, order: 'asc' | 'desc'}[]>();
+
+// Sélection files
+const sélectionnées = ref([]);
+
 
 // Règles
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});

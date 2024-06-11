@@ -37,7 +37,10 @@
             </v-tooltip>
           </template>
         </v-checkbox>
-        <division-carte :titre="t('colonnes.règles')" />
+        <division-carte
+          :titre="t('colonnes.règles')"
+          :en-attente="!règlesÀAfficher"
+        />
         <v-list>
           <item-regle-colonne
             v-for="r in règlesÀAfficher"
@@ -100,6 +103,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
+import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 
 import {constellation, suivre} from '../utils';
 

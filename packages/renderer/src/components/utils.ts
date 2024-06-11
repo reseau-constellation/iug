@@ -6,6 +6,8 @@ import type {Nuchabäl} from 'nuchabal';
 import EventEmitter, {once} from 'events';
 import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 import deepEqual from 'deep-equal';
+import { CID } from 'multiformats/cid';
+import { base58btc } from 'multiformats/bases/base58';
 
 export const constellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
@@ -392,4 +394,47 @@ export const détecterLangue = async ({texte}: {texte: string}) => {
   const résultatAll = francAllAll(texte)[0];
   console.log(résultatAll);
   if (résultatAll[1] > 0.9 && résultatAll[0] !== 'und') return résultatAll[0];
+};
+
+// À faire : migrer à @constl/utils-ipa
+
+export const adresseOrbiteValide = (address: string) => {
+  // Code de @orbitdb/core
+  address = address.toString();
+
+  if (!address.startsWith('/orbitdb') && !address.startsWith('\\orbitdb')) {
+    return false;
+  }
+
+  address = address.replaceAll('/orbitdb/', '');
+  address = address.replaceAll('\\orbitdb\\', '');
+  address = address.replaceAll('/', '');
+  address = address.replaceAll('\\', '');
+
+  let cid;
+  try {
+    cid = CID.parse(address, base58btc);
+  } catch (e) {
+    return false;
+  }
+
+  return cid !== undefined;
+};
+
+export const formatsFichiers = {
+  images: [
+    'webp',
+    'svg',
+    'png',
+    'jpg',
+    'jpeg',
+    'jfif',
+    'pjpeg',
+    'pjp',
+    'gif',
+    'avif',
+    'apng',
+  ],
+  vidéo: ['mp4'],
+  audio: ['mp3', 'ogg', 'm4a'],
 };

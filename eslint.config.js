@@ -10,7 +10,6 @@ export default [
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
-
   ...pluginVue.configs['flat/recommended'],
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,vue}'],

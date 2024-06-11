@@ -1,7 +1,14 @@
 <template>
-  <TexteTronqué
-    :texte="val"
+  <texte-tronque
+    v-if="valValide"
+    :texte="valValide"
     :longueur-max="10"
+  />
+  <v-icon
+    v-if="!valValide"
+    size="small"
+    color="error"
+    icon="mdi-error"
   />
   <!--<template #item.calories="{item}">
     <p
@@ -19,7 +26,11 @@
   </template> -->
 </template>
 <script setup lang="ts">
-import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
+import type { types } from '@constl/ipa';
+import TexteTronque from '/@/components/communs/TexteTronqué.vue';
+import { computed } from 'vue';
 
-defineProps<{val: string}>();
+const props = defineProps<{val?: types.élémentsBd}>();
+
+const valValide = computed(()=>typeof props.val === 'string' ? props.val : undefined);
 </script>

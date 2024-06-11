@@ -1,9 +1,11 @@
 <template>
   <v-checkbox
     :model-value="val"
-    :indeterminate="typeof val === 'undefined'"
+    :indeterminate="val === undefined"
   />
 </template>
 <script setup lang="ts">
-defineProps<{val?: boolean}>();
+import type { types } from '@constl/ipa';
+
+defineProps<{val?: types.élémentsBd}>();
 </script>

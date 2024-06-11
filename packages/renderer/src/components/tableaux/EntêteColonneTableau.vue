@@ -1,5 +1,23 @@
 <template>
-  {{ nomFinal }}
+  <span @click="()=>émettre('basculer-ordonner')">
+    <v-hover v-slot="{ isHovering, props: propsSurvole }">
+      <span v-bind="propsSurvole">
+        {{ nomFinal }}
+        <template v-if="ordonnable">
+          <v-icon
+            v-if="estOrdonnee"
+            :icon="iconeOrdonner"
+          ></v-icon>
+          <v-icon
+            v-else
+            icon="mdi-arrow-up"
+            :color="isHovering ? 'disabled': 'rgba(255,255,255,0)'"
+          ></v-icon>
+        </template>
+      </span>
+    </v-hover>
+    
+  </span>
   <carte-colonne-tableau
     :id-colonne="idColonne"
     :id-variable="idVariable"
@@ -34,8 +52,12 @@ const props = defineProps<{
   regles: valid.règleColonne[] | undefined;
   idVariable: string;
   idTableau: string;
+  ordonnable: boolean;
+  estOrdonnee: boolean;
+  iconeOrdonner: string;
 }>();
 const émettre = defineEmits<{
+  (é: 'basculer-ordonner'): void;
   (
     é: 'sauvegarder',
     args: {
@@ -62,3 +84,8 @@ const nomFinal = computed(() => {
   return nomTraduit.value || props.idColonne;
 });
 </script>
+<style scoped>
+.v-icon {
+  transition: color .2s ease-in-out;
+}
+</style>
