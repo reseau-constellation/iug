@@ -2,7 +2,7 @@
   <TexteTronqué
     v-if="texteTraduit"
     :texte="texteTraduit"
-    :longueur-max="10"
+    :longueur-max="30"
   />
   <v-skeleton-loader
     v-else

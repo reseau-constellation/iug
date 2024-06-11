@@ -2,7 +2,7 @@
   <texte-tronque
     v-if="valValide"
     :texte="valValide"
-    :longueur-max="10"
+    :longueur-max="30"
   />
   <v-icon
     v-if="!valValide"
