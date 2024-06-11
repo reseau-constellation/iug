@@ -1,6 +1,6 @@
 <template>
   <p
-    :contenteditable="editer"
+    :contenteditable="editable"
     @input="changerValeur"
   >
     {{ valTraduite }}
@@ -13,7 +13,7 @@ import {எண்களைப்_பயன்படுத்து, எண்ண
 import { computed } from 'vue';
 
 
-const props = defineProps<{val: types.élémentsBd; editer: boolean}>();
+const props = defineProps<{val: types.élémentsBd; editable: boolean}>();
 const émettre = defineEmits<{
   (é: 'changerValeur', val: number): void;
 }>();

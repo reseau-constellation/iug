@@ -2,6 +2,7 @@ import {type ComputedRef, type Ref, unref, type MaybeRef, type UnwrapRef, isRef}
 import type {types, ClientConstellation} from '@constl/ipa';
 import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 import type {Nuchabäl} from 'nuchabal';
+import { cidValide } from '@constl/utils-ipa';
 
 import EventEmitter, {once} from 'events';
 import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
@@ -437,4 +438,24 @@ export const formatsFichiers = {
   ],
   vidéo: ['mp4'],
   audio: ['mp3', 'ogg', 'm4a'],
+};
+
+
+export const idcEtExt = (val: string) => {
+  try {
+    const [id, fichier] = val.split('/');
+    if (cidValide(id)) {
+        const ext = fichier.split('.').pop();
+        if (ext) {
+          return {
+            ext,
+            fichier,
+            id,
+          };
+        }
+    }
+  }
+  catch {
+      // Rien à faire
+  }
 };

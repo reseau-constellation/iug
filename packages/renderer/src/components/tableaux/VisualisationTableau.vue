@@ -152,7 +152,7 @@
       <cellule-numerique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
         :val="item.données[c.key] as number"
-        :editer="éditer"
+        :editable="éditer"
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />

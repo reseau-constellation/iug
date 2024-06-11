@@ -11,6 +11,39 @@
     v-else-if="catégorieFinale === 'booléen'"
     :val="val"
   />
+  <cellule-numerique
+    v-else-if="catégorieFinale === 'numérique'"
+    :val="val"
+    :editable="false"
+  />
+  <cellule-audio
+    v-else-if="catégorieFinale === 'audio'"
+    :val="val"
+  />
+  <cellule-image
+    v-else-if="catégorieFinale === 'image'" 
+    :val="val"
+  />
+  <cellule-video
+    v-else-if="catégorieFinale === 'vidéo'" 
+    :val="val"
+  />
+  <cellule-fichier
+    v-else-if="catégorieFinale === 'fichier'"
+    :val="val"
+  />
+  <cellule-geo-json
+    v-else-if="catégorieFinale === 'géojson'"
+    :val="val"
+  />
+  <cellule-intervale-temps
+    v-else-if="catégorieFinale === 'intervaleTemps'"
+    :val="val"
+  />
+  <cellule-chaine
+    v-else-if="catégorieFinale === 'chaîne'"
+    :val="val"
+  />
   <span v-else>{{ val }}</span>
 </template>
 <script setup lang="ts">
@@ -23,6 +56,14 @@ import { adresseOrbiteValide, formatsFichiers } from '/@/components/utils';
 import CelluleHoroDatage from './CelluleHoroDatage.vue';
 import CelluleChaineNonTraductible from './CelluleChaîneNonTraductible.vue';
 import CelluleBooleenne from './CelluleBooléenne.vue';
+import CelluleNumerique from './CelluleNumérique.vue';
+import CelluleAudio from './CelluleAudio.vue';
+import CelluleFichier from './CelluleFichier.vue';
+import CelluleImage from './CelluleImage.vue';
+import CelluleVideo from './CelluleVidéo.vue';
+import CelluleGeoJson from './CelluleGéoJson.vue';
+import CelluleChaine from './CelluleChaîne.vue';
+import CelluleIntervaleTemps from './CelluleIntervaleTemps.vue';
 
 import gjv from 'geojson-validation';
 
