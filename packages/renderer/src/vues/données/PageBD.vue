@@ -398,26 +398,10 @@
             si
             ze="small"
           >
-            <TexteTronque
-              :texte="ong.clef"
-              :longueur-max="20"
-            />
-            <carte-tableau-bd
-              :id-bd="id"
-              :id-tableau="ong.id"
+            <entete-tableau
+              :id="ong.id"
               :clef="ong.clef"
-              :permission-modifier="!!monAutorisation"
-            >
-              <template #activator="{props: propsActivateur}">
-                <v-icon
-                  v-bind="propsActivateur"
-                  class="ms-2"
-                  icon="mdi-pencil"
-                  variant="flat"
-                  size="small"
-                />
-              </template>
-            </carte-tableau-bd>
+            />
           </v-tab>
 
           <nouveau-tableau @sauvegarder="ajouterTableau">
@@ -595,7 +579,7 @@ import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObj
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import TableauBd from '/@/components/tableaux/TableauBd.vue';
-import CarteTableauBd from '/@/components/tableaux/CarteTableauBd.vue';
+import EnteteTableau from '/@/components/tableaux/EntêteTableau.vue';
 import ItemStatut from '/@/components/communs/ItemStatut.vue';
 
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';

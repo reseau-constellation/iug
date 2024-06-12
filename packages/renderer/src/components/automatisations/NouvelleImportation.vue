@@ -63,7 +63,7 @@
               v-model="url"
               prepend-icon="mdi-web"
               variant="outlined"
-              :label="t('mportations.carte.étiquetteURL')"
+              :label="t('importations.carte.étiquetteURL')"
             ></v-text-field>
             {{ url }}
             {{ donnéesSource }}
