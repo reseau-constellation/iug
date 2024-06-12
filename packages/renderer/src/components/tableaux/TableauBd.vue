@@ -41,6 +41,18 @@
         </nouvelle-colonne>
         <v-btn icon="mdi-sync"></v-btn>
         <v-btn icon="mdi-download"></v-btn>
+        <carte-effacer
+          v-if="autorisation"
+          @effacer="() => effacerTableau()"
+        >
+          <template #activator="{props: propsActivateur}">
+            <v-btn
+              v-bind="propsActivateur"
+              icon="mdi-delete"
+              color="error"
+            />
+          </template>
+        </carte-effacer>
       </v-toolbar>
     </template>
 
@@ -108,12 +120,13 @@ import NouvelleImportation from '/@/components/automatisations/NouvelleImportati
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
+import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 const constl = constellation();
-const props = defineProps<{idTableau: string}>();
+const props = defineProps<{idTableau: string; idBd: string}>();
 
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
@@ -207,4 +220,9 @@ const sélectionnées = ref([]);
 
 // Règles
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
+
+// Effacer
+const effacerTableau = async () => {
+  await constl.bds.effacerTableauBd({idBd: props.idBd, idTableau: props.idTableau});
+};
 </script>

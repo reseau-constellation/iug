@@ -395,8 +395,7 @@
             :key="ong.clef"
             :value="ong.clef"
             color="primary"
-            si
-            ze="small"
+            size="small"
           >
             <entete-tableau
               :id="ong.id"
@@ -528,7 +527,10 @@
           :key="tableau.clef"
           :value="tableau.clef"
         >
-          <tableau-bd :id-tableau="tableau.id" />
+          <tableau-bd
+            :id-tableau="tableau.id"
+            :id-bd="id"
+          />
         </v-window-item>
       </v-window>
     </v-card-text>
