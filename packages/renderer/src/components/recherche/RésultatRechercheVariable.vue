@@ -5,6 +5,10 @@
         v-if="infoSourceNom"
         :info="infoSourceNom"
       />
+      <v-skeleton-loader
+        v-else-if="!noms"
+        type="text"
+      />
       <span v-else>{{ nomTraduit || t('variables.aucunNom') }}</span>
     </v-list-item-title>
     <v-list-item-subtitle v-if="infoSourceDescr || descriptionTraduite">
@@ -23,7 +27,11 @@
         v-if="infoSourceId"
         :info="infoSourceId"
       />
-      <span v-else>{{ résultat.id }}</span>
+      <TexteTronque
+        v-else
+        :texte="résultat.id.slice(9)"
+        :longueur-max="13"
+      />
     </jeton-id-objet>
   </v-list-item>
 </template>
@@ -41,6 +49,7 @@ import {constellation, suivre} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
+import TexteTronque from '../communs/TexteTronqué.vue';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;

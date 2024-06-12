@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :max-width="mdAndUp ? 500 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -80,7 +80,10 @@
               />
             </v-list>
           </v-window-item>
-          <v-window-item :value="3">
+          <v-window-item
+            :value="3"
+            class="text-center"
+          >
             <v-btn
               variant="outlined"
               @click="() => créerColonne()"

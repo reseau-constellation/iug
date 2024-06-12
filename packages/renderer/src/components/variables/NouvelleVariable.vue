@@ -9,7 +9,7 @@
 
     <v-card
       class="mx-auto"
-      :min-width="mdAndUp ? 750 : 300"
+      :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
         <v-card-title class="text-h5 justify-space-between">
