@@ -142,13 +142,6 @@
           (x: types.élémentsBd[]) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})
         "
       />
-      <CelluleChaineNonTraductible
-        v-else-if="c.info.catégorie?.catégorie === 'chaîneNonTraductible'"
-        :val="item.données[c.key] as string"
-        :editer="éditer"
-        :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: string) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
-      />
       <cellule-numerique
         v-else-if="c.info.catégorie?.catégorie === 'numérique'"
         :val="item.données[c.key] as number"
@@ -240,7 +233,6 @@ import {constellation, suivre} from '../utils';
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
 
-import CelluleChaineNonTraductible from './cellules/CelluleChaîneNonTraductible.vue';
 import CelluleBooleenne from './cellules/CelluleBooléenne.vue';
 import CelluleNumerique from './cellules/CelluleNumérique.vue';
 
