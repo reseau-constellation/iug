@@ -524,7 +524,7 @@
     "colonnes": {
       "nouvelle": {
         "titreVariable": "Choisir variable",
-        "sousTitreVariable": "La variable associée avec la colonne",
+        "sousTitreVariable": "Cette variable sera associée avec la colonne",
         "titreIndex": "Index",
         "sousTitreIndex": "Spécifier si c'est une colonne index",
         "index": "Colonne index",
@@ -533,6 +533,11 @@
         "titreConfirmation": "Confirmation",
         "sousTitreConfirmation": "Confirmer création colonne",
         "texteBtnCréation": "Créer colonne"
+      },
+      "carte": {
+        "titre": "Options colonne",
+        "variable": "Variable",
+        "règles": "Règles"
       }
     },
     "motsClefs": {
