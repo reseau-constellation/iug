@@ -40,9 +40,7 @@ const valFinaleNumérique = computed(()=>{
   }
 });
 
-watch(valFinale, () => {
-  if (valFinaleNumérique.value !== valValide.value) {
-    émettre('modifiee', {val: valFinaleNumérique.value});
-  }
+watch(valFinaleNumérique, () => {
+  émettre('modifiee', {val: valFinaleNumérique.value});
 });
 </script>
