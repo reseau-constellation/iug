@@ -104,7 +104,7 @@
     "deep-equal": "^2.2.3",
     "direction": "^2.0.1",
     "electron-updater": "6.2.1",
-    "ennikkai": "^2.3.0",
+    "ennikkai": "^2.3.1",
     "events": "^3.3.0",
     "file-saver": "^2.0.5",
     "franc": "^6.2.0",
