@@ -13,6 +13,27 @@
         density="compact"
       >
         <v-spacer />
+        <v-btn
+          icon
+          :disabled="!modificationsDéfinitives.length"
+          @click="()=>sauvegarderModifications()"
+        >
+          <v-badge
+            v-if="modificationsDéfinitives.length"
+            color="success"
+            :content="modificationsDéfinitives.length"
+          >
+            <v-icon
+              color="primary"
+              icon="mdi-content-save-outline"
+            />
+          </v-badge>
+          <v-icon
+            v-else
+            color="primary"
+            icon="mdi-content-save-outline"
+          />
+        </v-btn>
         <nouvelle-ligne
           v-if="colonnes && autorisation"
           :colonnes="colonnes"
@@ -288,9 +309,48 @@ const sélectionnées = ref([]);
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
 
 // Modification valeurs
-const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>();
+const modifsEnCours = ref(false);
+const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>({});
+const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[]>(()=>{
+  const définitives: {idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[] = [];
+  for (const [idÉlément, modifsÉlément] of Object.entries(modifications.value)) {
+    const élémentExistant = données.value?.find(d=>d.id === idÉlément);
+    if (!élémentExistant) continue;  // Ne devrait pas arriver
+    if (différence({modifs: modifsÉlément, original: élémentExistant.données})) {
+      définitives.push({
+        idÉlément,
+        vals: modifsÉlément,
+      });
+    }
+  }
+  return définitives;
+});
+
+const différence = ({modifs, original}: {modifs:  {
+    [idCol: string]: types.élémentsBd | undefined;
+}, original:  {
+    [idCol: string]: types.élémentsBd | undefined;
+}}): boolean =>  {
+  return Object.keys(modifs).some((idCol) => {
+    return original[idCol] !== modifs[idCol];
+  });
+};
+
 const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | undefined, idCol: string, idÉlément: string}) => {
-  console.log({val, idCol, idÉlément, modifications});
+  const modifs = modifications.value;
+  if (!modifs[idÉlément]) modifs[idÉlément] = {};
+  modifs[idÉlément][idCol] === val;
+  modifications.value = modifs;
+};
+
+const sauvegarderModifications = async () => {
+  modifsEnCours.value = true;
+  
+  for (const {idÉlément, vals} of modificationsDéfinitives.value) {
+    await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals});
+  }
+  modifications.value = {};
+  modifsEnCours.value = false;
 };
 
 const effacerÉlément = async ({idÉlément}: {idÉlément: string}) => {
