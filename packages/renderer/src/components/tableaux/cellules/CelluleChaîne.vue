@@ -5,8 +5,8 @@
     :longueur-max="30"
   />
   <v-skeleton-loader
-    v-else
-    type="chip"
+    v-else-if="valValide"
+    type="text"
   />
 </template>
 <script setup lang="ts">
