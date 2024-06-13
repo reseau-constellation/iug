@@ -1,7 +1,10 @@
 <template>
   <v-card class="text-start">
     <v-card-item>
-      <v-card-title v-if="noms">
+      <v-card-title
+        v-if="noms"
+        :class="{'text-disabled': !nomTraduit}"
+      >
         {{ nomTraduit || t(sansNom) }}
         <v-avatar>
           <v-icon>{{ icôneTypeItem }}</v-icon>
