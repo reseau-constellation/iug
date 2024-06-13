@@ -31,7 +31,7 @@
           <v-icon
             v-else
             color="primary"
-            icon="mdi-content-save-outline"
+            icon="mdi-content-save-check-outline"
           />
         </v-btn>
         <nouvelle-ligne
@@ -117,6 +117,68 @@
       />
     </template>
 
+    <template #[`header.actions`]>
+      <v-btn
+        v-if="plusConfirmer"
+        icon="mdi-delete"
+        size="small"
+        :loading="enEffaçage"
+        :readonly="!sélectionnées.length"
+        @click="()=>effacerSélectionnées()"
+      />
+      <v-dialog
+        v-else
+        v-model="dialogueEffacerSélectionnées"
+      >
+        <template #activator="{props: propsActivateur}">
+          <v-btn
+            v-bind="propsActivateur"
+            icon
+            variant="flat"
+            size="small"
+            :readonly="!sélectionnées.length"
+            :loading="enEffaçage"
+          >
+            <v-icon
+              icon="mdi-delete"
+              :color="sélectionnées.length ? undefined : 'disabled'"
+            />
+          </v-btn>
+        </template>
+        <v-card
+          class="mx-auto"
+          max-width="450"
+        >
+          <v-card-item>
+            <v-card-title>
+              {{ t('tableaux.données.titreEffacerSélectionnées', sélectionnées.length) }}
+            </v-card-title>
+          </v-card-item>
+          <v-card-text>
+            <v-checkbox
+              v-model="choixPlusConfirmer"
+              :label="t('tableaux.données.nePlusConfirmerEffacer')"
+            ></v-checkbox>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              variant="text"
+              :text="t('communs.oui')"
+              @click="()=>{effacerSélectionnées(); dialogueEffacerSélectionnées = false}"
+            />
+            <v-btn
+              variant="text"
+              color="primary"
+              :text="t('communs.non')"
+              @click="dialogueEffacerSélectionnées = false"
+            />
+            <v-spacer />
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </template>
+
     <template
       v-for="c in colonnesVariables"
       :key="c.key"
@@ -129,25 +191,27 @@
         @modifiee="({val}) => celluleModifiée({idCol: c.key, idÉlément: item.id, val})"
       />
     </template>
+
     <template #[`item.actions`]="{ item }">
-      <v-icon
+      <v-btn
         v-if="plusConfirmer"
         size="small"
+        icon="mdi-delete"
+        :loading="enEffaçage"
         @click="()=>effacerÉlément({idÉlément: item.id})"
-      >
-        mdi-delete
-      </v-icon>
+      />
       <v-dialog
         v-else
         v-model="dialogueEffacer"
       >
         <template #activator="{props: propsActivateur}">
-          <v-icon
+          <v-btn
             v-bind="propsActivateur"
+            variant="flat"
+            icon="mdi-delete"
             size="small"
-          >
-            mdi-delete
-          </v-icon>
+            :loading="enEffaçage"
+          />
         </template>
         <v-card
           class="mx-auto"
@@ -302,7 +366,7 @@ const ajouterLigne = async (vals: tableaux.élémentBdListeDonnées) => {
 const ordonnerPar = ref<{key: string, order: 'asc' | 'desc'}[]>();
 
 // Sélection files
-const sélectionnées = ref([]);
+const sélectionnées = ref<string[]>([]);
 
 
 // Règles
@@ -310,10 +374,10 @@ const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTablea
 
 // Modification valeurs
 const modifsEnCours = ref(false);
-const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>({});
+const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>();
 const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[]>(()=>{
   const définitives: {idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[] = [];
-  for (const [idÉlément, modifsÉlément] of Object.entries(modifications.value)) {
+  for (const [idÉlément, modifsÉlément] of Object.entries(modifications.value || {})) {
     const élémentExistant = données.value?.find(d=>d.id === idÉlément);
     if (!élémentExistant) continue;  // Ne devrait pas arriver
     if (différence({modifs: modifsÉlément, original: élémentExistant.données})) {
@@ -337,9 +401,9 @@ const différence = ({modifs, original}: {modifs:  {
 };
 
 const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | undefined, idCol: string, idÉlément: string}) => {
-  const modifs = modifications.value;
+  const modifs = modifications.value || {};
   if (!modifs[idÉlément]) modifs[idÉlément] = {};
-  modifs[idÉlément][idCol] === val;
+  modifs[idÉlément][idCol] = val;
   modifications.value = modifs;
 };
 
@@ -349,23 +413,41 @@ const sauvegarderModifications = async () => {
   for (const {idÉlément, vals} of modificationsDéfinitives.value) {
     await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals});
   }
-  modifications.value = {};
+  modifications.value = undefined;
   modifsEnCours.value = false;
 };
 
-const effacerÉlément = async ({idÉlément}: {idÉlément: string}) => {
-  return await constl.tableaux.effacerÉlément({ idTableau: props.idTableau, idÉlément });
-};
 
-// Effacer
+// Effacer données
 const plusConfirmer = ref(false);
 const choixPlusConfirmer = ref(false);
+const enEffaçage = ref(false);
+
 const dialogueEffacer = ref(false);
-const effacerTableau = async () => {
-  await constl.bds.effacerTableauBd({idBd: props.idBd, idTableau: props.idTableau});
-};
-watch(dialogueEffacer, ()=>{
+const dialogueEffacerSélectionnées = ref(false);
+
+watch([dialogueEffacer, dialogueEffacerSélectionnées], ()=>{
   // Il faut faire ça ici, car sinon on désactive le dialogue en cliquant sur l'option "Ne plus me demander"
   plusConfirmer.value = choixPlusConfirmer.value;
 });
+
+const effacerÉlément = async ({idÉlément}: {idÉlément: string}) => {
+  enEffaçage.value = true;
+  await constl.tableaux.effacerÉlément({ idTableau: props.idTableau, idÉlément });
+  enEffaçage.value = false;
+};
+
+const effacerSélectionnées = async () => {
+  enEffaçage.value = true;
+  await Promise.all(sélectionnées.value.map(idÉlément=>effacerÉlément({idÉlément})));
+  sélectionnées.value = [];
+  enEffaçage.value = false;
+};
+
+
+// Effacer tableau
+const effacerTableau = async () => {
+  await constl.bds.effacerTableauBd({idBd: props.idBd, idTableau: props.idTableau});
+};
+
 </script>

@@ -12,11 +12,14 @@
   <cellule-booleenne
     v-else-if="catégorieFinale === 'booléen'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-numerique
     v-else-if="catégorieFinale === 'numérique'"
     :val="val"
-    :editable="false"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-audio
     v-else-if="catégorieFinale === 'audio'"

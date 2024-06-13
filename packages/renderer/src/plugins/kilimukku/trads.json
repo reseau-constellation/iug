@@ -6,6 +6,8 @@
       "suivant": "Suivant",
       "retour": "Retour",
       "ouvrir": "Ouvrir",
+      "oui": "Oui",
+      "non": "Non",
       "anonyme": "Anonyme",
       "effacer": "Effacer",
       "étiquetteNom": "Nom",
@@ -487,7 +489,12 @@
       "règles": {
         "nouvelle": "Ajouter une règle"
       },
-      "aucuneDonnée": "Aucune donnée"
+      "aucuneDonnée": "Aucune donnée",
+      "données": {
+        "titreEffacerSélectionnées": "|Voulez-vous effacer {n} élément ?|Voulez-vous effacer {n} éléments ?",
+        "titreEffacer": "Voulez-vous effacer cet élément ?",
+        "nePlusConfirmerEffacer": "Ne plus me demander confirmation"
+      }
     },
     "nuées": {
       "nouvelle": {

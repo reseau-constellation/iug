@@ -163,13 +163,6 @@
         :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
         @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
       />
-      <cellule-booleenne
-        v-else-if="c.info.catégorie?.catégorie === 'booléen'"
-        :val="item.données[c.key] as boolean"
-        :editer="éditer"
-        :erreurs="erreursValidation?.filter(x => x.erreur.règle.colonne === c.key)"
-        @changer-valeur="(x: number) => modifierÉlément({idÉlément: item.id, col: c.key, val: x})"
-      />
       <cellule-chaine
         v-else-if="c.info.catégorie?.catégorie === 'chaîne'"
         :val="item.données[c.key]"
@@ -233,7 +226,6 @@ import {constellation, suivre} from '../utils';
 import NouvelleColonne from './NouvelleColonne.vue';
 import NouvelleLigne from './NouvelleLigne.vue';
 
-import CelluleBooleenne from './cellules/CelluleBooléenne.vue';
 import CelluleNumerique from './cellules/CelluleNumérique.vue';
 
 import {créerColonneTableau} from '/@/components/tableaux/utils';
