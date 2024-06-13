@@ -6,6 +6,8 @@
   <cellule-chaine-non-traductible
     v-else-if="catégorieFinale === 'chaîneNonTraductible'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-booleenne
     v-else-if="catégorieFinale === 'booléen'"
@@ -69,7 +71,11 @@ import gjv from 'geojson-validation';
 
 const props = defineProps<{
     categorie?: variables.catégorieBaseVariables;
-    val: types.élémentsBd
+    val: types.élémentsBd;
+    editable: boolean;
+}>();
+const émettre = defineEmits<{
+  (é: 'modifiee', args: {val?: types.élémentsBd}): void;
 }>();
 
 const catégorieFinale = computed<variables.catégorieBaseVariables|undefined>(()=>{
@@ -109,4 +115,9 @@ const catégorieFinale = computed<variables.catégorieBaseVariables|undefined>((
         return undefined;
     }
 });
+
+// Modifications
+const modifiée = ({val}: {val?: types.élémentsBd}) => {
+  émettre('modifiee', {val});
+};
 </script>
