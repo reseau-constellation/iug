@@ -275,21 +275,27 @@ const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau})
 const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
 
 // Colonnes
-const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>, {
+const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoCol>, {
+  idTableau: props.idTableau,
+});
+const colonnesAvecCatégories = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>, {
   idTableau: props.idTableau,
   catégories: true,
 });
 
 const colonnesVariables = computed(() => {
-  return (colonnes.value || []).map(c => ({
-    key: c.id,
-    sortable: c.catégorie === undefined ||( c.catégorie?.type === 'simple' ? triable(c.catégorie.catégorie) : false),
-    info: {
-      index: c.index,
-      catégorie: c.catégorie,
-      variable: c.variable,
-    },
-  }));
+  return (colonnes.value || []).map(c => {
+    const catégorie = colonnesAvecCatégories.value?.find(col => col.id === c.id)?.catégorie;
+    return {
+      key: c.id,
+      sortable: catégorie === undefined || ( catégorie?.type === 'simple' ? triable(catégorie.catégorie) : false),
+      info: {
+        index: c.index,
+        catégorie,
+        variable: c.variable,
+      },
+    };
+  });
 });
 
 const entêtes = computed(() => {
