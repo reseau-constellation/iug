@@ -78,7 +78,7 @@
     </template>
 
     <template
-      v-for="c in entêtes || []"
+      v-for="c in colonnesVariables || []"
       :key="c.key"
       #[`header.${c.key}`]="{column, isSorted, getSortIcon, toggleSort}"
     >
@@ -87,7 +87,7 @@
         :id-variable="c.info.variable"
         :id-tableau="idTableau"
         :index="!!c.info.index"
-        :regles="règles"
+        :regles="règles?.filter(r=>r.colonne === c.key)"
         :permission-modifier="!!autorisation"
         :ordonnable="column.sortable"
         :est-ordonnee="isSorted(column)"
@@ -97,21 +97,76 @@
     </template>
 
     <template
-      v-for="c in entêtes"
+      v-for="c in colonnesVariables"
       :key="c.key"
       #[`item.${c.key}`]="{item}"
     >
       <cellule-tableau
         :categorie="c.info.catégorie?.catégorie"
         :val="item.données[c.key]"
+        :editable="!!autorisation"
+        @modifiee="({val}) => celluleModifiée({idCol: c.key, idÉlément: item.id, val})"
       />
+    </template>
+    <template #[`item.actions`]="{ item }">
+      <v-icon
+        v-if="plusConfirmer"
+        size="small"
+        @click="()=>effacerÉlément({idÉlément: item.id})"
+      >
+        mdi-delete
+      </v-icon>
+      <v-dialog
+        v-else
+        v-model="dialogueEffacer"
+      >
+        <template #activator="{props: propsActivateur}">
+          <v-icon
+            v-bind="propsActivateur"
+            size="small"
+          >
+            mdi-delete
+          </v-icon>
+        </template>
+        <v-card
+          class="mx-auto"
+          max-width="450"
+        >
+          <v-card-item>
+            <v-card-title>
+              {{ t('tableaux.données.titreEffacer') }}
+            </v-card-title>
+          </v-card-item>
+          <v-card-text>
+            <v-checkbox
+              v-model="choixPlusConfirmer"
+              :label="t('tableaux.données.nePlusConfirmerEffacer')"
+            ></v-checkbox>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              variant="text"
+              :text="t('communs.oui')"
+              @click="()=>{effacerÉlément({idÉlément: item.id}); dialogueEffacer = false}"
+            />
+            <v-btn
+              variant="text"
+              color="primary"
+              :text="t('communs.non')"
+              @click="dialogueEffacer = false"
+            />
+            <v-spacer />
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </template>
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux, valid, variables as typesVariables} from '@constl/ipa';
+import type {tableaux, valid, variables as typesVariables, types} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
+import {computed, ref, watch} from 'vue';
 import {constellation, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -137,8 +192,10 @@ const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTa
 // Colonnes
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>, {
   idTableau: props.idTableau,
+  catégories: true,
 });
-const entêtes = computed(() => {
+
+const colonnesVariables = computed(() => {
   return (colonnes.value || []).map(c => ({
     key: c.id,
     sortable: c.catégorie === undefined ||( c.catégorie?.type === 'simple' ? triable(c.catégorie.catégorie) : false),
@@ -148,6 +205,15 @@ const entêtes = computed(() => {
       variable: c.variable,
     },
   }));
+});
+
+const entêtes = computed(() => {
+  const colonneActions = {
+    key: 'actions',
+    sortable: false,
+    info: {},
+  };
+  return [...colonnesVariables.value, colonneActions];
 });
 const triables: typesVariables.catégorieBaseVariables[] = [
   'booléen',
@@ -221,8 +287,25 @@ const sélectionnées = ref([]);
 // Règles
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
 
+// Modification valeurs
+const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>();
+const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | undefined, idCol: string, idÉlément: string}) => {
+  console.log({val, idCol, idÉlément, modifications});
+};
+
+const effacerÉlément = async ({idÉlément}: {idÉlément: string}) => {
+  return await constl.tableaux.effacerÉlément({ idTableau: props.idTableau, idÉlément });
+};
+
 // Effacer
+const plusConfirmer = ref(false);
+const choixPlusConfirmer = ref(false);
+const dialogueEffacer = ref(false);
 const effacerTableau = async () => {
   await constl.bds.effacerTableauBd({idBd: props.idBd, idTableau: props.idTableau});
 };
+watch(dialogueEffacer, ()=>{
+  // Il faut faire ça ici, car sinon on désactive le dialogue en cliquant sur l'option "Ne plus me demander"
+  plusConfirmer.value = choixPlusConfirmer.value;
+});
 </script>
