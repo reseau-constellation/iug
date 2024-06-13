@@ -11,10 +11,13 @@
       :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title></v-card-title>
-        <v-card-subtitle></v-card-subtitle>
+        <v-card-title>{{ t('colonnes.carte.titre') }}</v-card-title>
       </v-card-item>
-      <v-card-text>
+      <v-card-text style="overflow-y:auto">
+        <division-carte
+          :titre="t('colonnes.variable')"
+          :en-attente="!règlesÀAfficher"
+        />
         <selecteur-variable
           :multiples="false"
           :originales="[idVariable]"
@@ -32,6 +35,7 @@
                 <v-icon
                   v-bind="propsActivateur"
                   icon="mdi-information-outline"
+                  end
                 />
               </template>
             </v-tooltip>
