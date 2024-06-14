@@ -15,13 +15,13 @@
         <v-spacer />
         <v-btn
           icon
-          :disabled="!modificationsDéfinitives.length"
+          :disabled="!nFilesModifiées"
           @click="()=>sauvegarderModifications()"
         >
           <v-badge
-            v-if="modificationsDéfinitives.length"
+            v-if="nFilesModifiées"
             color="success"
-            :content="modificationsDéfinitives.length"
+            :content="nFilesModifiées"
           >
             <v-icon
               color="primary"
@@ -34,20 +34,17 @@
             icon="mdi-content-save-check-outline"
           />
         </v-btn>
-        <nouvelle-ligne
-          v-if="colonnes && autorisation"
-          :colonnes="colonnes"
-          :regles="règles"
-          @sauvegarder="vals => ajouterLigne(vals)"
-        >
-          <template #activator="{props: propsActivateur}">
-            <v-btn
-              v-bind="propsActivateur"
-              icon="mdi-table-row-plus-after"
-            >
-            </v-btn>
-          </template>
-        </nouvelle-ligne>
+        <v-switch
+          v-model="édition"
+          :readonly="!autorisation"
+          class="me-2"
+          density="compact"
+          color="primary"
+          true-icon="mdi-pencil-outline"
+          false-icon="mdi-pencil-off-outline"
+          hide-details
+        />
+        
         <nouvelle-colonne
           :id-tableau="idTableau"
           :variables-interdites="variables"
@@ -187,16 +184,25 @@
       <cellule-tableau
         :categorie="c.info.catégorie?.catégorie"
         :val="item.données[c.key]"
-        :editable="!!autorisation"
+        :editable="!!autorisation && édition"
         @modifiee="({val}) => celluleModifiée({idCol: c.key, idÉlément: item.id, val})"
       />
     </template>
 
     <template #[`item.actions`]="{ item }">
       <v-btn
-        v-if="plusConfirmer"
+        v-if="item.id === '-1'"
+        :disabled="!valeursÀAjouter"
+        icon="mdi-content-save-outline"
+        size="small"
+        variant="flat"
+        @click="()=>ajouterLigne()"
+      />
+      <v-btn
+        v-else-if="plusConfirmer"
         size="small"
         icon="mdi-delete"
+        variant="flat"
         :loading="enEffaçage"
         @click="()=>effacerÉlément({idÉlément: item.id})"
       />
@@ -258,9 +264,10 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
-import NouvelleLigne from './NouvelleLigne.vue';
+
 import CelluleTableau from './cellules/CelluleTableau.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import { watchEffect } from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -353,7 +360,7 @@ const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListe
   idTableau: props.idTableau,
 });
 const filesTableau = computed(() => {
-  return données.value?.toSorted((a, b) => {
+  const ordonnées = données.value?.toSorted((a, b) => {
     if (!ordonnerPar.value) return 0;
     else {
       return ordonnerPar.value.map(o => {
@@ -361,13 +368,13 @@ const filesTableau = computed(() => {
       }).find(x=>x !== 0) || 0;
     }
   });
+
+  const nouvelleFile: tableaux.élémentDonnées<tableaux.élémentBdListeDonnées> = {
+    id: '-1',
+    données: {},
+  };
+  return (édition.value && ordonnées) ? [nouvelleFile, ...ordonnées] : ordonnées;
 });
-const ajouterLigne = async (vals: tableaux.élémentBdListeDonnées) => {
-  await constl.tableaux.ajouterÉlément({
-    idTableau: props.idTableau,
-    vals,
-  });
-};
 
 const ordonnerPar = ref<{key: string, order: 'asc' | 'desc'}[]>();
 
@@ -379,6 +386,8 @@ const sélectionnées = ref<string[]>([]);
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
 
 // Modification valeurs
+const édition = ref(false);
+
 const modifsEnCours = ref(false);
 const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>();
 const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[]>(()=>{
@@ -395,6 +404,9 @@ const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: 
   }
   return définitives;
 });
+const nFilesModifiées = computed(()=>{
+  return modificationsDéfinitives.value.length + (Object.keys(nouvelleLigne.value).length ? 1 : 0);
+});
 
 const différence = ({modifs, original}: {modifs:  {
     [idCol: string]: types.élémentsBd | undefined;
@@ -406,11 +418,24 @@ const différence = ({modifs, original}: {modifs:  {
   });
 };
 
+const nouvelleLigne = ref<{[idCol: string]: types.élémentsBd}>({});
+watchEffect(()=>{
+  if (!édition.value) nouvelleLigne.value = {};
+});
+const valeursÀAjouter = computed(()=>{
+  return Object.keys(nouvelleLigne.value).length > 0;
+});
+
 const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | undefined, idCol: string, idÉlément: string}) => {
-  const modifs = modifications.value || {};
-  if (!modifs[idÉlément]) modifs[idÉlément] = {};
-  modifs[idÉlément][idCol] = val;
-  modifications.value = modifs;
+  if (idÉlément === '-1') {
+    if (val !== undefined) nouvelleLigne.value[idCol] = val;
+    else delete nouvelleLigne.value[idCol];
+  } else {
+    const modifs = modifications.value || {};
+    if (!modifs[idÉlément]) modifs[idÉlément] = {};
+    modifs[idÉlément][idCol] = val;
+    modifications.value = modifs;
+  }
 };
 
 const sauvegarderModifications = async () => {
@@ -419,8 +444,18 @@ const sauvegarderModifications = async () => {
   for (const {idÉlément, vals} of modificationsDéfinitives.value) {
     await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals});
   }
+  if (valeursÀAjouter.value) await ajouterLigne();
   modifications.value = undefined;
   modifsEnCours.value = false;
+};
+
+
+const ajouterLigne = async () => {
+  await constl.tableaux.ajouterÉlément({
+    idTableau: props.idTableau,
+    vals: nouvelleLigne.value,
+  });
+  nouvelleLigne.value = {};
 };
 
 
