@@ -37,7 +37,7 @@
         <v-switch
           v-model="édition"
           :readonly="!autorisation"
-          class="me-2"
+          class="me-4"
           density="compact"
           color="primary"
           true-icon="mdi-pencil-outline"

@@ -14,20 +14,7 @@
         />
       </template>
     </nouvelle-colonne>
-    <NouvelleLigne
-      :colonnes="colonnes"
-      @sauvegarder="x => ajouterÉlément(x)"
-    >
-      <template #activator="{props: propsActivateur}">
-        <v-btn
-          v-bind="propsActivateur"
-          icon="mdi-table-row-plus-after"
-          size="small"
-          inset
-          :disabled="!monAutorisation || !colonnes || !colonnes.length"
-        />
-      </template>
-    </NouvelleLigne>
+    
     <v-switch
       v-model="éditer"
       :disabled="!monAutorisation || !colonnes || !colonnes.length"
@@ -71,25 +58,7 @@
                 {{ t('tableau.ajouterColonne') }}
               </v-btn>
             </template>
-          </nouvelle-colonne>
-          <NouvelleLigne
-            :colonnes="colonnes"
-            @sauvegarder="x => ajouterÉlément(x)"
-          >
-            <template #activator="{props: propsActivateur}">
-              <v-btn
-                v-if="colonnes.length"
-                v-bind="propsActivateur"
-                color="primary"
-                class="mx-2"
-                variant="outlined"
-                icon="mdi-table-row-plus-after"
-                label
-              >
-                {{ t('tableau.ajouterFile') }}
-              </v-btn>
-            </template>
-          </NouvelleLigne>
+          </nouvelle-colonne> 
           <v-btn>
             {{ t('tableau.importerDonnées') }}
           </v-btn>
@@ -224,7 +193,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {constellation, suivre} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';
-import NouvelleLigne from './NouvelleLigne.vue';
+
 
 import CelluleNumerique from './cellules/CelluleNumérique.vue';
 
@@ -280,12 +249,6 @@ const éléments = suivre(constl.tableaux.suivreDonnées, {idTableau: props.idTa
 >;
 const filesSélectionnées = ref<string[]>([]);
 
-const ajouterÉlément = async (vals: {[idCol: string]: tableaux.élémentBdListeDonnées}) => {
-  await constl.tableaux.ajouterÉlément({
-    idTableau: props.idTableau,
-    vals,
-  });
-};
 const effacerÉlément = async (idÉlément: string) => {
   await constl.tableaux.effacerÉlément({
     idTableau: props.idTableau,
