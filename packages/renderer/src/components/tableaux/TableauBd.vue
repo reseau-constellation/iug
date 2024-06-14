@@ -316,6 +316,7 @@ const entêtes = computed(() => {
 const triables: typesVariables.catégorieBaseVariables[] = [
   'booléen',
   'chaîne',
+  'chaîneNonTraductible',
   'horoDatage',
   'intervaleTemps',
   'numérique',
@@ -364,6 +365,8 @@ const filesTableau = computed(() => {
     if (!ordonnerPar.value) return 0;
     else {
       return ordonnerPar.value.map(o => {
+        if (a.données[o.key] === undefined) return b.données[o.key] === undefined ? 0 : (o.order === 'asc' ? 1 : -1);
+        else if (b.données[o.key] === undefined) return a.données[o.key] === undefined ? 0 : (o.order === 'asc' ? -1 : 1);
         return a.données[o.key] > b.données[o.key] ? (o.order === 'asc' ? 1 : -1) : (a.données[o.key] < b.données[o.key] ? (o.order === 'asc' ? -1 : 1) : 0);
       }).find(x=>x !== 0) || 0;
     }
