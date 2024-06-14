@@ -1,7 +1,14 @@
 <template>
   <v-checkbox
+    v-if="editable"
     v-model="valFinale"
     :readonly="!editable"
+    density="compact"
+    hide-details
+  />
+  <v-icon
+    v-else-if="valFinale !== undefined"
+    :icon="valFinale ? 'mdi-checkbox-marked' :'mdi-checkbox-blank-outline'"
   />
 </template>
 <script setup lang="ts">

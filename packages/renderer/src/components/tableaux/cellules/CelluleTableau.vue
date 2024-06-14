@@ -36,6 +36,7 @@
   <cellule-fichier
     v-else-if="catégorieFinale === 'fichier'"
     :val="val"
+    :editable="editable"
   />
   <cellule-geo-json
     v-else-if="catégorieFinale === 'géojson'"
