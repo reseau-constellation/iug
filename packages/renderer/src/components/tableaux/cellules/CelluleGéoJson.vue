@@ -3,12 +3,6 @@
     <v-icon icon="mdi-location" />
     {{ valValide }}
   </span>
-  <v-icon
-    v-else
-    size="small"
-    color="error"
-    icon="mdi-error"
-  />
 </template>
 <script setup lang="ts">
 import gjv from 'geojson-validation';
