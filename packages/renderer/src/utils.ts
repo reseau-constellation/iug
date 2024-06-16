@@ -2,6 +2,7 @@ import {isElectronRenderer, isBrowser} from 'wherearewe';
 import {os} from 'platform';
 import {surLinux, surMac, surWindows, choisirDossier as choisirDossier_} from '#preload';
 import {type ComputedRef, type Ref, computed} from 'vue';
+import { showSaveFilePicker } from 'native-file-system-adapter';
 
 export const ouvrirLien = (lien: string) => {
   window.open(lien, '_blank'); // À faire : tester sous Électron
@@ -173,4 +174,40 @@ export const sourceImage = (
 export const choisirDossier = async (): Promise<string | undefined> => {
   if (!isElectronRenderer) return undefined;
   return await choisirDossier_();
+};
+
+export const itérableÀFlux = (
+  itérable: AsyncIterable<Uint8Array>,
+): ReadableStream<Uint8Array> => {
+  const itérateur = itérable[Symbol.asyncIterator]();
+
+  return new ReadableStream({
+    async pull(contrôleur) {
+      const { value, done } = await itérateur.next();
+
+      if (done) {
+        contrôleur.close();
+      } else {
+        contrôleur.enqueue(value);
+      }
+    },
+  });
+};
+
+export const téléchargerFlux = async ({
+  flux,
+  nom,
+  types,
+}: {
+  flux: ReadableStream;
+  nom: string;
+  types?: Exclude<Parameters<typeof showSaveFilePicker>[0], undefined>['types'];
+}) => {
+  
+  const accèesFichier = await showSaveFilePicker({
+    _preferPolyfill: false,
+    suggestedName: nom,
+    types,
+  });
+  await flux.pipeTo(await accèesFichier.createWritable());
 };

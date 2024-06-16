@@ -1,4 +1,4 @@
-import type {ClientConstellation} from '@constl/ipa/dist/client';
+import type {client as typeClient} from '@constl/ipa';
 import {type MockedClass, vi} from 'vitest';
 import type {App} from 'vue';
 
@@ -15,9 +15,9 @@ export const attendreQue = (f: () => boolean): Promise<void> => {
 };
 
 export const fausseConstellation = (
-  simuler: (client: MockedClass<typeof ClientConstellation>) => void,
+  simuler: (client: MockedClass<typeof typeClient.ClientConstellation>) => void,
 ) => {
-  const Client = vi.fn() as unknown as MockedClass<typeof ClientConstellation>;
+  const Client = vi.fn() as unknown as MockedClass<typeof typeClient.ClientConstellation>;
   simuler(Client);
   const client = new Client();
   return {

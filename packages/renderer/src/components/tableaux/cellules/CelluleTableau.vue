@@ -24,19 +24,26 @@
   <cellule-audio
     v-else-if="catégorieFinale === 'audio'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-image
     v-else-if="catégorieFinale === 'image'" 
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-video
     v-else-if="catégorieFinale === 'vidéo'" 
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-fichier
     v-else-if="catégorieFinale === 'fichier'"
     :val="val"
     :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-geo-json
     v-else-if="catégorieFinale === 'géojson'"
@@ -79,7 +86,7 @@ const props = defineProps<{
     editable: boolean;
 }>();
 const émettre = defineEmits<{
-  (é: 'modifiee', args: {val?: types.élémentsBd}): void;
+  (é: 'modifiee', args: {val?: types.élémentsBd | File}): void;
 }>();
 
 const catégorieFinale = computed<variables.catégorieBaseVariables|undefined>(()=>{
@@ -121,7 +128,7 @@ const catégorieFinale = computed<variables.catégorieBaseVariables|undefined>((
 });
 
 // Modifications
-const modifiée = ({val}: {val?: types.élémentsBd}) => {
+const modifiée = ({val}: {val?: types.élémentsBd | File}) => {
   émettre('modifiee', {val});
 };
 </script>

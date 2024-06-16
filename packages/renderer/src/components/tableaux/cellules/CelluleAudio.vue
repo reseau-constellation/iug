@@ -1,23 +1,18 @@
 <template>
-  <v-icon icon="mdi-audio" />
-  <TexteTronque
-    v-if="valValide"
-    :texte="valValide.fichier"
-    :longueur-max="10"
+  <cellule-fichier
+    :editable="editable"
+    :val="val"
+    icone="mdi-waveform"
+    accepter="audio/*"
+    @modifiee="({val}) => émettre('modifiee', {val})"
   />
 </template>
 <script setup lang="ts">
 import type { types } from '@constl/ipa';
 
-import { computed } from 'vue';
-import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import { idcEtExt } from '/@/components/utils';
+import CelluleFichier from './CelluleFichier.vue';
 
-const props = defineProps<{val?: types.élémentsBd}>();
-const valValide = computed(()=>{
-  if (typeof props.val === 'string') {
-    return idcEtExt(props.val);
-  }
-  return undefined;
-});
+defineProps<{val?: types.élémentsBd, editable: boolean}>();
+const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void;}>();
+
 </script>

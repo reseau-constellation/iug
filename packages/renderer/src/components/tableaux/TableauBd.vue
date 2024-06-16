@@ -392,9 +392,9 @@ const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTablea
 const édition = ref(false);
 
 const modifsEnCours = ref(false);
-const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | undefined}}>();
-const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[]>(()=>{
-  const définitives: {idÉlément: string, vals: {[idCol: string]: types.élémentsBd | undefined}}[] = [];
+const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | File | undefined}}>();
+const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | File | undefined}}[]>(()=>{
+  const définitives: {idÉlément: string, vals: {[idCol: string]: types.élémentsBd | File | undefined}}[] = [];
   for (const [idÉlément, modifsÉlément] of Object.entries(modifications.value || {})) {
     const élémentExistant = données.value?.find(d=>d.id === idÉlément);
     if (!élémentExistant) continue;  // Ne devrait pas arriver
@@ -412,16 +412,16 @@ const nFilesModifiées = computed(()=>{
 });
 
 const différence = ({modifs, original}: {modifs:  {
-    [idCol: string]: types.élémentsBd | undefined;
+    [idCol: string]: types.élémentsBd | File | undefined;
 }, original:  {
-    [idCol: string]: types.élémentsBd | undefined;
+    [idCol: string]: types.élémentsBd | File | undefined;
 }}): boolean =>  {
   return Object.keys(modifs).some((idCol) => {
     return original[idCol] !== modifs[idCol];
   });
 };
 
-const nouvelleLigne = ref<{[idCol: string]: types.élémentsBd}>({});
+const nouvelleLigne = ref<{[idCol: string]: types.élémentsBd | File}>({});
 watchEffect(()=>{
   if (!édition.value) nouvelleLigne.value = {};
 });
@@ -429,7 +429,7 @@ const valeursÀAjouter = computed(()=>{
   return Object.keys(nouvelleLigne.value).length > 0;
 });
 
-const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | undefined, idCol: string, idÉlément: string}) => {
+const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | File | undefined, idCol: string, idÉlément: string}) => {
   if (idÉlément === '-1') {
     if (val !== undefined) nouvelleLigne.value[idCol] = val;
     else delete nouvelleLigne.value[idCol];
@@ -441,11 +441,22 @@ const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | 
   }
 };
 
+const sfipifierFichiers = async <T>({vals}: {vals: {[idCol: string]: T | File }}): Promise<{[idCol: string]: T}> => {
+  return Object.fromEntries(await Promise.all(Object.entries(vals).map(async ([idCol, val]) => {
+    if (val instanceof File) {
+      const id = await constl.ajouterÀSFIP({contenu: new Uint8Array(await val.arrayBuffer()), nomFichier: val.name});
+      return [idCol, id];
+    } else {
+      return [idCol, val];
+    }
+  })));
+};
+
 const sauvegarderModifications = async () => {
   modifsEnCours.value = true;
   
   for (const {idÉlément, vals} of modificationsDéfinitives.value) {
-    await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals});
+    await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals: await sfipifierFichiers({vals})});
   }
   if (valeursÀAjouter.value) await ajouterLigne();
   modifications.value = undefined;
@@ -456,7 +467,7 @@ const sauvegarderModifications = async () => {
 const ajouterLigne = async () => {
   await constl.tableaux.ajouterÉlément({
     idTableau: props.idTableau,
-    vals: nouvelleLigne.value,
+    vals: await sfipifierFichiers({vals: nouvelleLigne.value}),
   });
   nouvelleLigne.value = {};
 };
