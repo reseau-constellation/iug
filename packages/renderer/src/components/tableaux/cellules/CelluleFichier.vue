@@ -12,13 +12,30 @@
       label
       closable
       variant="outlined"
-      :prepend-icon="icone"
+      :prepend-icon="icone || 'mdi-file-outline'"
       @click:close="() => effacerSélection()"
       @click="()=>ouvrirFenêtreChoisirFichier()"
     >
       <TexteTronque
         :texte="sélectionFichier.name"
         :longueur-max="20"
+      />
+    </v-chip>
+    <v-chip
+      v-else-if="valValide && sélectionFichier !== null"
+      label
+      size="small"
+      variant="outlined"
+      :prepend-icon="icone || 'mdi-file-outline'"
+    >
+      <TexteTronque
+        :texte="valValide.fichier"
+        :longueur-max="20"
+      />
+      <v-icon
+        icon="mdi-close"  
+        end
+        @click="()=>effacerSélection()"
       />
     </v-chip>
     <v-btn
@@ -37,7 +54,7 @@
           label
           size="small"
           variant="outlined"
-          :prepend-icon="icone"
+          :prepend-icon="icone || 'mdi-file-outline'"
         >
           <TexteTronque
             :texte="valValide.fichier"
@@ -105,7 +122,7 @@ const valValide = computed(()=>{
 });
 
 // Choisir fichier
-const sélectionFichier = ref<File>();
+const sélectionFichier = ref<File|null>();
 
 const HTMLChoixFichier = ref<HTMLInputElement>();
 const ouvrirFenêtreChoisirFichier = () => {
@@ -116,10 +133,10 @@ const lorsqueFichierChoisi = async (): Promise<void> => {
   sélectionFichier.value = HTMLChoixFichier.value.files[0];
 };
 
-const effacerSélection = () => sélectionFichier.value = undefined;
-
+const effacerSélection = () => sélectionFichier.value = null;
+  
 watch(sélectionFichier, ()=>{
-  émettre('modifiee', {val: sélectionFichier.value});
+  émettre('modifiee', {val: sélectionFichier.value || undefined});
 });
 
 // Télécharger fichier

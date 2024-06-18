@@ -64,7 +64,7 @@ const valValide = computed(()=>{
 const srcImg = ref<string>();
 watchEffect(async () => {
   if (!valValide.value) return undefined;
-  const fichier = await constl.obtFichierSFIP({id: valValide.value?.id, max: 10000});
+  const fichier = await constl.obtFichierSFIP({id: valValide.value?.id  });
 
   if (fichier) {
     srcImg.value = URL.createObjectURL(new Blob([fichier], {type: 'image'}));

@@ -2,6 +2,8 @@
   <cellule-horo-datage
     v-if="catégorieFinale === 'horoDatage'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-chaine-non-traductible
     v-else-if="catégorieFinale === 'chaîneNonTraductible'"
@@ -52,10 +54,14 @@
   <cellule-intervale-temps
     v-else-if="catégorieFinale === 'intervaleTemps'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-chaine
     v-else-if="catégorieFinale === 'chaîne'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <span v-else>{{ val }}</span>
 </template>

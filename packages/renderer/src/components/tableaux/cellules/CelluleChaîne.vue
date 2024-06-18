@@ -1,13 +1,17 @@
 <template>
-  <TexteTronqué
-    v-if="texteTraduit"
-    :texte="texteTraduit"
-    :longueur-max="30"
-  />
-  <v-skeleton-loader
-    v-else-if="valValide"
-    type="text"
-  />
+  <template v-if="editable">
+  </template>
+  <template v-else>
+    <TexteTronqué
+      v-if="texteTraduit"
+      :texte="texteTraduit"
+      :longueur-max="30"
+    />
+    <v-skeleton-loader
+      v-else-if="valValide"
+      type="text"
+    />
+  </template>
 </template>
 <script setup lang="ts">
 import type { types } from '@constl/ipa';
@@ -17,8 +21,9 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import {adresseOrbiteValide, constellation, suivre} from '/@/components/utils';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
+// import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 
-const props = defineProps<{val?: types.élémentsBd}>();
+const props = defineProps<{val?: types.élémentsBd, editable: boolean}>();
 
 const constl = constellation();
 
@@ -32,4 +37,5 @@ const valValide = computed(()=>{
 // Texte traduit
 const textes: ComputedRef<{[langue: string]: string}> = suivre(constl.suivreBdDic, {id: valValide});
 const texteTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(textes);
+
 </script>
