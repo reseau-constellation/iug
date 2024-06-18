@@ -80,11 +80,9 @@ const formatDoc = ref<automatisation.formatTélécharger>('ods');
 const optionsFormatsDoc = ['ods', 'csv', 'txt', 'xlsx', 'xls'];
 
 const langues = ref();
-const languesDisponibles = computed(() => மொழிகளும்_குறியீடுகளும்.value.map(lng => lng.மொழி));
+const languesDisponibles = computed(() => மொழிகளும்_குறியீடுகளும்.value.map(lng => ({title: lng.மொழி, value: lng.குறியீடு})));
 watchEffect(() => {
-  langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value].map(
-    code => மொழிகளும்_குறியீடுகளும்.value.find(lng => lng.குறியீடு === code)?.மொழி || code,
-  );
+  langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value];
 });
 
 const inclureDocuments = ref(true);

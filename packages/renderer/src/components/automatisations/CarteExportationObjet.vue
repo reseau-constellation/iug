@@ -83,7 +83,6 @@ const télécharger = async () => {
         const données = await constl.tableaux.exporterDonnées({
             idTableau: props.idObjet,
             langues: format.value.langues,
-            patience: 5000,
         });
         await constl.bds.exporterDocumentDonnées({
             données,
