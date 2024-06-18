@@ -128,7 +128,7 @@
         </template>
       </CarteEpingler>
 
-      <carte-exportations-objet
+      <carte-exportation-objet
         :id-objet="id"
         type-objet="bd"
       >
@@ -147,7 +147,7 @@
             </template>
           </v-tooltip>
         </template>
-      </carte-exportations-objet>
+      </carte-exportation-objet>
 
       <carte-code-bd :id="id">
         <template #activator="{props: propsActivateurCarte}">
@@ -558,7 +558,7 @@ import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
-import CarteExportationsObjet from '/@/components/automatisations/CarteExportationsObjet.vue';
+import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';

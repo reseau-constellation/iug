@@ -57,8 +57,44 @@
             ></v-btn>
           </template>
         </nouvelle-colonne>
-        <v-btn icon="mdi-sync"></v-btn>
-        <v-btn icon="mdi-download"></v-btn>
+        <carte-automatisations-objet
+          :id-objet="idTableau"
+          type-objet="tableau"
+        >
+          <template #activator="{props: propsActivateurCarte}">
+            <v-tooltip
+              :text="t('exportations.indice')"
+              :open-delay="200"
+              location="bottom"
+            >
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                  icon="mdi-sync"
+                />
+              </template>
+            </v-tooltip>
+          </template>
+        </carte-automatisations-objet>
+        <carte-exportation-objet
+          :id-objet="idTableau"
+          type-objet="tableau"
+        >
+          <template #activator="{props: propsActivateurCarte}">
+            <v-tooltip
+              :text="t('exportations.indice')"
+              :open-delay="200"
+              location="bottom"
+            >
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                  icon="mdi-download"
+                />
+              </template>
+            </v-tooltip>
+          </template>
+        </carte-exportation-objet>
         <carte-effacer
           v-if="autorisation"
           @effacer="() => effacerTableau()"
@@ -118,6 +154,7 @@
       <v-btn
         v-if="plusConfirmer"
         icon="mdi-delete"
+        variant="flat"
         size="small"
         :loading="enEffaçage"
         :readonly="!sélectionnées.length"
@@ -264,6 +301,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
+import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 
 import CelluleTableau from './cellules/CelluleTableau.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
