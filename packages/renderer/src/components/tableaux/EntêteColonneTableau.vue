@@ -2,7 +2,13 @@
   <span @click="()=>émettre('basculer-ordonner')">
     <v-hover v-slot="{ isHovering, props: propsSurvole }">
       <span v-bind="propsSurvole">
-        {{ nomFinal }}
+        <v-skeleton-loader
+          v-if="enAttenteNoms && !noms"
+          type="text"
+        />
+        <template v-else>
+          {{ nomFinal }}
+        </template>
         <template v-if="ordonnable">
           <v-icon
             v-if="estOrdonnee"
@@ -40,10 +46,11 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteColonneTableau from './CarteColonneTableau.vue';
 import {constellation, suivre} from '../utils';
+import { onMounted } from 'vue';
 
 const props = defineProps<{
   index: boolean;
@@ -82,6 +89,11 @@ const noms = suivre(constl.variables.suivreNomsVariable, {
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 const nomFinal = computed(() => {
   return nomTraduit.value || props.idColonne;
+});
+
+const enAttenteNoms = ref(true);
+onMounted(()=>{
+  setTimeout(()=>enAttenteNoms.value = false, 5000);
 });
 </script>
 <style scoped>
