@@ -37,7 +37,7 @@
       <v-icon
         v-bind="propsActivateur"
         class="ms-1"
-        icon="mdi-pencil"
+        :icon="permissionModifier ? 'mdi-pencil' : 'mdi-plus'"
         size="x-small"
       />
     </template>
