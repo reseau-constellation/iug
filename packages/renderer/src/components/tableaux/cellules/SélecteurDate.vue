@@ -1,5 +1,8 @@
 <template>
-  <v-menu v-model="dialogue">
+  <v-menu
+    v-model="dialogue"
+    :close-on-content-click="false"
+  >
     <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
@@ -12,7 +15,50 @@
     >
       <v-card-text style="overflow-y:auto">
         <v-select label="'Calendrier'" />
-        <v-select label="''" />
+        <div class="d-flex">
+          <v-menu>
+            <template #activator="{props: propsActivateur}">
+              <v-btn
+                v-bind="propsActivateur"
+                text="'Mois'"
+                variant="text"
+              />
+            </template>
+            <v-list>
+              <v-list-item
+                v-for="m in listeMois.length"
+                :key="listeMois[m]"
+                @click.stop="() => sélectionnerMois(m)"
+              >
+                {{ m }}
+              </v-list-item>
+            </v-list>
+          </v-menu>
+          <v-spacer />
+          <v-btn
+            icon="$prev"
+            variant="text"
+            @click="()=>reculerMois()"
+          />
+          <v-btn
+            icon="$next"
+            variant="text"
+            @click="()=>avancerMois()"
+          />
+        </div>
+        <div
+          v-for="s in 5"
+          :key="s"
+        >
+          <v-btn
+            v-for="j in 7"
+            :key="j"
+            variant="flat"
+            icon
+          >
+            {{ j + (s-1)*7 }}
+          </v-btn>
+        </div>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -56,6 +102,15 @@ const dialogue = ref(false);
 const val = ref<number>();
 const modifié = computed(()=> val.value !== props.originale);
 watchEffect(()=>val.value = computed(()=>props.originale).value);
+
+// Contrôles
+const listeMois = computed(()=>{
+  return ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+});
+const mois = ref(0);
+const reculerMois = () => mois.value--;
+const avancerMois = () => mois.value++;
+const sélectionnerMois = (val: number) => mois.value = val;
 
 // Sauvegarder
 const sauvegarder = () => {
