@@ -58,7 +58,9 @@ const idNouvelle = ref<string>();
 
 watchEffect(() => {
   if (statut.value) {
-    émettre('choisir', {statut: statut.value, idNouvelle: idNouvelle.value});
+    const statutFinal: types.schémaStatut = {statut: statut.value};
+    if (idNouvelle.value) statutFinal.idNouvelle = idNouvelle.value;
+    émettre('choisir', statutFinal);
   }
 });
 

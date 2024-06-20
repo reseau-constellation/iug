@@ -10,6 +10,9 @@
       class="mx-auto"
       :min-width="mdAndUp ? 500 : 300"
     >
+      <v-card-item>
+        <v-card-title>{{ t('bds.statut.carte.titre') }}</v-card-title>
+      </v-card-item>
       <v-card-text>
         <choisir-statut @choisir="stt => (statutChoisi = stt)">
           <template #sélecteur="{choisirNouvelle}">
@@ -23,6 +26,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn
+          :loading="enModification"
           variant="flat"
           color="primary"
           @click="sauvegarder"
@@ -41,8 +45,6 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {types} from '@constl/ipa';
-
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -65,17 +67,19 @@ const dialogue = ref(false);
 
 // Statut
 const statut = suivre(constl.bds.suivreStatutBd, {idBd: props.idBd});
-const statutChoisi = ref<types.schémaStatut>();
+const statutChoisi = ref();
 watchEffect(() => {
   statutChoisi.value = statut.value;
 });
+const enModification = ref(false);
 const sauvegarder = async () => {
+  enModification.value = true;
   if (statutChoisi.value)
     await constl.bds.changerStatutBd({
       idBd: props.idBd,
       statut: statutChoisi.value,
     });
-
+  enModification.value = false;
   dialogue.value = false;
 };
 </script>
