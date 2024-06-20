@@ -459,3 +459,18 @@ export const idcEtExt = (val: string) => {
       // Rien à faire
   }
 };
+
+export const icôneStatut = (statut: 'active' | 'obsolète' | 'jouet' | 'interne') => {
+  switch (statut) {
+    case 'active':
+      return 'mdi-check';
+    case 'obsolète':
+      return 'mdi-alert-outline';
+    case 'jouet':
+      return 'mdi-teddy-bear';
+    case 'interne':
+      return 'mdi-xml';
+    default:
+      break;
+  }
+};

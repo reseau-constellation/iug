@@ -14,7 +14,10 @@
         <v-card-title>{{ t('bds.statut.carte.titre') }}</v-card-title>
       </v-card-item>
       <v-card-text>
-        <choisir-statut @choisir="stt => (statutChoisi = stt)">
+        <choisir-statut
+          :initial="statutChoisi"
+          @choisir="stt => (statutChoisi = stt)"
+        >
           <template #sélecteur="{choisirNouvelle}">
             <selecteur-bd
               :multiples="false"
@@ -26,6 +29,7 @@
       <v-card-actions>
         <v-spacer />
         <v-btn
+          :disabled="!modifié"
           :loading="enModification"
           variant="flat"
           color="primary"
@@ -45,7 +49,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
@@ -53,6 +57,7 @@ import SelecteurBd from './SélecteurBd.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {constellation, suivre} from '../utils';
 import {watchEffect} from 'vue';
+import type { types } from '@constl/ipa';
 
 const props = defineProps<{idBd: string}>();
 
@@ -67,9 +72,12 @@ const dialogue = ref(false);
 
 // Statut
 const statut = suivre(constl.bds.suivreStatutBd, {idBd: props.idBd});
-const statutChoisi = ref();
+const statutChoisi = ref<types.schémaStatut>();
 watchEffect(() => {
   statutChoisi.value = statut.value;
+});
+const modifié = computed(()=>{
+  return statut.value?.statut !== statutChoisi.value?.statut || statut.value?.idNouvelle !== statutChoisi.value?.idNouvelle;
 });
 const enModification = ref(false);
 const sauvegarder = async () => {
