@@ -8,7 +8,7 @@
     :texte-etiquette-recherche="t('variables.recherche.étiquette')"
     :texte-aucun-résultat="t('variables.recherche.aucunRésultat')"
     @selectionnee="ids => (idsVariablesSélectionnés = ids)"
-    @requête-modifiee="r => (requête = r)"
+    @requete-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheVariable

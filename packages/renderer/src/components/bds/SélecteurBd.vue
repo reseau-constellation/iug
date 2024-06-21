@@ -7,7 +7,7 @@
     :texte-etiquette-recherche="t('bds.recherche.étiquette')"
     :texte-aucun-résultat="t('bds.recherche.aucunRésultat')"
     @selectionnee="ids => (idsBdsSélectionnées = ids)"
-    @requête-modifiee="r => (requête = r)"
+    @requete-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheBd

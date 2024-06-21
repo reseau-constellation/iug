@@ -7,7 +7,7 @@
     :texte-etiquette-recherche="t('motsClefs.recherche.étiquette')"
     :texte-aucun-résultat="t('motsClefs.recherche.aucunRésultat')"
     @selectionnee="ids => (idsMotsClefsSélectionnés = ids)"
-    @requête-modifiee="r => (requête = r)"
+    @requete-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheMotClef

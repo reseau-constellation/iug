@@ -8,7 +8,7 @@
     :texte-etiquette-recherche="t('membres.recherche.étiquette')"
     :texte-aucun-résultat="t('membres.recherche.aucunRésultat')"
     @selectionnee="ids => (idsProfilsSélectionnées = ids)"
-    @requête-modifiee="r => (requête = r)"
+    @requete-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheProfil

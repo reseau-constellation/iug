@@ -96,7 +96,7 @@ const props = defineProps<{
 }>();
 const émettre = defineEmits<{
   (é: 'selectionnee', idsObjets: string[]): void;
-  (é: 'requête-modifiee', requête: string): void;
+  (é: 'requete-modifiee', requête: string): void;
 }>();
 
 // Sélection
@@ -108,7 +108,7 @@ watchEffect(() => {
 // Contrôles recherche
 const requête = ref('');
 watchEffect(() => {
-  émettre('requête-modifiee', requête.value);
+  émettre('requete-modifiee', requête.value);
 });
 
 const résultatsPermisRecherche = computed(() => {

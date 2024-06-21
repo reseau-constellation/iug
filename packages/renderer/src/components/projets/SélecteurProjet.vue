@@ -7,7 +7,7 @@
     :texte-etiquette-recherche="t('projets.recherche.étiquette')"
     :texte-aucun-résultat="t('projets.recherche.aucunRésultat')"
     @selectionnee="ids => (idsProjetsSélectionnées = ids)"
-    @requête-modifiee="r => (requête = r)"
+    @requete-modifiee="r => (requête = r)"
   >
     <template #résultat="{résultat, click}">
       <ResultatRechercheProjet
