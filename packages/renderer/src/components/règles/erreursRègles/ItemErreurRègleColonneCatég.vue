@@ -36,7 +36,7 @@ import type {valid} from '@constl/ipa';
 
 import {computed} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
 
@@ -49,7 +49,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom tableau référence catégorie
 const idTableauRéf = computed(() => props.erreur.règle.règle.règle.détails.tableau);

@@ -134,7 +134,7 @@ import JetonCondition from './JetonConditionLicence.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ouvrirLien} from '/@/utils';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 const props = defineProps({
   licence: {type: String, required: false, default: undefined},
@@ -144,7 +144,7 @@ const émettre = defineEmits<{
   (é: 'changerLicence', licence?: string): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -27,14 +27,14 @@ import ItemTableau from './ItemTableau.vue';
 import JetonTableau from './JetonTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 
 const props = defineProps<{idBd?: string}>();
 const émettre = defineEmits<{
   (é: 'selectionne', idTableau?: string): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Bd
 const bdChoisie = ref<string>();

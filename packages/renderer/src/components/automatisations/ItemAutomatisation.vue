@@ -28,14 +28,14 @@ import {computed, ref, onMounted} from 'vue';
 
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {constellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
+import {utiliserConstellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

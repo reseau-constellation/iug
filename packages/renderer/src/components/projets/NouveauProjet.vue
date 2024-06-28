@@ -113,11 +113,11 @@ import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useRouter} from 'vue-router';
-import {constellation} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

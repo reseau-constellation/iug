@@ -109,7 +109,7 @@ import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 
 const props = defineProps<{
   permissionModifier: boolean;
@@ -137,7 +137,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

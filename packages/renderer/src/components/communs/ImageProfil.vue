@@ -8,11 +8,11 @@
 import {computed} from 'vue';
 
 import {utiliserImagesDéco} from '/@/composables/images';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 const props = defineProps<{id?: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const imageProfil = suivre(constl.profil.suivreImage, {idCompte: props.id});
 const srcImgProfil = computed(() => {

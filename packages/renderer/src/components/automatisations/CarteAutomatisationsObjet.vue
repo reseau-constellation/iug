@@ -87,7 +87,7 @@ import type {bds} from '@constl/ipa';
 import {computed, ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {constellation, enregistrerÉcoute, suivre} from '/@/components/utils';
+import {utiliserConstellation, enregistrerÉcoute, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
@@ -103,7 +103,7 @@ const props = defineProps<{
   typeObjet: 'nuée' | 'projet' | 'bd' | 'tableau';
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

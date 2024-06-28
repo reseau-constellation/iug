@@ -128,7 +128,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -143,7 +143,7 @@ import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

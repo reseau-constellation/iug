@@ -74,7 +74,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
@@ -84,7 +84,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', info: {idColonne: string; idTableau: string}): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

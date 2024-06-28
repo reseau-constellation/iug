@@ -115,7 +115,7 @@ import {useDisplay, useRtl} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -125,7 +125,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{idTableau: string; idBd: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {obtImageDéco} = utiliserImagesDéco();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

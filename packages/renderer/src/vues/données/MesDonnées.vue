@@ -210,7 +210,7 @@ import {ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {constellation, rechercher, suivre} from '/@/components/utils';
+import {utiliserConstellation, rechercher, suivre} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
@@ -228,7 +228,7 @@ import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
 import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

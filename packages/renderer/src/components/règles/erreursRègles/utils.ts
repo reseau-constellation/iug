@@ -1,6 +1,6 @@
 import type {valid} from '@constl/ipa';
 import {type ComputedRef, computed} from 'vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 export const utiliserMonAutorisationRègleSourceErreur = ({
   erreur,
@@ -12,7 +12,7 @@ export const utiliserMonAutorisationRègleSourceErreur = ({
     | valid.erreurRègleCatégoriqueColonneInexistante;
   idTableau: string;
 }): ComputedRef<'MODÉRATEUR' | 'MEMBRE' | undefined> => {
-  const constl = constellation();
+  const constl = utiliserConstellation();
 
   const monAutorisationTableau = suivre(constl.suivrePermission, {idObjet: idTableau});
 

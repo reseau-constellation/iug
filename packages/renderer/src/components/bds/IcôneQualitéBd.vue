@@ -11,12 +11,12 @@
 
 <script setup lang="ts">
 import {computed} from 'vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Qualité BD
 const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.id});

@@ -20,7 +20,7 @@ import type {valid} from '@constl/ipa';
 import {ref, watchEffect} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
@@ -36,7 +36,7 @@ const émettre = defineEmits<{
   (é: 'effacer-colonne'): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const choixVariable = ref<string>(props.idVariable);
 watchEffect(() => {

@@ -33,7 +33,7 @@ import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {constellation, enregistrerÉcoute} from '/@/components/utils';
+import {utiliserConstellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -46,7 +46,7 @@ const props = defineProps<{
   statut: automatisation.ÉtatAutomatisation;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

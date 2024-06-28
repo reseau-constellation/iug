@@ -54,7 +54,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -67,7 +67,7 @@ const props = defineProps<{
   >;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

@@ -59,7 +59,7 @@
 import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
@@ -69,7 +69,7 @@ import LienObjet from '../communs/LienObjet.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

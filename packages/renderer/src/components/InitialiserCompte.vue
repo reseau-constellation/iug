@@ -229,7 +229,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
-import {constellation, rechercher, suivre} from '/@/components/utils';
+import {utiliserConstellation, rechercher, suivre} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -249,7 +249,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {mdAndUp} = useDisplay();
 
 const {obtImageDéco} = utiliserImagesDéco();
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation générale
 const dialogue = ref(false);

@@ -26,9 +26,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
-import {constellation, suivre} from '../components/utils';
+import {utiliserConstellation, suivre} from '../components/utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

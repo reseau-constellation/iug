@@ -45,7 +45,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
@@ -55,7 +55,7 @@ const props = defineProps<{
   résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

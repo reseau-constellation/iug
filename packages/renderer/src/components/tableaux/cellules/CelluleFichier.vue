@@ -102,14 +102,14 @@ import type { types } from '@constl/ipa';
 
 import { computed, ref, watch } from 'vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import { constellation, idcEtExt } from '/@/components/utils';
+import { utiliserConstellation, idcEtExt } from '/@/components/utils';
 import { itérableÀFlux, téléchargerFlux } from '/@/utils';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{val?: types.élémentsBd, editable: boolean, icone?: string, accepter?: string}>();
 const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void;}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -20,13 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom mot-clef
 const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});

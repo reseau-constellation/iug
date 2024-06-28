@@ -40,7 +40,7 @@ import type {favoris} from '@constl/ipa';
 import {computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, icôneObjet, suivre} from '../utils';
+import {utiliserConstellation, icôneObjet, suivre} from '../utils';
 import CarteEpingler from './CarteÉpingler.vue';
 import LienObjet from '../communs/LienObjet.vue';
 
@@ -51,7 +51,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Noms objet
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet

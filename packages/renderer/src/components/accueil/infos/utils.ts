@@ -1,7 +1,7 @@
 import {computed, onMounted, onUnmounted, watchEffect} from 'vue';
 import {utiliserÉtatInfos} from '/@/état/infos';
 import {isElectronRenderer} from 'wherearewe';
-import {constellation, suivre} from '../../utils';
+import {utiliserConstellation, suivre} from '../../utils';
 import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import axios from 'axios';
 import semver from 'semver';
@@ -82,7 +82,7 @@ export const lancerInfosTélécharger = () => {
 
   const étatInfos = utiliserÉtatInfos();
 
-  const constl = constellation();
+  const constl = utiliserConstellation();
 
   const dispositifs = suivre(constl.suivreNomsDispositifs);
   const connectéÀAuMoinsUnOrdi = computed(() => {

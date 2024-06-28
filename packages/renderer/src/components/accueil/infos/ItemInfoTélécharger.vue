@@ -110,7 +110,7 @@ import type {InfoAvecId, InfoInstaller} from '/@/état/infos';
 import {onMounted} from 'vue';
 
 import BaseItemInfo from './BaseItemInfo.vue';
-import {constellation, suivre} from '../../utils';
+import {utiliserConstellation, suivre} from '../../utils';
 import {computed, ref} from 'vue';
 import InviterDispositif from '../../compte/InviterDispositif.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -128,7 +128,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const dispositifs = suivre(constl.suivreNomsDispositifs);
 const connectéÀAuMoinsUnOrdi = computed(() => {

@@ -13,11 +13,11 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
 import {computed} from 'vue';
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const languesPréférées = computed(() => {
   return [மொழி.value, ...மாற்றுமொழிகள்.value];

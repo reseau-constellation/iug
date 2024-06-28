@@ -119,7 +119,7 @@
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import DialogueLicence from '../licences/DialogueLicence.vue';
@@ -130,7 +130,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const props = defineProps<{idBd: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

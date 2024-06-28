@@ -55,9 +55,9 @@ import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
-import {constellation} from '../utils';
+import {utiliserConstellation} from '../utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {mdAndUp} = useDisplay();
 

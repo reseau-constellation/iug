@@ -41,14 +41,14 @@ import type {tableaux} from '@constl/ipa';
 
 import {computed} from 'vue';
 
-import {constellation, rechercher, suivre} from '/@/components/utils';
+import {utiliserConstellation, rechercher, suivre} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 const props = defineProps<{idNuée: string; idTableau: string; clefTableau: string}>();
 
 // Nom

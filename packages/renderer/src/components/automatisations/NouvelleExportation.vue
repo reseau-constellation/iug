@@ -273,7 +273,7 @@ import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
-import {constellation, icôneObjet} from '../utils';
+import {utiliserConstellation, icôneObjet} from '../utils';
 
 import {isBrowser} from 'wherearewe';
 import {watchEffect} from 'vue';
@@ -296,7 +296,7 @@ const {மொழிகளும்_குறியீடுகளும்} = �
 const {so} = plateforme();
 const écranTactile = so === 'androïde' || so === 'iOS';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

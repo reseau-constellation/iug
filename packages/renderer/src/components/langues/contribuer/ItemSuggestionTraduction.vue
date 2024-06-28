@@ -38,7 +38,7 @@ import type {பிணையம்_மொழிபெயர்ப்பு_ப�
 
 import {computed} from 'vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -49,7 +49,7 @@ const émettre = defineEmits<{
   (e: 'effacer'): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 

@@ -165,11 +165,11 @@ import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {v4 as uuidv4} from 'uuid';
 
 import {catégoriesBase} from './utils';
-import {constellation} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

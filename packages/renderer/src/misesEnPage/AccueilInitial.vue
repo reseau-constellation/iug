@@ -49,13 +49,13 @@ import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '../components/utils';
+import {utiliserConstellation, suivre} from '../components/utils';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;
 
 const {பதிப்பை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();

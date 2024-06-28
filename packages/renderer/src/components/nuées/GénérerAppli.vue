@@ -124,9 +124,9 @@ import VCodeBlock from '@wdns/vue-code-block';
 
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {GABARIT_CODE} from '/@/consts';
-import {constellation} from '../utils';
+import {utiliserConstellation} from '../utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி} = மொழிகளைப்_பயன்படுத்து();

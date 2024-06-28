@@ -45,7 +45,7 @@ import {ref, onMounted, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 import ImageProfil from './communs/ImageProfil.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './membres/utils';
@@ -54,7 +54,7 @@ import TexteTronque from './communs/TexteTronqué.vue';
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

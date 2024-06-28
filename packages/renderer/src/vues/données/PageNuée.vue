@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import {onMounted} from 'vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -61,7 +61,7 @@ import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

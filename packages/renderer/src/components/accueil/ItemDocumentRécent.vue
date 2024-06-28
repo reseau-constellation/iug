@@ -29,7 +29,7 @@
 import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, icôneObjet, suivre} from '../utils';
+import {utiliserConstellation, icôneObjet, suivre} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -41,7 +41,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
 const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id});

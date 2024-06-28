@@ -65,7 +65,7 @@ import {storeToRefs} from 'pinia';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {constellation, rechercher, suivre} from '../utils';
+import {utiliserConstellation, rechercher, suivre} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 import GestionConnaissances from '/@/components/réseau/GestionConnaissances.vue';
@@ -74,7 +74,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const historique = utiliserHistorique({});
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {obtHistorique} = storeToRefs(historique);
 

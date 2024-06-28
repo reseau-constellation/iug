@@ -126,7 +126,7 @@ import {useDisplay} from 'vuetify';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
@@ -156,7 +156,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

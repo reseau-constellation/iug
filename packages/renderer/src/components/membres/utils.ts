@@ -1,6 +1,6 @@
 import {type Ref, type ComputedRef, computed, ref, onMounted, onUnmounted, unref} from 'vue';
 
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
@@ -27,7 +27,7 @@ export const utiliserNomEtTypeDispositif = ({
   idDispositif: string | Ref<string | undefined>;
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
-  const constl = constellation();
+  const constl = utiliserConstellation();
   const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
   const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 

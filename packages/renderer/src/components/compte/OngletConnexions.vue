@@ -80,14 +80,14 @@
 import type {réseau} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
 import ItemConnexionSfip from './ItemConnexionSFIP.vue';
 import CarteMembre from '../membres/CarteMembre.vue';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

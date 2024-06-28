@@ -16,7 +16,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {constellation, icôneObjet, suivre} from '/@/components/utils';
+import {utiliserConstellation, icôneObjet, suivre} from '/@/components/utils';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 
@@ -25,7 +25,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -174,7 +174,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
-import {constellation} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {useRouter} from 'vue-router';
 
 const {mdAndUp} = useDisplay();
@@ -185,7 +185,7 @@ const router = useRouter();
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

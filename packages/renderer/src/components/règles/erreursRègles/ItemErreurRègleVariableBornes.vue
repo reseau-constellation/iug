@@ -48,7 +48,7 @@ import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
@@ -64,7 +64,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom de ce tableau
 const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});

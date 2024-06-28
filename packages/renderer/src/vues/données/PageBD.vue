@@ -546,7 +546,7 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
@@ -589,7 +589,7 @@ import type {valid} from '@constl/ipa';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();

@@ -49,7 +49,7 @@ import type {valid} from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteColonneTableau from './CarteColonneTableau.vue';
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 import { onMounted } from 'vue';
 
 const props = defineProps<{
@@ -78,7 +78,7 @@ const émettre = defineEmits<{
   ): void;
 }>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 

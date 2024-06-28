@@ -94,7 +94,7 @@ import {ref, computed} from 'vue';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, rechercher} from '/@/components/utils';
+import {utiliserConstellation, rechercher} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
@@ -114,7 +114,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

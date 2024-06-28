@@ -53,7 +53,7 @@ import {ref, watchEffect} from 'vue';
 import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
-import {constellation, rechercher} from '/@/components/utils';
+import {utiliserConstellation, rechercher} from '/@/components/utils';
 
 import NouveauMotClef from './NouveauMotClef.vue';
 import JetonMotClef from './JetonMotClef.vue';
@@ -69,7 +69,7 @@ const émettre = defineEmits<{
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Sélection
 const idsMotsClefsSélectionnés = ref<string[]>([]);

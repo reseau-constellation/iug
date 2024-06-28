@@ -125,7 +125,7 @@
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, rechercher} from '../utils';
+import {utiliserConstellation, rechercher} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -139,7 +139,7 @@ const {எண்ணை_வடிவூட்டு} = எண்களைப்_�
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

@@ -38,7 +38,7 @@
 import {computed} from 'vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import JetonBd from '/@/components/bds/JetonBd.vue';
 import ItemBd from '/@/components/bds/ItemBd.vue';
@@ -46,7 +46,7 @@ import CarteBd from '/@/components/bds/CarteBd.vue';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

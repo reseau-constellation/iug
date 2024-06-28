@@ -55,7 +55,7 @@ import {useDisplay} from 'vuetify';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import SelecteurBd from './SélecteurBd.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 import {watchEffect} from 'vue';
 import type { types } from '@constl/ipa';
 
@@ -65,7 +65,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

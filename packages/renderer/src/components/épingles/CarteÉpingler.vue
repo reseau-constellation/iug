@@ -194,7 +194,7 @@ import {ref, computed, watch} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
@@ -213,7 +213,7 @@ const props = defineProps({
   },
 });
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

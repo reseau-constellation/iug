@@ -18,13 +18,13 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import {constellation, suivre} from '/@/components/utils';
+import {utiliserConstellation, suivre} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Nom projet
 const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});

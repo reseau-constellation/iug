@@ -432,9 +432,9 @@ import GestionnaireTraductions from './GestionnaireTraductions.vue';
 
 import NouvelleLangue from './nuchabäl/NouvelleLangue.vue';
 
-import {constellation, கிளிமூக்கு, suivre} from '/@/components/utils';
+import {utiliserConstellation, கிளிமூக்கு, suivre} from '/@/components/utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 const கிளி = கிளிமூக்கு();
 
 const {mdAndUp} = useDisplay();

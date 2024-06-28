@@ -18,14 +18,14 @@ import type { types } from '@constl/ipa';
 import {type ComputedRef, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {adresseOrbiteValide, constellation, suivre} from '/@/components/utils';
+import {adresseOrbiteValide, utiliserConstellation,suivre} from '/@/components/utils';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
 // import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 
 const props = defineProps<{val?: types.élémentsBd, editable: boolean}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 

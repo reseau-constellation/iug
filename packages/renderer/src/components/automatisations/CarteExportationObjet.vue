@@ -49,7 +49,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 
 import OptionsExportationObjet from '/@/components/automatisations/OptionsExportationObjet.vue';
-import { constellation } from '/@/components/utils';
+import { utiliserConstellation } from '/@/components/utils';
 
 const props = defineProps<{
   idObjet: string;
@@ -60,7 +60,7 @@ const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);

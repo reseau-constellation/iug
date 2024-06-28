@@ -197,11 +197,11 @@ import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
-import {constellation, suivre} from '../utils';
+import {utiliserConstellation, suivre} from '../utils';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

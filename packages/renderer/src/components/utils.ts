@@ -10,7 +10,7 @@ import deepEqual from 'deep-equal';
 import { CID } from 'multiformats/cid';
 import { base58btc } from 'multiformats/bases/base58';
 
-export const constellation = (): ClientConstellation => {
+export const utiliserConstellation = (): ClientConstellation => {
   const constl = inject<ClientConstellation>('constl');
   if (constl) return constl;
   throw new Error("Constellation n'est pas trouvable.");

@@ -70,9 +70,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
 import {ref} from 'vue';
 import {computed} from 'vue';
-import {constellation} from '../utils';
+import {utiliserConstellation} from '../utils';
 
-const constl = constellation();
+const constl = utiliserConstellation();
 
 const constellationPrète = ref(false);
 constl.obtIdCompte().then(() => (constellationPrète.value = true));
