@@ -280,7 +280,7 @@ ${codeFonctionGénérationTsJs.value}
 const codeImportationsTs = computed(() => {
   return `
 ${codeImportationsJs.value}
-import type ClientConstellation, { bds } from "@constl/ipa";
+import { type Constellation, bds } from "@constl/ipa";
 `;
 });
 
@@ -351,7 +351,7 @@ const codeFonctionGénérationTsJs = computed(() => {
   return `
 export const générerKili = ({
   constl,
-}${ts ? ': {\n  constl: ClientConstellation;\n}' : ''})${ts ? ': எண்ணிக்கை_கிளி' : ''} => {
+}${ts ? ': {\n  constl: Constellation;\n}' : ''})${ts ? ': எண்ணிக்கை_கிளி' : ''} => {
   return new கிளி${ts ? '<முறைமை_தகவல்_வரிசை>' : ''}({
     விண்மீன்: constl,
     மாறிலிகள்: {

@@ -15,9 +15,9 @@ export const attendreQue = (f: () => boolean): Promise<void> => {
 };
 
 export const fausseConstellation = (
-  simuler: (client: MockedClass<typeof typeClient.ClientConstellation>) => void,
+  simuler: (client: MockedClass<typeof typeClient.Constellation>) => void,
 ) => {
-  const Client = vi.fn() as unknown as MockedClass<typeof typeClient.ClientConstellation>;
+  const Client = vi.fn() as unknown as MockedClass<typeof typeClient.Constellation>;
   simuler(Client);
   const client = new Client();
   return {

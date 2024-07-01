@@ -1,4 +1,4 @@
-import type {ClientConstellation} from '@constl/ipa';
+import type {Constellation} from '@constl/ipa';
 
 import {mount} from '@vue/test-utils';
 import {expect, test, vi} from 'vitest';
@@ -15,7 +15,7 @@ const constl = fausseConstellation(client => {
       f(idCompte ? new Uint8Array([0, 1, 2]) : null);
       return async () => {};
     }),
-  } as unknown as ClientConstellation['profil'];
+  } as unknown as Constellation['profil'];
 });
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {

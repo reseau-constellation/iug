@@ -1,5 +1,5 @@
 import {type ComputedRef, type Ref, unref, type MaybeRef, type UnwrapRef, isRef} from 'vue';
-import type {types, ClientConstellation} from '@constl/ipa';
+import type {types, Constellation} from '@constl/ipa';
 import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 import type {Nuchabäl} from 'nuchabal';
 import { cidValide } from '@constl/utils-ipa';
@@ -10,8 +10,8 @@ import deepEqual from 'deep-equal';
 import { CID } from 'multiformats/cid';
 import { base58btc } from 'multiformats/bases/base58';
 
-export const utiliserConstellation = (): ClientConstellation => {
-  const constl = inject<ClientConstellation>('constl');
+export const utiliserConstellation = (): Constellation => {
+  const constl = inject<Constellation>('constl');
   if (constl) return constl;
   throw new Error("Constellation n'est pas trouvable.");
 };

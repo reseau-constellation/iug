@@ -1,10 +1,11 @@
 import type {App} from 'vue';
 
-import {mandataire} from '@constl/ipa';
+import {créerConstellation} from '@constl/ipa';
 
 export default {
   install: (app: App) => {
-    const client = mandataire.ipa.générerMandataireProc();
+    const client = créerConstellation();
+    // client.suivreErreurs()
     app.config.globalProperties.$constl = client;
     app.provide('constl', client);
   },
