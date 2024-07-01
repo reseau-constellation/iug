@@ -84,7 +84,7 @@
   "dependencies": {
     "@achingbrain/nat-port-mapper": "1.0.13",
     "@constl/ipa": "^1.0.21",
-    "@constl/mandataire": "^1.0.2",
+    "@constl/mandataire": "^2.0.0",
     "@constl/mandataire-electron-principal": "^1.0.1",
     "@constl/mandataire-electron-rendu": "^1.0.0",
     "@constl/serveur": "^1.0.0",
