@@ -23,13 +23,13 @@ importers:
         version: 2.0.3
       '@constl/mandataire-electron-principal':
         specifier: ^2.0.0
-        version: 2.0.0(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@2.0.3)(@constl/serveur@2.0.7(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))))(electron@31.1.0)
+        version: 2.0.0(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@2.0.3)(@constl/serveur@2.0.8(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))))(electron@31.1.0)
       '@constl/mandataire-electron-rendu':
         specifier: ^2.0.0
         version: 2.0.0
       '@constl/serveur':
-        specifier: ^2.0.7
-        version: 2.0.7(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))
+        specifier: ^2.0.8
+        version: 2.0.8(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))
       '@esbuild-plugins/node-globals-polyfill':
         specifier: ^0.2.3
         version: 0.2.3(esbuild@0.21.5)
@@ -1091,8 +1091,8 @@ packages:
   '@constl/mandataire@2.0.3':
     resolution: {integrity: sha512-fQhJ+p28yG6hM3QY95/hjBab6NHEb1fL1Oh9Ufq7FPCx2Q+9FHJ9qVX6xHmB2VRvlO84AIMROCpniJE5H/Z5Lg==}
 
-  '@constl/serveur@2.0.7':
-    resolution: {integrity: sha512-Er2SAExFLJncOK93RpK/2n7JQeee9lnG5KSOUHR0IErFGP4ptx9YyfKlxydSo6p414nzLPPRqL85XfTSO51wRg==}
+  '@constl/serveur@2.0.8':
+    resolution: {integrity: sha512-S38FLIz7SBaBR03SXODUzxdVoD/fKUwBmxAtZH1Q/U1ZcOVOAIPPCmBk+WzcWqz0u7gop5OA6TVBNnbf4GnWrA==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -8210,11 +8210,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/mandataire-electron-principal@2.0.0(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@2.0.3)(@constl/serveur@2.0.7(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))))(electron@31.1.0)':
+  '@constl/mandataire-electron-principal@2.0.0(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@2.0.3)(@constl/serveur@2.0.8(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))))(electron@31.1.0)':
     dependencies:
       '@constl/ipa': 1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))
       '@constl/mandataire': 2.0.3
-      '@constl/serveur': 2.0.7(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))
+      '@constl/serveur': 2.0.8(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))
       electron: 31.1.0
       semaphore-async-await: 1.5.1
       tslib: 2.6.3
@@ -8230,7 +8230,7 @@ snapshots:
       events: 3.3.0
       uuid: 10.0.0
 
-  '@constl/serveur@2.0.7(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))':
+  '@constl/serveur@2.0.8(@constl/ipa@1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))':
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.13
       '@constl/ipa': 1.0.30(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))
