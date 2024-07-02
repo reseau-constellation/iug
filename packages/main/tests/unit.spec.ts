@@ -3,6 +3,7 @@ import {beforeEach, expect, test, vi} from 'vitest';
 import {restoreOrCreateWindow} from '../src/mainWindow';
 
 import {BrowserWindow} from 'electron';
+import { GestionnaireFenêtres } from '@constl/mandataire-electron-principal';
 
 /**
  * Mock real electron BrowserWindow API
@@ -49,8 +50,17 @@ vi.mock('electron', () => {
   return {BrowserWindow: bw, app, ipcMain};
 });
 
+vi.mock('@constl/mandataire-electron-principal', () => {
+  const gf = vi.fn() as unknown as MockedClass<typeof GestionnaireFenêtres>;
+  gf.prototype.connecterFenêtreÀConstellation = vi.fn();
+  return {
+    GestionnaireFenêtres: gf,
+  };
+});
+
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.mocked(GestionnaireFenêtres);
 });
 
 test('Devrait créer une nouvelle fenêtre', async () => {
