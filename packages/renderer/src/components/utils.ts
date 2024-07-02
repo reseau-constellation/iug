@@ -70,7 +70,7 @@ export const suivre = <
         T[K] extends Ref ? Ref<Exclude<UnwrapRef<T[K]>, undefined>> : T[K]
       >;
     } & {f: types.schémaFonctionSuivi<U>},
-  ) => Promise<W>,
+  ) => (Promise<W> | W),
   args: T = {} as T,
   défaut?: V,
 ): ComputedRef<U | V> => {

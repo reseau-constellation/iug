@@ -1,8 +1,9 @@
 import {expect, test, vi} from 'vitest';
 
 import type {IpcRendererEvent} from 'electron';
-import type {messageDeServeur, messageInitServeur} from '@constl/mandataire-electron-principal';
+import type {CODE_CLIENT_PRÊT, CODE_MESSAGE_DE_SERVEUR, CODE_MESSAGE_D_IPA, CODE_MESSAGE_POUR_IPA, CODE_MESSAGE_POUR_SERVEUR, messageDeServeur, messageInitServeur} from '@constl/mandataire-electron-principal';
 
+import type TypedEmitter from 'typed-emitter';
 import {v4 as uuidv4} from 'uuid';
 import EventEmitter from 'events';
 import {attente} from '@constl/utils-tests';
@@ -17,7 +18,7 @@ import {
   surWindows,
   plateforme,
 } from '../src';
-import type {mandataire} from '@constl/ipa';
+import type { MessageDIpa, MessagePourIpa } from '@constl/mandataire';
 
 test('plateforme', async () => {
   expect(plateforme).toBe(process.platform);
@@ -36,33 +37,37 @@ test('plateforme', async () => {
 });
 
 vi.mock('electron', () => {
-  const événements = new EventEmitter();
+  type ÉvénementsCoquille = {
+    [CODE_MESSAGE_D_IPA]: (x: [IpcRendererEvent, MessageDIpa[]]) => void,
+    [CODE_MESSAGE_DE_SERVEUR]: (x: [IpcRendererEvent, messageDeServeur[]]) => void,
+    [CODE_CLIENT_PRÊT]: (e: IpcRendererEvent, args: unknown[]) => void,
+  }
+  const événements = new EventEmitter() as TypedEmitter<ÉvénementsCoquille>;
 
   const ipcRenderer: Pick<Electron.IpcRenderer, 'on' | 'once' | 'send'> = {
-    on(channel: string, listener: (event: IpcRendererEvent, ...args: unknown[]) => void) {
-      if (channel === 'deClient') {
+    on(channel: typeof CODE_MESSAGE_D_IPA | typeof CODE_MESSAGE_DE_SERVEUR | typeof CODE_CLIENT_PRÊT, listener: (event: IpcRendererEvent, ...args: unknown[]) => void) {
+      if (channel === 'dIPA') {
         événements.on(
           channel,
-          (x: [IpcRendererEvent, mandataire.messages.MessageDeTravailleur[]]) => listener(...x),
+          (x: [IpcRendererEvent, MessageDIpa[]]) => listener(...x),
         );
       } else if (channel === 'deServeur') {
         événements.on(channel, (x: [IpcRendererEvent, messageDeServeur[]]) => listener(...x));
       }
       return this;
     },
-    once(channel: string, listener: (event: IpcRendererEvent, ...args: unknown[]) => void) {
+    once(channel: typeof CODE_MESSAGE_D_IPA | typeof CODE_MESSAGE_DE_SERVEUR | typeof CODE_CLIENT_PRÊT, listener: (event: IpcRendererEvent, ...args: unknown[]) => void) {
       if (channel === 'clientPrêt') {
-        // @ts-expect-error on saute l'événement
-        listener({});
+        listener({} as IpcRendererEvent);
       }
       événements.once(channel, listener);
       return this;
     },
-    send(channel: string, ...args: unknown[]) {
-      if (channel === 'pourClient') {
-        événements.emit('deClient', [{}, args[0]]);
+    send(channel: typeof CODE_MESSAGE_POUR_IPA | typeof CODE_MESSAGE_POUR_SERVEUR, ...args: unknown[]) {
+      if (channel === 'pourIpa') {
+        événements.emit('dIPA', [{} as IpcRendererEvent, args[0] as MessageDIpa[]]);
       } else if (channel === 'pourServeur') {
-        événements.emit('deServeur', [{}, args[0]]);
+        événements.emit('deServeur', [{} as IpcRendererEvent, args[0] as messageDeServeur[]]);
       }
       return this;
     },
@@ -72,11 +77,11 @@ vi.mock('electron', () => {
 });
 
 test('messages ipa constellation', async () => {
-  const résultat = new attente.AttendreRésultat<mandataire.messages.MessageDeTravailleur>();
+  const résultat = new attente.AttendreRésultat<MessageDIpa>();
 
   écouterMessagesDeConstellation(message => résultat.mettreÀJour(message));
 
-  const message: mandataire.messages.MessagePourTravailleur = {
+  const message: MessagePourIpa = {
     type: 'action',
     id: uuidv4(),
     fonction: ['on', 'test', 'une', 'fonction'],

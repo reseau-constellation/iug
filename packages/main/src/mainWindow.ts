@@ -4,6 +4,7 @@ import {fileURLToPath, URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
+import { connecterRedémarrer } from './redémarrer';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -71,6 +72,7 @@ export async function restoreOrCreateWindow() {
     window = await createWindow();
     gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
     connecterHttp();
+    connecterRedémarrer();
     connecterSystèmeFichiers();
   }
 

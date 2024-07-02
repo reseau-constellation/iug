@@ -5,7 +5,6 @@ import {créerConstellation} from '@constl/ipa';
 export default {
   install: (app: App) => {
     const client = créerConstellation();
-    // client.suivreErreurs()
     app.config.globalProperties.$constl = client;
     app.provide('constl', client);
   },
