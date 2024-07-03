@@ -84,7 +84,6 @@ const config = {
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
       external: dépendsÀExclure,
-      // plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
