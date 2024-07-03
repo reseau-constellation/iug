@@ -116,6 +116,8 @@ import type {bds} from '@constl/ipa';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
+import {requêteHttp} from '#preload';
+
 import JSZip from 'jszip';
 import {saveAs} from 'file-saver';
 
@@ -379,7 +381,7 @@ ${codeSchémaBdTsJs.value}
 const enGénération = ref(false);
 const générerPaquetComplet = async (): Promise<void> => {
   enGénération.value = true;
-  const {requêteHttp} = await import('#preload');
+
   // Télécharger gabarit correspondant de GitHub
   const racineGabarit = await requêteHttp(GABARIT_CODE, {responseType: 'arraybuffer'});
 
