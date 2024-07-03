@@ -24,9 +24,9 @@ jobs:
           version: latest
 
       - uses: actions/setup-node@v4
-        # with:
-        #   cache: 'pnpm'
-      - run: pnpm install --no-frozen-lockfile
+        with:
+          cache: 'pnpm'
+      - run: pnpm install
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       - run: pnpm test:main
