@@ -8,9 +8,7 @@ import {join} from 'node:path';
 import {injectAppVersion} from '../../version/inject-app-version-plugin.mjs';
 import {copyFileSync} from 'fs';
 
-import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
-import {NodeGlobalsPolyfillPlugin} from '@esbuild-plugins/node-globals-polyfill';
-import builtins from 'rollup-plugin-node-builtins';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 const PACKAGE_ROOT = __dirname;
 const PROJECT_ROOT = join(PACKAGE_ROOT, '../..');
@@ -31,46 +29,12 @@ const générerExtentions = () => {
     vuetify({
       autoImport: true,
     }),
+    nodePolyfills(),
   ];
   if (pourÉlectron) {
     extentions.push(
       renderer.vite({
         preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
-      }),
-    );
-  } else {
-    extentions.push(
-      NodeGlobalsPolyfillPlugin({
-        buffer: true,
-        process: true,
-      }),
-    );
-    extentions.push({
-      name: 'vite:global-polyfill',
-      transformIndexHtml: {
-        handler(html) {
-          return {
-            html,
-            tags: [
-              {
-                tag: 'script',
-                children: `
-                  function getGlobal() {
-                    if (typeof globalThis === 'object') return globalThis;
-                    if (typeof window === 'object') return window;
-                  }
-                  global = getGlobal()
-                `,
-                injectTo: 'head-prepend',
-              },
-            ],
-          };
-        },
-      },
-    });
-    extentions.push(
-      builtins({
-        fs: true,
       }),
     );
   }
@@ -86,13 +50,6 @@ const générerAliasRésolution = () => {
     return Object.assign({}, commun, {});
   } else {
     return Object.assign({}, commun, {
-      assert: 'rollup-plugin-node-polyfills/polyfills/assert',
-      crypto: 'crypto-browserify',
-      path: 'rollup-plugin-node-polyfills/polyfills/path',
-      './buffer-globalThis': 'crypto-browserify',
-      stream: 'rollup-plugin-node-polyfills/polyfills/stream',
-      os: 'rollup-plugin-node-polyfills/polyfills/os',
-      process: 'rollup-plugin-node-polyfills/polyfills/process-es6',
       '#preload': join(PACKAGE_ROOT, 'src') + '/polyfillPreload',
     });
   }
@@ -127,7 +84,7 @@ const config = {
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html'),
       external: dépendsÀExclure,
-      plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
+      // plugins: pourÉlectron ? undefined : [rollupNodePolyFill()],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
