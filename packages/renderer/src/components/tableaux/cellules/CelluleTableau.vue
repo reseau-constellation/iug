@@ -50,6 +50,8 @@
   <cellule-geo-json
     v-else-if="catégorieFinale === 'géojson'"
     :val="val"
+    :editable="editable"
+    @modifiee="({val}) => modifiée({val})"
   />
   <cellule-intervale-temps
     v-else-if="catégorieFinale === 'intervaleTemps'"
