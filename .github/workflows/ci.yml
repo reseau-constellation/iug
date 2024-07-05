@@ -17,6 +17,7 @@ on:
       - '!.github/workflows/tests.yml'
       - '!.github/workflows/testsNavig.yml'
       - '!.github/workflows/release.yml'
+      - '!.github/workflows/publierPage.yml'
       - '**.md'
       - .editorconfig
       - .gitignore
@@ -30,6 +31,7 @@ on:
       - '!.github/workflows/tests.yml'
       - '!.github/workflows/testsNavig.yml'
       - '!.github/workflows/release.yml'
+      - '!.github/workflows/publierPage.yml'
       - '**.md'
       - .editorconfig
       - .gitignore
