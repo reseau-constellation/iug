@@ -26,7 +26,7 @@ importers:
         version: 2.2.0(@constl/ipa@1.0.34(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(@constl/mandataire@2.0.7)(@constl/serveur@2.0.13(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0)))(electron@31.1.0)
       '@constl/mandataire-electron-rendu':
         specifier: ^2.2.0
-        version: 2.2.0
+        version: 2.3.0
       '@constl/serveur':
         specifier: ^2.0.11
         version: 2.0.13(react-native@0.74.2(@babel/core@7.24.7)(@babel/preset-env@7.24.7(@babel/core@7.24.7))(bufferutil@4.0.8)(react@18.2.0))
@@ -1092,11 +1092,14 @@ packages:
       '@constl/serveur': ^2.0.9
       electron: ^30.0.9 || ^31.0.0
 
-  '@constl/mandataire-electron-rendu@2.2.0':
-    resolution: {integrity: sha512-0DgvQhCWBF++cS5SK1/4SVWSdXOeLDwO85KLPT3MkDurx3ymcrF2MYvQVEcyh3F1bsel/rwJtYvwSvZciWvrrw==}
+  '@constl/mandataire-electron-rendu@2.3.0':
+    resolution: {integrity: sha512-13IIdDRwX0enonf4bjuzXTPeScomNWGVYzD6+sFU4dd9BK70fjLsnckFLlbuGpXAgXPvaUbZRQqff62S1P+5SQ==}
 
   '@constl/mandataire@2.0.7':
     resolution: {integrity: sha512-cw/uljyJeX2qaeIWHrW0iF0lhW2FyueSF2NIj9ZUB5qNSeiN9Hflk8nfvpHoPr50CdlGBB16HIlOZvzzgOud/g==}
+
+  '@constl/mandataire@2.0.8':
+    resolution: {integrity: sha512-EL+saxpjmh8uh7U3qz1kI2NXAG9dHVh9naokqKeGcdsmpS8MHdsY4qxwuamukAxlYp2I416QtyIyx3TSdhKNFA==}
 
   '@constl/serveur@2.0.13':
     resolution: {integrity: sha512-3NqglJ38TGrb+ViCt++NuF52ns+rELcxhdXR3vYBq+1073r3x9O/SGh1wl0H8nCrAt5oU9wHZEszZzbFvt7FQw==}
@@ -8351,12 +8354,18 @@ snapshots:
       tslib: 2.6.3
       uuid: 10.0.0
 
-  '@constl/mandataire-electron-rendu@2.2.0':
+  '@constl/mandataire-electron-rendu@2.3.0':
     dependencies:
-      '@constl/mandataire': 2.0.7
+      '@constl/mandataire': 2.0.8
       events: 3.3.0
+      uuid: 10.0.0
 
   '@constl/mandataire@2.0.7':
+    dependencies:
+      events: 3.3.0
+      uuid: 10.0.0
+
+  '@constl/mandataire@2.0.8':
     dependencies:
       events: 3.3.0
       uuid: 10.0.0
