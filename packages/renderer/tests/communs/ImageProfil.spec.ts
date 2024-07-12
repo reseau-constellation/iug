@@ -5,9 +5,9 @@ import {expect, test, vi} from 'vitest';
 
 import ImageProfil from '../../src/components/communs/ImageProfil.vue';
 
+import {createPinia} from 'pinia';
 import vuetify from '../../src/plugins/vuetify';
 import {attendreQue, fausseConstellation} from '../utils';
-import {createPinia} from 'pinia';
 
 const constl = fausseConstellation(client => {
   client.prototype.profil = {

@@ -5,11 +5,11 @@
   />
 </template>
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserConstellation} from '/@/components/utils';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{id?: string}>();
 

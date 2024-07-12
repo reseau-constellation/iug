@@ -90,15 +90,15 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {ref, computed} from 'vue';
 import {rechercher} from '@constl/vue';
+import {computed, ref} from 'vue';
 
-import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {useDisplay} from 'vuetify';
 import {utiliserConstellation} from '/@/components/utils';
 
-import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';
+import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import RésultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 
 const props = defineProps<{

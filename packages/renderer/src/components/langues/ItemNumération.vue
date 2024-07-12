@@ -19,8 +19,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{code: string}>();
 

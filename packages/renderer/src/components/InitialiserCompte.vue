@@ -225,10 +225,10 @@
 </template>
 
 <script setup lang="ts">
+import {rechercher, suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
-import {suivre, rechercher} from '@constl/vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
@@ -236,11 +236,11 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import JetonMembre from './membres/JetonMembre.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import JetonMembre from './membres/JetonMembre.vue';
 
 const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
 

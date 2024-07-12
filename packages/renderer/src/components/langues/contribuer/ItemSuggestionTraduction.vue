@@ -34,15 +34,15 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 import {suivre} from '@constl/vue';
+import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 
 import {computed} from 'vue';
 
-import {utiliserConstellation} from '/@/components/utils';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{suggestion: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை}>();
 const émettre = defineEmits<{

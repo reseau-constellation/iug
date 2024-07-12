@@ -30,13 +30,13 @@
     @modifiee="({val}) => modifiée({val})"
   />
   <cellule-image
-    v-else-if="catégorieFinale === 'image'" 
+    v-else-if="catégorieFinale === 'image'"
     :val="val"
     :editable="editable"
     @modifiee="({val}) => modifiée({val})"
   />
   <cellule-video
-    v-else-if="catégorieFinale === 'vidéo'" 
+    v-else-if="catégorieFinale === 'vidéo'"
     :val="val"
     :editable="editable"
     @modifiee="({val}) => modifiée({val})"
@@ -68,35 +68,35 @@
   <span v-else>{{ val }}</span>
 </template>
 <script setup lang="ts">
-import type { types, variables } from '@constl/ipa';
-import { computed } from 'vue';
+import type {types, variables} from '@constl/ipa';
+import {computed} from 'vue';
 
-import { devinerCatégorie } from '@constl/utils-ipa';
+import {devinerCatégorie} from '@constl/utils-ipa';
 
-import CelluleHoroDatage from './CelluleHoroDatage.vue';
-import CelluleChaineNonTraductible from './CelluleChaîneNonTraductible.vue';
-import CelluleBooleenne from './CelluleBooléenne.vue';
-import CelluleNumerique from './CelluleNumérique.vue';
 import CelluleAudio from './CelluleAudio.vue';
-import CelluleFichier from './CelluleFichier.vue';
-import CelluleImage from './CelluleImage.vue';
-import CelluleVideo from './CelluleVidéo.vue';
-import CelluleGeoJson from './CelluleGéoJson.vue';
+import CelluleBooleenne from './CelluleBooléenne.vue';
 import CelluleChaine from './CelluleChaîne.vue';
+import CelluleChaineNonTraductible from './CelluleChaîneNonTraductible.vue';
+import CelluleFichier from './CelluleFichier.vue';
+import CelluleGeoJson from './CelluleGéoJson.vue';
+import CelluleHoroDatage from './CelluleHoroDatage.vue';
+import CelluleImage from './CelluleImage.vue';
 import CelluleIntervaleTemps from './CelluleIntervaleTemps.vue';
+import CelluleNumerique from './CelluleNumérique.vue';
+import CelluleVideo from './CelluleVidéo.vue';
 
 const props = defineProps<{
-    categorie?: variables.catégorieBaseVariables;
-    val: types.élémentsBd;
-    editable: boolean;
+  categorie?: variables.catégorieBaseVariables;
+  val: types.élémentsBd;
+  editable: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'modifiee', args: {val?: types.élémentsBd | File}): void;
 }>();
 
-const catégorieFinale = computed<variables.catégorieBaseVariables|undefined>(()=>{
-    if (props.categorie) return props.categorie;
-    else return devinerCatégorie(props.val);
+const catégorieFinale = computed<variables.catégorieBaseVariables | undefined>(() => {
+  if (props.categorie) return props.categorie;
+  else return devinerCatégorie(props.val);
 });
 
 // Modifications

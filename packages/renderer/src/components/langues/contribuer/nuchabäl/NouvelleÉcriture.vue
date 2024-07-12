@@ -46,7 +46,11 @@
           <v-slide-y-transition>
             <v-timeline-item v-if="codeÉcritureSelonÉchantillon">
               <p>
-                {{ t('nuchabäl.écriture.nouvelle.instructionsDupliquée', {nom: nomÉcritureSelonÉchantillon}) }}
+                {{
+                  t('nuchabäl.écriture.nouvelle.instructionsDupliquée', {
+                    nom: nomÉcritureSelonÉchantillon,
+                  })
+                }}
               </p>
               <v-chip
                 class="mt-2 mx-2"
@@ -212,15 +216,15 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {computed, watch, ref, watchEffect} from 'vue';
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
+import {computed, ref, watch, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
 
-import {utiliserNuchabäl} from '/@/components/utils';
 import type {types} from '@constl/ipa';
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {couper, ouvrirLien} from '/@/utils';
 import {direction as détecterDirection} from 'direction';
+import {utiliserNuchabäl} from '/@/components/utils';
+import {couper, ouvrirLien} from '/@/utils';
 
 import ItemNumeration from '/@/components/langues/ItemNumération.vue';
 import JetonNumeration from '/@/components/langues/JetonNumération.vue';
@@ -324,7 +328,6 @@ const règleCodeÉcritureCourt = computed<string | true>(() => {
   }
   return true;
 });
-
 
 // Direction
 const choixDirection = ref<'horizontal-tb' | 'vertical-rl' | 'vertical-lr'>();

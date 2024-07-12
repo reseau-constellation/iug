@@ -96,10 +96,10 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 
-import {useDisplay} from 'vuetify';
-import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {useDisplay} from 'vuetify';
 import {utiliserConstellation} from '../utils';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 
 const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 

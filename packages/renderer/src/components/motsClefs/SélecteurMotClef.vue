@@ -48,17 +48,17 @@
   </selecteur-objet>
 </template>
 <script setup lang="ts">
-import {ref, watchEffect} from 'vue';
 import {rechercher} from '@constl/vue';
+import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
+import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import NouveauMotClef from './NouveauMotClef.vue';
-import JetonMotClef from './JetonMotClef.vue';
 import CarteMotClef from './CarteMotClef.vue';
+import JetonMotClef from './JetonMotClef.vue';
+import NouveauMotClef from './NouveauMotClef.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 

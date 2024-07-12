@@ -118,15 +118,15 @@ import {useDisplay} from 'vuetify';
 
 import {requêteHttp} from '#preload';
 
-import JSZip from 'jszip';
 import {saveAs} from 'file-saver';
+import JSZip from 'jszip';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
 
+import {utiliserConstellation} from '../utils';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import {GABARIT_CODE} from '/@/consts';
-import {utiliserConstellation} from '../utils';
 
 const constl = utiliserConstellation();
 

@@ -10,7 +10,7 @@
         density="compact"
         :label="t('ennikkai.nouvelle.étiquetteSymboleBase')"
         :hint="t('ennikkai.nouvelle.indiceSymboleBase')"
-        @blur="()=>modifier()"
+        @blur="() => modifier()"
       >
       </v-text-field>
     </v-col>
@@ -24,7 +24,7 @@
         density="compact"
         :label="t('ennikkai.nouvelle.étiquetteValeurBase')"
         :hint="t('ennikkai.nouvelle.indiceValeurBase')"
-        @blur="()=>modifier()"
+        @blur="() => modifier()"
       >
       </v-text-field>
     </v-col>
@@ -42,16 +42,14 @@
   </v-row>
 </template>
 <script setup lang="ts">
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { computed, watchEffect } from 'vue';
-import { ref } from 'vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, ref, watchEffect} from 'vue';
 
 const émettre = defineEmits<{
-    (é: 'effacer', args: {symbole: string}): void;
-    (é: 'modifier', args: {val: number, symbole: string}): void;
+  (é: 'effacer', args: {symbole: string}): void;
+  (é: 'modifier', args: {val: number; symbole: string}): void;
 }>();
-const props = defineProps<{val: number, symbole: string}>();
-
+const props = defineProps<{val: number; symbole: string}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -59,20 +57,20 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const val = ref<string>(props.val.toString());
 const symbole = ref<string>(props.symbole);
 
-watchEffect(()=>{
-    val.value = computed(()=>props.val.toString()).value;
+watchEffect(() => {
+  val.value = computed(() => props.val.toString()).value;
 });
 
-const modifier = ()=>{
-    if (val.value && symbole.value) {
-        émettre('modifier', {
-            val: parseInt(val.value),
-            symbole: symbole.value,
-        });
-    }
+const modifier = () => {
+  if (val.value && symbole.value) {
+    émettre('modifier', {
+      val: parseInt(val.value),
+      symbole: symbole.value,
+    });
+  }
 };
 
 const effacer = () => {
-    émettre('effacer', {symbole: symbole.value});
+  émettre('effacer', {symbole: symbole.value});
 };
 </script>

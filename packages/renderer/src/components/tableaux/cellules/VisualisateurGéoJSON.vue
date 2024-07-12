@@ -10,9 +10,7 @@
       name="OpenStreetMap"
     >
     </l-tile-layer>
-    <l-geo-json
-      :geojson="geojson"
-    />
+    <l-geo-json :geojson="geojson" />
   </l-map>
   <p v-else>
     {{ 'Données GéoJSON erronnées' }}
@@ -21,17 +19,15 @@
 <script setup lang="ts">
 import type {GeoJsonObject} from 'geojson';
 
-import 'leaflet/dist/leaflet.css';
-import { LMap, LTileLayer, LGeoJson } from '@vue-leaflet/vue-leaflet';
-import { computed } from 'vue';
+import {LGeoJson, LMap, LTileLayer} from '@vue-leaflet/vue-leaflet';
 import gjv from 'geojson-validation';
+import 'leaflet/dist/leaflet.css';
+import {computed} from 'vue';
 
 const props = defineProps<{geojson: GeoJsonObject | GeoJsonObject[]}>();
 
-const valid = computed(()=>{
-  if (Array.isArray(props.geojson)) return props.geojson.every(x=>gjv.valid(x));
+const valid = computed(() => {
+  if (Array.isArray(props.geojson)) return props.geojson.every(x => gjv.valid(x));
   else return gjv.valid(props.geojson);
 });
-
-
 </script>

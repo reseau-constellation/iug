@@ -29,9 +29,9 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import {utiliserConstellation} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {suivre} from '@constl/vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';

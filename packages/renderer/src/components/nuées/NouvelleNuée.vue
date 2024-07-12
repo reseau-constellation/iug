@@ -168,14 +168,14 @@ import {type tableaux as tblx, type valid} from '@constl/ipa';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {computed, ref} from 'vue';
-import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, ref} from 'vue';
+import {useRouter} from 'vue-router';
+import {useDisplay} from 'vuetify';
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import {utiliserConstellation} from '/@/components/utils';
-import {useRouter} from 'vue-router';
 
 const {mdAndUp} = useDisplay();
 

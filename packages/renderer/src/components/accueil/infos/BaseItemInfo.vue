@@ -61,7 +61,7 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import type {InfoAvecId, Info} from '/@/état/infos';
+import type {Info, InfoAvecId} from '/@/état/infos';
 
 import {ref} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';

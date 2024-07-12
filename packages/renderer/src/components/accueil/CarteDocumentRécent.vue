@@ -48,15 +48,15 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import {computed} from 'vue';
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed} from 'vue';
+import {useDisplay} from 'vuetify';
 
-import {utiliserConstellation, icôneObjet} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
-import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
+import {icôneObjet, utiliserConstellation} from '../utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 const props = defineProps<{id: string; a: number}>();
 

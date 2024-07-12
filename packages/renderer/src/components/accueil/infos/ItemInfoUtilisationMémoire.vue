@@ -22,8 +22,8 @@ import {type InfoAvecId, type InfoUtilisationMémoire} from '/@/état/infos';
 
 import {computed} from 'vue';
 
-import BaseItemInfo from './BaseItemInfo.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import BaseItemInfo from './BaseItemInfo.vue';
 
 const props = defineProps<{
   info: InfoAvecId<InfoUtilisationMémoire>;

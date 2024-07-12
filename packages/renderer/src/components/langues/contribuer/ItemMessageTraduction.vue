@@ -26,8 +26,7 @@
 import {computed} from 'vue';
 
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   clef: string;

@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ t('ennikkai.nouvelle.titre' ) }}
+          {{ t('ennikkai.nouvelle.titre') }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -31,7 +31,7 @@
           align="start"
         >
           <v-timeline-item>
-            {{ t('ennikkai.nouvelle.instructionNom' ) }}
+            {{ t('ennikkai.nouvelle.instructionNom') }}
             <v-text-field
               v-model="nom"
               :label="t('ennikkai.nouvelle.étiquetteNom')"
@@ -43,12 +43,12 @@
           </v-timeline-item>
           <v-expand-transition>
             <v-timeline-item v-if="nom">
-              {{ t('ennikkai.nouvelle.instructionType' ) }}
+              {{ t('ennikkai.nouvelle.instructionType') }}
               <v-select
                 v-model="typeSystème"
                 :items="[
-                  {value: 'இடஞ்சார்', title: t('ennikkai.type.இடஞ்சார்')}, 
-                  {value: 'அடிமானம்', title: t('ennikkai.type.அடிமானம்')}
+                  {value: 'இடஞ்சார்', title: t('ennikkai.type.இடஞ்சார்')},
+                  {value: 'அடிமானம்', title: t('ennikkai.type.அடிமானம்')},
                 ]"
                 :label="t('ennikkai.nouvelle.étiquetteTypeSystème')"
                 class="py-2"
@@ -59,7 +59,7 @@
 
           <v-expand-transition>
             <v-timeline-item v-if="nom && typeSystème">
-              {{ t('ennikkai.nouvelle.instructionSymboles' ) }}
+              {{ t('ennikkai.nouvelle.instructionSymboles') }}
               <v-text-field
                 v-model="symboles"
                 :label="t('ennikkai.nouvelle.étiquetteSymboles')"
@@ -72,14 +72,14 @@
           <v-expand-transition>
             <v-timeline-item v-if="nom && typeSystème === 'அடிமானம்' && symboles">
               <p class="mb-4">
-                {{ t('ennikkai.nouvelle.instructionBases' ) }}
+                {{ t('ennikkai.nouvelle.instructionBases') }}
               </p>
               <item-base-numeration
                 v-for="b of Object.keys(bases)"
                 :key="b"
                 :val="bases[b]"
                 :symbole="b"
-                @effacer="({symbole})=>effacerBase({symbole})"
+                @effacer="({symbole}) => effacerBase({symbole})"
                 @modifier="({symbole, val}) => modifierBase({symbole, val})"
               />
               <v-row>
@@ -118,7 +118,7 @@
             <v-timeline-item
               v-if="typeSystème === 'இடஞ்சார்' ? symboles : Object.keys(bases).length"
             >
-              <p>{{ t('ennikkai.nouvelle.instructionUnicode' ) }}</p>
+              <p>{{ t('ennikkai.nouvelle.instructionUnicode') }}</p>
               <v-btn
                 class="my-2"
                 variant="outlined"
@@ -137,7 +137,7 @@
           </v-expand-transition>
           <v-expand-transition>
             <v-timeline-item v-if="prêtÀAjouter">
-              <p>{{ t('ennikkai.nouvelle.instructionConfirmation' ) }}</p>
+              <p>{{ t('ennikkai.nouvelle.instructionConfirmation') }}</p>
               <v-btn
                 class="mt-2"
                 variant="outlined"
@@ -172,7 +172,7 @@ import ItemBaseNumeration from './ItemBaseNumération.vue';
 
 import {ouvrirLien} from '/@/utils';
 
-import { watchEffect } from 'vue';
+import {watchEffect} from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -188,10 +188,9 @@ defineEmits<{
 // Navigation
 const dialogue = ref(false);
 
-
 // Nom
 const nom = ref<string>();
-const règleNomUnique = computed(()=>{
+const règleNomUnique = computed(() => {
   if (!nom.value) return true;
   const systèmesExitants = எண்ணிக்கை.முறைமைகள்;
   return systèmesExitants.find(s => s === nom.value) ? t('ennikkai.erreurNomDupliqué') : true;
@@ -199,7 +198,7 @@ const règleNomUnique = computed(()=>{
 
 // Type système
 const typeSystème = ref<எண்_வகை['வகை']>();
-watchEffect(()=>{
+watchEffect(() => {
   if (!nom.value?.length) typeSystème.value = undefined;
 });
 
@@ -214,9 +213,11 @@ const urlAideUnicode = ref<string>(
 
 // Symboles
 const symboles = ref<string>();
-const règleSymbolesUniques = computed(()=>{
+const règleSymbolesUniques = computed(() => {
   if (!symboles.value) return true;
-  return [...symboles.value].length === [...new Set([...symboles.value])].length ? true : t('ennikkai.erreurSymbolesRépétés');
+  return [...symboles.value].length === [...new Set([...symboles.value])].length
+    ? true
+    : t('ennikkai.erreurSymbolesRépétés');
 });
 
 // Bases

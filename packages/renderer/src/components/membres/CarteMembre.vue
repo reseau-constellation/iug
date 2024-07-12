@@ -178,28 +178,27 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
 import {suivre} from '@constl/vue';
+import {ref} from 'vue';
 
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import SérieJetons from '/@/components/communs/SérieJetons.vue';
-import ItemBd from '/@/components/bds/ItemBd.vue';
-import JetonBd from '/@/components/bds/JetonBd.vue';
-import JetonProjet from '/@/components/projets/JetonProjet.vue';
-import ItemProjet from '/@/components/projets/ItemProjet.vue';
-import JetonNuée from '/@/components/nuées/JetonNuée.vue';
-import ItemNuée from '/@/components/nuées/ItemNuée.vue';
-import ImageProfil from '../communs/ImageProfil.vue';
 import {useDisplay} from 'vuetify';
-import DivisionCarte from '../communs/DivisionCarte.vue';
-import JetonConfiance from './JetonConfiance.vue';
 import CarteBd from '../bds/CarteBd.vue';
+import DivisionCarte from '../communs/DivisionCarte.vue';
+import ImageProfil from '../communs/ImageProfil.vue';
+import LienObjet from '../communs/LienObjet.vue';
+import JetonConfiance from './JetonConfiance.vue';
 import JetonContactMembre from './JetonContactMembre.vue';
 import MenuContactMembre from './MenuContactMembre.vue';
-import LienObjet from '../communs/LienObjet.vue';
+import ItemBd from '/@/components/bds/ItemBd.vue';
+import JetonBd from '/@/components/bds/JetonBd.vue';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import ItemNuée from '/@/components/nuées/ItemNuée.vue';
+import JetonNuée from '/@/components/nuées/JetonNuée.vue';
+import ItemProjet from '/@/components/projets/ItemProjet.vue';
+import JetonProjet from '/@/components/projets/JetonProjet.vue';
 
 const props = defineProps<{id: string}>();
 

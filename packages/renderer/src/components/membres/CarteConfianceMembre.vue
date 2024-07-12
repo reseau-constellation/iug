@@ -131,9 +131,9 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 

@@ -49,16 +49,16 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
-import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
-import SelecteurBd from './SélecteurBd.vue';
+import type {types} from '@constl/ipa';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation} from '../utils';
 import {watchEffect} from 'vue';
-import type { types } from '@constl/ipa';
+import {utiliserConstellation} from '../utils';
+import SelecteurBd from './SélecteurBd.vue';
+import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 
 const props = defineProps<{idBd: string}>();
 
@@ -77,8 +77,11 @@ const statutChoisi = ref<types.schémaStatut>();
 watchEffect(() => {
   statutChoisi.value = statut.value;
 });
-const modifié = computed(()=>{
-  return statut.value?.statut !== statutChoisi.value?.statut || statut.value?.idNouvelle !== statutChoisi.value?.idNouvelle;
+const modifié = computed(() => {
+  return (
+    statut.value?.statut !== statutChoisi.value?.statut ||
+    statut.value?.idNouvelle !== statutChoisi.value?.idNouvelle
+  );
 });
 const enModification = ref(false);
 const sauvegarder = async () => {

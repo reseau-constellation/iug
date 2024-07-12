@@ -19,4 +19,4 @@ const choisirDossier = async () => {
   );
 };
 
-export {surLinux, surMac, surWindows, plateforme, requêteHttp, choisirDossier, redémarrer};
+export {choisirDossier, plateforme, redémarrer, requêteHttp, surLinux, surMac, surWindows};

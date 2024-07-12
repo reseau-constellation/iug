@@ -79,15 +79,15 @@
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref} from 'vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import DivisionCarte from '../communs/DivisionCarte.vue';
+import CarteMembre from '../membres/CarteMembre.vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';
 import ItemConnexionSfip from './ItemConnexionSFIP.vue';
-import CarteMembre from '../membres/CarteMembre.vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const constl = utiliserConstellation();
 

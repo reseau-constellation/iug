@@ -128,14 +128,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {ref} from 'vue';
 import {suivre} from '@constl/vue';
+import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import ItemMembre from '../membres/ItemMembre.vue';
-import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
-import {utiliserConstellation} from '../utils';
 import {useDisplay} from 'vuetify/lib/framework.mjs';
+import ItemMembre from '../membres/ItemMembre.vue';
+import {utiliserConstellation} from '../utils';
+import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

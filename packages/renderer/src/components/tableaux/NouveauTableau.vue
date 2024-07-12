@@ -109,12 +109,12 @@ import type {tableaux as tblx, valid} from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {v4 as uuidv4} from 'uuid';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {v4 as uuidv4} from 'uuid';
 
+import NouvelleColonne from './NouvelleColonne.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemSpecificationColonne from '/@/components/tableaux/ItemSpécificationColonne.vue';
-import NouvelleColonne from './NouvelleColonne.vue';
 
 const émettre = defineEmits<{
   (

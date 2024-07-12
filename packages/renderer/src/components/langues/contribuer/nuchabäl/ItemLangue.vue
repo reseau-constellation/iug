@@ -29,8 +29,8 @@
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import JetonNumeration from '/@/components/langues/JetonNumération.vue';
 import {computed} from 'vue';
+import JetonNumeration from '/@/components/langues/JetonNumération.vue';
 
 const props = defineProps<{
   nom: string;

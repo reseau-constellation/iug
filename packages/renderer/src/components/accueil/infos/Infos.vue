@@ -3,8 +3,8 @@ import {storeToRefs} from 'pinia';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {utiliserÉtatInfos} from '/@/état/infos';
 import ItemInfo from './ItemInfo.vue';
+import {utiliserÉtatInfos} from '/@/état/infos';
 
 const étatInfos = utiliserÉtatInfos();
 const {infos} = storeToRefs(étatInfos);

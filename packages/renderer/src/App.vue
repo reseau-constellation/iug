@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 
-import PagePrincipale from './misesEnPage/PagePrincipale.vue';
-import AccueilInitial from './misesEnPage/AccueilInitial.vue';
-import MenuLangues from './components/langues/MenuLangues.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {lancerInfos} from './components/accueil/infos/utils';
 import DialogueErreurInit from './components/communs/DialogueErreurInit.vue';
+import MenuLangues from './components/langues/MenuLangues.vue';
+import AccueilInitial from './misesEnPage/AccueilInitial.vue';
+import PagePrincipale from './misesEnPage/PagePrincipale.vue';
 
 const initialisé = ref(false);
 

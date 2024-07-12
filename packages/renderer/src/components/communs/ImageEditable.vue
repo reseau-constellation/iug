@@ -89,9 +89,9 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref, watchEffect} from 'vue';
-import convert from 'image-file-resize';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import convert from 'image-file-resize';
+import {computed, ref, watchEffect} from 'vue';
 
 const props = defineProps<{
   srcImage?: string | null;

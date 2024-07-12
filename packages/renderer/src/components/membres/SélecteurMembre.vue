@@ -37,17 +37,17 @@
   </selecteur-objet>
 </template>
 <script setup lang="ts">
-import {ref, watchEffect} from 'vue';
 import {rechercher} from '@constl/vue';
+import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
+import ResultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import JetonMembre from './JetonMembre.vue';
-import CarteMembre from './CarteMembre.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import CarteMembre from './CarteMembre.vue';
+import JetonMembre from './JetonMembre.vue';
 
 defineProps<{multiples: boolean; originales?: string[]; interdits?: string[]}>();
 const émettre = defineEmits<{

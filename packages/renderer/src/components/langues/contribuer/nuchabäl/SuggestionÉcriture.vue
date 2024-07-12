@@ -10,8 +10,8 @@
   </item-ecriture>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import type {பிணையம்_பரிந்துரை} from '@lassi-js/kili';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemEcriture from './ItemÉcriture.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';

@@ -201,25 +201,24 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref} from 'vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 
-import DivisionCarte from './DivisionCarte.vue';
-import GererAuteurs from './GererAuteurs.vue';
 import AuteursObjet from './AuteursObjet.vue';
-import DialogueNoms from './listeNoms/DialogueNoms.vue';
-import LienObjet from './LienObjet.vue';
 import CarteCopier from './CarteCopier.vue';
 import CarteEffacer from './CarteEffacer.vue';
+import DivisionCarte from './DivisionCarte.vue';
+import GererAuteurs from './GererAuteurs.vue';
+import LienObjet from './LienObjet.vue';
+import DialogueNoms from './listeNoms/DialogueNoms.vue';
 
 const props = defineProps<{
   id: string;

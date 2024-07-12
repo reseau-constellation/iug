@@ -2,8 +2,8 @@ import type {MockedClass, MockedObject} from 'vitest';
 import {beforeEach, expect, test, vi} from 'vitest';
 import {restoreOrCreateWindow} from '../src/mainWindow';
 
+import {GestionnaireFenêtres} from '@constl/mandataire-electron-principal';
 import {BrowserWindow} from 'electron';
-import { GestionnaireFenêtres } from '@constl/mandataire-electron-principal';
 
 /**
  * Mock real electron BrowserWindow API

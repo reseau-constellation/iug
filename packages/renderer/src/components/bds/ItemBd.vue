@@ -56,18 +56,17 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {utiliserImagesDéco} from '/@/composables/images';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import SérieJetons from '/@/components/communs/SérieJetons.vue';
-import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import ItemVariable from '../variables/ItemVariable.vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
+import ItemVariable from '../variables/ItemVariable.vue';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const props = defineProps<{id: string}>();
 

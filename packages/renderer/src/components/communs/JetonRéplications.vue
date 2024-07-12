@@ -12,8 +12,8 @@
   </v-chip>
 </template>
 <script setup lang="ts">
+import {rechercher, suivre} from '@constl/vue';
 import {computed} from 'vue';
-import {suivre, rechercher} from '@constl/vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 

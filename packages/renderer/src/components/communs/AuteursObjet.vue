@@ -30,13 +30,13 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {computed} from 'vue';
 import type {PropType} from 'vue';
+import {computed} from 'vue';
 
+import CarteMembre from '../membres/CarteMembre.vue';
+import SerieJetons from './SérieJetons.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
-import SerieJetons from './SérieJetons.vue';
-import CarteMembre from '../membres/CarteMembre.vue';
 
 const props = defineProps({
   auteurs: {

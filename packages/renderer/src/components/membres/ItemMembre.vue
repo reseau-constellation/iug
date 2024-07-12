@@ -16,15 +16,14 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 
-import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import LienObjet from '../communs/LienObjet.vue';
+import ImageProfil from '/@/components/communs/ImageProfil.vue';
 
 const props = defineProps<{compte: string; montrerAnonymes: boolean}>();
 

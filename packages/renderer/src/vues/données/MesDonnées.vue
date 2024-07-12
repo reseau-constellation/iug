@@ -205,29 +205,29 @@
 </template>
 
 <script setup lang="ts">
+import {rechercher, suivre} from '@constl/vue';
 import {ref} from 'vue';
-import {suivre, rechercher} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {utiliserConstellation} from '/@/components/utils';
-import TitrePage from '/@/components/communs/TitrePage.vue';
-import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
-import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
-import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
-import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
-import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
-import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
-import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
-import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import CarteBd from '/@/components/bds/CarteBd.vue';
-import CarteProjet from '/@/components/projets/CarteProjet.vue';
-import ItemProjet from '/@/components/projets/ItemProjet.vue';
+import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
+import TitrePage from '/@/components/communs/TitrePage.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
+import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
 import CarteNuée from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
+import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
+import CarteProjet from '/@/components/projets/CarteProjet.vue';
+import ItemProjet from '/@/components/projets/ItemProjet.vue';
+import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
 import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
+import NouvelleVariable from '/@/components/variables/NouvelleVariable.vue';
 
 const constl = utiliserConstellation();
 

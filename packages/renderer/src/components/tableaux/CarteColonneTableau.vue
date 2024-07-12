@@ -13,7 +13,7 @@
       <v-card-item>
         <v-card-title>{{ t('colonnes.carte.titre') }}</v-card-title>
       </v-card-item>
-      <v-card-text style="overflow-y:auto">
+      <v-card-text style="overflow-y: auto">
         <division-carte
           :titre="t('colonnes.variable')"
           :en-attente="!règlesÀAfficher"
@@ -98,17 +98,17 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed, ref} from 'vue';
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
 import {v4 as uuidv4} from 'uuid';
+import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
-import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
-import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
+import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
+import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
+import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import {utiliserConstellation} from '../utils';
 

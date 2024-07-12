@@ -5,7 +5,7 @@
     :items="filesTableau"
     :show-select="!!autorisation"
     multi-sort
-    @update:sort-by="val => ordonnerPar = val"
+    @update:sort-by="val => (ordonnerPar = val)"
   >
     <template #top>
       <v-toolbar
@@ -16,7 +16,7 @@
         <v-btn
           icon
           :disabled="!nFilesModifiées"
-          @click="()=>sauvegarderModifications()"
+          @click="() => sauvegarderModifications()"
         >
           <v-badge
             v-if="nFilesModifiées"
@@ -44,7 +44,7 @@
           false-icon="mdi-pencil-off-outline"
           hide-details
         />
-        
+
         <nouvelle-colonne
           :id-tableau="idTableau"
           :variables-interdites="variables"
@@ -141,7 +141,7 @@
         :id-variable="c.info.variable"
         :id-tableau="idTableau"
         :index="!!c.info.index"
-        :regles="règles?.filter(r=>r.colonne === c.key)"
+        :regles="règles?.filter(r => r.colonne === c.key)"
         :permission-modifier="!!autorisation"
         :ordonnable="column.sortable"
         :est-ordonnee="isSorted(column)"
@@ -158,7 +158,7 @@
         size="small"
         :loading="enEffaçage"
         :readonly="!sélectionnées.length"
-        @click="()=>effacerSélectionnées()"
+        @click="() => effacerSélectionnées()"
       />
       <v-dialog
         v-else
@@ -199,7 +199,12 @@
             <v-btn
               variant="text"
               :text="t('communs.oui')"
-              @click="()=>{effacerSélectionnées(); dialogueEffacerSélectionnées = false}"
+              @click="
+                () => {
+                  effacerSélectionnées();
+                  dialogueEffacerSélectionnées = false;
+                }
+              "
             />
             <v-btn
               variant="text"
@@ -226,14 +231,14 @@
       />
     </template>
 
-    <template #[`item.actions`]="{ item }">
+    <template #[`item.actions`]="{item}">
       <v-btn
         v-if="item.id === '-1'"
         :disabled="!valeursÀAjouter"
         icon="mdi-content-save-outline"
         size="small"
         variant="flat"
-        @click="()=>ajouterLigne()"
+        @click="() => ajouterLigne()"
       />
       <v-btn
         v-else-if="plusConfirmer"
@@ -241,7 +246,7 @@
         icon="mdi-delete"
         variant="flat"
         :loading="enEffaçage"
-        @click="()=>effacerÉlément({idÉlément: item.id})"
+        @click="() => effacerÉlément({idÉlément: item.id})"
       />
       <v-dialog
         v-else
@@ -276,7 +281,12 @@
             <v-btn
               variant="text"
               :text="t('communs.oui')"
-              @click="()=>{effacerÉlément({idÉlément: item.id}); dialogueEffacer = false}"
+              @click="
+                () => {
+                  effacerÉlément({idÉlément: item.id});
+                  dialogueEffacer = false;
+                }
+              "
             />
             <v-btn
               variant="text"
@@ -292,23 +302,23 @@
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux, valid, variables as typesVariables, types} from '@constl/ipa';
+import type {tableaux, types, variables as typesVariables, valid} from '@constl/ipa';
 
-import {computed, ref, watch} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref, watch} from 'vue';
 
-import {utiliserConstellation} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '../utils';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
-import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
+import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 
+import {watchEffect} from 'vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
-import { watchEffect } from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -326,17 +336,22 @@ const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTa
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoCol>, {
   idTableau: props.idTableau,
 });
-const colonnesAvecCatégories = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>, {
-  idTableau: props.idTableau,
-  catégories: true,
-});
+const colonnesAvecCatégories = suivre(
+  constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>,
+  {
+    idTableau: props.idTableau,
+    catégories: true,
+  },
+);
 
 const colonnesVariables = computed(() => {
   return (colonnes.value || []).map(c => {
     const catégorie = colonnesAvecCatégories.value?.find(col => col.id === c.id)?.catégorie;
     return {
       key: c.id,
-      sortable: catégorie === undefined || ( catégorie?.type === 'simple' ? triable(catégorie.catégorie) : false),
+      sortable:
+        catégorie === undefined ||
+        (catégorie?.type === 'simple' ? triable(catégorie.catégorie) : false),
       info: {
         index: c.index,
         catégorie,
@@ -405,11 +420,25 @@ const filesTableau = computed(() => {
   const ordonnées = données.value?.toSorted((a, b) => {
     if (!ordonnerPar.value) return 0;
     else {
-      return ordonnerPar.value.map(o => {
-        if (a.données[o.key] === undefined) return b.données[o.key] === undefined ? 0 : (o.order === 'asc' ? 1 : -1);
-        else if (b.données[o.key] === undefined) return a.données[o.key] === undefined ? 0 : (o.order === 'asc' ? -1 : 1);
-        return a.données[o.key] > b.données[o.key] ? (o.order === 'asc' ? 1 : -1) : (a.données[o.key] < b.données[o.key] ? (o.order === 'asc' ? -1 : 1) : 0);
-      }).find(x=>x !== 0) || 0;
+      return (
+        ordonnerPar.value
+          .map(o => {
+            if (a.données[o.key] === undefined)
+              return b.données[o.key] === undefined ? 0 : o.order === 'asc' ? 1 : -1;
+            else if (b.données[o.key] === undefined)
+              return a.données[o.key] === undefined ? 0 : o.order === 'asc' ? -1 : 1;
+            return a.données[o.key] > b.données[o.key]
+              ? o.order === 'asc'
+                ? 1
+                : -1
+              : a.données[o.key] < b.données[o.key]
+                ? o.order === 'asc'
+                  ? -1
+                  : 1
+                : 0;
+          })
+          .find(x => x !== 0) || 0
+      );
     }
   });
 
@@ -417,14 +446,13 @@ const filesTableau = computed(() => {
     id: '-1',
     données: {},
   };
-  return (édition.value && ordonnées) ? [nouvelleFile, ...ordonnées] : ordonnées;
+  return édition.value && ordonnées ? [nouvelleFile, ...ordonnées] : ordonnées;
 });
 
-const ordonnerPar = ref<{key: string, order: 'asc' | 'desc'}[]>();
+const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
 
 // Sélection files
 const sélectionnées = ref<string[]>([]);
-
 
 // Règles
 const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
@@ -433,12 +461,19 @@ const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTablea
 const édition = ref(false);
 
 const modifsEnCours = ref(false);
-const modifications = ref<{[idÉlément: string]: {[idCol: string]: types.élémentsBd | File | undefined}}>();
-const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: string]: types.élémentsBd | File | undefined}}[]>(()=>{
-  const définitives: {idÉlément: string, vals: {[idCol: string]: types.élémentsBd | File | undefined}}[] = [];
+const modifications = ref<{
+  [idÉlément: string]: {[idCol: string]: types.élémentsBd | File | undefined};
+}>();
+const modificationsDéfinitives = computed<
+  {idÉlément: string; vals: {[idCol: string]: types.élémentsBd | File | undefined}}[]
+>(() => {
+  const définitives: {
+    idÉlément: string;
+    vals: {[idCol: string]: types.élémentsBd | File | undefined};
+  }[] = [];
   for (const [idÉlément, modifsÉlément] of Object.entries(modifications.value || {})) {
-    const élémentExistant = données.value?.find(d=>d.id === idÉlément);
-    if (!élémentExistant) continue;  // Ne devrait pas arriver
+    const élémentExistant = données.value?.find(d => d.id === idÉlément);
+    if (!élémentExistant) continue; // Ne devrait pas arriver
     if (différence({modifs: modifsÉlément, original: élémentExistant.données})) {
       définitives.push({
         idÉlément,
@@ -448,29 +483,43 @@ const modificationsDéfinitives = computed<{idÉlément: string, vals: {[idCol: 
   }
   return définitives;
 });
-const nFilesModifiées = computed(()=>{
+const nFilesModifiées = computed(() => {
   return modificationsDéfinitives.value.length + (Object.keys(nouvelleLigne.value).length ? 1 : 0);
 });
 
-const différence = ({modifs, original}: {modifs:  {
+const différence = ({
+  modifs,
+  original,
+}: {
+  modifs: {
     [idCol: string]: types.élémentsBd | File | undefined;
-}, original:  {
+  };
+  original: {
     [idCol: string]: types.élémentsBd | File | undefined;
-}}): boolean =>  {
-  return Object.keys(modifs).some((idCol) => {
+  };
+}): boolean => {
+  return Object.keys(modifs).some(idCol => {
     return original[idCol] !== modifs[idCol];
   });
 };
 
 const nouvelleLigne = ref<{[idCol: string]: types.élémentsBd | File}>({});
-watchEffect(()=>{
+watchEffect(() => {
   if (!édition.value) nouvelleLigne.value = {};
 });
-const valeursÀAjouter = computed(()=>{
+const valeursÀAjouter = computed(() => {
   return Object.keys(nouvelleLigne.value).length > 0;
 });
 
-const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | File | undefined, idCol: string, idÉlément: string}) => {
+const celluleModifiée = ({
+  val,
+  idCol,
+  idÉlément,
+}: {
+  val: types.élémentsBd | File | undefined;
+  idCol: string;
+  idÉlément: string;
+}) => {
   if (idÉlément === '-1') {
     if (val !== undefined) nouvelleLigne.value[idCol] = val;
     else delete nouvelleLigne.value[idCol];
@@ -482,28 +531,42 @@ const celluleModifiée = ({val, idCol, idÉlément}: {val: types.élémentsBd | 
   }
 };
 
-const sfipifierFichiers = async <T>({vals}: {vals: {[idCol: string]: T | File }}): Promise<{[idCol: string]: T}> => {
-  return Object.fromEntries(await Promise.all(Object.entries(vals).map(async ([idCol, val]) => {
-    if (val instanceof File) {
-      const id = await constl.ajouterÀSFIP({contenu: new Uint8Array(await val.arrayBuffer()), nomFichier: val.name});
-      return [idCol, id];
-    } else {
-      return [idCol, val];
-    }
-  })));
+const sfipifierFichiers = async <T,>({
+  vals,
+}: {
+  vals: {[idCol: string]: T | File};
+}): Promise<{[idCol: string]: T}> => {
+  return Object.fromEntries(
+    await Promise.all(
+      Object.entries(vals).map(async ([idCol, val]) => {
+        if (val instanceof File) {
+          const id = await constl.ajouterÀSFIP({
+            contenu: new Uint8Array(await val.arrayBuffer()),
+            nomFichier: val.name,
+          });
+          return [idCol, id];
+        } else {
+          return [idCol, val];
+        }
+      }),
+    ),
+  );
 };
 
 const sauvegarderModifications = async () => {
   modifsEnCours.value = true;
-  
+
   for (const {idÉlément, vals} of modificationsDéfinitives.value) {
-    await constl.tableaux.modifierÉlément({ idTableau: props.idTableau, idÉlément, vals: await sfipifierFichiers({vals})});
+    await constl.tableaux.modifierÉlément({
+      idTableau: props.idTableau,
+      idÉlément,
+      vals: await sfipifierFichiers({vals}),
+    });
   }
   if (valeursÀAjouter.value) await ajouterLigne();
   modifications.value = undefined;
   modifsEnCours.value = false;
 };
-
 
 const ajouterLigne = async () => {
   await constl.tableaux.ajouterÉlément({
@@ -513,7 +576,6 @@ const ajouterLigne = async () => {
   nouvelleLigne.value = {};
 };
 
-
 // Effacer données
 const plusConfirmer = ref(false);
 const choixPlusConfirmer = ref(false);
@@ -522,28 +584,26 @@ const enEffaçage = ref(false);
 const dialogueEffacer = ref(false);
 const dialogueEffacerSélectionnées = ref(false);
 
-watch([dialogueEffacer, dialogueEffacerSélectionnées], ()=>{
+watch([dialogueEffacer, dialogueEffacerSélectionnées], () => {
   // Il faut faire ça ici, car sinon on désactive le dialogue en cliquant sur l'option "Ne plus me demander"
   plusConfirmer.value = choixPlusConfirmer.value;
 });
 
 const effacerÉlément = async ({idÉlément}: {idÉlément: string}) => {
   enEffaçage.value = true;
-  await constl.tableaux.effacerÉlément({ idTableau: props.idTableau, idÉlément });
+  await constl.tableaux.effacerÉlément({idTableau: props.idTableau, idÉlément});
   enEffaçage.value = false;
 };
 
 const effacerSélectionnées = async () => {
   enEffaçage.value = true;
-  await Promise.all(sélectionnées.value.map(idÉlément=>effacerÉlément({idÉlément})));
+  await Promise.all(sélectionnées.value.map(idÉlément => effacerÉlément({idÉlément})));
   sélectionnées.value = [];
   enEffaçage.value = false;
 };
-
 
 // Effacer tableau
 const effacerTableau = async () => {
   await constl.bds.effacerTableauBd({idBd: props.idBd, idTableau: props.idTableau});
 };
-
 </script>

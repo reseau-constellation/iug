@@ -194,15 +194,15 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import axios from 'axios';
 
+import {icôneObjet} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import {icôneObjet} from '../utils';
 
 import {isBrowser} from 'wherearewe';
 

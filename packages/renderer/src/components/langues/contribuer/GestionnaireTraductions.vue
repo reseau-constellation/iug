@@ -81,14 +81,13 @@ import type {
   மொழிபெயர்ப்பு_பரிந்துரை_உறுப்படி_வகை,
 } from '@lassi-js/kilimukku';
 
-import {ref, computed} from 'vue';
+import {rechercher, suivre} from '@constl/vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre, rechercher} from '@constl/vue';
 
-
-import {கிளிமூக்கு} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்} from '@lassi-js/kilimukku';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கு} from '/@/components/utils';
 
 import GroupeSuggestionsTraduction from './GroupeSuggestionsTraduction.vue';
 

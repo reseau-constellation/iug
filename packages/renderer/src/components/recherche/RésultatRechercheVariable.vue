@@ -38,19 +38,19 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {type ComputedRef, computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {type ComputedRef, computed} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import TexteTronque from '../communs/TexteTronqué.vue';
+import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
-import TexteTronque from '../communs/TexteTronqué.vue';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;

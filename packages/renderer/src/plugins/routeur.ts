@@ -1,16 +1,16 @@
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {createRouter, createWebHashHistory, type RouteRecordRaw} from 'vue-router';
-import PageAccueil from '/@/vues/PageAccueil.vue';
-import PageCompte from '/@/vues/PageCompte.vue';
 import MesDonnées from '/@/vues/données/MesDonnées.vue';
 import PageBD from '/@/vues/données/PageBD.vue';
 import PageNuée from '/@/vues/données/PageNuée.vue';
 import PageProjet from '/@/vues/données/PageProjet.vue';
 import PageTableau from '/@/vues/données/PageTableau.vue';
-import PageRecherche from '/@/vues/PageRecherche.vue';
-import PageFavoris from '/@/vues/PageFavoris.vue';
+import PageAccueil from '/@/vues/PageAccueil.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
+import PageCompte from '/@/vues/PageCompte.vue';
+import PageFavoris from '/@/vues/PageFavoris.vue';
+import PageRecherche from '/@/vues/PageRecherche.vue';
 import PageSignalements from '/@/vues/PageSignalements.vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const routes: Array<RouteRecordRaw> = [
   {

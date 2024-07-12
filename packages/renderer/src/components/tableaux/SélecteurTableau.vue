@@ -21,8 +21,8 @@
   </v-select>
 </template>
 <script setup lang="ts">
-import {computed, ref, watchEffect} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref, watchEffect} from 'vue';
 
 import ItemTableau from './ItemTableau.vue';
 import JetonTableau from './JetonTableau.vue';

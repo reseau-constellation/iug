@@ -14,7 +14,7 @@
         />
       </template>
     </nouvelle-colonne>
-    
+
     <v-switch
       v-model="éditer"
       :disabled="!monAutorisation || !colonnes || !colonnes.length"
@@ -58,7 +58,7 @@
                 {{ t('tableau.ajouterColonne') }}
               </v-btn>
             </template>
-          </nouvelle-colonne> 
+          </nouvelle-colonne>
           <v-btn>
             {{ t('tableau.importerDonnées') }}
           </v-btn>
@@ -184,17 +184,16 @@
   />
 </template>
 <script setup lang="ts">
-import type {tableaux, variables, types} from '@constl/ipa';
+import type {tableaux, types, variables} from '@constl/ipa';
 import type {Ref} from 'vue';
 
-import {ref, computed, type ComputedRef} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref, type ComputedRef} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';
-
 
 import CelluleNumerique from './cellules/CelluleNumérique.vue';
 

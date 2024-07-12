@@ -31,14 +31,14 @@
   </DialogueNoms>
 </template>
 <script setup lang="ts">
-import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import {suivre} from '@constl/vue';
-import { utiliserConstellation } from '../utils';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '../utils';
 
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 
-const props = defineProps<{id: string, clef: string}>();
+const props = defineProps<{id: string; clef: string}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -47,13 +47,12 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = utiliserConstellation();
 
 // Noms
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id});  // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
+const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-const changerNoms = async (noms: { [langue: string]: string } ) => {
+const changerNoms = async (noms: {[langue: string]: string}) => {
   await constl.tableaux.sauvegarderNomsTableau({idTableau: props.id, noms});
 };
 
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
-
 </script>

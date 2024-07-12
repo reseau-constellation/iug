@@ -8,4 +8,3 @@ const redémarrer = () => {
 export const connecterRedémarrer = () => {
   ipcMain.handle('redémarrer', redémarrer);
 };
-

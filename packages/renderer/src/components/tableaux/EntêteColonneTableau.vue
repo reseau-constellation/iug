@@ -1,6 +1,6 @@
 <template>
-  <span @click="()=>émettre('basculer-ordonner')">
-    <v-hover v-slot="{ isHovering, props: propsSurvole }">
+  <span @click="() => émettre('basculer-ordonner')">
+    <v-hover v-slot="{isHovering, props: propsSurvole}">
       <span v-bind="propsSurvole">
         <v-skeleton-loader
           v-if="enAttenteNoms && !noms"
@@ -17,12 +17,11 @@
           <v-icon
             v-else
             icon="mdi-arrow-up"
-            :color="isHovering ? 'disabled': 'rgba(255,255,255,0)'"
+            :color="isHovering ? 'disabled' : 'rgba(255,255,255,0)'"
           ></v-icon>
         </template>
       </span>
     </v-hover>
-    
   </span>
   <carte-colonne-tableau
     :id-colonne="idColonne"
@@ -47,11 +46,10 @@
 import type {valid} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
-import {computed, ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import CarteColonneTableau from './CarteColonneTableau.vue';
+import {computed, onMounted, ref} from 'vue';
 import {utiliserConstellation} from '../utils';
-import { onMounted } from 'vue';
+import CarteColonneTableau from './CarteColonneTableau.vue';
 
 const props = defineProps<{
   index: boolean;
@@ -93,12 +91,12 @@ const nomFinal = computed(() => {
 });
 
 const enAttenteNoms = ref(true);
-onMounted(()=>{
-  setTimeout(()=>enAttenteNoms.value = false, 5000);
+onMounted(() => {
+  setTimeout(() => (enAttenteNoms.value = false), 5000);
 });
 </script>
 <style scoped>
 .v-icon {
-  transition: color .2s ease-in-out;
+  transition: color 0.2s ease-in-out;
 }
 </style>

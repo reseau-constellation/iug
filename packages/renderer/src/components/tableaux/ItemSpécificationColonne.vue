@@ -17,8 +17,8 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {ref, watchEffect} from 'vue';
 import {suivre} from '@constl/vue';
+import {ref, watchEffect} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';

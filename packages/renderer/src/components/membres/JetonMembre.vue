@@ -32,13 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from 'vue';
 import {rechercher, suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation} from '/@/components/utils';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{compte: string}>();
 

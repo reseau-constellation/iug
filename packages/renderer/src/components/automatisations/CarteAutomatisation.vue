@@ -26,16 +26,15 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {ref, onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {utiliserConstellation, enregistrerÉcoute} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -122,23 +122,23 @@
 </template>
 
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {suivre} from '@constl/vue';
 
-import {MAX_TAILLE_IMAGE} from '/@/consts';
-import {utiliserConstellation} from '/@/components/utils';
-import TitrePage from '/@/components/communs/TitrePage.vue';
-import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
+import LienObjet from '/@/components/communs/LienObjet.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
+import TitrePage from '/@/components/communs/TitrePage.vue';
+import OngletCompte from '/@/components/compte/OngletCompte.vue';
 import OngletConnexions from '/@/components/compte/OngletConnexions.vue';
 import OngletThème from '/@/components/compte/OngletThème.vue';
-import OngletCompte from '/@/components/compte/OngletCompte.vue';
-import LienObjet from '/@/components/communs/LienObjet.vue';
 import NouvelleInfoContactMembre from '/@/components/membres/NouvelleInfoContact.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';

@@ -23,7 +23,7 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <options-exportation-objet @modifiee="val => format = val" />
+        <options-exportation-objet @modifiee="val => (format = val)" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -41,15 +41,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
+import type {automatisation} from '@constl/ipa';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
 
 import OptionsExportationObjet from '/@/components/automatisations/OptionsExportationObjet.vue';
-import { utiliserConstellation } from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{
   idObjet: string;
@@ -67,75 +66,75 @@ const dialogue = ref(false);
 
 // Format
 const format = ref<{
-    formatDoc: automatisation.formatTélécharger;
-    langues: string[] | undefined;
-    inclureDocuments: boolean;
+  formatDoc: automatisation.formatTélécharger;
+  langues: string[] | undefined;
+  inclureDocuments: boolean;
 }>();
 
 // Télécharger
 const enTéléchargement = ref(false);
 const télécharger = async () => {
-  if (!format.value)return;
+  if (!format.value) return;
 
   enTéléchargement.value = true;
   switch (props.typeObjet) {
     case 'tableau': {
-        const données = await constl.tableaux.exporterDonnées({
-            idTableau: props.idObjet,
-            langues: format.value.langues,
-        });
-        await constl.bds.exporterDocumentDonnées({
-            données,
-            formatDoc: format.value.formatDoc,
-            inclureFichiersSFIP: format.value.inclureDocuments,
-        });
-        break;
+      const données = await constl.tableaux.exporterDonnées({
+        idTableau: props.idObjet,
+        langues: format.value.langues,
+      });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: format.value.formatDoc,
+        inclureFichiersSFIP: format.value.inclureDocuments,
+      });
+      break;
     }
     case 'bd': {
-        const données = await constl.bds.exporterDonnées({
-            idBd: props.idObjet,
-            langues: format.value.langues,
-        });
-        await constl.bds.exporterDocumentDonnées({
-            données,
-            formatDoc: format.value.formatDoc,
-            inclureFichiersSFIP: format.value.inclureDocuments,
-        });
-        break;
+      const données = await constl.bds.exporterDonnées({
+        idBd: props.idObjet,
+        langues: format.value.langues,
+      });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: format.value.formatDoc,
+        inclureFichiersSFIP: format.value.inclureDocuments,
+      });
+      break;
     }
     case 'nuée': {
-        const données = await constl.nuées.exporterDonnéesNuée({
-            idNuée: props.idObjet,
-            langues: format.value.langues,
-        });
-        await constl.bds.exporterDocumentDonnées({
-            données,
-            formatDoc: format.value.formatDoc,
-            inclureFichiersSFIP: format.value.inclureDocuments,
-        });
-        break;
+      const données = await constl.nuées.exporterDonnéesNuée({
+        idNuée: props.idObjet,
+        langues: format.value.langues,
+      });
+      await constl.bds.exporterDocumentDonnées({
+        données,
+        formatDoc: format.value.formatDoc,
+        inclureFichiersSFIP: format.value.inclureDocuments,
+      });
+      break;
     }
-    case 'projet':{
-        const données = await constl.projets.exporterDonnées({
-            idProjet: props.idObjet,
-            langues: format.value.langues,
-        });
-        await constl.projets.exporterDocumentDonnées({
-            données,
-            formatDoc: format.value.formatDoc,
-            inclureFichiersSFIP: format.value.inclureDocuments,
-        });
-        break;}
+    case 'projet': {
+      const données = await constl.projets.exporterDonnées({
+        idProjet: props.idObjet,
+        langues: format.value.langues,
+      });
+      await constl.projets.exporterDocumentDonnées({
+        données,
+        formatDoc: format.value.formatDoc,
+        inclureFichiersSFIP: format.value.inclureDocuments,
+      });
+      break;
+    }
     default:
-        break;
+      break;
   }
   enTéléchargement.value = false;
   fermer();
 };
 
-
 // Fermer
 const fermer = () => {
-    dialogue.value = false;
+  dialogue.value = false;
 };
 </script>

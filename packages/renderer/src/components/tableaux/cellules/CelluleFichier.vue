@@ -14,7 +14,7 @@
       variant="outlined"
       :prepend-icon="icone || 'mdi-file-outline'"
       @click:close="() => effacerSélection()"
-      @click="()=>ouvrirFenêtreChoisirFichier()"
+      @click="() => ouvrirFenêtreChoisirFichier()"
     >
       <TexteTronque
         :texte="sélectionFichier.name"
@@ -33,9 +33,9 @@
         :longueur-max="20"
       />
       <v-icon
-        icon="mdi-close"  
+        icon="mdi-close"
         end
-        @click="()=>effacerSélection()"
+        @click="() => effacerSélection()"
       />
     </v-chip>
     <v-btn
@@ -43,7 +43,7 @@
       icon="mdi-upload"
       size="small"
       variant="flat"
-      @click="()=>ouvrirFenêtreChoisirFichier()"
+      @click="() => ouvrirFenêtreChoisirFichier()"
     />
   </template>
   <template v-else-if="valValide">
@@ -63,7 +63,7 @@
           <v-icon
             icon="mdi-download"
             end
-            @click.stop="()=>télécharger()"
+            @click.stop="() => télécharger()"
           />
         </v-chip>
       </template>
@@ -71,7 +71,7 @@
         name="visualisation"
         :val-actuelle="valValide"
         :télécharger="télécharger"
-        :fermer="()=>dialogue=false"
+        :fermer="() => (dialogue = false)"
       >
         <v-card class="mx-auto">
           <v-card-item>
@@ -83,13 +83,13 @@
               :text="t('communs.télécharger')"
               variant="outlined"
               append-icon="mdi-download"
-              @click="()=>télécharger()"
+              @click="() => télécharger()"
             />
             <v-btn
               :text="t('communs.fermer')"
               variant="outlined"
               append-icon="mdi-close"
-              @click="()=>dialogue=false"
+              @click="() => (dialogue = false)"
             />
           </v-card-actions>
         </v-card>
@@ -98,25 +98,30 @@
   </template>
 </template>
 <script setup lang="ts">
-import type { types } from '@constl/ipa';
+import type {types} from '@constl/ipa';
 
-import { computed, ref, watch } from 'vue';
+import {computed, ref, watch} from 'vue';
 
 import {idcEtExt} from '@constl/utils-ipa';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import { utiliserConstellation } from '/@/components/utils';
-import { itérableÀFlux, téléchargerFlux } from '/@/utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '/@/components/utils';
+import {itérableÀFlux, téléchargerFlux} from '/@/utils';
 
-const props = defineProps<{val?: types.élémentsBd, editable: boolean, icone?: string, accepter?: string}>();
-const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void;}>();
+const props = defineProps<{
+  val?: types.élémentsBd;
+  editable: boolean;
+  icone?: string;
+  accepter?: string;
+}>();
+const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void}>();
 
 const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const valValide = computed(()=>{
+const valValide = computed(() => {
   if (typeof props.val === 'string') {
     return idcEtExt(props.val);
   }
@@ -124,7 +129,7 @@ const valValide = computed(()=>{
 });
 
 // Choisir fichier
-const sélectionFichier = ref<File|null>();
+const sélectionFichier = ref<File | null>();
 
 const HTMLChoixFichier = ref<HTMLInputElement>();
 const ouvrirFenêtreChoisirFichier = () => {
@@ -135,9 +140,9 @@ const lorsqueFichierChoisi = async (): Promise<void> => {
   sélectionFichier.value = HTMLChoixFichier.value.files[0];
 };
 
-const effacerSélection = () => sélectionFichier.value = null;
-  
-watch(sélectionFichier, ()=>{
+const effacerSélection = () => (sélectionFichier.value = null);
+
+watch(sélectionFichier, () => {
   émettre('modifiee', {val: sélectionFichier.value || undefined});
 });
 
@@ -145,7 +150,10 @@ watch(sélectionFichier, ()=>{
 const télécharger = async () => {
   // Télécharger le document nouvellement ajouté si disponible ; sinon, télécharger la valeur originale.
   if (sélectionFichier.value) {
-    téléchargerFlux({flux: new Blob([sélectionFichier.value]).stream(), nom: sélectionFichier.value.name});
+    téléchargerFlux({
+      flux: new Blob([sélectionFichier.value]).stream(),
+      nom: sélectionFichier.value.name,
+    });
   } else if (valValide.value) {
     const itérable = await constl.obtItérableAsyncSFIP({id: valValide.value.id});
     const flux = itérableÀFlux(itérable);
@@ -155,5 +163,4 @@ const télécharger = async () => {
 
 // Visualisation
 const dialogue = ref(false);
-
 </script>

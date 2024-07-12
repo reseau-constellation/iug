@@ -25,11 +25,11 @@
   </v-container>
 </template>
 <script setup lang="ts">
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TitrePage from '../components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
+import {COURRIEL_SIGNALEMENTS, URL_SIGNALEMENTS} from '/@/consts';
 import {ouvrirLien} from '/@/utils';
-import {URL_SIGNALEMENTS, COURRIEL_SIGNALEMENTS} from '/@/consts';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

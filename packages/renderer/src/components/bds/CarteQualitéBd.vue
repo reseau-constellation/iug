@@ -116,14 +116,14 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import {couleurScore} from '/@/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import DialogueLicence from '../licences/DialogueLicence.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import {couleurScore} from '/@/utils';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

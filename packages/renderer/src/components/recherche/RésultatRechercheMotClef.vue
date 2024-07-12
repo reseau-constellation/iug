@@ -37,17 +37,16 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 
-import {type ComputedRef, computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {type ComputedRef, computed} from 'vue';
 
 import AuteursObjet from '../communs/AuteursObjet.vue';
 import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
+import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<types.infoRésultatTexte | types.infoRésultatVide>;

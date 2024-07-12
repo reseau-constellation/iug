@@ -20,8 +20,8 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 
-import {utiliserConstellation} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
+import {utiliserConstellation} from '/@/components/utils';
 import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string}>();

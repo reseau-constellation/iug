@@ -1,8 +1,8 @@
+import {storeToRefs} from 'pinia';
 import type {Ref} from 'vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useTheme} from 'vuetify';
 import {utiliserÉtatThème} from '/@/état/thème';
-import {storeToRefs} from 'pinia';
 
 const imagesThème: {
   [key: string]: {

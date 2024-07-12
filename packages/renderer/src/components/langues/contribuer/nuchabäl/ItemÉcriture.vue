@@ -27,8 +27,8 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserNuchabäl} from '/@/components/utils';

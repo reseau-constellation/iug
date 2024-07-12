@@ -1,7 +1,7 @@
-import {type Ref} from 'vue';
-import type {types, Constellation} from '@constl/ipa';
+import type {Constellation, types} from '@constl/ipa';
 import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 import type {Nuchabäl} from 'nuchabal';
+import {type Ref} from 'vue';
 
 import EventEmitter, {once} from 'events';
 import {inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
@@ -23,7 +23,6 @@ export const utiliserNuchabäl = (): Nuchabäl => {
   if (nuchabäl) return nuchabäl;
   throw new Error("Nuchab'äl n'est pas trouvable.");
 };
-
 
 export const enregistrerÉcoute = <
   T extends
@@ -189,7 +188,6 @@ export const détecterLangue = async ({texte}: {texte: string}) => {
   const résultatAll = francAllAll(texte)[0];
   if (résultatAll[1] > 0.9 && résultatAll[0] !== 'und') return résultatAll[0];
 };
-
 
 export const icôneStatut = (statut: 'active' | 'obsolète' | 'jouet' | 'interne') => {
   switch (statut) {

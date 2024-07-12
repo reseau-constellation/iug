@@ -174,30 +174,30 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import JetonLicence from '/@/components/licences/JetonLicence.vue';
 
-import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import ItemVariable from '/@/components/variables/ItemVariable.vue';
-import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
+import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import ItemTableau from '/@/components/tableaux/ItemTableau.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
 
-import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
-import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
-import JetonReplications from '/@/components/communs/JetonRéplications.vue';
-import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
-import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import JetonQualite from './JetonQualitéBd.vue';
+import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
+import JetonReplications from '/@/components/communs/JetonRéplications.vue';
+import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 
-import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

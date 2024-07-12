@@ -42,14 +42,14 @@
 </template>
 
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {onMounted, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
-import LogoAnimé from '/@/components/LogoAnimé.vue';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
+import LogoAnimé from '/@/components/LogoAnimé.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../components/utils';
 
 const {mdAndUp} = useDisplay();

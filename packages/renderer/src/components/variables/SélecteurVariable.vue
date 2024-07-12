@@ -49,17 +49,17 @@
   </selecteur-objet>
 </template>
 <script setup lang="ts">
-import {ref, watchEffect} from 'vue';
 import {rechercher} from '@constl/vue';
+import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
+import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import NouvelleVariable from './NouvelleVariable.vue';
-import JetonVariable from './JetonVariable.vue';
 import CarteVariable from './CarteVariable.vue';
+import JetonVariable from './JetonVariable.vue';
+import NouvelleVariable from './NouvelleVariable.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 

@@ -176,8 +176,8 @@ import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 import SelecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
+import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 const props = defineProps<{
   source:

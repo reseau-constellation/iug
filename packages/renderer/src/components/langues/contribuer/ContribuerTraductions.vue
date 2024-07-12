@@ -412,24 +412,24 @@
 import type {types} from '@constl/ipa';
 import type {மொழிபெயர்ப்பு_அகராதி_வகை} from '@lassi-js/kilimukku';
 
+import {suivre} from '@constl/vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, onMounted, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {suivre} from '@constl/vue';
 
 import correspTexte from 'approx-string-match';
 
-import {கிளிமூக்கை_பயன்படுத்து, எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';
 
+import GestionnaireTraductions from './GestionnaireTraductions.vue';
+import ItemMessageTraduction from './ItemMessageTraduction.vue';
+import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
+import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
+import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
 import ItemLangueProgres from '/@/components/langues/ItemLangueProgrès.vue';
 import JetonLangue from '/@/components/langues/JetonLangue.vue';
-import ItemMessageTraduction from './ItemMessageTraduction.vue';
-import ItemSuggestionTraduction from './ItemSuggestionTraduction.vue';
-import ItemSuggestionAutreLangue from './ItemSuggestionAutreLangue.vue';
-import ItemSuggestionAutomatique from './ItemSuggestionAutomatique.vue';
-import GestionnaireTraductions from './GestionnaireTraductions.vue';
 
 import NouvelleLangue from './nuchabäl/NouvelleLangue.vue';
 

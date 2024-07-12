@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 import {couleurScore} from '/@/utils';

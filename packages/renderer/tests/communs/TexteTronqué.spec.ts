@@ -1,8 +1,8 @@
+import கிளிமூக்கை_உருவாக்கு from '@lassi-js/kilimukku-vue';
 import {mount} from '@vue/test-utils';
 import {expect, test} from 'vitest';
 import TexteTronqué from '../../src/components/communs/TexteTronqué.vue';
 import vuetify from '../../src/plugins/vuetify';
-import கிளிமூக்கை_உருவாக்கு from '@lassi-js/kilimukku-vue';
 import {attendreQue} from '../utils';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {

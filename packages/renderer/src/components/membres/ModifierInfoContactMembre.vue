@@ -62,14 +62,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {obtIcôneContact} from './utils';
-import {computed} from 'vue';
-import {watchEffect} from 'vue';
+import {computed, watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
+import {obtIcôneContact} from './utils';
 
 const props = defineProps<{type: string; valeurAvant: string}>();
 

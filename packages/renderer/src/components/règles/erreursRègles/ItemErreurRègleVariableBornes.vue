@@ -44,17 +44,16 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
 
-import {créerColonneTableau} from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';
+import {créerColonneTableau} from '/@/components/tableaux/utils';
 
 const props = defineProps<{
   idTableau: string;

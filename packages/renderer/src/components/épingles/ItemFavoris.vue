@@ -37,13 +37,13 @@
 
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, icôneObjet} from '../utils';
-import CarteEpingler from './CarteÉpingler.vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
+import {icôneObjet, utiliserConstellation} from '../utils';
+import CarteEpingler from './CarteÉpingler.vue';
 
 const props = defineProps<{epingle: favoris.ÉlémentFavorisAvecObjet}>();
 

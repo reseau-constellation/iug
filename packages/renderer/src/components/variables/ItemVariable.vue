@@ -24,14 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {icôneCatégorieVariable} from '/@/components/variables/utils';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
 
 const props = defineProps<{id: string}>();
 

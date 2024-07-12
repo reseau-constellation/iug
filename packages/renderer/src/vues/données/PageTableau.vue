@@ -109,9 +109,9 @@
   </v-container>
 </template>
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {computed} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
-import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';

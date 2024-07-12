@@ -98,17 +98,17 @@
 <script setup lang="ts">
 import type {valid, variables} from '@constl/ipa';
 
-import {computed, ref, watchEffect} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed, ref, watchEffect} from 'vue';
 
-import {utiliserConstellation} from '/@/components/utils';
-import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {ajusterTexteTraductible} from '/@/utils';
-import {icôneCatégorieVariable} from '/@/components/variables/utils';
+import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
+import {utiliserConstellation} from '/@/components/utils';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
+import {ajusterTexteTraductible} from '/@/utils';
 
 import {catégoriesBase} from './utils';
 

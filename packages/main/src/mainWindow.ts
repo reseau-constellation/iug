@@ -3,8 +3,8 @@ import {join} from 'path';
 import {fileURLToPath, URL} from 'url';
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
+import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
-import { connecterRedémarrer } from './redémarrer';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({

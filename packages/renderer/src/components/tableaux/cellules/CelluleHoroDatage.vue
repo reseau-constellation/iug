@@ -2,7 +2,7 @@
   <template v-if="editable">
     <selecteur-date
       :originale="valValide"
-      @modifiee="({val})=>valFinale = val"
+      @modifiee="({val}) => (valFinale = val)"
     >
       <template #activator="{props: propsActivateur}">
         <v-icon
@@ -17,28 +17,27 @@
   </template>
 </template>
 <script setup lang="ts">
-import type { types } from '@constl/ipa';
-import { computed, ref, watch } from 'vue';
+import type {types} from '@constl/ipa';
+import {computed, ref, watch} from 'vue';
 
 import SelecteurDate from './SélecteurDate.vue';
 
 const props = defineProps<{val?: types.élémentsBd; editable: boolean}>();
-const émettre = defineEmits<{(é: 'modifiee', args: {val?: number}): void;}>();
+const émettre = defineEmits<{(é: 'modifiee', args: {val?: number}): void}>();
 
-const valValide = computed(()=>{
+const valValide = computed(() => {
   if (typeof props.val === 'number') return props.val;
   else return undefined;
 });
 
-const dateFormattée = computed(()=>{
+const dateFormattée = computed(() => {
   if (!valValide.value) return undefined;
   return new Date(valValide.value).toLocaleDateString();
 });
 
 // Modifications
 const valFinale = ref(valValide.value);
-watch(valFinale, ()=>{
+watch(valFinale, () => {
   émettre('modifiee', {val: valFinale.value || undefined});
 });
-
 </script>

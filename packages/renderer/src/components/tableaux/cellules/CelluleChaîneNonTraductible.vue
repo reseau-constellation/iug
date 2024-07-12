@@ -39,19 +39,18 @@
   </template> -->
 </template>
 <script setup lang="ts">
-import type { types } from '@constl/ipa';
+import type {types} from '@constl/ipa';
 
-import { computed, ref, watch } from 'vue';
+import {computed, ref, watch} from 'vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 
-const props = defineProps<{val?: types.élémentsBd, editable: boolean}>();
-const émettre = defineEmits<{(é: 'modifiee', args: {val?: string}): void;}>();
+const props = defineProps<{val?: types.élémentsBd; editable: boolean}>();
+const émettre = defineEmits<{(é: 'modifiee', args: {val?: string}): void}>();
 
-const valValide = computed(()=>typeof props.val === 'string' ? props.val : undefined);
+const valValide = computed(() => (typeof props.val === 'string' ? props.val : undefined));
 
 const valFinale = ref(valValide.value);
-watch(valFinale, ()=>{
+watch(valFinale, () => {
   émettre('modifiee', {val: valFinale.value || undefined});
 });
-
 </script>

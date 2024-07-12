@@ -119,17 +119,17 @@
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {storeToRefs} from 'pinia';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {storeToRefs} from 'pinia';
 
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
-import {icôneObjet} from '/@/components/utils';
 import NouvelleBd from '../bds/NouvelleBd.vue';
-import NouveauProjet from '../projets/NouveauProjet.vue';
 import NouvelleNuee from '../nuées/NouvelleNuée.vue';
+import NouveauProjet from '../projets/NouveauProjet.vue';
 import CarteDocumentRecent from './CarteDocumentRécent.vue';
 import ItemDocumentRecent from './ItemDocumentRécent.vue';
+import {icôneObjet} from '/@/components/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

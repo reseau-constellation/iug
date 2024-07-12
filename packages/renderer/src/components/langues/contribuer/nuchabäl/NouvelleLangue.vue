@@ -63,7 +63,11 @@
           <v-expand-transition>
             <v-timeline-item v-if="codeNuchabälLangueSelonTexteÉchantillon">
               <p>
-                {{ t('nuchabäl.langue.nouvelle.instructionExistante', {nom: nomNuchabälLangueSelonTexteÉchantillon}) }}
+                {{
+                  t('nuchabäl.langue.nouvelle.instructionExistante', {
+                    nom: nomNuchabälLangueSelonTexteÉchantillon,
+                  })
+                }}
               </p>
               <v-chip
                 class="mt-2 mx-2"
@@ -95,7 +99,11 @@
             >
               {{ codeNuchabälLangueSelonTexteÉchantillon }}
               <p>
-                {{ t('nuchabäl.langue.nouvelle.instructionÉcritureExistante', {nom: nomÉcritureProposée || suggestionÉcriture}) }}
+                {{
+                  t('nuchabäl.langue.nouvelle.instructionÉcritureExistante', {
+                    nom: nomÉcritureProposée || suggestionÉcriture,
+                  })
+                }}
               </p>
               <v-chip-group
                 v-model="utiliserSuggestionÉcriture"
@@ -295,19 +303,19 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {type Ref, computed, ref, watchEffect, watch} from 'vue';
-import {useDisplay, useRtl} from 'vuetify';
 import {suivre} from '@constl/vue';
+import {type Ref, computed, ref, watch, watchEffect} from 'vue';
+import {useDisplay, useRtl} from 'vuetify';
 
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {détecterLangue, utiliserNuchabäl} from '/@/components/utils';
 import type {types} from '@constl/ipa';
+import NouvelleNumeration from '../ennikkai/NouvelleNumération.vue';
 import NouvelleEcriture from './NouvelleÉcriture.vue';
-import SelecteurEcriture from '/@/components/langues/SélecteurÉcriture.vue';
 import ItemNumeration from '/@/components/langues/ItemNumération.vue';
 import JetonNumeration from '/@/components/langues/JetonNumération.vue';
-import NouvelleNumeration from '../ennikkai/NouvelleNumération.vue';
+import SelecteurEcriture from '/@/components/langues/SélecteurÉcriture.vue';
+import {détecterLangue, utiliserNuchabäl} from '/@/components/utils';
 
 import {ouvrirLien} from '/@/utils';
 
@@ -519,7 +527,9 @@ const génRègleÉcriture = (texte: Ref<string | undefined>) =>
     if (!exprégÉcriture) return true;
     const erreurLangue = !texte.value.match(new RegExp(exprégÉcriture, 'g'));
 
-    return erreurLangue ? t('nuchabäl.langue.nouvelle.erreurÉcriture', {écriture: nomÉcriture.value}) : true;
+    return erreurLangue
+      ? t('nuchabäl.langue.nouvelle.erreurÉcriture', {écriture: nomÉcriture.value})
+      : true;
   });
 const règleÉcritureNomLangue = génRègleÉcriture(propositionNomLangue);
 const règleÉcritureCodeLangue = génRègleÉcriture(propositionCodeLangue);

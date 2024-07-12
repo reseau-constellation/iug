@@ -541,9 +541,9 @@ import type {tableaux as typesTableaux} from '@constl/ipa';
 
 import {useDisplay, useRtl} from 'vuetify';
 
-import {computed, ref, onMounted, watchEffect} from 'vue';
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, onMounted, ref, watchEffect} from 'vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -551,42 +551,42 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
-import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
-import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
-import LienObjet from '/@/components/communs/LienObjet.vue';
-import CarteCopier from '/@/components/communs/CarteCopier.vue';
-import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
-import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
-import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';
-import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
-import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
-import ItemVariable from '/@/components/variables/ItemVariable.vue';
-import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
-import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
-import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
-import ItemQualiteBd from '/@/components/bds/ItemQualitéBd.vue';
-import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
+import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
+import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';
+import ItemQualiteBd from '/@/components/bds/ItemQualitéBd.vue';
+import CarteCopier from '/@/components/communs/CarteCopier.vue';
+import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
+import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
+import ItemStatut from '/@/components/communs/ItemStatut.vue';
+import LienObjet from '/@/components/communs/LienObjet.vue';
+import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import TexteTronque from '/@/components/communs/TexteTronqué.vue';
+import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import ItemLicence from '/@/components/licences/ItemLicence.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
+import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
-import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
-import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
-import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
-import SérieJetons from '/@/components/communs/SérieJetons.vue';
-import TableauBd from '/@/components/tableaux/TableauBd.vue';
 import EnteteTableau from '/@/components/tableaux/EntêteTableau.vue';
-import ItemStatut from '/@/components/communs/ItemStatut.vue';
+import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
+import TableauBd from '/@/components/tableaux/TableauBd.vue';
+import CarteVariable from '/@/components/variables/CarteVariable.vue';
+import ItemVariable from '/@/components/variables/ItemVariable.vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
+import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
+import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 
-import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 import type {valid} from '@constl/ipa';
+import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

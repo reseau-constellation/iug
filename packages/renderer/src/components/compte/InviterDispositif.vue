@@ -111,12 +111,12 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {useOnline} from '@vueuse/core';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
-import {useOnline} from '@vueuse/core';
 
-import QrcodeVue from 'qrcode.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import QrcodeVue from 'qrcode.vue';
 import {utiliserConstellation} from '../utils';
 
 const constl = utiliserConstellation();

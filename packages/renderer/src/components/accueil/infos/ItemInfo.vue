@@ -17,17 +17,17 @@
   />
 </template>
 <script setup lang="ts">
+import ItemInfoMettreAJour from './ItemInfoMettreÀJour.vue';
+import ItemInfoProtegerDonnees from './ItemInfoProtégerDonnées.vue';
+import ItemInfoTelecharger from './ItemInfoTélécharger.vue';
+import ItemInfoUtilisationMemoire from './ItemInfoUtilisationMémoire.vue';
 import type {
   InfoAvecId,
-  InfoMettreÀJour,
   InfoInstaller,
+  InfoMettreÀJour,
   InfoProtégerDonnnées,
   InfoUtilisationMémoire,
 } from '/@/état/infos';
-import ItemInfoTelecharger from './ItemInfoTélécharger.vue';
-import ItemInfoMettreAJour from './ItemInfoMettreÀJour.vue';
-import ItemInfoProtegerDonnees from './ItemInfoProtégerDonnées.vue';
-import ItemInfoUtilisationMemoire from './ItemInfoUtilisationMémoire.vue';
 
 defineProps<{
   info: InfoAvecId;

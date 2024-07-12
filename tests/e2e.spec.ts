@@ -1,6 +1,6 @@
 import type {ElectronApplication, Page} from 'playwright';
 
-import {afterAll, beforeAll, expect, test, describe} from 'vitest';
+import {afterAll, beforeAll, describe, expect, test} from 'vitest';
 
 import {changerLangue, constellationPrêt, surNavig, surÉlectron} from './utils';
 

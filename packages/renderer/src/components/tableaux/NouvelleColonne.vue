@@ -121,18 +121,18 @@
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
 
+import {suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
 import {v4 as uuidv4} from 'uuid';
 
 import {utiliserConstellation} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   idTableau?: string;

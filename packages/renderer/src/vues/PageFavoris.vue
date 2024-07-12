@@ -21,13 +21,13 @@
   </v-container>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {suivre} from '@constl/vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import TitrePage from '/@/components/communs/TitrePage.vue';
-import {utiliserImagesDéco} from '/@/composables/images';
-import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
 import {utiliserConstellation} from '../components/utils';
+import TitrePage from '/@/components/communs/TitrePage.vue';
+import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
+import {utiliserImagesDéco} from '/@/composables/images';
 
 const constl = utiliserConstellation();
 

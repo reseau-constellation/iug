@@ -190,16 +190,16 @@
 <script setup lang="ts">
 import {type favoris} from '@constl/ipa';
 
-import {ref, computed, watch} from 'vue';
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
+import {computed, ref, watch} from 'vue';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 
-import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
-import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import {watchEffect} from 'vue';
+import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
+import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 
 import {isEqual} from 'lodash';
 

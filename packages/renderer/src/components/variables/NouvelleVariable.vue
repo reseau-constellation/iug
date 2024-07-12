@@ -153,19 +153,19 @@
 <script setup lang="ts">
 import type {valid, variables} from '@constl/ipa';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 
-import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {v4 as uuidv4} from 'uuid';
+import {icôneCatégorieVariable} from '/@/components/variables/utils';
 
-import {catégoriesBase} from './utils';
 import {utiliserConstellation} from '../utils';
+import {catégoriesBase} from './utils';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 

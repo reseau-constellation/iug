@@ -37,8 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ref} from 'vue';
 import {v4 as uuidv4} from 'uuid';
+import {computed, ref} from 'vue';
 
 const props = defineProps<{largeur: number; delai: number; debut: number}>();
 

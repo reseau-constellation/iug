@@ -120,18 +120,18 @@ import type {types} from '@constl/ipa';
 
 import {type Ref, watchEffect} from 'vue';
 
-import {ref} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {ref} from 'vue';
 import {MultiChercheur, utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import TitrePage from '../components/communs/TitrePage.vue';
-import RésultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
-import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 import CarteBd from '/@/components/bds/CarteBd.vue';
-import RésultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
-import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
+import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+import RésultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
 import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
+import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
+import RésultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 
 const constl = utiliserConstellation();
 

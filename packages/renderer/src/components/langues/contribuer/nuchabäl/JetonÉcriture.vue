@@ -10,8 +10,8 @@
 import type {types} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
-import {utiliserNuchabäl} from '/@/components/utils';
 import {computed} from 'vue';
+import {utiliserNuchabäl} from '/@/components/utils';
 
 const props = defineProps<{code: string}>();
 

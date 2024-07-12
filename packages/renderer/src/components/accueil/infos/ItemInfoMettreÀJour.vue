@@ -24,9 +24,9 @@ import type {InfoAvecId, InfoMettreÀJour} from '/@/état/infos';
 
 import {computed} from 'vue';
 
-import {ouvrirLien} from '/@/utils';
-import BaseItemInfo from './BaseItemInfo.vue';
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import BaseItemInfo from './BaseItemInfo.vue';
+import {ouvrirLien} from '/@/utils';
 
 const props = defineProps<{
   info: InfoAvecId<InfoMettreÀJour>;

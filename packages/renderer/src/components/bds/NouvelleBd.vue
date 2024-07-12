@@ -186,19 +186,19 @@
 <script setup lang="ts">
 import type {bds, types} from '@constl/ipa';
 
-import {computed, ref, watchEffect} from 'vue';
-import {useDisplay, useRtl} from 'vuetify';
-import {useRouter} from 'vue-router';
 import {suivre} from '@constl/vue';
+import {computed, ref, watchEffect} from 'vue';
+import {useRouter} from 'vue-router';
+import {useDisplay, useRtl} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import SelecteurBd from './SélecteurBd.vue';
-import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
-import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
-import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
-import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import {utiliserConstellation} from '../utils';
+import SelecteurBd from './SélecteurBd.vue';
+import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
+import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
+import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 

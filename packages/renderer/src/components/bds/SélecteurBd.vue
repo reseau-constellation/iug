@@ -48,18 +48,18 @@
   </selecteur-objet>
 </template>
 <script setup lang="ts">
-import {ref, watchEffect} from 'vue';
 import {rechercher} from '@constl/vue';
+import {ref, watchEffect} from 'vue';
 
-import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
+import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import JetonBd from './JetonBd.vue';
-import CarteBd from './CarteBd.vue';
-import NouvelleBd from './NouvelleBd.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import CarteBd from './CarteBd.vue';
+import JetonBd from './JetonBd.vue';
+import NouvelleBd from './NouvelleBd.vue';
 
 defineProps<{multiples: boolean; originales?: string[]}>();
 const émettre = defineEmits<{

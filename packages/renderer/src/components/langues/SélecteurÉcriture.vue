@@ -33,9 +33,9 @@ import {ref} from 'vue';
 
 import {utiliserNuchabäl} from '../utils';
 
+import {watchEffect} from 'vue';
 import ItemEcriture from './contribuer/nuchabäl/ItemÉcriture.vue';
 import JetonEcriture from './contribuer/nuchabäl/JetonÉcriture.vue';
-import {watchEffect} from 'vue';
 import NouvelleEcriture from './contribuer/nuchabäl/NouvelleÉcriture.vue';
 
 const émettre = defineEmits<{

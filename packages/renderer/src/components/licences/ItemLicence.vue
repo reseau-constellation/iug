@@ -14,11 +14,11 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
-import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const constl = utiliserConstellation();
 

@@ -1,6 +1,6 @@
 import type {valid} from '@constl/ipa';
-import {type ComputedRef, computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {type ComputedRef, computed} from 'vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 

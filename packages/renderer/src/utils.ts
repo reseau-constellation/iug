@@ -1,8 +1,8 @@
-import {isElectronRenderer, isBrowser} from 'wherearewe';
+import {choisirDossier as choisirDossier_, surLinux, surMac, surWindows} from '#preload';
+import {showSaveFilePicker} from 'native-file-system-adapter';
 import {os} from 'platform';
-import {surLinux, surMac, surWindows, choisirDossier as choisirDossier_} from '#preload';
 import {type ComputedRef, type Ref, computed} from 'vue';
-import { showSaveFilePicker } from 'native-file-system-adapter';
+import {isBrowser, isElectronRenderer} from 'wherearewe';
 
 export const ouvrirLien = (lien: string) => {
   window.open(lien, '_blank'); // À faire : tester sous Électron
@@ -176,14 +176,12 @@ export const choisirDossier = async (): Promise<string | undefined> => {
   return await choisirDossier_();
 };
 
-export const itérableÀFlux = (
-  itérable: AsyncIterable<Uint8Array>,
-): ReadableStream<Uint8Array> => {
+export const itérableÀFlux = (itérable: AsyncIterable<Uint8Array>): ReadableStream<Uint8Array> => {
   const itérateur = itérable[Symbol.asyncIterator]();
 
   return new ReadableStream({
     async pull(contrôleur) {
-      const { value, done } = await itérateur.next();
+      const {value, done} = await itérateur.next();
 
       if (done) {
         contrôleur.close();
@@ -203,7 +201,6 @@ export const téléchargerFlux = async ({
   nom: string;
   types?: Exclude<Parameters<typeof showSaveFilePicker>[0], undefined>['types'];
 }) => {
-  
   const accèesFichier = await showSaveFilePicker({
     _preferPolyfill: false,
     suggestedName: nom,

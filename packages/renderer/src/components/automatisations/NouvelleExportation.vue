@@ -263,20 +263,20 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {choisirDossier} from '#preload';
 
+import {icôneObjet, utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
-import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
-import {utiliserConstellation, icôneObjet} from '../utils';
+import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
+import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
-import {isBrowser} from 'wherearewe';
 import {watchEffect} from 'vue';
+import {isBrowser} from 'wherearewe';
 import {plateforme} from '/@/utils';
 
 const props = defineProps<{

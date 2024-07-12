@@ -1,12 +1,12 @@
-import {computed, onMounted, onUnmounted, watchEffect} from 'vue';
-import {utiliserÉtatInfos} from '/@/état/infos';
-import {isElectronRenderer} from 'wherearewe';
 import {suivre} from '@constl/vue';
-import {utiliserConstellation} from '../../utils';
-import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import axios from 'axios';
 import semver from 'semver';
+import {computed, onMounted, onUnmounted, watchEffect} from 'vue';
+import {isElectronRenderer} from 'wherearewe';
+import {utiliserConstellation} from '../../utils';
+import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import {plateforme, type publicationGitHub} from '/@/utils';
+import {utiliserÉtatInfos} from '/@/état/infos';
 
 const versionPrésente = import.meta.env.VITE_APP_VERSION;
 export const obtenirDernièreVersion = async (): Promise<

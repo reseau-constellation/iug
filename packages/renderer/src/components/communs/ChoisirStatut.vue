@@ -60,7 +60,7 @@ const statut = ref(props.initial?.statut);
 const inclureNouvelle = ref<boolean>();
 const idNouvelle = ref(props.initial?.idNouvelle);
 
-watchEffect(()=>{
+watchEffect(() => {
   if (statut.value !== 'obsolète') idNouvelle.value = undefined;
 });
 
@@ -73,5 +73,4 @@ watchEffect(() => {
 });
 
 // Icône
-
 </script>

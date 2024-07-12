@@ -1,10 +1,10 @@
 import type {Browser, ElectronApplication, Page} from 'playwright';
-import {_electron as electron, chromium, webkit, firefox} from 'playwright';
+import {chromium, _electron as electron, firefox, webkit} from 'playwright';
 
 import {dossiers} from '@constl/utils-tests';
 import {Nuchabäl} from 'nuchabal';
-import {fileURLToPath} from 'url';
 import path, {dirname} from 'path';
+import {fileURLToPath} from 'url';
 
 const nuchabäl = new Nuchabäl({});
 

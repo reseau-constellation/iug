@@ -126,16 +126,16 @@
   </v-card>
 </template>
 <script setup lang="ts">
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
+import ExporterCompte from './ExporterCompte.vue';
+import FermerCompte from './FermerCompte.vue';
 import InviterDispositif from './InviterDispositif.vue';
 import RejoindreCompte from './RejoindreCompte.vue';
-import FermerCompte from './FermerCompte.vue';
-import ExporterCompte from './ExporterCompte.vue';
+import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 

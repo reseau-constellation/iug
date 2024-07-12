@@ -62,15 +62,14 @@
 </template>
 
 <script setup lang="ts">
-import {useRtl} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {useRtl} from 'vuetify';
 
-import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
-import {ref} from 'vue';
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {utiliserConstellation} from '../utils';
+import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
+import ItemLangue from '/@/components/langues/ItemLangueProgrès.vue';
 
 const constl = utiliserConstellation();
 

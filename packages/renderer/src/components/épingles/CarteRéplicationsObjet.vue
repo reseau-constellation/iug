@@ -122,9 +122,9 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {ref, computed} from 'vue';
-import {useDisplay} from 'vuetify';
 import {rechercher} from '@constl/vue';
+import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';

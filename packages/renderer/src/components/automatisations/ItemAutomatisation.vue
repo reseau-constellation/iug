@@ -24,12 +24,12 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {computed, ref, onMounted} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
-import {utiliserConstellation, enregistrerÉcoute, icôneObjet} from '/@/components/utils';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {enregistrerÉcoute, icôneObjet, utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;

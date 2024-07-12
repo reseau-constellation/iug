@@ -1,6 +1,6 @@
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {defineStore} from 'pinia';
 import {computed, ref} from 'vue';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const dédoublonnerListe = (liste: string[]) => {
   const déjàVu = new Set();

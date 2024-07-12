@@ -84,12 +84,12 @@
 <script setup lang="ts">
 import type {bds} from '@constl/ipa';
 
-import {computed, ref, onMounted} from 'vue';
-import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
+import {computed, onMounted, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 
-import {utiliserConstellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';
 import NouvelleExportation from '/@/components/automatisations/NouvelleExportation.vue';

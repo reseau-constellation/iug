@@ -70,15 +70,15 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
-import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
+import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 const props = defineProps<{idTableau?: string; tableauChangeable?: boolean}>();
 const émettre = defineEmits<{

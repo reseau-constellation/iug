@@ -49,7 +49,7 @@
   </v-card>
 </template>
 <script lang="ts" setup>
-import {ref, inject, watchEffect} from 'vue';
+import {inject, ref, watchEffect} from 'vue';
 
 import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

@@ -60,11 +60,11 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {obt, suivre} from '@constl/vue';
 import {ref} from 'vue';
-import {suivre, obt} from '@constl/vue';
 
-import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {useDisplay} from 'vuetify';
 import {utiliserConstellation} from '../utils';
 
 const constl = utiliserConstellation();

@@ -5,12 +5,12 @@
  */
 
 // Plugins
-import {loadFonts} from '../webfontloader';
 import vuetify from '../vuetify';
+import {loadFonts} from '../webfontloader';
 
-import routeur from '../routeur';
 import kilimukku from '../kilimukku';
 import pinia from '../pinia';
+import routeur from '../routeur';
 
 // Types
 import type {App} from 'vue';

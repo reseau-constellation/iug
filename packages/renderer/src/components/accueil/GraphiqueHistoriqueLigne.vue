@@ -29,20 +29,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import {type Ref, onBeforeUnmount, onMounted, reactive, ref, watchEffect} from 'vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {
   axisBottom,
   axisLeft,
+  curveBasis,
+  extent,
   line,
   max,
   scaleLinear,
   scaleTime,
   select,
-  extent,
-  curveBasis,
 } from 'd3';
-import {computed} from 'vue';
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {type Ref, computed, onBeforeUnmount, onMounted, reactive, ref, watchEffect} from 'vue';
 
 const props = defineProps<{
   titre: string;

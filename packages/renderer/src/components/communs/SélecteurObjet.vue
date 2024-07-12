@@ -83,7 +83,7 @@
 </template>
 <script setup lang="ts" generic="T extends types.résultatRecherche<types.infoRésultat>">
 import type {types} from '@constl/ipa';
-import {computed, watchEffect, ref} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 const props = defineProps<{
   multiples?: boolean;

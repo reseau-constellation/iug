@@ -58,11 +58,14 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 import {plateforme} from '/@/utils';
 
 const émettre = defineEmits<{
-  (é: 'modifiee', args: {
-    formatDoc: automatisation.formatTélécharger;
-    langues: string[] | undefined;
-    inclureDocuments: boolean;
-  }): void;
+  (
+    é: 'modifiee',
+    args: {
+      formatDoc: automatisation.formatTélécharger;
+      langues: string[] | undefined;
+      inclureDocuments: boolean;
+    },
+  ): void;
 }>();
 
 const {மொழியாக்கம்_பயன்படுத்து, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -74,13 +77,14 @@ const {மொழிகளும்_குறியீடுகளும்} = �
 const {so} = plateforme();
 const écranTactile = so === 'androïde' || so === 'iOS';
 
-
 // Format
 const formatDoc = ref<automatisation.formatTélécharger>('ods');
 const optionsFormatsDoc = ['ods', 'csv', 'txt', 'xlsx', 'xls'];
 
 const langues = ref();
-const languesDisponibles = computed(() => மொழிகளும்_குறியீடுகளும்.value.map(lng => ({title: lng.மொழி, value: lng.குறியீடு})));
+const languesDisponibles = computed(() =>
+  மொழிகளும்_குறியீடுகளும்.value.map(lng => ({title: lng.மொழி, value: lng.குறியீடு})),
+);
 watchEffect(() => {
   langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value];
 });
@@ -88,12 +92,11 @@ watchEffect(() => {
 const inclureDocuments = ref(true);
 
 // Modifications
-watchEffect(()=>{
+watchEffect(() => {
   émettre('modifiee', {
     formatDoc: formatDoc.value,
     langues: langues.value,
     inclureDocuments: inclureDocuments.value,
   });
 });
-
 </script>

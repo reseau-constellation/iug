@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import {rechercher} from '@constl/vue';
 
-import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 

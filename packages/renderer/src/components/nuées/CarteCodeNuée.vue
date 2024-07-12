@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import CarteCode from '/@/components/communs/CarteCode.vue';
-import {computed} from 'vue';
 import {suivre} from '@constl/vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed} from 'vue';
+import CarteCode from '/@/components/communs/CarteCode.vue';
 
 import {utiliserConstellation} from '../utils';
 

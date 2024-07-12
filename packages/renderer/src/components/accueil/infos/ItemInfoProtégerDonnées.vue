@@ -36,9 +36,9 @@
 <script setup lang="ts">
 import {utiliserÉtatInfos, type InfoAvecId, type InfoProtégerDonnnées} from '/@/état/infos';
 
-import BaseItemInfo from './BaseItemInfo.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
+import BaseItemInfo from './BaseItemInfo.vue';
 
 const props = defineProps<{
   info: InfoAvecId<InfoProtégerDonnnées>;

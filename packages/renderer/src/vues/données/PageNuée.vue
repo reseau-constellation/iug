@@ -47,16 +47,16 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted} from 'vue';
 import {suivre} from '@constl/vue';
-import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {onMounted} from 'vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 import {couper} from '/@/utils';
 
 import TitrePage from '/@/components/communs/TitrePage.vue';
-import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
 import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
+import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
 
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 

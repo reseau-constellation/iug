@@ -108,12 +108,12 @@
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
-import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useRouter} from 'vue-router';
 import {utiliserConstellation} from '../utils';
+import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
+import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
+import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 
 const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 

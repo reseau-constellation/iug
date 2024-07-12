@@ -22,9 +22,9 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import path from 'path';
-import {computed, ref, onMounted, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import path from 'path';
+import {computed, onMounted, ref, watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 
 const props = defineProps<{

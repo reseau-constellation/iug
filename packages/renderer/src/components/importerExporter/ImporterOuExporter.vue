@@ -133,12 +133,12 @@
 import type {automatisation} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
-import {computed, ref} from 'vue';
-import {isElectronMain, isNode} from 'wherearewe';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {useDisplay} from 'vuetify';
-import {utiliserConstellation} from '../utils';
 import type {clefsExtraction} from '@constl/ipa/dist/importateur/json';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
+import {isElectronMain, isNode} from 'wherearewe';
+import {utiliserConstellation} from '../utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
