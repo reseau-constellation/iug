@@ -28,21 +28,6 @@ import {
   écouterMessagesDeServeurConstellation,
 } from '../src';
 
-test('plateforme', async () => {
-  expect(plateforme).toBe(process.platform);
-
-  const plateformes: Partial<Record<NodeJS.Platform, boolean>> = {
-    darwin: surMac,
-    linux: surLinux,
-    win32: surWindows,
-  };
-
-  expect(plateformes[process.platform]).toBe(true);
-
-  for (const p of Object.keys(plateformes).filter(p => p !== process.platform)) {
-    expect(plateformes[p]).toBe(false);
-  }
-});
 
 vi.mock('electron', () => {
   type ÉvénementsCoquille = {
@@ -88,6 +73,22 @@ vi.mock('electron', () => {
   };
 
   return {ipcRenderer};
+});
+
+test('plateforme', async () => {
+  expect(plateforme).toBe(process.platform);
+
+  const plateformes: Partial<Record<NodeJS.Platform, boolean>> = {
+    darwin: surMac,
+    linux: surLinux,
+    win32: surWindows,
+  };
+
+  expect(plateformes[process.platform]).toBe(true);
+
+  for (const p of Object.keys(plateformes).filter(p => p !== process.platform)) {
+    expect(plateformes[p]).toBe(false);
+  }
 });
 
 test('messages ipa constellation', async () => {
