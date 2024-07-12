@@ -212,10 +212,11 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {computed, watch} from 'vue';
-import {ref, watchEffect} from 'vue';
+import {computed, watch, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
-import {suivre, utiliserNuchabäl} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserNuchabäl} from '/@/components/utils';
 import type {types} from '@constl/ipa';
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {couper, ouvrirLien} from '/@/utils';

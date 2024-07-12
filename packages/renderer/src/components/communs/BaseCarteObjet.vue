@@ -202,7 +202,9 @@
 import type {types} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

@@ -16,7 +16,9 @@
 
 <script setup lang="ts">
 import {computed} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

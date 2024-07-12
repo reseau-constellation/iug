@@ -131,12 +131,13 @@
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
+import {suivre} from '@constl/vue';
 
 import {computed, ref} from 'vue';
 import {isElectronMain, isNode} from 'wherearewe';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 import type {clefsExtraction} from '@constl/ipa/dist/importateur/json';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

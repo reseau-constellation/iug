@@ -61,9 +61,11 @@
 </template>
 <script setup lang="ts">
 import {ref} from 'vue';
+import {suivre, obt} from '@constl/vue';
+
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, suivre, obt} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 const constl = utiliserConstellation();
 

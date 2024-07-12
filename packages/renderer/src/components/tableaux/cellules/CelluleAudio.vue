@@ -41,10 +41,11 @@
 </template>
 <script setup lang="ts">
 import type { types } from '@constl/ipa';
+import {idcEtExt} from '@constl/utils-ipa';
 
 import CelluleFichier from './CelluleFichier.vue';
 import { computed, ref, watchEffect } from 'vue';
-import { utiliserConstellation, idcEtExt } from '/@/components/utils';
+import { utiliserConstellation} from '/@/components/utils';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 import { VideoPlayer } from '@videojs-player/vue';  

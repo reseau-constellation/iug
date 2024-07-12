@@ -101,8 +101,10 @@
 import type { types } from '@constl/ipa';
 
 import { computed, ref, watch } from 'vue';
+
+import {idcEtExt} from '@constl/utils-ipa';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import { utiliserConstellation, idcEtExt } from '/@/components/utils';
+import { utiliserConstellation } from '/@/components/utils';
 import { itérableÀFlux, téléchargerFlux } from '/@/utils';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 

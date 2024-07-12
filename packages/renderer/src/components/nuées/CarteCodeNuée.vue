@@ -13,7 +13,9 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
 import {computed} from 'vue';
-import {utiliserConstellation, suivre} from '../utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '../utils';
 
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 

@@ -48,10 +48,11 @@
 
 <script setup lang="ts">
 import {onMounted} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
-import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {suivre} from '@constl/vue';
+import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 import {couper} from '/@/utils';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import GenererAppli from '/@/components/nuées/GénérerAppli.vue';

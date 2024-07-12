@@ -11,9 +11,10 @@
 </template>
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {suivre} from '@constl/vue';
 
 import {computed} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{id: string}>();
 

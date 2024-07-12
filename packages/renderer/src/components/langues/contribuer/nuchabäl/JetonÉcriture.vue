@@ -8,7 +8,9 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
-import {suivre, utiliserNuchabäl} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserNuchabäl} from '/@/components/utils';
 import {computed} from 'vue';
 
 const props = defineProps<{code: string}>();

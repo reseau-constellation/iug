@@ -83,8 +83,10 @@ import type {
 
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
+import {suivre, rechercher} from '@constl/vue';
 
-import {rechercher, suivre, கிளிமூக்கு} from '/@/components/utils';
+
+import {கிளிமூக்கு} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்} from '@lassi-js/kilimukku';
 

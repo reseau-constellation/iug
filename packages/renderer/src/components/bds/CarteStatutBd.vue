@@ -51,11 +51,12 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
 
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import SelecteurBd from './SélecteurBd.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 import {watchEffect} from 'vue';
 import type { types } from '@constl/ipa';
 

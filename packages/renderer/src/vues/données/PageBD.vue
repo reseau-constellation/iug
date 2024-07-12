@@ -542,11 +542,12 @@ import type {tableaux as typesTableaux} from '@constl/ipa';
 import {useDisplay, useRtl} from 'vuetify';
 
 import {computed, ref, onMounted, watchEffect} from 'vue';
+import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 

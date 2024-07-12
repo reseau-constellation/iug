@@ -80,7 +80,9 @@
 import type {réseau} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemConnexionConstellation from './ItemConnexionConstellation.vue';

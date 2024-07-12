@@ -23,9 +23,10 @@
 
 <script setup lang="ts">
 import type {réseau} from '@constl/ipa';
+import {suivre} from '@constl/vue';
 
 import {computed} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ImageProfil from '/@/components/communs/ImageProfil.vue';

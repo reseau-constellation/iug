@@ -111,11 +111,12 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
+import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ajusterTexteTraductible} from '/@/utils';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import ImageEditable from '/@/components/communs/ImageEditable.vue';

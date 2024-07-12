@@ -28,8 +28,9 @@
 <script setup lang="ts">
 import {computed} from 'vue';
 
+import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, icôneObjet, suivre} from '../utils';
+import {utiliserConstellation, icôneObjet} from '../utils';
 import {utiliserIlYA} from '../membres/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 import {utiliserImagesDéco} from '/@/composables/images';

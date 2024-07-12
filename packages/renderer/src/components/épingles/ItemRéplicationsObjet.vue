@@ -18,7 +18,9 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {utiliserConstellation, rechercher} from '/@/components/utils';
+import {rechercher} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 

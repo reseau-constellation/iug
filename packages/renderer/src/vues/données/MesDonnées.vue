@@ -206,11 +206,12 @@
 
 <script setup lang="ts">
 import {ref} from 'vue';
+import {suivre, rechercher} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {utiliserConstellation, rechercher, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleBd from '/@/components/bds/NouvelleBd.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';

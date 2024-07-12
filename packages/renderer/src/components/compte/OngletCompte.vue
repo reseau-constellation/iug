@@ -127,6 +127,7 @@
 </template>
 <script setup lang="ts">
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
@@ -136,7 +137,7 @@ import RejoindreCompte from './RejoindreCompte.vue';
 import FermerCompte from './FermerCompte.vue';
 import ExporterCompte from './ExporterCompte.vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const constl = utiliserConstellation();
 

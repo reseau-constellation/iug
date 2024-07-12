@@ -123,10 +123,11 @@ import type {valid} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import ItemRegle from '/@/components/règles/ItemRègle.vue';

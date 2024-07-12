@@ -415,6 +415,7 @@ import type {மொழிபெயர்ப்பு_அகராதி_வக�
 import {computed, onMounted, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {suivre} from '@constl/vue';
 
 import correspTexte from 'approx-string-match';
 
@@ -432,7 +433,7 @@ import GestionnaireTraductions from './GestionnaireTraductions.vue';
 
 import NouvelleLangue from './nuchabäl/NouvelleLangue.vue';
 
-import {utiliserConstellation, கிளிமூக்கு, suivre} from '/@/components/utils';
+import {utiliserConstellation, கிளிமூக்கு} from '/@/components/utils';
 
 const constl = utiliserConstellation();
 const கிளி = கிளிமூக்கு();

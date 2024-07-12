@@ -41,13 +41,14 @@
 <script setup lang="ts">
 import type { types } from '@constl/ipa';
 import { computed, ref, watchEffect } from 'vue';
+import { idcEtExt } from '@constl/utils-ipa';
 
 import { VideoPlayer } from '@videojs-player/vue';  
 import 'video.js/dist/video-js.css';
 
 import CelluleFichier from './CelluleFichier.vue';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { utiliserConstellation, idcEtExt } from '/@/components/utils';
+import { utiliserConstellation } from '/@/components/utils';
 
 const constl = utiliserConstellation();
 

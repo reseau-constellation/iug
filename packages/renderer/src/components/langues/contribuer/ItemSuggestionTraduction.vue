@@ -35,10 +35,11 @@
 </template>
 <script setup lang="ts">
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
+import {suivre} from '@constl/vue';
 
 import {computed} from 'vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import CarteMembre from '/@/components/membres/CarteMembre.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

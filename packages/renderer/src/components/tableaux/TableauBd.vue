@@ -295,7 +295,9 @@
 import type {tableaux, valid, variables as typesVariables, types} from '@constl/ipa';
 
 import {computed, ref, watch} from 'vue';
-import {utiliserConstellation, suivre} from '../utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';

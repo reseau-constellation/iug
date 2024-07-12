@@ -38,11 +38,12 @@
 import type {types} from '@constl/ipa';
 
 import {type ComputedRef, computed} from 'vue';
+import {suivre} from '@constl/vue';
 
 import AuteursObjet from '../communs/AuteursObjet.vue';
 import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';

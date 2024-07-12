@@ -37,8 +37,8 @@
 import type { types } from '@constl/ipa';
 
 import {computed, ref, watchEffect} from 'vue';
-import {utiliserConstellation, idcEtExt} from '/@/components/utils';
-
+import {utiliserConstellation} from '/@/components/utils';
+import {idcEtExt} from '@constl/utils-ipa';
 
 import CelluleFichier from './CelluleFichier.vue';
 import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';

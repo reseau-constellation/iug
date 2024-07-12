@@ -25,8 +25,9 @@
 
 <script setup lang="ts">
 import {computed} from 'vue';
+import {suivre} from '@constl/vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';

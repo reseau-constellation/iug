@@ -132,9 +132,11 @@
 </template>
 <script setup lang="ts">
 import {computed, ref, watchEffect} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
-
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
+
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonMembre from './JetonMembre.vue';
 

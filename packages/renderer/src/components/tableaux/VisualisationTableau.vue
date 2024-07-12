@@ -185,12 +185,13 @@
 </template>
 <script setup lang="ts">
 import type {tableaux, variables, types} from '@constl/ipa';
-
 import type {Ref} from 'vue';
+
 import {ref, computed, type ComputedRef} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';
 

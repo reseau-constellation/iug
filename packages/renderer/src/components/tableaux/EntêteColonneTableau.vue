@@ -45,11 +45,12 @@
 </template>
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
+import {suivre} from '@constl/vue';
 
 import {computed, ref} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteColonneTableau from './CarteColonneTableau.vue';
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 import { onMounted } from 'vue';
 
 const props = defineProps<{

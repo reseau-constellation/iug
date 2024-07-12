@@ -16,9 +16,11 @@
 <script setup lang="ts">
 import type { types } from '@constl/ipa';
 import {type ComputedRef, computed} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {adresseOrbiteValide, utiliserConstellation,suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
+import {adresseOrbiteValide} from '@constl/utils-ipa';
 
 import TexteTronqué from '/@/components/communs/TexteTronqué.vue';
 // import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';

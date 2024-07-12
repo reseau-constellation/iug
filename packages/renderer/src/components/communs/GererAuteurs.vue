@@ -91,10 +91,11 @@
 import type {types} from '@constl/ipa';
 
 import {ref, computed} from 'vue';
+import {rechercher} from '@constl/vue';
 
 import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, rechercher} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import DivisionCarte from './DivisionCarte.vue';

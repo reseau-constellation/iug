@@ -100,6 +100,7 @@ import type {valid} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
 import {v4 as uuidv4} from 'uuid';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -109,7 +110,7 @@ import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 const props = defineProps<{
   permissionModifier: boolean;

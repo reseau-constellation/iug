@@ -110,7 +110,8 @@ import type {InfoAvecId, InfoInstaller} from '/@/état/infos';
 import {onMounted} from 'vue';
 
 import BaseItemInfo from './BaseItemInfo.vue';
-import {utiliserConstellation, suivre} from '../../utils';
+import {utiliserConstellation} from '../../utils';
+import {suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import InviterDispositif from '../../compte/InviterDispositif.vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

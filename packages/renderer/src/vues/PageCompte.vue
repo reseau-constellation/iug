@@ -126,9 +126,10 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {suivre} from '@constl/vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';

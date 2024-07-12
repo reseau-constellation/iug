@@ -22,12 +22,13 @@
 </template>
 <script setup lang="ts">
 import {computed, ref, watchEffect} from 'vue';
+import {suivre} from '@constl/vue';
 
 import ItemTableau from './ItemTableau.vue';
 import JetonTableau from './JetonTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 const props = defineProps<{idBd?: string}>();
 const émettre = defineEmits<{

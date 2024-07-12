@@ -56,6 +56,7 @@ import type {types} from '@constl/ipa';
 
 import {computed} from 'vue';
 import type {ComputedRef} from 'vue';
+import {suivre} from '@constl/vue';
 
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
@@ -63,7 +64,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonBd from '../bds/JetonBd.vue';

@@ -1,14 +1,10 @@
-import {type ComputedRef, type Ref, unref, type MaybeRef, type UnwrapRef, isRef} from 'vue';
+import {type Ref} from 'vue';
 import type {types, Constellation} from '@constl/ipa';
 import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 import type {Nuchabäl} from 'nuchabal';
-import { cidValide } from '@constl/utils-ipa';
 
 import EventEmitter, {once} from 'events';
-import {computed, inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
-import deepEqual from 'deep-equal';
-import { CID } from 'multiformats/cid';
-import { base58btc } from 'multiformats/bases/base58';
+import {inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const utiliserConstellation = (): Constellation => {
   const constl = inject<Constellation>('constl');
@@ -28,113 +24,6 @@ export const utiliserNuchabäl = (): Nuchabäl => {
   throw new Error("Nuchab'äl n'est pas trouvable.");
 };
 
-export type DébalerRéf<T> = T extends Ref<infer R> ? R : T;
-export type DébalerRéfsArgs<T> = {[K in keyof T]: DébalerRéf<T[K]>};
-
-const débalerRéfsArgs = <T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>}>(
-  args: T,
-): DébalerRéfsArgs<T> => {
-  return Object.fromEntries(
-    Object.entries(args).map(([clef, val]) => [clef, unref(val)]),
-  ) as DébalerRéfsArgs<T>;
-};
-
-class Stabilisateur {
-  n: number;
-  valeurAntérieure?: {[clef: string]: types.élémentsBd | undefined};
-
-  constructor(n = 1000) {
-    this.n = n;
-  }
-  async stabiliser(args: {[clef: string]: types.élémentsBd | undefined}): Promise<boolean> {
-    // Arrêter tout de suite si ces valeurs ont déjà été soumises
-    if (deepEqual(args, this.valeurAntérieure)) return false;
-
-    this.valeurAntérieure = args;
-
-    return new Promise(résoudre => {
-      setTimeout(() => résoudre(deepEqual(args, this.valeurAntérieure)), this.n);
-    });
-  }
-}
-
-export const suivre = <
-  U,
-  V extends U | undefined,
-  W extends types.schémaFonctionOublier,
-  T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>} = Record<string, never>,
->(
-  fonc: (
-    args: {
-      [K in keyof T]: DébalerRéf<
-        T[K] extends Ref ? Ref<Exclude<UnwrapRef<T[K]>, undefined>> : T[K]
-      >;
-    } & {f: types.schémaFonctionSuivi<U>},
-  ) => (Promise<W> | W),
-  args: T = {} as T,
-  défaut?: V,
-): ComputedRef<U | V> => {
-  const val = ref(défaut) as Ref<U | V>;
-  const stab = new Stabilisateur();
-
-  let fOublier: types.schémaFonctionOublier | undefined = undefined;
-  const dynamique = Object.values(args).some(x => isRef(x));
-
-  const définis = computed(() => {
-    const argsFinaux = débalerRéfsArgs(args);
-    if (Object.values(argsFinaux).every(x => x !== undefined)) {
-      return argsFinaux as {
-        [K in keyof T]: DébalerRéf<
-          T[K] extends Ref ? Ref<Exclude<UnwrapRef<T[K]>, undefined>> : T[K]
-        >;
-      };
-    } else {
-      return undefined;
-    }
-  });
-
-  watchEffect(async () => {
-    if (fOublier) {
-      fOublier(); // Très bizare... `await` ici détruit la réactivité
-      fOublier = undefined;
-    }
-    if (définis.value) {
-      // Si les intrants sont dynamiques, stabiliser suite à la première exécution
-      if (dynamique && fOublier) {
-        const stable = await stab.stabiliser(définis.value);
-        if (!stable) return;
-      }
-
-      fOublier = await fonc({
-        ...définis.value,
-        f: (x: U) => (val.value = x),
-      });
-    } else {
-      val.value = undefined as U | V;
-    }
-  });
-
-  onUnmounted(async () => {
-    if (fOublier) await fOublier();
-  });
-
-  return computed(() => val.value);
-};
-
-export const obt = <
-  U,
-  T extends {[clef: string]: types.élémentsBd | undefined} = Record<string, never>,
->(
-  fonc: (args: T) => Promise<U>,
-  args: T = {} as T,
-): ComputedRef<U | undefined> => {
-  const val = ref<U | undefined>();
-  onMounted(async () => {
-    const résultat = await fonc(args);
-    val.value = résultat;
-  });
-  return computed(() => val.value);
-};
 
 export const enregistrerÉcoute = <
   T extends
@@ -168,99 +57,6 @@ export const enregistrerÉcoute = <
   });
 
   return promesseRetour;
-};
-
-export const rechercher = <
-  U,
-  W extends
-    | types.schémaRetourFonctionRechercheParN
-    | types.schémaRetourFonctionRechercheParProfondeur,
-  T extends {[clef: string]: MaybeRef<types.élémentsBd | undefined>} = Record<string, never>,
->(
-  fonc: (
-    args: {
-      [K in keyof T]: DébalerRéf<
-        T[K] extends Ref ? Ref<Exclude<UnwrapRef<T[K]>, undefined>> : T[K]
-      >;
-    } & {f: types.schémaFonctionSuivi<U>},
-  ) => Promise<W>,
-  args: T = {} as T,
-): {résultats: Ref<U | undefined>; onTravaille: Ref<boolean>} => {
-  const réfRésultat: Ref<U | undefined> = ref();
-  const onTravaille = ref(true);
-
-  const stab = new Stabilisateur();
-  const dynamique = Object.values(args).some(x => isRef(x));
-
-  let fOublier: types.schémaFonctionOublier | undefined = undefined;
-  let fChangerNOuProfondeur: (n: number) => Promise<void>;
-  const vérifierSiParProfondeur = (
-    x: types.schémaRetourFonctionRechercheParN | types.schémaRetourFonctionRechercheParProfondeur,
-  ): x is types.schémaRetourFonctionRechercheParProfondeur => {
-    return !!(x as types.schémaRetourFonctionRechercheParProfondeur).fChangerProfondeur;
-  };
-
-  const définis = computed(() => {
-    const argsFinaux = débalerRéfsArgs(args);
-    if (Object.values(argsFinaux).every(x => x !== undefined)) {
-      return argsFinaux as {
-        [K in keyof T]: DébalerRéf<
-          T[K] extends Ref ? Ref<Exclude<UnwrapRef<T[K]>, undefined>> : T[K]
-        >;
-      };
-    } else {
-      return undefined;
-    }
-  });
-
-  watchEffect(async () => {
-    onTravaille.value = true;
-
-    if (fOublier) {
-      fOublier(); // Très bizare... `await` ici détruit la réactivité
-      fOublier = undefined;
-    }
-
-    if (définis.value) {
-      // Si les intrants sont dynamiques, stabiliser
-      if (dynamique) {
-        const stable = await stab.stabiliser(définis.value);
-        if (!stable) return;
-      }
-
-      const retour = await fonc({
-        ...définis.value,
-        f: x => {
-          réfRésultat.value = x;
-          onTravaille.value = false;
-        },
-      });
-      fOublier = retour.fOublier;
-
-      fChangerNOuProfondeur = vérifierSiParProfondeur(retour)
-        ? retour.fChangerProfondeur
-        : retour.fChangerN;
-    } else {
-      réfRésultat.value = undefined;
-      onTravaille.value = false;
-    }
-  });
-  const réfNOuProfondeur = computed<number | undefined>(() => {
-    return (args['nRésultatsDésirés'] || args['pronfondeur']) as number | undefined;
-  });
-  watchEffect(async () => {
-    if (fChangerNOuProfondeur && réfNOuProfondeur.value)
-      fChangerNOuProfondeur(réfNOuProfondeur.value);
-  });
-
-  onUnmounted(async () => {
-    if (fOublier) await fOublier();
-  });
-
-  return {
-    résultats: réfRésultat,
-    onTravaille,
-  };
 };
 
 export class MultiChercheur {
@@ -383,82 +179,17 @@ export const icôneObjet = (typeObjet?: string): string | undefined => {
 export const détecterLangue = async ({texte}: {texte: string}) => {
   const {francAll: francAllMin} = await import('franc-min');
   const résultatMin = francAllMin(texte)[0];
-  console.log(résultatMin);
   if (résultatMin[1] > 0.9 && résultatMin[0] !== 'und') return résultatMin[0];
 
   const {francAll} = await import('franc');
   const résultat = francAll(texte)[0];
-  console.log(résultat);
   if (résultat[1] > 0.9 && résultat[0] !== 'und') return résultat[0];
 
   const {francAll: francAllAll} = await import('franc-all');
   const résultatAll = francAllAll(texte)[0];
-  console.log(résultatAll);
   if (résultatAll[1] > 0.9 && résultatAll[0] !== 'und') return résultatAll[0];
 };
 
-// À faire : migrer à @constl/utils-ipa
-
-export const adresseOrbiteValide = (address: string) => {
-  // Code de @orbitdb/core
-  address = address.toString();
-
-  if (!address.startsWith('/orbitdb') && !address.startsWith('\\orbitdb')) {
-    return false;
-  }
-
-  address = address.replaceAll('/orbitdb/', '');
-  address = address.replaceAll('\\orbitdb\\', '');
-  address = address.replaceAll('/', '');
-  address = address.replaceAll('\\', '');
-
-  let cid;
-  try {
-    cid = CID.parse(address, base58btc);
-  } catch (e) {
-    return false;
-  }
-
-  return cid !== undefined;
-};
-
-export const formatsFichiers = {
-  images: [
-    'webp',
-    'svg',
-    'png',
-    'jpg',
-    'jpeg',
-    'jfif',
-    'pjpeg',
-    'pjp',
-    'gif',
-    'avif',
-    'apng',
-  ],
-  vidéo: ['mp4'],
-  audio: ['mp3', 'ogg', 'm4a'],
-};
-
-
-export const idcEtExt = (val: string) => {
-  try {
-    const [id, fichier] = val.split('/');
-    if (cidValide(id)) {
-        const ext = fichier.split('.').pop();
-        if (ext) {
-          return {
-            ext,
-            fichier,
-            id,
-          };
-        }
-    }
-  }
-  catch {
-      // Rien à faire
-  }
-};
 
 export const icôneStatut = (statut: 'active' | 'obsolète' | 'jouet' | 'interne') => {
   switch (statut) {

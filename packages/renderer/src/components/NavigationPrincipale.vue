@@ -42,10 +42,11 @@
 
 <script setup lang="ts">
 import {ref, onMounted, computed} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {மொழிகளைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import ImageProfil from './communs/ImageProfil.vue';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './membres/utils';

@@ -124,8 +124,10 @@
 <script setup lang="ts">
 import {ref, computed} from 'vue';
 import {useDisplay} from 'vuetify';
+import {rechercher} from '@constl/vue';
+
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, rechercher} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 

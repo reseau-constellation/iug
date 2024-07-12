@@ -38,11 +38,12 @@
 </template>
 <script setup lang="ts">
 import {ref, watchEffect} from 'vue';
+import {rechercher} from '@constl/vue';
 
 import ResultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
-import {utiliserConstellation, rechercher} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import JetonMembre from './JetonMembre.vue';
 import CarteMembre from './CarteMembre.vue';

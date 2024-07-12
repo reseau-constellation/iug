@@ -86,8 +86,9 @@ import type {bds} from '@constl/ipa';
 
 import {computed, ref, onMounted} from 'vue';
 import {useDisplay} from 'vuetify';
+import {suivre} from '@constl/vue';
 
-import {utiliserConstellation, enregistrerÉcoute, suivre} from '/@/components/utils';
+import {utiliserConstellation, enregistrerÉcoute} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemAutomatisation from './ItemAutomatisation.vue';

@@ -16,7 +16,8 @@
   </v-list-item>
 </template>
 <script setup lang="ts">
-import {utiliserConstellation, icôneObjet, suivre} from '/@/components/utils';
+import {utiliserConstellation, icôneObjet} from '/@/components/utils';
+import {suivre} from '@constl/vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 

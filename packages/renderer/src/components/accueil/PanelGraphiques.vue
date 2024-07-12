@@ -63,9 +63,10 @@ import {computed, onMounted, ref, watchEffect} from 'vue';
 import {storeToRefs} from 'pinia';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {suivre, rechercher} from '@constl/vue';
 
 import {utiliserHistorique} from '/@/état/historique';
-import {utiliserConstellation, rechercher, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 import GestionConnaissances from '/@/components/réseau/GestionConnaissances.vue';

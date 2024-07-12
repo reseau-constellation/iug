@@ -18,7 +18,9 @@
   </base-carte-objet>
 </template>
 <script setup lang="ts">
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {ajusterTexteTraductible} from '/@/utils';
 

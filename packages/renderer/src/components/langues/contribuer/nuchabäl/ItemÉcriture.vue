@@ -28,9 +28,10 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 import {computed} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserNuchabäl, suivre} from '/@/components/utils';
+import {utiliserNuchabäl} from '/@/components/utils';
 
 import JetonNumeration from '/@/components/langues/JetonNumération.vue';
 

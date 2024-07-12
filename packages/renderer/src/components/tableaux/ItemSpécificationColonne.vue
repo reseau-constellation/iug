@@ -18,9 +18,10 @@
 import type {valid} from '@constl/ipa';
 
 import {ref, watchEffect} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 

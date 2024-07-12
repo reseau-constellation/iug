@@ -228,8 +228,9 @@
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isBrowser} from 'wherearewe';
+import {suivre, rechercher} from '@constl/vue';
 
-import {utiliserConstellation, rechercher, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 

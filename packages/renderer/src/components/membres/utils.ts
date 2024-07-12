@@ -1,6 +1,7 @@
 import {type Ref, type ComputedRef, computed, ref, onMounted, onUnmounted, unref} from 'vue';
+import {suivre} from '@constl/vue';
 
-import {utiliserConstellation, suivre} from '../utils';
+import {utiliserConstellation} from '../utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 export const obtIcôneContact = ({type}: {type: string}): string => {

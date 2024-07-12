@@ -46,12 +46,13 @@
 import type {valid} from '@constl/ipa';
 
 import {computed} from 'vue';
+import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import NouvelleColonne from '/@/components/tableaux/NouvelleColonne.vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import {créerColonneTableau} from '/@/components/tableaux/utils';
 import {utiliserMonAutorisationRègleSourceErreur} from './utils';

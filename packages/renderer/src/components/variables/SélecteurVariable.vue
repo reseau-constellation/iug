@@ -50,11 +50,12 @@
 </template>
 <script setup lang="ts">
 import {ref, watchEffect} from 'vue';
+import {rechercher} from '@constl/vue';
 
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 
-import {utiliserConstellation, rechercher} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 import NouvelleVariable from './NouvelleVariable.vue';
 import JetonVariable from './JetonVariable.vue';

@@ -27,10 +27,11 @@
 </template>
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
+import {suivre} from '@constl/vue';
 
 import {ref} from 'vue';
 
-import {suivre, utiliserNuchabäl} from '../utils';
+import {utiliserNuchabäl} from '../utils';
 
 import ItemEcriture from './contribuer/nuchabäl/ItemÉcriture.vue';
 import JetonEcriture from './contribuer/nuchabäl/JetonÉcriture.vue';

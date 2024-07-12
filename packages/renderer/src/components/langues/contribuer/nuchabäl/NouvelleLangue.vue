@@ -297,9 +297,11 @@
 <script setup lang="ts">
 import {type Ref, computed, ref, watchEffect, watch} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
+import {suivre} from '@constl/vue';
+
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {détecterLangue, suivre, utiliserNuchabäl} from '/@/components/utils';
+import {détecterLangue, utiliserNuchabäl} from '/@/components/utils';
 import type {types} from '@constl/ipa';
 import NouvelleEcriture from './NouvelleÉcriture.vue';
 import SelecteurEcriture from '/@/components/langues/SélecteurÉcriture.vue';

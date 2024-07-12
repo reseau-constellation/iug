@@ -32,7 +32,8 @@
 </template>
 <script setup lang="ts">
 import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { utiliserConstellation, suivre } from '../utils';
+import {suivre} from '@constl/vue';
+import { utiliserConstellation } from '../utils';
 
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';

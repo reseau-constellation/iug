@@ -1,6 +1,8 @@
 import type {valid} from '@constl/ipa';
 import {type ComputedRef, computed} from 'vue';
-import {utiliserConstellation, suivre} from '/@/components/utils';
+import {suivre} from '@constl/vue';
+
+import {utiliserConstellation} from '/@/components/utils';
 
 export const utiliserMonAutorisationRègleSourceErreur = ({
   erreur,
