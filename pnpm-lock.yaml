@@ -255,10 +255,10 @@ importers:
         version: 1.45.1
       prettier:
         specifier: ^3.3.2
-        version: 3.3.2
+        version: 3.3.3
       prettier-plugin-organize-imports:
         specifier: ^4.0.0
-        version: 4.0.0(prettier@3.3.2)(typescript@5.5.3)(vue-tsc@2.0.26(typescript@5.5.3))
+        version: 4.0.0(prettier@3.3.3)(typescript@5.5.3)(vue-tsc@2.0.26(typescript@5.5.3))
       rollup-plugin-node-globals:
         specifier: ^1.4.0
         version: 1.4.0
@@ -5084,6 +5084,10 @@ packages:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
 
+  mime-db@1.53.0:
+    resolution: {integrity: sha512-oHlN/w+3MQ3rba9rqFr6V/ypF10LSkdwUysQL7GkXoTgIWeV+tcXGA852TBxH+gsh8UWoyhR1hKcoMJTuWflpg==}
+    engines: {node: '>= 0.6'}
+
   mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
@@ -5759,8 +5763,8 @@ packages:
       vue-tsc:
         optional: true
 
-  prettier@3.3.2:
-    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -11450,7 +11454,7 @@ snapshots:
 
   compressible@2.0.18:
     dependencies:
-      mime-db: 1.52.0
+      mime-db: 1.53.0
 
   compression@1.7.4:
     dependencies:
@@ -14069,6 +14073,8 @@ snapshots:
 
   mime-db@1.52.0: {}
 
+  mime-db@1.53.0: {}
+
   mime-types@2.1.35:
     dependencies:
       mime-db: 1.52.0
@@ -14724,14 +14730,14 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-organize-imports@4.0.0(prettier@3.3.2)(typescript@5.5.3)(vue-tsc@2.0.26(typescript@5.5.3)):
+  prettier-plugin-organize-imports@4.0.0(prettier@3.3.3)(typescript@5.5.3)(vue-tsc@2.0.26(typescript@5.5.3)):
     dependencies:
-      prettier: 3.3.2
+      prettier: 3.3.3
       typescript: 5.5.3
     optionalDependencies:
       vue-tsc: 2.0.26(typescript@5.5.3)
 
-  prettier@3.3.2: {}
+  prettier@3.3.3: {}
 
   pretty-format@26.6.2:
     dependencies:
