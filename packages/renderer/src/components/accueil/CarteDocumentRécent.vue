@@ -34,6 +34,7 @@
         color="primary"
         variant="text"
         append-icon="mdi-open-in-new"
+        :disabled="!typeObjet"
         @click="$router.push(encodeURI(`/données/${typeObjet}/${encodeURIComponent(id)}`))"
       >
         {{ t('communs.ouvrir') }}
