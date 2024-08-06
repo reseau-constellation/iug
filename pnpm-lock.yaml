@@ -62,7 +62,7 @@ importers:
         version: 2.1.0
       axios:
         specifier: ^1.7.2
-        version: 1.7.2
+        version: 1.7.3
       core-js:
         specifier: ^3.37.1
         version: 3.37.1
@@ -2225,8 +2225,8 @@ packages:
   '@types/yargs@15.0.19':
     resolution: {integrity: sha512-2XUaGVmyQjgyAZldf0D0c14vvo/yv0MhQBSTJcejMMaitsn3nxCB6TmH4G0ZQf+uxROOa9mpanoSm8h6SG/1ZA==}
 
-  '@types/yargs@17.0.32':
-    resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
+  '@types/yargs@17.0.33':
+    resolution: {integrity: sha512-WpxBCKWPLr4xSsHgz511rFJAM+wS28w2zEO1QDNY5zM/S8ok70NNfztH0xwhqKyaK0OHCbN98LDAZuy1ctxDkA==}
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
@@ -2638,8 +2638,8 @@ packages:
   average@0.0.1:
     resolution: {integrity: sha512-rnSkP7Xnbxz3cKEHscefV2Uu6GdlDrCCameNIbzM8c3zCMTigfndi1NuOxuks4fK3ZC/FtXLIS3Y8f7N70ZBmQ==}
 
-  axios@1.7.2:
-    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
+  axios@1.7.3:
+    resolution: {integrity: sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==}
 
   babel-core@7.0.0-bridge.0:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
@@ -5826,6 +5826,9 @@ packages:
   race-signal@1.0.2:
     resolution: {integrity: sha512-o3xNv0iTcIDQCXFlF6fPAMEBRjFxssgGoRqLbg06m+AdzEXXLUmoNOoUHTVz2NoBI8hHwKFKoC6IqyNtWr2bww==}
 
+  race-signal@1.1.0:
+    resolution: {integrity: sha512-VqsW1uzCXfKBd2DhA3K3NhQlqQr04+5WQ7+kHpf1HzT01Q+ePSFWZdQHXKZPuLmm2eXTZM1XLO76cq15ZRAaEA==}
+
   randombytes@2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
 
@@ -8253,7 +8256,7 @@ snapshots:
       '@orbitdb/set-db': 1.0.0(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))
       ajv: 8.17.1
       approx-string-match: 2.0.0
-      axios: 1.7.2
+      axios: 1.7.3
       blockstore-level: 1.1.8
       browser-fs-access: 0.35.0
       chokidar: 3.6.0
@@ -8315,7 +8318,7 @@ snapshots:
     dependencies:
       '@achingbrain/nat-port-mapper': 1.0.13
       '@constl/ipa': 1.1.2(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))
-      axios: 1.7.2
+      axios: 1.7.3
       bip39: 3.1.0
       bufferutil: 4.0.8
       chalk: 5.3.0
@@ -8827,7 +8830,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
       '@types/node': 20.14.14
-      '@types/yargs': 17.0.32
+      '@types/yargs': 17.0.33
       chalk: 4.1.2
 
   '@jridgewell/gen-mapping@0.3.5':
@@ -9446,7 +9449,7 @@ snapshots:
       netmask: 2.0.2
       p-defer: 4.0.1
       race-event: 1.3.0
-      race-signal: 1.0.2
+      race-signal: 1.1.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
 
@@ -10389,7 +10392,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@types/yargs@17.0.32':
+  '@types/yargs@17.0.33':
     dependencies:
       '@types/yargs-parser': 21.0.3
 
@@ -10955,7 +10958,7 @@ snapshots:
 
   average@0.0.1: {}
 
-  axios@1.7.2:
+  axios@1.7.3:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
@@ -13395,7 +13398,7 @@ snapshots:
   it-queueless-pushable@1.0.0:
     dependencies:
       p-defer: 4.0.1
-      race-signal: 1.0.2
+      race-signal: 1.1.0
 
   it-reader@6.0.4:
     dependencies:
@@ -14812,6 +14815,8 @@ snapshots:
   race-event@1.3.0: {}
 
   race-signal@1.0.2: {}
+
+  race-signal@1.1.0: {}
 
   randombytes@2.1.0:
     dependencies:
