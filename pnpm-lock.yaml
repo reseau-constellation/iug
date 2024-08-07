@@ -161,7 +161,7 @@ importers:
         version: 4.4.0(vue@3.4.36(typescript@5.5.4))
       vuetify:
         specifier: ^3.6.12
-        version: 3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
+        version: 3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -288,7 +288,7 @@ importers:
         version: 0.22.0(rollup@4.18.1)(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))
       vite-plugin-vuetify:
         specifier: ^2.0.3
-        version: 2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.13)
+        version: 2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.14)
       vitest:
         specifier: 2.0.5
         version: 2.0.5(@types/node@20.14.14)(happy-dom@14.12.3)(terser@5.31.4)
@@ -1691,6 +1691,9 @@ packages:
 
   '@noble/curves@1.4.2':
     resolution: {integrity: sha512-TavHr8qycMChk8UwMld0ZDRvatedkzWfH8IiaeGCfymOP5i0hSCozz9vHOL0nkwk7HRMlFnAiKpS2jrUmSybcw==}
+
+  '@noble/curves@1.5.0':
+    resolution: {integrity: sha512-J5EKamIHnKPyClwVrzmaf5wSdQXgdHcPZIZLu3bwnbeCx8/7NPK5q2ZBWF+5FvYGByjiQQsJYX6jfgB2wDPn3A==}
 
   '@noble/hashes@1.4.0':
     resolution: {integrity: sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==}
@@ -6877,8 +6880,8 @@ packages:
       typescript:
         optional: true
 
-  vuetify@3.6.13:
-    resolution: {integrity: sha512-Gz7jxXAkmff2m6CM0EUWOo/72TM322/3I6aDna++k1nPOW1/hNx4td1MZG4u75fzdn3r+uIe0dbF7SWuhu6DWA==}
+  vuetify@3.6.14:
+    resolution: {integrity: sha512-iSa3CgdTEt/7B0aGDmkBARe8rxDDycEYHu1zNtOf1Xpvs/Tv7Ql5yHGqM2XCY0h7SL8Dme39pJIovzg3q4JLbQ==}
     engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       typescript: '>=4.7'
@@ -8994,7 +8997,7 @@ snapshots:
   '@libp2p/crypto@4.1.8':
     dependencies:
       '@libp2p/interface': 1.6.3
-      '@noble/curves': 1.4.2
+      '@noble/curves': 1.5.0
       '@noble/hashes': 1.4.0
       asn1js: 3.0.5
       multiformats: 13.2.2
@@ -9659,6 +9662,10 @@ snapshots:
   '@noble/ciphers@0.5.3': {}
 
   '@noble/curves@1.4.2':
+    dependencies:
+      '@noble/hashes': 1.4.0
+
+  '@noble/curves@1.5.0':
     dependencies:
       '@noble/hashes': 1.4.0
 
@@ -10687,11 +10694,11 @@ snapshots:
       js-beautify: 1.15.1
       vue-component-type-helpers: 2.0.26
 
-  '@vuetify/loader-shared@2.0.3(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)))':
+  '@vuetify/loader-shared@2.0.3(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)))':
     dependencies:
       upath: 2.0.1
       vue: 3.4.36(typescript@5.5.4)
-      vuetify: 3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
+      vuetify: 3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
 
   '@vueuse/core@10.11.0(vue@3.4.36(typescript@5.5.4))':
     dependencies:
@@ -15897,14 +15904,14 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-vuetify@2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.13):
+  vite-plugin-vuetify@2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.14):
     dependencies:
-      '@vuetify/loader-shared': 2.0.3(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)))
+      '@vuetify/loader-shared': 2.0.3(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)))
       debug: 4.3.6
       upath: 2.0.1
       vite: 5.3.5(@types/node@20.14.14)(terser@5.31.4)
       vue: 3.4.36(typescript@5.5.4)
-      vuetify: 3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
+      vuetify: 3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4))
     transitivePeerDependencies:
       - supports-color
 
@@ -16009,12 +16016,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.5.4
 
-  vuetify@3.6.13(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)):
+  vuetify@3.6.14(typescript@5.5.4)(vite-plugin-vuetify@2.0.4)(vue@3.4.36(typescript@5.5.4)):
     dependencies:
       vue: 3.4.36(typescript@5.5.4)
     optionalDependencies:
       typescript: 5.5.4
-      vite-plugin-vuetify: 2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.13)
+      vite-plugin-vuetify: 2.0.4(vite@5.3.5(@types/node@20.14.14)(terser@5.31.4))(vue@3.4.36(typescript@5.5.4))(vuetify@3.6.14)
 
   walker@1.0.8:
     dependencies:
