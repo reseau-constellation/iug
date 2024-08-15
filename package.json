@@ -97,7 +97,7 @@
     "@mdi/font": "^7.4.47",
     "@videojs-player/vue": "^1.0.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
-    "@vueuse/core": "^10.11.0",
+    "@vueuse/core": "^11.0.0",
     "@wdns/vue-code-block": "^2.3.3",
     "assert": "^2.1.0",
     "axios": "^1.7.2",
