@@ -1,7 +1,7 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'path';
 import {fileURLToPath, URL} from 'url';
-import electronAppUniversalProtocolClient from 'electron-app-universal-protocol-client';
+const electronAppUniversalProtocolClient = require('electron-app-universal-protocol-client').default;
 
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
@@ -80,7 +80,7 @@ export async function restoreOrCreateWindow() {
 
     electronAppUniversalProtocolClient.on(
       'request',
-      async (urlRequête) => {
+      async (urlRequête: string) => {
         console.log(urlRequête);
       },
     );
