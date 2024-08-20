@@ -1,10 +1,13 @@
 import {app, BrowserWindow} from 'electron';
 import {join} from 'path';
 import {fileURLToPath, URL} from 'url';
+const electronAppUniversalProtocolClient = require('electron-app-universal-protocol-client').default;
+
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
+import { enDéveloppement } from './utils';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -74,6 +77,17 @@ export async function restoreOrCreateWindow() {
     connecterHttp();
     connecterRedémarrer();
     connecterSystèmeFichiers();
+
+    electronAppUniversalProtocolClient.on(
+      'request',
+      async (urlRequête: string) => {
+        console.log(urlRequête);
+      },
+    );
+    await electronAppUniversalProtocolClient.initialize({
+      protocol: 'constl',
+      mode: enDéveloppement ? 'development' : 'production',
+    });
   }
 
   if (window.isMinimized()) {
