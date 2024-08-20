@@ -15,6 +15,7 @@ vi.mock('electron', () => {
   bw.prototype.loadURL = vi.fn((_: string, __?: Electron.LoadURLOptions) => Promise.resolve());
   bw.prototype.loadFile = vi.fn((_: string, __?: Electron.LoadFileOptions) => Promise.resolve());
   // Use "any" because the on function is overloaded
+  // @ts-expect-error Je ne sais pas pourquoi
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bw.prototype.on = vi.fn<any>();
   bw.prototype.destroy = vi.fn();
