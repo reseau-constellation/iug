@@ -4,7 +4,6 @@ import MesDonnées from '/@/vues/données/MesDonnées.vue';
 import PageBD from '/@/vues/données/PageBD.vue';
 import PageNuée from '/@/vues/données/PageNuée.vue';
 import PageProjet from '/@/vues/données/PageProjet.vue';
-import PageTableau from '/@/vues/données/PageTableau.vue';
 import PageAccueil from '/@/vues/PageAccueil.vue';
 import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
 import PageCompte from '/@/vues/PageCompte.vue';
@@ -34,10 +33,6 @@ const routes: Array<RouteRecordRaw> = [
       const {id} = route.params;
       if (typeof id === 'string') return {id: decodeURIComponent(id)};
     },
-  },
-  {
-    path: encodeURI('/données/bd/:id/tableau/:idTableau'),
-    component: PageTableau,
   },
   {
     path: encodeURI('/données/nuée/:id'),
