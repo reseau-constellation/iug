@@ -125,7 +125,8 @@
                 <template #label>
                   <div>
                     <p class="font-weight-bold">{{ t('automatisations.fréquence.fixe') }}</p>
-                    <p class="text-medium-emphasis text-caption"> </p><div class="d-flex vertical-align">
+                    <p class="text-medium-emphasis text-caption"></p>
+                    <div class="d-flex vertical-align">
                       <div
                         class="text-medium-emphasis text-caption"
                         style="display: flex; align-items: center"

@@ -28,7 +28,6 @@ import {
   écouterMessagesDeServeurConstellation,
 } from '../src';
 
-
 vi.mock('electron', () => {
   type ÉvénementsCoquille = {
     [CODE_MESSAGE_D_IPA]: (x: [IpcRendererEvent, MessageDIpa[]]) => void;
