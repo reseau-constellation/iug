@@ -1,12 +1,12 @@
 <template>
-  <CarteCode :codes="codes">
+  <carte-code :codes="codes">
     <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
-  </CarteCode>
+  </carte-code>
 </template>
 
 <script setup lang="ts">
