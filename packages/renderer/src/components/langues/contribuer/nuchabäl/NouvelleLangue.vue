@@ -77,7 +77,8 @@
                 @click="() => utiliserSuggestionÉchantillonLangue()"
               >
                 {{ t('nuchabäl.oui') }}
-              </v-chip><v-chip
+              </v-chip>
+              <v-chip
                 class="mt-2 mx-2"
                 :variant="suggestionLangueSelonÉchantillonIgnorée ? 'tonal' : 'outlined'"
                 label

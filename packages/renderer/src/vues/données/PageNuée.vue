@@ -28,7 +28,7 @@
         @click="() => $router.push(encodeURI('/données/'))"
       />
     </div>
-    
+
     <image-editable
       :src-image="image"
       :img-defaut="imgDéfaut"
@@ -149,7 +149,7 @@
           </v-tooltip>
         </template>
       </carte-exportation-objet>
-      
+
       <generer-appli :id-nuee="id">
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
@@ -172,7 +172,7 @@
           </v-tooltip>
         </template>
       </generer-appli>
-    
+
       <carte-code-nuee :id="id">
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
@@ -214,7 +214,7 @@
 
       <carte-effacer
         v-if="!!monAutorisation"
-        @effacer="effacerNuée"
+        @effacer="() => effacerNuée()"
       >
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
@@ -247,18 +247,18 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
-import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
-import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
-import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import LienObjet from '/@/components/communs/LienObjet.vue';
-import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
+import LienObjet from '/@/components/communs/LienObjet.vue';
+import TexteTronque from '/@/components/communs/TexteTronqué.vue';
+import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
+import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
+import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
 
-import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
-import { useDisplay, useRtl } from 'vuetify';
+import {useDisplay, useRtl} from 'vuetify';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
+import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
 const props = defineProps<{id: string}>();
 
@@ -327,7 +327,9 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
     idNuée: props.id,
     idsMotsClefs: nouveaux,
   });
-  await Promise.all(àEnlever.map(m => constl.nuées.effacerMotClefNuée({idNuée: props.id, idMotClef: m})));
+  await Promise.all(
+    àEnlever.map(m => constl.nuées.effacerMotClefNuée({idNuée: props.id, idMotClef: m})),
+  );
 };
 
 /*

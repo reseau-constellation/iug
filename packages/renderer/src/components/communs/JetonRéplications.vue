@@ -8,7 +8,9 @@
     <span
       v-if="nRéplicationsDispositifs > 0"
       class="ms-2"
-    >{{ t('réplications.réplicationsEnLigne', [nRéplicationsEnLigne]) }}</span>
+    >
+      {{ t('réplications.réplicationsEnLigne', [nRéplicationsEnLigne]) }}
+    </span>
   </v-chip>
 </template>
 <script setup lang="ts">

@@ -39,7 +39,8 @@
                 v-bind="propsActivateur"
                 class="text-h5"
               >
-                <span v-if="noms">{{ nom || t('communs.baseCarteObjet.sansNom') }}
+                <span v-if="noms">
+                  {{ nom || t('communs.baseCarteObjet.sansNom') }}
                   <v-btn
                     :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
                     variant="flat"
