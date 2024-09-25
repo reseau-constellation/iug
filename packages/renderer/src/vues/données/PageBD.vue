@@ -107,6 +107,7 @@
         @sauvegarder="ids => sauvegarderMotsClefs(ids)"
       />
     </div>
+
     <div class="text-center">
       <CarteEpingler :id="id">
         <template #activator="{props: propsActivateurCarte}">
