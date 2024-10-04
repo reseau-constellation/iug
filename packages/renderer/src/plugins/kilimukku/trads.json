@@ -181,6 +181,17 @@
         }
       }
     },
+    "erreurs": {
+      "init": {
+        "titre": "Constellation n'a pas pu démarrer",
+        "explication": "C'est probablement de notre faute. Contactez-nous et nous vous dépannerons !"
+      },
+      "déjàLancé": {
+        "titre": "Constellation est déjà ouverte",
+        "explication": "Assurez-vous de fermer toutes les instances de Constellation (ligne de commande, Python ou autre) ouvertes sur votre ordinateur, puis relancez Constellation."
+      },
+      "relancer": "Relancer Constellation"
+    },
     "imageÉditable": {
       "imageTropGrande": "L'image est trop grande. Elle doit être inférieure à {tailleMaxKO} KO."
     },
