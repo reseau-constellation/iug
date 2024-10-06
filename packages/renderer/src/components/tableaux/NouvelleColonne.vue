@@ -69,6 +69,7 @@
                 :key="règle.id"
                 :regle="règle"
                 effacable
+                :autorisation-modifier="true"
                 @effacer="() => effacerRègle(règle.id)"
               />
 
@@ -77,6 +78,7 @@
                 :key="règle.id"
                 :regle="règle"
                 :effacable="false"
+                :autorisation-modifier="false"
               />
             </v-list>
           </v-window-item>

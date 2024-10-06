@@ -2,6 +2,7 @@
   <item-regle
     :regle="regle.règle"
     :effacable="effaçable"
+    :autorisation-modifier="autorisationModifier"
     @effacer="() => émettre('effacer')"
   />
 </template>
@@ -14,6 +15,7 @@ import ItemRegle from './ItemRègle.vue';
 
 const props = defineProps<{
   regle: valid.règleColonne;
+  autorisationModifier: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;

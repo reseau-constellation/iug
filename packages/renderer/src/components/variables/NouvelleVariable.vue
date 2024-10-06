@@ -104,6 +104,7 @@
               :key="r.id"
               :regle="r"
               effacable
+              autorisation-modifier
               @effacer="() => effacerRègle(r.id)"
             ></item-regle>
             <p

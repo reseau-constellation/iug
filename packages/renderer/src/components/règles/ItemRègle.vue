@@ -3,12 +3,10 @@
     <template #title>
       {{ t(typeRègle) }}
     </template>
-    <template #subtitle>
-      {{ t(infoRègle) }}
-    </template>
+    <p class="text-disabled font-weight-light">{{ t(infoRègle) }}</p>
     <template #append>
       <v-icon
-        v-if="effacable"
+        v-if="effacable && autorisationModifier"
         icon="mdi-delete"
         color="error"
         variant="flat"
@@ -25,6 +23,7 @@ import {computed} from 'vue';
 const props = defineProps<{
   regle: valid.règleVariableAvecId;
   effacable: boolean;
+  autorisationModifier: boolean;
 }>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;

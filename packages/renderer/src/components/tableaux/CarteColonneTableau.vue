@@ -15,13 +15,18 @@
       </v-card-item>
       <v-card-text style="overflow-y: auto">
         <division-carte
-          :titre="t('colonnes.variable')"
+          :titre="t('colonnes.carte.variable')"
           :en-attente="!règlesÀAfficher"
         />
         <selecteur-variable
+          v-if="permissionModifier"
           :multiples="false"
           :originales="[idVariable]"
           @selectionnee="ids => (choixVariable = ids[0])"
+        />
+        <jeton-variable
+          v-else
+          :id="idVariable"
         />
         <v-checkbox
           v-model="choixIndex"
@@ -42,7 +47,7 @@
           </template>
         </v-checkbox>
         <division-carte
-          :titre="t('colonnes.règles')"
+          :titre="t('colonnes.carte.règles')"
           :en-attente="!règlesÀAfficher"
         />
         <v-list>
@@ -50,6 +55,7 @@
             v-for="r in règlesÀAfficher"
             :key="r.règle.id"
             :regle="r"
+            :autorisation-modifier="permissionModifier"
             @effacer="() => effacerRègle(r.règle.id)"
           ></item-regle-colonne>
           <v-divider class="mt-2" />
@@ -109,6 +115,7 @@ import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
+import JetonVariable from '/@/components/variables/JetonVariable.vue';
 
 import {utiliserConstellation} from '../utils';
 

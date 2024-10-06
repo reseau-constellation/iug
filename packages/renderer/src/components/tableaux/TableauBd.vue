@@ -14,6 +14,7 @@
       >
         <v-spacer />
         <v-btn
+          v-if="autorisation"
           icon
           :disabled="!nFilesModifiées"
           @click="() => sauvegarderModifications()"
@@ -35,8 +36,8 @@
           />
         </v-btn>
         <v-switch
+          v-if="autorisation"
           v-model="édition"
-          :readonly="!autorisation"
           class="me-4"
           density="compact"
           color="primary"
@@ -46,6 +47,7 @@
         />
 
         <nouvelle-colonne
+          v-if="autorisation"
           :id-tableau="idTableau"
           :variables-interdites="variables"
           @nouvelle="col => ajouterColonne(col)"
@@ -150,7 +152,10 @@
       />
     </template>
 
-    <template #[`header.actions`]>
+    <template
+      v-if="autorisation"
+      #[`header.actions`]
+    >
       <v-btn
         v-if="plusConfirmer"
         icon="mdi-delete"
@@ -241,7 +246,7 @@
         @click="() => ajouterLigne()"
       />
       <v-btn
-        v-else-if="plusConfirmer"
+        v-else-if="plusConfirmer && autorisation"
         size="small"
         icon="mdi-delete"
         variant="flat"
@@ -249,7 +254,7 @@
         @click="() => effacerÉlément({idÉlément: item.id})"
       />
       <v-dialog
-        v-else
+        v-else-if="autorisation"
         v-model="dialogueEffacer"
       >
         <template #activator="{props: propsActivateur}">

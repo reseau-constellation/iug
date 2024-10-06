@@ -70,6 +70,7 @@
         :key="r.id"
         :regle="r"
         :effacable="!!(monAutorisation && r.règle.typeRègle !== 'catégorie')"
+        :autorisation-modifier="!!monAutorisation"
         @effacer="() => effacerRègle(r.id)"
       ></item-regle>
       <v-divider class="mt-2" />
