@@ -218,8 +218,8 @@ importers:
         specifier: ^7.16.0
         version: 7.18.0(eslint@9.9.1)(typescript@5.5.4)
       '@vitejs/plugin-vue':
-        specifier: 5.1.2
-        version: 5.1.2(vite@5.4.2(@types/node@20.16.10)(terser@5.34.1))(vue@3.4.38(typescript@5.5.4))
+        specifier: 5.1.4
+        version: 5.1.4(vite@5.4.2(@types/node@20.16.10)(terser@5.34.1))(vue@3.4.38(typescript@5.5.4))
       '@vitest/coverage-istanbul':
         specifier: ^2.0.2
         version: 2.0.5(vitest@2.0.5(@types/node@20.16.10)(happy-dom@14.12.3)(terser@5.34.1))
@@ -2318,8 +2318,8 @@ packages:
   '@videojs/xhr@2.6.0':
     resolution: {integrity: sha512-7J361GiN1tXpm+gd0xz2QWr3xNWBE+rytvo8J3KuggFaLg+U37gZQ2BuPLcnkfGffy2e+ozY70RHC8jt7zjA6Q==}
 
-  '@vitejs/plugin-vue@5.1.2':
-    resolution: {integrity: sha512-nY9IwH12qeiJqumTCLJLE7IiNx7HZ39cbHaysEUd+Myvbz9KAqd2yq+U01Kab1R/H1BmiyM2ShTYlNH32Fzo3A==}
+  '@vitejs/plugin-vue@5.1.4':
+    resolution: {integrity: sha512-N2XSI2n3sQqp5w7Y/AN/L2XDjBIRGqXko+eDp42sydYSBeJuSm5a1sLf8zakmo8u7tA8NmBgoDLA1HeOESjp9A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0
@@ -10493,7 +10493,7 @@ snapshots:
       global: 4.4.0
       is-function: 1.0.2
 
-  '@vitejs/plugin-vue@5.1.2(vite@5.4.2(@types/node@20.16.10)(terser@5.34.1))(vue@3.4.38(typescript@5.5.4))':
+  '@vitejs/plugin-vue@5.1.4(vite@5.4.2(@types/node@20.16.10)(terser@5.34.1))(vue@3.4.38(typescript@5.5.4))':
     dependencies:
       vite: 5.4.2(@types/node@20.16.10)(terser@5.34.1)
       vue: 3.4.38(typescript@5.5.4)
