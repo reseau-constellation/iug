@@ -1,4 +1,4 @@
-import type {valid} from '@constl/ipa';
+import type {valid, variables as typesVariables} from '@constl/ipa';
 
 import {utiliserConstellation} from '../utils';
 
@@ -37,4 +37,17 @@ export const créerColonneTableau = async ({
       règle: règle,
     });
   }
+};
+
+
+const triables: typesVariables.catégorieBaseVariables[] = [
+  'booléen',
+  'chaîne',
+  'chaîneNonTraductible',
+  'horoDatage',
+  'intervaleTemps',
+  'numérique',
+];
+export const triable = (catégorieBase: typesVariables.catégorieBaseVariables): boolean => {
+  return triables.includes(catégorieBase);
 };

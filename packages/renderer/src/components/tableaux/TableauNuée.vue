@@ -8,13 +8,32 @@
         flat
         density="compact"
       >
-        <v-toolbar-title>
-          {{ nomTraduit || t('tableaux.sansNom') }}
-        </v-toolbar-title>
         <v-spacer />
-        <v-btn icon="mdi-table-column-plus-after"></v-btn>
-        <v-btn icon="mdi-sync"></v-btn>
-        <v-btn icon="mdi-download"></v-btn>
+        <nouvelle-colonne
+          v-if="autorisation"
+          :id-tableau="idTableau"
+          :variables-interdites="variables"
+          @nouvelle="col => ajouterColonne(col)"
+        >
+          <template #activator="{props: propsActivateur}">
+            <v-btn
+              v-bind="propsActivateur"
+              icon="mdi-table-column-plus-after"
+            ></v-btn>
+          </template>
+        </nouvelle-colonne>
+        <carte-effacer
+          v-if="autorisation"
+          @effacer="() => effacerTableau()"
+        >
+          <template #activator="{props: propsActivateur}">
+            <v-btn
+              v-bind="propsActivateur"
+              icon="mdi-delete"
+              color="error"
+            />
+          </template>
+        </carte-effacer>
       </v-toolbar>
     </template>
     <template #no-data>
@@ -22,69 +41,185 @@
     </template>
 
     <template
-      v-for="c in colonnes"
-      :key="c.id"
-      #[`header.${c.id}`]
+      v-for="c in colonnesVariables"
+      :key="c.key"
+      #[`header.${c.key}`]="{column, isSorted, getSortIcon, toggleSort}"
     >
       <entete-colonne-tableau
+        :id-colonne="c.key"
+        :id-variable="c.info.variable"
         :id-tableau="idTableau"
-        :id-colonne="c.id"
-        :id-variable="c.variable"
-        :index="!!c.index"
+        :index="!!c.info.index"
+        :regles="règles?.filter(r => r.colonne === c.key)"
         :permission-modifier="!!autorisation"
+        :ordonnable="column.sortable"
+        :est-ordonnee="isSorted(column)"
+        :icone-ordonner="getSortIcon(column) as string"
+        @basculer-ordonner="() => toggleSort(column)"
+      />
+    </template>
+
+    <template
+      v-for="c in colonnesVariables"
+      :key="c.key"
+      #[`item.${c.key}`]="{item}"
+    >
+      <cellule-tableau
+        :categorie="c.info.catégorie?.catégorie"
+        :val="item[c.key]"
+        :editable="false"
       />
     </template>
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux} from '@constl/ipa';
+import type {tableaux, valid} from '@constl/ipa';
 
 import {rechercher, suivre} from '@constl/vue';
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import EnteteColonneTableau from './EntêteColonneTableau.vue';
+import CelluleTableau from './cellules/CelluleTableau.vue';
+import NouvelleColonne from './NouvelleColonne.vue';
+import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
+import { triable } from './utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
-const props = defineProps<{idNuée: string; idTableau: string; clefTableau: string}>();
-
-// Nom
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
-const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => noms.value));
+const props = defineProps<{idNuee: string; idTableau: string; clefTableau: string}>();
 
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
 
+// Variables
+const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
+
+// Règles
+const règles = suivre(constl.nuées.suivreRèglesTableauNuée, {idNuée: props.idNuee, clefTableau: props.clefTableau});
+
 // Données
-const monCompte = suivre(constl.suivreIdCompte);
 const {résultats: données} = rechercher(
   constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>,
   {
-    idNuée: props.idNuée,
+    idNuée: props.idNuee,
     clefTableau: props.clefTableau,
   },
 );
-const filesTableau = computed(() => {
-  return données.value?.map(d => ({
-    ...d.élément,
-    contributeur: d.idCompte,
-    éditable: d.idCompte === monCompte.value,
-  }));
+const donnéesAvecCompte = computed(()=>{
+  return données.value?.map(d=>{
+    return Object.assign({}, d.élément.données, {idCompte: d.idCompte});
+  });
 });
+
+const filesTableau = computed(() => {
+  const ordonnées = donnéesAvecCompte.value?.toSorted((a, b) => {
+    if (!ordonnerPar.value) return 0;
+    else {
+      return (
+        ordonnerPar.value
+          .map(o => {
+            if (a[o.key] === undefined)
+              return b[o.key] === undefined ? 0 : o.order === 'asc' ? 1 : -1;
+            else if (b[o.key] === undefined)
+              return a[o.key] === undefined ? 0 : o.order === 'asc' ? -1 : 1;
+            return a[o.key] > b[o.key]
+              ? o.order === 'asc'
+                ? 1
+                : -1
+              : a[o.key] < b[o.key]
+                ? o.order === 'asc'
+                  ? -1
+                  : 1
+                : 0;
+          })
+          .find(x => x !== 0) || 0
+      );
+    }
+  });
+  return ordonnées;
+});
+
+const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
+
 
 // Colonnes
 const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée<tableaux.InfoColAvecCatégorie>, {
-  idNuée: props.idNuée,
+  idNuée: props.idNuee,
   clefTableau: props.clefTableau,
   catégories: true,
 });
+
+const colonnesAvecCatégories = suivre(
+  constl.nuées.suivreColonnesTableauNuée<tableaux.InfoColAvecCatégorie>,
+  {
+    idNuée: props.idNuee,
+    clefTableau: props.clefTableau,
+    catégories: true,
+  },
+);
+
+const colonnesVariables = computed(() => {
+  return (colonnes.value || []).map(c => {
+    const catégorie = colonnesAvecCatégories.value?.find(col => col.id === c.id)?.catégorie;
+    return {
+      key: c.id,
+      sortable:
+        catégorie === undefined ||
+        (catégorie?.type === 'simple' ? triable(catégorie.catégorie) : false),
+      info: {
+        index: c.index,
+        catégorie,
+        variable: c.variable,
+      },
+    };
+  });
+});
+
 const entêtes = computed(() => {
   return (colonnes.value || []).map(c => ({
     key: c.id,
   }));
 });
+
+const ajouterColonne = async ({
+  idVariable,
+  idColonne,
+  index,
+  règles,
+}: {
+  idVariable: string;
+  idColonne?: string | undefined;
+  index: boolean;
+  règles: valid.règleVariable[];
+}) => {
+  idColonne = await constl.nuées.ajouterColonneTableauNuée({
+    idTableau: props.idTableau,
+    idVariable,
+    idColonne,
+  });
+  if (index)
+    await constl.nuées.changerColIndexTableauNuée({
+      idTableau: props.idTableau,
+      idColonne,
+      val: true,
+    });
+  for (const règle of règles) {
+    await constl.nuées.ajouterRègleTableauNuée({
+      idTableau: props.idTableau,
+      idColonne,
+      règle,
+    });
+  }
+};
+
+// Effacer tableau
+const effacerTableau = async () => {
+  await constl.nuées.effacerTableauNuée({idNuée: props.idNuee, idTableau: props.idTableau});
+};
+
 </script>

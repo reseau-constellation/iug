@@ -307,7 +307,7 @@
   </v-data-table>
 </template>
 <script setup lang="ts">
-import type {tableaux, types, variables as typesVariables, valid} from '@constl/ipa';
+import type {tableaux, types, valid} from '@constl/ipa';
 
 import {suivre} from '@constl/vue';
 import {computed, ref, watch} from 'vue';
@@ -324,6 +324,7 @@ import NouvelleImportation from '/@/components/automatisations/NouvelleImportati
 import {watchEffect} from 'vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import { triable } from './utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -374,17 +375,6 @@ const entêtes = computed(() => {
   };
   return [...colonnesVariables.value, colonneActions];
 });
-const triables: typesVariables.catégorieBaseVariables[] = [
-  'booléen',
-  'chaîne',
-  'chaîneNonTraductible',
-  'horoDatage',
-  'intervaleTemps',
-  'numérique',
-];
-const triable = (catégorieBase: typesVariables.catégorieBaseVariables): boolean => {
-  return triables.includes(catégorieBase);
-};
 
 const ajouterColonne = async ({
   idVariable,
