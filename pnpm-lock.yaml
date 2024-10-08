@@ -171,7 +171,7 @@ importers:
     devDependencies:
       '@constl/utils-tests':
         specifier: ^1.4.2
-        version: 1.4.2(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))
+        version: 1.4.3(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))
       '@eslint/js':
         specifier: ^9.7.0
         version: 9.9.0
@@ -1184,8 +1184,8 @@ packages:
     resolution: {integrity: sha512-gWv7BhTXYactNBXPDlUol4EudIr1tsZC1/Gvqcp0Rb2SDqGLHiSURqyiXqj6xVtzPMlcyPHDkBmqsEf8cecWJg==}
     engines: {node: '>=20'}
 
-  '@constl/utils-tests@1.4.2':
-    resolution: {integrity: sha512-QI2e/AHdLaHWgXnki0FC/znnwDM3T/hxQEli0nvb3qBWbCJD93t0diDK9xBd6fcee4CgInV8qUqq6OtR1fYxvw==}
+  '@constl/utils-tests@1.4.3':
+    resolution: {integrity: sha512-16mSJ1nAMfaf5WBElyUjzbbvMGg5bT++SW8cjkt1c0oE1GNeD0MdYJPmpUf5jF6nmnt4gxF6grEx6BgNn97aKA==}
     engines: {node: '>=20'}
 
   '@constl/vue@1.0.1':
@@ -6900,6 +6900,9 @@ packages:
   weald@1.0.3:
     resolution: {integrity: sha512-h5pTSGRApQotfZ8Goqe5Jrg6iOjx4uXB55I00A+WRMZbhbiWfUatr6fMLt6UNrURzqXaX/ZDhIvcDzs1TEzz4Q==}
 
+  weald@1.0.4:
+    resolution: {integrity: sha512-+kYTuHonJBwmFhP1Z4YQK/dGi3jAnJGCYhyODFpHK73rbxnp9lnZQj7a2m+WVgn8fXr5bJaxUpF6l8qZpPeNWQ==}
+
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
     engines: {node: '>= 8'}
@@ -8543,11 +8546,11 @@ snapshots:
       uint8arrays: 5.1.0
       wherearewe: 2.0.1
 
-  '@constl/utils-tests@1.4.2(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))':
+  '@constl/utils-tests@1.4.3(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))':
     dependencies:
       '@helia/block-brokers': 3.0.4
       '@orbitdb/quickstart': https://codeload.github.com/orbitdb/quickstart/tar.gz/1557ffe(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.25.2)(@babel/preset-env@7.24.7(@babel/core@7.25.2))(bufferutil@4.0.8)(react@18.2.0))
-      blockstore-core: 4.4.1
+      blockstore-core: 5.0.2
       blockstore-level: 1.1.8
       browserify-fs: 1.0.0
       chokidar: 3.6.0
@@ -8776,7 +8779,7 @@ snapshots:
       it-map: 3.1.1
       it-pipe: 3.0.1
       it-take: 3.0.6
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       p-defer: 4.0.1
       progress-events: 1.0.1
       protons-runtime: 5.5.0
@@ -8797,7 +8800,7 @@ snapshots:
       '@multiformats/multiaddr-to-uri': 10.1.0
       interface-blockstore: 5.3.1
       interface-store: 5.1.8
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       progress-events: 1.0.1
 
   '@helia/delegated-routing-v1-http-api-client@3.0.2':
@@ -8812,7 +8815,7 @@ snapshots:
       it-first: 3.0.6
       it-map: 3.1.1
       it-ndjson: 1.0.7
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       p-defer: 4.0.1
       p-queue: 8.0.1
       uint8arrays: 5.1.0
@@ -8824,7 +8827,7 @@ snapshots:
       interface-blockstore: 5.3.1
       interface-datastore: 8.3.1
       interface-store: 5.1.8
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       progress-events: 1.0.1
 
   '@helia/routers@1.1.1':
@@ -8836,7 +8839,7 @@ snapshots:
       ipns: 9.1.2
       it-first: 3.0.6
       it-map: 3.1.1
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       uint8arrays: 5.1.0
 
   '@helia/unixfs@3.0.7':
@@ -8887,7 +8890,7 @@ snapshots:
       it-foreach: 2.1.1
       it-merge: 3.0.5
       mortice: 3.0.4
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       murmurhash3js-revisited: 3.0.0
       p-defer: 4.0.1
       progress-events: 1.0.1
@@ -8908,7 +8911,7 @@ snapshots:
   '@ipld/dag-json@10.2.2':
     dependencies:
       cborg: 4.2.4
-      multiformats: 13.2.3
+      multiformats: 13.3.0
 
   '@ipld/dag-pb@4.1.2':
     dependencies:
@@ -9100,7 +9103,7 @@ snapshots:
       '@noble/curves': 1.6.0
       '@noble/hashes': 1.5.0
       asn1js: 3.0.5
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       protons-runtime: 5.5.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
@@ -9181,7 +9184,7 @@ snapshots:
       '@multiformats/multiaddr': 12.3.1
       it-pushable: 3.2.3
       it-stream-types: 2.0.2
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       progress-events: 1.0.1
       uint8arraylist: 2.4.8
 
@@ -9236,7 +9239,7 @@ snapshots:
       '@libp2p/peer-id': 4.2.4
       interface-datastore: 8.3.1
       merge-options: 3.0.4
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       sanitize-filename: 1.6.3
       uint8arrays: 5.1.0
 
@@ -9255,8 +9258,8 @@ snapshots:
       '@libp2p/interface': 1.7.0
       '@multiformats/multiaddr': 12.3.1
       interface-datastore: 8.3.1
-      multiformats: 13.2.3
-      weald: 1.0.3
+      multiformats: 13.3.0
+      weald: 1.0.4
 
   '@libp2p/logger@5.1.0':
     dependencies:
@@ -9318,7 +9321,7 @@ snapshots:
   '@libp2p/peer-id@4.2.4':
     dependencies:
       '@libp2p/interface': 1.7.0
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       uint8arrays: 5.1.0
 
   '@libp2p/peer-record@7.0.25':
@@ -9594,7 +9597,7 @@ snapshots:
     dependencies:
       '@chainsafe/is-ip': 2.0.2
       '@multiformats/multiaddr': 12.3.1
-      multiformats: 13.2.3
+      multiformats: 13.3.0
 
   '@multiformats/multiaddr-to-uri@10.1.0':
     dependencies:
@@ -9605,7 +9608,7 @@ snapshots:
       '@chainsafe/is-ip': 2.0.2
       '@chainsafe/netmask': 2.0.0
       '@multiformats/dns': 1.0.6
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       uint8-varint: 2.0.4
       uint8arrays: 5.1.0
 
@@ -10994,7 +10997,7 @@ snapshots:
       it-filter: 3.1.1
       it-merge: 3.0.5
       it-pushable: 3.2.3
-      multiformats: 13.2.3
+      multiformats: 13.3.0
 
   blockstore-level@1.1.8:
     dependencies:
@@ -12732,7 +12735,7 @@ snapshots:
       interface-datastore: 8.3.1
       ipns: 9.1.2
       libp2p: 1.9.4
-      multiformats: 13.2.3
+      multiformats: 13.3.0
     transitivePeerDependencies:
       - bufferutil
       - react-native
@@ -12871,7 +12874,7 @@ snapshots:
   interface-blockstore@5.3.1:
     dependencies:
       interface-store: 6.0.2
-      multiformats: 13.2.3
+      multiformats: 13.3.0
 
   interface-datastore@8.3.1:
     dependencies:
@@ -12952,7 +12955,7 @@ snapshots:
       cborg: 4.2.4
       err-code: 3.0.1
       interface-datastore: 8.3.1
-      multiformats: 13.2.3
+      multiformats: 13.3.0
       protons-runtime: 5.5.0
       timestamp-nano: 1.0.1
       uint8arraylist: 2.4.8
@@ -15578,7 +15581,7 @@ snapshots:
 
   uint8arrays@5.1.0:
     dependencies:
-      multiformats: 13.2.3
+      multiformats: 13.3.0
 
   undici-types@5.26.5: {}
 
@@ -15878,6 +15881,11 @@ snapshots:
       defaults: 1.0.4
 
   weald@1.0.3:
+    dependencies:
+      ms: 3.0.0-canary.1
+      supports-color: 9.4.0
+
+  weald@1.0.4:
     dependencies:
       ms: 3.0.0-canary.1
       supports-color: 9.4.0
