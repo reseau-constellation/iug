@@ -220,6 +220,11 @@ const rangéeColonneSélectionnée = (rangé: number, colonne: number) => {
   return m === 'présent' && j === jour.value;
 };
 
+// Sélection
+watchEffect(()=>{
+  val.value = (new Date(année.value, mois.value, jour.value)).getTime();
+});
+
 // Sauvegarder
 const sauvegarder = () => {
   émettre('modifiee', {val: val.value});

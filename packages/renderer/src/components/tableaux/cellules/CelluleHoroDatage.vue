@@ -1,5 +1,6 @@
 <template>
   <template v-if="editable">
+    {{ dateFormattée }}
     <selecteur-date
       :originale="valValide"
       @modifiee="({val}) => (valFinale = val)"
