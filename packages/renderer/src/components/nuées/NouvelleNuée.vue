@@ -394,7 +394,7 @@ const créerNuée = async () => {
     });
     if (!idTableau) return;
 
-    await constl.nuées.ajouterNomsTableauNuée({
+    await constl.nuées.sauvegarderNomsTableauNuée({
       idTableau,
       noms: tbl.noms,
     });

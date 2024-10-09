@@ -541,6 +541,7 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
+import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -723,7 +724,7 @@ const ajouterTableau = async ({
   ajoutTableauEnCours.value = true;
   try {
     const idTableau = await constl.bds.ajouterTableauBd({idBd: props.id});
-    await constl.nuées.ajouterNomsTableauNuée({
+    await constl.nuées.sauvegarderNomsTableauNuée({
       idTableau,
       noms,
     });
@@ -764,4 +765,5 @@ const ajouterTableau = async ({
 const effacerNuée = async () => {
   await constl.nuées.effacerNuée({idNuée: props.id});
 };
+
 </script>
