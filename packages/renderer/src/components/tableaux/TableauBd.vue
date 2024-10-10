@@ -149,6 +149,8 @@
         :est-ordonnee="isSorted(column)"
         :icone-ordonner="getSortIcon(column) as string"
         @basculer-ordonner="() => toggleSort(column)"
+        @sauvegarder="info=>modifierColonne({idColonne: c.key, ...info})"
+        @effacer="()=>effacerColonne({idColonne: c.key})"
       />
     </template>
 
@@ -406,6 +408,41 @@ const ajouterColonne = async ({
     });
   }
 };
+
+const modifierColonne = async ({
+  idColonne,
+  index,
+  // variable,  // à faire
+  règles,
+}: {
+  idColonne: string;
+  index: boolean;
+  // variable: string;
+  règles: {
+    nouvelles: valid.règleVariable[];
+    àEffacer: string[];
+  }
+}) => {
+  await constl.tableaux.changerColIndex({idTableau: props.idTableau, idColonne, val: index});
+  for (const r of règles.nouvelles) await constl.tableaux.ajouterRègleTableau({
+    idTableau: props.idTableau,
+    idColonne,
+    règle: r,
+  });
+  // await constl.tableaux.changerVariableColonne({idTableau: props.idTableau, idColonne, variable})
+  for (const r of règles.àEffacer) await constl.tableaux.effacerRègleTableau({
+    idTableau: props.idTableau,
+    idRègle: r,
+  });
+};
+
+const effacerColonne = async ({idColonne}: {idColonne: string}) => {
+  await constl.tableaux.effacerColonneTableau({
+    idTableau: props.idTableau,
+    idColonne,
+  });
+};
+
 
 // Données
 const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListeDonnées>, {

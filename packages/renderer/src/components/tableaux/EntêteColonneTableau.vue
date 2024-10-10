@@ -31,6 +31,7 @@
     :regles="regles"
     :permission-modifier="permissionModifier"
     @sauvegarder="info => émettre('sauvegarder', info)"
+    @effacer="() => émettre('effacer')"
   >
     <template #activator="{props: propsActivateur}">
       <v-icon
@@ -75,6 +76,7 @@ const émettre = defineEmits<{
       };
     },
   ): void;
+  (é: 'effacer'): void
 }>();
 
 const constl = utiliserConstellation();

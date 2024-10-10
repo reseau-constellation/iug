@@ -79,6 +79,13 @@
             </template>
           </nouvelle-regle>
         </v-list>
+        <v-btn
+          variant="flat"
+          append-icon="mdi-delete"
+          @click="()=>émettre('effacer')"
+        >
+          {{ t('communs.effacer') }}
+        </v-btn>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -139,6 +146,7 @@ const émettre = defineEmits<{
       };
     },
   ): void;
+  (é: 'effacer'): void;
 }>();
 
 const {mdAndUp} = useDisplay();

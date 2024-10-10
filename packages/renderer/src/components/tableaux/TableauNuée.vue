@@ -56,6 +56,8 @@
         :est-ordonnee="isSorted(column)"
         :icone-ordonner="getSortIcon(column) as string"
         @basculer-ordonner="() => toggleSort(column)"
+        @sauvegarder="info=>modifierColonne({idColonne: c.key, ...info})"
+        @effacer="()=>effacerColonne({idColonne: c.key})"
       />
     </template>
 
@@ -97,7 +99,7 @@ const props = defineProps<{idNuee: string; idTableau: string; clefTableau: strin
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
 
 // Variables
-const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
+const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});  // à faire: .nuées.
 
 // Règles
 const règles = suivre(constl.nuées.suivreRèglesTableauNuée, {idNuée: props.idNuee, clefTableau: props.clefTableau});
@@ -216,6 +218,42 @@ const ajouterColonne = async ({
     });
   }
 };
+
+
+const modifierColonne = async ({
+  idColonne,
+  index,
+  // variable,  // à faire
+  règles,
+}: {
+  idColonne: string;
+  index: boolean;
+  // variable: string;
+  règles: {
+    nouvelles: valid.règleVariable[];
+    àEffacer: string[];
+  }
+}) => {
+  await constl.nuées.changerColIndexTableauNuée({idTableau: props.idTableau, idColonne, val: index});
+  for (const r of règles.nouvelles) await constl.nuées.ajouterRègleTableauNuée({
+    idTableau: props.idTableau,
+    idColonne,
+    règle: r,
+  });
+  // await constl.nuées.changerVariableColonne({idTableau: props.idTableau, idColonne, variable})
+  for (const r of règles.àEffacer) await constl.nuées.effacerRègleTableauNuée({
+    idTableau: props.idTableau,
+    idRègle: r,
+  });
+};
+
+const effacerColonne = async ({idColonne}: {idColonne: string}) => {
+  await constl.nuées.effacerColonneTableauNuée({
+    idTableau: props.idTableau,
+    idColonne,
+  });
+};
+
 
 // Effacer tableau
 const effacerTableau = async () => {
