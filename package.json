@@ -90,7 +90,7 @@
     "@constl/mandataire-electron-principal": "^3.0.0",
     "@constl/mandataire-electron-rendu": "^3.0.0",
     "@constl/serveur": "^2.0.13",
-    "@constl/vue": "^1.0.1",
+    "@constl/vue": "^1.0.3",
     "@lassi-js/kili": "^0.3.14",
     "@lassi-js/kilimukku": "^1.1.7",
     "@lassi-js/kilimukku-vue": "1.1.8",
