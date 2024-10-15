@@ -33,7 +33,9 @@
         }
       },
       "copier": "Copier",
-      "sauvegarder": "Sauvegarder"
+      "sauvegarder": "Sauvegarder",
+      "fermer": "Fermer",
+      "annuler": "Annuler"
     },
     "navigation": {
       "accueil": "Accueil",
@@ -244,7 +246,6 @@
       "numération": "Numération",
       "expré": "Expression régulière",
       "direction": "Direction",
-
       "oui": "Oui",
       "non": "Non",
       "écriture": {
@@ -689,10 +690,10 @@
           "abr": "ஆர்"
         }
       },
-      "fermer": "முடி",
-      "annuler": "ரத்து",
       "copier": "நகல் எடு",
       "sauvegarder": "சேமி",
+      "fermer": "முடி",
+      "annuler": "ரத்து",
       "pointInterrogation": "?",
       "baseCarteObjet": {
         "description": "விளக்கம்",
@@ -762,6 +763,18 @@
         "communautaires": "சமூக பரிந்துரைகள்",
         "automatiques": "தானாக பரிந்துரைகள்",
         "autresLangues": "வேறு மொழிகள்"
+      }
+    },
+    "nuchabäl": {
+      "numération": "எண்கள்",
+      "direction": "திசை",
+      "nouvelle": {
+        "titre": "புதிய மொழி முன்மொழிவு"
+      },
+      "code": "குறியீடு",
+      "codesÉcriture": {
+        "nuchabäl": "நூச்சாபால்",
+        "i1": "சீ.அ.நி."
       }
     },
     "licences": {
@@ -1029,18 +1042,6 @@
       "jetonAucune": "உரிமமில்லாமல்",
       "carte": {
         "titre": "உரிமம்"
-      }
-    },
-    "nuchabäl": {
-      "nouvelle": {
-        "titre": "புதிய மொழி முன்மொழிவு"
-      },
-      "numération": "எண்கள்",
-      "direction": "திசை",
-      "code": "குறியீடு",
-      "codesÉcriture": {
-        "nuchabäl": "நூச்சாபால்",
-        "i1": "சீ.அ.நி."
       }
     },
     "pages": {
@@ -1415,6 +1416,97 @@
   "عرب": {
     "communs": {
       "constellation": "كوكبة"
+    }
+  },
+  "हिं": {
+    "communs": {
+      "constellation": "तारामंडल",
+      "auto": "स्वचालित",
+      "suivant": "अगला",
+      "retour": "वापस",
+      "ouvrir": "खोलना",
+      "oui": "हाँ",
+      "non": "ना",
+      "effacer": "मिटाना",
+      "télécharger": "अधोभारण करना",
+      "étiquetteNom": "नाम",
+      "indiceLangue": "भाषा",
+      "texteAucunNom": "नाम नीचे जोड़ा देना",
+      "erreurLangue": "{langue} भाषा में लिखना।",
+      "rechercher": "शोधना",
+      "autresLangues": "सारे भाषाएँ ({n})",
+      "troisPetitsPoints": "...",
+      "langagesInformatiques": {
+        "py": {
+          "abr": "पै"
+        },
+        "julia": {
+          "abr": "जू"
+        },
+        "r": {
+          "abr": "आर"
+        }
+      },
+      "copier": "प्रतिलिपि लेना",
+      "sauvegarder": "रखना"
+    },
+    "navigation": {
+      "accueil": "स्वागत",
+      "données": "मेरे आँकड़े",
+      "automatisations": "स्वचालन"
+    },
+    "accueil": {
+      "démarrer": "प्रारंभ",
+      "version": "संस्करण {version}",
+      "initialiserCompte": {
+        "nouveauCompte": "नया खाता"
+      },
+      "page": {
+        "graphiques": {
+          "bds": "मेरे आँकड़ा संचय"
+        },
+        "récents": {
+          "nouveau": "नया प्रलेख",
+          "nouvelleBd": "आँकड़ा संचय",
+          "nouvelleNuée": "नागरिक विज्ञान"
+        }
+      }
+    },
+    "kilimukku": {
+      "contribuer": "योगदान देना",
+      "titreSuggestions": "सुझावें",
+      "aucuneSuggestion": "इस संदेश के लिये समुदाय सुझाव कई भी मिली नहीं।",
+      "suggérer": "सुझाव करना",
+      "suggestions": {
+        "communautaires": "समुदाय सुझावें",
+        "automatiques": "स्वचालित सुझावें",
+        "autresLangues": "दूसरी भाषाओं में"
+      }
+    },
+    "compte": {
+      "effacerCompte": {
+        "titre": "खाता मिटाना"
+      }
+    },
+    "pages": {
+      "compte": {
+        "nouveauContact": "नया संपर्क"
+      }
+    },
+    "bds": {
+      "nouvelle": {
+        "titreCheminement": "नया आँकड़ा संचय"
+      }
+    },
+    "tableaux": {
+      "nouveau": {
+        "titreNoms": "तालिका का नाम"
+      }
+    },
+    "nuées": {
+      "nouvelle": {
+        "texteIndiceNom": "उदाहरण के लिये, \"दिल्ली में पानी का नागरिक विज्ञान का कर्यक्रम\"।"
+      }
     }
   }
 }
