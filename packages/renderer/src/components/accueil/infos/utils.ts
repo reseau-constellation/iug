@@ -2,11 +2,12 @@ import {suivre} from '@constl/vue';
 import axios from 'axios';
 import semver from 'semver';
 import {computed, onMounted, onUnmounted, watchEffect} from 'vue';
-import {isElectronRenderer} from 'wherearewe';
-import {utiliserConstellation} from '../../utils';
+import {isBrowser, isElectronRenderer} from 'wherearewe';
+import {utiliserConstellation, utiliserServeurLocalConstellation} from '../../utils';
 import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import {plateforme, type publicationGitHub} from '/@/utils';
-import {utiliserÉtatInfos} from '/@/état/infos';
+import type {InfoRequêtesServeurLocal} from '/@/état/infos';
+import { utiliserÉtatInfos} from '/@/état/infos';
 
 const versionPrésente = import.meta.env.VITE_APP_VERSION;
 export const obtenirDernièreVersion = async (): Promise<
@@ -182,9 +183,38 @@ export const lancerInfosUtilisationMémoire = ({seuil}: {seuil: number}) => {
   });
 };
 
+export const lancerInfosRequêtesServeurLocal = () => {
+  if (isBrowser) return;
+  
+  const étatInfos = utiliserÉtatInfos();
+  const serveurLocal = utiliserServeurLocalConstellation();
+
+  const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
+  
+  let idInfo: string | undefined = undefined;
+  watchEffect(()=>{
+    if (requêtes.value?.length) {
+      const infoRequêtes: InfoRequêtesServeurLocal = {
+        type: 'requêteServeurLocal',
+        détails: {
+          n: requêtes.value.length,
+        },
+      };
+      idInfo = étatInfos.ajouterInfo(
+        infoRequêtes,
+        'requêtesServeurLocal',
+      );
+    } else if (idInfo) {
+      étatInfos.effacerInfo(idInfo);
+      idInfo = undefined;
+    }
+  });
+};
+
 export const lancerInfos = () => {
   lancerInfosMisesÀJour();
   lancerInfosTélécharger();
   lancerInfosProtégerDonnées();
   lancerInfosUtilisationMémoire({seuil: 0.9});
+  lancerInfosRequêtesServeurLocal();
 };

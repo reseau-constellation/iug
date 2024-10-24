@@ -2,6 +2,7 @@ import type {Constellation, types} from '@constl/ipa';
 import type {கிளிமூக்கு as கிளிமூக்கு_வகை} from '@lassi-js/kilimukku';
 import type {Nuchabäl} from 'nuchabal';
 import {type Ref} from 'vue';
+import type { GestionnaireServeur } from '@constl/mandataire-electron-rendu';
 
 import EventEmitter, {once} from 'events';
 import {inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
@@ -11,6 +12,13 @@ export const utiliserConstellation = (): Constellation => {
   if (constl) return constl;
   throw new Error("Constellation n'est pas trouvable.");
 };
+
+export const utiliserServeurLocalConstellation = (): GestionnaireServeur => {
+  const serveur = inject<GestionnaireServeur>('serveurConstl');
+  if (serveur) return serveur;
+  throw new Error("Serveur local Constellation n'est pas trouvable.");
+};
+
 
 export const கிளிமூக்கு = (): கிளிமூக்கு_வகை => {
   const kilimukku = inject<கிளிமூக்கு_வகை>('கிளிமூக்கு');
