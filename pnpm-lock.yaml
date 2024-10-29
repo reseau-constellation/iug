@@ -171,7 +171,7 @@ importers:
     devDependencies:
       '@constl/utils-tests':
         specifier: ^1.4.2
-        version: 1.6.1(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
+        version: 1.6.2(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
       '@eslint/js':
         specifier: ^9.7.0
         version: 9.13.0
@@ -1141,8 +1141,8 @@ packages:
     resolution: {integrity: sha512-gWv7BhTXYactNBXPDlUol4EudIr1tsZC1/Gvqcp0Rb2SDqGLHiSURqyiXqj6xVtzPMlcyPHDkBmqsEf8cecWJg==}
     engines: {node: '>=20'}
 
-  '@constl/utils-tests@1.6.1':
-    resolution: {integrity: sha512-Xd+LcRaNzMgZMr4IexjwNKKlDf33m9slsyG89fmZ/4GaRJdLtlnG86Bv9VUj0agc3oiRZ8x0pecfw289M2ZLHg==}
+  '@constl/utils-tests@1.6.2':
+    resolution: {integrity: sha512-SSDjUdt5jCcJl6M+w1UHkut6/QYZJJoUWl9H8eTgacx8OXtp3QaUGwycQEr09i0rOypwUbuKc3UY3BcyDTtDDw==}
     engines: {node: '>=20'}
 
   '@constl/vue@1.0.3':
@@ -1599,11 +1599,20 @@ packages:
   '@libp2p/webrtc@5.0.15':
     resolution: {integrity: sha512-/UHVx6DYxY8jn+7jNNcK57RYUH6KYfd6w8aEg+p4ggdg4eNhp0VdCrmGEbpk+i9xNWNiWtFt3E9RG6Gj2V84rg==}
 
+  '@libp2p/webrtc@5.0.16':
+    resolution: {integrity: sha512-+o82zclk0d8HVGfI1pNiypCvhC0boubRVIJ/5+JSyUbZFpTNDelBb6DziI7s6NPVn0OnNvlfS6xWO3cetw9qag==}
+
   '@libp2p/websockets@9.0.10':
     resolution: {integrity: sha512-qFbUrIbc4cf+zQtZ2bLiZrMckaFKPMMe9xT773hyVo+TDJ0TJgxrG6cIO25avhol/CSiJG8517+HeCdzER8kzQ==}
 
+  '@libp2p/websockets@9.0.11':
+    resolution: {integrity: sha512-GoX323NMnbOwPu4Cq49XD9AwKLJfOr/R4H5b21ZCpgPIryVGmKUUzS8tWVdBu8RlWcRwCqz7rTUGZ95TKJeVwQ==}
+
   '@libp2p/webtransport@5.0.15':
     resolution: {integrity: sha512-f4O7oqR/XPm8iPT6da4PZWMtOcQmmbeo6fIPDUd3QwEAsTqiHldYAOTQpazjYd3c0mf11Ubi+sc6hUJ9YfvoTw==}
+
+  '@libp2p/webtransport@5.0.16':
+    resolution: {integrity: sha512-0CRugE+RlqhDasn/bFq45PjiyBLNnBeTSAfwVI9sYBV0irPh1Fg8nNunxNIXkIfCptnB9UlxKS1Ho2vwwEscdg==}
 
   '@localfirst/auth@5.6.0':
     resolution: {integrity: sha512-4nNEZ/xCYLtr9SA8GHz4Xdt+LPk1ZZsulNK2vJoO/Gy6IWIPeWuk9zKdpa1m3EhlbVw5L9xhj7ncUXAZEbmWRw==}
@@ -4848,8 +4857,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libp2p@2.2.0:
-    resolution: {integrity: sha512-NLdJSzYs2FMz8Yo8FSJ52f7fOvn2tDqicbmqrGBUqaYN2HUf4AysUoOFzFbODFLaGOKEYOIhEwo502rcjQ/ykg==}
+  libp2p@2.2.1:
+    resolution: {integrity: sha512-xxmaCAfpOKCgYuxLzA87RZBf2lzA2DwuLUB7kFB3MHw6FbGGeb10YEUaM4V/XCgIDDZs4DOCgXnKOMqN+BhjRw==}
 
   libsodium-sumo@0.7.15:
     resolution: {integrity: sha512-5tPmqPmq8T8Nikpm1Nqj0hBHvsLFCXvdhBFV7SGOitQPZAA6jso8XoL0r4L7vmfKXr486fiQInvErHtEvizFMw==}
@@ -8394,11 +8403,11 @@ snapshots:
       uint8arrays: 5.1.0
       wherearewe: 2.0.1
 
-  '@constl/utils-tests@1.6.1(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))':
+  '@constl/utils-tests@1.6.2(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))':
     dependencies:
       '@helia/block-brokers': 4.0.1
       '@libp2p/peer-id': 5.0.7
-      '@libp2p/webrtc': 5.0.15(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
+      '@libp2p/webrtc': 5.0.16(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
       '@orbitdb/core': 2.4.0
       blockstore-core: 5.0.2
       blockstore-level: 2.0.1
@@ -8408,7 +8417,7 @@ snapshots:
       events: 3.3.0
       genversion: 3.2.0
       helia: 5.1.0(bufferutil@4.0.8)(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
-      libp2p: 2.2.0
+      libp2p: 2.2.1
       os-browserify: 0.3.0
       process: 0.11.10
       read-package-up: 11.0.0
@@ -9354,6 +9363,37 @@ snapshots:
       - react-native
       - supports-color
 
+  '@libp2p/webrtc@5.0.16(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))':
+    dependencies:
+      '@chainsafe/libp2p-noise': 16.0.0
+      '@libp2p/interface': 2.2.0
+      '@libp2p/interface-internal': 2.0.10
+      '@libp2p/peer-id': 5.0.7
+      '@libp2p/utils': 6.1.3
+      '@multiformats/mafmt': 12.1.6
+      '@multiformats/multiaddr': 12.3.1
+      '@multiformats/multiaddr-matcher': 1.4.0
+      detect-browser: 5.3.0
+      it-length-prefixed: 9.1.0
+      it-protobuf-stream: 1.1.5
+      it-pushable: 3.2.3
+      it-stream-types: 2.0.2
+      multiformats: 13.3.0
+      node-datachannel: 0.12.0
+      p-defer: 4.0.1
+      p-event: 6.0.1
+      p-timeout: 6.1.3
+      progress-events: 1.0.1
+      protons-runtime: 5.5.0
+      race-signal: 1.1.0
+      react-native-webrtc: 124.0.4(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
+      uint8-varint: 2.0.4
+      uint8arraylist: 2.4.8
+      uint8arrays: 5.1.0
+    transitivePeerDependencies:
+      - react-native
+      - supports-color
+
   '@libp2p/websockets@9.0.10(bufferutil@4.0.8)':
     dependencies:
       '@libp2p/interface': 2.2.0
@@ -9372,7 +9412,40 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@libp2p/websockets@9.0.11(bufferutil@4.0.8)':
+    dependencies:
+      '@libp2p/interface': 2.2.0
+      '@libp2p/utils': 6.1.3
+      '@multiformats/multiaddr': 12.3.1
+      '@multiformats/multiaddr-matcher': 1.4.0
+      '@multiformats/multiaddr-to-uri': 10.1.2
+      '@types/ws': 8.5.12
+      it-ws: 6.1.5(bufferutil@4.0.8)
+      p-defer: 4.0.1
+      progress-events: 1.0.1
+      race-signal: 1.1.0
+      wherearewe: 2.0.1
+      ws: 8.18.0(bufferutil@4.0.8)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@libp2p/webtransport@5.0.15':
+    dependencies:
+      '@chainsafe/libp2p-noise': 16.0.0
+      '@libp2p/interface': 2.2.0
+      '@libp2p/peer-id': 5.0.7
+      '@libp2p/utils': 6.1.3
+      '@multiformats/multiaddr': 12.3.1
+      '@multiformats/multiaddr-matcher': 1.4.0
+      it-stream-types: 2.0.2
+      multiformats: 13.3.0
+      progress-events: 1.0.1
+      race-signal: 1.1.0
+      uint8arraylist: 2.4.8
+      uint8arrays: 5.1.0
+
+  '@libp2p/webtransport@5.0.16':
     dependencies:
       '@chainsafe/libp2p-noise': 16.0.0
       '@libp2p/interface': 2.2.0
@@ -12710,16 +12783,16 @@ snapshots:
       '@libp2p/tcp': 10.0.11
       '@libp2p/tls': 2.0.10
       '@libp2p/upnp-nat': 2.0.10
-      '@libp2p/webrtc': 5.0.15(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
-      '@libp2p/websockets': 9.0.10(bufferutil@4.0.8)
-      '@libp2p/webtransport': 5.0.15
+      '@libp2p/webrtc': 5.0.16(react-native@0.74.2(@babel/core@7.26.0)(@babel/preset-env@7.24.7(@babel/core@7.26.0))(bufferutil@4.0.8)(react@18.2.0))
+      '@libp2p/websockets': 9.0.11(bufferutil@4.0.8)
+      '@libp2p/webtransport': 5.0.16
       '@multiformats/dns': 1.0.6
       blockstore-core: 5.0.2
       datastore-core: 10.0.2
       interface-blockstore: 5.3.1
       interface-datastore: 8.3.1
       ipns: 10.0.0
-      libp2p: 2.2.0
+      libp2p: 2.2.1
       multiformats: 13.3.0
     transitivePeerDependencies:
       - bufferutil
@@ -13530,7 +13603,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libp2p@2.2.0:
+  libp2p@2.2.1:
     dependencies:
       '@libp2p/crypto': 5.0.6
       '@libp2p/interface': 2.2.0
@@ -14348,7 +14421,7 @@ snapshots:
   p-queue@8.0.1:
     dependencies:
       eventemitter3: 5.0.1
-      p-timeout: 6.1.2
+      p-timeout: 6.1.3
 
   p-retry@6.2.0:
     dependencies:
