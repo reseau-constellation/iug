@@ -66,7 +66,7 @@ const portServeurSpécifié = ref<number | undefined>();
 const portServeur = ref<number | undefined>();
 watchEffect(async () => {
   if (serveurConnecté.value) {
-    portServeur.value = await serveur?.initialiser(portServeurSpécifié.value);
+    portServeur.value = (await serveur?.initialiser(portServeurSpécifié.value))?.port;
   } else {
     portServeur.value = undefined;
     await serveur?.fermer();
