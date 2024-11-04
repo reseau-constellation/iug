@@ -16,7 +16,7 @@ import EventEmitter from 'events';
 import type TypedEmitter from 'typed-emitter';
 import {v4 as uuidv4} from 'uuid';
 
-import type {MessageDIpa, MessagePourIpa} from '@constl/mandataire';
+import type {MessageActionPourIpa, MessageDIpa} from '@constl/mandataire';
 import {
   envoyerMessageÀConstellation,
   envoyerMessageÀServeurConstellation,
@@ -95,9 +95,9 @@ test('messages ipa constellation', async () => {
 
   écouterMessagesDeConstellation(message => résultat.mettreÀJour(message));
 
-  const message: MessagePourIpa = {
+  const message: MessageActionPourIpa = {
     type: 'action',
-    id: uuidv4(),
+    idRequête: uuidv4(),
     fonction: ['on', 'test', 'une', 'fonction'],
     args: {qui: 'nexiste', pas: 'vraiment'},
   };
