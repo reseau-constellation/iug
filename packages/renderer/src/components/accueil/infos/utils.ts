@@ -7,7 +7,7 @@ import {utiliserConstellation, utiliserServeurLocalConstellation} from '../../ut
 import {IPA_TÉLÉCHARGEMENTS} from '/@/consts';
 import {plateforme, type publicationGitHub} from '/@/utils';
 import type {InfoRequêtesServeurLocal} from '/@/état/infos';
-import { utiliserÉtatInfos} from '/@/état/infos';
+import {utiliserÉtatInfos} from '/@/état/infos';
 
 const versionPrésente = import.meta.env.VITE_APP_VERSION;
 export const obtenirDernièreVersion = async (): Promise<
@@ -185,14 +185,14 @@ export const lancerInfosUtilisationMémoire = ({seuil}: {seuil: number}) => {
 
 export const lancerInfosRequêtesServeurLocal = () => {
   if (isBrowser) return;
-  
+
   const étatInfos = utiliserÉtatInfos();
   const serveurLocal = utiliserServeurLocalConstellation();
 
   const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
-  
+
   let idInfo: string | undefined = undefined;
-  watchEffect(()=>{
+  watchEffect(() => {
     if (requêtes.value?.length) {
       const infoRequêtes: InfoRequêtesServeurLocal = {
         type: 'requêteServeurLocal',
@@ -200,10 +200,7 @@ export const lancerInfosRequêtesServeurLocal = () => {
           n: requêtes.value.length,
         },
       };
-      idInfo = étatInfos.ajouterInfo(
-        infoRequêtes,
-        'requêtesServeurLocal',
-      );
+      idInfo = étatInfos.ajouterInfo(infoRequêtes, 'requêtesServeurLocal');
     } else if (idInfo) {
       étatInfos.effacerInfo(idInfo);
       idInfo = undefined;

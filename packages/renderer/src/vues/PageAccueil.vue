@@ -25,11 +25,11 @@
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import PanelApprendre from '/@/components/accueil/PanelApprendre.vue';
+import PanelConnectivite from '/@/components/accueil/PanelConnectivité.vue';
 import PanelDécouvrir from '/@/components/accueil/PanelDécouvrir.vue';
 import PanelGraphiques from '/@/components/accueil/PanelGraphiques.vue';
 import PanelNotifications from '/@/components/accueil/PanelNotifications.vue';
 import PanelRecents from '/@/components/accueil/PanelRécents.vue';
-import PanelConnectivite from '/@/components/accueil/PanelConnectivité.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 
 import {useDisplay} from 'vuetify';

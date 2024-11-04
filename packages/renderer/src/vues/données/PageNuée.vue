@@ -530,8 +530,7 @@
 </template>
 
 <script setup lang="ts">
-import type {tableaux as typesTableaux} from '@constl/ipa';
-import type { valid } from '@constl/ipa';
+import type {tableaux as typesTableaux, valid} from '@constl/ipa';
 
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -541,39 +540,39 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
-import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
+import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
-import ImageEditable from '/@/components/communs/ImageEditable.vue';
-import CarteStatutNuee from '/@/components/nuées/CarteStatutNuée.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
-import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import ImageEditable from '/@/components/communs/ImageEditable.vue';
+import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
+import ItemStatut from '/@/components/communs/ItemStatut.vue';
+import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
-import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
-import ItemStatut from '/@/components/communs/ItemStatut.vue';
+import CarteStatutNuee from '/@/components/nuées/CarteStatutNuée.vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
 // import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
-import SerieJetons from '/@/components/communs/SérieJetons.vue';
 import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
+import SerieJetons from '/@/components/communs/SérieJetons.vue';
 import EnteteTableau from '/@/components/tableaux/EntêteTableau.vue';
 
-import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
+import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
-import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
-import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
+import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
+import TableauNuee from '/@/components/tableaux/TableauNuée.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import TableauNuee from '/@/components/tableaux/TableauNuée.vue';
-import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
+import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
+import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -657,7 +656,6 @@ const imageVide = obtImageDéco('vide');
 
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
-
 
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursNuée, {idNuée: props.id});
@@ -765,5 +763,4 @@ const ajouterTableau = async ({
 const effacerNuée = async () => {
   await constl.nuées.effacerNuée({idNuée: props.id});
 };
-
 </script>

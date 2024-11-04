@@ -2,7 +2,7 @@
   <base-item-info
     :titre="t('accueil.page.notifications.requêtesServeurLocal.titre')"
     :sous-titre="t('accueil.page.notifications.requêtesServeurLocal.sousTitre')"
-    :texte-action="t('accueil.page.notifications.requêtesServeurLocal.texteAction', { nRequêtes })"
+    :texte-action="t('accueil.page.notifications.requêtesServeurLocal.texteAction', {nRequêtes})"
     :info="info"
   >
     <template #contenu>
@@ -31,7 +31,6 @@ const props = defineProps<{
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-
 
 const nRequêtes = computed(() => props.info.info.détails.n);
 </script>

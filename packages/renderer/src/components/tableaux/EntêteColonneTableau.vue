@@ -76,7 +76,7 @@ const émettre = defineEmits<{
       };
     },
   ): void;
-  (é: 'effacer'): void
+  (é: 'effacer'): void;
 }>();
 
 const constl = utiliserConstellation();

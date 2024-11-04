@@ -56,8 +56,8 @@
         :est-ordonnee="isSorted(column)"
         :icone-ordonner="getSortIcon(column) as string"
         @basculer-ordonner="() => toggleSort(column)"
-        @sauvegarder="info=>modifierColonne({idColonne: c.key, ...info})"
-        @effacer="()=>effacerColonne({idColonne: c.key})"
+        @sauvegarder="info => modifierColonne({idColonne: c.key, ...info})"
+        @effacer="() => effacerColonne({idColonne: c.key})"
       />
     </template>
 
@@ -80,14 +80,14 @@ import type {tableaux, valid} from '@constl/ipa';
 import {rechercher, suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 
-import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
+import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {triable} from './utils';
 import {utiliserConstellation} from '/@/components/utils';
-import { triable } from './utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -99,10 +99,13 @@ const props = defineProps<{idNuee: string; idTableau: string; clefTableau: strin
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
 
 // Variables
-const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});  // à faire: .nuées.
+const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau}); // à faire: .nuées.
 
 // Règles
-const règles = suivre(constl.nuées.suivreRèglesTableauNuée, {idNuée: props.idNuee, clefTableau: props.clefTableau});
+const règles = suivre(constl.nuées.suivreRèglesTableauNuée, {
+  idNuée: props.idNuee,
+  clefTableau: props.clefTableau,
+});
 
 // Données
 const {résultats: données} = rechercher(
@@ -112,8 +115,8 @@ const {résultats: données} = rechercher(
     clefTableau: props.clefTableau,
   },
 );
-const donnéesAvecCompte = computed(()=>{
-  return données.value?.map(d=>{
+const donnéesAvecCompte = computed(() => {
+  return données.value?.map(d => {
     return Object.assign({}, d.élément.données, {idCompte: d.idCompte});
   });
 });
@@ -147,7 +150,6 @@ const filesTableau = computed(() => {
 });
 
 const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
-
 
 // Colonnes
 const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée<tableaux.InfoColAvecCatégorie>, {
@@ -219,7 +221,6 @@ const ajouterColonne = async ({
   }
 };
 
-
 const modifierColonne = async ({
   idColonne,
   index,
@@ -232,19 +233,25 @@ const modifierColonne = async ({
   règles: {
     nouvelles: valid.règleVariable[];
     àEffacer: string[];
-  }
+  };
 }) => {
-  await constl.nuées.changerColIndexTableauNuée({idTableau: props.idTableau, idColonne, val: index});
-  for (const r of règles.nouvelles) await constl.nuées.ajouterRègleTableauNuée({
+  await constl.nuées.changerColIndexTableauNuée({
     idTableau: props.idTableau,
     idColonne,
-    règle: r,
+    val: index,
   });
+  for (const r of règles.nouvelles)
+    await constl.nuées.ajouterRègleTableauNuée({
+      idTableau: props.idTableau,
+      idColonne,
+      règle: r,
+    });
   // await constl.nuées.changerVariableColonne({idTableau: props.idTableau, idColonne, variable})
-  for (const r of règles.àEffacer) await constl.nuées.effacerRègleTableauNuée({
-    idTableau: props.idTableau,
-    idRègle: r,
-  });
+  for (const r of règles.àEffacer)
+    await constl.nuées.effacerRègleTableauNuée({
+      idTableau: props.idTableau,
+      idRègle: r,
+    });
 };
 
 const effacerColonne = async ({idColonne}: {idColonne: string}) => {
@@ -254,10 +261,8 @@ const effacerColonne = async ({idColonne}: {idColonne: string}) => {
   });
 };
 
-
 // Effacer tableau
 const effacerTableau = async () => {
   await constl.nuées.effacerTableauNuée({idNuée: props.idNuee, idTableau: props.idTableau});
 };
-
 </script>

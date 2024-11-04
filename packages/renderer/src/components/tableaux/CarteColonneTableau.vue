@@ -82,7 +82,7 @@
         <v-btn
           variant="flat"
           append-icon="mdi-delete"
-          @click="()=>émettre('effacer')"
+          @click="() => émettre('effacer')"
         >
           {{ t('communs.effacer') }}
         </v-btn>
@@ -121,8 +121,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
-import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
+import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
 import {utiliserConstellation} from '../utils';
 

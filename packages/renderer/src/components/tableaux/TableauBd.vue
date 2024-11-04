@@ -149,8 +149,8 @@
         :est-ordonnee="isSorted(column)"
         :icone-ordonner="getSortIcon(column) as string"
         @basculer-ordonner="() => toggleSort(column)"
-        @sauvegarder="info=>modifierColonne({idColonne: c.key, ...info})"
-        @effacer="()=>effacerColonne({idColonne: c.key})"
+        @sauvegarder="info => modifierColonne({idColonne: c.key, ...info})"
+        @effacer="() => effacerColonne({idColonne: c.key})"
       />
     </template>
 
@@ -325,8 +325,8 @@ import NouvelleImportation from '/@/components/automatisations/NouvelleImportati
 
 import {watchEffect} from 'vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
+import {triable} from './utils';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
-import { triable } from './utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -421,19 +421,21 @@ const modifierColonne = async ({
   règles: {
     nouvelles: valid.règleVariable[];
     àEffacer: string[];
-  }
+  };
 }) => {
   await constl.tableaux.changerColIndex({idTableau: props.idTableau, idColonne, val: index});
-  for (const r of règles.nouvelles) await constl.tableaux.ajouterRègleTableau({
-    idTableau: props.idTableau,
-    idColonne,
-    règle: r,
-  });
+  for (const r of règles.nouvelles)
+    await constl.tableaux.ajouterRègleTableau({
+      idTableau: props.idTableau,
+      idColonne,
+      règle: r,
+    });
   // await constl.tableaux.changerVariableColonne({idTableau: props.idTableau, idColonne, variable})
-  for (const r of règles.àEffacer) await constl.tableaux.effacerRègleTableau({
-    idTableau: props.idTableau,
-    idRègle: r,
-  });
+  for (const r of règles.àEffacer)
+    await constl.tableaux.effacerRègleTableau({
+      idTableau: props.idTableau,
+      idRègle: r,
+    });
 };
 
 const effacerColonne = async ({idColonne}: {idColonne: string}) => {
@@ -442,7 +444,6 @@ const effacerColonne = async ({idColonne}: {idColonne: string}) => {
     idColonne,
   });
 };
-
 
 // Données
 const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListeDonnées>, {

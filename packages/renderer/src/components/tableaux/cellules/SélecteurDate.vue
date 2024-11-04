@@ -221,8 +221,8 @@ const rangéeColonneSélectionnée = (rangé: number, colonne: number) => {
 };
 
 // Sélection
-watchEffect(()=>{
-  val.value = (new Date(année.value, mois.value, jour.value)).getTime();
+watchEffect(() => {
+  val.value = new Date(année.value, mois.value, jour.value).getTime();
 });
 
 // Sauvegarder

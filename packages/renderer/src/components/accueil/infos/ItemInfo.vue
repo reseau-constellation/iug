@@ -23,9 +23,9 @@
 <script setup lang="ts">
 import ItemInfoMettreAJour from './ItemInfoMettreÀJour.vue';
 import ItemInfoProtegerDonnees from './ItemInfoProtégerDonnées.vue';
+import ItemInfoRequetesServeurLocal from './ItemInfoRequêtesServeurLocal.vue';
 import ItemInfoTelecharger from './ItemInfoTélécharger.vue';
 import ItemInfoUtilisationMemoire from './ItemInfoUtilisationMémoire.vue';
-import ItemInfoRequetesServeurLocal from './ItemInfoRequêtesServeurLocal.vue';
 import type {
   InfoAvecId,
   InfoInstaller,
