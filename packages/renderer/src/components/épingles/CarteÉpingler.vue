@@ -201,7 +201,7 @@ import {watchEffect} from 'vue';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 
-import {isEqual} from 'lodash';
+import {isEqual} from 'lodash-es';
 
 const props = defineProps({
   id: {

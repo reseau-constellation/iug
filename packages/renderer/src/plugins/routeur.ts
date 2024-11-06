@@ -1,34 +1,24 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {createRouter, createWebHashHistory, type RouteRecordRaw} from 'vue-router';
-import MesDonnées from '/@/vues/données/MesDonnées.vue';
-import PageBD from '/@/vues/données/PageBD.vue';
-import PageNuée from '/@/vues/données/PageNuée.vue';
-import PageProjet from '/@/vues/données/PageProjet.vue';
-import PageAccueil from '/@/vues/PageAccueil.vue';
-import PageAutomatisations from '/@/vues/PageAutomatisations.vue';
-import PageCompte from '/@/vues/PageCompte.vue';
-import PageFavoris from '/@/vues/PageFavoris.vue';
-import PageRecherche from '/@/vues/PageRecherche.vue';
-import PageSignalements from '/@/vues/PageSignalements.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    component: PageAccueil,
+    component: () => import('/@/vues/PageAccueil.vue'),
   },
   {
     path: '/compte',
     name: 'Compte',
-    component: PageCompte,
+    component: () => import('/@/vues/PageCompte.vue'),
   },
   {
     path: encodeURI('/données'),
     name: 'Données',
-    component: MesDonnées,
+    component: () => import('/@/vues/données/MesDonnées.vue'),
   },
   {
     path: encodeURI('/données/bd/:id'),
-    component: PageBD,
+    component: () => import('/@/vues/données/PageBD.vue'),
     props: route => {
       const {id} = route.params;
       if (typeof id === 'string') return {id: decodeURIComponent(id)};
@@ -36,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: encodeURI('/données/nuée/:id'),
-    component: PageNuée,
+    component: () => import('/@/vues/données/PageNuée.vue'),
     props: route => {
       const {id} = route.params;
       if (typeof id === 'string') return {id: decodeURIComponent(id)};
@@ -44,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: encodeURI('/données/projet/:id'),
-    component: PageProjet,
+    component: () => import('/@/vues/données/PageProjet.vue'),
     props: route => {
       const {id} = route.params;
       if (typeof id === 'string') return {id: decodeURIComponent(id)};
@@ -53,22 +43,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/recherche',
     name: 'Recherche',
-    component: PageRecherche,
+    component: () => import('/@/vues/PageRecherche.vue'),
   },
   {
     path: '/favoris',
     name: 'Favoris',
-    component: PageFavoris,
+    component: () => import('/@/vues/PageFavoris.vue'),
   },
   {
     path: '/automatisations',
     name: 'Automatisations',
-    component: PageAutomatisations,
+    component: ()  => import('/@/vues/PageAutomatisations.vue'),
   },
   {
     path: '/signalements',
     name: 'Signalements',
-    component: PageSignalements,
+    component: () => import('/@/vues/PageSignalements.vue'),
   },
 ];
 
