@@ -12,50 +12,54 @@
       >
         <v-card-item>
           <v-card-title>
-            <v-avatar><v-icon>mdi-wifi</v-icon></v-avatar>
+            <v-avatar><v-icon>mdi-wifi-arrow-up-down</v-icon></v-avatar>
             {{ t('accueil.page.connectivité.réseau.titre') }}
           </v-card-title>
         </v-card-item>
         <v-card-text>
           <v-list>
-            <v-list-item :prepend-icon="enLigne ? 'mdi-check' : 'mdi-disconnected'">
-              {{ enLigne ? 'En ligne' : 'Déconnecté' }}
+            <v-list-item :prepend-icon="enLigne ? 'mdi-wifi-check' : 'mdi-wifi-off'">
+              {{
+                enLigne
+                  ? t('accueil.page.connectivité.réseau.enLigne')
+                  : t('accueil.page.connectivité.réseau.horsLigne')
+              }}
             </v-list-item>
-            <v-list-item> "Connnexions réseau": {{ nConnexionsRéseau }} </v-list-item>
-            <v-list-item> "Connnexions Constellation": {{ nConnexionsDispositifs }} </v-list-item>
+            <v-list-item
+              :prepend-icon="nConnexionsRéseau ? 'mdi-lan-connect' : 'mdi-lan-disconnect'"
+            >
+              {{ t('accueil.page.connectivité.réseau.connexionsRéseau', nConnexionsRéseau) }}
+            </v-list-item>
+            <v-list-item
+              :prepend-icon="nConnexionsDispositifs ? 'mdi-lan-connect' : 'mdi-lan-disconnect'"
+            >
+              {{
+                t('accueil.page.connectivité.réseau.connexionsDispositifs', nConnexionsDispositifs)
+              }}
+            </v-list-item>
           </v-list>
+          <div class="text-center">
+            <dialogue-connexion>
+              <template #activator="{props: propsActivateur}">
+                <v-btn
+                  v-bind="propsActivateur"
+                  class="mx-auto"
+                  variant="outlined"
+                  prepend-icon="mdi-wifi-plus"
+                >
+                  {{ t('accueil.page.connectivité.réseau.connecter') }}
+                </v-btn>
+              </template>
+            </dialogue-connexion>
+          </div>
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col :cols="mdAndUp ? 4 : smAndUp ? 6 : 12">
-      <v-card
-        class="text-start"
-        style="height: 100%"
-      >
-        <v-card-item>
-          <v-card-title>
-            <v-avatar><v-icon>mdi-server</v-icon></v-avatar>
-            {{ t('accueil.page.connectivité.serveurLocal.titre') }}
-          </v-card-title>
-        </v-card-item>
-        <v-card-text>
-          <v-list>
-            <v-list-item v-if="isElectron">
-              <v-switch
-                class="mx-2"
-                density="compact"
-                :label="étatServeur?.état === 'actif' ? '\'Activé\'' : '\'Désactivé\''"
-              />
-            </v-list-item>
-            <v-list-item prepend-icon="mdi-lan">
-              <template #title> 'Connections' </template>
-            </v-list-item>
-            <v-list-item prepend-icon="mdi-lan">
-              <template #title> 'Requêtes': {{ nRequêtesFormatte || 0 }} </template>
-            </v-list-item>
-          </v-list>
-        </v-card-text>
-      </v-card>
+    <v-col
+      v-if="isElectron"
+      :cols="mdAndUp ? 4 : smAndUp ? 6 : 12"
+    >
+      <sous-panel-serveur-local />
     </v-col>
   </v-row>
 </template>
@@ -64,16 +68,17 @@ import {computed} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {suivre} from '@constl/vue';
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useOnline} from '@vueuse/core';
 import {isElectron} from 'wherearewe';
-import {utiliserConstellation, utiliserServeurLocalConstellation} from '../utils';
+import {utiliserConstellation} from '../utils';
+
+import DialogueConnexion from './DialogueConnexion.vue';
+import SousPanelServeurLocal from './SousPanelServeurLocal.vue';
 
 const constl = utiliserConstellation();
-const serveurLocal = utiliserServeurLocalConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
@@ -87,10 +92,4 @@ const connexionsDispositifs = suivre(constl.réseau.suivreConnexionsDispositifs)
 const nConnexionsDispositifs = computed(() =>
   connexionsDispositifs.value ? connexionsDispositifs.value.length - 1 : undefined,
 );
-
-// Serveur local
-const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
-const rRequêtes = computed(() => requêtesServeurLocal.value?.length);
-const nRequêtesFormatte = எண்ணை_வடிவூட்டு(rRequêtes);
-const étatServeur = suivre(serveurLocal.suivreÉtatServeur);
 </script>
