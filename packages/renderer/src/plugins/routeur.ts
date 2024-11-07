@@ -53,7 +53,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/automatisations',
     name: 'Automatisations',
-    component: ()  => import('/@/vues/PageAutomatisations.vue'),
+    component: () => import('/@/vues/PageAutomatisations.vue'),
   },
   {
     path: '/signalements',
