@@ -15,7 +15,10 @@ const props = defineProps<{id?: string}>();
 
 const constl = utiliserConstellation();
 
-const imageProfil = suivre(constl.profil.suivreImage, {idCompte: props.id});
+/* Uniquement inclure `idCompte` si `props.id !== undefined`. Sinon, `suivre` attend que la valeur soit 
+définie avant de rendre le résultat.
+*/
+const imageProfil = suivre(constl.profil.suivreImage, props.id ? {idCompte: props.id} : undefined);
 const srcImgProfil = computed(() => {
   if (imageProfil.value) {
     return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
