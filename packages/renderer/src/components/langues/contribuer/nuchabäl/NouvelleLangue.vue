@@ -118,7 +118,8 @@
                   :value="true"
                 >
                   {{ t('nuchabäl.oui') }}
-                </v-chip><v-chip
+                </v-chip>
+                <v-chip
                   class="mt-2 mx-2"
                   label
                   size="large"

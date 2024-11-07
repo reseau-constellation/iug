@@ -91,6 +91,20 @@
           "données": "Les données",
           "communauté": "Notre communauté"
         },
+        "connectivité": {
+          "titre": "Connectivité",
+          "réseau": {
+            "titre": "Réseau",
+            "enLigne": "En ligne",
+            "horsLigne": "Déconnecté",
+            "connexionsRéseau": "Aucune connexion réseau|{n} connexion réseau|{n} connexions réseau",
+            "connexionsDispositifs": "Aucune connexion Constellation|{n} connexion Constellation|{n} connexions Consellation",
+            "connecter": "Connecter",
+            "connexion": {
+              "titre": "Connexion manuelle"
+            }
+          }
+        },
         "graphiques": {
           "titre": "Mon activité",
           "bds": "Mes bases de données",

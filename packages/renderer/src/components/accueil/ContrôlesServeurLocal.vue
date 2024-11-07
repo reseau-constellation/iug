@@ -70,8 +70,12 @@ const dialogue = ref(false);
 
 // Serveur local - statut
 const statut = suivre(serveurLocal.suivreÉtatServeur);
-const codeSecret = computed(() => statut.value?.état === 'actif' ? statut.value.détails.codeSecret : undefined);
-const port = computed(() => statut.value?.état === 'actif' ? statut.value.détails.port : undefined);
+const codeSecret = computed(() =>
+  statut.value?.état === 'actif' ? statut.value.détails.codeSecret : undefined,
+);
+const port = computed(() =>
+  statut.value?.état === 'actif' ? statut.value.détails.port : undefined,
+);
 
 const choixActif = ref(statut.value?.état === 'actif');
 watchEffect(() => (choixActif.value = statut.value?.état === 'actif'));
@@ -87,6 +91,4 @@ const mettrePortÀJour = async () => {
 
 // Serveur local - requêtes
 const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur);
-
-
 </script>

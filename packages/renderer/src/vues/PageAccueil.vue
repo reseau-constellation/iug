@@ -13,7 +13,7 @@
       </v-col>
     </v-row>
 
-    <PanelConnectivite v-if="isElectron" />
+    <PanelConnectivite />
 
     <PanelRecents />
 
@@ -33,7 +33,6 @@ import PanelRecents from '/@/components/accueil/PanelRécents.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 
 import {useDisplay} from 'vuetify';
-import { isElectron } from 'wherearewe';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
