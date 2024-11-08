@@ -75,7 +75,7 @@ export const lancerInfosMisesÀJour = () => {
   });
   vérifierMisesÀJour();
   onUnmounted(() => {
-    intervale && clearInterval(intervale);
+    if(intervale) clearInterval(intervale);
   });
 };
 
@@ -137,7 +137,7 @@ export const lancerInfosProtégerDonnées = () => {
   });
   vérifierProtégées();
   onUnmounted(() => {
-    intervale && clearInterval(intervale);
+    if(intervale) clearInterval(intervale);
   });
 };
 
@@ -179,7 +179,7 @@ export const lancerInfosUtilisationMémoire = ({seuil}: {seuil: number}) => {
   });
   vérifierUtilisation();
   onUnmounted(() => {
-    intervale && clearInterval(intervale);
+    if (intervale) clearInterval(intervale);
   });
 };
 
