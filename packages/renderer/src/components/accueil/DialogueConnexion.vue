@@ -69,7 +69,7 @@ const constl = utiliserConstellation();
 
 // Contrôles
 const dialogue = ref(false);
-const mode = ref<'afficher'|'numériser'>('afficher');
+const mode = ref<'afficher' | 'numériser'>('afficher');
 
 // Nos adresses
 const adresses = suivre(constl.réseau.suivreMesAdresses);
@@ -79,7 +79,10 @@ const adressesTexte = computed(() => {
 });
 
 // Détection d'adresse
-type TypeCodeDétecté  = {rawValue: string, boundingBox: {x: number, y: number, width: number, height: number}}
+type TypeCodeDétecté = {
+  rawValue: string;
+  boundingBox: {x: number; y: number; width: number; height: number};
+};
 function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderingContext2D) {
   for (const detectedCode of detectedCodes) {
     const {
@@ -94,7 +97,7 @@ function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderi
 const adressesDétectées = ref<string>();
 
 const erreur = ref<string>();
-function onError(err: {value: string;  name: string; message: string;}) {
+function onError(err: {value: string; name: string; message: string}) {
   erreur.value = `[${err.name}]: `;
 
   if (err.name === 'NotAllowedError') {
