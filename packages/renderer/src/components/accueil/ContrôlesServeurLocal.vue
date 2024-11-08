@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex">
-          {{ t('connectivité.serveurLocal.titre') }}
+          {{ t('accueil.page.connectivité.serveurLocal.titre') }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -23,20 +23,32 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <v-switch v-model="choixActif" />
-        <v-text-input v-model="choixPort" />
+        <v-icon start>mdi-information-outline</v-icon>Vous pouvez activer l'accès au nœud local afin de pouvoir accéder Constellation à partir d'applications tièrces (par exemple, Python, R).
+        <v-switch
+          v-model="choixActif"
+          :color="choixActif ? 'primary' : 'secondary'"
+          :label="actif ? 'Accès activé' : 'Accès désactivé'"
+        />
+        <v-text-field
+          v-model="choixPort"
+          label="Port"
+          variant="outlined"
+        />
         <v-textarea
           v-if="codeSecret"
-          :value="codeSecret"
-          disabled
-          append-inner-icon="mdi-content-copy"
-          @click:inner-icon="() => copier(codeSecret || '')"
+          v-model="codeSecret"
+          label="Code secret"
+          readonly
+          variant="outlined"
+          auto-grow
+          :append-inner-icon="codeSecretCopié ? 'mdi-check' : 'mdi-content-copy'"
+          @click:append-inner="()=>copierCodeSecret()"
         >
         </v-textarea>
         <v-btn
           :loading="miseÀJourEnCours"
           :disabled="choixPort === port"
-          @click="() => mettrePortÀJour()"
+          @click="() => démarrerServeur()"
         />
         <v-list>
           <v-list-item
@@ -52,7 +64,7 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {computed, ref, watchEffect} from 'vue';
+import {computed, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -69,7 +81,8 @@ const serveurLocal = utiliserServeurLocalConstellation();
 const dialogue = ref(false);
 
 // Serveur local - statut
-const statut = suivre(serveurLocal.suivreÉtatServeur);
+const statut = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
+const actif = computed(()=>statut.value?.état === 'actif');
 const codeSecret = computed(() =>
   statut.value?.état === 'actif' ? statut.value.détails.codeSecret : undefined,
 );
@@ -82,13 +95,31 @@ watchEffect(() => (choixActif.value = statut.value?.état === 'actif'));
 const choixPort = ref(port.value);
 watchEffect(() => (choixPort.value = port.value));
 
+
 const miseÀJourEnCours = ref(false);
-const mettrePortÀJour = async () => {
+const démarrerServeur = async () => {
+  if (statut.value?.état === 'actif' && choixPort.value === port.value) return;
   miseÀJourEnCours.value = true;
   await serveurLocal.initialiser(choixPort.value);
   miseÀJourEnCours.value = false;
 };
 
+
+watchEffect(async ()=>{
+  if (choixActif.value) {
+    await démarrerServeur();
+  }
+});
+
+const codeSecretCopié  = ref(false);
+const copierCodeSecret = async () => {
+  await copier(codeSecret.value || '');
+  codeSecretCopié.value = true;
+};
+watch(codeSecret, ()=>{
+  codeSecretCopié.value = false;
+});
+
 // Serveur local - requêtes
-const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur);
+const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
 </script>

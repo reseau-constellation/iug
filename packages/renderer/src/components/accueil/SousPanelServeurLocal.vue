@@ -5,7 +5,7 @@
   >
     <v-card-item>
       <v-card-title>
-        <v-avatar><v-icon>mdi-server</v-icon></v-avatar>
+        <v-avatar><v-icon>mdi-transit-connection-horizontal</v-icon></v-avatar>
         {{ t('accueil.page.connectivité.serveurLocal.titre') }}
       </v-card-title>
     </v-card-item>
@@ -15,15 +15,30 @@
           <v-switch
             class="mx-2"
             density="compact"
-            :label="étatServeur?.état === 'actif' ? '\'Activé\'' : '\'Désactivé\''"
+            hide-details
+            disabled
+            true-icon="mdi-check"
+            false-icon="mdi-close"
+            :label="étatServeur?.état === 'actif' ? t('accueil.page.connectivité.serveurLocal.activé') : t('accueil.page.connectivité.serveurLocal.désactivé') "
           />
         </v-list-item>
         <v-list-item prepend-icon="mdi-lan">
-          <template #title> 'Connections' </template>
+          {{ t('accueil.page.connectivité.serveurLocal.requêtes', nRequêtes || 0) }}
         </v-list-item>
-        <v-list-item prepend-icon="mdi-lan">
-          <template #title> 'Requêtes': {{ nRequêtes || 0 }} </template>
-        </v-list-item>
+        <div class="text-center">
+          <controles-serveur-local>
+            <template #activator="{props: propsActivateur}">
+              <v-btn
+                v-bind="propsActivateur"
+                class="mx-auto"
+                variant="outlined"
+                prepend-icon="mdi-toggle-switch-outline"
+              >
+                {{ t('accueil.page.connectivité.serveurLocal.gérer') }}
+              </v-btn>
+            </template>
+          </controles-serveur-local>
+        </div>
       </v-list>
     </v-card-text>
   </v-card>
@@ -33,6 +48,8 @@ import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 import {utiliserServeurLocalConstellation} from '../utils';
+
+import ControlesServeurLocal from './ContrôlesServeurLocal.vue';
 
 const serveurLocal = utiliserServeurLocalConstellation();
 
@@ -44,5 +61,5 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
 const nRequêtes = computed(() => requêtesServeurLocal.value?.length);
 
-const étatServeur = suivre(serveurLocal.suivreÉtatServeur);
+const étatServeur = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
 </script>

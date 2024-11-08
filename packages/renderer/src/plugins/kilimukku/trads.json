@@ -103,6 +103,13 @@
             "connexion": {
               "titre": "Connexion manuelle"
             }
+          },
+          "serveurLocal": {
+            "titre": "Accès nœud local",
+            "activé": "Activé",
+            "désactivé": "Désactivé",
+            "requêtes": "Aucune requête en attente|{n} requête en attente|{n} requêtes en attente",
+            "gérer": "Gérer"
           }
         },
         "graphiques": {
