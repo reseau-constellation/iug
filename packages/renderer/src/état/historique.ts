@@ -60,6 +60,6 @@ export const utiliserHistorique = ({
       },
     },
     persist: {
-      afterRestore: () => {},
+      afterHydrate: () => {},
     },
   })();

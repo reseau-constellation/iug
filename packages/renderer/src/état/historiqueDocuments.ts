@@ -25,7 +25,7 @@ export const utiliserHistoriqueDocuments = defineStore('historiqueDocuments', {
     },
   },
   persist: {
-    afterRestore: ctx => {
+    afterHydrate: ctx => {
       console.log('état', ctx.store.$state);
     },
   },

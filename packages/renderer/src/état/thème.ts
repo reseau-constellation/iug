@@ -22,7 +22,7 @@ export const utiliserÉtatThème = defineStore('thème', {
     };
   },
   persist: {
-    afterRestore: ctx => {
+    afterHydrate: ctx => {
       changerThèmeVuetify(ctx.store.$state.couleur);
     },
   },
