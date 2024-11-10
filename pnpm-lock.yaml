@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  node-datachannel: ^0.20.0
+  node-datachannel: ^0.21.0
   '@libp2p/autonat': 2.0.10
 
 importers:
@@ -5336,8 +5336,8 @@ packages:
   node-addon-api@1.7.2:
     resolution: {integrity: sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==}
 
-  node-datachannel@0.20.0:
-    resolution: {integrity: sha512-fATL9afIPJXHRfvNVgw2Cd4UElQ1UF2sTdtJkneYFsQhk11Vrja+6CcE1Q5h5Mh21q4aib6vKFHhFesg3/tMig==}
+  node-datachannel@0.21.0:
+    resolution: {integrity: sha512-XCTo7fH2BuQOYu0dyl6kJ+idPBfoALP35QSI1/fbS5wbB3V8CjTe9Wv/xrPzSXPDG5YviWAjlbMUXYp+tGD06Q==}
     engines: {node: '>=16.0.0'}
 
   node-dir@0.1.17:
@@ -9328,7 +9328,7 @@ snapshots:
       it-pushable: 3.2.3
       it-stream-types: 2.0.2
       multiformats: 13.3.1
-      node-datachannel: 0.20.0
+      node-datachannel: 0.21.0
       p-defer: 4.0.1
       p-event: 6.0.1
       p-timeout: 6.1.3
@@ -14205,7 +14205,7 @@ snapshots:
   node-addon-api@1.7.2:
     optional: true
 
-  node-datachannel@0.20.0:
+  node-datachannel@0.21.0:
     dependencies:
       node-domexception: 2.0.1
       prebuild-install: 7.1.2
