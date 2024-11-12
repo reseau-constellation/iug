@@ -1,4 +1,4 @@
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   import type {Constellation} from '@constl/ipa';
   import type {GestionnaireServeur} from '@constl/mandataire-electron-rendu';
   interface ComponentCustomProperties {
