@@ -42,3 +42,6 @@ jobs:
       # Publier couverture tests
       - name: Envoyer couverure à Codecov
         uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
