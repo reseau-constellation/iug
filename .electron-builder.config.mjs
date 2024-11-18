@@ -11,7 +11,6 @@
 export default async function () {
   const {getVersion} = await import('./version/getVersion.mjs');
   return {
-    projectName: 'constellation',
     productName: 'Constellation',
     directories: {
       output: 'dist',
