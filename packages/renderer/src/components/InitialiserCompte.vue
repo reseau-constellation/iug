@@ -22,25 +22,23 @@
           style="overflow-y: scroll"
         >
           <v-window-item :value="0">
-            <div class="text-center">
-              <v-btn
-                class="ma-3"
-                variant="flat"
+            <v-list>
+              <v-list-item
                 color="primary"
                 prepend-icon="mdi-creation-outline"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 @click="suivreCheminementNouveauCompte"
               >
                 {{ t('accueil.initialiserCompte.nouveauCompte') }}
-              </v-btn>
-              <v-btn
-                class="ma-3"
-                variant="outlined"
-                prepend-icon="mdi-lan-connect"
+              </v-list-item>
+              <v-list-item
+                prepend-icon="mdi-qrcode-scan"
+                :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 @click="suivreCheminementConnecterCompte"
               >
                 {{ t('accueil.initialiserCompte.connecter') }}
-              </v-btn>
-            </div>
+              </v-list-item>
+            </v-list>
           </v-window-item>
           <v-window-item :value="1">
             <ListeNoms
@@ -227,7 +225,7 @@
 <script setup lang="ts">
 import {rechercher, suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
-import {useDisplay} from 'vuetify';
+import {useDisplay, useRtl} from 'vuetify';
 import {isBrowser} from 'wherearewe';
 
 import {utiliserConstellation} from '/@/components/utils';
@@ -248,6 +246,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 const {mdAndUp} = useDisplay();
+const {isRtl} = useRtl();
 
 const {obtImageDéco} = utiliserImagesDéco();
 const constl = utiliserConstellation();

@@ -25,7 +25,7 @@
       <v-card-text class="text-center">
         <div class="my-2">
           <qrcode-stream
-            v-if="mode==='numériser'"
+            v-if="mode === 'numériser'"
             :track="paintBoundingBox"
             @detect="onDetect"
             @error="onError"

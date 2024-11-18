@@ -19,7 +19,11 @@
             disabled
             true-icon="mdi-check"
             false-icon="mdi-close"
-            :label="étatServeur?.état === 'actif' ? t('accueil.page.connectivité.serveurLocal.activé') : t('accueil.page.connectivité.serveurLocal.désactivé') "
+            :label="
+              étatServeur?.état === 'actif'
+                ? t('accueil.page.connectivité.serveurLocal.activé')
+                : t('accueil.page.connectivité.serveurLocal.désactivé')
+            "
           />
         </v-list-item>
         <v-list-item prepend-icon="mdi-lan">
