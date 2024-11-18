@@ -8,9 +8,11 @@
  * @type {() => import('electron-builder').Configuration}
  * @see https://www.electron.build/configuration/configuration
  */
-module.exports = async function () {
+export default async function () {
   const {getVersion} = await import('./version/getVersion.mjs');
   return {
+    projectName: 'constellation',
+    productName: 'Constellation',
     directories: {
       output: 'dist',
       buildResources: 'buildResources',
@@ -25,4 +27,4 @@ module.exports = async function () {
       target: 'deb',
     },
   };
-};
+}
