@@ -3,8 +3,6 @@ import {showSaveFilePicker} from 'native-file-system-adapter';
 import {os} from 'platform';
 import {type ComputedRef, type Ref, computed} from 'vue';
 import {isBrowser, isElectronRenderer} from 'wherearewe';
-import {marked} from 'marked';
-import DOMPurify from 'dompurify';
 
 export const ouvrirLien = (lien: string) => {
   window.open(lien, '_blank'); // À faire : tester sous Électron
@@ -13,10 +11,6 @@ export const ouvrirLien = (lien: string) => {
 export async function copier(texte: string): Promise<void> {
   await navigator.clipboard?.writeText(texte);
 }
-
-export const compilerMarkdown = async (texte: string) => {
-  return DOMPurify.sanitize(await marked(texte));
-};
 
 export type fichierPublicationGitHub = {
   url: string;

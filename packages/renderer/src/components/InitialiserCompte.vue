@@ -181,10 +181,31 @@
               <span class="text-caption text-grey">{{
                 t('accueil.initialiserCompte.sousTitreBienvenu')
               }}</span>
+              <v-checkbox
+                v-model="état.acceptées"
+                color="primary"
+                hide-details
+                readonly
+              >
+                <template #label>
+                  <conditions-utilisation>
+                    <template #activator="{props: propsActivateur}">
+                      <div v-bind="propsActivateur">
+                        {{ t('conditions.jaccepte') }}
+                        <v-icon
+                          end
+                          size="small"
+                          icon="mdi-open-in-new"
+                        />
+                      </div>
+                    </template>
+                  </conditions-utilisation>
+                </template>
+              </v-checkbox>
               <p>
                 <v-btn
-                  class="mt-3"
                   variant="outlined"
+                  :disabled="!état.acceptées"
                   :loading="enCréation"
                   @click="() => créerCompte()"
                 >
@@ -228,12 +249,14 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import ConditionsUtilisation from './ConditionsUtilisation.vue';
 import JetonMembre from './membres/JetonMembre.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import { utiliserÉtatConditions } from '../état/conditions';
 
 const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
 
@@ -426,6 +449,9 @@ const donnéesPersistées = ref(false);
 navigator.storage.persisted().then(x => (donnéesPersistées.value = x));
 
 const détailsPersister = ref(false);
+
+// Conditions
+const état = utiliserÉtatConditions();
 
 // Création ou connexion compte
 const srcImageLogo = ref<string>();

@@ -1,129 +1,132 @@
 <template>
-  <v-card
-    flat
-    class="px-5 text-justify"
-  >
-    <template v-for="(c, i) in conditions">
-      <div
-        v-if="c.genre === 'p' || c.genre === 't'"
-        :key="i"
-        :class="c.genre === 't' ? 'text-h6' : ''"
-        v-html="compilerMarkdown(t(`conditions.${c.texte}`))"
-      />
-      <span
-        v-else-if="c.genre === 'b'"
-        :key="i"
-      >
+  <v-dialog v-model="dialogue">
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+    <v-card
+      class="mx-auto"
+      :min-width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title class="d-flex">
+          {{ t('conditions.entête') }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          />
+        </v-card-title>
+      </v-card-item>
+      <v-card-text style="overflow-y: scroll">
+        <vue-markdown
+          v-for="c in conditions"
+          :key="c.clef"
+          :source="t(`conditions.${c.clef}`) || ''"
+          :class="'text-justify ' + (c.titre ? 'text-h6 mt-2' : 'mt-1')"
+        />
+      </v-card-text>
+      <v-divider />
+      <v-card-actions>
         <v-checkbox
           v-model="acceptées"
-          :label="t('conditions.jaccepte')"
-          @change="() => accepter()"
-        />
-        <v-btn
+          hide-details
           color="primary"
-          tiled
-          outlined
-          small
-          class="mb-5"
-          @click="$router.push('/accueil')"
-        >
-          {{ t("conditions.retour") }}
-        </v-btn>
-      </span>
-    </template>
-  </v-card>
+          :label="t('conditions.jaccepte')"
+          @change="() => changerAcceptation()"
+        />
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {ref, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
 import {utiliserÉtatConditions} from '/@/état/conditions';
-import { ref, watchEffect } from 'vue';
-import  {compilerMarkdown} from '/@/utils';
+import VueMarkdown from 'vue-markdown-render';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {mdAndUp} = useDisplay();
 const état = utiliserÉtatConditions();
 const étatAcceptées = ref(état.acceptées);
 
+const dialogue = ref(false);
+
 const acceptées = ref(false);
-watchEffect(()=>{
+watchEffect(() => {
   acceptées.value = étatAcceptées.value;
 });
 
-const accepter = () => {
-    état.acceptées = true;
-  };
-const conditions = [
-        {
-          genre: 'p',
-          texte: 'p0_1',
-        },
-        {
-          genre: 'p',
-          texte: 'p0_2',
-        },
-        {
-          genre: 'p',
-          texte: 'p0_3',
-        },
-        {
-          genre: 'b',
-        },
-        {
-          genre: 't',
-          texte: 't1',
-        },
-        {
-          genre: 'p',
-          texte: 'p1_1',
-        },
-        {
-          genre: 'p',
-          texte: 'p1_2',
-        },
-        {
-          genre: 't',
-          texte: 't2',
-        },
-        {
-          genre: 'p',
-          texte: 'p2_1',
-        },
-        {
-          genre: 'p',
-          texte: 'p2_2',
-        },
-        {
-          genre: 'p',
-          texte: 'p2_3',
-        },
-        {
-          genre: 't',
-          texte: 't3',
-        },
-        {
-          genre: 'p',
-          texte: 'p3_1',
-        },
-        {
-          genre: 'p',
-          texte: 'p3_2',
-        },
-        {
-          genre: 'p',
-          texte: 'p3_3',
-        },
-        {
-          genre: 't',
-          texte: 't4',
-        },
-        {
-          genre: 'p',
-          texte: 'p4_1',
-        },
-        {
-          genre: 'p',
-          texte: 'p4_2',
-        },
-      ];
-
+const changerAcceptation = () => {
+  if (acceptées.value) état.accepter(); else état.refuser();
+  if (acceptées.value) {
+    dialogue.value = false;
+  }
+};
+const conditions: {
+  clef: string;
+  titre?: boolean;
+}[] = [
+  {
+    clef: 'p0_1',
+  },
+  {
+    clef: 'p0_2',
+  },
+  {
+    clef: 'p0_3',
+  },
+  {
+    titre: true,
+    clef: 't1',
+  },
+  {
+    clef: 'p1_1',
+  },
+  {
+    clef: 'p1_2',
+  },
+  {
+    titre: true,
+    clef: 't2',
+  },
+  {
+    clef: 'p2_1',
+  },
+  {
+    clef: 'p2_2',
+  },
+  {
+    clef: 'p2_3',
+  },
+  {
+    titre: true,
+    clef: 't3',
+  },
+  {
+    clef: 'p3_1',
+  },
+  {
+    clef: 'p3_2',
+  },
+  {
+    clef: 'p3_3',
+  },
+  {
+    titre: true,
+    clef: 't4',
+  },
+  {
+    clef: 'p4_1',
+  },
+  {
+    clef: 'p4_2',
+  },
+];
 </script>

@@ -45,6 +45,27 @@
       "automatisations": "Automatisations",
       "signalements": "Signaler un problème"
     },
+    "conditions": {
+      "entête": "Conditions d'utilisation",
+      "jaccepte": "J'accepte les conditions",
+      "p0_1": "Votre utilisation de ce logiciel est assujetie aux conditions suivantes.",
+      "p0_2": "Ces conditions ont été écrites par des scientifiques, pas par des avocats. Cela veut aussi dire que vous n'aurez pas besoin d'un avocat pour les comprendre. Suivez les liens ci-dessous vers la licence pour voir les conditions légales de l'utilisation du code.",
+      "p0_3": "Ces conditions furent écrites en français. Les traductions dans d'autres langues sont disponibles grâce aux volontaires de la communauté Constellation. N'hésitez pas à nous contacter si vous avez des doutes !",
+      "t1": "Général",
+      "p1_1": "Ce logiciel (Constellation) est distribué en tant que logiciel à source ouverte, sous la [licence AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.fr.html). Votre utilisation de ce logiciel est assujetie aux conditions de ladite licence. Entre autres, veuillez prendre note que ceci est un logiciel libre qui vient avec **absolument aucune garantie**. *Caballo regalado, no se le mira el colmillo.*",
+      "p1_2": "En outre, toute interaction entre utilisateurs ou utilisatrices et assujetie aux [règles de notre communauté](https://www.contributor-covenant.org/fr/version/2/0/code_of_conduct/).",
+      "t2": "Utilisation des données",
+      "p2_1": "Les données disponibles à travers Constellation ont été contribuées par d'autres membres de la communauté. Chaque personne, au moment de partager ses données, doit spécifier une licence d'accès ouvert ; celle-ci est indiquée sur chaque base de données. Soyez toujours conscient de respecter les licences appartenant aux données que vous utilisez.",
+      "p2_2": "Ne partagez que des données qui vous appartiennent ou dont vous détenez, de la part de la personne à qui elles appartiennent, la permission écrite de les partager sous la licence que vous y spécifierez. Cela va sans dire, mais ne partagez rien d'illégal non plus.",
+      "p2_3": "Si quelqu'un d'autre a partagé des données qui vous appartiennent de manière non conforme aux termes de la licence que vous y aviez appliquée et nous résoudrons le problème.",
+      "t3": "Vie privée et sécurité",
+      "p3_1": "Veuillez prendre note que Constellation est un réseau distribué, ouvert et publique. Tout ce que vous y partagerez (bases de données, votre nom, information de contact) deviendra accessible à tout le réseau.",
+      "p3_2": "Ce qui est vrai de tout système informatique l'est encore plus dans le contexte d'un réseau distribué : une fois que de l'information est partagée avec d'autres personnes, vous pouvez toujours la supprimer vous-même, mais il est effectivement impossible de forcer les personnes qui l'ont déjà reçue de la supprimer également (même si vous pouvez toujours leur demander gentillement). **Ne partagez donc que des données que vous voulez partager avec toute la planète Terre. Ne partagez jamais des données confidentielles sur Constellation**.",
+      "p3_3": "En revanche, il n'y a pas de serveur central et vous ne partagez que ce que vous décidez de contribuer.",
+      "t4": "Crédits",
+      "p4_1": "Ce logiciel fut développé par Julien Malard-Adam, ஷீஜா (Sheeja) et les autres contributrices et contributeurs de [Constellation](https://github.com/reseau-constellation/iug).",
+      "p4_2": "Les images et l'art proviennent de [unDraw](https://undraw.co/) et de [வள்ளுவர் வள்ளலார் வட்டம்](https://commons.wikimedia.org/wiki/User:Valluvar_Vallalar_Vattam?uselang=ta). Ces derniers sont disponibles selon la licence [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr)."
+    },
     "accueil": {
       "démarrer": "Démarrer",
       "version": "Version {version}",

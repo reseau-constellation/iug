@@ -1,20 +1,27 @@
 import {defineStore} from 'pinia';
-import { computed, ref } from 'vue';
+import {computed, ref} from 'vue';
 
-export const utiliserÉtatConditions = defineStore('conditions',  () => {
+export const utiliserÉtatConditions = defineStore('conditions', () => {
   const acceptées = ref(false);
   const langues = ref<string[]>();
   const empreinte = ref<string>();
 
   const accepter = () => {
-      acceptées.value = true;
-
+    acceptées.value = true;
   };
-  const acceptationÀJour = computed(()=>{
+  const refuser = () => {
+    acceptées.value = false;
+  };
+  const acceptationÀJour = computed(() => {
     if (!acceptées.value) return undefined;
-    return true;  // À faire
+    return true; // À faire
   });
   return {
-    acceptées, langues, empreinte, accepter, acceptationÀJour,
+    acceptées,
+    langues,
+    empreinte,
+    accepter,
+    refuser,
+    acceptationÀJour,
   };
 });
