@@ -106,10 +106,10 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {v4 as uuidv4} from 'uuid';
 
 import NouvelleColonne from './NouvelleColonne.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemSpecificationColonne from '/@/components/tableaux/ItemSpécificationColonne.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const émettre = defineEmits<{
   (

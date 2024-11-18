@@ -169,10 +169,10 @@ import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import SelecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const props = defineProps<{
   source:

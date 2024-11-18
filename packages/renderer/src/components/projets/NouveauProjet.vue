@@ -105,10 +105,10 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {useRouter} from 'vue-router';
 import {utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 

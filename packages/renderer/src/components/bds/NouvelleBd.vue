@@ -187,13 +187,13 @@ import {useDisplay, useRtl} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurBd from './SélecteurBd.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 

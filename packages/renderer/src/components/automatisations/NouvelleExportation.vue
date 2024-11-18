@@ -265,11 +265,11 @@ import {choisirDossier} from '#preload';
 
 import {icôneObjet, utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 import {watchEffect} from 'vue';
 import {isBrowser} from 'wherearewe';

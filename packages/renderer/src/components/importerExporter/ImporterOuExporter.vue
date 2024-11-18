@@ -128,12 +128,12 @@ import {suivre} from '@constl/vue';
 
 import type {clefsExtraction} from '@constl/ipa/dist/importateur/json';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {isElectronMain, isNode} from 'wherearewe';
 import {utiliserConstellation} from '../utils';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

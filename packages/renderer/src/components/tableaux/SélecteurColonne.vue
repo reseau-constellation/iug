@@ -71,9 +71,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {utiliserConstellation} from '../utils';
 
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
-import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 const props = defineProps<{idTableau?: string; tableauChangeable?: boolean}>();
 const émettre = defineEmits<{

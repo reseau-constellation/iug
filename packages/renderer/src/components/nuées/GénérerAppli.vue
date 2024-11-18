@@ -116,8 +116,8 @@ import JSZip from 'jszip';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 
 import {utiliserConstellation} from '../utils';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';

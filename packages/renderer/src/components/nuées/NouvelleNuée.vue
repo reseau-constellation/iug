@@ -167,10 +167,10 @@ import {useRouter} from 'vue-router';
 import {useDisplay} from 'vuetify';
 import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import {utiliserConstellation} from '/@/components/utils';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const {mdAndUp} = useDisplay();
 

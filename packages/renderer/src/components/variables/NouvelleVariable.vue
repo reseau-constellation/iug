@@ -151,11 +151,11 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
-import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 import {v4 as uuidv4} from 'uuid';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
