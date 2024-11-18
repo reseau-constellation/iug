@@ -82,24 +82,17 @@
       <v-divider></v-divider>
 
       <v-card-actions>
-        <v-btn
-          v-show="retourActif.visible"
-          variant="text"
-          :disabled="!retourActif.actif"
-          @click="retour"
-        >
-          {{ t('communs.retour') }}
-        </v-btn>
+        <btn-retour
+          :visible="retourActif.visible"
+          :actif="retourActif.actif"
+          @retour="retour"
+        />
         <v-spacer></v-spacer>
-        <v-btn
-          v-show="suivantActif.visible"
-          color="primary"
-          variant="flat"
-          :disabled="!suivantActif.actif"
-          @click="suivant"
-        >
-          {{ t('communs.suivant') }}
-        </v-btn>
+        <btn-suivant
+          :visible="suivantActif.visible"
+          :actif="suivantActif.actif"
+          @suivant="suivant"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -114,6 +107,8 @@ import {utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const émettre = defineEmits<{(é: 'nouveau', id: string): void}>();
 

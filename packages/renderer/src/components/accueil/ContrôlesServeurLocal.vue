@@ -23,7 +23,8 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <v-icon start>mdi-information-outline</v-icon>Vous pouvez activer l'accès au nœud local afin de pouvoir accéder Constellation à partir d'applications tièrces (par exemple, Python, R).
+        <v-icon start>mdi-information-outline</v-icon>Vous pouvez activer l'accès au nœud local afin
+        de pouvoir accéder Constellation à partir d'applications tièrces (par exemple, Python, R).
         <v-switch
           v-model="choixActif"
           :color="choixActif ? 'primary' : 'secondary'"
@@ -42,7 +43,7 @@
           variant="outlined"
           auto-grow
           :append-inner-icon="codeSecretCopié ? 'mdi-check' : 'mdi-content-copy'"
-          @click:append-inner="()=>copierCodeSecret()"
+          @click:append-inner="() => copierCodeSecret()"
         >
         </v-textarea>
         <v-btn
@@ -82,7 +83,7 @@ const dialogue = ref(false);
 
 // Serveur local - statut
 const statut = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
-const actif = computed(()=>statut.value?.état === 'actif');
+const actif = computed(() => statut.value?.état === 'actif');
 const codeSecret = computed(() =>
   statut.value?.état === 'actif' ? statut.value.détails.codeSecret : undefined,
 );
@@ -95,7 +96,6 @@ watchEffect(() => (choixActif.value = statut.value?.état === 'actif'));
 const choixPort = ref(port.value);
 watchEffect(() => (choixPort.value = port.value));
 
-
 const miseÀJourEnCours = ref(false);
 const démarrerServeur = async () => {
   if (statut.value?.état === 'actif' && choixPort.value === port.value) return;
@@ -104,19 +104,18 @@ const démarrerServeur = async () => {
   miseÀJourEnCours.value = false;
 };
 
-
-watchEffect(async ()=>{
+watchEffect(async () => {
   if (choixActif.value) {
     await démarrerServeur();
   }
 });
 
-const codeSecretCopié  = ref(false);
+const codeSecretCopié = ref(false);
 const copierCodeSecret = async () => {
   await copier(codeSecret.value || '');
   codeSecretCopié.value = true;
 };
-watch(codeSecret, ()=>{
+watch(codeSecret, () => {
   codeSecretCopié.value = false;
 });
 

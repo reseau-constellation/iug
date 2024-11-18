@@ -141,24 +141,17 @@
         </v-window>
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          v-show="retourActif.visible"
-          variant="text"
-          :disabled="!retourActif.actif"
-          @click="retour"
-        >
-          {{ t('communs.retour') }}
-        </v-btn>
+        <btn-retour
+          :visible="retourActif.visible"
+          :actif="retourActif.actif"
+          @retour="retour"
+        />
         <v-spacer></v-spacer>
-        <v-btn
-          v-show="suivantActif.visible"
-          color="primary"
-          variant="flat"
-          :disabled="!suivantActif.actif"
-          @click="suivant"
-        >
-          {{ t('communs.suivant') }}
-        </v-btn>
+        <btn-suivant
+          :visible="suivantActif.visible"
+          :actif="suivantActif.actif"
+          @suivant="suivant"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -176,6 +169,8 @@ import ListeNoms from '../communs/listeNoms/ListeNoms.vue';
 import NouveauTableau from '../tableaux/NouveauTableau.vue';
 import ItemSpecificationTableau from '/@/components/tableaux/ItemSpécificationTableau.vue';
 import {utiliserConstellation} from '/@/components/utils';
+import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import BtnRetour from '/@/components/communs/BtnRetour.vue';
 
 const {mdAndUp} = useDisplay();
 
