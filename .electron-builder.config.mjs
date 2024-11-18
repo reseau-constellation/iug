@@ -11,7 +11,7 @@
 export default async function () {
   const {getVersion} = await import('./version/getVersion.mjs');
   return {
-    productName: 'Constellation',
+    productName: 'Constellation',  // Pour macOS et Windows
     directories: {
       output: 'dist',
       buildResources: 'buildResources',
@@ -19,6 +19,7 @@ export default async function () {
     files: ['packages/**/dist/**'],
     extraMetadata: {
       version: getVersion(),
+      name: 'Constellation',  // Pour linux deb
     },
 
     // Specify linux target just for disabling snap compilation
