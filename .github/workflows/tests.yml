@@ -1,4 +1,4 @@
-name: Tests
+name: Appli installable
 on: [ workflow_call ]
 
 concurrency:
