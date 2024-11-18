@@ -40,8 +40,8 @@
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,vue,json}\""
   },
   "devDependencies": {
-    "@constl/utils-tests": "^1.6.2",
-    "@eslint/js": "^9.14.0",
+    "@constl/utils-tests": "^1.6.3",
+    "@eslint/js": "^9.15.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@types/d3": "^7.4.3",
     "@types/deep-equal": "^1.0.4",
@@ -85,7 +85,7 @@
     "vue-tsc": "2.1.6"
   },
   "dependencies": {
-    "@constl/ipa": "^1.4.0",
+    "@constl/ipa": "^1.4.2",
     "@constl/mandataire": "^3.0.3",
     "@constl/mandataire-electron-principal": "^3.0.2",
     "@constl/mandataire-electron-rendu": "^3.0.2",
