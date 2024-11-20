@@ -1,0 +1,104 @@
+<template>
+  <qrcode-stream
+    :track="paintBoundingBox"
+    @detect="x => lorsqueDétecté(x)"
+    @error="e => lorsquErreur(e)"
+  />
+  <v-alert
+    v-if="erreur"
+    :texte="t(`communs.lecteurCodeR2.erreurs.${erreur}`)"
+    type="error"
+    variant="tonal"
+    closable
+  />
+</template>
+<script setup lang="ts" generic="T extends object">
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
+import { ref } from 'vue';
+import {QrcodeStream} from 'vue-qrcode-reader';
+import Ajv, {type JSONSchemaType} from 'ajv';
+
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const ajv = new Ajv();
+
+const props = defineProps<{
+  schema?: JSONSchemaType<T>;
+}>();
+
+const émettre = defineEmits<{
+  (é: 'detecte', args: {valTexte: string; valJSON?: T}): void;
+}>();
+
+// Détection
+type TypeCodeDétecté = {
+  rawValue: string;
+  boundingBox: {x: number; y: number; width: number; height: number};
+};
+
+function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderingContext2D) {
+  for (const detectedCode of detectedCodes) {
+    const {
+      boundingBox: {x, y, width, height},
+    } = detectedCode;
+
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#007bff';
+    ctx.strokeRect(x, y, width, height);
+  }
+}
+
+const lorsqueDétecté = (info: TypeCodeDétecté[]) => {
+  erreur.value = undefined;
+
+  const texteCode = info[0].rawValue;  // On utilise le premier code détecté
+
+  if (props.schema) {
+    const validateur = ajv.compile(props.schema);
+    try {
+      const jsonCode = JSON.parse(texteCode);
+      try {
+        if (validateur(jsonCode)){
+            émettre('detecte', { valTexte: texteCode, valJSON: jsonCode });
+        } else {
+            erreur.value = 'valeurCodeInvalide';
+        }
+      } catch {
+        erreur.value = 'valeurCodeInvalide';
+      }
+    } catch {
+      erreur.value = 'valeurCodeInvalide';
+    }
+  } else {
+    émettre('detecte', { valTexte: texteCode });
+  }
+};
+
+// Erreurs
+const erreur = ref<string>();
+function lorsquErreur(err: {value: string; name: string; message: string}) {
+  switch (err.name) {
+    case 'NotAllowedError':
+        return 'permission';
+    case 'NotFoundError':
+        return 'pasDeCaméra';
+    case 'NotSupportedError':
+    case 'InsecureContextError':
+        return 'contexteInsécure';
+    case 'NotReadableError':
+        return 'caméraUtilisée';
+    case 'OverconstrainedError':
+        return 'erreurCaméra';
+    case 'StreamApiNotSupportedError':
+        return 'navigNonSupporté';
+  
+    default:
+        break;
+  };
+}
+
+
+
+</script>

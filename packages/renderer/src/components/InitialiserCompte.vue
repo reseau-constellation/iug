@@ -21,10 +21,9 @@
           v-model="étape"
           style="overflow-y: scroll"
         >
-          <v-window-item :value="0">
+          <v-window-item :value="iÉtape('cheminement')">
             <v-list>
               <v-list-item
-                color="primary"
                 prepend-icon="mdi-creation-outline"
                 :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 @click="suivreCheminementNouveauCompte"
@@ -32,7 +31,7 @@
                 {{ t('accueil.initialiserCompte.nouveauCompte') }}
               </v-list-item>
               <v-list-item
-                prepend-icon="mdi-qrcode-scan"
+                prepend-icon="mdi-login-variant"
                 :append-icon="isRtl ? 'mdi-chevron-left' : 'mdi-chevron-right'"
                 @click="suivreCheminementConnecterCompte"
               >
@@ -40,7 +39,7 @@
               </v-list-item>
             </v-list>
           </v-window-item>
-          <v-window-item :value="1">
+          <v-window-item :value="iÉtape('noms')">
             <ListeNoms
               :noms-initiaux="noms"
               :etiquette-nom="t('listeNomsProfil.étiquetteNom')"
@@ -51,7 +50,7 @@
               @ajuster-noms="ajusterNoms"
             />
           </v-window-item>
-          <v-window-item :value="2">
+          <v-window-item :value="iÉtape('image')">
             <ImageEditable
               :editable="true"
               :src-image="srcImgProfil"
@@ -64,57 +63,72 @@
               {{ t('accueil.initialiserCompte.texteImage') }}
             </p>
           </v-window-item>
-          <v-window-item :value="3">
-            <v-fade-transition>
-              <div v-show="connexionsSFIP?.length">
-                <p class="mb-4">
-                  {{ t('accueil.initialiserCompte.texteCompteÀRejoindre') }}
-                </p>
-                <v-select
-                  v-model="compteÀRejoindre"
-                  :items="comptesEnLigneSansMoi.map(x => x.idCompte)"
-                  :loading="!comptesEnLigneSansMoi.length"
-                  :disabled="!comptesEnLigneSansMoi.length"
-                  :label="t('accueil.initialiserCompte.indiceCompte')"
-                  variant="outlined"
-                >
-                  <template #selection="{item}">
-                    <JetonMembre :compte="item.value" />
-                  </template>
-                  <template #item="{item, props: propsActivateur}">
-                    <ItemMembre
-                      v-bind="propsActivateur"
-                      :compte="item.value"
-                      :montrer-anonymes="true"
-                      simple
-                    />
-                  </template>
-                </v-select>
-                <p class="my-3 text-disabled">
-                  {{
-                    (comptesEnLigneSansMoi.length
-                      ? t('accueil.initialiserCompte.indiceComptePasVu')
-                      : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
-                  }}
-                </p>
-              </div>
-            </v-fade-transition>
-            <v-fade-transition>
-              <div v-show="!connexionsSFIP?.length">
-                {{ t('accueil.initialiserCompte.texteEnConnexion') }}
-              </div>
-            </v-fade-transition>
+          <v-window-item :value="iÉtape('rejoindreCompte')">
+            <v-btn-toggle v-model="modeRejoindreCompte">
+              <v-btn value="automatique">
+                <v-icon start>mdi-qrcode</v-icon>
+                {{ t('accueil.initialiserCompte.rejoindreAutomatiquement') }}
+              </v-btn>
+              <v-btn value="manuel">
+                <v-icon start>mdi-account-search</v-icon>
+                {{ t('accueil.initialiserCompte.rejoindreManuellement') }}
+              </v-btn>
+            </v-btn-toggle>
+            <div v-if="modeRejoindreCompte === 'manuel'">
+              <v-fade-transition>
+                <div v-show="connexionsSFIP?.length">
+                  <v-select
+                    v-model="compteÀRejoindre"
+                    :items="comptesEnLigneSansMoi.map(x => x.idCompte)"
+                    :loading="!comptesEnLigneSansMoi.length"
+                    :disabled="!comptesEnLigneSansMoi.length"
+                    :label="t('accueil.initialiserCompte.indiceCompte')"
+                    variant="outlined"
+                  >
+                    <template #selection="{item}">
+                      <JetonMembre :compte="item.value" />
+                    </template>
+                    <template #item="{item, props: propsActivateur}">
+                      <ItemMembre
+                        v-bind="propsActivateur"
+                        :compte="item.value"
+                        :montrer-anonymes="true"
+                        simple
+                      />
+                    </template>
+                  </v-select>
+                  <p class="my-3 text-disabled">
+                    {{
+                      (comptesEnLigneSansMoi.length
+                        ? t('accueil.initialiserCompte.indiceComptePasVu')
+                        : t('accueil.initialiserCompte.indiceRechercheComptes')) +
+                        t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                    }}
+                  </p>
+                </div>
+              </v-fade-transition>
+              <v-fade-transition>
+                <div v-show="!connexionsSFIP?.length">
+                  {{ t('accueil.initialiserCompte.texteEnConnexion') }}
+                </div>
+              </v-fade-transition>
+            </div>
+            <div v-else>
+              <lecteur-code-r2
+                :schema="schémaCodeR2AjoutDispositif"
+                @detecte="info => info.valJSON && compteÀRejoindreDétecté(info.valJSON)"
+              />
+            </div>
           </v-window-item>
           <v-window-item :value="4">
             <p class="mb-4">{{ t('accueil.initialiserCompte.texteCodeSecret') }}</p>
             <v-text-field
-              v-model="codeSecret"
+              v-model="codeSecretCompte"
               :label="t('accueil.initialiserCompte.indiceCodeSecret')"
               variant="outlined"
             ></v-text-field>
           </v-window-item>
-          <v-window-item :value="5">
+          <v-window-item :value="iÉtape('persister')">
             <p class="mb-4"> {{ t('accueil.initialiserCompte.textePersister.0') }} </p>
             <span class="font-weight-bold">{{ t('accueil.initialiserCompte.plusDInfo') }}</span>
             <v-btn
@@ -167,7 +181,7 @@
               </v-btn>
             </div>
           </v-window-item>
-          <v-window-item :value="6">
+          <v-window-item :value="iÉtape('cestParti')">
             <v-img
               class="mb-4"
               contain
@@ -256,7 +270,10 @@ import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
-import { utiliserÉtatConditions } from '../état/conditions';
+import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
+
+import { utiliserÉtatConditions } from '/@/état/conditions';
+import {schémaCodeR2AjoutDispositif} from '/@/codesR2';
 
 const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
 
@@ -275,15 +292,18 @@ const listeÉtapes = [
   'cheminement',
   'noms',
   'image',
-  'compteÀRejoindre',
+  'rejoindreCompte',
   'motDePasse',
   'persister',
   'cestParti',
 ] as const;
+const iÉtape = (étape: (typeof listeÉtapes)[number]): number => {
+  return listeÉtapes.indexOf(étape);
+};
 const étape = ref(
   props.cheminement === undefined
     ? 0
-    : listeÉtapes.indexOf(props.cheminement === 'connecter' ? 'compteÀRejoindre' : 'noms'),
+    : listeÉtapes.indexOf(props.cheminement === 'connecter' ? 'rejoindreCompte' : 'noms'),
 );
 const cheminement = ref<'nouveau' | 'connecter' | undefined>(props.cheminement);
 
@@ -307,7 +327,7 @@ const suivant = () => {
 const retour = () => {
   const é = listeÉtapes[étape.value];
   switch (é) {
-    case 'compteÀRejoindre':
+    case 'rejoindreCompte':
       étape.value = listeÉtapes.indexOf('cheminement');
       break;
 
@@ -334,10 +354,8 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
       return {actif: false, visible: false};
     case 'noms':
       return {actif: Object.keys(noms.value).length > 0, visible: true};
-    case 'compteÀRejoindre':
-      return {actif: !!compteÀRejoindre.value, visible: true};
-    case 'motDePasse':
-      return {actif: !!codeSecret.value, visible: true};
+    case 'rejoindreCompte':
+      return {actif: !!(compteÀRejoindre.value && codeSecretCompte.value), visible: true};
     case 'cestParti':
       return {actif: false, visible: false};
     default:
@@ -349,7 +367,7 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   const cheminementSpécifié = props.cheminement !== undefined;
   switch (é) {
-    case 'compteÀRejoindre':
+    case 'rejoindreCompte':
     case 'noms':
       return {actif: !cheminementSpécifié, visible: !cheminementSpécifié};
     case 'cheminement':
@@ -363,11 +381,11 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 
 const suivreCheminementNouveauCompte = () => {
   cheminement.value = 'nouveau';
-  étape.value = listeÉtapes.indexOf('noms');
+  étape.value = iÉtape('noms');
 };
 const suivreCheminementConnecterCompte = () => {
   cheminement.value = 'connecter';
-  étape.value = listeÉtapes.indexOf('compteÀRejoindre');
+  étape.value = iÉtape('rejoindreCompte');
 };
 
 const titreCarte = computed(() => {
@@ -379,7 +397,7 @@ const titreCarte = computed(() => {
       return 'accueil.initialiserCompte.titreNoms';
     case 'image':
       return 'accueil.initialiserCompte.titreImage';
-    case 'compteÀRejoindre':
+    case 'rejoindreCompte':
       return t('accueil.initialiserCompte.titreCompteÀRejoindre');
     case 'motDePasse':
       return 'accueil.initialiserCompte.titreMotDePasse';
@@ -426,7 +444,9 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 };
 
 // Rejoindre compte
-const codeSecret = ref<string>();
+const modeRejoindreCompte = ref<'auto'|'manuel'>('auto');
+
+const codeSecretCompte = ref<string>();
 const compteÀRejoindre = ref<string>();
 const {résultats: comptesEnLigne} = rechercher(constl.réseau.suivreComptesRéseauEtEnLigne);
 const comptesEnLigneSansMoi = computed(() =>
@@ -436,6 +456,21 @@ const comptesEnLigneSansMoi = computed(() =>
 const monIdCompte = suivre(constl.suivreIdCompte);
 
 const connexionsSFIP = suivre(constl.réseau.suivreConnexionsPostesSFIP, {});
+
+const compteÀRejoindreDétecté = async ({idCompte, codeSecret, adresses}: {idCompte: string, codeSecret: string, adresses?: string[]}) => {
+  if (adresses) {
+    for (const adresse of adresses) {
+      try {
+        await constl.réseau.connecterÀAdresse({ adresse });
+        break;
+      } catch {
+        // Tant pis
+      }
+    }
+  }
+  compteÀRejoindre.value = idCompte;
+  codeSecretCompte.value = codeSecret;
+};
 
 // Persister les données
 const persisterDonnées = async () => {
@@ -460,7 +495,6 @@ import('/@/assets/logo.svg').then(x => (srcImageLogo.value = x.default));
 const enCréation = ref(false);
 const créerCompte = async () => {
   enCréation.value = true;
-  if (!constl) return;
   if (cheminement.value === 'nouveau') {
     for (const [lng, nom] of Object.entries(noms.value)) {
       await constl.profil?.sauvegarderNom({langue: lng, nom});
@@ -473,10 +507,10 @@ const créerCompte = async () => {
     }
     await constl.profil.initialiser();
   } else {
-    if (!compteÀRejoindre.value || !codeSecret.value) return;
+    if (!compteÀRejoindre.value || !codeSecretCompte.value) return;
     await constl.demanderEtPuisRejoindreCompte({
       idCompte: compteÀRejoindre.value,
-      codeSecret: codeSecret.value,
+      codeSecret: codeSecretCompte.value,
     });
   }
 

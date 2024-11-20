@@ -113,6 +113,7 @@ import QrcodeVue from 'qrcode.vue';
 import {utiliserConstellation} from '../utils';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import { suivre } from '@constl/vue';
 
 const constl = utiliserConstellation();
 
@@ -213,14 +214,17 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 });
 
 // Génération invitation
+const mesAdresses = suivre(constl.réseau.suivreMesAdresses);
 const générationEnCours = ref(false);
 const invitation = ref<{
   idCompte: string;
   codeSecret: string;
+  adresses?: string[];
 }>();
 const générerInvitation = async () => {
   générationEnCours.value = true;
   invitation.value = await constl.générerInvitationRejoindreCompte();
+  invitation.value.adresses = mesAdresses.value;
   générationEnCours.value = false;
 };
 const invitationTexte = computed(() => {

@@ -35,7 +35,18 @@
       "copier": "Copier",
       "sauvegarder": "Sauvegarder",
       "fermer": "Fermer",
-      "annuler": "Annuler"
+      "annuler": "Annuler",
+      "lecteurCodeR2": {
+        "erreurs": {
+          "permission": "Vous devez permettre l'accès à la caméra.",
+          "pasDeCaméra": "Il semble que vous n'ayez pas de caméra.",
+          "contexteInsécure": "Le contexte est insécure. Rouvrez la page sous https.",
+          "caméraUtilisée": "La caméra semble être utilisée par une autre application.",
+          "erreurCaméra": "La caméra ne fonctionne pas.",
+          "navigNonSupporté": "Ce navigateur n'est pas supporté.",
+          "valeurCodeInvalide": "Le code R2 semble être invalide."
+        }
+      }
     },
     "navigation": {
       "accueil": "Accueil",
@@ -780,6 +791,10 @@
         "bienvenu": "விண்மீன்க்கு உங்களை வரவேற்கிறோம்",
         "sousTitreBienvenu": "எங்களுக்கு மகிழ்ச்சி!",
         "cestParti": "தொடக்கலாம்"
+      },
+      "connexion": {
+        "afficherCode": "Afficher mon code",
+        "numériserCode": "Numériser un code"
       }
     },
     "listeNomsProfil": {

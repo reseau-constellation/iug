@@ -24,12 +24,16 @@
       </v-card-item>
       <v-card-text class="text-center">
         <div class="my-2">
-          <qrcode-stream
-            v-if="mode === 'numériser'"
-            :track="paintBoundingBox"
-            @detect="onDetect"
-            @error="onError"
-          />
+          <div v-if="mode === 'numériser'">
+            <v-progress-circular v-if="enCoursDeConnexion"></v-progress-circular>
+            <p v-else-if="erreurConnexion">Erreur de connexion. <v-btn @click="() => erreurConnexion = false">Ressayer</v-btn></p>
+            <lecteur-code-r2
+              v-else-if="!connectéeÀ"
+              :schema="schémaCodeR2Connexion"
+              @detecte="({valJSON}) => lorsqueDétecté({adresses: valJSON?.adresses})"
+            />
+            <p v-else>Connecté à {{ connectéeÀ }}.</p>
+          </div>
           <qrcode-vue
             v-else
             :value="adressesTexte"
@@ -39,11 +43,11 @@
         <v-btn-toggle v-model="mode">
           <v-btn value="afficher">
             <v-icon start>mdi-qrcode</v-icon>
-            "Afficher mon code"
+            {{ t('accueil.connexion.afficherCode') }}
           </v-btn>
           <v-btn value="numériser">
             <v-icon start>mdi-qrcode-scan</v-icon>
-            "Numériser un code"
+            {{ t('accueil.connexion.numériserCode') }}
           </v-btn>
         </v-btn-toggle>
       </v-card-text>
@@ -53,7 +57,6 @@
 <script setup lang="ts">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref, watchEffect} from 'vue';
-import {QrcodeStream} from 'vue-qrcode-reader';
 import {useDisplay} from 'vuetify';
 
 import {suivre} from '@constl/vue';
@@ -61,8 +64,10 @@ import QrcodeVue from 'qrcode.vue';
 import {computed} from 'vue';
 import {utiliserConstellation} from '../utils';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
+import {schémaCodeR2Connexion} from '/@/codesR2';
 
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const constl = utiliserConstellation();
@@ -78,70 +83,29 @@ const adressesTexte = computed(() => {
   return adresses.value ? JSON.stringify(adresses.value.map(a => a.toString())) : undefined;
 });
 
-// Détection d'adresse
-type TypeCodeDétecté = {
-  rawValue: string;
-  boundingBox: {x: number; y: number; width: number; height: number};
-};
-function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderingContext2D) {
-  for (const detectedCode of detectedCodes) {
-    const {
-      boundingBox: {x, y, width, height},
-    } = detectedCode;
+const adressesDétectées = ref<string[]>();
 
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#007bff';
-    ctx.strokeRect(x, y, width, height);
-  }
-}
-const adressesDétectées = ref<string>();
-
-const erreur = ref<string>();
-function onError(err: {value: string; name: string; message: string}) {
-  erreur.value = `[${err.name}]: `;
-
-  if (err.name === 'NotAllowedError') {
-    erreur.value += 'you need to grant camera access permission';
-  } else if (err.name === 'NotFoundError') {
-    erreur.value += 'no camera on this device';
-  } else if (err.name === 'NotSupportedError') {
-    erreur.value += 'secure context required (HTTPS, localhost)';
-  } else if (err.name === 'NotReadableError') {
-    erreur.value += 'is the camera already in use?';
-  } else if (err.name === 'OverconstrainedError') {
-    erreur.value += 'installed cameras are not suitable';
-  } else if (err.name === 'StreamApiNotSupportedError') {
-    erreur.value += 'Stream API is not supported in this browser';
-  } else if (err.name === 'InsecureContextError') {
-    erreur.value +=
-      'Camera access is only permitted in secure context. Use HTTPS or localhost rather than HTTP.';
-  } else {
-    erreur.value += err.message;
-  }
-}
-
-function onDetect(detectedCodes: TypeCodeDétecté[]) {
-  try {
-    adressesDétectées.value = JSON.stringify(detectedCodes.map(code => code.rawValue));
-  } catch {
-    adressesDétectées.value = undefined;
-  }
+function lorsqueDétecté({adresses}: {adresses?: string[]}) {
+  adressesDétectées.value = adresses;
 }
 
 const connectéeÀ = ref<string>();
+const enCoursDeConnexion = ref(false);
+const erreurConnexion = ref(false);
 watchEffect(async () => {
   connectéeÀ.value = undefined;
+  enCoursDeConnexion.value = true;
+  erreurConnexion.value = false;
   if (adressesDétectées.value) {
     try {
-      const listeAdresses = JSON.parse(adressesDétectées.value);
-      if (Array.isArray(listeAdresses)) {
-        for (const a of listeAdresses) {
-          await constl.réseau.connecterÀAdresse({adresse: a});
-          connectéeÀ.value = a;
-        }
+      for (const a of adressesDétectées.value) {
+        await constl.réseau.connecterÀAdresse({adresse: a});
+        connectéeÀ.value = a;
+        erreurConnexion.value = false;
+        break;
       }
     } catch {
-      //
+      erreurConnexion.value = true;
     }
   }
 });
