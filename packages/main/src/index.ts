@@ -2,6 +2,7 @@ import {app} from 'electron';
 import './security-restrictions';
 import {gestionnaireFenêtres} from '/@/constellation';
 import {restoreOrCreateWindow} from '/@/mainWindow';
+import { electronAppUniversalProtocolClient } from 'electron-app-universal-protocol-client';
 
 /**
  * Prevent electron from running multiple instances.
@@ -46,6 +47,24 @@ app
   .whenReady()
   .then(restoreOrCreateWindow)
   .catch(e => console.error('Failed create window:', e));
+
+app
+  .whenReady()
+  .then(async ()=>{
+    electronAppUniversalProtocolClient.on(
+      'request',
+      async (requestUrl) => {
+        // Handle the request
+  
+        console.log(requestUrl);
+      },
+    );
+  
+    await electronAppUniversalProtocolClient.initialize({
+      protocol: 'your-app-id3',
+      mode: 'development', // Make sure to use 'production' when script is executed in bundled app
+    });
+  });
 
 /**
  * Install Vue.js or any other extension in development mode only.

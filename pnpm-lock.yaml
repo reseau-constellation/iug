@@ -77,6 +77,9 @@ importers:
       direction:
         specifier: ^2.0.1
         version: 2.0.1
+      electron-app-universal-protocol-client:
+        specifier: ^2.1.1
+        version: 2.1.1(electron@33.2.0)
       electron-updater:
         specifier: 6.3.9
         version: 6.3.9
@@ -3501,6 +3504,11 @@ packages:
     resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
     engines: {node: '>=0.10.0'}
     hasBin: true
+
+  electron-app-universal-protocol-client@2.1.1:
+    resolution: {integrity: sha512-3oX46dltrJl3yxa5c5JmM4jJCv44mzPgcF/i53t615mjRY/oJBmX3jIatd5nb1O/pj/BVW0EW2ZtAWSweXBAeA==}
+    peerDependencies:
+      electron: '>12.0.0'
 
   electron-builder-squirrel-windows@26.0.0-alpha.6:
     resolution: {integrity: sha512-M57Xzi4dhdnSrzSDkgYm0ZgGrosQPLTMbO+mfDqhXBOdevdsqbANnEF+SaZ9u2PNuVW907e8Few39JLebWmzsQ==}
@@ -11976,6 +11984,11 @@ snapshots:
   ejs@3.1.10:
     dependencies:
       jake: 10.9.2
+
+  electron-app-universal-protocol-client@2.1.1(electron@33.2.0):
+    dependencies:
+      electron: 33.2.0
+      typed-emitter: 2.1.0
 
   electron-builder-squirrel-windows@26.0.0-alpha.6(dmg-builder@26.0.0-alpha.6):
     dependencies:
