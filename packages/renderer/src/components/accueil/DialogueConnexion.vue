@@ -26,7 +26,10 @@
         <div class="my-2">
           <div v-if="mode === 'numériser'">
             <v-progress-circular v-if="enCoursDeConnexion"></v-progress-circular>
-            <p v-else-if="erreurConnexion">Erreur de connexion. <v-btn @click="() => erreurConnexion = false">Ressayer</v-btn></p>
+            <p v-else-if="erreurConnexion">
+              Erreur de connexion.
+              <v-btn @click="() => (erreurConnexion = false)">Ressayer</v-btn>
+            </p>
             <lecteur-code-r2
               v-else-if="!connectéeÀ"
               :schema="schémaCodeR2Connexion"
@@ -64,8 +67,8 @@ import QrcodeVue from 'qrcode.vue';
 import {computed} from 'vue';
 import {utiliserConstellation} from '../utils';
 
-import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
 import {schémaCodeR2Connexion} from '/@/codesR2';
+import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

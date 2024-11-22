@@ -1,5 +1,5 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {createRouter, createWebHashHistory, type RouteRecordRaw} from 'vue-router';
+import {type RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {

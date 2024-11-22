@@ -1,11 +1,12 @@
-import { systemPreferences, ipcMain, type IpcMainInvokeEvent } from 'electron';
+import {type IpcMainInvokeEvent, ipcMain, systemPreferences} from 'electron';
 
-
-
-export const demanderAccèsMédia = async (_événement: IpcMainInvokeEvent, média: 'microphone' | 'camera') => {
+export const demanderAccèsMédia = async (
+  _événement: IpcMainInvokeEvent,
+  média: 'microphone' | 'camera',
+) => {
   return await systemPreferences.askForMediaAccess(média);
 };
 
 export const connecterDemanderAccèsMédia = () => {
-    ipcMain.handle('demanderAccèsMédia', demanderAccèsMédia);
+  ipcMain.handle('demanderAccèsMédia', demanderAccèsMédia);
 };

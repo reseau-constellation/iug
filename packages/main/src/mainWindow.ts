@@ -1,11 +1,11 @@
-import {app, BrowserWindow} from 'electron';
+import {BrowserWindow, app} from 'electron';
 import {join} from 'path';
-import {fileURLToPath, URL} from 'url';
+import {URL, fileURLToPath} from 'url';
 import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
+import {connecterDemanderAccèsMédia} from './permissions';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
-import { connecterDemanderAccèsMédia } from './permissions';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({

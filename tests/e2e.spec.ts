@@ -99,7 +99,7 @@ describe('Test fenêtre appli', function () {
     }
 
     // Création compte
-    await page.getByText('J\'accepte').click();
+    await page.getByText("J'accepte").click();
     await page.getByRole('checkbox').nth(1).check();
 
     const btnCréerCompte = page.getByText('தொடக்கலாம்');

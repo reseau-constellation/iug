@@ -188,7 +188,7 @@ import type {tableaux, types, variables} from '@constl/ipa';
 import type {Ref} from 'vue';
 
 import {suivre} from '@constl/vue';
-import {computed, ref, type ComputedRef} from 'vue';
+import {type ComputedRef, computed, ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';

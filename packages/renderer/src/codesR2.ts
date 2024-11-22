@@ -1,13 +1,13 @@
+import {multiaddr} from '@multiformats/multiaddr';
 import type {JSONSchemaType} from 'ajv';
-import { multiaddr } from '@multiformats/multiaddr';
-import { isLoopbackAddr } from 'is-loopback-addr';
+import {isLoopbackAddr} from 'is-loopback-addr';
 
-export type CodeR2 = CodeR2Connexion | CodeR2AjoutDispositif; 
+export type CodeR2 = CodeR2Connexion | CodeR2AjoutDispositif;
 
 export type CodeR2Connexion = {
   type: 'connexion';
   adresses: string[];
-}
+};
 
 export const schémaCodeR2Connexion: JSONSchemaType<CodeR2Connexion> = {
   type: 'object',
@@ -31,7 +31,7 @@ export type CodeR2AjoutDispositif = {
   idCompte: string;
   codeSecret: string;
   adresses?: string[];
-}
+};
 
 export const schémaCodeR2AjoutDispositif: JSONSchemaType<CodeR2AjoutDispositif> = {
   type: 'object',
@@ -57,9 +57,15 @@ export const schémaCodeR2AjoutDispositif: JSONSchemaType<CodeR2AjoutDispositif>
   required: ['type', 'idCompte', 'codeSecret'],
 };
 
-export const comprimerAdresses = ({adresses, exclureLocales}: {adresses: string[], exclureLocales: boolean}): string[] => {
+export const comprimerAdresses = ({
+  adresses,
+  exclureLocales,
+}: {
+  adresses: string[];
+  exclureLocales: boolean;
+}): string[] => {
   if (exclureLocales) {
-    adresses = adresses.filter(a=>!isLoopbackAddr(multiaddr(a).nodeAddress().address));
+    adresses = adresses.filter(a => !isLoopbackAddr(multiaddr(a).nodeAddress().address));
   }
   return adresses;
 };

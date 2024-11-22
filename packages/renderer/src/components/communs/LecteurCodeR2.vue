@@ -20,11 +20,11 @@
 <script setup lang="ts" generic="T extends object">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import { ref, onMounted } from 'vue';
-import {QrcodeStream} from 'vue-qrcode-reader';
 import Ajv, {type JSONSchemaType} from 'ajv';
-import { isElectronRenderer } from 'wherearewe';
-import { demanderAccèsMédia } from '/@/utils';
+import {onMounted, ref} from 'vue';
+import {QrcodeStream} from 'vue-qrcode-reader';
+import {isElectronRenderer} from 'wherearewe';
+import {demanderAccèsMédia} from '/@/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -40,7 +40,7 @@ const émettre = defineEmits<{
 }>();
 
 // Pour Électron sur MacOS
-onMounted(async ()=>{
+onMounted(async () => {
   if (isElectronRenderer) {
     await demanderAccèsMédia('camera');
   }
@@ -67,17 +67,17 @@ function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderi
 const lorsqueDétecté = (info: TypeCodeDétecté[]) => {
   erreur.value = undefined;
 
-  const texteCode = info[0].rawValue;  // On utilise le premier code détecté
+  const texteCode = info[0].rawValue; // On utilise le premier code détecté
 
   if (props.schema) {
     const validateur = ajv.compile(props.schema);
     try {
       const jsonCode = JSON.parse(texteCode);
       try {
-        if (validateur(jsonCode)){
-            émettre('detecte', { valTexte: texteCode, valJSON: jsonCode });
+        if (validateur(jsonCode)) {
+          émettre('detecte', {valTexte: texteCode, valJSON: jsonCode});
         } else {
-            erreur.value = 'valeurCodeInvalide';
+          erreur.value = 'valeurCodeInvalide';
         }
       } catch {
         erreur.value = 'valeurCodeInvalide';
@@ -86,7 +86,7 @@ const lorsqueDétecté = (info: TypeCodeDétecté[]) => {
       erreur.value = 'valeurCodeInvalide';
     }
   } else {
-    émettre('detecte', { valTexte: texteCode });
+    émettre('detecte', {valTexte: texteCode});
   }
 };
 
@@ -95,29 +95,28 @@ const erreur = ref<string>();
 function lorsquErreur(err: {value: string; name: string; message: string}) {
   switch (err.name) {
     case 'NotAllowedError':
-        erreur.value='permission';
-        break;
+      erreur.value = 'permission';
+      break;
     case 'NotFoundError':
-        erreur.value='pasDeCaméra';
-        break;
+      erreur.value = 'pasDeCaméra';
+      break;
     case 'NotSupportedError':
     case 'InsecureContextError':
-        erreur.value='contexteInsécure';
-        break;
+      erreur.value = 'contexteInsécure';
+      break;
     case 'NotReadableError':
-        erreur.value='caméraUtilisée';
-        break;
+      erreur.value = 'caméraUtilisée';
+      break;
     case 'OverconstrainedError':
-        erreur.value='erreurCaméra';
-        break;
+      erreur.value = 'erreurCaméra';
+      break;
     case 'StreamApiNotSupportedError':
-        erreur.value='navigNonSupporté';
-        break;
-  
-    default:
-        erreur.value='autreErreur';
-        break;
-  };
-}
+      erreur.value = 'navigNonSupporté';
+      break;
 
+    default:
+      erreur.value = 'autreErreur';
+      break;
+  }
+}
 </script>

@@ -273,12 +273,12 @@ import JetonMembre from './membres/JetonMembre.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
+import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
 import ListeNoms from '/@/components/communs/listeNoms/ListeNoms.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
-import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
 
-import { utiliserÉtatConditions } from '/@/état/conditions';
 import {schémaCodeR2AjoutDispositif} from '/@/codesR2';
+import {utiliserÉtatConditions} from '/@/état/conditions';
 
 const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
 
@@ -449,7 +449,7 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 };
 
 // Rejoindre compte
-const modeRejoindreCompte = ref<'automatique'|'manuel'>('automatique');
+const modeRejoindreCompte = ref<'automatique' | 'manuel'>('automatique');
 
 const codeSecretCompte = ref<string>();
 const compteÀRejoindre = ref<string>();
@@ -462,11 +462,19 @@ const monIdCompte = suivre(constl.suivreIdCompte);
 
 const connexionsSFIP = suivre(constl.réseau.suivreConnexionsPostesSFIP, {});
 
-const compteÀRejoindreDétecté = async ({idCompte, codeSecret, adresses}: {idCompte: string, codeSecret: string, adresses?: string[]}) => {
+const compteÀRejoindreDétecté = async ({
+  idCompte,
+  codeSecret,
+  adresses,
+}: {
+  idCompte: string;
+  codeSecret: string;
+  adresses?: string[];
+}) => {
   if (adresses) {
     for (const adresse of adresses) {
       try {
-        await constl.réseau.connecterÀAdresse({ adresse });
+        await constl.réseau.connecterÀAdresse({adresse});
         break;
       } catch {
         // Tant pis

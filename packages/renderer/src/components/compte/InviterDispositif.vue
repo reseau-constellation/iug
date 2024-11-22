@@ -108,12 +108,12 @@ import {useOnline} from '@vueuse/core';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
+import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import QrcodeVue from 'qrcode.vue';
 import {utiliserConstellation} from '../utils';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
-import { suivre } from '@constl/vue';
 
 const constl = utiliserConstellation();
 

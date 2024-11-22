@@ -34,7 +34,7 @@
   </base-item-info>
 </template>
 <script setup lang="ts">
-import {utiliserÉtatInfos, type InfoAvecId, type InfoProtégerDonnnées} from '/@/état/infos';
+import {type InfoAvecId, type InfoProtégerDonnnées, utiliserÉtatInfos} from '/@/état/infos';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';

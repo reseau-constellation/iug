@@ -25,4 +25,13 @@ const redémarrer = async () => {
   window.location.reload();
 };
 
-export {choisirDossier, demanderAccèsMédia, plateforme, redémarrer, requêteHttp, surLinux, surMac, surWindows};
+export {
+  choisirDossier,
+  demanderAccèsMédia,
+  plateforme,
+  redémarrer,
+  requêteHttp,
+  surLinux,
+  surMac,
+  surWindows,
+};
