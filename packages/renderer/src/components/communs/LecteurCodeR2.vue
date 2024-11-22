@@ -20,9 +20,11 @@
 <script setup lang="ts" generic="T extends object">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {QrcodeStream} from 'vue-qrcode-reader';
 import Ajv, {type JSONSchemaType} from 'ajv';
+import { isElectronRenderer } from 'wherearewe';
+import { demanderAccèsMédia } from '/@/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -36,6 +38,13 @@ const props = defineProps<{
 const émettre = defineEmits<{
   (é: 'detecte', args: {valTexte: string; valJSON?: T}): void;
 }>();
+
+// Pour Électron sur MacOS
+onMounted(async ()=>{
+  if (isElectronRenderer) {
+    await demanderAccèsMédia('camera');
+  }
+});
 
 // Détection
 type TypeCodeDétecté = {

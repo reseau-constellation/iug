@@ -94,14 +94,15 @@ const enCoursDeConnexion = ref(false);
 const erreurConnexion = ref(false);
 watchEffect(async () => {
   connectéeÀ.value = undefined;
-  enCoursDeConnexion.value = true;
   erreurConnexion.value = false;
   if (adressesDétectées.value) {
+    enCoursDeConnexion.value = true;
     try {
       for (const a of adressesDétectées.value) {
         await constl.réseau.connecterÀAdresse({adresse: a});
         connectéeÀ.value = a;
         erreurConnexion.value = false;
+        enCoursDeConnexion.value = false;
         break;
       }
     } catch {

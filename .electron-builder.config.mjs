@@ -22,6 +22,15 @@ export default async function () {
       name: 'Constellation', // Pour linux deb
     },
 
+    mac: {
+      extendInfo: {
+        NSCameraUsageDescription: 'Accès caméra',
+        // NSMicrophoneUsageDescription: "Accès microphone",
+        //"com.apple.security.device.audio-input": true,
+        'com.apple.security.device.camera': true,
+      },
+    },
+
     // Specify linux target just for disabling snap compilation
     linux: {
       target: 'deb',

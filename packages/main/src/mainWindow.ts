@@ -5,6 +5,7 @@ import {gestionnaireFenêtres} from './constellation';
 import {connecterHttp} from './http';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
+import { connecterDemanderAccèsMédia } from './permissions';
 
 async function createWindow() {
   const browserWindow = new BrowserWindow({
@@ -74,6 +75,7 @@ export async function restoreOrCreateWindow() {
     connecterHttp();
     connecterRedémarrer();
     connecterSystèmeFichiers();
+    connecterDemanderAccèsMédia();
   }
 
   if (window.isMinimized()) {

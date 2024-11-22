@@ -11,7 +11,7 @@ type Permission = Parameters<
  *
  * In development mode you need allow open `VITE_DEV_SERVER_URL`.
  */
-const permissions = new Set<Permission>(['clipboard-sanitized-write']);
+const permissions = new Set<Permission>(['clipboard-sanitized-write', 'media']);
 const ALLOWED_ORIGINS_AND_PERMISSIONS = new Map<string, Set<Permission>>(
   import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL
     ? [[new URL(import.meta.env.VITE_DEV_SERVER_URL).origin, permissions]]
@@ -32,6 +32,13 @@ const ALLOWED_EXTERNAL_ORIGINS = new Set<`https://${string}`>([
   'https://github.com',
   'https://docu.xn--rseau-constellation-bzb.ca',
   'https://matrix.to',
+  'https://duckduckgo.com',
+  'https://creativecommons.org',
+  'https://opendatacommons.org/',
+  'https://undraw.co/',
+  'https://www.gnu.org/',
+  'https://www.contributor-covenant.org',
+  'https://commons.wikimedia.org',
 ]);
 
 app.on('web-contents-created', (_, contents) => {

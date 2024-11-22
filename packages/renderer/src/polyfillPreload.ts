@@ -9,14 +9,20 @@ const requêteHttp = async () => {
   );
 };
 
-const redémarrer = async () => {
-  window.location.reload();
-};
-
 const choisirDossier = async () => {
   throw new Error(
     "Fonction `choisirDossier` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
   );
 };
 
-export {choisirDossier, plateforme, redémarrer, requêteHttp, surLinux, surMac, surWindows};
+const demanderAccèsMédia = async () => {
+  throw new Error(
+    "Fonction `demanderAccèsMédia` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
+  );
+};
+
+const redémarrer = async () => {
+  window.location.reload();
+};
+
+export {choisirDossier, demanderAccèsMédia, plateforme, redémarrer, requêteHttp, surLinux, surMac, surWindows};

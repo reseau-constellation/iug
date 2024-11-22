@@ -1,4 +1,4 @@
-import {choisirDossier as choisirDossier_, surLinux, surMac, surWindows} from '#preload';
+import {choisirDossier as choisirDossier_, demanderAccèsMédia as demanderAccèsMédia_, surLinux, surMac, surWindows} from '#preload';
 import {showSaveFilePicker} from 'native-file-system-adapter';
 import {os} from 'platform';
 import {type ComputedRef, type Ref, computed} from 'vue';
@@ -174,6 +174,11 @@ export const sourceImage = (
 export const choisirDossier = async (): Promise<string | undefined> => {
   if (!isElectronRenderer) return undefined;
   return await choisirDossier_();
+};
+
+export const demanderAccèsMédia = async (média: 'microphone' | 'camera'): Promise<boolean|undefined> => {
+  if (!isElectronRenderer) return undefined;
+  return await demanderAccèsMédia_(média);
 };
 
 export const itérableÀFlux = (itérable: AsyncIterable<Uint8Array>): ReadableStream<Uint8Array> => {
