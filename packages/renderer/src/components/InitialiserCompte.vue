@@ -64,7 +64,11 @@
             </p>
           </v-window-item>
           <v-window-item :value="iÉtape('rejoindreCompte')">
-            <v-btn-toggle v-model="modeRejoindreCompte">
+            <v-btn-toggle
+              v-model="modeRejoindreCompte"
+              color="primary"
+              class="mb-2"
+            >
               <v-btn value="automatique">
                 <v-icon start>mdi-qrcode</v-icon>
                 {{ t('accueil.initialiserCompte.rejoindreAutomatiquement') }}
@@ -77,6 +81,7 @@
             <div v-if="modeRejoindreCompte === 'manuel'">
               <v-fade-transition>
                 <div v-show="connexionsSFIP?.length">
+                  {{ connexionsSFIP }}
                   <v-select
                     v-model="compteÀRejoindre"
                     :items="comptesEnLigneSansMoi.map(x => x.idCompte)"
@@ -444,7 +449,7 @@ const imageChangée = (img?: {contenu: ArrayBuffer; fichier: string}) => {
 };
 
 // Rejoindre compte
-const modeRejoindreCompte = ref<'auto'|'manuel'>('auto');
+const modeRejoindreCompte = ref<'automatique'|'manuel'>('automatique');
 
 const codeSecretCompte = ref<string>();
 const compteÀRejoindre = ref<string>();
