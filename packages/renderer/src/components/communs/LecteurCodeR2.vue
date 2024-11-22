@@ -1,16 +1,21 @@
 <template>
-  <qrcode-stream
-    :track="paintBoundingBox"
-    @detect="x => lorsqueDétecté(x)"
-    @error="e => lorsquErreur(e)"
-  />
-  <v-alert
-    v-if="erreur"
-    :texte="t(`communs.lecteurCodeR2.erreurs.${erreur}`)"
-    type="error"
-    variant="tonal"
-    closable
-  />
+  <v-expand-transition>
+    <qrcode-stream
+      :track="paintBoundingBox"
+      @detect="x => lorsqueDétecté(x)"
+      @error="e => lorsquErreur(e)"
+    />
+  </v-expand-transition>
+
+  <v-expand-transition>
+    <v-alert
+      v-if="erreur"
+      :text="t(`communs.lecteurCodeR2.erreurs.${erreur}`)"
+      type="error"
+      variant="tonal"
+      closable
+    />
+  </v-expand-transition>
 </template>
 <script setup lang="ts" generic="T extends object">
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -81,24 +86,29 @@ const erreur = ref<string>();
 function lorsquErreur(err: {value: string; name: string; message: string}) {
   switch (err.name) {
     case 'NotAllowedError':
-        return 'permission';
+        erreur.value='permission';
+        break;
     case 'NotFoundError':
-        return 'pasDeCaméra';
+        erreur.value='pasDeCaméra';
+        break;
     case 'NotSupportedError':
     case 'InsecureContextError':
-        return 'contexteInsécure';
+        erreur.value='contexteInsécure';
+        break;
     case 'NotReadableError':
-        return 'caméraUtilisée';
+        erreur.value='caméraUtilisée';
+        break;
     case 'OverconstrainedError':
-        return 'erreurCaméra';
+        erreur.value='erreurCaméra';
+        break;
     case 'StreamApiNotSupportedError':
-        return 'navigNonSupporté';
+        erreur.value='navigNonSupporté';
+        break;
   
     default:
+        erreur.value='autreErreur';
         break;
   };
 }
-
-
 
 </script>
