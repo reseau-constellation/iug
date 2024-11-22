@@ -109,6 +109,7 @@
     "d3": "^7.9.0",
     "deep-equal": "^2.2.3",
     "direction": "^2.0.1",
+    "electron-app-universal-protocol-client": "^2.1.1",
     "electron-updater": "6.3.9",
     "ennikkai": "^2.3.2",
     "events": "^3.3.0",

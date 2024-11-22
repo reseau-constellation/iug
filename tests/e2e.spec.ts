@@ -24,7 +24,7 @@ describe('Test fenêtre appli', function () {
   });
 
   afterAll(async () => {
-    await fermer();
+    await fermer?.();
   });
 
   test('Main window state', async context => {
