@@ -61,8 +61,8 @@ app
     );
   
     await electronAppUniversalProtocolClient.initialize({
-      protocol: 'your-app-id3',
-      mode: 'development', // Make sure to use 'production' when script is executed in bundled app
+      protocol: 'constl',
+      mode: import.meta.env.DEV ? 'development' : 'production',
     });
   });
 
