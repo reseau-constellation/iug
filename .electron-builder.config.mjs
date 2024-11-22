@@ -24,7 +24,7 @@ export default async function () {
 
     mac: {
       extendInfo: {
-        NSCameraUsageDescription: 'Accès caméra',
+        NSCameraUsageDescription: 'Constellation a besoin d\'accéder la caméra pour lire les codes R2',
         // NSMicrophoneUsageDescription: "Accès microphone",
         //"com.apple.security.device.audio-input": true,
         'com.apple.security.device.camera': true,
