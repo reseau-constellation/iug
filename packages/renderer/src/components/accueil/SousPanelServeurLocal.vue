@@ -12,9 +12,7 @@
     <v-card-text>
       <v-list>
         <v-list-item>
-          <div class="text-disabled">
-            Pour connecter Constellation à des applis externes.
-          </div>
+          <div class="text-disabled"> Pour connecter Constellation à des applis externes. </div>
         </v-list-item>
         <v-list-item>
           <v-switch
@@ -27,20 +25,39 @@
             :color="contrôleServeur ? 'primary' : undefined"
             :readonly="changementEnCours"
             :loading="changementEnCours"
-            :label="t(`accueil.page.connectivité.serveurLocal.${contrôleServeur ? 'activé' : 'désactivé'}`)"
+            :label="
+              t(
+                `accueil.page.connectivité.serveurLocal.${contrôleServeur ? 'activé' : 'désactivé'}`,
+              )
+            "
           />
         </v-list-item>
         <v-slide-y-transition>
           <v-list-item v-if="étatServeur?.état === 'actif'">
-            <v-chip
-              class="me-2 mb-2"
-              size="small"
-              prepend-icon="mdi-connection"
-              label
-              variant="outlined"
-            >
-              Port : {{ étatServeur.détails.port }}
-            </v-chip>
+            <v-menu>
+              <template #activator="{props: propsActivateur}">
+                <v-chip
+                  v-bind="propsActivateur"
+                  class="me-2 mb-2"
+                  size="small"
+                  prepend-icon="mdi-connection"
+                  label
+                  variant="outlined"
+                >
+                  Port : {{ étatServeur.détails.port }}
+                </v-chip>
+              </template>
+              <v-list>
+                <v-text-field
+                  v-model="choixPort"
+                  hide-details
+                  density="compact"
+                  variant="outlined"
+                  @click.stop
+                  @blur="() => peutÊtreActualiserPort()"
+                ></v-text-field>
+              </v-list>
+            </v-menu>
             <v-menu>
               <template #activator="{props: propsActivateur}">
                 <v-chip
@@ -87,6 +104,7 @@
             </template>
           </controles-serveur-local>
         </div>
+        {{ choixPort }}
       </v-list>
     </v-card-text>
   </v-card>
@@ -97,9 +115,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {computed, ref} from 'vue';
 import {utiliserServeurLocalConstellation} from '../utils';
 
+import {watchEffect} from 'vue';
 import ControlesServeurLocal from './ContrôlesServeurLocal.vue';
-import { watchEffect } from 'vue';
-import { copier } from '/@/utils';
+import {copier} from '/@/utils';
 
 const serveurLocal = utiliserServeurLocalConstellation();
 
@@ -109,20 +127,29 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 // Contrôles
 const contrôleServeur = ref(false);
-const changementEnCours = computed(()=>{
+const choixPort = ref<number>();
+
+const changementEnCours = computed(() => {
   return contrôleServeur.value !== (étatServeur.value?.état === 'actif');
 });
 
-watchEffect(async ()=> {
-  console.log('avant');
+watchEffect(async () => {
   if (contrôleServeur.value && étatServeur.value?.état === 'fermé') {
-    console.log('ici');
-    await serveurLocal.initialiser();
+    await serveurLocal.initialiser(choixPort.value);
   } else if (!contrôleServeur.value && étatServeur.value?.état === 'actif') {
-    console.log('là');
     await serveurLocal.fermer();
-  };
+  }
 });
+
+const peutÊtreActualiserPort = async () => {
+  if (
+    choixPort.value &&
+    étatServeur.value?.état === 'actif' &&
+    choixPort.value !== étatServeur.value.détails.port
+  ) {
+    await serveurLocal.initialiser(choixPort.value);
+  }
+};
 
 const codeCopié = ref(false);
 
@@ -132,14 +159,21 @@ const nRequêtes = computed(() => requêtesServeurLocal.value?.length);
 
 const étatServeur = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
 
-watchEffect(()=>{
+watchEffect(() => {
   contrôleServeur.value = étatServeur.value?.état === 'actif';
   codeCopié.value = false;
 });
 
-const copierCode =async(code: string) => {
+watchEffect(() => {
+  if (étatServeur.value?.état === 'actif') {
+    choixPort.value = étatServeur.value.détails.port;
+  } else {
+    choixPort.value = undefined;
+  }
+});
+
+const copierCode = async (code: string) => {
   await copier(code);
   codeCopié.value = true;
 };
-
 </script>
