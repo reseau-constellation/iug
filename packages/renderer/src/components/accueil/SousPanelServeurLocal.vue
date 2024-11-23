@@ -24,12 +24,52 @@
             hide-details
             true-icon="mdi-check"
             false-icon="mdi-close"
-            :color="contrôleServeur ? 'secondary' : undefined"
+            :color="contrôleServeur ? 'primary' : undefined"
             :readonly="changementEnCours"
             :loading="changementEnCours"
             :label="t(`accueil.page.connectivité.serveurLocal.${contrôleServeur ? 'activé' : 'désactivé'}`)"
           />
         </v-list-item>
+        <v-slide-y-transition>
+          <v-list-item v-if="étatServeur?.état === 'actif'">
+            <v-chip
+              class="me-2 mb-2"
+              size="small"
+              prepend-icon="mdi-connection"
+              label
+              variant="outlined"
+            >
+              Port : {{ étatServeur.détails.port }}
+            </v-chip>
+            <v-menu>
+              <template #activator="{props: propsActivateur}">
+                <v-chip
+                  class="me-2 mb-2"
+                  size="small"
+                  v-bind="propsActivateur"
+                  prepend-icon="mdi-key-outline"
+                  label
+                  variant="outlined"
+                >
+                  Voir code
+                </v-chip>
+              </template>
+              <v-list @click.stop>
+                <v-list-item>
+                  <template #title>{{ étatServeur.détails.codeSecret }}</template>
+                  <template #append>
+                    <v-btn
+                      :icon="codeCopié ? 'mdi-check' : 'mdi-content-copy'"
+                      size="small"
+                      variant="flat"
+                      @click="copierCode"
+                    ></v-btn>
+                  </template>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-list-item>
+        </v-slide-y-transition>
         <v-list-item prepend-icon="mdi-lan">
           {{ t('accueil.page.connectivité.serveurLocal.requêtes', nRequêtes || 0) }}
         </v-list-item>
@@ -59,6 +99,7 @@ import {utiliserServeurLocalConstellation} from '../utils';
 
 import ControlesServeurLocal from './ContrôlesServeurLocal.vue';
 import { watchEffect } from 'vue';
+import { copier } from '/@/utils';
 
 const serveurLocal = utiliserServeurLocalConstellation();
 
@@ -73,16 +114,32 @@ const changementEnCours = computed(()=>{
 });
 
 watchEffect(async ()=> {
+  console.log('avant');
   if (contrôleServeur.value && étatServeur.value?.état === 'fermé') {
+    console.log('ici');
     await serveurLocal.initialiser();
-  } else {
+  } else if (!contrôleServeur.value && étatServeur.value?.état === 'actif') {
+    console.log('là');
     await serveurLocal.fermer();
   };
 });
+
+const codeCopié = ref(false);
 
 // Serveur local
 const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
 const nRequêtes = computed(() => requêtesServeurLocal.value?.length);
 
 const étatServeur = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
+
+watchEffect(()=>{
+  contrôleServeur.value = étatServeur.value?.état === 'actif';
+  codeCopié.value = false;
+});
+
+const copierCode =async(code: string) => {
+  await copier(code);
+  codeCopié.value = true;
+};
+
 </script>
