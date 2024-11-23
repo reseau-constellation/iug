@@ -23,41 +23,56 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <v-icon start>mdi-information-outline</v-icon>Vous pouvez activer l'accès au nœud local afin
-        de pouvoir accéder Constellation à partir d'applications tièrces (par exemple, Python, R).
-        <v-switch
-          v-model="choixActif"
-          :color="choixActif ? 'primary' : 'secondary'"
-          :label="actif ? 'Accès activé' : 'Accès désactivé'"
-        />
-        <v-text-field
-          v-model="choixPort"
-          label="Port"
-          variant="outlined"
-        />
-        <v-textarea
-          v-if="codeSecret"
-          v-model="codeSecret"
-          label="Code secret"
-          readonly
-          variant="outlined"
-          auto-grow
-          :append-inner-icon="codeSecretCopié ? 'mdi-check' : 'mdi-content-copy'"
-          @click:append-inner="() => copierCodeSecret()"
-        >
-        </v-textarea>
-        <v-btn
-          :loading="miseÀJourEnCours"
-          :disabled="choixPort === port"
-          @click="() => démarrerServeur()"
-        />
+        <v-icon start>mdi-information-outline</v-icon>Vous pouvez autoriser l'accès au nœud local afin
+        de pouvoir accéder Constellation à partir d'applications tièrces (par exemple, Python, R). 
+        Ces applications auront accès à votre compte Constellation. Pour des raisons de sécurité, n'approuvez que les applications auxquelles vous faites confiance.
+        <v-divider />
         <v-list>
-          <v-list-item
-            v-for="r in requêtes"
-            :key="r"
-          >
-            {{ r }}
-          </v-list-item>
+          <v-fade-transition>
+            <v-list-item v-if="!requêtes?.length">
+              <p>
+                Aucune requête en attente d'approbation. Voir comment connecter une application dans les langages suivants :
+              </p>
+              <v-chip
+                class="me-2"
+                label
+                variant="outlined"
+                append-icon="mdi-open-in-new"
+                @click="()=>ouvrirLien('https://docu.réseau-constellation.ca/avancé/autresLangages/python.html')"
+              >
+                Python
+              </v-chip>
+              <v-chip
+                class="me-2"
+                label
+                variant="outlined"
+                append-icon="mdi-open-in-new"
+                @click="()=>ouvrirLien('https://docu.réseau-constellation.ca/avancé/autresLangages/r.html#serveur-existant')"
+              >
+                R
+              </v-chip>
+              <v-chip
+                class="me-2"
+                label
+                variant="outlined"
+                append-icon="mdi-open-in-new"
+                @click="()=>ouvrirLien('https://docu.réseau-constellation.ca/avancé/autresLangages/julia.html')"
+              >
+                Julia
+              </v-chip>
+            </v-list-item>
+          </v-fade-transition>
+          <v-expand-transition>
+            <v-list-item
+              v-for="r in requêtes"
+              :key="r"
+            >
+              {{ r }}
+              <template #append>
+                
+              </template>
+            </v-list-item>
+          </v-expand-transition>
         </v-list>
       </v-card-text>
     </v-card>
@@ -65,12 +80,12 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {computed, ref, watch, watchEffect} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserServeurLocalConstellation} from '/@/components/utils';
-import {copier} from '/@/utils';
+import {ouvrirLien} from '/@/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -82,42 +97,6 @@ const serveurLocal = utiliserServeurLocalConstellation();
 const dialogue = ref(false);
 
 // Serveur local - statut
-const statut = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
-const actif = computed(() => statut.value?.état === 'actif');
-const codeSecret = computed(() =>
-  statut.value?.état === 'actif' ? statut.value.détails.codeSecret : undefined,
-);
-const port = computed(() =>
-  statut.value?.état === 'actif' ? statut.value.détails.port : undefined,
-);
-
-const choixActif = ref(statut.value?.état === 'actif');
-watchEffect(() => (choixActif.value = statut.value?.état === 'actif'));
-const choixPort = ref(port.value);
-watchEffect(() => (choixPort.value = port.value));
-
-const miseÀJourEnCours = ref(false);
-const démarrerServeur = async () => {
-  if (statut.value?.état === 'actif' && choixPort.value === port.value) return;
-  miseÀJourEnCours.value = true;
-  await serveurLocal.initialiser(choixPort.value);
-  miseÀJourEnCours.value = false;
-};
-
-watchEffect(async () => {
-  if (choixActif.value) {
-    await démarrerServeur();
-  }
-});
-
-const codeSecretCopié = ref(false);
-const copierCodeSecret = async () => {
-  await copier(codeSecret.value || '');
-  codeSecretCopié.value = true;
-};
-watch(codeSecret, () => {
-  codeSecretCopié.value = false;
-});
 
 // Serveur local - requêtes
 const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));

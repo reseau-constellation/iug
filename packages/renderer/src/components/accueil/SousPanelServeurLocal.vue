@@ -34,7 +34,7 @@
         </v-list-item>
         <v-slide-y-transition>
           <v-list-item v-if="étatServeur?.état === 'actif'">
-            <v-menu>
+            <v-menu disabled>
               <template #activator="{props: propsActivateur}">
                 <v-chip
                   v-bind="propsActivateur"
@@ -54,7 +54,7 @@
                   density="compact"
                   variant="outlined"
                   @click.stop
-                  @blur="() => peutÊtreActualiserPort()"
+                  @blur="() => peutêtreActualiserPort()"
                 ></v-text-field>
               </v-list>
             </v-menu>
@@ -104,7 +104,6 @@
             </template>
           </controles-serveur-local>
         </div>
-        {{ choixPort }}
       </v-list>
     </v-card-text>
   </v-card>
@@ -141,7 +140,7 @@ watchEffect(async () => {
   }
 });
 
-const peutÊtreActualiserPort = async () => {
+const peutêtreActualiserPort = async () => {
   if (
     choixPort.value &&
     étatServeur.value?.état === 'actif' &&
