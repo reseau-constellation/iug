@@ -12,18 +12,22 @@
     <v-card-text>
       <v-list>
         <v-list-item>
+          <div class="text-disabled">
+            Pour connecter Constellation à des applis externes.
+          </div>
+        </v-list-item>
+        <v-list-item>
           <v-switch
+            v-model="contrôleServeur"
             class="mx-2"
             density="compact"
             hide-details
-            disabled
             true-icon="mdi-check"
             false-icon="mdi-close"
-            :label="
-              étatServeur?.état === 'actif'
-                ? t('accueil.page.connectivité.serveurLocal.activé')
-                : t('accueil.page.connectivité.serveurLocal.désactivé')
-            "
+            :color="contrôleServeur ? 'secondary' : undefined"
+            :readonly="changementEnCours"
+            :loading="changementEnCours"
+            :label="t(`accueil.page.connectivité.serveurLocal.${contrôleServeur ? 'activé' : 'désactivé'}`)"
           />
         </v-list-item>
         <v-list-item prepend-icon="mdi-lan">
@@ -50,16 +54,31 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {computed} from 'vue';
+import {computed, ref} from 'vue';
 import {utiliserServeurLocalConstellation} from '../utils';
 
 import ControlesServeurLocal from './ContrôlesServeurLocal.vue';
+import { watchEffect } from 'vue';
 
 const serveurLocal = utiliserServeurLocalConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+// Contrôles
+const contrôleServeur = ref(false);
+const changementEnCours = computed(()=>{
+  return contrôleServeur.value !== (étatServeur.value?.état === 'actif');
+});
+
+watchEffect(async ()=> {
+  if (contrôleServeur.value && étatServeur.value?.état === 'fermé') {
+    await serveurLocal.initialiser();
+  } else {
+    await serveurLocal.fermer();
+  };
+});
 
 // Serveur local
 const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
