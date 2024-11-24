@@ -20,15 +20,23 @@
       "troisPetitsPoints": "...",
       "langagesInformatiques": {
         "ts": {
+          "nom": "TypeScript",
           "abr": "ts"
         },
+        "js": {
+          "nom": "JavaScript",
+          "abr": "js"
+        },
         "py": {
+          "nom": "Python",
           "abr": "py"
         },
         "julia": {
+          "nom": "Julia",
           "abr": "jl"
         },
         "r": {
+          "nom": "R",
           "abr": "R"
         }
       },

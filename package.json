@@ -100,6 +100,7 @@
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vueuse/core": "^11.2.0",
     "@wdns/vue-code-block": "^2.3.3",
+    "add": "^2.0.6",
     "ajv": "^8.17.1",
     "assert": "^2.1.0",
     "axios": "^1.7.7",
@@ -139,6 +140,7 @@
     "vue-markdown-render": "^2.2.1",
     "vue-qrcode-reader": "^5.5.11",
     "vue-router": "4.4.5",
+    "vue3-simple-icons": "^13.2.0",
     "vuetify": "^3.7.4",
     "webfontloader": "^1.6.28",
     "wherearewe": "^2.0.1"
