@@ -23,10 +23,10 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <v-icon start>mdi-information-outline</v-icon>Vous pouvez autoriser l'accès au nœud local afin
-        de pouvoir accéder Constellation à partir d'applications tièrces. 
-        Voir comment connecter une application dans les langages suivants :
-        
+        <v-icon start>mdi-information-outline</v-icon>Vous pouvez autoriser l'accès au nœud local
+        afin de pouvoir accéder Constellation à partir d'applications tièrces. Voir comment
+        connecter une application dans les langages suivants :
+
         <p>
           <v-chip
             v-for="langage in langages"
@@ -35,7 +35,7 @@
             label
             variant="outlined"
             append-icon="mdi-open-in-new"
-            @click="()=>ouvrirLien(langage.lien)"
+            @click="() => ouvrirLien(langage.lien)"
           >
             <template #prepend>
               <v-icon
@@ -54,13 +54,12 @@
         <v-divider />
         <v-list>
           <v-list-item>
-            Ces applications auront accès à votre compte Constellation. Pour des raisons de sécurité, n'approuvez que les applications auxquelles vous faites confiance.
+            Ces applications auront accès à votre compte Constellation. Pour des raisons de
+            sécurité, n'approuvez que les applications auxquelles vous faites confiance.
           </v-list-item>
           <v-fade-transition>
             <v-list-item v-if="!requêtes?.length">
-              <p>
-                Aucune requête en attente d'approbation. 
-              </p>
+              <p> Aucune requête en attente d'approbation. </p>
             </v-list-item>
           </v-fade-transition>
           <v-list-item
@@ -69,8 +68,8 @@
           >
             {{ r }}
             <template #append>
-              <v-icon @click="()=>approuverRequête(r)">mdi-check</v-icon>
-              <v-icon @click="()=>refuserRequête(r)">mdi-delete</v-icon>
+              <v-icon @click="() => approuverRequête(r)">mdi-check</v-icon>
+              <v-icon @click="() => refuserRequête(r)">mdi-delete</v-icon>
             </template>
           </v-list-item>
         </v-list>
@@ -80,14 +79,14 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {ref} from 'vue';
 import type {Component} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {JavaScriptIcon, JuliaIcon, PythonIcon, RIcon} from 'vue3-simple-icons';
 import {utiliserServeurLocalConstellation} from '/@/components/utils';
 import {ouvrirLien} from '/@/utils';
-import { PythonIcon, RIcon, JuliaIcon, JavaScriptIcon } from 'vue3-simple-icons';
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
@@ -100,7 +99,7 @@ const dialogue = ref(false);
 // Serveur local - statut
 
 // Serveur local - requêtes
-const requêtes =  suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
+const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
 const approuverRequête = async (idRequête: string) => {
   await serveurLocal.approuverRequêteAuthServeur({idRequête});
 };
