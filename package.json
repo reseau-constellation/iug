@@ -138,7 +138,7 @@
     "vue": "3.5.13",
     "vue-markdown-render": "^2.2.1",
     "vue-qrcode-reader": "^5.5.11",
-    "vue-router": "4.4.5",
+    "vue-router": "4.5.0",
     "vue3-simple-icons": "^13.2.0",
     "vuetify": "^3.7.4",
     "webfontloader": "^1.6.28",
