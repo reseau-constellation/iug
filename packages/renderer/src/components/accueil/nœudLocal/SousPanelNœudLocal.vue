@@ -112,10 +112,10 @@
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
-import {utiliserServeurLocalConstellation} from '../utils';
+import {utiliserServeurLocalConstellation} from '/@/components/utils';
 
 import {watchEffect} from 'vue';
-import ControlesServeurLocal from './ContrôlesServeurLocal.vue';
+import ControlesServeurLocal from './ContrôlesNœudLocal.vue';
 import {copier} from '/@/utils';
 
 const serveurLocal = utiliserServeurLocalConstellation();

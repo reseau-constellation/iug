@@ -74,7 +74,7 @@ import {isElectron} from 'wherearewe';
 import {utiliserConstellation} from '../utils';
 
 import DialogueConnexion from './DialogueConnexion.vue';
-import SousPanelServeurLocal from './SousPanelServeurLocal.vue';
+import SousPanelServeurLocal from './nœudLocal/SousPanelNœudLocal.vue';
 
 const constl = utiliserConstellation();
 

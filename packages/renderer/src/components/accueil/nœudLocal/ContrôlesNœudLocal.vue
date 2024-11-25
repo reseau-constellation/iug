@@ -52,27 +52,56 @@
           </v-chip>
         </p>
         <v-divider />
-        <v-list>
-          <v-list-item>
-            Ces applications auront accès à votre compte Constellation. Pour des raisons de
-            sécurité, n'approuvez que les applications auxquelles vous faites confiance.
-          </v-list-item>
-          <v-fade-transition>
-            <v-list-item v-if="!requêtes?.length">
-              <p> Aucune requête en attente d'approbation. </p>
-            </v-list-item>
-          </v-fade-transition>
-          <v-list-item
-            v-for="r in requêtes"
-            :key="r"
+        <v-tabs
+          v-model="onglet"
+          class="mt-2"
+          color="primary"
+        >
+          <v-tab
+            value="requêtes"
           >
-            {{ r }}
-            <template #append>
-              <v-icon @click="() => approuverRequête(r)">mdi-check</v-icon>
-              <v-icon @click="() => refuserRequête(r)">mdi-delete</v-icon>
-            </template>
-          </v-list-item>
-        </v-list>
+            Requêtes
+          </v-tab>
+          <v-tab
+            value="connexions"
+          >
+            Connexions
+          </v-tab>
+        </v-tabs>
+        <v-window v-model="onglet">
+          <v-window-item value="requêtes">
+            <v-list>
+              <v-list-item>
+                Ces applications auront accès à votre compte Constellation. Pour des raisons de
+                sécurité, n'approuvez que les applications auxquelles vous faites confiance.
+              </v-list-item>
+              <v-fade-transition>
+                <v-list-item v-if="!requêtes?.length">
+                  <p> Aucune requête en attente d'approbation. </p>
+                </v-list-item>
+              </v-fade-transition>
+              <item-requete-acces
+                v-for="r in requêtes"
+                :id="r"
+                :key="r"
+              />
+            </v-list>
+          </v-window-item>
+          <v-window-item value="connexions">
+            <v-list>
+              <v-fade-transition>
+                <v-list-item v-if="!requêtes?.length">
+                  <p> Aucune application externe n'est présentement connectée à votre compte. </p>
+                </v-list-item>
+              </v-fade-transition>
+              <item-connexion
+                v-for="c in connexions"
+                :id="c"
+                :key="c"
+              />
+            </v-list>
+          </v-window-item>
+        </v-window>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -87,6 +116,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {JavaScriptIcon, JuliaIcon, PythonIcon, RIcon} from 'vue3-simple-icons';
 import {utiliserServeurLocalConstellation} from '/@/components/utils';
 import {ouvrirLien} from '/@/utils';
+import ItemRequeteAcces from './ItemRequêteAccès.vue';
+import ItemConnexion from './ItemConnexion.vue';
+
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
@@ -95,17 +127,13 @@ const serveurLocal = utiliserServeurLocalConstellation();
 
 // Navigation
 const dialogue = ref(false);
+const onglet = ref<'connexions' | 'requêtes'>('requêtes');
 
 // Serveur local - statut
+const connexions = suivre(serveurLocal.suivreConnexionsAuthServeur.bind(serveurLocal));
 
 // Serveur local - requêtes
 const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
-const approuverRequête = async (idRequête: string) => {
-  await serveurLocal.approuverRequêteAuthServeur({idRequête});
-};
-const refuserRequête = async (idRequête: string) => {
-  await serveurLocal.refuserRequêteAuthServeur({idRequête});
-};
 
 // Liens clients autres langages
 const langages: {
@@ -136,7 +164,7 @@ const langages: {
     nom: 'js',
     couleur: '#F7DF1E',
     icône: JavaScriptIcon,
-    lien: 'https://docu.réseau-constellation.ca/avancé/autresLangages/introduction.html',
+    lien: 'https://docu.réseau-constellation.ca/avanc%C3%A9/autresLangages/nœudLocal.html#client',
   },
 ];
 </script>
