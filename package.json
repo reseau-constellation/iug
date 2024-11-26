@@ -91,7 +91,7 @@
     "@constl/mandataire-electron-rendu": "^3.0.4",
     "@constl/serveur": "^2.1.4",
     "@constl/vue": "^1.0.4",
-    "@lassi-js/kili": "^0.3.16",
+    "@lassi-js/kili": "^0.4.0",
     "@lassi-js/kilimukku": "^1.1.7",
     "@lassi-js/kilimukku-vue": "1.1.10",
     "@mdi/font": "^7.4.47",

@@ -27,8 +27,8 @@ importers:
         specifier: ^1.0.4
         version: 1.0.4(@constl/ipa@1.4.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.6.3))
       '@lassi-js/kili':
-        specifier: ^0.3.16
-        version: 0.3.16(@constl/ipa@1.4.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+        specifier: ^0.4.0
+        version: 0.4.1
       '@lassi-js/kilimukku':
         specifier: ^1.1.7
         version: 1.1.7(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
@@ -1454,6 +1454,9 @@ packages:
     resolution: {integrity: sha512-4+kx4sltrxod7pUqbbIyuk+wh2iFD+vAv+Mv4iu7NRHQLF1hLpRgkJ/MjH2oK8wT2WTO0uvYYfaXL3Mcb9r7GA==}
     peerDependencies:
       '@constl/ipa': ^1.0.14
+
+  '@lassi-js/kili@0.4.1':
+    resolution: {integrity: sha512-wF2vgmLDjZinDqgNdLHZT1HqRvQdtgGc7tSZOZbhEX7WtjzS9KtsI5qLA8CE1BQMmIz9QFReNdNn3gV8eYi6qw==}
 
   '@lassi-js/kilimukku-vue@1.1.10':
     resolution: {integrity: sha512-ql2dE/wP+ejpytzDEOPYFhLn+j3styxN2VX8bOagAzwkdTgjdeaQ4Nk0pMZXzgCnLXNSjNek87o6pTzHFHr0Zg==}
@@ -8960,7 +8963,13 @@ snapshots:
   '@lassi-js/kili@0.3.16(@constl/ipa@1.4.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))':
     dependencies:
       '@constl/ipa': 1.4.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      '@constl/utils-ipa': 1.0.3
+      '@constl/utils-ipa': 1.0.4
+      '@orbitdb/core': 2.4.3
+      deepcopy: 2.1.0
+
+  '@lassi-js/kili@0.4.1':
+    dependencies:
+      '@constl/utils-ipa': 1.0.4
       '@orbitdb/core': 2.4.3
       deepcopy: 2.1.0
 
