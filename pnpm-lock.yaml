@@ -269,10 +269,10 @@ importers:
         version: 1.49.0
       prettier:
         specifier: ^3.3.3
-        version: 3.4.0
+        version: 3.4.1
       prettier-plugin-organize-imports:
         specifier: ^4.1.0
-        version: 4.1.0(prettier@3.4.0)(typescript@5.6.3)(vue-tsc@2.1.6(typescript@5.6.3))
+        version: 4.1.0(prettier@3.4.1)(typescript@5.6.3)(vue-tsc@2.1.6(typescript@5.6.3))
       rollup-plugin-node-globals:
         specifier: ^1.4.0
         version: 1.4.0
@@ -5839,8 +5839,8 @@ packages:
       vue-tsc:
         optional: true
 
-  prettier@3.4.0:
-    resolution: {integrity: sha512-/OXNZcLyWkfo13ofOW5M7SLh+k5pnIs07owXK2teFpnfaOEcycnSy7HQxldaVX1ZP/7Q8oO1eDuQJNwbomQq5Q==}
+  prettier@3.4.1:
+    resolution: {integrity: sha512-G+YdqtITVZmOJje6QkXQWzl3fSfMxFwm1tjTyo9exhkmWSqC4Yhd1+lug++IlR2mvRVAxEDDWYkQdeSztajqgg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -14797,14 +14797,14 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-organize-imports@4.1.0(prettier@3.4.0)(typescript@5.6.3)(vue-tsc@2.1.6(typescript@5.6.3)):
+  prettier-plugin-organize-imports@4.1.0(prettier@3.4.1)(typescript@5.6.3)(vue-tsc@2.1.6(typescript@5.6.3)):
     dependencies:
-      prettier: 3.4.0
+      prettier: 3.4.1
       typescript: 5.6.3
     optionalDependencies:
       vue-tsc: 2.1.6(typescript@5.6.3)
 
-  prettier@3.4.0: {}
+  prettier@3.4.1: {}
 
   pretty-format@29.7.0:
     dependencies:
