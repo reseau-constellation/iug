@@ -185,7 +185,7 @@ importers:
     devDependencies:
       '@constl/utils-tests':
         specifier: ^1.6.3
-        version: 1.6.6(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+        version: 1.6.7(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@eslint/js':
         specifier: ^9.15.0
         version: 9.15.0
@@ -321,8 +321,8 @@ packages:
   '@achingbrain/nat-port-mapper@2.0.10':
     resolution: {integrity: sha512-Eg3j9tlwTvN7yewAoCWqaSV78cni10s0HlJOskYBJKyuk+IU5JNPEah1QMnK1FxWBng7Qlqi6+BFDhgTeZd0tg==}
 
-  '@achingbrain/ssdp@4.1.1':
-    resolution: {integrity: sha512-1DZZug4yqtMhzM7afCE1SuzEik3540RBKQLx3BsYsVDiSGq4kJMpZubSb5IS/Z7fbglKeXJam4YyTye+LGvSXQ==}
+  '@achingbrain/ssdp@4.1.3':
+    resolution: {integrity: sha512-ddCCCnsWuZwZsPQ/VKcdAgh7TfjLNZxsm/22mF1+YGcHdNUYIEvV195W36+dqUNjk9j3+Gsj6Vol1uTx1e+sOA==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -1108,8 +1108,8 @@ packages:
     resolution: {integrity: sha512-U9GCw5o9ZBJHBy5XK5Rt0rEn30ceSkhhQr6UTylVAF4hJ9ChlNsPKYVdk6KHk+opcwxcdS01RMczHIwEoRzRGg==}
     engines: {node: '>=20'}
 
-  '@constl/utils-tests@1.6.6':
-    resolution: {integrity: sha512-3d+tzJC5VuiCuulDs7vQFU7qiMaGshjWpvVkYwVAXEerFBBrKs/jGcNuv2wEOmdR9q4DrLgtbLcb43gDCtltZA==}
+  '@constl/utils-tests@1.6.7':
+    resolution: {integrity: sha512-DzkciiA+vOhyr92VlNHb2dqVj5Eqi0qaExfVuE7JMiDk5CmowtgQOBTkVyJ11U3wJOh+mfdmEIlJtwdp8nbtNA==}
     engines: {node: '>=20'}
 
   '@constl/vue@1.0.4':
@@ -2172,6 +2172,9 @@ packages:
 
   '@types/node@22.10.0':
     resolution: {integrity: sha512-XC70cRZVElFHfIUB40FgZOBbgJYFKKMa5nb9lxcwYstFG/Mi+/Y0bGS+rs6Dmhmkpq4pnNiLiuZAbc02YCOnmA==}
+
+  '@types/node@22.10.1':
+    resolution: {integrity: sha512-qKgsUwfHZV2WCWLAnVP1JqnpE6Im6h3Y0+fYgMTasNQ7V++CBX5OT1as0g0f+OyubbFqhf6XVNIsmN4IIhEgGQ==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -6329,8 +6332,9 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shell-quote@1.8.1:
-    resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
+  shell-quote@1.8.2:
+    resolution: {integrity: sha512-AzqKpGKjrj7EM6rKVQEPpB288oCfnrEIuyoT9cyF4nmGa7V8Zk6f7RRqYisX8X9m+Q7bd632aZW4ky7EhbQztA==}
+    engines: {node: '>= 0.4'}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -6719,8 +6723,8 @@ packages:
     resolution: {integrity: sha512-Ne2YiiGN8bmrmJJEuTWTLJR32nh/JdL1+PSicowtNb0WFpn59GK8/lfD61bVtzguz7b3PBt74nxpv/Pw5po5Rg==}
     engines: {node: '>=8'}
 
-  type-fest@4.28.1:
-    resolution: {integrity: sha512-LO/+yb3mf46YqfUC7QkkoAlpa7CTYh//V1Xy9+NQ+pKqDqXIq0NTfPfQRwFfCt+if4Qkwb9gzZfsl6E5TkXZGw==}
+  type-fest@4.29.0:
+    resolution: {integrity: sha512-RPYt6dKyemXJe7I6oNstcH24myUGSReicxcHTvCLgzm4e0n8y05dGvcGB15/SoPRBmhlMthWQ9pvKyL81ko8nQ==}
     engines: {node: '>=16'}
 
   type-is@1.6.18:
@@ -7297,7 +7301,7 @@ snapshots:
 
   '@achingbrain/nat-port-mapper@2.0.10':
     dependencies:
-      '@achingbrain/ssdp': 4.1.1
+      '@achingbrain/ssdp': 4.1.3
       '@libp2p/logger': 5.1.4
       abort-error: 1.0.0
       any-signal: 4.1.1
@@ -7308,7 +7312,7 @@ snapshots:
       race-signal: 1.1.0
       xml2js: 0.6.2
 
-  '@achingbrain/ssdp@4.1.1':
+  '@achingbrain/ssdp@4.1.3':
     dependencies:
       abort-error: 1.0.0
       freeport-promise: 2.0.0
@@ -8456,7 +8460,7 @@ snapshots:
       uint8arrays: 5.1.0
       wherearewe: 2.0.1
 
-  '@constl/utils-tests@1.6.6(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
+  '@constl/utils-tests@1.6.7(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@helia/block-brokers': 4.0.2
       '@libp2p/peer-id': 5.0.8
@@ -8908,14 +8912,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       jest-mock: 29.7.0
 
   '@jest/fake-timers@29.7.0':
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       jest-message-util: 29.7.0
       jest-mock: 29.7.0
       jest-util: 29.7.0
@@ -8949,7 +8953,7 @@ snapshots:
       '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       '@types/yargs': 17.0.33
       chalk: 4.1.2
 
@@ -10245,7 +10249,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
 
   '@types/http-cache-semantics@4.0.4': {}
 
@@ -10282,13 +10286,17 @@ snapshots:
 
   '@types/node-forge@1.3.11':
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
 
   '@types/node@20.17.8':
     dependencies:
       undici-types: 6.19.8
 
   '@types/node@22.10.0':
+    dependencies:
+      undici-types: 6.20.0
+
+  '@types/node@22.10.1':
     dependencies:
       undici-types: 6.20.0
 
@@ -11417,7 +11425,7 @@ snapshots:
 
   chrome-launcher@0.15.2:
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -11426,7 +11434,7 @@ snapshots:
 
   chromium-edge-launcher@0.2.0:
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -13489,7 +13497,7 @@ snapshots:
       '@jest/environment': 29.7.0
       '@jest/fake-timers': 29.7.0
       '@jest/types': 29.6.3
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       jest-mock: 29.7.0
       jest-util: 29.7.0
 
@@ -13499,7 +13507,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -13526,7 +13534,7 @@ snapshots:
   jest-mock@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       jest-util: 29.7.0
 
   jest-regex-util@29.6.3: {}
@@ -13534,7 +13542,7 @@ snapshots:
   jest-util@29.7.0:
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       chalk: 4.1.2
       ci-info: 3.9.0
       graceful-fs: 4.2.11
@@ -13551,7 +13559,7 @@ snapshots:
 
   jest-worker@29.7.0:
     dependencies:
-      '@types/node': 22.10.0
+      '@types/node': 22.10.1
       jest-util: 29.7.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -14669,7 +14677,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.26.2
       index-to-position: 0.1.2
-      type-fest: 4.28.1
+      type-fest: 4.29.0
 
   parseurl@1.3.3: {}
 
@@ -14974,7 +14982,7 @@ snapshots:
 
   react-devtools-core@5.3.2(bufferutil@4.0.8):
     dependencies:
-      shell-quote: 1.8.1
+      shell-quote: 1.8.2
       ws: 7.5.10(bufferutil@4.0.8)
     transitivePeerDependencies:
       - bufferutil
@@ -15057,14 +15065,14 @@ snapshots:
     dependencies:
       find-up-simple: 1.0.0
       read-pkg: 9.0.1
-      type-fest: 4.28.1
+      type-fest: 4.29.0
 
   read-pkg@9.0.1:
     dependencies:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.2
       parse-json: 8.1.0
-      type-fest: 4.28.1
+      type-fest: 4.29.0
       unicorn-magic: 0.1.0
 
   readable-stream@1.0.34:
@@ -15413,7 +15421,7 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shell-quote@1.8.1: {}
+  shell-quote@1.8.2: {}
 
   side-channel@1.0.6:
     dependencies:
@@ -15789,7 +15797,7 @@ snapshots:
 
   type-fest@0.7.1: {}
 
-  type-fest@4.28.1: {}
+  type-fest@4.29.0: {}
 
   type-is@1.6.18:
     dependencies:
