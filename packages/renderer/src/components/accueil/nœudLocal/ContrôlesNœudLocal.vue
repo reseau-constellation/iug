@@ -60,12 +60,22 @@
           <v-tab
             value="requêtes"
           >
-            Requêtes
+            <v-badge
+              :content="nRequêtesFormatté"
+              color="primary"
+              :model-value="!!nRequêtes"
+            >
+              Requêtes
+            </v-badge>
           </v-tab>
-          <v-tab
-            value="connexions"
-          >
-            Connexions
+          <v-tab value="connexions">
+            <v-badge
+              :content="nConnexionsFormatté"
+              color="primary"
+              :model-value="!!nConnexions"
+            >
+              Connexions
+            </v-badge>
           </v-tab>
         </v-tabs>
         <v-window v-model="onglet">
@@ -109,10 +119,10 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 import type {Component} from 'vue';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {JavaScriptIcon, JuliaIcon, PythonIcon, RIcon} from 'vue3-simple-icons';
 import {utiliserServeurLocalConstellation} from '/@/components/utils';
 import {ouvrirLien} from '/@/utils';
@@ -120,6 +130,7 @@ import ItemRequeteAcces from './ItemRequêteAccès.vue';
 import ItemConnexion from './ItemConnexion.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
@@ -131,9 +142,13 @@ const onglet = ref<'connexions' | 'requêtes'>('requêtes');
 
 // Serveur local - statut
 const connexions = suivre(serveurLocal.suivreConnexionsAuthServeur.bind(serveurLocal));
+const nConnexions = computed(()=>connexions.value?.length);
+const nConnexionsFormatté = எண்ணை_வடிவூட்டு(nConnexions);
 
 // Serveur local - requêtes
 const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
+const nRequêtes = computed(()=>requêtes.value?.length);
+const nRequêtesFormatté = எண்ணை_வடிவூட்டு(nRequêtes);
 
 // Liens clients autres langages
 const langages: {
