@@ -49,23 +49,6 @@
                 </v-list-item-subtitle>
               </v-list-item>
             </template>
-            <item-dispositif
-              v-for="d in dispositifs"
-              :key="d.idDispositif"
-              :id-dispositif="d.idDispositif"
-              :id-compte="d.idCompte"
-              :vu-a="d.vuÀ"
-            >
-              <v-chip
-                :prepend-icon="d.fichiers ? 'mdi-folder-outline' : 'mdi-folder-off-outline'"
-                variant="outlined"
-                size="small"
-                label
-                class="me-2 mb-2"
-              >
-                {{ d.fichiers ? t('réplications.avecFichiers') : t('réplications.sansFichiers') }}
-              </v-chip>
-            </item-dispositif>
           </v-list-group>
           <p class="mb-0 text-h6">
             {{ t('réplications.représentant') }}
@@ -131,7 +114,6 @@ import {utiliserConstellation} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -159,7 +141,7 @@ const nDispositifs = computed(() => dispositifs.value?.length || 0);
 const nDispositifsFormatté = எண்ணை_வடிவூட்டு(nDispositifs);
 
 const dispositifsEnLigne = computed(() => {
-  return réplications.value?.dispositifs.filter(x => !x.vuÀ);
+  return réplications.value?.dispositifs.filter(x => !x.dispositif.vuÀ);
 });
 const nDispositifsEnLigne = computed(() => dispositifsEnLigne.value?.length || 0);
 

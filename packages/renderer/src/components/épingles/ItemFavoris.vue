@@ -45,7 +45,7 @@ import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import CarteEpingler from './CarteÉpingler.vue';
 
-const props = defineProps<{epingle: favoris.ÉlémentFavorisAvecObjet}>();
+const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 

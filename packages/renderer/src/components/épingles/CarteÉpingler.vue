@@ -272,33 +272,16 @@ const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.i
 watch(statutFavoris, () => {
   if (statutFavoris.value) {
     if (
-      typeof statutFavoris.value.dispositifs === 'string' &&
-      ['TOUS', 'INSTALLÉ', 'AUCUN'].includes(statutFavoris.value.dispositifs)
+      typeof statutFavoris.value.base === 'string' &&
+      ['TOUS', 'INSTALLÉ', 'AUCUN'].includes(statutFavoris.value.base)
     ) {
-      typeDispositifs.value = statutFavoris.value.dispositifs as 'TOUS' | 'AUCUN' | 'INSTALLÉ';
+      typeDispositifs.value = statutFavoris.value.base as 'TOUS' | 'AUCUN' | 'INSTALLÉ';
     } else {
       typeDispositifs.value = 'SPÉCIFIQUES';
       dispositifsSpécifiques.value =
-        typeof statutFavoris.value.dispositifs === 'string'
-          ? [statutFavoris.value.dispositifs]
-          : statutFavoris.value.dispositifs;
-    }
-    if (
-      typeof statutFavoris.value.dispositifsFichiers === 'string' &&
-      ['TOUS', 'INSTALLÉ', 'AUCUN'].includes(statutFavoris.value.dispositifsFichiers)
-    ) {
-      typeDispositifsFichiers.value = statutFavoris.value.dispositifsFichiers as
-        | 'TOUS'
-        | 'AUCUN'
-        | 'INSTALLÉ';
-    } else if (statutFavoris.value.dispositifsFichiers) {
-      typeDispositifsFichiers.value = 'SPÉCIFIQUES';
-      dispositifsFichiersSpécifiques.value =
-        typeof statutFavoris.value.dispositifsFichiers === 'string'
-          ? [statutFavoris.value.dispositifsFichiers]
-          : statutFavoris.value.dispositifsFichiers;
-    } else {
-      typeDispositifsFichiers.value = 'AUCUN';
+        typeof statutFavoris.value.base === 'string'
+          ? [statutFavoris.value.base]
+          : statutFavoris.value.base;
     }
   } else {
     typeDispositifs.value = 'AUCUN';
@@ -338,8 +321,7 @@ const dispositifsFichiers = computed<favoris.typeDispositifs | undefined>(() => 
 const ilYEuChangement = computed<boolean>(() => {
   if (statutFavoris.value) {
     return (
-      dispositifsSélectionnés.value !== statutFavoris.value.dispositifs ||
-      dispositifsFichiers.value !== statutFavoris.value.dispositifsFichiers
+      dispositifsSélectionnés.value !== statutFavoris.value.base
     );
   } else {
     return typeDispositifs.value !== 'AUCUN';
@@ -358,15 +340,12 @@ const prêtÀÉpingler = computed<boolean>(() => {
 
 const valeursChangées = computed<boolean>(() => {
   if (!statutFavoris.value) return true;
-  const {dispositifs, dispositifsFichiers} = statutFavoris.value;
-  const dispositifsChangés = Array.isArray(dispositifs)
-    ? isEqual(new Set(dispositifs), new Set(dispositifsSpécifiques.value))
-    : dispositifs !== typeDispositifs.value;
-  const dispositifsFichiersChangés = Array.isArray(dispositifsFichiers)
-    ? isEqual(new Set(dispositifsFichiers), new Set(dispositifsFichiersSpécifiques.value))
-    : dispositifsFichiers !== typeDispositifsFichiers.value;
-
-  return dispositifsChangés || dispositifsFichiersChangés;
+  const {base} = statutFavoris.value;
+  const dispositifsChangés = Array.isArray(base)
+    ? isEqual(new Set(base), new Set(dispositifsSpécifiques.value))
+    : base !== typeDispositifs.value;
+  
+  return dispositifsChangés;
 });
 
 // Sauvegarder
@@ -387,7 +366,6 @@ const épingler = async () => {
     };
     if (dispositifsFichiers.value) épingle.dispositifsFichiers = dispositifsFichiers.value;
 
-    await constl.favoris.épinglerFavori(épingle);
   } else {
     await désépingler();
   }

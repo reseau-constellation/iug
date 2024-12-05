@@ -38,7 +38,7 @@ const nRéplicationsDispositifs = computed(() => {
 });
 
 const nRéplicationsEnLigne = computed(() => {
-  return réplications.value?.dispositifs.filter(d => !d.vuÀ).length || 0;
+  return réplications.value?.dispositifs.filter(d => !d.dispositif.vuÀ).length || 0;
 });
 
 const monCompte = suivre(constl.suivreIdCompte);
