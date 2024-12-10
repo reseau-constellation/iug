@@ -169,6 +169,8 @@ export class MultiChercheur {
 
 export const icôneObjet = (typeObjet?: string): string | undefined => {
   switch (typeObjet) {
+    case 'variable':
+      return 'mdi-variable';
     case 'motClef':
       return 'mdi-key';
     case 'tableau':
