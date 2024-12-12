@@ -718,7 +718,7 @@ const ajouterTableau = async ({
   ajoutTableauEnCours.value = true;
   try {
     const idTableau = await constl.bds.ajouterTableauBd({idBd: props.id});
-    for (const [langue, nom] of Object.entries(noms.value)) {
+    for (const [langue, nom] of Object.entries(noms)) {
       await constl.tableaux.sauvegarderNomTableau({
         idTableau,
         nom,
