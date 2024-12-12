@@ -184,9 +184,9 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
-  for (const [langue, nom] of Object.entries(àAjouter)) {
-    await constl.profil.sauvegarderNom({langue, nom});
-  }
+  
+  await constl.profil.sauvegarderNoms({noms: àAjouter});
+  
   for (const langue of àEffacer) {
     await constl.profil.effacerNom({langue});
   }
