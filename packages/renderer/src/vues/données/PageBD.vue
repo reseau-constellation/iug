@@ -397,6 +397,7 @@
             :value="ong.clef"
             color="primary"
             size="small"
+            density="compact"
           >
             <entete-tableau
               :id="ong.id"
@@ -406,13 +407,14 @@
 
           <nouveau-tableau @sauvegarder="ajouterTableau">
             <template #activator="{props: propsActivateur}">
-              <v-tab
+              <v-chip
                 v-if="monAutorisation"
                 v-bind="propsActivateur"
                 :append-icon="!ajoutTableauEnCours ? 'mdi-plus' : undefined"
                 :disabled="ajoutTableauEnCours"
-                variant="tonal"
-                class="mx-1"
+                variant="text"
+                class="mx-1 my-auto"
+                size="x-large"
                 label
                 @click.stop
               >
@@ -424,10 +426,11 @@
                   width="1"
                   indeterminate
                 />
-              </v-tab>
+              </v-chip>
             </template>
           </nouveau-tableau>
         </v-tabs>
+        
         <v-slide-group
           v-else
           v-model="tableauActif"
