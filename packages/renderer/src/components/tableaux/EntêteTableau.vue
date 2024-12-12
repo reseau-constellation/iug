@@ -1,12 +1,7 @@
 <template>
   <TexteTronque
-    v-if="noms"
     :texte="nomTraduit || clef"
-    :longueur-max="20"
-  />
-  <v-skeleton-loader
-    v-else
-    type="text"
+    :longueur-max="15"
   />
   <DialogueNoms
     :etiquette-nom="t('objet.étiquetteNom')"
@@ -17,7 +12,7 @@
     :titre="t('objet.titreDialogueNoms')"
     :sous-titre="t('objet.sousTitreDialogueNoms')"
     :autorisation-modification="!!monAutorisation"
-    @ajuster-noms="noms => changerNoms(noms)"
+    @ajuster-noms="nms => changerNoms(nms)"
   >
     <template #activator="{props: propsActivateur}">
       <v-icon
@@ -37,6 +32,7 @@ import {utiliserConstellation} from '../utils';
 
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
+import { ajusterTexteTraductible } from '/@/utils';
 
 const props = defineProps<{id: string; clef: string}>();
 
@@ -49,8 +45,13 @@ const constl = utiliserConstellation();
 // Noms
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-const changerNoms = async (noms: {[langue: string]: string}) => {
-  await constl.tableaux.sauvegarderNomsTableau({idTableau: props.id, noms});
+
+const changerNoms = async (nms: {[langue: string]: string}) => {
+  const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
+  for (const langue of àEffacer) {
+    await constl.tableaux.effacerNomTableau({idTableau: props.id, langue});
+  }
+  await constl.tableaux.sauvegarderNomsTableau({idTableau: props.id, noms: àAjouter});
 };
 
 // Autorisation

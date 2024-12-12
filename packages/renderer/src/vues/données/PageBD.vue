@@ -452,13 +452,9 @@
               :color="isSelected ? 'primary' : ''"
               @click="toggle"
             >
-              {{ ong.clef.slice(0, 10) }}
-
-              <v-icon
-                class="ms-2"
-                icon="mdi-pencil"
-                variant="flat"
-                size="x-small"
+              <entete-tableau
+                :id="ong.id"
+                :clef="ong.clef"
               />
             </v-chip>
           </v-slide-group-item>
@@ -722,10 +718,14 @@ const ajouterTableau = async ({
   ajoutTableauEnCours.value = true;
   try {
     const idTableau = await constl.bds.ajouterTableauBd({idBd: props.id});
-    await constl.tableaux.sauvegarderNomsTableau({
-      idTableau,
-      noms,
-    });
+    for (const [langue, nom] of Object.entries(noms.value)) {
+      await constl.tableaux.sauvegarderNomTableau({
+        idTableau,
+        nom,
+        langue,
+      });
+    }
+    
     await Promise.all(
       cols.map(async col => {
         await constl.tableaux.ajouterColonneTableau({
