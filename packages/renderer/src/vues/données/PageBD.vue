@@ -690,18 +690,14 @@ cosnt géog = suivre(
 
 // Tableaux
 const tableaux = suivre(constl.bds.suivreTableauxBd, {idBd: props.id});
-const tableauxOrdonnés = computed(() => {
-  if (!tableaux.value) return;
-  return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));
-});
 const tableauActif = ref<string>();
 watchEffect(() => {
-  if (!tableauActif.value && tableauxOrdonnés.value?.length) {
-    tableauActif.value = tableauxOrdonnés.value[0].clef;
+  if (!tableauActif.value && tableaux.value?.length) {
+    tableauActif.value = tableaux.value[0].clef;
   }
   if (
     tableauActif.value &&
-    !tableauxOrdonnés.value?.map(t => t.clef).includes(tableauActif.value)
+    !tableaux.value?.map(t => t.clef).includes(tableauActif.value)
   ) {
     tableauActif.value = undefined;
   }
