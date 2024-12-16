@@ -11,7 +11,7 @@
       :min-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title>{{ t('bds.statut.carte.titre') }}</v-card-title>
+        <v-card-title>{{ t('données.statut.carte.titre') }}</v-card-title>
       </v-card-item>
       <v-card-text>
         <choisir-statut
@@ -50,7 +50,7 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {computed, ref} from 'vue';
+import {computed, ref, toRaw} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import type {types} from '@constl/ipa';
@@ -89,7 +89,7 @@ const sauvegarder = async () => {
   if (statutChoisi.value)
     await constl.bds.changerStatutBd({
       idBd: props.idBd,
-      statut: statutChoisi.value,
+      statut: toRaw(statutChoisi.value),
     });
   enModification.value = false;
   dialogue.value = false;

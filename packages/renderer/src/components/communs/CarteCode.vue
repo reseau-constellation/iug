@@ -15,7 +15,7 @@
       </v-card-title>
       <v-card-text>
         <v-divider />
-        <v-row class="my-2">
+        <v-row class="mt-2">
           <v-col class="py-2">
             <h3> {{ t('code.options.langage') }}</h3>
             <v-btn-toggle

@@ -10,7 +10,7 @@
         :title="t(`données.statut.${item.raw}`)"
         :prepend-icon="icôneStatut(item.raw)"
       >
-        {{ t(`données.statut.info.${item.raw}`) }}
+        <span class="text-disabled">{{ t(`données.statut.info.${item.raw}`) }}</span>
       </v-list-item>
     </template>
     <template #selection="{item}">
@@ -27,15 +27,16 @@
       v-model="inclureNouvelle"
       :label="t('données.statut.inclureNouvelle')"
       color="primary"
+      hide-details
     />
   </v-expand-transition>
   <v-expand-transition>
-    <span v-show="statut === 'obsolète' && inclureNouvelle">
+    <p v-show="statut === 'obsolète' && inclureNouvelle">
       <slot
         name="sélecteur"
         :choisir-nouvelle="(id: string) => (idNouvelle = id)"
       />
-    </span>
+    </p>
   </v-expand-transition>
 </template>
 <script setup lang="ts">
