@@ -1,5 +1,5 @@
 <template>
-  <EpinglerVariable :id-variable="epingle.idObjet">
+  <EpinglerNuee :id-nuee="epingle.idObjet">
     <template #activator="{props: propsActivateurCarteÉpingle}">
       <v-tooltip
         open-delay="200"
@@ -11,21 +11,42 @@
               <v-icon>{{ icôneTypeItem }}</v-icon>
             </template>
             <v-list-item-title>
-              {{ nomTraduit || t('variables.sansNom') }}
+              {{ nomTraduit || t('nuées.sansNom') }}
               <lien-objet :id="epingle.idObjet" />
             </v-list-item-title>
             <jeton-part-epingle
               icone="mdi-save-outline"
               :dispositifs="props.epingle.épingle.base"
-              :statut="statut"
+              :statut="statutÉpingle?.base"
             >
-              Variable
+              Nuée
+            </jeton-part-epingle>
+            <jeton-part-epingle
+              icone="mdi-database"
+              :dispositifs="props.epingle.épingle.données.base"
+              :statut="statutÉpingle?.données?.base"
+            >
+              Bases de données
+            </jeton-part-epingle>
+            <jeton-part-epingle
+              icone="mdi-table-multiple"
+              :dispositifs="props.epingle.épingle.données.données.tableaux"
+              :statut="statutÉpingle?.données?.données?.tableaux"
+            >
+              Données
+            </jeton-part-epingle>
+            <jeton-part-epingle
+              icone="mdi-image-multiple-outline"
+              :dispositifs="props.epingle.épingle.données.données.fichiers"
+              :statut="statutÉpingle?.données?.données?.fichiers"
+            >
+              Documents
             </jeton-part-epingle>
           </v-list-item>
         </template>
       </v-tooltip>
     </template>
-  </EpinglerVariable>
+  </EpinglerNuee>
 </template>
   
 <script setup lang="ts">
@@ -35,11 +56,11 @@ import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
-import EpinglerVariable from './ÉpinglerVariable.vue';
+import EpinglerNuee from './ÉpinglerNuée.vue';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import { ref, watchEffect } from 'vue';
   
-const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleVariable>}>();
+const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleNuée>}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
@@ -53,13 +74,12 @@ const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingl
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Type objet
-const icôneTypeItem = icôneObjet('variable');
+const icôneTypeItem = icôneObjet('nuée');
 
 // Statut sur ce dispositif
-const statut = ref<boolean>();
+const statutÉpingle = ref<favoris.BooléenniserPropriétés<favoris.ÉpingleNuée>>();
 watchEffect(async () => {
-  statut.value = (await constl.favoris.résoudreÉpinglesSurDispositif({épingle: props.epingle.épingle})).base;
+  statutÉpingle.value = await constl.favoris.résoudreÉpinglesSurDispositif({épingle: props.epingle.épingle});
 });
-
 </script>
   

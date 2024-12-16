@@ -25,23 +25,11 @@
       </v-card-item>
       <v-divider />
       <v-card-text style="overflow-y: scroll">
-        <v-select
-          v-model="sélectionBase"
-          :items="optionsÉpingle"
-          item-value="valeur"
-        >
-          <template #selection="{item}">
-            {{ item.raw.titre }}
-          </template>
-          <template #item="{item, props: propsItem}">
-            <v-list-item
-              v-bind="propsItem"
-              :title="item.raw.titre"
-              :subtitle="item.raw.sousTitre"
-              :prepend-icon="item.raw.icône"
-            />
-          </template>
-        </v-select>
+        <v-icon start>mdi-pin-outline</v-icon><span class="font-weight-bold">ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+        <selection-dispositifs
+          v-model:selection="sélectionBase"
+          v-model:specifiques="spécifiquesBase"
+        />
       </v-card-text>
       <v-divider />
       <v-card-actions>
@@ -60,7 +48,7 @@
           color="primary"
           variant="outlined"
           :loading="enProgrès"
-          :disabled="!prêtÀÉpingler || !valeursChangées"
+          :disabled="!baseValide || !baseModifié"
           @click="() => épingler()"
         >
           {{ t('communs.sauvegarder') }}
@@ -82,11 +70,10 @@ import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
-import { isEqual } from 'lodash-es';
-
+import SelectionDispositifs from './SélectionDispositifs.vue';
+import { optionsDispositifs } from './utils';
 
 const props = defineProps<{idMotClef: string}>();
-
 
 const constl = utiliserConstellation();
 
@@ -101,60 +88,15 @@ const dialogue = ref(false);
 const épingle = suivre(constl.motsClefs.suivreÉpingleMotClef, {idMotClef: props.idMotClef});
 
 // Options
-const sélectionBase = ref<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES'>('AUCUN');
-const dispositifsSpécifiquesBase = ref<string[]>();
-const dispositifsBase = computed(()=>{
-  if (sélectionBase.value === 'SPÉCIFIQUES') return dispositifsSpécifiquesBase.value;
-  else return sélectionBase.value;
-});
-const optionsÉpingle: {
-  titre: string;
-  sousTitre: string;
-  icône: string;
-  valeur: 'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES';
-}[] = [
-  {
-    titre: t('épingler.aucun'),
-    sousTitre: t('épingler.indiceAucun'),
-    icône: 'mdi-cancel',
-    valeur: 'AUCUN',
-  },
-  {
-    titre: t('épingler.tous'),
-    sousTitre: t('épingler.indiceTous'),
-    icône: 'mdi-devices',
-    valeur: 'TOUS',
-  },
-  {
-    titre: t('épingler.installé'),
-    sousTitre: t('épingler.indiceInstallé'),
-    icône: 'mdi-monitor',
-    valeur: 'INSTALLÉ',
-  },
-  {
-    titre: t('épingler.dispositifsSpécifiques'),
-    sousTitre: t('épingler.indiceDispositifsSpécifiques'),
-    icône: 'mdi-monitor-cellphone-star',
-    valeur: 'SPÉCIFIQUES',
-  },
-];
-
+const { 
+  sélection: sélectionBase,
+  dispositifs: dispositifsBase,
+  spécifiques: spécifiquesBase,
+  valide: baseValide,
+  modifié: baseModifié,
+} = optionsDispositifs(computed(()=>épingle.value?.base), 'TOUS');
 
 // Sauvegarder
-const prêtÀÉpingler = computed(() => {
-  return dispositifsBase.value !== undefined;
-});
-
-const valeursChangées = computed<boolean>(() => {
-  if (!épingle.value) return true;
-  const {base} = épingle.value;
-  const dispositifsChangés = Array.isArray(base)
-    ? !isEqual(new Set(base), new Set(dispositifsSpécifiquesBase.value))
-    : base !== sélectionBase.value;
-  
-  return dispositifsChangés;
-});
-
 const enProgrès = ref(false);
 const épingler = async () => {
   enProgrès.value = true;
@@ -174,10 +116,10 @@ const épingler = async () => {
   }
   fermer();
 };
+
 const désépingler = async () => {
   await constl.favoris.désépinglerFavori({idObjet: props.idMotClef});
 };
-
 
 // Fermer
 const fermer = () => {

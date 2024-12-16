@@ -1,5 +1,5 @@
 <template>
-  <EpinglerVariable :id-variable="epingle.idObjet">
+  <EpinglerMotClef :id-mot-clef="epingle.idObjet">
     <template #activator="{props: propsActivateurCarteÉpingle}">
       <v-tooltip
         open-delay="200"
@@ -11,7 +11,7 @@
               <v-icon>{{ icôneTypeItem }}</v-icon>
             </template>
             <v-list-item-title>
-              {{ nomTraduit || t('variables.sansNom') }}
+              {{ nomTraduit || t('motClefs.sansNom') }}
               <lien-objet :id="epingle.idObjet" />
             </v-list-item-title>
             <jeton-part-epingle
@@ -19,13 +19,13 @@
               :dispositifs="props.epingle.épingle.base"
               :statut="statut"
             >
-              Variable
+              MotClef
             </jeton-part-epingle>
           </v-list-item>
         </template>
       </v-tooltip>
     </template>
-  </EpinglerVariable>
+  </EpinglerMotClef>
 </template>
   
 <script setup lang="ts">
@@ -35,11 +35,11 @@ import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
-import EpinglerVariable from './ÉpinglerVariable.vue';
+import EpinglerMotClef from './ÉpinglerMotClef.vue';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import { ref, watchEffect } from 'vue';
   
-const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleVariable>}>();
+const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleMotClef>}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
@@ -53,7 +53,7 @@ const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingl
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Type objet
-const icôneTypeItem = icôneObjet('variable');
+const icôneTypeItem = icôneObjet('motClef');
 
 // Statut sur ce dispositif
 const statut = ref<boolean>();
