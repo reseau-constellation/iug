@@ -109,7 +109,7 @@
     </div>
 
     <div class="text-center">
-      <CarteEpingler :id="id">
+      <epingler-bd :id-bd="id">
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
@@ -127,7 +127,7 @@
             </template>
           </v-tooltip>
         </template>
-      </CarteEpingler>
+      </epingler-bd>
 
       <carte-exportation-objet
         :id-objet="id"
@@ -543,7 +543,7 @@ import {useDisplay, useRtl} from 'vuetify';
 
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {computed, onMounted, ref, watchEffect} from 'vue';
+import {computed, onMounted, ref, toRaw, watchEffect} from 'vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
 
@@ -581,7 +581,7 @@ import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import EpinglerBd from '/@/components/épingles/ÉpinglerBd.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 
@@ -718,13 +718,10 @@ const ajouterTableau = async ({
   ajoutTableauEnCours.value = true;
   try {
     const idTableau = await constl.bds.ajouterTableauBd({idBd: props.id});
-    for (const [langue, nom] of Object.entries(noms)) {
-      await constl.tableaux.sauvegarderNomTableau({
-        idTableau,
-        nom,
-        langue,
-      });
-    }
+    await constl.tableaux.sauvegarderNomsTableau({
+      idTableau,
+      noms: toRaw(noms),
+    });
     
     await Promise.all(
       cols.map(async col => {
