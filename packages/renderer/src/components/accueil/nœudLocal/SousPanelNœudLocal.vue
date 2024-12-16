@@ -128,6 +128,31 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const contrôleServeur = ref(false);
 const choixPort = ref<number>();
 
+// Serveur local
+const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
+const nRequêtes = computed(() => requêtesServeurLocal.value?.length);
+
+const étatServeur = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
+
+const codeCopié = ref(false);
+const copierCode = async (code: string) => {
+  await copier(code);
+  codeCopié.value = true;
+};
+
+watchEffect(() => {
+  contrôleServeur.value = étatServeur.value?.état === 'actif';
+  codeCopié.value = false;
+});
+
+watchEffect(() => {
+  if (étatServeur.value?.état === 'actif') {
+    choixPort.value = étatServeur.value.détails.port;
+  } else {
+    choixPort.value = undefined;
+  }
+});
+
 const changementEnCours = computed(() => {
   return contrôleServeur.value !== (étatServeur.value?.état === 'actif');
 });
@@ -150,29 +175,4 @@ const peutêtreActualiserPort = async () => {
   }
 };
 
-const codeCopié = ref(false);
-
-// Serveur local
-const requêtesServeurLocal = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
-const nRequêtes = computed(() => requêtesServeurLocal.value?.length);
-
-const étatServeur = suivre(serveurLocal.suivreÉtatServeur.bind(serveurLocal));
-
-watchEffect(() => {
-  contrôleServeur.value = étatServeur.value?.état === 'actif';
-  codeCopié.value = false;
-});
-
-watchEffect(() => {
-  if (étatServeur.value?.état === 'actif') {
-    choixPort.value = étatServeur.value.détails.port;
-  } else {
-    choixPort.value = undefined;
-  }
-});
-
-const copierCode = async (code: string) => {
-  await copier(code);
-  codeCopié.value = true;
-};
 </script>
