@@ -49,7 +49,7 @@ importers:
         version: 12.0.0(typescript@5.6.3)
       '@wdns/vue-code-block':
         specifier: ^2.3.3
-        version: 2.3.3(typescript@5.6.3)
+        version: 2.3.5(typescript@5.6.3)
       add:
         specifier: ^2.0.6
         version: 2.0.6
@@ -2623,8 +2623,8 @@ packages:
   '@vueuse/shared@12.0.0':
     resolution: {integrity: sha512-3i6qtcq2PIio5i/vVYidkkcgvmTjCqrf26u+Fd4LhnbBmIT6FN8y6q/GJERp8lfcB9zVEfjdV0Br0443qZuJpw==}
 
-  '@wdns/vue-code-block@2.3.3':
-    resolution: {integrity: sha512-eOsCTatfi/8/zcgk7yzjuu+t4Ms4Te9SwYUE5PA/+JYcgp+JXAnYBgvqwPFVoTVKq3IpQCiGZg2zMblssvUCUQ==}
+  '@wdns/vue-code-block@2.3.5':
+    resolution: {integrity: sha512-09TguXcFZEA/9Fyx4c/3Jp4XUK82OKiT1TwH8cBeGg6Nj1E1R16nuABq1yJSvq/GZCxXtOJWw9i3TdxV4MctOw==}
 
   '@xmldom/xmldom@0.8.10':
     resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
@@ -4391,8 +4391,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  highlight.js@11.10.0:
-    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+  highlight.js@11.11.0:
+    resolution: {integrity: sha512-6ErL7JlGu2CNFHyRQEuDogOyGPNiqcuWdt4iSSFUPyferNTGlNTPFqeV36Y/XwA4V/TJ8l0sxp6FTnxud/mf8g==}
     engines: {node: '>=12.0.0'}
 
   hmac-drbg@1.0.1:
@@ -11178,9 +11178,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@wdns/vue-code-block@2.3.3(typescript@5.6.3)':
+  '@wdns/vue-code-block@2.3.5(typescript@5.6.3)':
     dependencies:
-      highlight.js: 11.10.0
+      highlight.js: 11.11.0
       prismjs: 1.29.0
       ua-parser-js: 1.0.39
       vue: 3.5.13(typescript@5.6.3)
@@ -13533,7 +13533,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  highlight.js@11.10.0: {}
+  highlight.js@11.11.0: {}
 
   hmac-drbg@1.0.1:
     dependencies:
