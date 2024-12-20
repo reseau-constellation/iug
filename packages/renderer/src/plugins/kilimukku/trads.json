@@ -426,6 +426,14 @@
         "sousTitre": "Ne vous en faites pas ; nous sommes là pour vous aider.",
         "bouton": "Signaler sur GitHub",
         "boutonCourriel": "Support par courriel"
+      },
+      "automatisations": {
+        "sousTitre": "Automatisez l'imporation ou l'exportation de données",
+        "ajouterNouvelle": {
+          "titre": "Nouvelle automatisation",
+          "sousTitre": "Exporter ou importer"
+        },
+        "aucune": "Votre compte n'a aucune automatisation pour l'instant."
       }
     },
     "automatisations": {

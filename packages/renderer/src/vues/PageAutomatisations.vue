@@ -16,6 +16,15 @@
           />
         </template>
       </ImporterOuExporter>
+      <v-skeleton-loader
+        v-if="!automatisations"
+        type="list"
+      />
+      <div v-else-if="!automatisations.length">
+        <p class="my-6 text-center text-h5 text-disabled">
+          {{ t('pages.automatisations.aucune') }}
+        </p>
+      </div>
       <ItemAutomatisation
         v-for="auto in automatisations"
         :key="auto.id"
@@ -44,4 +53,5 @@ const imgAutomatisations = obtImageDéco('automatisation');
 
 // Automatisations
 const automatisations = suivre(constl.automatisations.suivreAutomatisations);
+
 </script>
