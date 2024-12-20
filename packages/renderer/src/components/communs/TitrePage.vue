@@ -13,6 +13,7 @@
     </v-avatar>
     <v-img
       v-else-if="image"
+      class="my-6"
       :src="image"
       contain
       height="175"
