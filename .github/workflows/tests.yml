@@ -33,6 +33,11 @@ jobs:
       - run: pnpm test:preload
       - run: pnpm test:renderer
 
+      # De https://github.com/microsoft/playwright/issues/34251
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+        if: contains(matrix.os, 'ubuntu')
+
+
       # I ran into problems trying to run an electron window in ubuntu due to a missing graphics server.
       # That's why this special command for Ubuntu is here
       - run: xvfb-run --auto-servernum --server-args="-screen 0 1280x960x24" -- pnpm test:e2e
