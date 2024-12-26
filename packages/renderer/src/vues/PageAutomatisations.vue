@@ -6,7 +6,7 @@
       :sous-titre="t('pages.automatisations.sousTitre')"
     />
     <v-list class="text-start">
-      <ImporterOuExporter automatiser>
+      <NouvelleAutomatisation automatiser>
         <template #activator="{props}">
           <v-list-item
             v-bind="props"
@@ -15,12 +15,8 @@
             :subtitle="t('pages.automatisations.ajouterNouvelle.sousTitre')"
           />
         </template>
-      </ImporterOuExporter>
-      <v-skeleton-loader
-        v-if="!automatisations"
-        type="list"
-      />
-      <div v-else-if="!automatisations.length">
+      </NouvelleAutomatisation>
+      <div v-if="!automatisations?.length">
         <p class="my-6 text-center text-h5 text-disabled">
           {{ t('pages.automatisations.aucune') }}
         </p>
@@ -40,7 +36,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {utiliserConstellation} from '../components/utils';
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
-import ImporterOuExporter from '/@/components/importerExporter/ImporterOuExporter.vue';
+import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 const constl = utiliserConstellation();

@@ -34,12 +34,13 @@
               mandatory
             >
               <v-chip
-                v-for="type in ['tableau', 'bd', 'projet', 'nuée']"
-                :key="type"
-                :text="t(`pages.mesDonnées.${type}s`)"
+                v-for="jeton in jetonsTypesDonnées"
+                :key="jeton.type"
+                :value="jeton.type"
+                :text="t(jeton.texte)"
                 class="mx-2"
                 variant="outlined"
-                :prepend-icon="icôneObjet(type)"
+                :prepend-icon="icôneObjet(jeton.type)"
               />
             </v-chip-group>
             <SelecteurBd
@@ -387,8 +388,14 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 });
 
 // Objet Constellation
-const typeObjet = ref(props.infoObjet?.typeObjet);
+const typeObjet = ref(props.infoObjet?.typeObjet || 'bd');
 const idObjet = ref(props.infoObjet?.id);
+const jetonsTypesDonnées = [
+  { type: 'tableau', texte: 'pages.mesDonnées.tableaux'},
+  { type: 'bd', texte: 'pages.mesDonnées.bds' },
+  { type: 'projet', texte: 'pages.mesDonnées.projets' },
+  { type: 'nuée', texte: 'pages.mesDonnées.nuées' },
+];
 
 // Destination
 const destination = ref<string>();

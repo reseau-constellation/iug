@@ -428,7 +428,7 @@
         "boutonCourriel": "Support par courriel"
       },
       "automatisations": {
-        "sousTitre": "Automatisez l'imporation ou l'exportation de données",
+        "sousTitre": "Automatisez l'importation ou l'exportation de données",
         "ajouterNouvelle": {
           "titre": "Nouvelle automatisation",
           "sousTitre": "Exporter ou importer"
@@ -1174,6 +1174,7 @@
         "titre": "என் தரவுகள்",
         "motsClefs": "சிறப்பு சொற்கள்",
         "variables": "மாறிகள்",
+        "tableaux": "அட்டவணைகள்",
         "bds": "தரவு தளங்கள்",
         "projets": "திட்டங்கள்",
         "nuées": "கூட்டங்கள்",
