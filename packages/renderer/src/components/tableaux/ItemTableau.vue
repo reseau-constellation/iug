@@ -3,9 +3,9 @@
     <template #prepend>
       <v-icon>mdi-table</v-icon>
     </template>
-    <v-list-item-title class="mb-2">
+    <template #title>
       {{ nomTableau || t('tableaux.sansNom') }}
-    </v-list-item-title>
+    </template>
     <série-jetons
       :items="variables"
       :n-max="3"

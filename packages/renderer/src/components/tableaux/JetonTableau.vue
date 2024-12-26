@@ -1,5 +1,9 @@
 <template>
-  <v-chip prepend-icon="mdi-table">
+  <v-chip
+    prepend-icon="mdi-table"
+    variant="outlined"
+    label
+  >
     {{ nomTableau || t('tableaux.sansNom') }}
   </v-chip>
 </template>
