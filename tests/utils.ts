@@ -16,10 +16,9 @@ export const surÉlectron = async (): Promise<{
   // Utiliser un dossier temporaire pour le compte Constellation dans les tests
   const {dossier, fEffacer} = await dossiers.dossierTempo();
 
-  // Inclure {...process.env} est nécessaire pour les tests sur Linux
   const appli = await electron.launch({
     args: ['.'],
-    env: {...process.env, DOSSIER_CONSTL: dossier},
+    env: {DOSSIER_CONSTL: dossier},
   });
   const page = await appli.firstWindow();
 
