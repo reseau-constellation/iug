@@ -49,7 +49,7 @@
 </template>
 <script setup lang="ts">
 import {rechercher} from '@constl/vue';
-import {ref, watchEffect} from 'vue';
+import {defineAsyncComponent, ref, watchEffect} from 'vue';
 
 import SelecteurObjet from '/@/components/communs/SélecteurObjet.vue';
 import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
@@ -59,7 +59,9 @@ import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteBd from './CarteBd.vue';
 import JetonBd from './JetonBd.vue';
-import NouvelleBd from './NouvelleBd.vue';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const NouvelleBd = defineAsyncComponent(() => import('./NouvelleBd.vue') as any);
 
 defineProps<{multiples: boolean; originales?: string[]}>();
 const émettre = defineEmits<{
