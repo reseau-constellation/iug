@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
@@ -12,8 +12,8 @@
       "automerge": true
     },
     {
-      "matchPackagePatterns": ["^actions/"],
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": ["/^actions//"]
     },
     {
       "description": "Regrouper les librairies @constl.",
@@ -27,7 +27,13 @@
       "groupName": "Libp2p et Helia",
       "groupSlug": "libp2p-helia-node",
       "matchDatasources": ["npm"],
-      "matchPackageNames": ["@libp2p/**", "@helia/**", "@chainsafe/**", "libp2p", "helia"]
+      "matchPackageNames": [
+        "@libp2p/**",
+        "@helia/**",
+        "@chainsafe/**",
+        "libp2p",
+        "helia"
+      ]
     }
   ]
 }
