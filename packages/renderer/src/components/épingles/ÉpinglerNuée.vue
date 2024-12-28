@@ -128,7 +128,7 @@
   const optionsAvancées = ref(false);
   
   // Épingle actuelle
-  const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idBd: props.idNuee});
+  const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idNuée: props.idNuee});
   
   // Options
   const { 
@@ -177,11 +177,9 @@
       const épingle: favoris.ÉpingleNuée = {
         type: 'nuée',
         base: dispositifsBase.value,
-        fichiersBase: 'TOUS',
         données: {
             type: 'bd',
             base: dispositifsBds.value,
-            fichiersBase: 'TOUS',
             données: {
               tableaux: dispositifsTableaux.value,
               fichiers: dispositifsFichiersTableaux.value,

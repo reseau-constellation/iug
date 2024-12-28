@@ -46,13 +46,16 @@ import type {automatisation} from '@constl/ipa';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import {cloneDeep} from 'lodash-es';
 
 import OptionsExportationObjet from '/@/components/automatisations/OptionsExportationObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
+import { choisirFichierSauvegarde } from '/@/utils';
 
 const props = defineProps<{
   idObjet: string;
   typeObjet: 'nuée' | 'projet' | 'bd' | 'tableau';
+  nomsObjet?: {[langue: string]: string};
 }>();
 
 const {mdAndUp} = useDisplay();
@@ -73,56 +76,47 @@ const format = ref<{
 
 // Télécharger
 const enTéléchargement = ref(false);
+
 const télécharger = async () => {
   if (!format.value) return;
+  
+  const langueNom = format.value.langues?.find(lng => props.nomsObjet?.[lng]);
+  const ext = format.value.inclureDocuments ? 'zip' : format.value.formatDoc;
+  const dossier = await choisirFichierSauvegarde({defaultPath: `${langueNom ? props.nomsObjet?.[langueNom] : props.idObjet}.${ext}`, filters: [{extensions: [ext], name: ''}]});
+  
+  if (!dossier) return;
 
   enTéléchargement.value = true;
   switch (props.typeObjet) {
     case 'tableau': {
-      const données = await constl.tableaux.exporterDonnées({
+      await constl.tableaux.exporterTableauÀFichier({
         idTableau: props.idObjet,
-        langues: format.value.langues,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
-        formatDoc: format.value.formatDoc,
-        inclureFichiersSFIP: format.value.inclureDocuments,
+        dossier,
+        ...cloneDeep(format.value),
       });
       break;
     }
     case 'bd': {
-      const données = await constl.bds.exporterDonnées({
+      await constl.bds.exporterBdÀFichier({
         idBd: props.idObjet,
-        langues: format.value.langues,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
-        formatDoc: format.value.formatDoc,
-        inclureFichiersSFIP: format.value.inclureDocuments,
+        dossier,
+        ...cloneDeep(format.value),
       });
       break;
     }
     case 'nuée': {
-      const données = await constl.nuées.exporterDonnéesNuée({
+      await constl.nuées.exporterNuéeÀFichier({
         idNuée: props.idObjet,
-        langues: format.value.langues,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
-        formatDoc: format.value.formatDoc,
-        inclureFichiersSFIP: format.value.inclureDocuments,
+        dossier,
+        ...cloneDeep(format.value),
       });
       break;
     }
     case 'projet': {
-      const données = await constl.projets.exporterDonnées({
+      await constl.projets.exporterProjetÀFichier({
         idProjet: props.idObjet,
-        langues: format.value.langues,
-      });
-      await constl.projets.exporterDocumentDonnées({
-        données,
-        formatDoc: format.value.formatDoc,
-        inclureFichiersSFIP: format.value.inclureDocuments,
+        dossier,
+        ...cloneDeep(format.value),
       });
       break;
     }

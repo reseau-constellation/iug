@@ -85,7 +85,7 @@
     "vue-tsc": "2.2.0"
   },
   "dependencies": {
-    "@constl/ipa": "^1.5.1",
+    "@constl/ipa": "^1.5.3",
     "@constl/mandataire": "^3.0.3",
     "@constl/mandataire-electron-principal": "^3.0.4",
     "@constl/mandataire-electron-rendu": "^3.0.4",
@@ -123,6 +123,7 @@
     "jszip": "^3.10.1",
     "leaflet": "^1.9.4",
     "lodash-es": "^4.17.21",
+    "merge-options": "^3.0.4",
     "native-file-system-adapter": "^3.0.1",
     "node-gyp-build": "^4.8.4",
     "nuchabal": "^3.2.7",

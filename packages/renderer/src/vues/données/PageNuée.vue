@@ -131,6 +131,7 @@
 
       <carte-exportation-objet
         :id-objet="id"
+        :noms-objet="noms"
         type-objet="nuée"
       >
         <template #activator="{props: propsActivateurCarte}">

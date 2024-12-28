@@ -177,11 +177,9 @@
       const épingle: favoris.ÉpingleProjet = {
         type: 'projet',
         base: dispositifsBase.value,
-        fichiersBase: 'TOUS',
         bds: {
             type: 'bd',
             base: dispositifsBds.value,
-            fichiersBase: 'TOUS',
             données: {
               tableaux: dispositifsTableaux.value,
               fichiers: dispositifsFichiersTableaux.value,

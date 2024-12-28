@@ -163,7 +163,6 @@ const épingler = async () => {
     const épingle: favoris.ÉpingleBd = {
       type: 'bd',
       base: dispositifsBase.value,
-      fichiersBase: 'TOUS',
       données: {
         tableaux: dispositifsTableaux.value,
         fichiers: dispositifsFichiersTableaux.value,
