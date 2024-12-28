@@ -27,7 +27,7 @@
         afin de pouvoir accéder Constellation à partir d'applications tièrces. Voir comment
         connecter une application dans les langages suivants :
 
-        <p>
+        <p class="text-center mt-2">
           <v-chip
             v-for="langage in langages"
             :key="langage.nom"
@@ -87,7 +87,7 @@
               </v-list-item>
               <v-fade-transition>
                 <v-list-item v-if="!requêtes?.length">
-                  <p> Aucune requête en attente d'approbation. </p>
+                  <p class="my-6 text-center text-h6 text-disabled"> Aucune requête en attente d'approbation. </p>
                 </v-list-item>
               </v-fade-transition>
               <item-requete-acces
@@ -101,7 +101,7 @@
             <v-list>
               <v-fade-transition>
                 <v-list-item v-if="!requêtes?.length">
-                  <p> Aucune application externe n'est présentement connectée à votre compte. </p>
+                  <p class="my-6 text-center text-h6 text-disabled"> Aucune application externe n'est présentement connectée à votre compte. </p>
                 </v-list-item>
               </v-fade-transition>
               <item-connexion
