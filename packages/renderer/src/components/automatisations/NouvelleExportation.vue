@@ -235,7 +235,12 @@
             </v-radio-group>
           </v-window-item>
           <v-window-item :value="étapes.indexOf('confirmation')">
-            <v-btn @click="() => exporter()"></v-btn>
+            <v-btn
+              append-icon="mdi-download"
+              @click="() => exporter()"
+            >
+              {{ t('exportations.carte.exporter') }}
+            </v-btn>
           </v-window-item>
         </v-window>
       </v-card-text>
@@ -262,8 +267,6 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {choisirDossier} from '#preload';
-
 import {icôneObjet, utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
@@ -274,7 +277,8 @@ import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 import {watchEffect} from 'vue';
 import {isBrowser} from 'wherearewe';
-import {plateforme} from '/@/utils';
+import {choisirDossier, plateforme} from '/@/utils';
+import { cloneDeep } from 'lodash-es';
 
 const props = defineProps<{
   infoObjet?: {
@@ -442,56 +446,44 @@ const exporter = async () => {
 
   if (optionAutomatiser.value === 'aucune') {
     if (typeObjet.value === 'tableau') {
-      const données = await constl.tableaux.exporterDonnées({
+      await constl.tableaux.exporterTableauÀFichier(cloneDeep({
         idTableau: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'bd') {
-      const données = await constl.bds.exporterDonnées({
+      await constl.bds.exporterBdÀFichier(cloneDeep({
         idBd: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'nuée') {
-      const données = await constl.nuées.exporterDonnéesNuée({
+      await constl.nuées.exporterNuéeÀFichier(cloneDeep({
         idNuée: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'projet') {
-      const données = await constl.projets.exporterDonnées({
+      await constl.projets.exporterProjetÀFichier(cloneDeep({
         idProjet: idObjet.value,
         langues: langues.value,
-      });
-      await constl.projets.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     }
   } else {
     await constl.automatisations.ajouterAutomatisationExporter({
       id: idObjet.value,
       typeObjet: typeObjet.value,
       formatDoc: formatDoc.value,
-      inclureFichiersSFIP: inclureDocuments.value,
+      inclureDocuments: inclureDocuments.value,
       dossier: destination.value,
       langues: langues.value,
       fréquence: {

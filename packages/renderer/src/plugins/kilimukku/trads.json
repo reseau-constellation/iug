@@ -479,7 +479,8 @@
         "étiquetteLangues": "Préférences langues",
         "étiquetteInclureDocuments": "Inclure documents",
         "indiceInclureDocuments": "Si les données incluent des documents tels que des photos ou des vidéos, inclure ceux-ci dans un fichier zip.",
-        "automatiser": "Voulez-vous répéter cette exportation dans le future ?"
+        "automatiser": "Voulez-vous répéter cette exportation dans le future ?",
+        "exporter": "Exporter"
       },
       "format": {
         "xlsx": "Document Excel (.xlsx)",
