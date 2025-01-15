@@ -16,7 +16,7 @@ importers:
         version: 3.0.3
       '@constl/mandataire-electron-principal':
         specifier: ^3.0.4
-        version: 3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@33.3.1)
+        version: 3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.0)
       '@constl/mandataire-electron-rendu':
         specifier: ^3.0.4
         version: 3.0.4
@@ -82,7 +82,7 @@ importers:
         version: 2.0.1
       electron-app-universal-protocol-client:
         specifier: ^2.1.1
-        version: 2.1.1(electron@33.3.1)
+        version: 2.1.1(electron@34.0.0)
       electron-updater:
         specifier: 6.3.9
         version: 6.3.9
@@ -247,8 +247,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       electron:
-        specifier: 33.3.1
-        version: 33.3.1
+        specifier: 34.0.0
+        version: 34.0.0
       electron-builder:
         specifier: 26.0.0-alpha.8
         version: 26.0.0-alpha.8(electron-builder-squirrel-windows@26.0.0-alpha.6)
@@ -3784,8 +3784,8 @@ packages:
   electron-updater@6.3.9:
     resolution: {integrity: sha512-2PJNONi+iBidkoC5D1nzT9XqsE8Q1X28Fn6xRQhO3YX8qRRyJ3mkV4F1aQsuRnYPqq6Hw+E51y27W75WgDoofw==}
 
-  electron@33.3.1:
-    resolution: {integrity: sha512-Z7l2bVgpdKxHQMI4i0CirBX2n+iCYKOx5mbzNM3BpOyFELwlobEXKmzCmEnwP+3EcNeIhUQyIEBFQxN06QgdIw==}
+  electron@34.0.0:
+    resolution: {integrity: sha512-fpaPb0lifoUJ6UJa4Lk8/0B2Ku/xDZWdc1Gkj67jbygTCrvSon0qquju6Ltx1Kz23GRqqlIHXiy9EvrjpY7/Wg==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -8521,7 +8521,7 @@ snapshots:
       '@babel/parser': 7.26.2
       '@babel/template': 7.25.9
       '@babel/types': 7.26.0
-      debug: 4.3.7
+      debug: 4.4.0
       globals: 11.12.0
     transitivePeerDependencies:
       - supports-color
@@ -8716,12 +8716,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/mandataire-electron-principal@3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@33.3.1)':
+  '@constl/mandataire-electron-principal@3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.0)':
     dependencies:
       '@constl/ipa': 1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire': 3.0.3
       '@constl/serveur': 2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      electron: 33.3.1
+      electron: 34.0.0
       semaphore-async-await: 1.5.1
       tslib: 2.8.1
       uuid: 11.0.5
@@ -12694,9 +12694,9 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-app-universal-protocol-client@2.1.1(electron@33.3.1):
+  electron-app-universal-protocol-client@2.1.1(electron@34.0.0):
     dependencies:
-      electron: 33.3.1
+      electron: 34.0.0
       typed-emitter: 2.1.0
 
   electron-builder-squirrel-windows@26.0.0-alpha.6(dmg-builder@26.0.0-alpha.8):
@@ -12770,7 +12770,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@33.3.1:
+  electron@34.0.0:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 20.17.12
