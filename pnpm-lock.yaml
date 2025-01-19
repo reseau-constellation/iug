@@ -301,8 +301,8 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0))
       vite-plugin-node-polyfills:
-        specifier: ^0.22.0
-        version: 0.22.0(rollup@4.27.4)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0))
+        specifier: ^0.23.0
+        version: 0.23.0(rollup@4.27.4)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0))
       vite-plugin-vuetify:
         specifier: ^2.0.4
         version: 2.0.4(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.6)
@@ -7203,10 +7203,10 @@ packages:
     peerDependencies:
       vite: ^4.3.9 || ^5.0.0
 
-  vite-plugin-node-polyfills@0.22.0:
-    resolution: {integrity: sha512-F+G3LjiGbG8QpbH9bZ//GSBr9i1InSTkaulfUHFa9jkLqVGORFBoqc2A/Yu5Mmh1kNAbiAeKeK+6aaQUf3x0JA==}
+  vite-plugin-node-polyfills@0.23.0:
+    resolution: {integrity: sha512-4n+Ys+2bKHQohPBKigFlndwWQ5fFKwaGY6muNDMTb0fSQLyBzS+jjUNRZG9sKF0S/Go4ApG6LFnUGopjkILg3w==}
     peerDependencies:
-      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite-plugin-vuetify@2.0.4:
     resolution: {integrity: sha512-A4cliYUoP/u4AWSRVRvAPKgpgR987Pss7LpFa7s1GvOe8WjgDq92Rt3eVXrvgxGCWvZsPKziVqfHHdCMqeDhfw==}
@@ -10561,7 +10561,7 @@ snapshots:
     dependencies:
       '@rollup/pluginutils': 5.1.4(rollup@4.27.4)
       estree-walker: 2.0.2
-      magic-string: 0.30.13
+      magic-string: 0.30.17
     optionalDependencies:
       rollup: 4.27.4
 
@@ -11789,7 +11789,7 @@ snapshots:
 
   browser-resolve@2.0.0:
     dependencies:
-      resolve: 1.22.9
+      resolve: 1.22.10
 
   browserify-aes@1.2.0:
     dependencies:
@@ -16829,7 +16829,7 @@ snapshots:
       magic-string: 0.30.13
       vite: 6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0)
 
-  vite-plugin-node-polyfills@0.22.0(rollup@4.27.4)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0)):
+  vite-plugin-node-polyfills@0.23.0(rollup@4.27.4)(vite@6.0.7(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.27.4)
       node-stdlib-browser: 1.3.0
