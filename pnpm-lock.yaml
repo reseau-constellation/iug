@@ -16,7 +16,7 @@ importers:
         version: 3.0.3
       '@constl/mandataire-electron-principal':
         specifier: ^3.0.4
-        version: 3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.1)
+        version: 3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)
       '@constl/mandataire-electron-rendu':
         specifier: ^3.0.4
         version: 3.0.4
@@ -82,7 +82,7 @@ importers:
         version: 2.0.1
       electron-app-universal-protocol-client:
         specifier: ^2.1.1
-        version: 2.1.1(electron@34.0.1)
+        version: 2.1.1(electron@34.0.2)
       electron-updater:
         specifier: 6.3.9
         version: 6.3.9
@@ -247,8 +247,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       electron:
-        specifier: 34.0.1
-        version: 34.0.1
+        specifier: 34.0.2
+        version: 34.0.2
       electron-builder:
         specifier: 26.0.0
         version: 26.0.0(electron-builder-squirrel-windows@26.0.0-alpha.6)
@@ -3645,8 +3645,8 @@ packages:
   electron-updater@6.3.9:
     resolution: {integrity: sha512-2PJNONi+iBidkoC5D1nzT9XqsE8Q1X28Fn6xRQhO3YX8qRRyJ3mkV4F1aQsuRnYPqq6Hw+E51y27W75WgDoofw==}
 
-  electron@34.0.1:
-    resolution: {integrity: sha512-aArw5tAM80i3CKwEREnyZSM1SkARf5Jd1yBMTIdOL4pB1M+p/oDeyWSFI9Dl+vujyfJKiK4SS5+j19wna1onMw==}
+  electron@34.0.2:
+    resolution: {integrity: sha512-u3F+DSUlg9NaGS+9qnYmSRN8VjAnc3LJDDk1ye1uISJnh4gjG76y3681qLowsPMx4obvCP2eBINnmbLo0yT5WA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -8637,12 +8637,12 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/mandataire-electron-principal@3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.1)':
+  '@constl/mandataire-electron-principal@3.0.4(@constl/ipa@1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)':
     dependencies:
       '@constl/ipa': 1.5.1(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire': 3.0.3
       '@constl/serveur': 2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      electron: 34.0.1
+      electron: 34.0.2
       semaphore-async-await: 1.5.1
       tslib: 2.8.1
       uuid: 11.0.5
@@ -10531,7 +10531,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       '@types/keyv': 3.1.4
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
       '@types/responselike': 1.0.3
 
   '@types/d3-array@3.2.1': {}
@@ -10659,7 +10659,7 @@ snapshots:
 
   '@types/dns-packet@5.6.5':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/dom-webcodecs@0.1.13': {}
 
@@ -10671,7 +10671,7 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/geojson-validation@1.0.3': {}
 
@@ -10697,7 +10697,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/lodash-es@4.17.12':
     dependencies:
@@ -10710,7 +10710,7 @@ snapshots:
   '@types/multicast-dns@7.2.4':
     dependencies:
       '@types/dns-packet': 5.6.5
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/murmurhash3js-revisited@3.0.3': {}
 
@@ -10740,7 +10740,7 @@ snapshots:
 
   '@types/plist@3.0.5':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
       xmlbuilder: 15.1.1
     optional: true
 
@@ -10748,7 +10748,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/retry@0.12.2': {}
 
@@ -10775,7 +10775,7 @@ snapshots:
 
   '@types/ws@8.5.13':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -10785,7 +10785,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.10.10
+      '@types/node': 22.12.0
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.22.0(@typescript-eslint/parser@8.22.0(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3))(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)':
@@ -12547,9 +12547,9 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-app-universal-protocol-client@2.1.1(electron@34.0.1):
+  electron-app-universal-protocol-client@2.1.1(electron@34.0.2):
     dependencies:
-      electron: 34.0.1
+      electron: 34.0.2
       typed-emitter: 2.1.0
 
   electron-builder-squirrel-windows@26.0.0-alpha.6(dmg-builder@26.0.0):
@@ -12621,7 +12621,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@34.0.1:
+  electron@34.0.2:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 20.17.16
