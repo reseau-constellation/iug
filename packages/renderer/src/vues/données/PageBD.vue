@@ -333,18 +333,18 @@
           width="200"
           class="mb-3"
         >
-          <carte-automatisations
+          <carte-automatisations-objet
             :id-objet="id"
             :permission="monAutorisation"
             type-objet="bd"
           >
             <template #activator="{props: propsActivateur}">
-              <item-automatisations
+              <item-automatisations-objet
                 v-bind="propsActivateur"
                 :id-objet="id"
               />
             </template>
-          </carte-automatisations>
+          </carte-automatisations-objet>
         </v-card>
       </div>
       <p class="mt-6 text-h5">
@@ -552,9 +552,9 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
-import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
-import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
+import ItemAutomatisationsObjet from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
 import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
 import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';

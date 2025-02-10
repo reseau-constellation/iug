@@ -1,13 +1,24 @@
 <template>
-  <v-chip>
+  <v-chip
+    variant="outlined"
+    label
+    density="compact"
+  >
     <template #prepend>
       <v-progress-circular
         v-if="enProgrès"
+        class="me-2"
         indeterminate
+        size="15"
+        width="2"
         color="primary"
+      />
+      <v-icon
+        v-else-if="fichierRésolu"
+        start
       >
-      </v-progress-circular>
-      <v-icon v-else-if="fichierRésolu">mdi-file</v-icon>
+        mdi-file-outline
+      </v-icon>
       <v-icon
         v-else
         color="error"
@@ -24,7 +35,7 @@ import type {automatisation} from '@constl/ipa';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import path from 'path';
-import {computed, onMounted, ref, watchEffect} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {utiliserConstellation} from '../utils';
 
 const props = defineProps<{
@@ -48,27 +59,20 @@ const surCeDispositif = computed<boolean>(() => {
 });
 
 // Fichier décodé
-const fichier = ref<string | null>();
 const enProgrès = computed<boolean>(() => {
-  return surCeDispositif.value && fichier.value === undefined;
+  return surCeDispositif.value && props.spécification.dossier === undefined;
 });
-watchEffect(async () => {
-  fichier.value = await constl.automatisations.résoudreAdressePrivéeFichier({
-    clef: props.spécification.dossier,
-  });
-});
+
 const fichierRésolu = computed(() => {
-  return typeof fichier.value === 'string';
+  return typeof props.spécification.dossier === 'string';
 });
 
 // Texte statut
 const texteStatut = computed<string>(() => {
-  if (fichier.value === undefined) {
-    return 'automatisation.rechercheFichier';
-  } else if (fichier.value === null) {
-    return 'automatisations.fichierIntrouvable';
+  if (props.spécification.dossier) {
+    return path.parse(props.spécification.dossier).base;
   } else {
-    return path.parse(fichier.value).base;
+    return 'automatisations.fichierIntrouvable';
   }
 });
 </script>

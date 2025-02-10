@@ -1,38 +1,53 @@
 <template>
-  <v-chip
-    label
-    density="compact"
-    variant="outlined"
-  >
+  <v-list-item title="Ce dispositif">
     <template #prepend>
-      <v-progress-circular
-        v-if="statut.type === 'sync'"
-        indeterminate
-      >
-        <v-icon :color="icôneStatut.couleur">{{ icôneStatut.icône }}</v-icon>
-      </v-progress-circular>
       <v-icon
-        v-else
         start
         :color="icôneStatut.couleur"
       >
         {{ icôneStatut.icône }}
       </v-icon>
     </template>
-    {{ t(texteStatut) }}
-  </v-chip>
+    <template #subtitle>
+      {{ t(texteStatut) }}
+    </template>
+    <jeton-fichier-exportation
+      v-if="spécification?.type === 'exportation'"
+      class="my-2"
+      :spécification="spécification"
+      @click="()=>changerFichierExportation()"
+    />
+    <v-btn
+      class="my-2"
+      size="small"
+      variant="outlined"
+      append-icon="mdi-refresh"
+      @click="relancer"
+    >
+      "Relancer"
+    </v-btn>
+  </v-list-item>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, onMounted, onUnmounted, ref} from 'vue';
+import { utiliserConstellation } from '../utils';
+import JetonFichierExportation from './JetonFichierExportation.vue';
+// import { choisirFichierSauvegarde } from '/@/utils';
+import { utiliserDans } from './utils';
+
+const constl = utiliserConstellation();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
+const dans = utiliserDans({t});
+
 const props = defineProps<{
   statut: automatisation.ÉtatAutomatisation;
+  spécification: automatisation.SpécificationAutomatisation
 }>();
 
 // Icône
@@ -61,19 +76,33 @@ onUnmounted(() => {
   if (oublierChronomètre) clearInterval(oublierChronomètre);
 });
 
+// Fichier
+// const fichierExportation = ref(props.spécification);
+const changerFichierExportation = async () => {
+  // const fichier = await choisirFichierSauvegarde();
+  // if (fichier) fichierExportation.value = fichier;
+};
+
+
 // Statut automatisation
+const programméeDans = dans(
+  computed(()=> props.statut.type === 'programmée' ? props.statut.à : (props.statut.type === 'erreur' ? props.statut.prochaineProgramméeÀ : undefined)),
+);
+const enCoursDepuis = dans(
+  computed(()=>props.statut.type === 'sync' ? props.statut.depuis : undefined),
+);
 const texteStatut = computed(() => {
   switch (props.statut.type) {
     case 'écoute':
       return 'automatisations.jetonStatut.écoute';
     case 'sync':
-      return t('automatisations.jetonStatut.sync', {depuis: maintenant.value - props.statut.depuis});
+      return t('automatisations.jetonStatut.sync', {depuis: enCoursDepuis.value});
     case 'programmée':
-      return t('automatisations.jetonStatut.programmée', {dans: props.statut.à - maintenant.value});
+      return t('automatisations.jetonStatut.programmée', {dans: programméeDans.value});
     case 'erreur':
       if (props.statut.prochaineProgramméeÀ) {
         return t('automatisations.jetonStatut.erreurRéssayer', {
-          dans: props.statut.prochaineProgramméeÀ - maintenant.value,
+          dans: programméeDans.value,
         });
       } else {
         return 'automatisations.jetonStatut.erreur';
@@ -82,5 +111,8 @@ const texteStatut = computed(() => {
       throw new Error(props.statut);
   }
 });
+
+// Relancer
+const relancer = async () => await constl.automatisations.lancerManuellement({ id: props.spécification.id });
 
 </script>

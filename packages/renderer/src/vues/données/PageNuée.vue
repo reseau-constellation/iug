@@ -323,7 +323,7 @@
           width="200"
           class="mb-3"
         >
-          <carte-automatisations
+          <carte-automatisations-objet
             :id-objet="id"
             :permission="monAutorisation"
             type-objet="bd"
@@ -334,7 +334,7 @@
                 :id-objet="id"
               />
             </template>
-          </carte-automatisations>
+          </carte-automatisations-objet>
         </v-card>
       </div>
       <p class="mt-6 text-h5">
@@ -541,7 +541,7 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
-import CarteAutomatisations from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
+import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteCopier from '/@/components/communs/CarteCopier.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';

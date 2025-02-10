@@ -70,7 +70,7 @@ const icône = computed(() => {
 const texteStatut = computed<string>(() => {
   if (props.spécification.source.typeSource === 'fichier') {
     if (fichier.value === undefined) {
-      return 'automatisation.rechercheFichier';
+      return 'automatisations.rechercheFichier';
     } else if (fichier.value === null) {
       return 'automatisations.fichierIntrouvable';
     } else {
