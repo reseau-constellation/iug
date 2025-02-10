@@ -144,5 +144,8 @@
     "vuetify": "^3.7.4",
     "webfontloader": "^1.6.28",
     "wherearewe": "^2.0.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@localfirst/auth", "@localfirst/crdx", "@localfirst/crypto", "@localfirst/shared", "bufferutil", "classic-level", "core-js", "electron", "esbuild", "iso-constants", "msgpackr-extract", "node-datachannel", "simple-git-hooks", "vue-demi"]
   }
 }
