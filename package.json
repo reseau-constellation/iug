@@ -40,7 +40,7 @@
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,vue,json}\""
   },
   "devDependencies": {
-    "@constl/utils-tests": "^1.6.3",
+    "@constl/utils-tests": "^1.6.12",
     "@eslint/js": "^9.15.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@types/d3": "^7.4.3",
@@ -85,7 +85,7 @@
     "vue-tsc": "2.2.0"
   },
   "dependencies": {
-    "@constl/ipa": "^1.5.7",
+    "@constl/ipa": "^1.5.8",
     "@constl/mandataire": "^3.0.3",
     "@constl/mandataire-electron-principal": "^3.0.4",
     "@constl/mandataire-electron-rendu": "^3.0.4",
@@ -146,6 +146,21 @@
     "wherearewe": "^2.0.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@localfirst/auth", "@localfirst/crdx", "@localfirst/crypto", "@localfirst/shared", "bufferutil", "classic-level", "core-js", "electron", "esbuild", "iso-constants", "msgpackr-extract", "node-datachannel", "simple-git-hooks", "vue-demi"]
+    "onlyBuiltDependencies": [
+      "@localfirst/auth",
+      "@localfirst/crdx",
+      "@localfirst/crypto",
+      "@localfirst/shared",
+      "bufferutil",
+      "classic-level",
+      "core-js",
+      "electron",
+      "esbuild",
+      "iso-constants",
+      "msgpackr-extract",
+      "node-datachannel",
+      "simple-git-hooks",
+      "vue-demi"
+    ]
   }
 }
