@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@constl/ipa':
-        specifier: ^1.5.8
-        version: 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+        specifier: ^1.5.10
+        version: 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire':
         specifier: ^3.0.3
         version: 3.0.3
       '@constl/mandataire-electron-principal':
         specifier: ^3.0.4
-        version: 3.1.0(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)
+        version: 3.1.0(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)
       '@constl/mandataire-electron-rendu':
         specifier: ^3.0.4
         version: 3.1.0
@@ -25,7 +25,7 @@ importers:
         version: 2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/vue':
         specifier: ^1.0.4
-        version: 1.0.4(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))
+        version: 1.0.4(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))
       '@lassi-js/kili':
         specifier: ^0.4.1
         version: 0.4.1
@@ -34,7 +34,7 @@ importers:
         version: 1.1.7(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@lassi-js/kilimukku-vue':
         specifier: 1.1.10
-        version: 1.1.10(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))
+        version: 1.1.10(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
@@ -88,7 +88,7 @@ importers:
         version: 6.3.9
       ennikkai:
         specifier: ^2.3.2
-        version: 2.3.2(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+        version: 2.3.2(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       events:
         specifier: ^3.3.0
         version: 3.3.0
@@ -133,7 +133,7 @@ importers:
         version: 4.8.4
       nuchabal:
         specifier: ^3.2.7
-        version: 3.2.7(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+        version: 3.2.7(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       papaparse:
         specifier: ^5.4.1
         version: 5.5.2
@@ -1114,8 +1114,8 @@ packages:
   '@constl/bohr-db@1.2.2':
     resolution: {integrity: sha512-6PN9i0FlUtX/IchBGPBBTMR7iDeP88/TZOtJvvPwecpshi/jZkceQskG3jCDSLjv7qZVVmyRcHRstkeCdnsUGQ==}
 
-  '@constl/ipa@1.5.8':
-    resolution: {integrity: sha512-qi2R6qCNID1e6Vv5dkeIi3Ycz4k78kPdYTdux9BR8FwvkD3+2Y1gVE7ZsLyYRLtsaqUzCk/+K4FLVhr8zRYI4g==}
+  '@constl/ipa@1.5.10':
+    resolution: {integrity: sha512-H6E8LUPT/STcypcm+uE+5azSCJ6d2I5T18hKjIQ7nG4c//yUKhZbwyWKljjLYZcl8L8Rq3E46efByVQjLx8POA==}
     engines: {node: '>=20'}
 
   '@constl/mandataire-electron-principal@3.1.0':
@@ -1393,8 +1393,8 @@ packages:
   '@helia/block-brokers@4.0.3':
     resolution: {integrity: sha512-EU3VaOVKicKSEJDyfzi9RVdr+pi8AO81B6bsJ7GQDGhruJfQAatNk4+uiSh58lwWrwnVMlXIFP3d8XskDwPbyQ==}
 
-  '@helia/delegated-routing-v1-http-api-client@4.2.1':
-    resolution: {integrity: sha512-Gc149HTv/ufhNfcrQnEN3j9cqLSY+2AXMiIzNjQM1yF+wniN05yYzSYLxCtDlPfyi2TzODgdK/Kql3mRJLnGUg==}
+  '@helia/delegated-routing-v1-http-api-client@4.2.2':
+    resolution: {integrity: sha512-SQuyIZAbfvXUkGiralGI7sWq44Ztd1Cf+3pz/paCzq1J3Jvl7JnofWB0spsZjwSu0jYPdwAL60Nmg1TSTm6ZVg==}
 
   '@helia/interface@5.2.0':
     resolution: {integrity: sha512-vxe/+EA4dvHOrwYJPiFjCbRgRPURWS5AURpbMDoKpx9ldZlxXkV3YWBl4EAMp4lrRos9WjRyWu2OoDfOsC1uIg==}
@@ -1530,9 +1530,6 @@ packages:
   '@libp2p/auto-tls@1.0.6':
     resolution: {integrity: sha512-xZfk4bwBizU5lfpmlS+NilA44bYS8QxyNEdPRlN7t1nDJMxQG8GBALNm0hFh6LwFXnC+9L5ixZkQuZjE4OOE6A==}
 
-  '@libp2p/autonat@2.0.17':
-    resolution: {integrity: sha512-+ViOfQAyyBzm8iLtUAlhPzZJCk5FcwgXneJivawRMfH2GI8PPJnrzyeipx3XaT1E7Mmh843wob0i2E9QC2kL8g==}
-
   '@libp2p/autonat@2.0.19':
     resolution: {integrity: sha512-FcCVheGZpBhgiCwVZrGekrHlH2IEMgt4ottZ9cpLVE4RoEEkTXaDV4qjDBkCDf32QrqmnrVDamff5B7TGSa2jA==}
 
@@ -1548,9 +1545,6 @@ packages:
   '@libp2p/crypto@5.0.11':
     resolution: {integrity: sha512-1//iAZAO6XKFPwKqX7xCNJFwIgSyLOTE7wVS0gFaD7jWXeYmD78cojFq5QC1jRl04iTJe4COTTNHen/cpqurwA==}
 
-  '@libp2p/crypto@5.0.8':
-    resolution: {integrity: sha512-3ZxuzqMvyLXhRnjT3sjvzCCW4zkO9UKgv75KfqExP3k1Yk/Zbb+oM2z7OgnDycvLGxnRZgGwizrgnWpZvXlDEA==}
-
   '@libp2p/dcutr@2.0.18':
     resolution: {integrity: sha512-GIfqRmaZ+hCgAj9kNY7E3aCOfo25n0rrF+vWSYnSip1eWcmvzrke0B42uiImXpWPvUNvYnBZChKfJRLnf5zerw==}
 
@@ -1563,9 +1557,6 @@ packages:
   '@libp2p/interface-connection@5.1.1':
     resolution: {integrity: sha512-ytknMbuuNW72LYMmTP7wFGP5ZTaUSGBCmV9f+uQ55XPcFHtKXLtKWVU/HE8IqPmwtyU8AO7veGoJ/qStMHNRVA==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
-
-  '@libp2p/interface-internal@2.2.1':
-    resolution: {integrity: sha512-GGxQnTgQ891bpOcHQAG9Dy/KXo1OoKnCaV2e02yWNhW8TkqlFJnwdny6tX8O6BN8Od56yuEIS89ZoNn2SK4F5g==}
 
   '@libp2p/interface-internal@2.3.0':
     resolution: {integrity: sha512-3D2cKBMXiSHv5VKX8unD3W+GL1K9EDt6nLxNl4/aU2t1IE8jwZ5ovx/9hIhKZFOJ+c3fgkp1OdH44i4w/Wc/1w==}
@@ -1581,9 +1572,6 @@ packages:
   '@libp2p/interface-transport@4.0.3':
     resolution: {integrity: sha512-jXFQ3blhFMEyQbFw/U8Glo3F/fUO5LEaX5HIdeqNpCliK+XnwTfpkcaG+WsJrcApWK4FFyUHc+GGqiWR0hAFFg==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
-
-  '@libp2p/interface@2.3.0':
-    resolution: {integrity: sha512-lodc8jxw32fkY2m2bsS6yzzozua6EDr5rJvahJaJVC36jZWFW5sBmOW8jBoKfoZyRwgD6uoOXP39miWQhEaUcg==}
 
   '@libp2p/interface@2.5.0':
     resolution: {integrity: sha512-XKUHsDMbMVwEGgYYj1uB5XCnlFeF21SgyynKbc4sqfVCEJdjxF7ILYX0dm6tjBGjVThubjUd2b82RwOqeds3Kg==}
@@ -1605,9 +1593,6 @@ packages:
   '@libp2p/logger@5.1.4':
     resolution: {integrity: sha512-pVQ2odi6rcOR412wM0dg7eZ1+wPHPo5D7W8vIn3YyB2FLodQD7CZXXfg7Z9Yaqlc4BVbkNXDWL/jlUss9wL2Ow==}
 
-  '@libp2p/logger@5.1.5':
-    resolution: {integrity: sha512-Qe8B/Mja0myaArPvuI5iKVi3o2Z55Rir+RDkkEU/m9TkKDkHVFmGKnPlWDzHehi18GALjLxOsTE9TJASxjDTCA==}
-
   '@libp2p/logger@5.1.8':
     resolution: {integrity: sha512-Mevhz+dTQuV5UbwqLMOJZv2IpMg+/89x/Ouq0iKtkgB5vAgTwJ3DlM7+IYOeyzQRUpCPfaRiJet3aBB5wnPMRg==}
 
@@ -1619,9 +1604,6 @@ packages:
 
   '@libp2p/multistream-select@6.0.13':
     resolution: {integrity: sha512-4PK1KxMCrlfjhTT4UP3kqioj9b93U3ZulDdCVad1wae3buis6ecby4JA61of5nWZdh45xVTW0kTLnFHA4Pqmzw==}
-
-  '@libp2p/peer-collections@6.0.13':
-    resolution: {integrity: sha512-BjpXs3kWegnNay2CApntOkL9tPyzTxC2lKUt0Mj9qntmOp1BF/zWY982U1X4ScjCE/M9Nh9x/w4Z/GKCT+K5lQ==}
 
   '@libp2p/peer-collections@6.0.17':
     resolution: {integrity: sha512-ww+4rXe0iL2vMafq0N58tabUNHlfozzJEVIxXMN15L0VZnvUK5TryOM6AnGpUj+nvoToGBuB1ZYalI+17nJmMg==}
@@ -1641,14 +1623,11 @@ packages:
   '@libp2p/pubsub-peer-discovery@11.0.1':
     resolution: {integrity: sha512-bT7UO7tQ4mZCPFE0eS8Fx19B8MGzxjbTNR6SwcLGcOqOqUTvc2CLByMvcy3iMXuKjmds6G+VUf5ZMhvjGLTznA==}
 
-  '@libp2p/pubsub@10.0.14':
-    resolution: {integrity: sha512-fzHHpI6Smrvvlje1ySRfohjlxeifpoowNRcnJy6/ZFoziHvtufuPQdJ65jL/oobd6sTnbbShAlkkx/KVXBr5lw==}
+  '@libp2p/pubsub@10.0.18':
+    resolution: {integrity: sha512-Qgy752RUsOZPGAvKdeLPUa2CDdpo9ArFowNTHgTIOTQ06DSncYOueeUgeZXIauQuETK5GHUY4oY6Nc82voyH6w==}
 
   '@libp2p/record@4.0.4':
     resolution: {integrity: sha512-wEEeHXGNIcc8HtGbgGMuSHbboUWMxKG7OxALFwkE+KACgfRJZTESOp6XIdZnyC0r9lfEFsjF01pFKBTzoBmWEQ==}
-
-  '@libp2p/tcp@10.0.16':
-    resolution: {integrity: sha512-rKdM61z7IB7qn5bt/u5g/hsnajHDqeqGGBvq7cwp9e1+AFC1k3nNPQMkAWG4RfJH1fgrliP3mJ9Aaspn62xSfg==}
 
   '@libp2p/tcp@10.0.18':
     resolution: {integrity: sha512-m9GHWktE4m69rKQX9e0a3B5Y9xCY5ra57aSlq3PWnOD7QQxTRxlhoLLOZUWLi5Fip4RhF/3mAcLKQ2dTUG8e1Q==}
@@ -1659,17 +1638,11 @@ packages:
   '@libp2p/upnp-nat@3.1.1':
     resolution: {integrity: sha512-0SmK7b5SRw0io0HD0PVub0gz7NNW3hpDmN4wmY1z31ENvwdCq+tNgaZWphdCJQP9Xo72H5VOQVfjmEwN46OOWA==}
 
-  '@libp2p/utils@6.3.0':
-    resolution: {integrity: sha512-1zF9xwxtAjg7N54deR3l45d0awLsuO8cacfp9J4vE+4RjrtKSa40IxhunLOp52ctm9H17wixlXUhoP85Ki8F3w==}
-
   '@libp2p/utils@6.5.1':
     resolution: {integrity: sha512-2LMLzel5HrvGjh/4W3PMPhsgSDs574vNiFWC6WNB5AsBROrfC0QMoMJjzXoUSPei/PJS9kYaxZOXwmkU3mWzLw==}
 
   '@libp2p/webrtc@5.0.27':
     resolution: {integrity: sha512-rw8mo5hfur8Ars5JXL6mfmrEc9prpEU4Ol2gyVdegDEZDwuOpEX7A72zEY5jS8TAtih7bDw52rPs70M7pF73sA==}
-
-  '@libp2p/websockets@9.1.3':
-    resolution: {integrity: sha512-/heZ/XB5/FlKu09ZHjAXKWMAJxvww2ilp4cuVTR4r3OFLEdNXjQyIvs9cS2l4Kue+P5D89MUe2kg8X5k9SqD3g==}
 
   '@libp2p/websockets@9.1.5':
     resolution: {integrity: sha512-E/PJLWMI8cHKLHONuvLJDJca1KuMcn5NaqhGt5/kXt2HC1i02lbEa8xsKsWSxoVBwK/jEwjwINiW4OaKuQr6SQ==}
@@ -1765,6 +1738,10 @@ packages:
     resolution: {integrity: sha512-UTMhXK9SeDhFJVrHeUJ5uZlI6ajXg10O6Ddocf9S6GjbSBVZsJo88HzKwXznNfGpMTRDyJkqMjNDPYgf0qFWnw==}
     engines: {node: ^14.21.3 || >=16}
 
+  '@noble/curves@1.8.1':
+    resolution: {integrity: sha512-warwspo+UYUPep0Q+vtdVB4Ugn8GGQj8iyB3gnRWsztmUHTI3S1nhdiWNsPUGL0vud7JlRRk1XEu7Lq1KGTnMQ==}
+    engines: {node: ^14.21.3 || >=16}
+
   '@noble/hashes@1.6.0':
     resolution: {integrity: sha512-YUULf0Uk4/mAA89w+k3+yUYh6NrEvxZa5T6SY3wlMvE2chHkxFUUIDI8/XW1QSC357iA5pSnqt7XEhvFOqmDyQ==}
     engines: {node: ^14.21.3 || >=16}
@@ -1813,16 +1790,11 @@ packages:
     resolution: {integrity: sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==}
     engines: {node: '>=8.0.0'}
 
-  '@orbitdb/core-types@1.0.11':
-    resolution: {integrity: sha512-A6Y1isBVCcErjeD/CR9VnNx8SRfD962yBxfmVAfgSlTk4apUMIk1qgl2oMrdI1335Bp5/6Ea+qzldNJz0XF9JQ==}
+  '@orbitdb/core-types@1.0.13':
+    resolution: {integrity: sha512-OVDau/V/4N2uY4/IJQYi/7pyNd4cbEqDmWEH92SqwtlkevdGlu2rHvNeF7pG4Eh56AgUp7ZYFvgDWZHA21WU+Q==}
 
   '@orbitdb/core@2.4.3':
     resolution: {integrity: sha512-pRHDJlODTy35nySEAPhTjzZIKQ7eedwCIoplmEXs1rW3KYqMHNQaNxrIc1uBMw9cRsPTeIGwxTUkvXfhhaf35Q==}
-    engines: {node: '>=20.0.0'}
-
-  '@orbitdb/core@https://codeload.github.com/julienmalard/orbit-db/tar.gz/28b3e807de1962f96d12e085db8bbc236277ac28':
-    resolution: {tarball: https://codeload.github.com/julienmalard/orbit-db/tar.gz/28b3e807de1962f96d12e085db8bbc236277ac28}
-    version: 2.4.3
     engines: {node: '>=20.0.0'}
 
   '@orbitdb/feed-db@1.1.1':
@@ -2271,9 +2243,6 @@ packages:
   '@types/multicast-dns@7.2.4':
     resolution: {integrity: sha512-ib5K4cIDR4Ro5SR3Sx/LROkMDa0BHz0OPaCBL/OSPDsAXEGZ3/KQeS6poBKYVN7BfjXDL9lWNwzyHVgt/wkyCw==}
 
-  '@types/murmurhash3js-revisited@3.0.3':
-    resolution: {integrity: sha512-QvlqvYtGBYIDeO8dFdY4djkRubcrc+yTJtBc7n8VZPlJDUS/00A+PssbvERM8f9bYRmcaSEHPZgZojeQj7kzAA==}
-
   '@types/node-forge@1.3.11':
     resolution: {integrity: sha512-FQx220y22OKNTqaByeBGqHWYz4cl94tpcxeFdvBo3wjG6XPBuZ0BNgNZRV5J5TFmmcsJ4IzsLkmGRiQbnYsBEQ==}
 
@@ -2330,9 +2299,6 @@ packages:
 
   '@types/webfontloader@1.6.38':
     resolution: {integrity: sha512-kUaF72Fv202suFx6yBrwXqeVRMx7hGtJTesyESZgn9sEPCUeDXm2p0SiyS1MTqW74nQP4p7JyrOCwZ7pNFns4w==}
-
-  '@types/ws@8.5.13':
-    resolution: {integrity: sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==}
 
   '@types/ws@8.5.14':
     resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
@@ -3052,10 +3018,6 @@ packages:
   catering@2.1.1:
     resolution: {integrity: sha512-K7Qy8O9p76sL3/3m7/zLKbRkyOlSZAgzEaLhyj2mXS8PsCud2Eo4hAb8aLtZqHh0QGqLcb9dlJSu6lHRVENm1w==}
     engines: {node: '>=6'}
-
-  cborg@4.2.7:
-    resolution: {integrity: sha512-zHTUAm+HAoRLtGEQ1b28HXBm8d/5YP+7eiSKzEu/mpFkptGYaMQCHv15OiQBuyNlIgbCBXvBbZQPl3xvcZTJXg==}
-    hasBin: true
 
   cborg@4.2.8:
     resolution: {integrity: sha512-z9M+TZCWQbf89Gl8ulpYThM9fqmkjBDdMiq+wS72OAK2zqDaXNquoAWFDrAKHQAukVtPspmadB9chuFC0ut7ew==}
@@ -4369,8 +4331,8 @@ packages:
   idb-wrapper@1.7.2:
     resolution: {integrity: sha512-zfNREywMuf0NzDo9mVsL0yegjsirJxHpKHvWcyRozIqQy89g0a3U+oBPOCN4cc0oCiOuYgZHimzaW/R46G1Mpg==}
 
-  idb@8.0.1:
-    resolution: {integrity: sha512-EkBCzUZSdhJV8PxMSbeEV//xguVKZu9hZZulM+2gHXI0t2hGVU3eYE6/XnH77DS6FM2FY8wl17aDcu9vXpvLWQ==}
+  idb@8.0.2:
+    resolution: {integrity: sha512-CX70rYhx7GDDQzwwQMDwF6kDRQi5vVs6khHUumDrMecBylKkwvZ8HWvKV08AGb7VbpoGCWUQ4aHzNDgoUiOIUg==}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -4477,8 +4439,8 @@ packages:
   ipfs-unixfs@11.2.0:
     resolution: {integrity: sha512-J8FN1qM5nfrDo8sQKQwfj0+brTg1uBfZK2vY9hxci33lcl3BFrsELS9+1+4q/8tO1ASKfxZO8W3Pi2O4sVX2Lg==}
 
-  ipns@10.0.0:
-    resolution: {integrity: sha512-f0jnIr5apdKPYElbfupR3mpYgKf+/qhWNtD8aZxoryB+aZXV0Xk4vgpM5ZPDIr9mdu99ccBnxR+ILBVlP515uQ==}
+  ipns@10.0.1:
+    resolution: {integrity: sha512-NbM+IojcMSsTuvgcstzUwXb1l9ZNTDMLGPuK0MED490l56z58KP7NiR6LizFSln9vBMo6ywzE2PHk+utnFby2A==}
 
   is-arguments@1.1.1:
     resolution: {integrity: sha512-8Q7EARjzEnKpt/PCD7e1cgUS0a6X8u5tdSiMqXhojOdoV9TsMsiO+9VLC5vAmO8N7/GmXn7yjR8qnA6bVAEzfA==}
@@ -5759,10 +5721,6 @@ packages:
   p-map@4.0.0:
     resolution: {integrity: sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==}
     engines: {node: '>=10'}
-
-  p-queue@8.0.1:
-    resolution: {integrity: sha512-NXzu9aQJTAzbBqOt2hwsR63ea7yvxJc0PwN/zobNAudYfb1B7R08SzB4TsLeSbUCuG467NhnoT0oO6w1qRO+BA==}
-    engines: {node: '>=18'}
 
   p-queue@8.1.0:
     resolution: {integrity: sha512-mxLDbbGIBEXTJL0zEx8JIylaj3xQ7Z/7eEVjcF9fJX4DBiH9oqe+oahYnlKKxm0Ci9TlWTyhSHgygxMxjIB2jw==}
@@ -7398,8 +7356,8 @@ packages:
     resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}
     engines: {node: '>=8.0'}
 
-  xstate@5.19.1:
-    resolution: {integrity: sha512-vFt3q9EBnO/qTTf9AG/5GosGwdDEftw5VOd3ytfSwUQRvkj6oJkxeBQaCqJUANjHrkK341jMkEZP0zeqrx2tww==}
+  xstate@5.19.2:
+    resolution: {integrity: sha512-B8fL2aP0ogn5aviAXFzI5oZseAMqN00fg/TeDa3ZtatyDcViYLIfuQl4y8qmHCiKZgGEzmnTyNtNQL9oeJE2gw==}
 
   xtend@2.0.6:
     resolution: {integrity: sha512-fOZg4ECOlrMl+A6Msr7EIFcON1L26mb4NY5rurSkOex/TWhazOrg6eXD/B0XkuiYcYhQDWLXzQxLMVJ7LXwokg==}
@@ -8534,14 +8492,14 @@ snapshots:
 
   '@chainsafe/libp2p-gossipsub@14.1.0':
     dependencies:
-      '@libp2p/crypto': 5.0.8
-      '@libp2p/interface': 2.3.0
-      '@libp2p/interface-internal': 2.2.1
+      '@libp2p/crypto': 5.0.11
+      '@libp2p/interface': 2.5.0
+      '@libp2p/interface-internal': 2.3.0
       '@libp2p/peer-id': 5.0.12
-      '@libp2p/pubsub': 10.0.14
-      '@multiformats/multiaddr': 12.3.4
+      '@libp2p/pubsub': 10.0.18
+      '@multiformats/multiaddr': 12.3.5
       denque: 2.1.0
-      it-length-prefixed: 9.1.0
+      it-length-prefixed: 9.1.1
       it-pipe: 3.0.1
       it-pushable: 3.2.3
       multiformats: 13.3.2
@@ -8553,13 +8511,13 @@ snapshots:
     dependencies:
       '@chainsafe/as-chacha20poly1305': 0.1.0
       '@chainsafe/as-sha256': 0.6.1
-      '@libp2p/crypto': 5.0.8
-      '@libp2p/interface': 2.3.0
+      '@libp2p/crypto': 5.0.11
+      '@libp2p/interface': 2.5.0
       '@libp2p/peer-id': 5.0.12
       '@noble/ciphers': 0.6.0
-      '@noble/curves': 1.7.0
-      '@noble/hashes': 1.6.1
-      it-length-prefixed: 9.1.0
+      '@noble/curves': 1.8.1
+      '@noble/hashes': 1.7.1
+      it-length-prefixed: 9.1.1
       it-length-prefixed-stream: 1.2.0
       it-pair: 2.0.6
       it-pipe: 3.0.1
@@ -8571,8 +8529,8 @@ snapshots:
 
   '@chainsafe/libp2p-yamux@7.0.1':
     dependencies:
-      '@libp2p/interface': 2.3.0
-      '@libp2p/utils': 6.3.0
+      '@libp2p/interface': 2.5.0
+      '@libp2p/utils': 6.5.1
       get-iterator: 2.0.1
       it-foreach: 2.1.1
       it-pushable: 3.2.3
@@ -8588,7 +8546,7 @@ snapshots:
   '@constl/bohr-db@1.2.2(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@orbitdb/core': 2.4.3
-      '@orbitdb/core-types': 1.0.11
+      '@orbitdb/core-types': 1.0.13
       '@orbitdb/feed-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@orbitdb/ordered-keyvalue-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@orbitdb/set-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
@@ -8602,7 +8560,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
+  '@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@chainsafe/libp2p-gossipsub': 14.1.0
       '@chainsafe/libp2p-noise': 16.0.1
@@ -8615,7 +8573,7 @@ snapshots:
       '@helia/unixfs': 4.0.2(encoding@0.1.13)
       '@ipld/dag-cbor': 9.2.2
       '@lassi-js/kili': 0.4.1
-      '@libp2p/autonat': 2.0.17
+      '@libp2p/autonat': 2.0.19
       '@libp2p/bootstrap': 11.0.21
       '@libp2p/circuit-relay-v2': 3.1.11
       '@libp2p/dcutr': 2.0.18
@@ -8625,14 +8583,14 @@ snapshots:
       '@libp2p/mdns': 11.0.21
       '@libp2p/peer-id': 5.0.12
       '@libp2p/pubsub-peer-discovery': 11.0.1
-      '@libp2p/tcp': 10.0.16
+      '@libp2p/tcp': 10.0.18
       '@libp2p/webrtc': 5.0.27(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      '@libp2p/websockets': 9.1.3(bufferutil@4.0.8)
+      '@libp2p/websockets': 9.1.5(bufferutil@4.0.8)
       '@libp2p/webtransport': 5.0.26
       '@localfirst/auth': 6.0.0
       '@localfirst/crypto': 6.0.0
       '@multiformats/multiaddr-matcher': 1.6.0
-      '@orbitdb/core': https://codeload.github.com/julienmalard/orbit-db/tar.gz/28b3e807de1962f96d12e085db8bbc236277ac28
+      '@orbitdb/core': 2.4.3
       '@orbitdb/feed-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@orbitdb/ordered-keyvalue-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@orbitdb/set-db': 1.1.1(bufferutil@4.0.8)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
@@ -8649,7 +8607,7 @@ snapshots:
       deep-equal: 2.2.3
       deepcopy: 2.1.0
       detect-browser: 5.3.0
-      ennikkai: 2.3.2(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      ennikkai: 2.3.2(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       env-paths: 3.0.0
       events: 3.3.0
       file-saver: 2.0.5
@@ -8681,9 +8639,9 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/mandataire-electron-principal@3.1.0(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)':
+  '@constl/mandataire-electron-principal@3.1.0(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(electron@34.0.2)':
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire': 3.0.3
       '@constl/serveur': 2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       electron: 34.0.2
@@ -8705,7 +8663,7 @@ snapshots:
 
   '@constl/serveur@2.1.4(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       axios: 1.7.9(debug@4.4.0)
       bip39: 3.1.0
       bufferutil: 4.0.8
@@ -8785,15 +8743,15 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@constl/vue@1.0.4(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))':
+  '@constl/vue@1.0.4(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
       '@constl/utils-ipa': 1.0.3
-      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       '@lassi-js/kilimukku': 1.1.7(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       deep-equal: 2.2.3
-      ennikkai: 2.3.2(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
-      nuchabal: 3.2.7(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      ennikkai: 2.3.2(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      nuchabal: 3.2.7(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       uuid: 10.0.0
       vue: 3.5.13(typescript@5.7.3)
     transitivePeerDependencies:
@@ -9046,7 +9004,7 @@ snapshots:
       it-map: 3.1.1
       it-pipe: 3.0.1
       it-take: 3.0.6
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       p-defer: 4.0.1
       progress-events: 1.0.1
       protons-runtime: 5.5.0
@@ -9067,10 +9025,10 @@ snapshots:
       '@multiformats/multiaddr-to-uri': 11.0.0
       interface-blockstore: 5.3.1
       interface-store: 6.0.2
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       progress-events: 1.0.1
 
-  '@helia/delegated-routing-v1-http-api-client@4.2.1':
+  '@helia/delegated-routing-v1-http-api-client@4.2.2':
     dependencies:
       '@libp2p/interface': 2.5.0
       '@libp2p/logger': 5.1.8
@@ -9078,44 +9036,44 @@ snapshots:
       '@multiformats/multiaddr': 12.3.5
       any-signal: 4.1.1
       browser-readablestream-to-it: 2.0.7
-      ipns: 10.0.0
+      ipns: 10.0.1
       it-first: 3.0.6
       it-map: 3.1.1
       it-ndjson: 1.1.1
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       p-defer: 4.0.1
       p-queue: 8.1.0
       uint8arrays: 5.1.0
 
   '@helia/interface@5.2.0':
     dependencies:
-      '@libp2p/interface': 2.3.0
+      '@libp2p/interface': 2.5.0
       '@multiformats/dns': 1.0.6
       interface-blockstore: 5.3.1
       interface-datastore: 8.3.1
       interface-store: 6.0.2
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       progress-events: 1.0.1
 
   '@helia/routers@3.0.0':
     dependencies:
-      '@helia/delegated-routing-v1-http-api-client': 4.2.1
+      '@helia/delegated-routing-v1-http-api-client': 4.2.2
       '@helia/interface': 5.2.0
       '@libp2p/interface': 2.5.0
       '@libp2p/peer-id': 5.0.12
       '@multiformats/uri-to-multiaddr': 8.0.0
-      ipns: 10.0.0
+      ipns: 10.0.1
       it-first: 3.0.6
       it-map: 3.1.1
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       uint8arrays: 5.1.0
 
   '@helia/unixfs@4.0.2(encoding@0.1.13)':
     dependencies:
       '@helia/interface': 5.2.0
       '@ipld/dag-pb': 4.1.3
-      '@libp2p/interface': 2.3.0
-      '@libp2p/logger': 5.1.5
+      '@libp2p/interface': 2.5.0
+      '@libp2p/logger': 5.1.8
       '@multiformats/murmur3': 2.1.8
       hamt-sharding: 3.0.6
       interface-blockstore: 5.3.1
@@ -9156,7 +9114,7 @@ snapshots:
       it-foreach: 2.1.1
       it-merge: 3.0.5
       mortice: 3.0.6
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       p-defer: 4.0.1
       progress-events: 1.0.1
       uint8arrays: 5.1.0
@@ -9178,13 +9136,13 @@ snapshots:
 
   '@ipld/dag-cbor@9.2.2':
     dependencies:
-      cborg: 4.2.7
+      cborg: 4.2.8
       multiformats: 13.3.2
 
   '@ipld/dag-json@10.2.3':
     dependencies:
-      cborg: 4.2.7
-      multiformats: 13.3.1
+      cborg: 4.2.8
+      multiformats: 13.3.2
 
   '@ipld/dag-pb@4.1.3':
     dependencies:
@@ -9292,9 +9250,9 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@lassi-js/kili@0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))':
+  '@lassi-js/kili@0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))':
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/utils-ipa': 1.0.4
       '@orbitdb/core': 2.4.3
       deepcopy: 2.1.0
@@ -9305,15 +9263,15 @@ snapshots:
       '@orbitdb/core': 2.4.3
       deepcopy: 2.1.0
 
-  '@lassi-js/kilimukku-vue@1.1.10(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))':
+  '@lassi-js/kilimukku-vue@1.1.10(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.9
-      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       '@lassi-js/kilimukku': 1.1.7(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@types/lodash-es': 4.17.12
-      ennikkai: 2.3.2(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      ennikkai: 2.3.2(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       lodash-es: 4.17.21
-      nuchabal: 3.2.7(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      nuchabal: 3.2.7(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       uuid: 10.0.0
       vue: 3.5.13(typescript@5.7.3)
     transitivePeerDependencies:
@@ -9327,9 +9285,9 @@ snapshots:
 
   '@lassi-js/kilimukku@1.1.7(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
       '@constl/utils-ipa': 1.0.3
-      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       uuid: 9.0.1
       wherearewe: 2.0.1
     transitivePeerDependencies:
@@ -9358,24 +9316,10 @@ snapshots:
       any-signal: 4.1.1
       delay: 6.0.0
       interface-datastore: 8.3.1
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       uint8arrays: 5.1.0
     transitivePeerDependencies:
       - supports-color
-
-  '@libp2p/autonat@2.0.17':
-    dependencies:
-      '@libp2p/interface': 2.5.0
-      '@libp2p/interface-internal': 2.3.0
-      '@libp2p/peer-collections': 6.0.17
-      '@libp2p/peer-id': 5.0.12
-      '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
-      any-signal: 4.1.1
-      it-protobuf-stream: 1.1.5
-      multiformats: 13.3.2
-      protons-runtime: 5.5.0
-      uint8arraylist: 2.4.8
 
   '@libp2p/autonat@2.0.19':
     dependencies:
@@ -9387,7 +9331,7 @@ snapshots:
       '@multiformats/multiaddr': 12.3.5
       any-signal: 4.1.1
       it-protobuf-stream: 1.1.5
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       protons-runtime: 5.5.0
       uint8arraylist: 2.4.8
 
@@ -9397,7 +9341,7 @@ snapshots:
       '@libp2p/interface-internal': 2.3.0
       '@libp2p/peer-id': 5.0.12
       '@multiformats/mafmt': 12.1.6
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
 
   '@libp2p/circuit-relay-v2@3.1.11':
     dependencies:
@@ -9408,7 +9352,7 @@ snapshots:
       '@libp2p/peer-id': 5.0.12
       '@libp2p/peer-record': 8.0.17
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       '@multiformats/multiaddr-matcher': 1.6.0
       any-signal: 4.1.1
       it-protobuf-stream: 1.1.5
@@ -9440,23 +9384,12 @@ snapshots:
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
 
-  '@libp2p/crypto@5.0.8':
-    dependencies:
-      '@libp2p/interface': 2.3.0
-      '@noble/curves': 1.7.0
-      '@noble/hashes': 1.6.1
-      asn1js: 3.0.5
-      multiformats: 13.3.2
-      protons-runtime: 5.5.0
-      uint8arraylist: 2.4.8
-      uint8arrays: 5.1.0
-
   '@libp2p/dcutr@2.0.18':
     dependencies:
       '@libp2p/interface': 2.5.0
       '@libp2p/interface-internal': 2.3.0
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       '@multiformats/multiaddr-matcher': 1.6.0
       delay: 6.0.0
       it-protobuf-stream: 1.1.5
@@ -9485,7 +9418,7 @@ snapshots:
       '@libp2p/peer-id': 5.0.12
       '@libp2p/peer-record': 8.0.17
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       '@multiformats/multiaddr-matcher': 1.6.0
       it-drain: 3.0.7
       it-parallel: 3.0.8
@@ -9498,16 +9431,8 @@ snapshots:
     dependencies:
       '@libp2p/interface-peer-id': 2.0.2
       '@libp2p/interfaces': 3.3.2
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       it-stream-types: 2.0.2
-      uint8arraylist: 2.4.8
-
-  '@libp2p/interface-internal@2.2.1':
-    dependencies:
-      '@libp2p/interface': 2.3.0
-      '@libp2p/peer-collections': 6.0.13
-      '@multiformats/multiaddr': 12.3.4
-      progress-events: 1.0.1
       uint8arraylist: 2.4.8
 
   '@libp2p/interface-internal@2.3.0':
@@ -9539,19 +9464,10 @@ snapshots:
       '@libp2p/interface-connection': 5.1.1
       '@libp2p/interface-stream-muxer': 4.1.2
       '@libp2p/interfaces': 3.3.2
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       it-stream-types: 2.0.2
     transitivePeerDependencies:
       - supports-color
-
-  '@libp2p/interface@2.3.0':
-    dependencies:
-      '@multiformats/multiaddr': 12.3.4
-      it-pushable: 3.2.3
-      it-stream-types: 2.0.2
-      multiformats: 13.3.2
-      progress-events: 1.0.1
-      uint8arraylist: 2.4.8
 
   '@libp2p/interface@2.5.0':
     dependencies:
@@ -9573,13 +9489,13 @@ snapshots:
       '@libp2p/peer-id': 5.0.12
       '@libp2p/record': 4.0.4
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       any-signal: 4.1.1
       interface-datastore: 8.3.1
       it-all: 3.0.6
       it-drain: 3.0.7
       it-length: 3.0.6
-      it-length-prefixed: 9.1.0
+      it-length-prefixed: 9.1.1
       it-map: 3.1.1
       it-merge: 3.0.5
       it-parallel: 3.0.8
@@ -9605,14 +9521,14 @@ snapshots:
       asn1js: 3.0.5
       interface-datastore: 8.3.1
       merge-options: 3.0.4
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       sanitize-filename: 1.6.3
       uint8arrays: 5.1.0
 
   '@libp2p/logger@2.1.1':
     dependencies:
       '@libp2p/interface-peer-id': 2.0.2
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       debug: 4.4.0
       interface-datastore: 8.3.1
       multiformats: 11.0.2
@@ -9625,14 +9541,6 @@ snapshots:
       '@multiformats/multiaddr': 12.3.5
       interface-datastore: 8.3.1
       multiformats: 13.3.1
-      weald: 1.0.4
-
-  '@libp2p/logger@5.1.5':
-    dependencies:
-      '@libp2p/interface': 2.3.0
-      '@multiformats/multiaddr': 12.3.4
-      interface-datastore: 8.3.1
-      multiformats: 13.3.2
       weald: 1.0.4
 
   '@libp2p/logger@5.1.8':
@@ -9649,7 +9557,7 @@ snapshots:
       '@libp2p/interface-internal': 2.3.0
       '@libp2p/peer-id': 5.0.12
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       '@types/multicast-dns': 7.2.4
       dns-packet: 5.6.1
       multicast-dns: 7.2.5
@@ -9677,13 +9585,6 @@ snapshots:
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
 
-  '@libp2p/peer-collections@6.0.13':
-    dependencies:
-      '@libp2p/interface': 2.3.0
-      '@libp2p/peer-id': 5.0.12
-      '@libp2p/utils': 6.5.1
-      multiformats: 13.3.2
-
   '@libp2p/peer-collections@6.0.17':
     dependencies:
       '@libp2p/interface': 2.5.0
@@ -9695,7 +9596,7 @@ snapshots:
     dependencies:
       '@libp2p/crypto': 5.0.11
       '@libp2p/interface': 2.5.0
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       uint8arrays: 5.1.0
 
   '@libp2p/peer-record@8.0.17':
@@ -9704,7 +9605,7 @@ snapshots:
       '@libp2p/interface': 2.5.0
       '@libp2p/peer-id': 5.0.12
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       multiformats: 13.3.2
       protons-runtime: 5.5.0
       uint8-varint: 2.0.4
@@ -9737,28 +9638,28 @@ snapshots:
 
   '@libp2p/pubsub-peer-discovery@11.0.1':
     dependencies:
-      '@libp2p/crypto': 5.0.8
-      '@libp2p/interface': 2.3.0
-      '@libp2p/interface-internal': 2.2.1
+      '@libp2p/crypto': 5.0.11
+      '@libp2p/interface': 2.5.0
+      '@libp2p/interface-internal': 2.3.0
       '@libp2p/peer-id': 5.0.12
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       protons-runtime: 5.5.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
 
-  '@libp2p/pubsub@10.0.14':
+  '@libp2p/pubsub@10.0.18':
     dependencies:
-      '@libp2p/crypto': 5.0.8
-      '@libp2p/interface': 2.3.0
-      '@libp2p/interface-internal': 2.2.1
-      '@libp2p/peer-collections': 6.0.13
+      '@libp2p/crypto': 5.0.11
+      '@libp2p/interface': 2.5.0
+      '@libp2p/interface-internal': 2.3.0
+      '@libp2p/peer-collections': 6.0.17
       '@libp2p/peer-id': 5.0.12
-      '@libp2p/utils': 6.3.0
-      it-length-prefixed: 9.1.0
+      '@libp2p/utils': 6.5.1
+      it-length-prefixed: 9.1.1
       it-pipe: 3.0.1
       it-pushable: 3.2.3
       multiformats: 13.3.2
-      p-queue: 8.0.1
+      p-queue: 8.1.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
 
@@ -9767,19 +9668,6 @@ snapshots:
       protons-runtime: 5.5.0
       uint8arraylist: 2.4.8
       uint8arrays: 5.1.0
-
-  '@libp2p/tcp@10.0.16':
-    dependencies:
-      '@libp2p/interface': 2.5.0
-      '@libp2p/utils': 6.5.1
-      '@multiformats/mafmt': 12.1.6
-      '@multiformats/multiaddr': 12.3.4
-      '@types/sinon': 17.0.3
-      p-defer: 4.0.1
-      p-event: 6.0.1
-      progress-events: 1.0.1
-      race-event: 1.3.0
-      stream-to-it: 1.0.1
 
   '@libp2p/tcp@10.0.18':
     dependencies:
@@ -9821,32 +9709,6 @@ snapshots:
       '@multiformats/multiaddr-matcher': 1.6.0
       p-defer: 4.0.1
       race-signal: 1.1.0
-
-  '@libp2p/utils@6.3.0':
-    dependencies:
-      '@chainsafe/is-ip': 2.0.2
-      '@chainsafe/netmask': 2.0.0
-      '@libp2p/crypto': 5.0.8
-      '@libp2p/interface': 2.3.0
-      '@libp2p/logger': 5.1.5
-      '@multiformats/multiaddr': 12.3.4
-      '@sindresorhus/fnv1a': 3.1.0
-      '@types/murmurhash3js-revisited': 3.0.3
-      any-signal: 4.1.1
-      delay: 6.0.0
-      get-iterator: 2.0.1
-      is-loopback-addr: 2.0.2
-      it-foreach: 2.1.1
-      it-pipe: 3.0.1
-      it-pushable: 3.2.3
-      it-stream-types: 2.0.2
-      murmurhash3js-revisited: 3.0.0
-      netmask: 2.0.2
-      p-defer: 4.0.1
-      race-event: 1.3.0
-      race-signal: 1.1.0
-      uint8arraylist: 2.4.8
-      uint8arrays: 5.1.0
 
   '@libp2p/utils@6.5.1':
     dependencies:
@@ -9902,24 +9764,6 @@ snapshots:
       - react-native
       - supports-color
 
-  '@libp2p/websockets@9.1.3(bufferutil@4.0.8)':
-    dependencies:
-      '@libp2p/interface': 2.5.0
-      '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
-      '@multiformats/multiaddr-matcher': 1.6.0
-      '@multiformats/multiaddr-to-uri': 11.0.0
-      '@types/ws': 8.5.13
-      it-ws: 6.1.5(bufferutil@4.0.8)
-      p-defer: 4.0.1
-      p-event: 6.0.1
-      progress-events: 1.0.1
-      race-signal: 1.1.0
-      ws: 8.18.0(bufferutil@4.0.8)
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   '@libp2p/websockets@9.1.5(bufferutil@4.0.8)':
     dependencies:
       '@libp2p/interface': 2.5.0
@@ -9944,7 +9788,7 @@ snapshots:
       '@libp2p/interface': 2.5.0
       '@libp2p/peer-id': 5.0.12
       '@libp2p/utils': 6.5.1
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
       '@multiformats/multiaddr-matcher': 1.6.0
       it-stream-types: 2.0.2
       multiformats: 13.3.2
@@ -9962,7 +9806,7 @@ snapshots:
       '@paralleldrive/cuid2': 2.2.2
       lodash-es: 4.17.21
       msgpackr: 1.11.2
-      xstate: 5.19.1
+      xstate: 5.19.2
     transitivePeerDependencies:
       - supports-color
 
@@ -10044,17 +9888,17 @@ snapshots:
 
   '@multiformats/mafmt@12.1.6':
     dependencies:
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
 
   '@multiformats/multiaddr-matcher@1.6.0':
     dependencies:
-      '@chainsafe/is-ip': 2.0.2
-      '@multiformats/multiaddr': 12.3.4
+      '@chainsafe/is-ip': 2.1.0
+      '@multiformats/multiaddr': 12.3.5
       multiformats: 13.3.2
 
   '@multiformats/multiaddr-to-uri@11.0.0':
     dependencies:
-      '@multiformats/multiaddr': 12.3.4
+      '@multiformats/multiaddr': 12.3.5
 
   '@multiformats/multiaddr@12.3.4':
     dependencies:
@@ -10089,6 +9933,10 @@ snapshots:
   '@noble/curves@1.7.0':
     dependencies:
       '@noble/hashes': 1.6.0
+
+  '@noble/curves@1.8.1':
+    dependencies:
+      '@noble/hashes': 1.7.1
 
   '@noble/hashes@1.6.0': {}
 
@@ -10169,21 +10017,9 @@ snapshots:
 
   '@opentelemetry/api@1.9.0': {}
 
-  '@orbitdb/core-types@1.0.11': {}
+  '@orbitdb/core-types@1.0.13': {}
 
   '@orbitdb/core@2.4.3':
-    dependencies:
-      '@ipld/dag-cbor': 9.2.2
-      '@libp2p/crypto': 5.0.11
-      it-pipe: 3.0.1
-      level: 8.0.1
-      lru: 3.1.0
-      multiformats: 12.1.3
-      p-queue: 8.1.0
-      timeout-abort-controller: 3.0.0
-      uint8arrays: 5.1.0
-
-  '@orbitdb/core@https://codeload.github.com/julienmalard/orbit-db/tar.gz/28b3e807de1962f96d12e085db8bbc236277ac28':
     dependencies:
       '@ipld/dag-cbor': 9.2.2
       '@libp2p/crypto': 5.0.11
@@ -10227,7 +10063,7 @@ snapshots:
 
   '@paralleldrive/cuid2@2.2.2':
     dependencies:
-      '@noble/hashes': 1.6.1
+      '@noble/hashes': 1.7.1
 
   '@peculiar/asn1-cms@2.3.15':
     dependencies:
@@ -10784,8 +10620,6 @@ snapshots:
       '@types/dns-packet': 5.6.5
       '@types/node': 22.13.1
 
-  '@types/murmurhash3js-revisited@3.0.3': {}
-
   '@types/node-forge@1.3.11':
     dependencies:
       '@types/node': 22.13.1
@@ -10840,10 +10674,6 @@ snapshots:
   '@types/web-bluetooth@0.0.20': {}
 
   '@types/webfontloader@1.6.38': {}
-
-  '@types/ws@8.5.13':
-    dependencies:
-      '@types/node': 22.13.1
 
   '@types/ws@8.5.14':
     dependencies:
@@ -11649,7 +11479,7 @@ snapshots:
   blockstore-idb@2.0.1:
     dependencies:
       blockstore-core: 5.0.2
-      idb: 8.0.1
+      idb: 8.0.2
       interface-blockstore: 5.3.1
       interface-store: 6.0.2
       multiformats: 13.3.2
@@ -11955,8 +11785,6 @@ snapshots:
   caniuse-lite@1.0.30001696: {}
 
   catering@2.1.1: {}
-
-  cborg@4.2.7: {}
 
   cborg@4.2.8: {}
 
@@ -12437,7 +12265,7 @@ snapshots:
   datastore-idb@3.0.1:
     dependencies:
       datastore-core: 10.0.2
-      idb: 8.0.1
+      idb: 8.0.2
       interface-datastore: 8.3.1
       interface-store: 6.0.2
       it-filter: 3.1.1
@@ -12732,10 +12560,10 @@ snapshots:
     dependencies:
       once: 1.4.0
 
-  ennikkai@2.3.2(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))):
+  ennikkai@2.3.2(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))):
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       deepmerge: 4.3.1
       events: 3.3.0
 
@@ -13438,7 +13266,7 @@ snapshots:
       '@chainsafe/libp2p-noise': 16.0.1
       '@chainsafe/libp2p-yamux': 7.0.1
       '@helia/block-brokers': 4.0.3
-      '@helia/delegated-routing-v1-http-api-client': 4.2.1
+      '@helia/delegated-routing-v1-http-api-client': 4.2.2
       '@helia/interface': 5.2.0
       '@helia/routers': 3.0.0
       '@helia/utils': 1.2.0
@@ -13465,9 +13293,9 @@ snapshots:
       datastore-core: 10.0.2
       interface-blockstore: 5.3.1
       interface-datastore: 8.3.1
-      ipns: 10.0.0
+      ipns: 10.0.1
       libp2p: 2.6.1
-      multiformats: 13.3.1
+      multiformats: 13.3.2
     transitivePeerDependencies:
       - bufferutil
       - react-native
@@ -13576,7 +13404,7 @@ snapshots:
 
   idb-wrapper@1.7.2: {}
 
-  idb@8.0.1: {}
+  idb@8.0.2: {}
 
   ieee754@1.2.1: {}
 
@@ -13674,7 +13502,7 @@ snapshots:
       it-pipe: 3.0.1
       it-pushable: 3.2.3
       multiformats: 13.3.2
-      p-queue: 8.0.1
+      p-queue: 8.1.0
       progress-events: 1.0.1
 
   ipfs-unixfs-importer@15.3.1(encoding@0.1.13):
@@ -13703,14 +13531,14 @@ snapshots:
       protons-runtime: 5.5.0
       uint8arraylist: 2.4.8
 
-  ipns@10.0.0:
+  ipns@10.0.1:
     dependencies:
       '@libp2p/crypto': 5.0.11
       '@libp2p/interface': 2.5.0
       '@libp2p/logger': 5.1.8
       cborg: 4.2.8
       interface-datastore: 8.3.1
-      multiformats: 13.3.1
+      multiformats: 13.3.2
       protons-runtime: 5.5.0
       timestamp-nano: 1.0.1
       uint8arraylist: 2.4.8
@@ -14056,7 +13884,7 @@ snapshots:
 
   it-ws@6.1.5(bufferutil@4.0.8):
     dependencies:
-      '@types/ws': 8.5.13
+      '@types/ws': 8.5.14
       event-iterator: 2.0.0
       it-stream-types: 2.0.2
       uint8arrays: 5.1.0
@@ -14879,8 +14707,8 @@ snapshots:
   mortice@3.0.6:
     dependencies:
       observable-webworkers: 2.0.1
-      p-queue: 8.0.1
-      p-timeout: 6.1.3
+      p-queue: 8.1.0
+      p-timeout: 6.1.4
 
   mpd-parser@0.22.1:
     dependencies:
@@ -15071,10 +14899,10 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nuchabal@3.2.7(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))):
+  nuchabal@3.2.7(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))):
     dependencies:
-      '@constl/ipa': 1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
-      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.8(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
+      '@constl/ipa': 1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1))
+      '@lassi-js/kili': 0.3.16(@constl/ipa@1.5.10(bufferutil@4.0.8)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.7)(@babel/preset-env@7.26.0(@babel/core@7.26.7))(bufferutil@4.0.8)(encoding@0.1.13)(react@18.3.1)))
       deepmerge: 4.3.1
       events: 3.3.0
 
@@ -15218,11 +15046,6 @@ snapshots:
   p-map@4.0.0:
     dependencies:
       aggregate-error: 3.1.0
-
-  p-queue@8.0.1:
-    dependencies:
-      eventemitter3: 5.0.1
-      p-timeout: 6.1.3
 
   p-queue@8.1.0:
     dependencies:
@@ -16450,7 +16273,7 @@ snapshots:
 
   uint8arrays@5.1.0:
     dependencies:
-      multiformats: 13.3.1
+      multiformats: 13.3.2
 
   uncrypto@0.1.3: {}
 
@@ -16964,7 +16787,7 @@ snapshots:
 
   xmlbuilder@15.1.1: {}
 
-  xstate@5.19.1: {}
+  xstate@5.19.2: {}
 
   xtend@2.0.6:
     dependencies:
