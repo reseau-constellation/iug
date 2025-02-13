@@ -1,3 +1,5 @@
+import type {dialog} from 'electron';
+
 const surLinux = undefined;
 const surMac = undefined;
 const surWindows = undefined;
@@ -9,9 +11,15 @@ const requêteHttp = async () => {
   );
 };
 
-const choisirDossier = async () => {
+const  choisirDossier= async () => {
   throw new Error(
     "Fonction `choisirDossier` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
+  );
+};
+
+const  choisirFichierSauvegarde = async (_options: Parameters<typeof dialog.showSaveDialog>[0] = {}) => {
+  throw new Error(
+    "Fonction `choisirFichierSauvegarde` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
   );
 };
 
@@ -27,6 +35,7 @@ const redémarrer = async () => {
 
 export {
   choisirDossier,
+  choisirFichierSauvegarde,
   demanderAccèsMédia,
   plateforme,
   redémarrer,

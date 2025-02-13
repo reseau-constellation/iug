@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :min-width="mdAndUp ? 500 : 300"
+      :width="mdAndUp ? 600 : '90%'"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -22,10 +22,11 @@
           />
         </v-card-title>
       </v-card-item>
-      <v-card-text>
+      <v-card-text style="overflow-y: auto">
         <v-window
           v-model="étape"
           style="overflow-y: scroll"
+          disabled
         >
           <v-window-item :value="étapes.indexOf('objetConstellation')">
             <v-chip-group
@@ -71,6 +72,7 @@
               class="mt-2"
               variant="outlined"
               prepend-icon="mdi-folder-outline"
+              density="compact"
               clearable
               @click="() => choisirDestination()"
             ></v-text-field>
@@ -94,16 +96,7 @@
                 </v-list-item>
               </template>
             </v-select>
-            <v-autocomplete
-              v-model="langues"
-              :items="languesDisponibles"
-              :label="t('exportations.carte.étiquetteLangues')"
-              variant="outlined"
-              multiple
-              chips
-              closable-chips
-            >
-            </v-autocomplete>
+            <OptionsLanguesExportation v-model="langues" />
             <v-checkbox
               v-model="inclureDocuments"
               color="primary"
@@ -174,38 +167,41 @@
                   <div>
                     <p class="font-weight-bold">{{ t('automatisations.fréquence.fixe') }}</p>
                     <p class="text-medium-emphasis text-caption"> </p>
-                    <div class="d-flex vertical-align">
+                    <div :class="{'d-flex': mdAndUp}">
                       <div
                         class="text-medium-emphasis text-caption"
                         style="display: flex; align-items: center"
                       >
                         {{ t('automatisations.fréquence.indiceFixe') }}
                       </div>
-                      <v-text-field
-                        v-model="choixFréquence"
-                        class="mx-1"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                      />
-                      <v-select
-                        v-model="choixUnitéFréquence"
-                        :items="optionsUnitésFréquence"
-                        class="mx-1"
-                        variant="outlined"
-                        density="compact"
-                        hide-details
-                      >
-                        <template #selection="{item}">
-                          {{ t(`automatisations.fréquence.unités.${item.raw}`) }}
-                        </template>
-                        <template #item="{item, props: propsItem}">
-                          <v-list-item
-                            v-bind="propsItem"
-                            :title="t(`automatisations.fréquence.unités.${item.raw}`)"
-                          />
-                        </template>
-                      </v-select>
+                      <div class="d-flex">
+                        <v-text-field
+                          v-model="choixFréquence"
+                          class="mx-1"
+                          variant="outlined"
+                          density="compact"
+                          :hide-details="règleNumérique(choixFréquence) === true && règleEntierPositif() === true"
+                          :rules="[règleNumérique, règleEntierPositif]"
+                        />
+                        <v-select
+                          v-model="choixUnitéFréquence"
+                          :items="optionsUnitésFréquence"
+                          class="mx-1"
+                          variant="outlined"
+                          density="compact"
+                          hide-details
+                        >
+                          <template #selection="{item}">
+                            {{ t(`automatisations.fréquence.unités.${item.raw}`) }}
+                          </template>
+                          <template #item="{item, props: propsItem}">
+                            <v-list-item
+                              v-bind="propsItem"
+                              :title="t(`automatisations.fréquence.unités.${item.raw}`)"
+                            />
+                          </template>
+                        </v-select>
+                      </div>
                     </div>
                     <p
                       v-if="isBrowser"
@@ -233,12 +229,28 @@
                 </template>
               </v-radio>
             </v-radio-group>
+            <v-expand-transition>
+              <div v-show="optionAutomatiser === 'dynamique' || optionAutomatiser === 'fixe'">
+                <p class="my-2">{{ t('exportations.carte.copies') }}</p>
+                <OptionsSauvegardesMultiples v-model="sauvegardes" />
+              </div>
+            </v-expand-transition>
           </v-window-item>
-          <v-window-item :value="étapes.indexOf('confirmation')">
-            <v-btn @click="() => exporter()"></v-btn>
+          <v-window-item
+            :value="étapes.indexOf('confirmation')"
+            class="text-center"
+          >
+            <v-btn
+              append-icon="mdi-check"
+              variant="outlined"
+              @click="() => exporter()"
+            >
+              {{ t('exportations.carte.confirmer') }}
+            </v-btn>
           </v-window-item>
         </v-window>
       </v-card-text>
+      <v-divider />
       <v-card-actions>
         <btn-retour
           :visible="retourActif.visible"
@@ -258,13 +270,13 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {choisirDossier} from '#preload';
-
 import {icôneObjet, utiliserConstellation} from '../utils';
+import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
+import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
@@ -272,9 +284,9 @@ import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
-import {watchEffect} from 'vue';
 import {isBrowser} from 'wherearewe';
-import {plateforme} from '/@/utils';
+import {choisirDossier, plateforme} from '/@/utils';
+import { cloneDeep } from 'lodash-es';
 
 const props = defineProps<{
   infoObjet?: {
@@ -284,11 +296,10 @@ const props = defineProps<{
 }>();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
-const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
-const {மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const எண்ணிக்கை = எண்ணிக்கையை_கண்டுப்பிடி();
 
 const {so} = plateforme();
 const écranTactile = so === 'androïde' || so === 'iOS';
@@ -409,20 +420,20 @@ const choisirDestination = async () => {
 const formatDoc = ref<automatisation.formatTélécharger>('ods');
 const optionsFormatsDoc = ['ods', 'csv', 'txt', 'xlsx', 'xls'];
 
-const langues = ref();
-const languesDisponibles = computed(() => மொழிகளும்_குறியீடுகளும்.value.map(lng => lng.மொழி));
-watchEffect(() => {
-  langues.value = [மொழி.value, ...மாற்றுமொழிகள்.value].map(
-    code => மொழிகளும்_குறியீடுகளும்.value.find(lng => lng.குறியீடு === code)?.மொழி || code,
-  );
-});
-
+const langues = ref<string[]>();
 const inclureDocuments = ref(true);
 
 // Automatisation
-const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>('manuelle');
+const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>(isBrowser ? 'manuelle' : 'fixe');
 
-const choixFréquence = ref(1);
+const choixFréquence = ref('1');
+const choixFréquenceNumérique = computed(()=>{
+  try {
+    return எண்ணிக்கை.எண்ணுக்கு({உரை: choixFréquence.value});
+  } catch {
+    return undefined;
+  }
+});
 const choixUnitéFréquence = ref<automatisation.fréquenceFixe['détails']['unités']>('jours');
 const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unités'][] = [
   'années',
@@ -435,6 +446,21 @@ const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unit�
   'millisecondes',
 ];
 
+const règleNumérique = (val: string) => {
+  try {
+    எண்ணிக்கை.எண்ணுக்கு({உரை: val});
+    return true;
+  } catch {
+    return t('règles.numérique');
+  }
+};
+const entier = (x: number): boolean => (x | 0) === x;
+const règleEntierPositif = () => {
+  return (choixFréquenceNumérique.value !== undefined && choixFréquenceNumérique.value > 0 && entier(choixFréquenceNumérique.value)) ? true : t('règles.nombreEntierPositif');
+};
+
+const sauvegardes = ref<automatisation.copiesExportation>();
+
 // Confirmation
 const enCréation = ref(false);
 const exporter = async () => {
@@ -442,66 +468,60 @@ const exporter = async () => {
 
   if (optionAutomatiser.value === 'aucune') {
     if (typeObjet.value === 'tableau') {
-      const données = await constl.tableaux.exporterDonnées({
+      await constl.tableaux.exporterTableauÀFichier(cloneDeep({
         idTableau: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'bd') {
-      const données = await constl.bds.exporterDonnées({
+      await constl.bds.exporterBdÀFichier(cloneDeep({
         idBd: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'nuée') {
-      const données = await constl.nuées.exporterDonnéesNuée({
+      await constl.nuées.exporterNuéeÀFichier(cloneDeep({
         idNuée: idObjet.value,
         langues: langues.value,
-      });
-      await constl.bds.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     } else if (typeObjet.value === 'projet') {
-      const données = await constl.projets.exporterDonnées({
+      await constl.projets.exporterProjetÀFichier(cloneDeep({
         idProjet: idObjet.value,
         langues: langues.value,
-      });
-      await constl.projets.exporterDocumentDonnées({
-        données,
         formatDoc: formatDoc.value,
         dossier: destination.value,
-        inclureFichiersSFIP: inclureDocuments.value,
-      });
+        inclureDocuments: inclureDocuments.value,
+      }));
     }
   } else {
-    await constl.automatisations.ajouterAutomatisationExporter({
+    if (!choixFréquenceNumérique.value) return;
+    await constl.automatisations.ajouterAutomatisationExporter(cloneDeep({
       id: idObjet.value,
       typeObjet: typeObjet.value,
       formatDoc: formatDoc.value,
-      inclureFichiersSFIP: inclureDocuments.value,
+      inclureDocuments: inclureDocuments.value,
       dossier: destination.value,
       langues: langues.value,
       fréquence: {
         type: optionAutomatiser.value,
         détails: {
-          n: choixFréquence.value,
+          n: choixFréquenceNumérique.value,
           unités: choixUnitéFréquence.value,
         },
       },
-    });
+      copies: sauvegardes.value,
+    }));
   }
+  fermer();
+};
+const fermer = () => {
+  dialogue.value=false;
 };
 </script>

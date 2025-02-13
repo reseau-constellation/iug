@@ -59,9 +59,12 @@ import {utiliserConstellation} from '/@/components/utils';
 
 import CarteVariable from './CarteVariable.vue';
 import JetonVariable from './JetonVariable.vue';
-import NouvelleVariable from './NouvelleVariable.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import { defineAsyncComponent } from 'vue';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const NouvelleVariable = defineAsyncComponent(()=>import('./NouvelleVariable.vue') as any);
 
 defineProps<{multiples: boolean; originales?: string[]; interdites?: string[]}>();
 const émettre = defineEmits<{

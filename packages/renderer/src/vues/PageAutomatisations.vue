@@ -16,16 +16,41 @@
           />
         </template>
       </NouvelleAutomatisation>
+      <v-divider />
       <div v-if="!automatisations?.length">
         <p class="my-6 text-center text-h5 text-disabled">
           {{ t('pages.automatisations.aucune') }}
         </p>
       </div>
-      <ItemAutomatisation
+      <template
         v-for="auto in automatisations"
         :key="auto.id"
-        :spécification="auto"
-      />
+      >
+        <CarteAutomatisationExportation
+          v-if="auto.type === 'exportation'"
+          :spécification="auto"
+          objet-modifiable
+        >
+          <template #activator="{props: propsActivateur}">
+            <ItemAutomatisation
+              v-bind="propsActivateur"
+              :spécification="auto"
+            />
+          </template>
+        </CarteAutomatisationExportation>
+        <CarteAutomatisationImportation
+          v-else
+          :specification="auto"
+          objet-modifiable
+        >
+          <template #activator="{props: propsActivateur}">
+            <ItemAutomatisation
+              v-bind="propsActivateur"
+              :spécification="auto"
+            />
+          </template>
+        </CarteAutomatisationImportation>
+      </template>
     </v-list>
   </v-container>
 </template>
@@ -37,6 +62,8 @@ import {utiliserConstellation} from '../components/utils';
 import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
+import CarteAutomatisationExportation from '/@/components/automatisations/CarteAutomatisationExportation.vue';
+import CarteAutomatisationImportation from '/@/components/automatisations/CarteAutomatisationImportation.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 const constl = utiliserConstellation();

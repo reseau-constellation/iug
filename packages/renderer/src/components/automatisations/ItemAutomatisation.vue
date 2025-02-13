@@ -5,19 +5,21 @@
     </template>
     <v-list-item-title>
       <v-icon>{{ icôneTypeObjet }}</v-icon>
-      {{ nom }}
+      {{ nom || sansNom }}
     </v-list-item-title>
+
     <jeton-fichier-importation
       v-if="spécification.type === 'importation'"
+      :spécification="spécification"
+    />
+    <jeton-fichier-exportation
+      v-else
+      class="mx-2 my-2"
       :spécification="spécification"
     />
     <jeton-statut-automatisation
       v-if="statut"
       :statut="statut"
-    />
-    <v-skeleton-loader
-      v-else
-      type="chip"
     />
   </v-list-item>
 </template>
@@ -28,8 +30,10 @@ import {computed, onMounted, ref} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
+import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute, icôneObjet, utiliserConstellation} from '/@/components/utils';
+import { suivre } from '@constl/vue';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
@@ -92,6 +96,19 @@ onMounted(() => {
 
 const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
+const sansNom = computed(() => {
+  if (props.spécification.type === 'importation') return 'tableaux.sansNom';
+  else {
+    switch (props.spécification.typeObjet) {
+      case 'bd': return 'bds.sansNom';
+      case 'nuée': return 'nuées.sansNom';
+      case 'projet': return 'projets.sansNom';
+      case 'tableau': return 'tableaux.sansNom';
+      default: return 'communs.sansNom';
+    }
+  };
+});
+
 // Icône
 const icôneTypeObjet = computed(() => {
   if (props.spécification.type === 'importation') {
@@ -102,12 +119,7 @@ const icôneTypeObjet = computed(() => {
 });
 
 // Statut
-const statuts = ref<{[key: string]: automatisation.ÉtatAutomatisation}>();
-enregistrerÉcoute(
-  constl.automatisations.suivreÉtatAutomatisations({
-    f: x => (statuts.value = x),
-  }),
-);
+const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);
 const statut = computed(() => {
   return statuts.value ? statuts.value[props.spécification.id] : undefined;
 });

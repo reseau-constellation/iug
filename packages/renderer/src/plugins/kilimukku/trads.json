@@ -437,6 +437,22 @@
       }
     },
     "automatisations": {
+      "exportation": {
+        "titreCarte": "Exportation",
+        "fréquence": {
+          "sélection": {
+            "manuelle": "Déclancher manuellement",
+            "dynamique": "À chaque changement des données",
+            "fixe": "Exporter tous les"
+          }
+          
+        },
+        "sousSections": {
+          "statut": "Statut",
+          "format": "Format document",
+          "fréquence": "Fréquence exportation"
+        }
+      },
       "fréquence": {
         "unités": {
           "années": "années",
@@ -448,16 +464,42 @@
           "secondes": "secondes",
           "millisecondes": "millisecondes"
         },
+        
         "manuelle": "Manuellement",
         "dynamique": "Dynamiquement",
         "fixe": "À intervales fixes",
         "aucune": "Non merci",
         "indiceManuelle": "Lorsque je la déclencherai manuellement.",
         "indiceDynamique": "Automatiquement, chaque fois que les données changeront.",
-        "indiceFixe": "Automatiquement, tous les ",
+        "indiceFixe": "Automatiquement si les données ont changé, tous les ",
         "indiceAucune": "Je ne veux pas répéter cette action.",
         "pasSurNavig": "Non disponible sur navigateur",
         "pasDeURL": "Non disponible avec source URL"
+      },
+      "fichierIntrouvable": "Fichier local introuvable",
+      "jetonStatut": {
+        "écoute": "Écoute de changements",
+        "sync": "En syncronisation depuis {depuis}",
+        "programmée": "Programmée dans {dans}",
+        "erreurRéssayer": "Erreur, ressaie dans {dans}",
+        "erreur": "Erreur"
+      },
+      "sauvegardes": {
+        "sélection": {
+          "temps": {
+            "item": "Oui, selon la date",
+            "sélection": "Garder une historique d'au moins"
+          },
+          "n": {
+            "item": "Oui, selon le nombre",
+            "sélection": "Garder",
+            "sauvegardes": "sauvegardes"
+          },
+          "aucune": {
+            "item": "Non merci",
+            "sélection": "Aucune sauvegarde additionnelle"
+          }
+        }
       }
     },
     "importations": {
@@ -479,7 +521,10 @@
         "étiquetteLangues": "Préférences langues",
         "étiquetteInclureDocuments": "Inclure documents",
         "indiceInclureDocuments": "Si les données incluent des documents tels que des photos ou des vidéos, inclure ceux-ci dans un fichier zip.",
-        "automatiser": "Voulez-vous répéter cette exportation dans le future ?"
+        "automatiser": "Voulez-vous répéter cette exportation dans le future ?",
+        "exporter": "Exporter",
+        "copies": "Garder des sauvegardes multiples ?",
+        "confirmer": "Valider exportation"
       },
       "format": {
         "xlsx": "Document Excel (.xlsx)",
@@ -1259,7 +1304,7 @@
         "ilYAJours": "{n} நாட்கள் முன்னால் பார்த்தது | ஒரு நாள் முன்னால் பார்த்தது | {n} நாட்கள் முன்னால் பார்த்தது",
         "ilYASemaines": "{n} வாரங்கள் முன்னால் பார்த்தது | ஒரு வாரம் முன்னால் பார்த்தது | {n} வாரங்கள் முன்னால் பார்த்தது",
         "ilYAMois": "{n} மாதங்கள் முன்னால் பார்த்தது | ஒரு மாதம் முன்னால் பார்த்தது | {n} மாதங்கள் முன்னால் பார்த்தது",
-        "ilYALongtemps": "பல மாடங்களாக காணதில்லை"
+        "ilYALongtemps": "பல மாதங்களாக காணதில்லை"
       },
       "recherche": {
         "étiquette": "Rechercher un membre",

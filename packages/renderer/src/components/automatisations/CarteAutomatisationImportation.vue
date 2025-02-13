@@ -1,27 +1,40 @@
 <template>
-  <v-card
-    class="mx-auto"
-    :max-width="mdAndUp ? 500 : 300"
-  >
-    <v-card-item>
-      <v-card-title>{{ nom }}</v-card-title>
-    </v-card-item>
-    <v-card-text>
-      <division-carte
-        :titre="t('automatisations.statut')"
-        :en-attente="false"
-      />
-      <jeton-statut-automatisation :statut="statut" />
-      <jeton-fichier-importation
-        v-if="specification.type === 'importation'"
-        :spécification="specification"
-      />
-      <jeton-fichier-exportation
-        v-else
-        :spécification="specification"
-      />
-    </v-card-text>
-  </v-card>
+  <v-dialog v-model="dialogue">
+    <template #activator="{props: propsActivateur}">
+      <slot
+        name="activator"
+        v-bind="{props: propsActivateur}"
+      ></slot>
+    </template>
+    <v-card
+      class="mx-auto"
+      :max-width="mdAndUp ? 500 : 300"
+    >
+      <v-card-item>
+        <v-card-title>{{ nom }}</v-card-title>
+      </v-card-item>
+      <v-card-text>
+        <division-carte
+          :titre="t('automatisations.statut')"
+          :en-attente="false"
+        />
+        <jeton-statut-automatisation
+          v-if="statut"
+          :statut="statut"
+        />
+        <jeton-fichier-importation
+          v-if="specification.type === 'importation'"
+          :spécification="specification"
+        />
+        <jeton-fichier-exportation
+          v-else
+          class="my-2"
+          :spécification="specification"
+          @click="()=>changerFichierExportation()"
+        />
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
@@ -30,11 +43,14 @@ import {onMounted, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
+import { suivre } from '@constl/vue';
+import { computed } from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -42,10 +58,12 @@ const {mdAndUp} = useDisplay();
 
 const props = defineProps<{
   specification: automatisation.SpécificationAutomatisation;
-  statut: automatisation.ÉtatAutomatisation;
 }>();
 
 const constl = utiliserConstellation();
+
+// Navigation
+const dialogue = ref(false);
 
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -101,4 +119,26 @@ onMounted(() => {
 });
 
 const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
+
+// Statut
+const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);
+const statut = computed(()=> statuts.value?.[props.specification.id]);
+
+// Fichier
+// const fichierExportation = ref(props.specification);
+const changerFichierExportation = async () => {
+  // const fichier = await choisirFichierSauvegarde();
+  // if (fichier) fichierExportation.value = fichier;
+};
+
+// Sauvegarde
+/*const sauvegarder = async () => {
+  const automatisation: automatisation.SpécificationAutomatisation = {
+    
+  }
+  await constl.automatisations.modifierAutomatisation({
+    id: props.specification.id,
+    automatisation
+  })
+}*/
 </script>

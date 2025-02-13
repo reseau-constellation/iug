@@ -1,13 +1,16 @@
 import {
   choisirDossier as choisirDossier_,
+  choisirFichierSauvegarde as choisirFichierSauvegarde_,
   demanderAccèsMédia as demanderAccèsMédia_,
   surLinux,
   surMac,
   surWindows,
 } from '#preload';
+import type { dialog } from 'electron';
 import {showSaveFilePicker} from 'native-file-system-adapter';
 import {os} from 'platform';
-import {type ComputedRef, type Ref, computed} from 'vue';
+import {computed} from 'vue';
+import {type ComputedRef, type Ref} from 'vue';
 import {isBrowser, isElectronRenderer} from 'wherearewe';
 
 export const ouvrirLien = (lien: string) => {
@@ -180,6 +183,11 @@ export const sourceImage = (
 export const choisirDossier = async (): Promise<string | undefined> => {
   if (!isElectronRenderer) return undefined;
   return await choisirDossier_();
+};
+
+export const choisirFichierSauvegarde = async (options: Parameters<typeof dialog.showSaveDialog>[0] = {}): Promise<string | undefined> => {
+  if (!isElectronRenderer) return undefined;
+  return await choisirFichierSauvegarde_(options);
 };
 
 export const demanderAccèsMédia = async (

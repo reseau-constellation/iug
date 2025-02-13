@@ -80,6 +80,7 @@
         </carte-automatisations-objet>
         <carte-exportation-objet
           :id-objet="idTableau"
+          :noms-objet="noms"
           type-objet="tableau"
         >
           <template #activator="{props: propsActivateurCarte}">
@@ -336,6 +337,9 @@ const props = defineProps<{idTableau: string; idBd: string}>();
 
 // Autorisation
 const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
+
+// Noms
+const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
 
 // Variables
 const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});

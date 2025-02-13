@@ -7,6 +7,8 @@ import {connecterDemanderAccèsMédia} from './permissions';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
 
+const enDéveloppement = process.env.NODE_ENV !== 'production';
+
 async function createWindow() {
   const browserWindow = new BrowserWindow({
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
@@ -17,7 +19,11 @@ async function createWindow() {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
     },
+    width: enDéveloppement ? 800 + 250 : 800,
+    height: 575,
   });
+
+  gestionnaireFenêtres.connecterFenêtreÀConstellation(browserWindow);
 
   /**
    * If the 'show' property of the BrowserWindow's constructor is omitted from the initialization options,
@@ -71,7 +77,6 @@ export async function restoreOrCreateWindow() {
 
   if (window === undefined) {
     window = await createWindow();
-    gestionnaireFenêtres.connecterFenêtreÀConstellation(window);
     connecterHttp();
     connecterRedémarrer();
     connecterSystèmeFichiers();
