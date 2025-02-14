@@ -85,11 +85,11 @@
     "vue-tsc": "2.2.0"
   },
   "dependencies": {
-    "@constl/ipa": "^1.5.11",
+    "@constl/ipa": "^1.5.12",
     "@constl/mandataire": "^3.0.3",
     "@constl/mandataire-electron-principal": "^3.0.4",
     "@constl/mandataire-electron-rendu": "^3.0.4",
-    "@constl/serveur": "^2.1.4",
+    "@constl/serveur": "^2.1.7",
     "@constl/vue": "^1.0.4",
     "@lassi-js/kili": "^0.4.1",
     "@lassi-js/kilimukku": "^1.1.7",
