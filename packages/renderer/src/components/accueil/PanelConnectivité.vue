@@ -69,7 +69,7 @@ import {useDisplay} from 'vuetify';
 
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {useOnline} from '@vueuse/core';
+import {useNow, useOnline} from '@vueuse/core';
 import {isElectron} from 'wherearewe';
 import {utiliserConstellation} from '../utils';
 
@@ -86,10 +86,11 @@ const {mdAndUp, smAndUp} = useDisplay();
 
 // Connectivité
 const enLigne = useOnline();
+const maintenant = useNow();
 const connexionsRéseau = suivre(constl.réseau.suivreConnexionsPostesSFIP);
 const nConnexionsRéseau = computed(() => connexionsRéseau.value?.length);
 const connexionsDispositifs = suivre(constl.réseau.suivreConnexionsDispositifs);
 const nConnexionsDispositifs = computed(() =>
-  connexionsDispositifs.value ? connexionsDispositifs.value.length - 1 : undefined,
+  connexionsDispositifs.value ? connexionsDispositifs.value.filter(c=>!c.vuÀ || ((maintenant.value.getTime() - c.vuÀ) <= 1000 * 10)).length - 1 : undefined,
 );
 </script>
