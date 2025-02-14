@@ -147,6 +147,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@ipshipyard/node-datachannel",
       "@localfirst/auth",
       "@localfirst/crdx",
       "@localfirst/crypto",
