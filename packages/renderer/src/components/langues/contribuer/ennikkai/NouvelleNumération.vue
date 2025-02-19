@@ -274,7 +274,6 @@ const proposer = async () => {
       அடிமானங்கள்: vals.bases ? JSON.stringify(vals.bases) : undefined,
       பிரிப்பு: vals.décimal,
     });
-    suggestionEnCours.value = false;
   }
   fermer();
 };
