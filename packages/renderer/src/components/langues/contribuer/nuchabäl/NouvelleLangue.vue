@@ -555,6 +555,7 @@ const prêtÀSuggérer = computed(() => {
 const créerSuggestion = async () => {
   const vals = prêtÀSuggérer.value;
   if (!vals) return;
+  suggestionEnCours.value = true;
   await nuchabäl.tachilabejChabäl({
     rubiChabäl: vals.nom,
     runukChabäl: vals.code,

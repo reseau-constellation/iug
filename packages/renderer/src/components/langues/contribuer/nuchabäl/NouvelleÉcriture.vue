@@ -382,6 +382,7 @@ const prêtÀSuggérer = computed(() => {
 const créerSuggestion = async () => {
   const vals = prêtÀSuggérer.value;
   if (!vals) return;
+  suggestionEnCours.value = true;
   await nuchabäl.tachilabejTzibanem({
     runukTzib: vals.code,
     rajilanïkTzib: vals.numération,
