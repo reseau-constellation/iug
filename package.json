@@ -58,7 +58,7 @@
     "@typescript-eslint/parser": "^8.15.0",
     "@vitejs/plugin-vue": "5.2.1",
     "@vitest/coverage-istanbul": "^3.0.0",
-    "@vitest/coverage-v8": "3.0.5",
+    "@vitest/coverage-v8": "3.0.6",
     "@vue/test-utils": "2.4.6",
     "cross-env": "7.0.3",
     "electron": "34.2.0",
@@ -81,7 +81,7 @@
     "vite-plugin-commonjs-externals": "^0.1.4",
     "vite-plugin-node-polyfills": "^0.23.0",
     "vite-plugin-vuetify": "^2.0.4",
-    "vitest": "3.0.5",
+    "vitest": "3.0.6",
     "vue-tsc": "2.2.0"
   },
   "dependencies": {
