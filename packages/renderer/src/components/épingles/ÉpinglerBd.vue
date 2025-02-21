@@ -42,8 +42,7 @@
                 @click="() => (optionsAvancées = !optionsAvancées)"
               ></v-btn>
             </p>
-          
-  
+
             <v-expand-transition>
               <div v-show="optionsAvancées">
                 <v-divider class="mb-2" />
@@ -104,9 +103,9 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation} from '/@/components/utils';
-import {optionsDispositifs} from './utils';
 import SelectionDispositifs from './SélectionDispositifs.vue';
+import {optionsDispositifs} from './utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{idBd: string}>();
 
@@ -124,31 +123,40 @@ const optionsAvancées = ref(false);
 const épingle = suivre(constl.bds.suivreÉpingleBd, {idBd: props.idBd});
 
 // Options
-const { 
+const {
   sélection: sélectionBase,
   dispositifs: dispositifsBase,
   spécifiques: spécifiquesBase,
   valide: baseValide,
   modifié: baseModifié,
-} = optionsDispositifs(computed(()=>épingle.value?.base), 'TOUS');
-const { 
+} = optionsDispositifs(
+  computed(() => épingle.value?.base),
+  'TOUS',
+);
+const {
   sélection: sélectionTableaux,
-  dispositifs: dispositifsTableaux, 
+  dispositifs: dispositifsTableaux,
   spécifiques: spécifiquesTableaux,
   valide: tableauxValide,
   modifié: tableauxModifié,
-} = optionsDispositifs(computed(()=>épingle.value?.données.tableaux), 'TOUS');
-const { 
+} = optionsDispositifs(
+  computed(() => épingle.value?.données.tableaux),
+  'TOUS',
+);
+const {
   sélection: sélectionFichiersTableaux,
-  dispositifs: dispositifsFichiersTableaux, 
+  dispositifs: dispositifsFichiersTableaux,
   spécifiques: spécifiquesFichiersTableaux,
   valide: fichiersTableauxValide,
   modifié: fichiersTableauxModifié,
-} = optionsDispositifs(computed(()=>épingle.value?.données.fichiers), 'INSTALLÉ');
+} = optionsDispositifs(
+  computed(() => épingle.value?.données.fichiers),
+  'INSTALLÉ',
+);
 
 // Sauvegarder
 const prêtÀÉpingler = computed(() => {
-  return baseValide && tableauxValide && fichiersTableauxValide ;
+  return baseValide && tableauxValide && fichiersTableauxValide;
 });
 
 const valeursChangées = computed(() => {
@@ -172,7 +180,6 @@ const épingler = async () => {
       idBd: props.idBd,
       options: épingle,
     });
-
   } else {
     await désépingler();
   }
@@ -187,5 +194,4 @@ const fermer = () => {
   dialogue.value = false;
   enProgrès.value = false;
 };
-
 </script>

@@ -8,11 +8,14 @@ const choisirDossier = async (_événement: IpcMainInvokeEvent): Promise<string 
   ).filePaths[0];
 };
 
-const choisirFichierSauvegarde = async (_événement: IpcMainInvokeEvent, ...args: [Parameters<typeof dialog.showSaveDialog>]): Promise<string | undefined> => {
-  const argsDéfaut: Parameters<(typeof dialog.showSaveDialog)>[0] = {
+const choisirFichierSauvegarde = async (
+  _événement: IpcMainInvokeEvent,
+  ...args: [Parameters<typeof dialog.showSaveDialog>]
+): Promise<string | undefined> => {
+  const argsDéfaut: Parameters<typeof dialog.showSaveDialog>[0] = {
     properties: ['createDirectory', 'showOverwriteConfirmation'],
   };
-  
+
   const {canceled, filePath} = await dialog.showSaveDialog(mergeOptions(argsDéfaut, args[0] || {}));
   if (!canceled) return filePath;
 };

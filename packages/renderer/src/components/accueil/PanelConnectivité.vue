@@ -91,6 +91,10 @@ const connexionsRéseau = suivre(constl.réseau.suivreConnexionsPostesSFIP);
 const nConnexionsRéseau = computed(() => connexionsRéseau.value?.length);
 const connexionsDispositifs = suivre(constl.réseau.suivreConnexionsDispositifs);
 const nConnexionsDispositifs = computed(() =>
-  connexionsDispositifs.value ? connexionsDispositifs.value.filter(c=>!c.vuÀ || ((maintenant.value.getTime() - c.vuÀ) <= 1000 * 10)).length - 1 : undefined,
+  connexionsDispositifs.value
+    ? connexionsDispositifs.value.filter(
+        c => !c.vuÀ || maintenant.value.getTime() - c.vuÀ <= 1000 * 10,
+      ).length - 1
+    : undefined,
 );
 </script>

@@ -431,7 +431,7 @@
             </template>
           </nouveau-tableau>
         </v-tabs>
-        
+
         <v-slide-group
           v-else
           v-model="tableauActif"
@@ -582,9 +582,9 @@ import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import CarteRéplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
-import EpinglerBd from '/@/components/épingles/ÉpinglerBd.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemRéplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
+import EpinglerBd from '/@/components/épingles/ÉpinglerBd.vue';
 
 import type {valid} from '@constl/ipa';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
@@ -695,10 +695,7 @@ watchEffect(() => {
   if (!tableauActif.value && tableaux.value?.length) {
     tableauActif.value = tableaux.value[0].clef;
   }
-  if (
-    tableauActif.value &&
-    !tableaux.value?.map(t => t.clef).includes(tableauActif.value)
-  ) {
+  if (tableauActif.value && !tableaux.value?.map(t => t.clef).includes(tableauActif.value)) {
     tableauActif.value = undefined;
   }
 });
@@ -723,7 +720,7 @@ const ajouterTableau = async ({
       idTableau,
       noms: toRaw(noms),
     });
-    
+
     await Promise.all(
       cols.map(async col => {
         await constl.tableaux.ajouterColonneTableau({

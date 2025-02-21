@@ -180,7 +180,9 @@
                           class="mx-1"
                           variant="outlined"
                           density="compact"
-                          :hide-details="règleNumérique(choixFréquence) === true && règleEntierPositif() === true"
+                          :hide-details="
+                            règleNumérique(choixFréquence) === true && règleEntierPositif() === true
+                          "
                           :rules="[règleNumérique, règleEntierPositif]"
                         />
                         <v-select
@@ -275,8 +277,8 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {icôneObjet, utiliserConstellation} from '../utils';
-import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
 import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
+import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
@@ -284,9 +286,9 @@ import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import SelecteurProjet from '/@/components/projets/SélecteurProjet.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
+import {cloneDeep} from 'lodash-es';
 import {isBrowser} from 'wherearewe';
 import {choisirDossier, plateforme} from '/@/utils';
-import { cloneDeep } from 'lodash-es';
 
 const props = defineProps<{
   infoObjet?: {
@@ -402,10 +404,10 @@ const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
 const typeObjet = ref(props.infoObjet?.typeObjet || 'bd');
 const idObjet = ref(props.infoObjet?.id);
 const jetonsTypesDonnées = [
-  { type: 'tableau', texte: 'pages.mesDonnées.tableaux'},
-  { type: 'bd', texte: 'pages.mesDonnées.bds' },
-  { type: 'projet', texte: 'pages.mesDonnées.projets' },
-  { type: 'nuée', texte: 'pages.mesDonnées.nuées' },
+  {type: 'tableau', texte: 'pages.mesDonnées.tableaux'},
+  {type: 'bd', texte: 'pages.mesDonnées.bds'},
+  {type: 'projet', texte: 'pages.mesDonnées.projets'},
+  {type: 'nuée', texte: 'pages.mesDonnées.nuées'},
 ];
 
 // Destination
@@ -424,10 +426,12 @@ const langues = ref<string[]>();
 const inclureDocuments = ref(true);
 
 // Automatisation
-const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>(isBrowser ? 'manuelle' : 'fixe');
+const optionAutomatiser = ref<'aucune' | 'manuelle' | 'dynamique' | 'fixe'>(
+  isBrowser ? 'manuelle' : 'fixe',
+);
 
 const choixFréquence = ref('1');
-const choixFréquenceNumérique = computed(()=>{
+const choixFréquenceNumérique = computed(() => {
   try {
     return எண்ணிக்கை.எண்ணுக்கு({உரை: choixFréquence.value});
   } catch {
@@ -456,7 +460,11 @@ const règleNumérique = (val: string) => {
 };
 const entier = (x: number): boolean => (x | 0) === x;
 const règleEntierPositif = () => {
-  return (choixFréquenceNumérique.value !== undefined && choixFréquenceNumérique.value > 0 && entier(choixFréquenceNumérique.value)) ? true : t('règles.nombreEntierPositif');
+  return choixFréquenceNumérique.value !== undefined &&
+    choixFréquenceNumérique.value > 0 &&
+    entier(choixFréquenceNumérique.value)
+    ? true
+    : t('règles.nombreEntierPositif');
 };
 
 const sauvegardes = ref<automatisation.copiesExportation>();
@@ -468,60 +476,70 @@ const exporter = async () => {
 
   if (optionAutomatiser.value === 'aucune') {
     if (typeObjet.value === 'tableau') {
-      await constl.tableaux.exporterTableauÀFichier(cloneDeep({
-        idTableau: idObjet.value,
-        langues: langues.value,
-        formatDoc: formatDoc.value,
-        dossier: destination.value,
-        inclureDocuments: inclureDocuments.value,
-      }));
+      await constl.tableaux.exporterTableauÀFichier(
+        cloneDeep({
+          idTableau: idObjet.value,
+          langues: langues.value,
+          formatDoc: formatDoc.value,
+          dossier: destination.value,
+          inclureDocuments: inclureDocuments.value,
+        }),
+      );
     } else if (typeObjet.value === 'bd') {
-      await constl.bds.exporterBdÀFichier(cloneDeep({
-        idBd: idObjet.value,
-        langues: langues.value,
-        formatDoc: formatDoc.value,
-        dossier: destination.value,
-        inclureDocuments: inclureDocuments.value,
-      }));
+      await constl.bds.exporterBdÀFichier(
+        cloneDeep({
+          idBd: idObjet.value,
+          langues: langues.value,
+          formatDoc: formatDoc.value,
+          dossier: destination.value,
+          inclureDocuments: inclureDocuments.value,
+        }),
+      );
     } else if (typeObjet.value === 'nuée') {
-      await constl.nuées.exporterNuéeÀFichier(cloneDeep({
-        idNuée: idObjet.value,
-        langues: langues.value,
-        formatDoc: formatDoc.value,
-        dossier: destination.value,
-        inclureDocuments: inclureDocuments.value,
-      }));
+      await constl.nuées.exporterNuéeÀFichier(
+        cloneDeep({
+          idNuée: idObjet.value,
+          langues: langues.value,
+          formatDoc: formatDoc.value,
+          dossier: destination.value,
+          inclureDocuments: inclureDocuments.value,
+        }),
+      );
     } else if (typeObjet.value === 'projet') {
-      await constl.projets.exporterProjetÀFichier(cloneDeep({
-        idProjet: idObjet.value,
-        langues: langues.value,
-        formatDoc: formatDoc.value,
-        dossier: destination.value,
-        inclureDocuments: inclureDocuments.value,
-      }));
+      await constl.projets.exporterProjetÀFichier(
+        cloneDeep({
+          idProjet: idObjet.value,
+          langues: langues.value,
+          formatDoc: formatDoc.value,
+          dossier: destination.value,
+          inclureDocuments: inclureDocuments.value,
+        }),
+      );
     }
   } else {
     if (!choixFréquenceNumérique.value) return;
-    await constl.automatisations.ajouterAutomatisationExporter(cloneDeep({
-      id: idObjet.value,
-      typeObjet: typeObjet.value,
-      formatDoc: formatDoc.value,
-      inclureDocuments: inclureDocuments.value,
-      dossier: destination.value,
-      langues: langues.value,
-      fréquence: {
-        type: optionAutomatiser.value,
-        détails: {
-          n: choixFréquenceNumérique.value,
-          unités: choixUnitéFréquence.value,
+    await constl.automatisations.ajouterAutomatisationExporter(
+      cloneDeep({
+        id: idObjet.value,
+        typeObjet: typeObjet.value,
+        formatDoc: formatDoc.value,
+        inclureDocuments: inclureDocuments.value,
+        dossier: destination.value,
+        langues: langues.value,
+        fréquence: {
+          type: optionAutomatiser.value,
+          détails: {
+            n: choixFréquenceNumérique.value,
+            unités: choixUnitéFréquence.value,
+          },
         },
-      },
-      copies: sauvegardes.value,
-    }));
+        copies: sauvegardes.value,
+      }),
+    );
   }
   fermer();
 };
 const fermer = () => {
-  dialogue.value=false;
+  dialogue.value = false;
 };
 </script>

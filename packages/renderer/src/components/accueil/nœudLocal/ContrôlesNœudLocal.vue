@@ -57,9 +57,7 @@
           class="mt-2"
           color="primary"
         >
-          <v-tab
-            value="requêtes"
-          >
+          <v-tab value="requêtes">
             <v-badge
               :content="nRequêtesFormatté"
               color="primary"
@@ -87,7 +85,9 @@
               </v-list-item>
               <v-fade-transition>
                 <v-list-item v-if="!requêtes?.length">
-                  <p class="my-6 text-center text-h6 text-disabled"> Aucune requête en attente d'approbation. </p>
+                  <p class="my-6 text-center text-h6 text-disabled">
+                    Aucune requête en attente d'approbation.
+                  </p>
                 </v-list-item>
               </v-fade-transition>
               <item-requete-acces
@@ -101,7 +101,9 @@
             <v-list>
               <v-fade-transition>
                 <v-list-item v-if="!requêtes?.length">
-                  <p class="my-6 text-center text-h6 text-disabled"> Aucune application externe n'est présentement connectée à votre compte. </p>
+                  <p class="my-6 text-center text-h6 text-disabled">
+                    Aucune application externe n'est présentement connectée à votre compte.
+                  </p>
                 </v-list-item>
               </v-fade-transition>
               <item-connexion
@@ -124,10 +126,10 @@ import {useDisplay} from 'vuetify';
 
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {JavaScriptIcon, JuliaIcon, PythonIcon, RIcon} from 'vue3-simple-icons';
+import ItemConnexion from './ItemConnexion.vue';
+import ItemRequeteAcces from './ItemRequêteAccès.vue';
 import {utiliserServeurLocalConstellation} from '/@/components/utils';
 import {ouvrirLien} from '/@/utils';
-import ItemRequeteAcces from './ItemRequêteAccès.vue';
-import ItemConnexion from './ItemConnexion.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
@@ -142,12 +144,12 @@ const onglet = ref<'connexions' | 'requêtes'>('requêtes');
 
 // Serveur local - statut
 const connexions = suivre(serveurLocal.suivreConnexionsAuthServeur.bind(serveurLocal));
-const nConnexions = computed(()=>connexions.value?.length);
+const nConnexions = computed(() => connexions.value?.length);
 const nConnexionsFormatté = எண்ணை_வடிவூட்டு(nConnexions);
 
 // Serveur local - requêtes
 const requêtes = suivre(serveurLocal.suivreRequêtesAuthServeur.bind(serveurLocal));
-const nRequêtes = computed(()=>requêtes.value?.length);
+const nRequêtes = computed(() => requêtes.value?.length);
 const nRequêtesFormatté = எண்ணை_வடிவூட்டு(nRequêtes);
 
 // Liens clients autres langages

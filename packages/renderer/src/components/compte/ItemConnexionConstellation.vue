@@ -29,9 +29,9 @@ import {கிளிமூக்கை_பயன்படுத்து, மொ
 import {computed} from 'vue';
 import {utiliserConstellation} from '/@/components/utils';
 
+import {useNow} from '@vueuse/core';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import JetonConfiance from '/@/components/membres/JetonConfiance.vue';
-import { useNow } from '@vueuse/core';
 
 const props = defineProps<{compte: string; dispositifs: réseau.statutDispositif[]}>();
 
@@ -49,6 +49,7 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 // Nombre de dispositifs
 const maintenant = useNow();
 const nDispositifsEnLigne = computed(() => {
-  return props.dispositifs.filter(d => !d.vuÀ || ((maintenant.value.getTime() - d.vuÀ) <= 1000 * 10)).length;
+  return props.dispositifs.filter(d => !d.vuÀ || maintenant.value.getTime() - d.vuÀ <= 1000 * 10)
+    .length;
 });
 </script>

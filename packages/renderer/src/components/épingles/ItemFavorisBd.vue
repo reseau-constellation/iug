@@ -41,18 +41,18 @@
     </template>
   </EpinglerBd>
 </template>
-  
+
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {ref, watchEffect} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
-import EpinglerBd from './ÉpinglerBd.vue';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
-import { ref, watchEffect } from 'vue';
-  
+import EpinglerBd from './ÉpinglerBd.vue';
+
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleBd>}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -72,7 +72,8 @@ const icôneTypeItem = icôneObjet('bd');
 // Statut sur ce dispositif
 const statutÉpingle = ref<favoris.BooléenniserPropriétés<favoris.ÉpingleBd>>();
 watchEffect(async () => {
-  statutÉpingle.value = await constl.favoris.résoudreÉpinglesSurDispositif({épingle: props.epingle.épingle});
+  statutÉpingle.value = await constl.favoris.résoudreÉpinglesSurDispositif({
+    épingle: props.epingle.épingle,
+  });
 });
 </script>
-  

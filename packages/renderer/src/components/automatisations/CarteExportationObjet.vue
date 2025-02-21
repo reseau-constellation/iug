@@ -24,12 +24,8 @@
       </v-card-item>
       <v-card-text>
         <OptionsFormatExportation v-model="formatDoc" />
-        <OptionsLanguesExportation
-          v-model="langues"
-        />
-        <OptionsDocumentsExportation
-          v-model="inclureDocuments"
-        />
+        <OptionsLanguesExportation v-model="langues" />
+        <OptionsDocumentsExportation v-model="inclureDocuments" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -53,12 +49,12 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
-import OptionsFormatExportation from './OptionsFormatExportation.vue';
 import OptionsDocumentsExportation from './OptionsDocumentsExportation.vue';
+import OptionsFormatExportation from './OptionsFormatExportation.vue';
+import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
 
 import {utiliserConstellation} from '/@/components/utils';
-import { choisirFichierSauvegarde } from '/@/utils';
+import {choisirFichierSauvegarde} from '/@/utils';
 
 const props = defineProps<{
   idObjet: string;
@@ -84,11 +80,13 @@ const inclureDocuments = ref<boolean>();
 const enTéléchargement = ref(false);
 
 const télécharger = async () => {
-  
   const langueNom = langues.value?.find(lng => props.nomsObjet?.[lng]);
   const ext = inclureDocuments.value ? 'zip' : formatDoc.value;
-  const dossier = await choisirFichierSauvegarde({defaultPath: `${langueNom ? props.nomsObjet?.[langueNom] : props.idObjet}.${ext}`, filters: [{extensions: [ext], name: ''}]});
-  
+  const dossier = await choisirFichierSauvegarde({
+    defaultPath: `${langueNom ? props.nomsObjet?.[langueNom] : props.idObjet}.${ext}`,
+    filters: [{extensions: [ext], name: ''}],
+  });
+
   if (!dossier) return;
 
   enTéléchargement.value = true;

@@ -24,5 +24,4 @@ const approuverRequête = async () => {
 const refuserRequête = async () => {
   await serveurLocal.refuserRequêteAuthServeur({idRequête: props.id});
 };
-
 </script>

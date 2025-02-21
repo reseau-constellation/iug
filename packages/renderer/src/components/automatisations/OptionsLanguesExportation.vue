@@ -11,8 +11,8 @@
   />
 </template>
 <script setup lang="ts">
-import { computed, watchEffect } from 'vue';
-import { கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, watchEffect} from 'vue';
 
 const langues = defineModel<string[]>();
 const {மொழியாக்கம்_பயன்படுத்து, கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

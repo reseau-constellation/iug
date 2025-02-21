@@ -320,9 +320,7 @@ const dispositifsFichiers = computed<favoris.typeDispositifs | undefined>(() => 
 
 const ilYEuChangement = computed<boolean>(() => {
   if (statutFavoris.value) {
-    return (
-      dispositifsSélectionnés.value !== statutFavoris.value.base
-    );
+    return dispositifsSélectionnés.value !== statutFavoris.value.base;
   } else {
     return typeDispositifs.value !== 'AUCUN';
   }
@@ -344,7 +342,7 @@ const valeursChangées = computed<boolean>(() => {
   const dispositifsChangés = Array.isArray(base)
     ? isEqual(new Set(base), new Set(dispositifsSpécifiques.value))
     : base !== typeDispositifs.value;
-  
+
   return dispositifsChangés;
 });
 
@@ -365,7 +363,6 @@ const épingler = async () => {
       récursif: true,
     };
     if (dispositifsFichiers.value) épingle.dispositifsFichiers = dispositifsFichiers.value;
-
   } else {
     await désépingler();
   }

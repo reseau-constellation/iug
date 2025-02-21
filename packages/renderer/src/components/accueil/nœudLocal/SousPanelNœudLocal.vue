@@ -174,5 +174,4 @@ const peutêtreActualiserPort = async () => {
     await serveurLocal.initialiser(choixPort.value);
   }
 };
-
 </script>

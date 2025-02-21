@@ -69,9 +69,9 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {utiliserConstellation} from '/@/components/utils';
 import SelectionDispositifs from './SélectionDispositifs.vue';
-import { optionsDispositifs } from './utils';
+import {optionsDispositifs} from './utils';
+import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{idVariable: string}>();
 
@@ -88,13 +88,13 @@ const dialogue = ref(false);
 const épingle = suivre(constl.variables.suivreÉpingleVariable, {idVariable: props.idVariable});
 
 // Options
-const { 
+const {
   sélection: sélectionBase,
   dispositifs: dispositifsBase,
   spécifiques: spécifiquesBase,
   valide: baseValide,
   modifié: baseModifié,
-} = optionsDispositifs(computed(()=>épingle.value?.base));
+} = optionsDispositifs(computed(() => épingle.value?.base));
 
 // Sauvegarder
 const enProgrès = ref(false);
@@ -110,7 +110,6 @@ const épingler = async () => {
       idVariable: props.idVariable,
       options: épingle,
     });
-
   } else {
     await désépingler();
   }
@@ -120,11 +119,9 @@ const désépingler = async () => {
   await constl.favoris.désépinglerFavori({idObjet: props.idVariable});
 };
 
-
 // Fermer
 const fermer = () => {
   dialogue.value = false;
   enProgrès.value = false;
 };
-
 </script>

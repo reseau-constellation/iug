@@ -59,11 +59,11 @@ import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import {utiliserConstellation} from '../components/utils';
-import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
-import TitrePage from '/@/components/communs/TitrePage.vue';
-import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
 import CarteAutomatisationExportation from '/@/components/automatisations/CarteAutomatisationExportation.vue';
 import CarteAutomatisationImportation from '/@/components/automatisations/CarteAutomatisationImportation.vue';
+import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
+import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
+import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 
 const constl = utiliserConstellation();
@@ -76,5 +76,4 @@ const imgAutomatisations = obtImageDéco('automatisation');
 
 // Automatisations
 const automatisations = suivre(constl.automatisations.suivreAutomatisations);
-
 </script>

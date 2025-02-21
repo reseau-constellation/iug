@@ -15,7 +15,7 @@
       v-if="spécification?.type === 'exportation'"
       class="my-2"
       :spécification="spécification"
-      @click="()=>changerFichierExportation()"
+      @click="() => changerFichierExportation()"
     />
     <v-btn
       class="my-2"
@@ -33,10 +33,10 @@ import type {automatisation} from '@constl/ipa';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, onMounted, onUnmounted, ref} from 'vue';
-import { utiliserConstellation } from '../utils';
+import {utiliserConstellation} from '../utils';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 // import { choisirFichierSauvegarde } from '/@/utils';
-import { utiliserDans } from './utils';
+import {utiliserDans} from './utils';
 
 const constl = utiliserConstellation();
 
@@ -47,7 +47,7 @@ const dans = utiliserDans({t});
 
 const props = defineProps<{
   statut: automatisation.ÉtatAutomatisation;
-  spécification: automatisation.SpécificationAutomatisation
+  spécification: automatisation.SpécificationAutomatisation;
 }>();
 
 // Icône
@@ -83,13 +83,18 @@ const changerFichierExportation = async () => {
   // if (fichier) fichierExportation.value = fichier;
 };
 
-
 // Statut automatisation
 const programméeDans = dans(
-  computed(()=> props.statut.type === 'programmée' ? props.statut.à : (props.statut.type === 'erreur' ? props.statut.prochaineProgramméeÀ : undefined)),
+  computed(() =>
+    props.statut.type === 'programmée'
+      ? props.statut.à
+      : props.statut.type === 'erreur'
+        ? props.statut.prochaineProgramméeÀ
+        : undefined,
+  ),
 );
 const enCoursDepuis = dans(
-  computed(()=>props.statut.type === 'sync' ? props.statut.depuis : undefined),
+  computed(() => (props.statut.type === 'sync' ? props.statut.depuis : undefined)),
 );
 const texteStatut = computed(() => {
   switch (props.statut.type) {
@@ -113,6 +118,6 @@ const texteStatut = computed(() => {
 });
 
 // Relancer
-const relancer = async () => await constl.automatisations.lancerManuellement({ id: props.spécification.id });
-
+const relancer = async () =>
+  await constl.automatisations.lancerManuellement({id: props.spécification.id});
 </script>

@@ -32,7 +32,7 @@ import {utiliserConstellation} from '../utils';
 
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import { ajusterTexteTraductible } from '/@/utils';
+import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string; clef: string}>();
 

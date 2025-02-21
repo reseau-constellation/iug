@@ -27,18 +27,18 @@
     </template>
   </EpinglerVariable>
 </template>
-  
+
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {ref, watchEffect} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
-import EpinglerVariable from './ÉpinglerVariable.vue';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
-import { ref, watchEffect } from 'vue';
-  
+import EpinglerVariable from './ÉpinglerVariable.vue';
+
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleVariable>}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
@@ -58,8 +58,8 @@ const icôneTypeItem = icôneObjet('variable');
 // Statut sur ce dispositif
 const statut = ref<boolean>();
 watchEffect(async () => {
-  statut.value = (await constl.favoris.résoudreÉpinglesSurDispositif({épingle: props.epingle.épingle})).base;
+  statut.value = (
+    await constl.favoris.résoudreÉpinglesSurDispositif({épingle: props.epingle.épingle})
+  ).base;
 });
-
 </script>
-  
