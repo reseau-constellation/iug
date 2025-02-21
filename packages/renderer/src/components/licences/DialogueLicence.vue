@@ -80,6 +80,7 @@
           </v-card>
         </v-dialog>
         <v-checkbox
+          v-if="permissionModifier"
           v-model="mêmePourContenu"
           hide-details
           color="primary"
@@ -98,6 +99,7 @@
           <v-icon end>mdi-close</v-icon>
         </v-btn>
         <v-btn
+          v-if="permissionModifier"
           color="primary"
           variant="outlined"
           :disabled="!licencesChangées"
