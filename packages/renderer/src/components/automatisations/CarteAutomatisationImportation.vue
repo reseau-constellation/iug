@@ -30,7 +30,7 @@
           v-else
           class="my-2"
           :spécification="specification"
-          @click="()=>changerFichierExportation()"
+          @click="() => changerFichierExportation()"
         />
       </v-card-text>
     </v-card>
@@ -44,13 +44,13 @@ import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
+import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 import DivisionCarte from '../communs/DivisionCarte.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
 import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
-import { suivre } from '@constl/vue';
-import { computed } from 'vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -122,7 +122,7 @@ const nom = அகராதியிலிருந்து_மொழிபெ�
 
 // Statut
 const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);
-const statut = computed(()=> statuts.value?.[props.specification.id]);
+const statut = computed(() => statuts.value?.[props.specification.id]);
 
 // Fichier
 // const fichierExportation = ref(props.specification);

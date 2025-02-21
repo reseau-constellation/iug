@@ -61,7 +61,7 @@
               <template #append>
                 <nouvelle-langue
                   @click.stop
-                  @suggestion="({code}) => langueSource = code"
+                  @suggestion="({code}) => (langueSource = code)"
                 >
                   <template #activator="{props: propsActivateur}">
                     <v-icon
@@ -110,7 +110,7 @@
               <template #append>
                 <nouvelle-langue
                   @click.stop
-                  @suggestion="({code}) => langueCible = code"
+                  @suggestion="({code}) => (langueCible = code)"
                 >
                   <template #activator="{props: propsActivateur}">
                     <v-icon

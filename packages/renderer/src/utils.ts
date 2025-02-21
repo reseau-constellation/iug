@@ -6,11 +6,10 @@ import {
   surMac,
   surWindows,
 } from '#preload';
-import type { dialog } from 'electron';
+import type {dialog} from 'electron';
 import {showSaveFilePicker} from 'native-file-system-adapter';
 import {os} from 'platform';
-import {computed} from 'vue';
-import {type ComputedRef, type Ref} from 'vue';
+import {computed, type ComputedRef, type Ref} from 'vue';
 import {isBrowser, isElectronRenderer} from 'wherearewe';
 
 export const ouvrirLien = (lien: string) => {
@@ -185,7 +184,9 @@ export const choisirDossier = async (): Promise<string | undefined> => {
   return await choisirDossier_();
 };
 
-export const choisirFichierSauvegarde = async (options: Parameters<typeof dialog.showSaveDialog>[0] = {}): Promise<string | undefined> => {
+export const choisirFichierSauvegarde = async (
+  options: Parameters<typeof dialog.showSaveDialog>[0] = {},
+): Promise<string | undefined> => {
   if (!isElectronRenderer) return undefined;
   return await choisirFichierSauvegarde_(options);
 };

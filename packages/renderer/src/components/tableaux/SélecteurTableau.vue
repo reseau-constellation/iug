@@ -36,8 +36,8 @@ import ItemTableau from './ItemTableau.vue';
 import JetonTableau from './JetonTableau.vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{idBd?: string}>();
 const émettre = defineEmits<{
@@ -64,5 +64,5 @@ watchEffect(() => {
   émettre('selectionne', idTableauSélectionné.value);
 });
 
-watch(bdFinale, ()=> idTableauSélectionné.value = undefined);
+watch(bdFinale, () => (idTableauSélectionné.value = undefined));
 </script>

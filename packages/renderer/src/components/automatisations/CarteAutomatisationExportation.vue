@@ -36,29 +36,21 @@
           v-if="monDispositif && spécification.dispositifs.includes(monDispositif)"
           class="my-2"
           :spécification="spécification"
-          @click="()=>changerFichierExportation()"
+          @click="() => changerFichierExportation()"
         />
         <division-carte
           :titre="t('automatisations.exportation.sousSections.format')"
           :en-attente="false"
         />
         <OptionsFormatExportation v-model="formatDoc" />
-        <OptionsLanguesExportation
-          v-model="langues"
-        />
-        <OptionsDocumentsExportation
-          v-model="inclureDocuments"
-        />
+        <OptionsLanguesExportation v-model="langues" />
+        <OptionsDocumentsExportation v-model="inclureDocuments" />
         <division-carte
           :titre="t('automatisations.exportation.sousSections.fréquence')"
           :en-attente="false"
         />
-        <OptionsFrequenceExportation
-          v-model="fréquence"
-        />
-        <OptionsSauvegardesMultiples
-          v-model="copies"
-        />
+        <OptionsFrequenceExportation v-model="fréquence" />
+        <OptionsSauvegardesMultiples v-model="copies" />
       </v-card-text>
       <v-divider />
       <v-card-actions>
@@ -72,9 +64,9 @@
           :disabled="!modifié"
           color="primary"
           variant="outlined"
-          @click="()=>sauvegarder()"
+          @click="() => sauvegarder()"
         >
-          {{ t('communs.sauvegarder' ) }}
+          {{ t('communs.sauvegarder') }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -88,19 +80,19 @@ import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import DivisionCarte from '../communs/DivisionCarte.vue';
-import JetonFichierExportation from './JetonFichierExportation.vue';
-import ItemStatutAutomatisation from './ItemStatutAutomatisation.vue';
-import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
-import { obt, suivre } from '@constl/vue';
-import { computed } from 'vue';
-import OptionsFormatExportation from './OptionsFormatExportation.vue';
-import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
-import OptionsDocumentsExportation from './OptionsDocumentsExportation.vue';
-import OptionsFrequenceExportation from './OptionsFréquenceExportation.vue';
-import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
-import { choisirFichierSauvegarde } from '/@/utils';
+import {obt, suivre} from '@constl/vue';
 import deepEqual from 'deep-equal';
+import {computed} from 'vue';
+import DivisionCarte from '../communs/DivisionCarte.vue';
+import ItemStatutAutomatisation from './ItemStatutAutomatisation.vue';
+import JetonFichierExportation from './JetonFichierExportation.vue';
+import OptionsDocumentsExportation from './OptionsDocumentsExportation.vue';
+import OptionsFormatExportation from './OptionsFormatExportation.vue';
+import OptionsFrequenceExportation from './OptionsFréquenceExportation.vue';
+import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
+import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
+import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
+import {choisirFichierSauvegarde} from '/@/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -163,7 +155,7 @@ onMounted(() => {
 
 // Statut
 const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);
-const statut = computed(()=> statuts.value?.[props.spécification.id]);
+const statut = computed(() => statuts.value?.[props.spécification.id]);
 
 // Modifications
 const langues = ref(props.spécification.langues);
@@ -174,7 +166,7 @@ const inclureDocuments = ref(props.spécification.inclureDocuments);
 const copies = ref(props.spécification.copies);
 const dispositifs = ref(props.spécification.dispositifs);
 
-const spécificationExportation = computed<automatisation.SpécificationExporter>(()=>{
+const spécificationExportation = computed<automatisation.SpécificationExporter>(() => {
   const spécification: automatisation.SpécificationExporter = {
     id: props.spécification.id,
     type: 'exportation',
@@ -197,7 +189,7 @@ const changerFichierExportation = async () => {
 };
 
 // Sauvegarde
-const modifié = computed(()=>!deepEqual(spécificationExportation.value, props.spécification));
+const modifié = computed(() => !deepEqual(spécificationExportation.value, props.spécification));
 const sauvegarder = async () => {
   if (!modifié.value) return;
 

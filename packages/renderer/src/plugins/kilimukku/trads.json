@@ -445,7 +445,6 @@
             "dynamique": "À chaque changement des données",
             "fixe": "Exporter tous les"
           }
-          
         },
         "sousSections": {
           "statut": "Statut",
@@ -464,7 +463,7 @@
           "secondes": "secondes",
           "millisecondes": "millisecondes"
         },
-        
+
         "manuelle": "Manuellement",
         "dynamique": "Dynamiquement",
         "fixe": "À intervales fixes",

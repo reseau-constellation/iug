@@ -1,7 +1,7 @@
 <template>
   <v-select
     v-model="typeFréquence"
-    :class="mdAndUp? ['mb-4']: ['mb-2']"
+    :class="mdAndUp ? ['mb-4'] : ['mb-2']"
     :items="optionsFréquence"
     variant="outlined"
     density="compact"
@@ -29,11 +29,11 @@
     >
       <v-expand-x-transition>
         <div
-          v-if="typeFréquence==='fixe'"
+          v-if="typeFréquence === 'fixe'"
           class="d-flex"
         >
           <v-text-field
-            v-model="choixFréquenceFixe" 
+            v-model="choixFréquenceFixe"
             variant="outlined"
             density="compact"
             hide-details
@@ -58,17 +58,17 @@
               />
             </template>
           </v-select>
-        </div> 
+        </div>
       </v-expand-x-transition>
     </template>
   </v-select>
   <v-expand-transition v-if="!mdAndUp">
     <div
-      v-if="typeFréquence==='fixe'"
+      v-if="typeFréquence === 'fixe'"
       class="d-flex mb-4"
     >
       <v-text-field
-        v-model="choixFréquenceFixe" 
+        v-model="choixFréquenceFixe"
         variant="outlined"
         density="compact"
         hide-details
@@ -93,15 +93,15 @@
           />
         </template>
       </v-select>
-    </div> 
+    </div>
   </v-expand-transition>
 </template>
 <script setup lang="ts">
-import type { automatisation } from '@constl/ipa';
-import { எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { ref, computed, watchEffect } from 'vue';
-import { useDisplay } from 'vuetify';
-import { isBrowser } from 'wherearewe';
+import type {automatisation} from '@constl/ipa';
+import {எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, ref, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
+import {isBrowser} from 'wherearewe';
 
 const fréquence = defineModel<automatisation.fréquence>();
 
@@ -111,26 +111,32 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const எண்ணிக்கை = எண்ணிக்கையை_கண்டுப்பிடி();
 
-const optionsFréquence = [{
+const optionsFréquence = [
+  {
     value: 'manuelle',
     title: 'automatisations.fréquence.manuelle',
-      sélection: 'automatisations.exportation.fréquence.sélection.manuelle',
-    }, 
-    {
+    sélection: 'automatisations.exportation.fréquence.sélection.manuelle',
+  },
+  {
     value: 'dynamique',
     title: 'automatisations.fréquence.dynamique',
-      sélection: 'automatisations.exportation.fréquence.sélection.dynamique',
-    }, 
-    {
-      value: 'fixe',
-      title: 'automatisations.fréquence.fixe',
-      sélection: 'automatisations.exportation.fréquence.sélection.fixe',
-}];
+    sélection: 'automatisations.exportation.fréquence.sélection.dynamique',
+  },
+  {
+    value: 'fixe',
+    title: 'automatisations.fréquence.fixe',
+    sélection: 'automatisations.exportation.fréquence.sélection.fixe',
+  },
+];
 
 const typeFréquence = ref<'manuelle' | 'dynamique' | 'fixe'>(isBrowser ? 'manuelle' : 'fixe');
 
-const choixFréquenceFixe = ref(fréquence.value?.type === 'fixe' ? fréquence.value.détails.n.toString() : '1');
-const choixFréquenceFixeNumérique = computed(()=> எண்ணிக்கை.எண்ணுக்கு({உரை: choixFréquenceFixe.value}));
+const choixFréquenceFixe = ref(
+  fréquence.value?.type === 'fixe' ? fréquence.value.détails.n.toString() : '1',
+);
+const choixFréquenceFixeNumérique = computed(() =>
+  எண்ணிக்கை.எண்ணுக்கு({உரை: choixFréquenceFixe.value}),
+);
 
 const choixUnitéFréquenceFixe = ref<automatisation.fréquenceFixe['détails']['unités']>('jours');
 const optionsUnitésFréquenceFixe: automatisation.fréquenceFixe['détails']['unités'][] = [
@@ -154,26 +160,30 @@ const règleNumérique = (val: string) => {
 };
 const entier = (x: number): boolean => (x | 0) === x;
 const règleEntierPositif = () => {
-  return (choixFréquenceFixeNumérique.value !== undefined && choixFréquenceFixeNumérique.value > 0 && entier(choixFréquenceFixeNumérique.value)) ? true : t('règles.nombreEntierPositif');
+  return choixFréquenceFixeNumérique.value !== undefined &&
+    choixFréquenceFixeNumérique.value > 0 &&
+    entier(choixFréquenceFixeNumérique.value)
+    ? true
+    : t('règles.nombreEntierPositif');
 };
 
-watchEffect(()=>{
+watchEffect(() => {
   switch (typeFréquence.value) {
-    case 'manuelle':{
+    case 'manuelle': {
       const nouvelleFréquence: automatisation.fréquenceManuelle = {
         type: 'manuelle',
       };
       fréquence.value = nouvelleFréquence;
       break;
-    };
-    case 'dynamique':{
+    }
+    case 'dynamique': {
       const nouvelleFréquence: automatisation.fréquenceDynamique = {
         type: 'dynamique',
       };
       fréquence.value = nouvelleFréquence;
       break;
-    };
-    case 'fixe':{
+    }
+    case 'fixe': {
       const nouvelleFréquence: automatisation.fréquenceFixe = {
         type: 'fixe',
         détails: {
@@ -184,11 +194,9 @@ watchEffect(()=>{
       fréquence.value = nouvelleFréquence;
       break;
     }
-  
+
     default:
-        break;
+      break;
   }
 });
-
-
 </script>

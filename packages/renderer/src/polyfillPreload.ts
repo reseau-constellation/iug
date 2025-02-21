@@ -11,13 +11,15 @@ const requêteHttp = async () => {
   );
 };
 
-const  choisirDossier= async () => {
+const choisirDossier = async () => {
   throw new Error(
     "Fonction `choisirDossier` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
   );
 };
 
-const  choisirFichierSauvegarde = async (_options: Parameters<typeof dialog.showSaveDialog>[0] = {}) => {
+const choisirFichierSauvegarde = async (
+  _options: Parameters<typeof dialog.showSaveDialog>[0] = {},
+) => {
   throw new Error(
     "Fonction `choisirFichierSauvegarde` non disponible sur la version navigateur de l'IUG. Utiliser uniquement si `isElectronRenderer === true`.",
   );

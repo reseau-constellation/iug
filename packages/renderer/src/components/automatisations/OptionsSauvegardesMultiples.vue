@@ -1,14 +1,16 @@
 <template>
   <v-select
     v-model="typeSauvegarde"
-    :class="mdAndUp? ['mb-4']: ['mb-2']"
+    :class="mdAndUp ? ['mb-4'] : ['mb-2']"
     :items="optionsTypeSauvegarde"
     variant="outlined"
     density="compact"
     hide-details
   >
     <template #item="{props: propsItem, item}">
-      <v-list-item v-bind="{...propsItem, title: t(`automatisations.sauvegardes.sélection.${item.raw}.item`)}"></v-list-item>
+      <v-list-item
+        v-bind="{...propsItem, title: t(`automatisations.sauvegardes.sélection.${item.raw}.item`)}"
+      ></v-list-item>
     </template>
     <template #selection="{item}">
       {{ t(`automatisations.sauvegardes.sélection.${item.raw}.sélection`) }}
@@ -19,7 +21,7 @@
     >
       <v-expand-x-transition>
         <div
-          v-if="typeSauvegarde==='n'"
+          v-if="typeSauvegarde === 'n'"
           class="d-flex"
         >
           <v-text-field
@@ -29,16 +31,18 @@
             hide-details
             density="compact"
           />
-          <span class="my-auto">{{ t(`automatisations.sauvegardes.sélection.n.sauvegardes`) }}</span>
-        </div> 
+          <span class="my-auto">{{
+            t(`automatisations.sauvegardes.sélection.n.sauvegardes`)
+          }}</span>
+        </div>
       </v-expand-x-transition>
       <v-expand-x-transition>
         <div
-          v-if="typeSauvegarde==='temps'"
+          v-if="typeSauvegarde === 'temps'"
           class="d-flex"
         >
           <v-text-field
-            v-model="nFréquenceTexte" 
+            v-model="nFréquenceTexte"
             variant="outlined"
             density="compact"
             hide-details
@@ -62,13 +66,13 @@
               />
             </template>
           </v-select>
-        </div> 
+        </div>
       </v-expand-x-transition>
     </template>
   </v-select>
   <v-expand-transition v-if="!mdAndUp">
     <div
-      v-if="typeSauvegarde==='n'"
+      v-if="typeSauvegarde === 'n'"
       class="d-flex"
     >
       <v-text-field
@@ -79,13 +83,13 @@
         density="compact"
       />
       <span class="my-auto">{{ t(`automatisations.sauvegardes.sélection.n.sauvegardes`) }}</span>
-    </div> 
+    </div>
     <div
-      v-if="typeSauvegarde==='temps'"
+      v-if="typeSauvegarde === 'temps'"
       class="d-flex"
     >
       <v-text-field
-        v-model="nFréquenceTexte" 
+        v-model="nFréquenceTexte"
         variant="outlined"
         density="compact"
         hide-details
@@ -109,14 +113,14 @@
           />
         </template>
       </v-select>
-    </div> 
+    </div>
   </v-expand-transition>
 </template>
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
-import { எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
-import { computed, ref, watchEffect } from 'vue';
-import { useDisplay } from 'vuetify';
+import {எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {computed, ref, watchEffect} from 'vue';
+import {useDisplay} from 'vuetify';
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -125,16 +129,24 @@ const எண்ணிக்கை = எண்ணிக்கையை_கண்�
 
 const sauvegardes = defineModel<automatisation.copiesExportation>();
 
-const typeSauvegarde = ref<'n'|'temps'|'aucune'>(sauvegardes.value?.type ? sauvegardes.value.type : 'aucune');
+const typeSauvegarde = ref<'n' | 'temps' | 'aucune'>(
+  sauvegardes.value?.type ? sauvegardes.value.type : 'aucune',
+);
 const optionsTypeSauvegarde = ['aucune', 'n', 'temps'];
 
-const nSauvegardesTexte = ref(sauvegardes.value?.type === 'n' ? sauvegardes.value.n.toString() : '1');
-const nSauvegardes = computed(()=>எண்ணிக்கை.எண்ணுக்கு({உரை: nSauvegardesTexte.value}));
+const nSauvegardesTexte = ref(
+  sauvegardes.value?.type === 'n' ? sauvegardes.value.n.toString() : '1',
+);
+const nSauvegardes = computed(() => எண்ணிக்கை.எண்ணுக்கு({உரை: nSauvegardesTexte.value}));
 
-const nFréquenceTexte = ref(sauvegardes.value?.type === 'temps' ? sauvegardes.value.temps.détails.n.toString() : '1');
-const nFréquence = computed(()=>எண்ணிக்கை.எண்ணுக்கு({உரை: nFréquenceTexte.value}));
+const nFréquenceTexte = ref(
+  sauvegardes.value?.type === 'temps' ? sauvegardes.value.temps.détails.n.toString() : '1',
+);
+const nFréquence = computed(() => எண்ணிக்கை.எண்ணுக்கு({உரை: nFréquenceTexte.value}));
 
-const unitéFréquence = ref<automatisation.fréquenceFixe['détails']['unités']>(sauvegardes.value?.type === 'temps' ? sauvegardes.value.temps.détails.unités : 'jours');
+const unitéFréquence = ref<automatisation.fréquenceFixe['détails']['unités']>(
+  sauvegardes.value?.type === 'temps' ? sauvegardes.value.temps.détails.unités : 'jours',
+);
 const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unités'][] = [
   'années',
   'mois',
@@ -146,7 +158,7 @@ const optionsUnitésFréquence: automatisation.fréquenceFixe['détails']['unit�
   'millisecondes',
 ];
 
-watchEffect(()=>{
+watchEffect(() => {
   switch (typeSauvegarde.value) {
     case 'aucune':
       sauvegardes.value = undefined;
@@ -175,5 +187,4 @@ watchEffect(()=>{
     }
   }
 });
-
 </script>

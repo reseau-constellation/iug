@@ -30,7 +30,7 @@
           v-model:selection="sélectionBase"
           v-model:specifiques="spécifiquesBase"
         />
-    
+
         <v-expand-transition>
           <div v-show="sélectionBase !== 'AUCUN'">
             <p class="mb-2">
@@ -42,8 +42,7 @@
                 @click="() => (optionsAvancées = !optionsAvancées)"
               ></v-btn>
             </p>
-              
-      
+
             <v-expand-transition>
               <div v-show="optionsAvancées">
                 <v-divider class="mb-2" />
@@ -103,107 +102,119 @@
     </v-card>
   </v-dialog>
 </template>
-  <script setup lang="ts">
-  import {type favoris} from '@constl/ipa';
-  
-  import {suivre} from '@constl/vue';
-  import {computed, ref} from 'vue';
-  import {useDisplay} from 'vuetify';
-  
-  import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-  import {utiliserConstellation} from '/@/components/utils';
-  import {optionsDispositifs} from './utils';
-  import SelectionDispositifs from './SélectionDispositifs.vue';
-  
-  const props = defineProps<{idNuee: string}>();
-  
-  const constl = utiliserConstellation();
-  
-  const {mdAndUp} = useDisplay();
-  const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-  const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-  
-  // Navigation
-  const dialogue = ref(false);
-  const optionsAvancées = ref(false);
-  
-  // Épingle actuelle
-  const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idNuée: props.idNuee});
-  
-  // Options
-  const { 
-    sélection: sélectionBase,
-    dispositifs: dispositifsBase,
-    spécifiques: spécifiquesBase,
-    valide: baseValide,
-    modifié: baseModifié,
-  } = optionsDispositifs(computed(()=>épingle.value?.base), 'TOUS');
-  const { 
-    sélection: sélectionBds,
-    dispositifs: dispositifsBds, 
-    spécifiques: spécifiquesBds,
-    valide: bdsValide,
-    modifié: bdsModifié,
-  } = optionsDispositifs(computed(()=>épingle.value?.données.base), 'TOUS');
-  const { 
-    sélection: sélectionTableaux,
-    dispositifs: dispositifsTableaux, 
-    spécifiques: spécifiquesTableaux,
-    valide: tableauxValide,
-    modifié: tableauxModifié,
-  } = optionsDispositifs(computed(()=>épingle.value?.données.données.tableaux), 'INSTALLÉ');
-  const { 
-    sélection: sélectionFichiersTableaux,
-    dispositifs: dispositifsFichiersTableaux, 
-    spécifiques: spécifiquesFichiersTableaux,
-    valide: fichiersTableauxValide,
-    modifié: fichiersTableauxModifié,
-  } = optionsDispositifs(computed(()=>épingle.value?.données.données.fichiers), 'INSTALLÉ');
-  
-  // Sauvegarder
-  const prêtÀÉpingler = computed(() => {
-    return baseValide && bdsValide && tableauxValide && fichiersTableauxValide ;
-  });
-  
-  const valeursChangées = computed(() => {
-    return baseModifié.value || bdsModifié.value || tableauxModifié.value || fichiersTableauxModifié.value;
-  });
-  
-  const enProgrès = ref(false);
-  const épingler = async () => {
-    enProgrès.value = true;
-  
-    if (dispositifsBase.value !== 'AUCUN') {
-      const épingle: favoris.ÉpingleNuée = {
-        type: 'nuée',
-        base: dispositifsBase.value,
+<script setup lang="ts">
+import {type favoris} from '@constl/ipa';
+
+import {suivre} from '@constl/vue';
+import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
+
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import SelectionDispositifs from './SélectionDispositifs.vue';
+import {optionsDispositifs} from './utils';
+import {utiliserConstellation} from '/@/components/utils';
+
+const props = defineProps<{idNuee: string}>();
+
+const constl = utiliserConstellation();
+
+const {mdAndUp} = useDisplay();
+const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+// Navigation
+const dialogue = ref(false);
+const optionsAvancées = ref(false);
+
+// Épingle actuelle
+const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idNuée: props.idNuee});
+
+// Options
+const {
+  sélection: sélectionBase,
+  dispositifs: dispositifsBase,
+  spécifiques: spécifiquesBase,
+  valide: baseValide,
+  modifié: baseModifié,
+} = optionsDispositifs(
+  computed(() => épingle.value?.base),
+  'TOUS',
+);
+const {
+  sélection: sélectionBds,
+  dispositifs: dispositifsBds,
+  spécifiques: spécifiquesBds,
+  valide: bdsValide,
+  modifié: bdsModifié,
+} = optionsDispositifs(
+  computed(() => épingle.value?.données.base),
+  'TOUS',
+);
+const {
+  sélection: sélectionTableaux,
+  dispositifs: dispositifsTableaux,
+  spécifiques: spécifiquesTableaux,
+  valide: tableauxValide,
+  modifié: tableauxModifié,
+} = optionsDispositifs(
+  computed(() => épingle.value?.données.données.tableaux),
+  'INSTALLÉ',
+);
+const {
+  sélection: sélectionFichiersTableaux,
+  dispositifs: dispositifsFichiersTableaux,
+  spécifiques: spécifiquesFichiersTableaux,
+  valide: fichiersTableauxValide,
+  modifié: fichiersTableauxModifié,
+} = optionsDispositifs(
+  computed(() => épingle.value?.données.données.fichiers),
+  'INSTALLÉ',
+);
+
+// Sauvegarder
+const prêtÀÉpingler = computed(() => {
+  return baseValide && bdsValide && tableauxValide && fichiersTableauxValide;
+});
+
+const valeursChangées = computed(() => {
+  return (
+    baseModifié.value || bdsModifié.value || tableauxModifié.value || fichiersTableauxModifié.value
+  );
+});
+
+const enProgrès = ref(false);
+const épingler = async () => {
+  enProgrès.value = true;
+
+  if (dispositifsBase.value !== 'AUCUN') {
+    const épingle: favoris.ÉpingleNuée = {
+      type: 'nuée',
+      base: dispositifsBase.value,
+      données: {
+        type: 'bd',
+        base: dispositifsBds.value,
         données: {
-            type: 'bd',
-            base: dispositifsBds.value,
-            données: {
-              tableaux: dispositifsTableaux.value,
-              fichiers: dispositifsFichiersTableaux.value,
-            },
+          tableaux: dispositifsTableaux.value,
+          fichiers: dispositifsFichiersTableaux.value,
         },
-      };
-      await constl.nuées.épinglerNuée({
-        idNuée: props.idNuee,
-        options: épingle,
-      });
-  
-    } else {
-      await désépingler();
-    }
-    fermer();
-  };
-  const désépingler = async () => {
-    await constl.favoris.désépinglerFavori({idObjet: props.idNuee});
-  };
-  
-  // Fermer
-  const fermer = () => {
-    dialogue.value = false;
-    enProgrès.value = false;
-  };
-  
-  </script>
+      },
+    };
+    await constl.nuées.épinglerNuée({
+      idNuée: props.idNuee,
+      options: épingle,
+    });
+  } else {
+    await désépingler();
+  }
+  fermer();
+};
+const désépingler = async () => {
+  await constl.favoris.désépinglerFavori({idObjet: props.idNuee});
+};
+
+// Fermer
+const fermer = () => {
+  dialogue.value = false;
+  enProgrès.value = false;
+};
+</script>

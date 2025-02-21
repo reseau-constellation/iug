@@ -24,12 +24,11 @@
 <script setup lang="ts">
 import type {favoris} from '@constl/ipa';
 
-import ItemFavorisVariable from './ItemFavorisVariable.vue';
-import ItemFavorisMotclef from './ItemFavorisMotClef.vue';
 import ItemFavorisBd from './ItemFavorisBd.vue';
-import ItemFavorisProjet from './ItemFavorisProjet.vue';
+import ItemFavorisMotclef from './ItemFavorisMotClef.vue';
 import ItemFavorisNuee from './ItemFavorisNuée.vue';
+import ItemFavorisProjet from './ItemFavorisProjet.vue';
+import ItemFavorisVariable from './ItemFavorisVariable.vue';
 
 defineProps<{epingle: favoris.ÉpingleFavorisAvecId}>();
-
 </script>

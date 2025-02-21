@@ -2,7 +2,7 @@
   <v-select
     v-model="sélection"
     :items="optionsÉpingles"
-    :prepend-inner-icon="optionsÉpingles.find(o=>o.valeur === sélection)?.icône"
+    :prepend-inner-icon="optionsÉpingles.find(o => o.valeur === sélection)?.icône"
     item-value="valeur"
     variant="plain"
   >
@@ -47,14 +47,16 @@
   </v-expand-transition>
 </template>
 <script setup lang="ts">
-import { utiliserOptionsÉpingles } from './utils';
-import { utiliserConstellation } from '../utils';
-import { suivre } from '@constl/vue';
-import { கிளிமூக்கை_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
+import {suivre} from '@constl/vue';
+import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {utiliserConstellation} from '../utils';
+import {utiliserOptionsÉpingles} from './utils';
 import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 
-const sélection = defineModel<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES' | undefined>('selection');
+const sélection = defineModel<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES' | undefined>(
+  'selection',
+);
 const spécifiques = defineModel<string[]>('specifiques');
 
 const constl = utiliserConstellation();
@@ -64,5 +66,4 @@ const optionsÉpingles = utiliserOptionsÉpingles();
 
 // Dispositifs
 const dispositifs = suivre(constl.suivreDispositifs);
-
 </script>

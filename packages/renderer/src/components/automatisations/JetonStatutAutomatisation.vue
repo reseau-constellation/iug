@@ -67,7 +67,9 @@ const texteStatut = computed(() => {
     case 'écoute':
       return 'automatisations.jetonStatut.écoute';
     case 'sync':
-      return t('automatisations.jetonStatut.sync', {depuis: maintenant.value - props.statut.depuis});
+      return t('automatisations.jetonStatut.sync', {
+        depuis: maintenant.value - props.statut.depuis,
+      });
     case 'programmée':
       return t('automatisations.jetonStatut.programmée', {dans: props.statut.à - maintenant.value});
     case 'erreur':
@@ -82,5 +84,4 @@ const texteStatut = computed(() => {
       throw new Error(props.statut);
   }
 });
-
 </script>

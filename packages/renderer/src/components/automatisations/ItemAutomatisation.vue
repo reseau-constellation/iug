@@ -28,12 +28,12 @@ import type {automatisation} from '@constl/ipa';
 
 import {computed, onMounted, ref} from 'vue';
 
+import {suivre} from '@constl/vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonFichierExportation from './JetonFichierExportation.vue';
+import JetonFichierImportation from './JetonFichierImportation.vue';
 import JetonStatutAutomatisation from './JetonStatutAutomatisation.vue';
 import {enregistrerÉcoute, icôneObjet, utiliserConstellation} from '/@/components/utils';
-import { suivre } from '@constl/vue';
 
 const props = defineProps<{
   spécification: automatisation.SpécificationAutomatisation;
@@ -100,13 +100,18 @@ const sansNom = computed(() => {
   if (props.spécification.type === 'importation') return 'tableaux.sansNom';
   else {
     switch (props.spécification.typeObjet) {
-      case 'bd': return 'bds.sansNom';
-      case 'nuée': return 'nuées.sansNom';
-      case 'projet': return 'projets.sansNom';
-      case 'tableau': return 'tableaux.sansNom';
-      default: return 'communs.sansNom';
+      case 'bd':
+        return 'bds.sansNom';
+      case 'nuée':
+        return 'nuées.sansNom';
+      case 'projet':
+        return 'projets.sansNom';
+      case 'tableau':
+        return 'tableaux.sansNom';
+      default:
+        return 'communs.sansNom';
     }
-  };
+  }
 });
 
 // Icône
