@@ -97,7 +97,7 @@
         </SérieJetons>
         <p
           v-else
-          class="text-disabled"
+          class="text-center text-disabled"
         >
           {{ t('membres.aucuneBd') }}
         </p>
