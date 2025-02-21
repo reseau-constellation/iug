@@ -26,7 +26,7 @@ import {
   surWindows,
   écouterMessagesDeConstellation,
   écouterMessagesDeServeurConstellation,
-} from '../src';
+} from '../src/';
 
 vi.mock('electron', () => {
   type ÉvénementsCoquille = {
@@ -71,7 +71,25 @@ vi.mock('electron', () => {
     },
   };
 
-  return {ipcRenderer};
+  const app: Pick<Electron.App, 'getAppPath' | 'getPath'> = {
+    getAppPath(): string {
+      return '';
+    },
+    getPath(): string {
+      return '';
+    },
+  };
+
+  const ipcMain: Pick<Electron.IpcMain, 'on' | 'handle'> = {
+    on(..._args) {
+      return this;
+    },
+    handle(..._args) {
+      return this;
+    },
+  };
+
+  return {ipcRenderer, default: {app, ipcMain, ipcRenderer}};
 });
 
 test('plateforme', async () => {
