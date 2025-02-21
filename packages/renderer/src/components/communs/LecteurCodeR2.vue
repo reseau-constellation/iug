@@ -25,6 +25,8 @@ import {onMounted, ref} from 'vue';
 import {QrcodeStream} from 'vue-qrcode-reader';
 import {isElectronRenderer} from 'wherearewe';
 import {demanderAccèsMédia} from '/@/utils';
+import {gunzipSync} from 'fflate';
+import {toByteArray}from 'base64-js';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -33,6 +35,7 @@ const ajv = new Ajv();
 
 const props = defineProps<{
   schema?: JSONSchemaType<T>;
+  comprime?: boolean
 }>();
 
 const émettre = defineEmits<{
@@ -69,7 +72,12 @@ function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderi
 const lorsqueDétecté = (info: TypeCodeDétecté[]) => {
   erreur.value = undefined;
 
-  const texteCode = info[0].rawValue; // On utilise le premier code détecté
+  let texteCode = info[0].rawValue; // On utilise le premier code détecté
+
+  // Décomprimer si nécessaire
+  if (props.comprime) {
+    texteCode = new TextDecoder().decode(gunzipSync(toByteArray(texteCode)));
+  }
 
   if (props.schema) {
     const validateur = ajv.compile(props.schema);
