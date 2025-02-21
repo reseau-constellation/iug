@@ -391,6 +391,7 @@ const créerSuggestion = async () => {
     rutzibTzib: vals.expré,
   });
   suggérer({code: vals.code});
+  fermer();
 };
 const suggérer = ({code}: {code: string}) => {
   émettre('suggestion', {code});
