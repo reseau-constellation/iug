@@ -59,7 +59,10 @@
                 <JetonLangue :code="item.value" />
               </template>
               <template #append>
-                <nouvelle-langue @click.stop>
+                <nouvelle-langue
+                  @click.stop
+                  @suggestion="({code}) => langueSource = code"
+                >
                   <template #activator="{props: propsActivateur}">
                     <v-icon
                       v-bind="propsActivateur"
@@ -105,7 +108,10 @@
                 <JetonLangue :code="item.value" />
               </template>
               <template #append>
-                <nouvelle-langue @click.stop>
+                <nouvelle-langue
+                  @click.stop
+                  @suggestion="({code}) => langueCible = code"
+                >
                   <template #activator="{props: propsActivateur}">
                     <v-icon
                       v-bind="propsActivateur"
