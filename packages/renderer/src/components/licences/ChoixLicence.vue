@@ -4,7 +4,7 @@
     :items="licencesDispos"
     variant="outlined"
     density="compact"
-    :disabled="!permissionModifier"
+    :readonly="!permissionModifier"
   >
     <template #item="{item, props: propsItemListeLicences}">
       <v-list-item v-bind="propsItemListeLicences">
