@@ -9,6 +9,8 @@
     <v-card
       class="mx-auto"
       :min-width="mdAndUp ? 500 : 300"
+      max-width="90%"
+      max-height="90%"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -24,7 +26,11 @@
       </v-card-item>
       <v-card-text class="text-center">
         <div class="my-2">
-          <div v-if="mode === 'numériser'">
+          <div
+            v-if="mode === 'numériser'"
+            style="max-width: 350"
+            class="mx-auto"
+          >
             <v-progress-circular v-if="enCoursDeConnexion"></v-progress-circular>
             <p v-else-if="erreurConnexion">
               Erreur de connexion.
@@ -33,24 +39,25 @@
             <lecteur-code-r2
               v-else-if="!connectéeÀ"
               :schema="schémaCodeR2Connexion"
+              comprime
               @detecte="({valJSON}) => lorsqueDétecté({adresses: valJSON?.adresses})"
             />
             <p v-else>Connecté à {{ connectéeÀ }}.</p>
           </div>
           <qrcode-vue
             v-else
-            :value="adressesTexte"
-            :size="200"
+            :value="adressesTexteComprimées"
+            :size="300"
           />
         </div>
         <v-btn-toggle v-model="mode">
           <v-btn value="afficher">
-            <v-icon start>mdi-qrcode</v-icon>
-            {{ t('accueil.connexion.afficherCode') }}
+            <v-icon :start="mdAndUp">mdi-qrcode</v-icon>
+            <span v-if="mdAndUp">{{ t('accueil.connexion.afficherCode') }}</span>
           </v-btn>
           <v-btn value="numériser">
-            <v-icon start>mdi-qrcode-scan</v-icon>
-            {{ t('accueil.connexion.numériserCode') }}
+            <v-icon :start="mdAndUp">mdi-qrcode-scan</v-icon>
+            <span v-if="mdAndUp">{{ t('accueil.connexion.numériserCode') }}</span>
           </v-btn>
         </v-btn-toggle>
       </v-card-text>
@@ -69,6 +76,8 @@ import {utiliserConstellation} from '../utils';
 
 import {schémaCodeR2Connexion} from '/@/codesR2';
 import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
+import {gzipSync} from 'fflate';
+import {fromByteArray}from 'base64-js';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -83,8 +92,9 @@ const mode = ref<'afficher' | 'numériser'>('afficher');
 const adresses = suivre(constl.réseau.suivreMesAdresses);
 
 const adressesTexte = computed(() => {
-  return adresses.value ? JSON.stringify(adresses.value.map(a => a.toString())) : undefined;
+  return adresses.value ? JSON.stringify(adresses.value, undefined, 2) : undefined;
 });
+const adressesTexteComprimées = computed(() => adressesTexte.value ? fromByteArray(gzipSync(new TextEncoder().encode(adressesTexte.value))).toString(): undefined);
 
 const adressesDétectées = ref<string[]>();
 
