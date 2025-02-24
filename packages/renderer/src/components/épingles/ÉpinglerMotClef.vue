@@ -25,7 +25,8 @@
       </v-card-item>
       <v-divider />
       <v-card-text style="overflow-y: scroll">
-        <v-icon start>mdi-pin-outline</v-icon><span class="font-weight-bold">ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+        <v-icon start>mdi-pin-outline</v-icon>
+        <span class="font-weight-bold">ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
         <selection-dispositifs
           v-model:selection="sélectionBase"
           v-model:specifiques="spécifiquesBase"
