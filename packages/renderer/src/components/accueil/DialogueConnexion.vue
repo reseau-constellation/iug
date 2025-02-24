@@ -39,15 +39,14 @@
             <lecteur-code-r2
               v-else-if="!connectéeÀ"
               :schema="schémaCodeR2Connexion"
-              comprime
               @detecte="({valJSON}) => lorsqueDétecté({adresses: valJSON?.adresses})"
             />
             <p v-else>Connecté à {{ connectéeÀ }}.</p>
           </div>
-          <qrcode-vue
+          <code-r2
             v-else
-            :value="adressesTexteComprimées"
-            :size="300"
+            :valeur="adressesTexte"
+            :props-code="{size: 300}"
           />
         </div>
         <v-btn-toggle v-model="mode">
@@ -70,14 +69,12 @@ import {ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {suivre} from '@constl/vue';
-import QrcodeVue from 'qrcode.vue';
 import {computed} from 'vue';
 import {utiliserConstellation} from '../utils';
 
 import {schémaCodeR2Connexion} from '/@/codesR2';
+import CodeR2 from '/@/components/communs/CodeR2.vue';
 import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
-import {gzipSync} from 'fflate';
-import {fromByteArray}from 'base64-js';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -94,7 +91,6 @@ const adresses = suivre(constl.réseau.suivreMesAdresses);
 const adressesTexte = computed(() => {
   return adresses.value ? JSON.stringify(adresses.value, undefined, 2) : undefined;
 });
-const adressesTexteComprimées = computed(() => adressesTexte.value ? fromByteArray(gzipSync(new TextEncoder().encode(adressesTexte.value))).toString(): undefined);
 
 const adressesDétectées = ref<string[]>();
 

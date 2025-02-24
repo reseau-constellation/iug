@@ -66,10 +66,11 @@
               class="mx-auto mb-2"
               style="display: flex; align-items: center; justify-content: center"
             >
-              <qrcode-vue
-                :value="invitationTexte"
-                :size="200"
-                level="H"
+              <code-r2
+                :valeur="invitationTexte"
+                :props-code="{
+                  size: 200,
+                }"
               />
               <div
                 :class="{
@@ -110,10 +111,10 @@ import {useDisplay, useRtl} from 'vuetify';
 
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import QrcodeVue from 'qrcode.vue';
 import {utiliserConstellation} from '../utils';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import CodeR2 from '/@/components/communs/CodeR2.vue';
 
 const constl = utiliserConstellation();
 
