@@ -16,8 +16,11 @@
           <v-icon
             size="small"
             start
-          >mdi-alert-outline</v-icon>
-          {{ t('automatisations.fréquence.pasSurNavig') }}</span>
+          >
+            mdi-alert-outline
+          </v-icon>
+          {{ t('automatisations.fréquence.pasSurNavig') }}
+        </span>
       </v-list-item>
     </template>
     <template #selection="{item}">
