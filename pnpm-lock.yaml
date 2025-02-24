@@ -10645,7 +10645,11 @@ snapshots:
       '@vue/shared': 3.5.13
       estree-walker: 2.0.2
       magic-string: 0.30.15
+<<<<<<< HEAD
       postcss: 8.5.3
+=======
+      postcss: 8.4.49
+>>>>>>> 7e494fe0 (Fixer magic-string à version 0.30.15; `offset` dans >=0.30.16 a des problèmes avec `unplugin-auto-expose`)
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.13':
@@ -16047,7 +16051,11 @@ snapshots:
       acorn: 8.14.0
       estree-walker: 3.0.3
       magic-string: 0.30.15
+<<<<<<< HEAD
       unplugin: 2.2.0
+=======
+      unplugin: 2.1.0
+>>>>>>> 7e494fe0 (Fixer magic-string à version 0.30.15; `offset` dans >=0.30.16 a des problèmes avec `unplugin-auto-expose`)
 
   undici-types@6.19.8: {}
 
@@ -16077,7 +16085,11 @@ snapshots:
       fast-glob: 3.3.3
       local-pkg: 0.5.1
       magic-string: 0.30.15
+<<<<<<< HEAD
       mlly: 1.7.4
+=======
+      mlly: 1.7.3
+>>>>>>> 7e494fe0 (Fixer magic-string à version 0.30.15; `offset` dans >=0.30.16 a des problèmes avec `unplugin-auto-expose`)
       pathe: 1.1.2
       pkg-types: 1.3.1
       scule: 1.3.0
@@ -16091,12 +16103,21 @@ snapshots:
       acorn: 8.14.0
       escape-string-regexp: 5.0.0
       estree-walker: 3.0.3
+<<<<<<< HEAD
       local-pkg: 1.0.0
       magic-string: 0.30.15
       mlly: 1.7.4
       pathe: 2.0.3
       picomatch: 4.0.2
       pkg-types: 1.3.1
+=======
+      fast-glob: 3.3.3
+      local-pkg: 0.5.1
+      magic-string: 0.30.15
+      mlly: 1.7.3
+      pathe: 1.1.2
+      pkg-types: 1.2.1
+>>>>>>> 7e494fe0 (Fixer magic-string à version 0.30.15; `offset` dans >=0.30.16 a des problèmes avec `unplugin-auto-expose`)
       scule: 1.3.0
       strip-literal: 3.0.0
       tinyglobby: 0.2.12
@@ -16264,7 +16285,11 @@ snapshots:
   vite-plugin-commonjs-externals@0.1.4(vite@6.1.1(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)):
     dependencies:
       acorn: 8.14.0
+<<<<<<< HEAD
       es-module-lexer: 1.6.0
+=======
+      es-module-lexer: 1.5.4
+>>>>>>> 7e494fe0 (Fixer magic-string à version 0.30.15; `offset` dans >=0.30.16 a des problèmes avec `unplugin-auto-expose`)
       magic-string: 0.30.15
       vite: 6.1.1(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)
 
