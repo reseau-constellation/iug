@@ -256,10 +256,10 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       electron:
-        specifier: 34.2.0
+        specifier: ^34.2.0
         version: 34.2.0
       electron-builder:
-        specifier: 26.0.2
+        specifier: ^26.0.2
         version: 26.0.2(electron-builder-squirrel-windows@26.0.0-alpha.6)
       eslint:
         specifier: ^9.21.0
