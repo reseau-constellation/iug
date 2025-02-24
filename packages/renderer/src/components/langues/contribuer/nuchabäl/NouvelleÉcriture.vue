@@ -74,13 +74,7 @@
             </v-timeline-item>
           </v-slide-y-transition>
           <v-slide-y-transition>
-            <v-timeline-item
-              v-if="
-                texteÉchantillon &&
-                  (!codeÉcritureSelonÉchantillon ||
-                    ignorerSuggestionÉcriture === codeÉcritureSelonÉchantillon)
-              "
-            >
+            <v-timeline-item v-if="onDoitSpécifierDirection && texteÉchantillon">
               {{ t('nuchabäl.écriture.nouvelle.instructionsDirection') }}
               <v-item-group selected-class="bg-primary">
                 <v-container>
@@ -304,7 +298,7 @@ watchEffect(() => {
   if (!propositionNomÉcriture.value) nomÉcriture.value = undefined;
 });
 
-// Code écriure
+// Code écriture
 const propositionCodeÉcriture = ref<string>();
 const codeÉcriture = ref<string>();
 watch(propositionNomÉcriture, () => {
@@ -351,6 +345,11 @@ const direction = computed(() => {
       return undefined;
   }
 });
+const onDoitSpécifierDirection = computed(
+  () =>
+    !codeÉcritureSelonÉchantillon.value ||
+    ignorerSuggestionÉcriture.value === codeÉcritureSelonÉchantillon.value,
+);
 
 // Numération
 const numération = ref<string>();
