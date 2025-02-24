@@ -538,6 +538,8 @@
       "anonyme": "Anonyme",
       "aucunContact": "Aucune information de contact disponible",
       "contact": "Site internet",
+      "dispositifs": "Dispositifs",
+      "aucunDispositif": "Aucun dispositif détecté",
       "confiance": {
         "bloqué": "Bloqué",
         "inconnu": "Inconnu",
