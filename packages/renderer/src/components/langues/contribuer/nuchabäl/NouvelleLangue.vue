@@ -131,13 +131,7 @@
             </v-timeline-item>
           </v-expand-transition>
           <v-expand-transition>
-            <v-timeline-item
-              v-if="
-                sauterÉchantillon ||
-                  utiliserSuggestionÉcriture === false ||
-                  (!écritureInconnue && texteÉchantillon && !suggestionÉcriture)
-              "
-            >
+            <v-timeline-item v-if="onDoitSélectionnerÉcriture">
               <p>{{ t('nuchabäl.langue.nouvelle.instructionÉcriture') }}</p>
               <selecteur-ecriture
                 class="mt-2"
@@ -452,6 +446,13 @@ const nomÉcriture = suivre(
     return async () => fRetour();
   },
   {runuk: écriture},
+);
+
+const onDoitSélectionnerÉcriture = computed(
+  () =>
+    sauterÉchantillon.value ||
+    utiliserSuggestionÉcriture.value === false ||
+    (!écritureInconnue.value && texteÉchantillon.value && !suggestionÉcriture.value),
 );
 
 // Nom langue
