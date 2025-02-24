@@ -61,6 +61,27 @@
           {{ t('membres.aucunContact') }}
         </p>
         <division-carte
+          :titre="t('membres.dispositifs')"
+          :en-attente="!dispositifsMembre"
+        />
+        <v-skeleton-loader
+          v-if="!dispositifsMembre"
+          type="chip@3"
+        />
+        <JetonDispositif
+          v-for="idDispositif in dispositifsMembre"
+          v-else-if="dispositifsMembre.length"
+          :key="idDispositif"
+          :id-dispositif="idDispositif"
+          :id-compte="id"
+        />
+        <p
+          v-else
+          class="text-center text-disabled"
+        >
+          {{ t('membres.aucunDispositif') }}
+        </p>
+        <division-carte
           :titre="t('membres.bds')"
           :en-attente="!bdsMembre"
         />
@@ -191,6 +212,7 @@ import ImageProfil from '../communs/ImageProfil.vue';
 import LienObjet from '../communs/LienObjet.vue';
 import JetonConfiance from './JetonConfiance.vue';
 import JetonContactMembre from './JetonContactMembre.vue';
+import JetonDispositif from './JetonDispositif.vue';
 import MenuContactMembre from './MenuContactMembre.vue';
 import ItemBd from '/@/components/bds/ItemBd.vue';
 import JetonBd from '/@/components/bds/JetonBd.vue';
@@ -219,6 +241,9 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 // Contacts
 const contacts = suivre(constl.profil.suivreContacts, {idCompte: props.id});
+
+// Dispositifs
+const dispositifsMembre = suivre(constl.suivreDispositifs, {idCompte: props.id});
 
 // Bds
 const bdsMembre = suivre(constl.réseau.suivreBdsMembre, {idCompte: props.id});
