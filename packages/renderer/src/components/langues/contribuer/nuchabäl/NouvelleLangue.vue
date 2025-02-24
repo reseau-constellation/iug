@@ -91,13 +91,7 @@
             </v-timeline-item>
           </v-expand-transition>
           <v-expand-transition>
-            <v-timeline-item
-              v-if="
-                (!codeNuchabälLangueSelonTexteÉchantillon ||
-                  suggestionLangueSelonÉchantillonIgnorée) &&
-                  suggestionÉcriture
-              "
-            >
+            <v-timeline-item v-if="onProposeÉcriture">
               {{ codeNuchabälLangueSelonTexteÉchantillon }}
               <p>
                 {{
@@ -453,6 +447,13 @@ const onDoitSélectionnerÉcriture = computed(
     sauterÉchantillon.value ||
     utiliserSuggestionÉcriture.value === false ||
     (!écritureInconnue.value && texteÉchantillon.value && !suggestionÉcriture.value),
+);
+
+const onProposeÉcriture = computed(
+  () =>
+    (!codeNuchabälLangueSelonTexteÉchantillon.value ||
+      suggestionLangueSelonÉchantillonIgnorée.value) &&
+    suggestionÉcriture.value,
 );
 
 // Nom langue
