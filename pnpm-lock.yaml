@@ -304,7 +304,7 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(rollup@4.34.8)
       vite:
-        specifier: 6.1.1
+        specifier: ^6.1.1
         version: 6.1.1(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)
       vite-plugin-commonjs-externals:
         specifier: ^0.1.4
