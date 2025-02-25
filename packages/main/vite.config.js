@@ -33,6 +33,7 @@ const config = {
       output: {
         entryFileNames: '[name].cjs',
       },
+      // external: ['@ipshipyard/node-datachannel'],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
