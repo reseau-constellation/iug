@@ -65,4 +65,4 @@ jobs:
           # CSC_KEY_PASSWORD: ''
           # Publishing artifacts
           GH_TOKEN: ${{ secrets.github_token }} # GitHub token, automatically provided (No need to define this secret in the repo settings)
-          NODE_OPTIONS: "--max_old_space_size=8192"
+          NODE_OPTIONS: --max_old_space_size=12000
