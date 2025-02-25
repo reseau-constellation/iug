@@ -19,7 +19,29 @@ defaults:
 
 
 jobs:
+  prepare:
+    name: Prepare shared data for multi-platform compilation
+    runs-on: ubuntu-latest
+    outputs:
+      APP_VERSION: ${{ steps.APP_VERSION.outputs.APP_VERSION }}
+      COMMIT_TIMESTAMP: ${{ steps.COMMIT_TIMESTAMP.outputs.COMMIT_TIMESTAMP }}
+      APP_FULL_VERSION: ${{ steps.APP_FULL_VERSION.outputs.APP_FULL_VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: COMMIT_TIMESTAMP
+        run: echo "COMMIT_TIMESTAMP=$(git show -s --format=%ct ${{ github.sha }})" >> $GITHUB_OUTPUT
+      - id: APP_VERSION
+        run: echo "APP_VERSION=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
+      - id: APP_FULL_VERSION
+        run: echo "APP_FULL_VERSION=${{ steps.APP_VERSION.outputs.APP_VERSION }}-${{inputs.distribution-channel}}.${{ steps.COMMIT_TIMESTAMP.outputs.COMMIT_TIMESTAMP }}" >> $GITHUB_OUTPUT
+      - run: |
+          echo "- \`COMMIT_TIMESTAMP\`: ${{ steps.COMMIT_TIMESTAMP.outputs.COMMIT_TIMESTAMP }}" >> $GITHUB_STEP_SUMMARY
+          echo "- \`APP_VERSION\`: ${{ steps.APP_VERSION.outputs.APP_VERSION }}" >> $GITHUB_STEP_SUMMARY
+          echo "- \`APP_FULL_VERSION\`: ${{ steps.APP_FULL_VERSION.outputs.APP_FULL_VERSION }}" >> $GITHUB_STEP_SUMMARY
+
   draft_release:
+    needs:
+        - prepare
 
     permissions:
       contents: write # Allows this job to create releases
@@ -44,25 +66,11 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
-      - run: pnpm run build
+      - name: Compiler l'appli
+        run: pnpm compile
 
-      - name: Compile artifacts ${{ inputs.dry-run && '' || 'and upload them to github release' }}
-        # I use this action because it is capable of retrying multiple times if there are any issues with the distribution server
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 15
-          max_attempts: 6
-          retry_wait_seconds: 15
-          retry_on: error
-          shell: 'bash'
-          # Due to this issue https://github.com/electron-userland/electron-builder/issues/6411 the build with npx when rebuilding native dependencies hangs forever
-          # see https://github.com/cawa-93/vite-electron-builder/pull/953
-          command: ./node_modules/.bin/electron-builder --config .electron-builder.config.mjs --publish ${{ inputs.dry-run && 'never' || 'always' }}
+      - name: Téléverser au serveur GitHub
+        if: ${{ !inputs.dry-run }}
+        run: gh release create v${{needs.prepare.outputs.APP_FULL_VERSION}} dist/root* dist/latest*.yml --repo ${{github.repository}}
         env:
-          # Code Signing params
-          # See https://www.electron.build/code-signing
-          # CSC_LINK: ''
-          # CSC_KEY_PASSWORD: ''
-          # Publishing artifacts
-          GH_TOKEN: ${{ secrets.github_token }} # GitHub token, automatically provided (No need to define this secret in the repo settings)
-          NODE_OPTIONS: --max_old_space_size=12000
+          GH_TOKEN: ${{ github.token }}  # GitHub token, automatically provided (No need to define this secret in the repo settings)
