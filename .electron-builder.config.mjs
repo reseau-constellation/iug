@@ -21,6 +21,7 @@ export default async function () {
       version: getVersion(),
       name: 'Constellation', // Pour linux deb
     },
+    buildDependenciesFromSource: true,
 
     mac: {
       extendInfo: {
