@@ -30,6 +30,12 @@ export default async function () {
         //"com.apple.security.device.audio-input": true,
         'com.apple.security.device.camera': true,
       },
+      target: [
+        {
+          target: 'dmg',
+          arch: ['x64', 'arm64'],
+        },
+      ],
     },
 
     // Specify linux target just for disabling snap compilation
