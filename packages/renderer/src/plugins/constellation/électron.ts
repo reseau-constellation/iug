@@ -10,7 +10,7 @@ import {
 } from '@constl/mandataire-electron-rendu';
 import type {App} from 'vue';
 
-const enDéveloppement = process.env.NODE_ENV !== 'production';
+const enDéveloppement = import.meta.env.DEV;
 
 export default {
   install: (app: App) => {

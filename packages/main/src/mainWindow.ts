@@ -6,9 +6,9 @@ import {connecterHttp} from './http';
 import {connecterDemanderAccèsMédia} from './permissions';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
+import { enDéveloppement } from './utils';
 
-const enDéveloppement = process.env.NODE_ENV !== 'production';
-
+const TAILLE_DÉFAUT_FENÊTRE = { largeur: 1000, hauteur: 725 };
 async function createWindow() {
   const browserWindow = new BrowserWindow({
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
@@ -19,8 +19,8 @@ async function createWindow() {
       webviewTag: false, // The webview tag is not recommended. Consider alternatives like an iframe or Electron's BrowserView. @see https://www.electronjs.org/docs/latest/api/webview-tag#warning
       preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs'),
     },
-    width: enDéveloppement ? 800 + 250 : 800,
-    height: 575,
+    width: TAILLE_DÉFAUT_FENÊTRE.largeur + (enDéveloppement ? 250 : 0),
+    height: TAILLE_DÉFAUT_FENÊTRE.hauteur,
   });
 
   gestionnaireFenêtres.connecterFenêtreÀConstellation(browserWindow);
@@ -72,7 +72,7 @@ async function createWindow() {
  */
 export async function restoreOrCreateWindow() {
   let window = BrowserWindow.getAllWindows().find(
-    w => !w.isDestroyed(), // && w.title !== 'WRTC Relay', Vérification 'WRTC Relay' probablement plus nécessaire
+    w => !w.isDestroyed(),
   );
 
   if (window === undefined) {
