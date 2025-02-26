@@ -13,31 +13,13 @@
 
         <v-list>
           <v-list-item
-            :title="t('accueil.page.notifications.connecterInstallé.avantages.connexion.titre')"
-            :subtitle="
-              t('accueil.page.notifications.connecterInstallé.avantages.connexion.sousTitre')
-            "
-            prepend-icon="mdi-wifi"
-          />
-          <v-list-item
-            :title="t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.titre')"
-            :subtitle="
-              t('accueil.page.notifications.connecterInstallé.avantages.sauvegardes.sousTitre')
-            "
-            prepend-icon="mdi-file-sync-outline"
-          />
-          <v-list-item
-            :title="t('accueil.page.notifications.connecterInstallé.avantages.mémoire.titre')"
-            :subtitle="
-              t('accueil.page.notifications.connecterInstallé.avantages.mémoire.sousTitre')
-            "
-            prepend-icon="mdi-content-save"
-          />
-          <v-list-item
-            :title="t('accueil.page.notifications.connecterInstallé.avantages.plus.titre')"
-            :subtitle="t('accueil.page.notifications.connecterInstallé.avantages.plus.sousTitre')"
-            prepend-icon="mdi-plus"
-          />
+            v-for="avantage in avantages"
+            :key="avantage.clef"
+            :prepend-icon="avantage.icône"
+          >
+            <v-list-item-title class="text-wrap">{{ t(avantage.titre) }}</v-list-item-title>
+            <p class="text-disabled text-body-2">{{ t(avantage.sousTitre) }}</p>
+          </v-list-item>
         </v-list>
         <v-timeline
           class="my-6"
@@ -131,6 +113,40 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 const constl = utiliserConstellation();
 
+// Avantages
+const avantages: {
+  clef: string;
+  titre: string;
+  sousTitre: string;
+  icône: string;
+}[] = [
+  {
+    clef: 'connexion',
+    titre: 'accueil.page.notifications.connecterInstallé.avantages.connexion.titre',
+    sousTitre: 'accueil.page.notifications.connecterInstallé.avantages.connexion.sousTitre',
+    icône: 'mdi-wifi',
+  },
+  {
+    clef: 'sauvegardes',
+    titre: 'accueil.page.notifications.connecterInstallé.avantages.sauvegardes.titre',
+    sousTitre: 'accueil.page.notifications.connecterInstallé.avantages.sauvegardes.sousTitre',
+    icône: 'mdi-file-sync-outline',
+  },
+  {
+    clef: 'mémoire',
+    titre: 'accueil.page.notifications.connecterInstallé.avantages.mémoire.titre',
+    sousTitre: 'accueil.page.notifications.connecterInstallé.avantages.mémoire.sousTitre',
+    icône: 'mdi-content-save',
+  },
+  {
+    clef: 'plus',
+    titre: 'accueil.page.notifications.connecterInstallé.avantages.plus.titre',
+    sousTitre: 'accueil.page.notifications.connecterInstallé.avantages.plus.sousTitre',
+    icône: 'mdi-plus',
+  },
+];
+
+// Options connexion
 const dispositifs = suivre(constl.suivreNomsDispositifs);
 const connectéÀAuMoinsUnOrdi = computed(() => {
   return (
