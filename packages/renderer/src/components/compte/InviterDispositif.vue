@@ -52,8 +52,8 @@
             class="text-center"
           >
             <v-otp-input
-              :model-value="invitation?.codeSecret || ''"
-              :length="invitation?.codeSecret.length || 6"
+              :model-value="codeSecret || ''"
+              :length="codeSecret?.length || 6"
               type="text"
               disabled
             />
@@ -230,6 +230,10 @@ const générerInvitation = async () => {
 };
 const invitationTexte = computed(() => {
   if (invitation.value) return JSON.stringify(invitation.value);
+  else return undefined;
+});
+const codeSecret = computed(() => {
+  if (invitation.value) return invitation.value.codeSecret.split(':')[1];
   else return undefined;
 });
 
