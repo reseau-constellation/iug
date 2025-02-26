@@ -187,7 +187,7 @@ importers:
         version: 13.2.0(typescript@5.7.3)
       vuetify:
         specifier: ^3.7.13
-        version: 3.7.13(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
+        version: 3.7.14(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -317,7 +317,7 @@ importers:
         version: 0.23.0(rollup@4.34.8)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))
       vite-plugin-vuetify:
         specifier: ^2.1.0
-        version: 2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.13)
+        version: 2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.14)
       vitest:
         specifier: ^3.0.7
         version: 3.0.7(@types/debug@4.1.12)(@types/node@22.13.5)(happy-dom@14.12.3)(jiti@2.4.2)(terser@5.39.0)
@@ -5164,61 +5164,61 @@ packages:
     resolution: {integrity: sha512-iclAHeNqNm68zFtnZ0e+1L2yUIdvzNoauKU4WBA3VvH/vPFieF7qfRlwUZU+DA9P9bPXIS90ulxoUoCH23sV2w==}
     engines: {node: '>= 0.6'}
 
-  metro-babel-transformer@0.81.1:
-    resolution: {integrity: sha512-JECKDrQaUnDmj0x/Q/c8c5YwsatVx38Lu+BfCwX9fR8bWipAzkvJocBpq5rOAJRDXRgDcPv2VO4Q4nFYrpYNQg==}
+  metro-babel-transformer@0.81.2:
+    resolution: {integrity: sha512-Xn9JgF+CghIcDI6VTtGZFIxl7fPifePIX7mAkJ4/h8wtD9VAJsja6ymXgQ4Mftei2JOMEfCog0MYs4Us43/v8Q==}
     engines: {node: '>=18.18'}
 
-  metro-cache-key@0.81.1:
-    resolution: {integrity: sha512-5fDaHR1yTvpaQuwMAeEoZGsVyvjrkw9IFAS7WixSPvaNY5YfleqoJICPc6hbXFJjvwCCpwmIYFkjqzR/qJ6yqA==}
+  metro-cache-key@0.81.2:
+    resolution: {integrity: sha512-+D5ySTFvvtWp1Med1ZWnEFqi8/nl8piFkTk6NFZbtCLGmNJIQhUtIW+i5foQ4YN9Mz1XARFn89652+jkRkXKhA==}
     engines: {node: '>=18.18'}
 
-  metro-cache@0.81.1:
-    resolution: {integrity: sha512-Uqcmn6sZ+Y0VJHM88VrG5xCvSeU7RnuvmjPmSOpEcyJJBe02QkfHL05MX2ZyGDTyZdbKCzaX0IijrTe4hN3F0Q==}
+  metro-cache@0.81.2:
+    resolution: {integrity: sha512-z07UNa4UjJ35LnQhDGrGk/qryRY3ERkYwvzkzYUpwpKZUGqWI5HnOurYzSuQSSxADV+s/NSLSFAB1yzdK8tluQ==}
     engines: {node: '>=18.18'}
 
-  metro-config@0.81.1:
-    resolution: {integrity: sha512-VAAJmxsKIZ+Fz5/z1LVgxa32gE6+2TvrDSSx45g85WoX4EtLmdBGP3DSlpQW3DqFUfNHJCGwMLGXpJnxifd08g==}
+  metro-config@0.81.2:
+    resolution: {integrity: sha512-CzRiGh0XNANORfGB9REZ0PcpLxehWLmDgSE7XN59uAxhY0qOXccGG81J1WfkeT2zO1B/UoDWHDT5cPP1w7E3cQ==}
     engines: {node: '>=18.18'}
 
-  metro-core@0.81.1:
-    resolution: {integrity: sha512-4d2/+02IYqOwJs4dmM0dC8hIZqTzgnx2nzN4GTCaXb3Dhtmi/SJ3v6744zZRnithhN4lxf8TTJSHnQV75M7SSA==}
+  metro-core@0.81.2:
+    resolution: {integrity: sha512-OHWL/NiILmsuAkj90GNIJBMbcRCIcJ7piyT17B2EFWR2F/L1Jny7Dq7NCgWeqqRueLH7ystXUdrfcM8bKeMp8Q==}
     engines: {node: '>=18.18'}
 
-  metro-file-map@0.81.1:
-    resolution: {integrity: sha512-aY72H2ujmRfFxcsbyh83JgqFF+uQ4HFN1VhV2FmcfQG4s1bGKf2Vbkk+vtZ1+EswcBwDZFbkpvAjN49oqwGzAA==}
+  metro-file-map@0.81.2:
+    resolution: {integrity: sha512-k8binQShV1vzMB2rIPMlnf267ZSq78+L42vH9Y3YzmhIfumAz8Noy3ndG7zKdvOLcMjlOxzBChu1Laz3s5cgIw==}
     engines: {node: '>=18.18'}
 
-  metro-minify-terser@0.81.1:
-    resolution: {integrity: sha512-p/Qz3NNh1nebSqMlxlUALAnESo6heQrnvgHtAuxufRPtKvghnVDq9hGGex8H7z7YYLsqe42PWdt4JxTA3mgkvg==}
+  metro-minify-terser@0.81.2:
+    resolution: {integrity: sha512-GWjm6ZcNMnOFyh7hjzNfAEnOqZiHYTVIKGmB/zDNMf/Eq89w6rxHXZRM41iu1YyP2IhdqrqnhwHA+Ze8v6CMtg==}
     engines: {node: '>=18.18'}
 
-  metro-resolver@0.81.1:
-    resolution: {integrity: sha512-E61t6fxRoYRkl6Zo3iUfCKW4DYfum/bLjcejXBMt1y3I7LFkK84TCR/Rs9OAwsMCY/7GOPB4+CREYZOtCC7CNA==}
+  metro-resolver@0.81.2:
+    resolution: {integrity: sha512-bu4Esd90SWkOhDADQsQTxIOG85sZnvAXtk51hT0aovN66M4x3rQmGPBRokfJpgAd3/XOZCu0KPbjoB5etyqT0Q==}
     engines: {node: '>=18.18'}
 
-  metro-runtime@0.81.1:
-    resolution: {integrity: sha512-pqu5j5d01rjF85V/K8SDDJ0NR3dRp6bE3z5bKVVb5O2Rx0nbR9KreUxYALQCRCcQHaYySqCg5fYbGKBHC295YQ==}
+  metro-runtime@0.81.2:
+    resolution: {integrity: sha512-xk3rU6yKaa2b8B/Hk/ZhPtNzW4H07h/yq9iKBCof0F68CaN+qncdVOOIz2NGqEH7V3wAqDv4xoOfbgtbFO5rxA==}
     engines: {node: '>=18.18'}
 
-  metro-source-map@0.81.1:
-    resolution: {integrity: sha512-1i8ROpNNiga43F0ZixAXoFE/SS3RqcRDCCslpynb+ytym0VI7pkTH1woAN2HI9pczYtPrp3Nq0AjRpsuY35ieA==}
+  metro-source-map@0.81.2:
+    resolution: {integrity: sha512-/mJYbZIGswFbfxt0ouaBYw22YvqQiaCB+ql8reeA37bNjd4lHvozND7/w8NO2x7FjTfsmPBh50Iqi/mTuZFiZA==}
     engines: {node: '>=18.18'}
 
-  metro-symbolicate@0.81.1:
-    resolution: {integrity: sha512-Lgk0qjEigtFtsM7C0miXITbcV47E1ZYIfB+m/hCraihiwRWkNUQEPCWvqZmwXKSwVE5mXA0EzQtghAvQSjZDxw==}
+  metro-symbolicate@0.81.2:
+    resolution: {integrity: sha512-jEZoh3XldJazigetID+4Sy41OszGdixEOvB8zI0v2k7sXgHh+Rw8J/R7UuYCxQp+f89MqCjeGLLN7qNHuvRSCQ==}
     engines: {node: '>=18.18'}
     hasBin: true
 
-  metro-transform-plugins@0.81.1:
-    resolution: {integrity: sha512-7L1lI44/CyjIoBaORhY9fVkoNe8hrzgxjSCQ/lQlcfrV31cZb7u0RGOQrKmUX7Bw4FpejrB70ArQ7Mse9mk7+Q==}
+  metro-transform-plugins@0.81.2:
+    resolution: {integrity: sha512-St1zsbZ4SWA48yJBIqUuMFR4GROyu7A8auhJl/5km/Pj09vGXEri2CgOD0ReuXa/P1X9/jrOU5cIafi5csjwvw==}
     engines: {node: '>=18.18'}
 
-  metro-transform-worker@0.81.1:
-    resolution: {integrity: sha512-M+2hVT3rEy5K7PBmGDgQNq3Zx53TjScOcO/CieyLnCRFtBGWZiSJ2+bLAXXOKyKa/y3bI3i0owxtyxuPGDwbZg==}
+  metro-transform-worker@0.81.2:
+    resolution: {integrity: sha512-U1kmzJEExrB6SZN9TLxuFCZPdCq5+ofkWBiVn6U/9YxTft6HzXGNN0ebdL2Yut5ry3oaYmOtR26faKAOGiiG0Q==}
     engines: {node: '>=18.18'}
 
-  metro@0.81.1:
-    resolution: {integrity: sha512-fqRu4fg8ONW7VfqWFMGgKAcOuMzyoQah2azv9Y3VyFXAmG+AoTU6YIFWqAADESCGVWuWEIvxTJhMf3jxU6jwjA==}
+  metro@0.81.2:
+    resolution: {integrity: sha512-3jvcYBmSEFWtXJC3BX9/pKyme0gEyrZfHuDvuZiS46+3u8rcNlk0bjnGS/qxIW/h8icyVuQRaoH/Q1VdQJHvuQ==}
     engines: {node: '>=18.18'}
     hasBin: true
 
@@ -5547,8 +5547,8 @@ packages:
     engines: {node: ^14.16.0 || >=16.10.0}
     hasBin: true
 
-  ob1@0.81.1:
-    resolution: {integrity: sha512-1PEbvI+AFvOcgdNcO79FtDI1TUO8S3lhiKOyAiyWQF3sFDDKS+aw2/BZvGlArFnSmqckwOOB9chQuIX0/OahoQ==}
+  ob1@0.81.2:
+    resolution: {integrity: sha512-K0hJXOlU4j7c4chNLaDDzVyg5yjYjbmDSQbVMXdAcTtqZndwYHfmBIO06riFMgpg2KOevxeB1pIwzqJuES2SuA==}
     engines: {node: '>=18.18'}
 
   object-inspect@1.13.4:
@@ -7113,8 +7113,8 @@ packages:
       typescript:
         optional: true
 
-  vuetify@3.7.13:
-    resolution: {integrity: sha512-4+RuQU+zLtXhlN2eZUpKXums9ftzUzhMeiNEJvvJY4XdOzVwUCth2dTnEZkSF6EKdLHk3WhtRk0cIWXZxpBvcw==}
+  vuetify@3.7.14:
+    resolution: {integrity: sha512-L5oD0x3Wrp49Khp+16dRykAFUZq6WXqX7OHLTwXnyEliJ48ERC9WfEtN0YOuEIhor/b2IOZXl+11fs/m452/Lw==}
     engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       typescript: '>=4.7'
@@ -9978,9 +9978,9 @@ snapshots:
       chalk: 4.1.2
       execa: 5.1.1
       invariant: 2.2.4
-      metro: 0.81.1(bufferutil@4.0.9)
-      metro-config: 0.81.1(bufferutil@4.0.9)
-      metro-core: 0.81.1
+      metro: 0.81.2(bufferutil@4.0.9)
+      metro-config: 0.81.2(bufferutil@4.0.9)
+      metro-core: 0.81.2
       node-fetch: 2.7.0(encoding@0.1.13)
       readline: 1.3.0
       semver: 7.7.1
@@ -10717,11 +10717,11 @@ snapshots:
       js-beautify: 1.15.3
       vue-component-type-helpers: 2.2.4
 
-  '@vuetify/loader-shared@2.1.0(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.13)':
+  '@vuetify/loader-shared@2.1.0(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.14)':
     dependencies:
       upath: 2.0.1
       vue: 3.5.13(typescript@5.7.3)
-      vuetify: 3.7.13(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
+      vuetify: 3.7.14(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
 
   '@vueuse/core@12.7.0(typescript@5.7.3)':
     dependencies:
@@ -14173,7 +14173,7 @@ snapshots:
 
   methods@1.1.2: {}
 
-  metro-babel-transformer@0.81.1:
+  metro-babel-transformer@0.81.2:
     dependencies:
       '@babel/core': 7.26.9
       flow-enums-runtime: 0.0.6
@@ -14182,38 +14182,38 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  metro-cache-key@0.81.1:
+  metro-cache-key@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
 
-  metro-cache@0.81.1:
+  metro-cache@0.81.2:
     dependencies:
       exponential-backoff: 3.1.2
       flow-enums-runtime: 0.0.6
-      metro-core: 0.81.1
+      metro-core: 0.81.2
 
-  metro-config@0.81.1(bufferutil@4.0.9):
+  metro-config@0.81.2(bufferutil@4.0.9):
     dependencies:
       connect: 3.7.0
       cosmiconfig: 5.2.1
       flow-enums-runtime: 0.0.6
       jest-validate: 29.7.0
-      metro: 0.81.1(bufferutil@4.0.9)
-      metro-cache: 0.81.1
-      metro-core: 0.81.1
-      metro-runtime: 0.81.1
+      metro: 0.81.2(bufferutil@4.0.9)
+      metro-cache: 0.81.2
+      metro-core: 0.81.2
+      metro-runtime: 0.81.2
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - utf-8-validate
 
-  metro-core@0.81.1:
+  metro-core@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
       lodash.throttle: 4.1.1
-      metro-resolver: 0.81.1
+      metro-resolver: 0.81.2
 
-  metro-file-map@0.81.1:
+  metro-file-map@0.81.2:
     dependencies:
       debug: 2.6.9
       fb-watchman: 2.0.2
@@ -14227,47 +14227,47 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  metro-minify-terser@0.81.1:
+  metro-minify-terser@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
       terser: 5.39.0
 
-  metro-resolver@0.81.1:
+  metro-resolver@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
 
-  metro-runtime@0.81.1:
+  metro-runtime@0.81.2:
     dependencies:
       '@babel/runtime': 7.26.9
       flow-enums-runtime: 0.0.6
 
-  metro-source-map@0.81.1:
+  metro-source-map@0.81.2:
     dependencies:
       '@babel/traverse': 7.26.9
       '@babel/traverse--for-generate-function-map': '@babel/traverse@7.26.9'
       '@babel/types': 7.26.9
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
-      metro-symbolicate: 0.81.1
+      metro-symbolicate: 0.81.2
       nullthrows: 1.1.1
-      ob1: 0.81.1
+      ob1: 0.81.2
       source-map: 0.5.7
       vlq: 1.0.1
     transitivePeerDependencies:
       - supports-color
 
-  metro-symbolicate@0.81.1:
+  metro-symbolicate@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
-      metro-source-map: 0.81.1
+      metro-source-map: 0.81.2
       nullthrows: 1.1.1
       source-map: 0.5.7
       vlq: 1.0.1
     transitivePeerDependencies:
       - supports-color
 
-  metro-transform-plugins@0.81.1:
+  metro-transform-plugins@0.81.2:
     dependencies:
       '@babel/core': 7.26.9
       '@babel/generator': 7.26.9
@@ -14278,27 +14278,27 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  metro-transform-worker@0.81.1(bufferutil@4.0.9):
+  metro-transform-worker@0.81.2(bufferutil@4.0.9):
     dependencies:
       '@babel/core': 7.26.9
       '@babel/generator': 7.26.9
       '@babel/parser': 7.26.9
       '@babel/types': 7.26.9
       flow-enums-runtime: 0.0.6
-      metro: 0.81.1(bufferutil@4.0.9)
-      metro-babel-transformer: 0.81.1
-      metro-cache: 0.81.1
-      metro-cache-key: 0.81.1
-      metro-minify-terser: 0.81.1
-      metro-source-map: 0.81.1
-      metro-transform-plugins: 0.81.1
+      metro: 0.81.2(bufferutil@4.0.9)
+      metro-babel-transformer: 0.81.2
+      metro-cache: 0.81.2
+      metro-cache-key: 0.81.2
+      metro-minify-terser: 0.81.2
+      metro-source-map: 0.81.2
+      metro-transform-plugins: 0.81.2
       nullthrows: 1.1.1
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - utf-8-validate
 
-  metro@0.81.1(bufferutil@4.0.9):
+  metro@0.81.2(bufferutil@4.0.9):
     dependencies:
       '@babel/code-frame': 7.26.2
       '@babel/core': 7.26.9
@@ -14321,18 +14321,18 @@ snapshots:
       jest-worker: 29.7.0
       jsc-safe-url: 0.2.4
       lodash.throttle: 4.1.1
-      metro-babel-transformer: 0.81.1
-      metro-cache: 0.81.1
-      metro-cache-key: 0.81.1
-      metro-config: 0.81.1(bufferutil@4.0.9)
-      metro-core: 0.81.1
-      metro-file-map: 0.81.1
-      metro-resolver: 0.81.1
-      metro-runtime: 0.81.1
-      metro-source-map: 0.81.1
-      metro-symbolicate: 0.81.1
-      metro-transform-plugins: 0.81.1
-      metro-transform-worker: 0.81.1(bufferutil@4.0.9)
+      metro-babel-transformer: 0.81.2
+      metro-cache: 0.81.2
+      metro-cache-key: 0.81.2
+      metro-config: 0.81.2(bufferutil@4.0.9)
+      metro-core: 0.81.2
+      metro-file-map: 0.81.2
+      metro-resolver: 0.81.2
+      metro-runtime: 0.81.2
+      metro-source-map: 0.81.2
+      metro-symbolicate: 0.81.2
+      metro-transform-plugins: 0.81.2
+      metro-transform-worker: 0.81.2(bufferutil@4.0.9)
       mime-types: 2.1.35
       nullthrows: 1.1.1
       serialize-error: 2.1.0
@@ -14657,7 +14657,7 @@ snapshots:
       tinyexec: 0.3.2
       ufo: 1.5.4
 
-  ob1@0.81.1:
+  ob1@0.81.2:
     dependencies:
       flow-enums-runtime: 0.0.6
 
@@ -15183,8 +15183,8 @@ snapshots:
       jest-environment-node: 29.7.0
       jsc-android: 250231.0.0
       memoize-one: 5.2.1
-      metro-runtime: 0.81.1
-      metro-source-map: 0.81.1
+      metro-runtime: 0.81.2
+      metro-source-map: 0.81.2
       mkdirp: 0.5.6
       nullthrows: 1.1.1
       pretty-format: 29.7.0
@@ -16271,14 +16271,14 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-vuetify@2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.13):
+  vite-plugin-vuetify@2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.14):
     dependencies:
-      '@vuetify/loader-shared': 2.1.0(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.13)
+      '@vuetify/loader-shared': 2.1.0(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.14)
       debug: 4.4.0
       upath: 2.0.1
       vite: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0)
       vue: 3.5.13(typescript@5.7.3)
-      vuetify: 3.7.13(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
+      vuetify: 3.7.14(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3))
     transitivePeerDependencies:
       - supports-color
 
@@ -16391,12 +16391,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.3
 
-  vuetify@3.7.13(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3)):
+  vuetify@3.7.14(typescript@5.7.3)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.7.3)):
     dependencies:
       vue: 3.5.13(typescript@5.7.3)
     optionalDependencies:
       typescript: 5.7.3
-      vite-plugin-vuetify: 2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.13)
+      vite-plugin-vuetify: 2.1.0(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(terser@5.39.0))(vue@3.5.13(typescript@5.7.3))(vuetify@3.7.14)
 
   walker@1.0.8:
     dependencies:
