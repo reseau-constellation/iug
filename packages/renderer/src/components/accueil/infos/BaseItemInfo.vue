@@ -1,24 +1,29 @@
 <template>
-  <v-list-item @click="() => lire()">
-    <v-list-item-title>
-      <v-avatar
-        v-if="!info.lu"
-        class="mx-2"
-        color="error"
-        size="10"
-      />
-      {{ titre }}
-    </v-list-item-title>
-    <v-list-item-subtitle>
-      {{ sousTitre }}
-    </v-list-item-subtitle>
-    <v-dialog
-      v-if="texteAction"
-      v-model="dialogue"
-    >
-      <template #activator="{props: propsActivateur}">
+  <v-dialog
+   
+    v-model="dialogue"
+  >
+    <template #activator="{props: propsActivateur}">
+      <v-list-item
+        v-bind="propsActivateur"
+        @click="() => lire()"
+      >
+        <v-list-item-title>
+          <v-avatar
+            v-if="!info.lu"
+            class="mx-2"
+            color="error"
+            size="10"
+          />
+          {{ titre }}
+        </v-list-item-title>
+        <v-list-item-subtitle>
+          {{ sousTitre }}
+        </v-list-item-subtitle>
+
+      
         <v-btn
-          v-bind="propsActivateur"
+          v-if="texteAction"
           class="mt-2"
           variant="flat"
           size="small"
@@ -26,39 +31,41 @@
         >
           {{ texteAction }}
         </v-btn>
-      </template>
-      <v-card
-        :max-width="mdAndUp ? 700 : 300"
-        class="mx-auto"
-      >
-        <v-card-item>
-          <v-card-title class="d-flex">{{ titre }} </v-card-title>
-          <v-card-subtitle>
-            {{ sousTitre }}
-          </v-card-subtitle>
-        </v-card-item>
-        <v-card-text style="overflow-y: scroll">
-          <slot name="contenu" />
-        </v-card-text>
-        <v-divider />
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            append-icon="mdi-close"
-            @click="() => (dialogue = false)"
-          >
-            Fermer
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    <template #append>
-      <v-icon
-        icon="mdi-close"
-        @click.stop="() => fermer()"
-      />
+      
+
+        <template #append>
+          <v-icon
+            icon="mdi-close"
+            @click.stop="() => fermer()"
+          />
+        </template>
+      </v-list-item>
     </template>
-  </v-list-item>
+    <v-card
+      :max-width="mdAndUp ? 700 : 300"
+      class="mx-auto"
+    >
+      <v-card-item>
+        <v-card-title class="d-flex">{{ titre }} </v-card-title>
+        <v-card-subtitle>
+          {{ sousTitre }}
+        </v-card-subtitle>
+      </v-card-item>
+      <v-card-text style="overflow-y: scroll">
+        <slot name="contenu" />
+      </v-card-text>
+      <v-divider />
+      <v-card-actions>
+        <v-spacer />
+        <v-btn
+          append-icon="mdi-close"
+          @click="() => (dialogue = false)"
+        >
+          Fermer
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 <script setup lang="ts">
 import type {Info, InfoAvecId} from '/@/état/infos';
