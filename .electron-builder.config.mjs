@@ -22,6 +22,7 @@ export default async function () {
       name: 'Constellation', // Pour linux deb
     },
     buildDependenciesFromSource: true,
+    nodeGypRebuild: true,
 
     mac: {
       extendInfo: {
