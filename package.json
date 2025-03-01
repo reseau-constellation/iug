@@ -101,6 +101,7 @@
     "@wdns/vue-code-block": "^2.3.5",
     "add": "^2.0.6",
     "ajv": "^8.17.1",
+    "approx-string-match": "^2.0.0",
     "assert": "^2.1.0",
     "axios": "^1.7.9",
     "base64-js": "^1.5.1",
