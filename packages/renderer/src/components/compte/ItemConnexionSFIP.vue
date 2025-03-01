@@ -4,7 +4,13 @@
       <v-icon>mdi-web</v-icon>
     </template>
     <v-list-item-title>{{ pair }}</v-list-item-title>
-    <v-list-item-subtitle>{{ adresses[0] }}</v-list-item-subtitle>
+    <p
+      v-for="a in adresses"
+      :key="a"
+      class="text-disabled"
+    >
+      {{ a }}
+    </p>
   </v-list-item>
 </template>
 <script setup lang="ts">
