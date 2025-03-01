@@ -23,6 +23,7 @@
     <slot />
     <template #append>
       <lien-objet :id="idDispositif" />
+      <lien-objet :id="idSfip!" />
     </template>
   </v-list-item>
 </template>
@@ -36,7 +37,7 @@ import {utiliserConstellation} from '../utils';
 import JetonMembre from './JetonMembre.vue';
 import {obtIcôneDispositifDeType, utiliserIlYA, utiliserNomEtTypeDispositif} from './utils';
 
-const props = defineProps<{idDispositif: string; idCompte?: string; vuA?: number}>();
+const props = defineProps<{idDispositif: string; idCompte?: string; idSfip?: string; vuA?: number}>();
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
