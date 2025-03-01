@@ -19,6 +19,7 @@
           v-for="id in dispositifs"
           :key="id"
           :id-dispositif="id"
+          :id-sfip="statutDispositifs?.find(d => d.infoDispositif.idDispositif === id)?.infoDispositif.idSFIP"
           :vu-a="statutDispositifs?.find(d => d.infoDispositif.idDispositif === id)?.vuÀ"
         />
       </v-list>
