@@ -59,6 +59,9 @@ importers:
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
+      approx-string-match:
+        specifier: ^2.0.0
+        version: 2.0.0
       assert:
         specifier: ^2.1.0
         version: 2.1.0
