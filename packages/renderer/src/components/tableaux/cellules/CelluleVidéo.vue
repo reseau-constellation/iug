@@ -12,7 +12,6 @@
           <v-card-title>{{ valValide?.fichier }}</v-card-title>
         </v-card-item>
         <v-card-text>
-          <!-- @vue-expect-error Problème types avec video-player -->
           <video-player
             :src="{type: 'video/mp4', src: srcVidéo}"
             controls
@@ -41,14 +40,16 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 import {idcEtExt} from '@constl/utils-ipa';
-import {computed, ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect, defineAsyncComponent } from 'vue';
 
-import {VideoPlayer} from '@videojs-player/vue';
 import 'video.js/dist/video-js.css';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CelluleFichier from './CelluleFichier.vue';
 import {utiliserConstellation} from '/@/components/utils';
+
+// On importe celui-ci dynamiquement parce qu'il est très lourd
+const VideoPlayer = defineAsyncComponent(() => import('@videojs-player/vue'));
 
 const constl = utiliserConstellation();
 

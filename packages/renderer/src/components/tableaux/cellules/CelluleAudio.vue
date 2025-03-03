@@ -12,7 +12,6 @@
           <v-card-title>{{ valValide?.fichier }}</v-card-title>
         </v-card-item>
         <v-card-text>
-          <!-- @vue-expect-error Problème types avec video-player -->
           <video-player
             :src="{type: 'audio/mp3', src: srcVidéo}"
             controls
@@ -48,8 +47,11 @@ import {computed, ref, watchEffect} from 'vue';
 import CelluleFichier from './CelluleFichier.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
-import {VideoPlayer} from '@videojs-player/vue';
 import 'video.js/dist/video-js.css';
+import { defineAsyncComponent } from 'vue';
+
+// On importe celui-ci dynamiquement parce qu'il est très lourd
+const VideoPlayer = defineAsyncComponent(() => import('@videojs-player/vue'));
 
 const props = defineProps<{val?: types.élémentsBd; editable: boolean}>();
 const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void}>();
