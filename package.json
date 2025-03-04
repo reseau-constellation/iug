@@ -82,7 +82,7 @@
     "vite-plugin-node-polyfills": "^0.23.0",
     "vite-plugin-vuetify": "^2.1.0",
     "vitest": "^3.0.7",
-    "vue-tsc": "2.2.4"
+    "vue-tsc": "2.2.8"
   },
   "dependencies": {
     "@constl/ipa": "^1.6.0",
