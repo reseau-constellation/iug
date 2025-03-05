@@ -18,6 +18,9 @@ export default [
         sourceType: 'module',
         parser: '@typescript-eslint/parser',
       },
+      globals: {
+        ...globals.browser
+      }
     },
     ignores: ['**/node_modules/**', '**/dist/**', '**/coverage/**'],
     rules: {
