@@ -6,9 +6,9 @@ import {connecterHttp} from './http';
 import {connecterDemanderAccèsMédia} from './permissions';
 import {connecterRedémarrer} from './redémarrer';
 import {connecterSystèmeFichiers} from './systèmeFichiers';
-import { enDéveloppement } from './utils';
+import {enDéveloppement} from './utils';
 
-const TAILLE_DÉFAUT_FENÊTRE = { largeur: 1000, hauteur: 725 };
+const TAILLE_DÉFAUT_FENÊTRE = {largeur: 1000, hauteur: 725};
 async function createWindow() {
   const browserWindow = new BrowserWindow({
     show: false, // Use the 'ready-to-show' event to show the instantiated BrowserWindow.
@@ -71,9 +71,7 @@ async function createWindow() {
  * Restore an existing BrowserWindow or Create a new BrowserWindow.
  */
 export async function restoreOrCreateWindow() {
-  let window = BrowserWindow.getAllWindows().find(
-    w => !w.isDestroyed(),
-  );
+  let window = BrowserWindow.getAllWindows().find(w => !w.isDestroyed());
 
   if (window === undefined) {
     window = await createWindow();

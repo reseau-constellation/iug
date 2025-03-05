@@ -1,5 +1,5 @@
 import {GestionnaireFenêtres} from '@constl/mandataire-electron-principal';
-import { enDéveloppement } from './utils';
+import {enDéveloppement} from './utils';
 
 const importationIPA = import('@constl/ipa');
 const importationServeur = import('@constl/serveur');

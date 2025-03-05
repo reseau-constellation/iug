@@ -19,8 +19,8 @@ export default [
         parser: '@typescript-eslint/parser',
       },
       globals: {
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
     ignores: ['**/node_modules/**', '**/dist/**', '**/coverage/**'],
     rules: {

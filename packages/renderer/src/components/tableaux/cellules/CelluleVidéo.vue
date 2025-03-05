@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 import {idcEtExt} from '@constl/utils-ipa';
-import {computed, ref, watchEffect, defineAsyncComponent } from 'vue';
+import {computed, defineAsyncComponent, ref, watchEffect} from 'vue';
 
 import 'video.js/dist/video-js.css';
 

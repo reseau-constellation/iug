@@ -107,7 +107,7 @@
                       (comptesEnLigneSansMoi.length
                         ? t('accueil.initialiserCompte.indiceComptePasVu')
                         : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                        t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                     }}
                   </p>
                 </div>

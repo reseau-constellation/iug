@@ -1,8 +1,5 @@
 <template>
-  <v-dialog
-   
-    v-model="dialogue"
-  >
+  <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <v-list-item
         v-bind="propsActivateur"
@@ -21,7 +18,6 @@
           {{ sousTitre }}
         </v-list-item-subtitle>
 
-      
         <v-btn
           v-if="texteAction"
           class="mt-2"
@@ -31,7 +27,6 @@
         >
           {{ texteAction }}
         </v-btn>
-      
 
         <template #append>
           <v-icon

@@ -48,14 +48,16 @@
               <div v-show="optionsAvancées">
                 <v-divider class="mb-2" />
                 <p>
-                  <v-icon start>mdi-table-multiple</v-icon><span class="font-weight-bold">தரவுகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+                  <v-icon start>mdi-table-multiple</v-icon
+                  ><span class="font-weight-bold">தரவுகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionTableaux"
                   v-model:specifiques="spécifiquesTableaux"
                 />
                 <p>
-                  <v-icon start>mdi-image-multiple-outline</v-icon><span class="font-weight-bold">கோப்புரைகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+                  <v-icon start>mdi-image-multiple-outline</v-icon
+                  ><span class="font-weight-bold">கோப்புரைகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionFichiersTableaux"

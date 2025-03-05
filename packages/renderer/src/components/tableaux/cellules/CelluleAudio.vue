@@ -48,7 +48,7 @@ import CelluleFichier from './CelluleFichier.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
 import 'video.js/dist/video-js.css';
-import { defineAsyncComponent } from 'vue';
+import {defineAsyncComponent} from 'vue';
 
 // On importe celui-ci dynamiquement parce qu'il est très lourd
 const VideoPlayer = defineAsyncComponent(() => import('@videojs-player/vue'));
