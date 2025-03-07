@@ -59,7 +59,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   });
   for (const langue of àEffacer) {
     await constl.motsClefs.effacerDescriptionMotClef({
-      id: props.id,
+      idMotClef: props.id,
       langue,
     });
   }
