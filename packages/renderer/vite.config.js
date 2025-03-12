@@ -102,7 +102,7 @@ const config = {
     },
   },
   test: {
-    environment: 'happy-dom',
+    environment: 'jsdom',
     server: {
       deps: {
         inline: ['vuetify'],

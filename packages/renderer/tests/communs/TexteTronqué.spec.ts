@@ -3,9 +3,10 @@ import {mount} from '@vue/test-utils';
 import {expect, test} from 'vitest';
 import TexteTronqué from '../../src/components/communs/TexteTronqué.vue';
 import vuetify from '../../src/plugins/vuetify';
-import {attendreQue} from '../utils';
+import {attendreQue, substitionsJSDOM} from '../utils';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
+  substitionsJSDOM();
   return mount(composante, {
     ...options,
     global: {

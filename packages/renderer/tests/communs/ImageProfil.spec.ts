@@ -7,7 +7,7 @@ import ImageProfil from '../../src/components/communs/ImageProfil.vue';
 
 import {createPinia} from 'pinia';
 import vuetify from '../../src/plugins/vuetify';
-import {attendreQue, fausseConstellation} from '../utils';
+import {fausseConstellation, substitionsJSDOM} from '../utils';
 
 const constl = fausseConstellation(client => {
   client.prototype.profil = {
@@ -19,6 +19,7 @@ const constl = fausseConstellation(client => {
 });
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
+  substitionsJSDOM();
   return mount(composante, {
     ...options,
     global: {
@@ -33,7 +34,7 @@ test('Composante ImageProfil - sans id compte', async () => {
   const enveloppe = mountFunction(ImageProfil, {
     props: {},
   });
-  await attendreQue(() => !!enveloppe.find('img'));
+  await enveloppe.vm.$nextTick();
   const élImage = enveloppe.find('img');
 
   expect(élImage.attributes()['src']).toContain('svg');
@@ -46,10 +47,7 @@ test('Composante ImageProfil - avec id compte', async () => {
     props: {id: 'compte test'},
   });
 
-  await attendreQue(
-    () =>
-      enveloppe.find('img').exists() && enveloppe.find('img').attributes()['src'].includes('blob'),
-  );
+  await enveloppe.vm.$nextTick();
   const élImage = enveloppe.find('img');
 
   expect(élImage.attributes()['src']).toContain('blob');

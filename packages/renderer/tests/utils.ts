@@ -1,4 +1,6 @@
 import type {client as typeClient} from '@constl/ipa';
+import type { கிளிமூக்கு } from '@lassi-js/kilimukku';
+import type { Nuchabäl } from 'nuchabal';
 import {type MockedClass, vi} from 'vitest';
 import type {App} from 'vue';
 
@@ -21,9 +23,18 @@ export const fausseConstellation = (
   simuler(Client);
   const client = new Client();
   return {
-    install: (app: App) => {
-      app.config.globalProperties.$constl = client;
-      app.provide('constl', client);
+    install: (appli: App) => {
+      appli.config.globalProperties.$constl = client;
+      appli.provide('constl', client);
     },
   };
+};
+
+export const substitionsJSDOM = () => {
+  vi.stubGlobal('URL', { createObjectURL: (x: unknown) => `${x instanceof Blob ? 'blob' : 'file'}:monURL` });
+  vi.stubGlobal('localStorage', {
+    getItem: () => undefined,
+    setItem: () => {},
+    removeItem: () => {},
+  });
 };

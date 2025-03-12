@@ -4,8 +4,10 @@ import {expect, test} from 'vitest';
 import TitrePage from '../../src/components/communs/TitrePage.vue';
 
 import vuetify from '../../src/plugins/vuetify';
+import { substitionsJSDOM } from '../utils';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
+  substitionsJSDOM();
   return mount(composante, {
     ...options,
     global: {
@@ -49,7 +51,7 @@ test('Composante TitrePage - image', async () => {
   const enveloppe = mountFunction(TitrePage, {
     props: {titre, image},
   });
-
+  await enveloppe.vm.$nextTick();
   const élSousTitre = enveloppe.get('img');
 
   expect(élSousTitre.attributes()['src']).toBe(image);
