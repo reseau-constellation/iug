@@ -1,6 +1,4 @@
 import type {client as typeClient} from '@constl/ipa';
-import type { கிளிமூக்கு } from '@lassi-js/kilimukku';
-import type { Nuchabäl } from 'nuchabal';
 import {type MockedClass, vi} from 'vitest';
 import type {App} from 'vue';
 
