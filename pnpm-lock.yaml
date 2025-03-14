@@ -31,7 +31,7 @@ importers:
         version: 1.0.4(@constl/ipa@1.6.2(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.2))
       '@lassi-js/kili':
         specifier: ^0.4.2
-        version: 0.4.2
+        version: 0.4.3
       '@lassi-js/kilimukku':
         specifier: ^1.1.9
         version: 1.1.9(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
@@ -1114,6 +1114,10 @@ packages:
     resolution: {integrity: sha512-br5uNxDQsFeVVe6WO2uE3cAF/WczOiJxXgE4yj7PlBEQ3NZp2qZqLyT3L3RofnSy4erm69GrUUjdOdUV1w4SUA==}
     engines: {node: '>=20'}
 
+  '@constl/utils-ipa@2.0.1':
+    resolution: {integrity: sha512-KFIw7bZ8Bxs/vkmLa64u7MZIJFPVk1iNJ/WdwvbvvFrWcAggfuajeZrJrdVGmAPJipdbJ1CKl7AuKd3tXD1wsg==}
+    engines: {node: '>=20'}
+
   '@constl/utils-tests@1.6.15':
     resolution: {integrity: sha512-M9e/VIzk7hMLD1aqPmHQ7ueLfSupvwZEUn+fOxIDrJ7JO/besPW5CDzub9RUJL+xKEbC26hJMwRYZYLltjc0tA==}
     engines: {node: '>=20'}
@@ -1514,8 +1518,8 @@ packages:
     peerDependencies:
       '@constl/ipa': ^1.0.14
 
-  '@lassi-js/kili@0.4.2':
-    resolution: {integrity: sha512-5uMGPOoGumnYB3Wok+6Db1s1yi0WNrvU6INMlH1/aFu5gDWEIDTahZp3k/tYlN3qnpibE38PlaWuPmGu2RijQA==}
+  '@lassi-js/kili@0.4.3':
+    resolution: {integrity: sha512-ijHY8myQZGTAqQrjk+TVJH/dH4npErDIsuylf28prYQYJq1pYnF9FZYDIrs+Hy++hlw4hRLTRer8yX+9bQeQ0g==}
 
   '@lassi-js/kilimukku-vue@1.1.11':
     resolution: {integrity: sha512-xNfFa/DneM2aD+kIjyQDih5zpuvRs8ja/hyLQ9dznVAQlF5+JvlF9eCG5qGoCKTsF3w56BCUjxqjooF/MRH3Tw==}
@@ -8420,7 +8424,7 @@ snapshots:
       '@helia/block-brokers': 4.0.4
       '@helia/unixfs': 4.0.2(encoding@0.1.13)
       '@ipld/dag-cbor': 9.2.2
-      '@lassi-js/kili': 0.4.2
+      '@lassi-js/kili': 0.4.3
       '@libp2p/autonat': 2.0.27
       '@libp2p/bootstrap': 11.0.31
       '@libp2p/circuit-relay-v2': 3.2.7
@@ -8542,6 +8546,20 @@ snapshots:
       - utf-8-validate
 
   '@constl/utils-ipa@1.0.5':
+    dependencies:
+      '@chriscdn/promise-semaphore': 2.0.10
+      browser-fs-access: 0.35.0
+      deep-equal: 2.2.3
+      events: 3.3.0
+      genversion: 3.2.0
+      geojson-validation: 1.0.2
+      jszip: 3.10.1
+      multiformats: 13.3.2
+      rimraf: 6.0.1
+      uint8arrays: 5.1.0
+      wherearewe: 2.0.1
+
+  '@constl/utils-ipa@2.0.1':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.10
       browser-fs-access: 0.35.0
@@ -9139,16 +9157,16 @@ snapshots:
       '@orbitdb/core': 2.5.0
       deepcopy: 2.1.0
 
-  '@lassi-js/kili@0.4.2':
+  '@lassi-js/kili@0.4.3':
     dependencies:
-      '@constl/utils-ipa': 1.0.5
+      '@constl/utils-ipa': 2.0.1
       '@orbitdb/core': 2.5.0
       deepcopy: 2.1.0
 
   '@lassi-js/kilimukku-vue@1.1.11(@constl/ipa@1.6.2(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.10
-      '@lassi-js/kili': 0.4.2
+      '@lassi-js/kili': 0.4.3
       '@lassi-js/kilimukku': 1.1.9(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@types/lodash-es': 4.17.12
       ennikkai: 2.3.4
@@ -9184,7 +9202,7 @@ snapshots:
     dependencies:
       '@constl/ipa': 1.6.2(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.26.10)(@babel/preset-env@7.26.0(@babel/core@7.26.10))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@constl/utils-ipa': 1.0.5
-      '@lassi-js/kili': 0.4.2
+      '@lassi-js/kili': 0.4.3
       uuid: 11.1.0
       wherearewe: 2.0.1
     transitivePeerDependencies:
@@ -12377,7 +12395,7 @@ snapshots:
 
   ennikkai@2.3.4:
     dependencies:
-      '@lassi-js/kili': 0.4.2
+      '@lassi-js/kili': 0.4.3
       deepmerge: 4.3.1
       events: 3.3.0
 
