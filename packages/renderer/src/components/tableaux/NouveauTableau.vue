@@ -237,7 +237,7 @@ const effacerColonne = (idColonne: string) => {
 };
 
 const variablesDéjàAjoutées = computed(() => {
-  return colonnes.value.map(c => c.info.variable);
+  return colonnes.value.map(c => c.info.variable).filter(v=>!!v) as string[];
 });
 
 // Confirmation

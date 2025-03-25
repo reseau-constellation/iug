@@ -21,11 +21,11 @@
         <selecteur-variable
           v-if="permissionModifier"
           :multiples="false"
-          :originales="[idVariable]"
+          :originales="idVariable ? [idVariable] : undefined"
           @selectionnee="ids => (choixVariable = ids[0])"
         />
         <jeton-variable
-          v-else
+          v-else-if="idVariable"
           :id="idVariable"
         />
         <v-checkbox
@@ -128,7 +128,7 @@ import {utiliserConstellation} from '../utils';
 
 const props = defineProps<{
   permissionModifier: boolean;
-  idVariable: string;
+  idVariable?: string;
   idColonne: string;
   idTableau: string;
   regles?: valid.règleColonne[];
@@ -139,7 +139,7 @@ const émettre = defineEmits<{
     é: 'sauvegarder',
     args: {
       index: boolean;
-      variable: string;
+      variable?: string;
       règles: {
         nouvelles: valid.règleVariable[];
         àEffacer: string[];
@@ -163,10 +163,10 @@ const choixIndex = ref(props.index);
 const indexModifié = computed(() => choixIndex.value !== props.index);
 
 // Variable
-const choixVariable = ref(props.idVariable);
+const choixVariable = computed(()=>props.idVariable);
 const variableModifiée = computed(() => choixVariable.value !== props.idVariable);
 const catégorieVariable = suivre(constl.variables.suivreCatégorieVariable, {
-  idVariable: choixVariable.value,
+  idVariable: choixVariable,
 });
 const catégorieBaseVariable = computed(() => {
   return catégorieVariable.value?.catégorie;

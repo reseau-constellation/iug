@@ -152,18 +152,16 @@ const filesTableau = computed(() => {
 const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
 
 // Colonnes
-const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée<tableaux.InfoColAvecCatégorie>, {
+const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée, {
   idNuée: props.idNuee,
   clefTableau: props.clefTableau,
-  catégories: true,
 });
 
 const colonnesAvecCatégories = suivre(
-  constl.nuées.suivreColonnesTableauNuée<tableaux.InfoColAvecCatégorie>,
+  constl.nuées.suivreColonnesEtCatégoriesTableauNuée,
   {
     idNuée: props.idNuee,
     clefTableau: props.clefTableau,
-    catégories: true,
   },
 );
 

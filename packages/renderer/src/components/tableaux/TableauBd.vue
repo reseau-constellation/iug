@@ -345,14 +345,13 @@ const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTable
 const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
 
 // Colonnes
-const colonnes = suivre(constl.tableaux.suivreColonnesTableau<tableaux.InfoCol>, {
-  idTableau: props.idTableau,
+const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {
+  idTableau: computed(() => props.idTableau),
 });
 const colonnesAvecCatégories = suivre(
-  constl.tableaux.suivreColonnesTableau<tableaux.InfoColAvecCatégorie>,
+  constl.tableaux.suivreColonnesEtCatégoriesTableau,
   {
-    idTableau: props.idTableau,
-    catégories: true,
+    idTableau: computed(()=>props.idTableau),
   },
 );
 

@@ -18,7 +18,7 @@
 import type {valid} from '@constl/ipa';
 
 import {suivre} from '@constl/vue';
-import {ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
@@ -26,26 +26,26 @@ import {utiliserConstellation} from '/@/components/utils';
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const props = defineProps<{
-  idVariable: string;
+  idVariable?: string;
   index?: boolean;
   modificationPermise: boolean;
   règles: valid.règleVariable[];
 }>();
 
 const émettre = defineEmits<{
-  (é: 'modifier-colonne', info: {idVariable: string; index?: boolean}): void;
+  (é: 'modifier-colonne', info: {idVariable?: string; index?: boolean}): void;
   (é: 'effacer-colonne'): void;
 }>();
 
 const constl = utiliserConstellation();
 
-const choixVariable = ref<string>(props.idVariable);
+const choixVariable = ref(props.idVariable);
 watchEffect(() => {
   choixVariable.value = props.idVariable;
 });
 
 // Nom variable
-const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: props.idVariable});
+const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: computed(()=>props.idVariable)});
 const nomVariableTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
 
 // Index

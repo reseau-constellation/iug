@@ -78,7 +78,7 @@ const props = defineProps<{
   clef: string;
   noms: {[langue: string]: string};
   idTableau?: string;
-  colonnes: {info: tableaux.InfoColAvecCatégorie; règles: valid.règleVariable[]}[];
+  colonnes: {info: tableaux.InfoCol; règles: valid.règleVariable[]}[];
   modificationPermise: boolean;
 }>();
 const émettre = defineEmits<{
@@ -87,7 +87,7 @@ const émettre = defineEmits<{
     é: 'nouvelle-colonne',
     info: {idVariable: string; index?: boolean; règles: valid.règleVariable[]},
   ): void;
-  (é: 'modifier-colonne', info: {idColonne: string; idVariable: string; index?: boolean}): void;
+  (é: 'modifier-colonne', info: {idColonne: string; idVariable?: string; index?: boolean}): void;
   (é: 'effacer-colonne', idColonne: string): void;
 }>();
 
@@ -99,11 +99,11 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 // Variables déjà ajoutées au tableau, qu'on ne veut pas associer à de nouvelles colonnes
 const variablesDéjàAjoutées = computed(() => {
-  return props.colonnes.map(c => c.info.variable);
+  return props.colonnes.map(c => c.info.variable).filter(v=>v) as string[];
 });
 
 // Modification colonnes
-const modifierColonne = (idColonne: string, info: {idVariable: string; index?: boolean}) => {
+const modifierColonne = (idColonne: string, info: {idVariable?: string; index?: boolean}) => {
   émettre('modifier-colonne', {idColonne, ...info});
 };
 const effacerColonne = (idColonne: string) => {

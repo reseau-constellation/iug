@@ -57,7 +57,7 @@ const props = defineProps<{
   permissionModifier: boolean;
   idColonne: string;
   regles: valid.règleColonne[] | undefined;
-  idVariable: string;
+  idVariable?: string;
   idTableau: string;
   ordonnable: boolean;
   estOrdonnee: boolean;
@@ -69,7 +69,7 @@ const émettre = defineEmits<{
     é: 'sauvegarder',
     args: {
       index: boolean;
-      variable: string;
+      variable?: string;
       règles: {
         nouvelles: valid.règleVariable[];
         àEffacer: string[];
@@ -85,7 +85,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 
 // Noms
 const noms = suivre(constl.variables.suivreNomsVariable, {
-  idVariable: props.idVariable,
+  idVariable: computed(()=>props.idVariable),
 });
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 const nomFinal = computed(() => {
