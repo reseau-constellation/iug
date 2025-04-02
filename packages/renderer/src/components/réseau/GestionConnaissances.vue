@@ -132,7 +132,7 @@ import {suivre} from '@constl/vue';
 import {ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {useDisplay} from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify';
 import ItemMembre from '../membres/ItemMembre.vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';

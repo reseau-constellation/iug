@@ -94,7 +94,7 @@ import {onMounted} from 'vue';
 import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
-import {useDisplay} from 'vuetify/lib/framework.mjs';
+import {useDisplay} from 'vuetify';
 import InviterDispositif from '../../compte/InviterDispositif.vue';
 import {utiliserConstellation} from '../../utils';
 import BaseItemInfo from './BaseItemInfo.vue';
