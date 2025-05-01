@@ -164,8 +164,7 @@
       "vue-demi"
     ],
     "overrides": {
-      "magic-string": "0.30.15",
-      "@constl/ipa": "link:../ipa"
+      "magic-string": "0.30.15"
     }
   }
 }
