@@ -54,6 +54,11 @@
           "navigNonSupporté": "Ce navigateur n'est pas supporté.",
           "valeurCodeInvalide": "Le code R2 semble être invalide."
         }
+      },
+      "pointInterrogation": "?",
+      "baseCarteObjet": {
+        "sansNom": "Sans nom",
+        "sansDescription": "Sans description"
       }
     },
     "navigation": {
@@ -418,7 +423,12 @@
       "compte": {
         "nouveauContact": "Nouveau contact",
         "compte": {
-          "ajouterDispositif": "Connecter un dispositif"
+          "ajouterDispositif": "Connecter un dispositif",
+          "mesDispositifs": "Mes dispositifs",
+          "sousTitreEffacerCompte": "Effacer ce dispositif"
+        },
+        "connexions": {
+          "dispositifs": "{nDispositifs} dispositifs, dont {nDispositifsEnLigne} en ligne"
         }
       },
       "signalements": {
@@ -463,7 +473,6 @@
           "secondes": "secondes",
           "millisecondes": "millisecondes"
         },
-
         "manuelle": "Manuellement",
         "dynamique": "Dynamiquement",
         "fixe": "À intervales fixes",
@@ -788,6 +797,23 @@
         "borne": "Bornes",
         "catégorique": "Catégories"
       }
+    },
+    "épingler": {
+      "titre": "Épingler",
+      "épingler": "Épingler",
+      "épinglé": "Épinglé",
+      "optionsAvancées": "Options avancées",
+      "dispositifsÉpingle": "Dispositifs qui épingleront",
+      "dispositifsÉpingleFichier": "Dispositifs épinglant les fichiers",
+      "aucun": "Aucun dispositif",
+      "indiceAucun": "N'épingler sur aucun de mes dispositifs",
+      "tous": "Tous les dispositifs",
+      "indiceTous": "Épingler sur tous vous dispositifs",
+      "installé": "Dispositifs installés",
+      "indiceInstallé": "Épingler sur tous les dispositifs sauf les navigateurs",
+      "dispositifsSpécifiques": "Dispositifs spécifiques",
+      "indiceDispositifsSpécifiques": "Épingler uniquement sur les dispositifs que vous préciserez",
+      "indiceSélectionnerDispositif": "Sélectionner les dispositifs"
     }
   },
   "த": {
