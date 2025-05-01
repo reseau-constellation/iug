@@ -183,8 +183,8 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
       vue-router:
-        specifier: 4.5.0
-        version: 4.5.0(vue@3.5.13(typescript@5.8.3))
+        specifier: 4.5.1
+        version: 4.5.1(vue@3.5.13(typescript@5.8.3))
       vue3-simple-icons:
         specifier: ^13.2.0
         version: 13.2.0(typescript@5.8.3)
@@ -7150,8 +7150,8 @@ packages:
     resolution: {integrity: sha512-MRwo8IWM+1UzvfRhOQQBqEap06nl0E8QFIb+/HxS1KiH8BqL2qhlzMVvJgMUti4m5x+XH2YlGS0v1Qshpg+Hbw==}
     engines: {node: '>=18.0.0'}
 
-  vue-router@4.5.0:
-    resolution: {integrity: sha512-HDuk+PuH5monfNuY+ct49mNmkCRK4xJAV9Ts4z9UFc4rzdDnxQLyCMGGc8pKhZhHTVzfanpNwB/lwqevcBwI4w==}
+  vue-router@4.5.1:
+    resolution: {integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -16569,7 +16569,7 @@ snapshots:
       barcode-detector: 2.2.2
       webrtc-adapter: 8.2.3
 
-  vue-router@4.5.0(vue@3.5.13(typescript@5.8.3)):
+  vue-router@4.5.1(vue@3.5.13(typescript@5.8.3)):
     dependencies:
       '@vue/devtools-api': 6.6.4
       vue: 3.5.13(typescript@5.8.3)
