@@ -48,6 +48,7 @@ import type {automatisation} from '@constl/ipa';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
+import {isElectronRenderer} from 'wherearewe';
 
 import OptionsDocumentsExportation from './OptionsDocumentsExportation.vue';
 import OptionsFormatExportation from './OptionsFormatExportation.vue';
@@ -82,13 +83,14 @@ const enTéléchargement = ref(false);
 const télécharger = async () => {
   const langueNom = langues.value?.find(lng => props.nomsObjet?.[lng]);
   const ext = inclureDocuments.value ? 'zip' : formatDoc.value;
-  console.log('ici');
+
   const dossier = await choisirFichierSauvegarde({
     defaultPath: `${langueNom ? props.nomsObjet?.[langueNom] : props.idObjet}.${ext}`,
     filters: [{extensions: [ext], name: ''}],
   });
 
-  if (!dossier) return;
+  // Sur le navigateur, on ne choisi pas le fichier de téléchargement
+  if (isElectronRenderer && !dossier) return;
 
   enTéléchargement.value = true;
   switch (props.typeObjet) {
