@@ -1,5 +1,4 @@
 import {adresseOrbiteValide} from '@constl/utils-ipa';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {isEqual} from 'lodash-es';
 import {computed, ref, watchEffect, type Ref} from 'vue';
 
@@ -9,31 +8,28 @@ export const utiliserOptionsÉpingles = (): {
   icône: string;
   valeur: 'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES';
 }[] => {
-  const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-  const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-
   return [
     {
-      titre: t('épingler.aucun'),
-      sousTitre: t('épingler.indiceAucun'),
+      titre: 'épingler.aucun',
+      sousTitre: 'épingler.indiceAucun',
       icône: 'mdi-cancel',
       valeur: 'AUCUN',
     },
     {
-      titre: t('épingler.tous'),
-      sousTitre: t('épingler.indiceTous'),
+      titre: 'épingler.tous',
+      sousTitre: 'épingler.indiceTous',
       icône: 'mdi-devices',
       valeur: 'TOUS',
     },
     {
-      titre: t('épingler.installé'),
-      sousTitre: t('épingler.indiceInstallé'),
+      titre: 'épingler.installé',
+      sousTitre: 'épingler.indiceInstallé',
       icône: 'mdi-monitor',
       valeur: 'INSTALLÉ',
     },
     {
-      titre: t('épingler.dispositifsSpécifiques'),
-      sousTitre: t('épingler.indiceDispositifsSpécifiques'),
+      titre: 'épingler.dispositifsSpécifiques',
+      sousTitre: 'épingler.indiceDispositifsSpécifiques',
       icône: 'mdi-monitor-cellphone-star',
       valeur: 'SPÉCIFIQUES',
     },

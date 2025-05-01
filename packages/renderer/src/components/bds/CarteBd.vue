@@ -41,7 +41,7 @@
       :id="id"
       class="me-2 mb-2"
     />
-    <carte-epingler :id="id">
+    <epingler-bd :id-bd="id">
       <template #activator="{props: propsActivateur}">
         <jeton-replications
           v-bind="propsActivateur"
@@ -49,7 +49,7 @@
           class="me-2 mb-2"
         />
       </template>
-    </carte-epingler>
+    </epingler-bd>
 
     <division-carte
       :titre="t('bds.variables')"
@@ -194,7 +194,7 @@ import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import EpinglerBd from '/@/components/épingles/ÉpinglerBd.vue';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';

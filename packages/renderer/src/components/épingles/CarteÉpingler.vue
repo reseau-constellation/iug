@@ -53,14 +53,14 @@
               >
                 <template #label>
                   <div>
-                    <v-list-item :subtitle="opt.sousTitre">
+                    <v-list-item :subtitle="t(opt.sousTitre)">
                       <template #title>
                         <v-icon
                           :icon="opt.icône"
                           start
                           size="small"
                         ></v-icon>
-                        <span class="font-weight-bold">{{ opt.titre }}</span>
+                        <span class="font-weight-bold">{{ t(opt.titre) }}</span>
                       </template>
                     </v-list-item>
                   </div>
@@ -111,7 +111,7 @@
                 >
                   <template #label>
                     <div>
-                      <v-list-item :subtitle="opt.sousTitre">
+                      <v-list-item :subtitle="t(opt.sousTitre)">
                         <template #title>
                           <v-icon
                             :icon="opt.icône"
@@ -202,6 +202,7 @@ import ItemDispositif from '/@/components/membres/ItemDispositif.vue';
 import JetonDispositif from '/@/components/membres/JetonDispositif.vue';
 
 import {isEqual} from 'lodash-es';
+import { utiliserOptionsÉpingles } from './utils';
 
 const props = defineProps({
   id: {
@@ -230,38 +231,7 @@ const typeDispositifsFichiers = ref<'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQU
 
 const dispositifsSpécifiques = ref<string[]>([]);
 const dispositifsFichiersSpécifiques = ref<string[]>([]);
-
-const optionsÉpingle: {
-  titre: string;
-  sousTitre: string;
-  icône: string;
-  valeur: 'AUCUN' | 'TOUS' | 'INSTALLÉ' | 'SPÉCIFIQUES';
-}[] = [
-  {
-    titre: t('épingler.aucun'),
-    sousTitre: t('épingler.indiceAucun'),
-    icône: 'mdi-cancel',
-    valeur: 'AUCUN',
-  },
-  {
-    titre: t('épingler.tous'),
-    sousTitre: t('épingler.indiceTous'),
-    icône: 'mdi-devices',
-    valeur: 'TOUS',
-  },
-  {
-    titre: t('épingler.installé'),
-    sousTitre: t('épingler.indiceInstallé'),
-    icône: 'mdi-monitor',
-    valeur: 'INSTALLÉ',
-  },
-  {
-    titre: t('épingler.dispositifsSpécifiques'),
-    sousTitre: t('épingler.indiceDispositifsSpécifiques'),
-    icône: 'mdi-monitor-cellphone-star',
-    valeur: 'SPÉCIFIQUES',
-  },
-];
+const optionsÉpingle = utiliserOptionsÉpingles();
 
 // Dispositifs
 const dispositifs = suivre(constl.suivreDispositifs);

@@ -7,13 +7,13 @@
     variant="plain"
   >
     <template #selection="{item}">
-      {{ item.raw.titre }}
+      {{ t(item.raw.titre) }}
     </template>
     <template #item="{item, props: propsItem}">
       <v-list-item
         v-bind="propsItem"
-        :title="item.raw.titre"
-        :subtitle="item.raw.sousTitre"
+        :title="t(item.raw.titre)"
+        :subtitle="t(item.raw.sousTitre)"
         :prepend-icon="item.raw.icône"
       />
     </template>
@@ -42,6 +42,10 @@
           v-bind="propsActivateur"
           :id-dispositif="item.title"
         />
+      </template>
+
+      <template #selection="{item}">
+        {{ t(item.title) }}
       </template>
     </v-autocomplete>
   </v-expand-transition>

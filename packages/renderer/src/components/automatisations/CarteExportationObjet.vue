@@ -82,6 +82,7 @@ const enTéléchargement = ref(false);
 const télécharger = async () => {
   const langueNom = langues.value?.find(lng => props.nomsObjet?.[lng]);
   const ext = inclureDocuments.value ? 'zip' : formatDoc.value;
+  console.log('ici');
   const dossier = await choisirFichierSauvegarde({
     defaultPath: `${langueNom ? props.nomsObjet?.[langueNom] : props.idObjet}.${ext}`,
     filters: [{extensions: [ext], name: ''}],
