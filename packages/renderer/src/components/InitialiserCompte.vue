@@ -81,7 +81,6 @@
             <div v-if="modeRejoindreCompte === 'manuel'">
               <v-fade-transition>
                 <div v-show="connexionsSFIP?.length">
-                  {{ connexionsSFIP }}
                   <v-select
                     v-model="compteÀRejoindre"
                     :items="comptesEnLigneSansMoi.map(x => x.idCompte)"
@@ -107,7 +106,7 @@
                       (comptesEnLigneSansMoi.length
                         ? t('accueil.initialiserCompte.indiceComptePasVu')
                         : t('accueil.initialiserCompte.indiceRechercheComptes')) +
-                      t('accueil.initialiserCompte.indiceEssaieDeConnecter')
+                        t('accueil.initialiserCompte.indiceEssaieDeConnecter')
                     }}
                   </p>
                 </div>
