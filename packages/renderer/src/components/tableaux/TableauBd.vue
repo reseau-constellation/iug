@@ -116,6 +116,7 @@
     <template #no-data>
       <p class="my-4 text-h6 text-disabled">{{ t('tableaux.aucuneDonnée') }}</p>
       <nouvelle-importation
+        v-if="false"
         type="importation"
         :info-objet="{id: idTableau, typeObjet: 'tableau'}"
         :id-tableau="idTableau"
