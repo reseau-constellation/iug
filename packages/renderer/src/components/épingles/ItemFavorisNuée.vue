@@ -13,34 +13,48 @@
             <v-list-item-title>
               {{ nomTraduit || t('nuées.sansNom') }}
               <lien-objet :id="epingle.idObjet" />
+              <carte-nuee :id="epingle.idObjet">
+                <template #activator="{props: propsActivateurCarte}">
+                  <v-btn
+                    v-bind="propsActivateurCarte"
+                    icon="mdi-dots-horizontal"
+                    size="small"
+                    variant="flat"
+                  />
+                </template>
+              </carte-nuee>
             </v-list-item-title>
             <jeton-part-epingle
               icone="mdi-save-outline"
               :dispositifs="props.epingle.épingle.base"
               :statut="statutÉpingle?.base"
+              indice="épingler.indicesJetons.nuée"
             >
-              Nuée
+              {{ t('épingler.jetons.nuée') }}
             </jeton-part-epingle>
             <jeton-part-epingle
               icone="mdi-database"
               :dispositifs="props.epingle.épingle.données.base"
               :statut="statutÉpingle?.données?.base"
+              indice="épingler.indicesJetons.bds"
             >
-              Bases de données
+              {{ t('épingler.jetons.bds') }}
             </jeton-part-epingle>
             <jeton-part-epingle
               icone="mdi-table-multiple"
               :dispositifs="props.epingle.épingle.données.données.tableaux"
               :statut="statutÉpingle?.données?.données?.tableaux"
+              indice="épingler.indicesJetons.données"
             >
-              Données
+              {{ t('épingler.jetons.données') }}
             </jeton-part-epingle>
             <jeton-part-epingle
               icone="mdi-image-multiple-outline"
               :dispositifs="props.epingle.épingle.données.données.fichiers"
               :statut="statutÉpingle?.données?.données?.fichiers"
+              indice="épingler.indicesJetons.documents"
             >
-              Documents
+              {{ t('épingler.jetons.documents') }}
             </jeton-part-epingle>
           </v-list-item>
         </template>
@@ -59,6 +73,7 @@ import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import EpinglerNuee from './ÉpinglerNuée.vue';
+import CarteNuee from '../nuées/CarteNuée.vue';
 
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleNuée>}>();
 

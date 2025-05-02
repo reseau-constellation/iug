@@ -26,10 +26,11 @@
       <v-divider />
       <v-card-text style="overflow-y: scroll">
         <v-icon start>mdi-pin-outline</v-icon>
-        <span class="font-weight-bold">ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+        <span class="font-weight-bold"> {{ t('épingler.dispositifsÉpingle') }}</span>
         <selection-dispositifs
           v-model:selection="sélectionBase"
           v-model:specifiques="spécifiquesBase"
+          class="ms-4"
         />
       </v-card-text>
       <v-divider />

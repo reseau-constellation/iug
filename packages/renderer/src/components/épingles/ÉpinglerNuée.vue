@@ -26,10 +26,11 @@
       <v-divider />
       <v-card-text style="overflow-y: scroll">
         <v-icon start>mdi-pin-outline</v-icon>
-        <span class="font-weight-bold">ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+        <span class="font-weight-bold">{{ t('épingler.dispositifsÉpingle') }}</span>
         <selection-dispositifs
           v-model:selection="sélectionBase"
           v-model:specifiques="spécifiquesBase"
+          class="ms-4"
         />
 
         <v-expand-transition>
@@ -49,25 +50,32 @@
                 <v-divider class="mb-2" />
                 <p>
                   <v-icon start>mdi-databasee</v-icon>
-                  <span class="font-weight-bold">Bases de données</span>
+                  <span class="font-weight-bold"> {{ t('épingler.dispositifsÉpingleBds') }}</span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionBds"
                   v-model:specifiques="spécifiquesBds"
+                  class="ms-4"
                 />
                 <p>
-                  <v-icon start>mdi-table-multiple</v-icon><span class="font-weight-bold">தரவுகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+                  <v-icon start>mdi-table-multiple</v-icon>
+                  <span class="font-weight-bold">
+                    {{ t('épingler.dispositifsÉpingleDonnées') }}</span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionTableaux"
                   v-model:specifiques="spécifiquesTableaux"
+                  class="ms-4"
                 />
                 <p>
-                  <v-icon start>mdi-image-multiple-outline</v-icon><span class="font-weight-bold">கோப்புரைகளை ஒட்டுக்கொள்ளும் சாதனங்கள்</span>
+                  <v-icon start>mdi-image-multiple-outline</v-icon>
+                  <span class="font-weight-bold">
+                    {{ t('épingler.dispositifsÉpingleDocuments') }}</span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionFichiersTableaux"
                   v-model:specifiques="spécifiquesFichiersTableaux"
+                  class="ms-4"
                 />
               </div>
             </v-expand-transition>

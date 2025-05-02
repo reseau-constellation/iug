@@ -74,6 +74,12 @@
                     </v-list-item>
                   </template>
                 </carte-copier>
+                <slot
+                  name="epingler"
+                  :activateur="ItemListeIconeEpingler"
+                  :epingle="épinglé"
+                >
+                </slot>
                 <CarteEpingler
                   :id="id"
                   :option-fichiers="fichiersEpinglables"
@@ -210,8 +216,8 @@ import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
+import ItemListeIconeEpingler from '/@/components/épingles/ItemListeIcôneÉpingler.vue';
 
 import AuteursObjet from './AuteursObjet.vue';
 import CarteCopier from './CarteCopier.vue';
@@ -260,7 +266,7 @@ const description = அகராதியிலிருந்து_மொழ�
 
 // Épingles
 const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
-const épinglé = computed(() => statutFavoris.value);
+const épinglé = computed(() => !!statutFavoris.value);
 
 // Effacer objet
 const effacer = async () => {

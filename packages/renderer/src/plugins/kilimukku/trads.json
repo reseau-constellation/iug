@@ -803,8 +803,10 @@
       "épingler": "Épingler",
       "épinglé": "Épinglé",
       "optionsAvancées": "Options avancées",
-      "dispositifsÉpingle": "Dispositifs qui épingleront",
-      "dispositifsÉpingleFichier": "Dispositifs épinglant les fichiers",
+      "dispositifsÉpingle": "Dispositifs sur lesquels épingler",
+      "dispositifsÉpingleDocuments": "Dispositifs épinglant les documents",
+      "dispositifsÉpingleDonnées": "Dispositifs épinglant les données",
+      "dispositifsÉpingleBds": "Dispositifs épinglant les bases de données",
       "aucun": "Aucun dispositif",
       "indiceAucun": "N'épingler sur aucun de mes dispositifs",
       "tous": "Tous les dispositifs",
@@ -813,7 +815,46 @@
       "indiceInstallé": "Épingler sur tous les dispositifs sauf les navigateurs",
       "dispositifsSpécifiques": "Dispositifs spécifiques",
       "indiceDispositifsSpécifiques": "Épingler uniquement sur les dispositifs que vous préciserez",
-      "indiceSélectionnerDispositif": "Sélectionner les dispositifs"
+      "indiceSélectionnerDispositif": "Sélectionner les dispositifs",
+      "jetons": {
+        "bd": "BD",
+        "données": "Données",
+        "documents": "Documents"
+      },
+      "indicesJetons": {
+        "données": {
+          "oui": "Les données sont épinglées sur ce dispositif",
+          "non": "Les données ne sont pas épinglées sur ce dispositif"
+        },
+        "documents": {
+          "oui": "Les documents inclus sont épinglés sur ce dispositif",
+          "non": "Les documents inclus ne sont pas épinglés sur ce dispositif"
+        },
+        "variable": {
+          "oui": "Les métadonnnées de la variable sont épinglées sur ce dispositif",
+          "non": "Les métadonnées de la variable ne sont pas épinglées sur ce dispositif"
+        },
+        "motClef": {
+          "oui": "Les métadonnnées du mot-clef sont épinglées sur ce dispositif",
+          "non": "Les métadonnnées du mot-clef ne sont pas épinglées sur ce dispositif"
+        },
+        "bd": {
+          "oui": "Les métadonnnées de la base de données sont épinglées sur ce dispositif",
+          "non": "Les métadonnnées de la base de données ne sont pas épinglées sur ce dispositif"
+        },
+        "projet": {
+          "oui": "Les métadonnnées du projet sont épinglées sur ce dispositif",
+          "non": "Les métadonnnées du projet ne sont pas épinglées sur ce dispositif"
+        },
+        "nuée": {
+          "oui": "Les métadonnnées de la nuée sont épinglées sur ce dispositif",
+          "non": "Les métadonnnées de la nuée ne sont pas épinglées sur ce dispositif"
+        },
+        "bds": {
+          "oui": "Les bases de données incluses sont épinglées sur ce dispositif",
+          "non": "Les bases de données incluses ne sont pas épinglées sur ce dispositif"
+        }
+      }
     }
   },
   "த": {
@@ -1263,7 +1304,8 @@
         "titre": "தானியங்கி"
       },
       "favoris": {
-        "titre": "எனது பிடித்தவை"
+        "titre": "எனது பிடித்தவை",
+        "sousTitre": "இந்த தரவுகள் உங்கள் கணக்கில் ஒட்டிக்கொள்ளப்பட்டுள்ளன"
       }
     },
     "importations": {
@@ -1499,7 +1541,7 @@
       "épinglé": "ஒட்டிக்கொள்ளப்பட்டது",
       "optionsAvancées": "மேம்பட்ட விருப்பங்கள்",
       "dispositifsÉpingle": "ஒட்டிக்கொள்ளும் சாதனங்கள்",
-      "dispositifsÉpingleFichier": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
+      "dispositifsÉpingleDocuments": "கோப்புகளை ஒட்டிக்கொள்ளும் சாதனங்கள்",
       "aucun": "எந்த சாதனமும் இல்லை",
       "indiceAucun": "எந்த சாதனத்திலும் ஒட்டிக்கொள்ள கூடாது",
       "tous": "அனைத்தும் சாதனங்கள்",

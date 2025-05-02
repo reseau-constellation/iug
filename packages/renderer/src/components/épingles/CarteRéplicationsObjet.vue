@@ -130,7 +130,7 @@ const dialogue = ref(false);
 
 // Réplications
 const {résultats: réplications} = rechercher(constl.réseau.suivreRéplications, {
-  idObjet: props.id,
+  idObjet: computed(() => props.id),
   profondeur: 10,
 });
 

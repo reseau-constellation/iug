@@ -17,6 +17,19 @@
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
+    <template #epingler="{activateur, epingle}">
+      <epingler-variable :id-variable="id">
+        <template #activator="{props: propsActivateur}">
+          <component
+            :is="activateur"
+            v-bind="propsActivateur"
+            :id="id"
+            :epingle="epingle"
+          />
+        </template>
+      </epingler-variable>
+    </template>
+
     <division-carte
       :titre="t('variables.catégorie')"
       :en-attente="!catégorie"
@@ -110,6 +123,7 @@ import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
 import {ajusterTexteTraductible} from '/@/utils';
+import EpinglerVariable from '/@/components/épingles/ÉpinglerVariable.vue';
 
 import {catégoriesBase} from './utils';
 

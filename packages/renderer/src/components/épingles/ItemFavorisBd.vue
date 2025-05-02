@@ -1,43 +1,52 @@
 <template>
   <EpinglerBd :id-bd="epingle.idObjet">
     <template #activator="{props: propsActivateurCarteÉpingle}">
-      <v-tooltip
-        open-delay="200"
-        location="bottom"
-      >
-        <template #activator="{props: propsActivateurIndice}">
-          <v-list-item v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}">
-            <template #prepend>
-              <v-icon>{{ icôneTypeItem }}</v-icon>
-            </template>
-            <v-list-item-title>
-              {{ nomTraduit || t('bds.sansNom') }}
-              <lien-objet :id="epingle.idObjet" />
-            </v-list-item-title>
-            <jeton-part-epingle
-              icone="mdi-save-outline"
-              :dispositifs="props.epingle.épingle.base"
-              :statut="statutÉpingle?.base"
-            >
-              BD
-            </jeton-part-epingle>
-            <jeton-part-epingle
-              icone="mdi-table-multiple"
-              :dispositifs="props.epingle.épingle.données.tableaux"
-              :statut="statutÉpingle?.données?.tableaux"
-            >
-              Données
-            </jeton-part-epingle>
-            <jeton-part-epingle
-              icone="mdi-image-multiple-outline"
-              :dispositifs="props.epingle.épingle.données.fichiers"
-              :statut="statutÉpingle?.données?.fichiers"
-            >
-              Documents
-            </jeton-part-epingle>
-          </v-list-item>
+      <v-list-item v-bind="propsActivateurCarteÉpingle">
+        <template #prepend>
+          <v-icon>{{ icôneTypeItem }}</v-icon>
         </template>
-      </v-tooltip>
+        <v-list-item-title>
+          {{ nomTraduit || t('bds.sansNom') }}
+          <lien-objet :id="epingle.idObjet" />
+          <carte-bd :id="epingle.idObjet">
+            <template #activator="{props: propsActivateurCarte}">
+              <v-btn
+                v-bind="propsActivateurCarte"
+                icon="mdi-dots-horizontal"
+                size="small"
+                variant="flat"
+              />
+            </template>
+          </carte-bd>
+        </v-list-item-title>
+        <jeton-part-epingle
+          class="me-1"
+          icone="mdi-content-save-outline"
+          :dispositifs="props.epingle.épingle.base"
+          :statut="statutÉpingle?.base"
+          indice="épingler.indicesJetons.bd"
+        >
+          {{ t('épingler.jetons.bd') }}
+        </jeton-part-epingle>
+        <jeton-part-epingle
+          class="mx-1"
+          icone="mdi-table-multiple"
+          :dispositifs="props.epingle.épingle.données.tableaux"
+          :statut="statutÉpingle?.données?.tableaux"
+          indice="épingler.indicesJetons.données"
+        >
+          {{ t('épingler.jetons.données') }}
+        </jeton-part-epingle>
+        <jeton-part-epingle
+          class="mx-1"
+          icone="mdi-image-multiple-outline"
+          :dispositifs="props.epingle.épingle.données.fichiers"
+          :statut="statutÉpingle?.données?.fichiers"
+          indice="épingler.indicesJetons.documents"
+        >
+          {{ t('épingler.jetons.documents') }}
+        </jeton-part-epingle>
+      </v-list-item>
     </template>
   </EpinglerBd>
 </template>
@@ -52,6 +61,7 @@ import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import EpinglerBd from './ÉpinglerBd.vue';
+import CarteBd from '/@/components/bds/CarteBd.vue';
 
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleBd>}>();
 

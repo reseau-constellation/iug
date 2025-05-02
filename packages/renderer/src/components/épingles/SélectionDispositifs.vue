@@ -1,6 +1,7 @@
 <template>
   <v-select
     v-model="sélection"
+    v-bind="$attrs"
     :items="optionsÉpingles"
     :prepend-inner-icon="optionsÉpingles.find(o => o.valeur === sélection)?.icône"
     item-value="valeur"

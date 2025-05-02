@@ -17,6 +17,19 @@
       ></slot>
     </template>
 
+    <template #epingler="{activateur, epingle}">
+      <epingler-bd :id-bd="id">
+        <template #activator="{props: propsActivateur}">
+          <component
+            :is="activateur"
+            v-bind="propsActivateur"
+            :id="id"
+            :epingle="epingle"
+          />
+        </template>
+      </epingler-bd>
+    </template>
+
     <division-carte
       :titre="t('bds.info')"
       :en-attente="false"
@@ -41,7 +54,7 @@
       :id="id"
       class="me-2 mb-2"
     />
-    <epingler-bd :id-bd="id">
+    <carte-replications-objet :id="id">
       <template #activator="{props: propsActivateur}">
         <jeton-replications
           v-bind="propsActivateur"
@@ -49,13 +62,13 @@
           class="me-2 mb-2"
         />
       </template>
-    </epingler-bd>
+    </carte-replications-objet>
 
     <division-carte
       :titre="t('bds.variables')"
       :en-attente="!variables"
     />
-    <SérieJetons
+    <serie-jetons
       :n-max="5"
       :items="variables"
     >
@@ -79,7 +92,7 @@
           </template>
         </carte-variable>
       </template>
-    </SérieJetons>
+    </serie-jetons>
     <v-skeleton-loader
       v-if="!variables"
       type="chip@3"
@@ -95,7 +108,7 @@
       :titre="t('bds.motsClefs')"
       :en-attente="!motsClefs"
     />
-    <SérieJetons
+    <serie-jetons
       :n-max="5"
       :items="motsClefs"
     >
@@ -119,7 +132,8 @@
           </template>
         </carte-mot-clef>
       </template>
-    </SérieJetons>
+    </serie-jetons>
+
     <v-skeleton-loader
       v-if="!motsClefs"
       type="chip@3"
@@ -178,8 +192,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
-import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import SerieJetons from '/@/components/communs/SérieJetons.vue';
 import JetonLicence from '/@/components/licences/JetonLicence.vue';
+import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';

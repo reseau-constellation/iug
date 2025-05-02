@@ -571,9 +571,9 @@ import TableauNuee from '/@/components/tableaux/TableauNuée.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
+import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {MAX_TAILLE_IMAGE} from '/@/consts';

@@ -13,13 +13,24 @@
             <v-list-item-title>
               {{ nomTraduit || t('motClefs.sansNom') }}
               <lien-objet :id="epingle.idObjet" />
+              <carte-mot-clef :id="epingle.idObjet">
+                <template #activator="{props: propsActivateurCarte}">
+                  <v-btn
+                    v-bind="propsActivateurCarte"
+                    icon="mdi-dots-horizontal"
+                    size="small"
+                    variant="flat"
+                  />
+                </template>
+              </carte-mot-clef>
             </v-list-item-title>
             <jeton-part-epingle
               icone="mdi-save-outline"
               :dispositifs="props.epingle.épingle.base"
               :statut="statut"
+              indice="épingler.indicesJetons.motClef"
             >
-              MotClef
+              {{ t('épingler.jetons.motClef') }}
             </jeton-part-epingle>
           </v-list-item>
         </template>
@@ -38,6 +49,7 @@ import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import EpinglerMotClef from './ÉpinglerMotClef.vue';
+import CarteMotClef from '../motsClefs/CarteMotClef.vue';
 
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleMotClef>}>();
 

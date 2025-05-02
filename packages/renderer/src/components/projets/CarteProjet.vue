@@ -15,6 +15,18 @@
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
+    <template #epingler="{activateur, epingle}">
+      <epingler-projet :id-projet="id">
+        <template #activator="{props: propsActivateur}">
+          <component
+            :is="activateur"
+            v-bind="propsActivateur"
+            :id="id"
+            :epingle="epingle"
+          />
+        </template>
+      </epingler-projet>
+    </template>
   </base-carte-objet>
 </template>
 <script setup lang="ts">
@@ -23,6 +35,7 @@ import {suivre} from '@constl/vue';
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {ajusterTexteTraductible} from '/@/utils';
+import EpinglerProjet from '/@/components/épingles/ÉpinglerProjet.vue';
 
 const props = defineProps<{id: string}>();
 

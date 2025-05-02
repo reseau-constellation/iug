@@ -30,6 +30,7 @@
         <selection-dispositifs
           v-model:selection="sélectionBase"
           v-model:specifiques="spécifiquesBase"
+          class="ms-4"
         />
 
         <v-expand-transition>
@@ -49,18 +50,25 @@
                 <v-divider class="mb-2" />
                 <p>
                   <v-icon start>mdi-table-multiple</v-icon>
-                  <span class="font-weight-bold">{{ t('épingler.dispositifsÉpingleDonnées') }}</span>
+                  <span class="font-weight-bold">
+                    {{ t('épingler.dispositifsÉpingleDonnées') }}
+                  </span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionTableaux"
                   v-model:specifiques="spécifiquesTableaux"
+                  class="ms-4"
                 />
                 <p>
-                  <v-icon start>mdi-image-multiple-outline</v-icon><span class="font-weight-bold">{{ t('épingler.dispositifsÉpingleFichier') }}</span>
+                  <v-icon start>mdi-image-multiple-outline</v-icon>
+                  <span class="font-weight-bold">
+                    {{ t('épingler.dispositifsÉpingleDocuments') }}
+                  </span>
                 </p>
                 <selection-dispositifs
                   v-model:selection="sélectionFichiersTableaux"
                   v-model:specifiques="spécifiquesFichiersTableaux"
+                  class="ms-4"
                 />
               </div>
             </v-expand-transition>
