@@ -109,7 +109,7 @@
     </div>
 
     <div class="text-center">
-      <carte-epingler :id="id">
+      <epingler-nuee :id-nuee="id">
         <template #activator="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
@@ -127,7 +127,7 @@
             </template>
           </v-tooltip>
         </template>
-      </carte-epingler>
+      </epingler-nuee>
 
       <carte-exportation-objet
         :id-objet="id"
@@ -571,7 +571,7 @@ import TableauNuee from '/@/components/tableaux/TableauNuée.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import CarteEpingler from '/@/components/épingles/CarteÉpingler.vue';
+import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 
