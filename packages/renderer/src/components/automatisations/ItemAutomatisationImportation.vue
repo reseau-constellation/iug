@@ -5,10 +5,10 @@
     </template>
     <v-list-item-title>
       <v-icon>mdi-table</v-icon>
-      <nom-tableau :id-tableau="spécification.idTableau" />
+      <nom-tableau :id-tableau="specification.idTableau" />
     </v-list-item-title>
 
-    <jeton-fichier-importation :spécification="spécification" />
+    <jeton-fichier-importation :spécification="specification" />
     <jeton-statut-automatisation
       v-if="statut"
       :statut="statut"
@@ -27,7 +27,7 @@ import NomTableau from '/@/components/tableaux/NomTableau.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
 const props = defineProps<{
-  spécification: automatisation.SpécificationImporter;
+  specification: automatisation.SpécificationImporter;
 }>();
 
 const constl = utiliserConstellation();
@@ -35,6 +35,6 @@ const constl = utiliserConstellation();
 // Statut
 const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);
 const statut = computed(() => {
-  return statuts.value ? statuts.value[props.spécification.id] : undefined;
+  return statuts.value ? statuts.value[props.specification.id] : undefined;
 });
 </script>

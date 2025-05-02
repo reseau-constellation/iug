@@ -39,7 +39,7 @@
             <item-automatisation-importation
               v-for="auto in automatisationsImportationObject"
               :key="auto.id"
-              :spécification="auto"
+              :specification="auto"
             />
             <p
               v-if="!automatisationsImportationObject.length"

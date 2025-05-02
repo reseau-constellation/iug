@@ -21,7 +21,7 @@
       <item-automatisation-importation
         v-for="auto in automatisationsImportationTableau"
         :key="auto.id"
-        :spécification="auto"
+        :specification="auto"
       />
       <p
         v-if="!automatisationsImportationTableau.length"

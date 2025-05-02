@@ -32,9 +32,9 @@
           objet-modifiable
         >
           <template #activator="{props: propsActivateur}">
-            <ItemAutomatisation
+            <item-automatisation-exportation
               v-bind="propsActivateur"
-              :spécification="auto"
+              :specification="auto"
             />
           </template>
         </CarteAutomatisationExportation>
@@ -44,9 +44,9 @@
           objet-modifiable
         >
           <template #activator="{props: propsActivateur}">
-            <ItemAutomatisation
+            <item-automatisation-importation
               v-bind="propsActivateur"
-              :spécification="auto"
+              :specification="auto"
             />
           </template>
         </CarteAutomatisationImportation>
@@ -61,7 +61,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {utiliserConstellation} from '../components/utils';
 import CarteAutomatisationExportation from '/@/components/automatisations/CarteAutomatisationExportation.vue';
 import CarteAutomatisationImportation from '/@/components/automatisations/CarteAutomatisationImportation.vue';
-import ItemAutomatisation from '/@/components/automatisations/ItemAutomatisation.vue';
+import ItemAutomatisationImportation from '/@/components/automatisations/ItemAutomatisationImportation.vue';
+import ItemAutomatisationExportation from '/@/components/automatisations/ItemAutomatisationExportation.vue';
 import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
