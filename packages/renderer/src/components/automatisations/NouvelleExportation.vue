@@ -51,6 +51,7 @@
             />
             <SelecteurTableau
               v-else-if="typeObjet === 'tableau'"
+              :id-bd="idBd"
               :multiples="false"
               @selectionne="tableau => (idObjet = tableau)"
             />
@@ -295,6 +296,7 @@ const props = defineProps<{
     id: string;
     typeObjet: 'tableau' | 'bd' | 'projet' | 'nuée';
   };
+  idBd?: string; // Pour la sélection de tableaux
 }>();
 
 const {mdAndUp} = useDisplay();

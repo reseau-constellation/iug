@@ -36,7 +36,7 @@
                 />
               </template>
             </nouvelle-importation>
-            <item-automatisation
+            <item-automatisation-importation
               v-for="auto in automatisationsImportationObject"
               :key="auto.id"
               :spécification="auto"
@@ -65,10 +65,10 @@
               </v-list-item>
             </template>
           </nouvelle-exportation>
-          <item-automatisation
+          <item-automatisation-exportation
             v-for="auto in automatisationsExportationObject"
             :key="auto.id"
-            :spécification="auto"
+            :specification="auto"
           />
           <p
             v-if="!automatisationsExportationObject.length"
@@ -77,21 +77,22 @@
             {{ t('automatisations.carte.aucuneExportation') }}
           </p>
         </v-list>
+        <slot />
       </v-card-text>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {bds} from '@constl/ipa';
-
 import {suivre} from '@constl/vue';
-import {computed, onMounted, ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 
-import ItemAutomatisation from './ItemAutomatisation.vue';
+import type {automatisation as typeAutomatisation} from '@constl/ipa';
+import ItemAutomatisationExportation from './ItemAutomatisationExportation.vue';
+import ItemAutomatisationImportation from './ItemAutomatisationImportation.vue';
 import NouvelleExportation from '/@/components/automatisations/NouvelleExportation.vue';
 import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
 
@@ -115,32 +116,17 @@ const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() =>
 // Automatisations
 const automatisations = suivre(constl.automatisations.suivreAutomatisations);
 
-// Cas spécial pour les bases de données - on inclut aussi les tableaux !
-const tableauxBd = ref<bds.infoTableauAvecId[]>();
-onMounted(() => {
-  if (props.typeObjet === 'bd') {
-    enregistrerÉcoute(
-      constl.bds.suivreTableauxBd({
-        idBd: props.idObjet,
-        f: x => (tableauxBd.value = x),
-      }),
-    );
-  }
-});
-
 const automatisationsObject = computed(() => {
-  const idsÀInclure =
-    props.typeObjet === 'bd'
-      ? [props.idObjet, ...[(tableauxBd.value || []).filter(t => t.id)]]
-      : [props.idObjet];
-  return automatisations.value?.filter(a =>
-    idsÀInclure.includes(a.type === 'exportation' ? a.idObjet : a.idTableau),
+  return automatisations.value?.filter(
+    a => props.idObjet === (a.type === 'exportation' ? a.idObjet : a.idTableau),
   );
 });
 const automatisationsImportationObject = computed(() => {
-  return automatisationsObject.value?.filter(a => a.type === 'importation') || [];
+  return (automatisationsObject.value?.filter(a => a.type === 'importation') ||
+    []) as typeAutomatisation.SpécificationImporter[];
 });
 const automatisationsExportationObject = computed(() => {
-  return automatisationsObject.value?.filter(a => a.type === 'exportation') || [];
+  return (automatisationsObject.value?.filter(a => a.type === 'exportation') ||
+    []) as typeAutomatisation.SpécificationExporter[];
 });
 </script>

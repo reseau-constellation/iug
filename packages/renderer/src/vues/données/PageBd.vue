@@ -333,7 +333,7 @@
           width="200"
           class="mb-3"
         >
-          <carte-automatisations-objet
+          <carte-automatisations-bd
             :id-objet="id"
             :permission="monAutorisation"
             type-objet="bd"
@@ -344,7 +344,7 @@
                 :id-objet="id"
               />
             </template>
-          </carte-automatisations-objet>
+          </carte-automatisations-bd>
         </v-card>
       </div>
       <p class="mt-6 text-h5">
@@ -552,7 +552,6 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
-import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import ItemAutomatisationsObjet from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
@@ -581,7 +580,6 @@ import TableauBd from '/@/components/tableaux/TableauBd.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import ItemVariable from '/@/components/variables/ItemVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
-import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import EpinglerBd from '/@/components/épingles/ÉpinglerBd.vue';

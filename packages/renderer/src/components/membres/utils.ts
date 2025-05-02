@@ -7,7 +7,7 @@ import {utiliserConstellation} from '../utils';
 
 export const utiliserIcôneContact = ({type}: {type: MaybeRef<string>}): ComputedRef<string> => {
   const réfType = isRef(type) ? type : ref(type);
-  return computed(()=> obtIcôneContact({type: réfType.value}));
+  return computed(() => obtIcôneContact({type: réfType.value}));
 };
 
 export const obtIcôneContact = ({type}: {type: string}): string => {

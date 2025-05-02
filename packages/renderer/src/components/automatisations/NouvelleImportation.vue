@@ -49,6 +49,7 @@
             <SelecteurTableau
               v-else-if="typeObjet === 'tableau'"
               :multiples="false"
+              :id-bd="idBd"
               @selectionne="tableau => (idObjet = tableau)"
             />
           </v-window-item>
@@ -207,7 +208,10 @@ import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 import {isBrowser} from 'wherearewe';
 
-const props = defineProps<{infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'}}>();
+const props = defineProps<{
+  infoObjet?: {id: string; typeObjet: 'bd' | 'tableau'};
+  idBd?: string; // Pour la sélection de tableaux
+}>();
 
 const {mdAndUp} = useDisplay();
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();

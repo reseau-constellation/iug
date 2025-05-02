@@ -75,7 +75,7 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {onMounted, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -91,7 +91,7 @@ import OptionsFormatExportation from './OptionsFormatExportation.vue';
 import OptionsFrequenceExportation from './OptionsFréquenceExportation.vue';
 import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
 import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
-import {enregistrerÉcoute, utiliserConstellation} from '/@/components/utils';
+import {utiliserConstellation} from '/@/components/utils';
 import {choisirFichierSauvegarde} from '/@/utils';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
@@ -110,48 +110,6 @@ const dialogue = ref(false);
 
 // Dispositif
 const monDispositif = obt(constl.obtIdDispositif);
-
-// Nom
-const noms = ref<{[langue: string]: string}>();
-
-onMounted(() => {
-  switch (props.spécification.typeObjet) {
-    case 'tableau':
-      enregistrerÉcoute(
-        constl.tableaux.suivreNomsTableau({
-          idTableau: props.spécification.idObjet,
-          f: x => (noms.value = x),
-        }),
-      );
-      break;
-    case 'projet':
-      enregistrerÉcoute(
-        constl.projets.suivreNomsProjet({
-          idProjet: props.spécification.idObjet,
-          f: x => (noms.value = x),
-        }),
-      );
-      break;
-    case 'bd':
-      enregistrerÉcoute(
-        constl.bds.suivreNomsBd({
-          idBd: props.spécification.idObjet,
-          f: x => (noms.value = x),
-        }),
-      );
-      break;
-    case 'nuée':
-      enregistrerÉcoute(
-        constl.nuées.suivreNomsNuée({
-          idNuée: props.spécification.idObjet,
-          f: x => (noms.value = x),
-        }),
-      );
-      break;
-    default:
-      throw new Error(JSON.stringify(props.spécification));
-  }
-});
 
 // Statut
 const statuts = suivre(constl.automatisations.suivreÉtatAutomatisations);

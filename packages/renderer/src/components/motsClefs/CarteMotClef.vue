@@ -34,11 +34,11 @@
 
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import EpinglerMotClef from '/@/components/épingles/ÉpinglerMotClef.vue';
 import {ajusterTexteTraductible} from '/@/utils';
-import { computed } from 'vue';
 
 const props = defineProps<{id: string}>();
 

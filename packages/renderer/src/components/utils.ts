@@ -4,8 +4,7 @@ import type {கிளிமூக்கு as கிளிமூக்கு_�
 import type {Nuchabäl} from 'nuchabal';
 import {type Ref} from 'vue';
 
-import EventEmitter, {once} from 'events';
-import {inject, onMounted, onUnmounted, ref, watch, watchEffect} from 'vue';
+import {inject, onUnmounted, ref, watch, watchEffect} from 'vue';
 
 export const utiliserConstellation = (): Constellation => {
   const constl = inject<Constellation>('constl');
@@ -29,40 +28,6 @@ export const utiliserNuchabäl = (): Nuchabäl => {
   const nuchabäl = inject<Nuchabäl>("nuch'ab'äl");
   if (nuchabäl) return nuchabäl;
   throw new Error("Nuchab'äl n'est pas trouvable.");
-};
-
-export const enregistrerÉcoute = <
-  T extends
-    | types.schémaFonctionOublier
-    | types.schémaRetourFonctionRechercheParProfondeur
-    | types.schémaRetourFonctionRechercheParN,
->(
-  promesseÉcoute?: Promise<T>,
-): Promise<T | undefined> => {
-  let fOublier: types.schémaFonctionOublier | undefined = undefined;
-
-  const événements = new EventEmitter();
-  let résultat: T | undefined;
-  const promesseRetour = new Promise<T | undefined>(résoudre => {
-    once(événements, 'prêt').then(() => {
-      résoudre(résultat);
-    });
-  });
-
-  onMounted(async () => {
-    résultat = await promesseÉcoute;
-    if (résultat instanceof Function) {
-      fOublier = résultat;
-    } else {
-      fOublier = résultat?.fOublier;
-    }
-    événements.emit('prêt');
-  });
-  onUnmounted(async () => {
-    if (fOublier) await fOublier();
-  });
-
-  return promesseRetour;
 };
 
 export class MultiChercheur {

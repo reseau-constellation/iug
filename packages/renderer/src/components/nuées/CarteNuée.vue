@@ -45,10 +45,10 @@ import {suivre} from '@constl/vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 
+import {computed} from 'vue';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
 import {ajusterTexteTraductible} from '/@/utils';
-import { computed } from 'vue';
 
 const props = defineProps<{id: string}>();
 

@@ -329,7 +329,7 @@
             type-objet="bd"
           >
             <template #activator="{props: propsActivateur}">
-              <item-automatisations
+              <item-automatisations-objet
                 v-bind="propsActivateur"
                 :id-objet="id"
               />
@@ -559,7 +559,7 @@ import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import EditeurMotsClefs from '/@/components/motsClefs/ÉditeurMotsClefs.vue';
 import CarteCodeNuee from '/@/components/nuées/CarteCodeNuée.vue';
 // import GenererAppli from '/@/components/nuées/GénérerAppli.vue';
-import ItemAutomatisations from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
+import ItemAutomatisationsObjet from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import SerieJetons from '/@/components/communs/SérieJetons.vue';
 import EnteteTableau from '/@/components/tableaux/EntêteTableau.vue';
 

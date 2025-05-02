@@ -22,7 +22,7 @@ import {icôneObjet, utiliserConstellation} from '/@/components/utils';
 import LienObjet from '/@/components/communs/LienObjet.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import { computed } from 'vue';
+import {computed} from 'vue';
 
 const props = defineProps<{id: string}>();
 
