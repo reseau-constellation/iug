@@ -29,7 +29,9 @@ export const fausseConstellation = (
 };
 
 export const substitionsJSDOM = () => {
-  vi.stubGlobal('URL', { createObjectURL: (x: unknown) => `${x instanceof Blob ? 'blob' : 'file'}:monURL` });
+  vi.stubGlobal('URL', {
+    createObjectURL: (x: unknown) => `${x instanceof Blob ? 'blob' : 'file'}:monURL`,
+  });
   vi.stubGlobal('localStorage', {
     getItem: () => undefined,
     setItem: () => {},

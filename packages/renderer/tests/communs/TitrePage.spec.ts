@@ -4,7 +4,7 @@ import {expect, test} from 'vitest';
 import TitrePage from '../../src/components/communs/TitrePage.vue';
 
 import vuetify from '../../src/plugins/vuetify';
-import { substitionsJSDOM } from '../utils';
+import {substitionsJSDOM} from '../utils';
 
 const mountFunction = (composante, options?: Record<string, unknown>) => {
   substitionsJSDOM();

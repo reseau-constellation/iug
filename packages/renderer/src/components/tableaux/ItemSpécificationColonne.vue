@@ -45,7 +45,9 @@ watchEffect(() => {
 });
 
 // Nom variable
-const nomsVariable = suivre(constl.variables.suivreNomsVariable, {idVariable: computed(()=>props.idVariable)});
+const nomsVariable = suivre(constl.variables.suivreNomsVariable, {
+  idVariable: computed(() => props.idVariable),
+});
 const nomVariableTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsVariable);
 
 // Index

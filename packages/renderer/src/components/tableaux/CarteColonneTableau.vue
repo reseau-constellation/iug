@@ -163,7 +163,7 @@ const choixIndex = ref(props.index);
 const indexModifié = computed(() => choixIndex.value !== props.index);
 
 // Variable
-const choixVariable = computed(()=>props.idVariable);
+const choixVariable = computed(() => props.idVariable);
 const variableModifiée = computed(() => choixVariable.value !== props.idVariable);
 const catégorieVariable = suivre(constl.variables.suivreCatégorieVariable, {
   idVariable: choixVariable,

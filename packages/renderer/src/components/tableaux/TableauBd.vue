@@ -349,12 +349,9 @@ const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTa
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {
   idTableau: computed(() => props.idTableau),
 });
-const colonnesAvecCatégories = suivre(
-  constl.tableaux.suivreColonnesEtCatégoriesTableau,
-  {
-    idTableau: computed(()=>props.idTableau),
-  },
-);
+const colonnesAvecCatégories = suivre(constl.tableaux.suivreColonnesEtCatégoriesTableau, {
+  idTableau: computed(() => props.idTableau),
+});
 
 const colonnesVariables = computed(() => {
   return (colonnes.value || []).map(c => {

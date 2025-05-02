@@ -199,7 +199,7 @@
               <span class="text-caption text-grey">{{
                 t('accueil.initialiserCompte.sousTitreBienvenu')
               }}</span>
-              
+
               <conditions-utilisation>
                 <template #activator="{props: propsActivateur}">
                   <v-checkbox

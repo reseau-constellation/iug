@@ -99,7 +99,7 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 // Variables déjà ajoutées au tableau, qu'on ne veut pas associer à de nouvelles colonnes
 const variablesDéjàAjoutées = computed(() => {
-  return props.colonnes.map(c => c.info.variable).filter(v=>v) as string[];
+  return props.colonnes.map(c => c.info.variable).filter(v => v) as string[];
 });
 
 // Modification colonnes

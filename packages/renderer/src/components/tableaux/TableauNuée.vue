@@ -157,13 +157,10 @@ const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée, {
   clefTableau: props.clefTableau,
 });
 
-const colonnesAvecCatégories = suivre(
-  constl.nuées.suivreColonnesEtCatégoriesTableauNuée,
-  {
-    idNuée: props.idNuee,
-    clefTableau: props.clefTableau,
-  },
-);
+const colonnesAvecCatégories = suivre(constl.nuées.suivreColonnesEtCatégoriesTableauNuée, {
+  idNuée: props.idNuee,
+  clefTableau: props.clefTableau,
+});
 
 const colonnesVariables = computed(() => {
   return (colonnes.value || []).map(c => {
