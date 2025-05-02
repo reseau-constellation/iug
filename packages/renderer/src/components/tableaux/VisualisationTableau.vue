@@ -210,11 +210,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const éditer = ref(false);
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
 
 // Colonnes du tableau
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {
-  idTableau: props.idTableau,
+  idTableau: computed(() => props.idTableau),
 }) as ComputedRef<tableaux.InfoColAvecCatégorie[]>;
 
 // Entêtes
@@ -244,9 +244,9 @@ const triable = (catégorieBase: variables.catégorieBaseVariables): boolean => 
 };
 
 // Éléments
-const éléments = suivre(constl.tableaux.suivreDonnées, {idTableau: props.idTableau}) as Ref<
-  tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]
->;
+const éléments = suivre(constl.tableaux.suivreDonnées, {
+  idTableau: computed(() => props.idTableau),
+}) as Ref<tableaux.élémentDonnées<tableaux.élémentBdListeDonnées>[]>;
 const filesSélectionnées = ref<string[]>([]);
 
 const effacerÉlément = async (idÉlément: string) => {
@@ -276,5 +276,7 @@ const modifierÉlément = async ({
 };
 
 // Validation
-const erreursValidation = suivre(constl.tableaux.suivreValidDonnées, {idTableau: props.idTableau});
+const erreursValidation = suivre(constl.tableaux.suivreValidDonnées, {
+  idTableau: computed(() => props.idTableau),
+});
 </script>

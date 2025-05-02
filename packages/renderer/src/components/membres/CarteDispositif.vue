@@ -76,8 +76,8 @@ const dialogue = ref(false);
 
 // Nom et type actuels
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
-  idDispositif: props.idDispositif,
-  idCompte: props.idCompte,
+  idDispositif: computed(() => props.idDispositif),
+  idCompte: computed(() => props.idCompte),
 });
 watchEffect(() => {
   typeDispositifChoisi.value = typeDispositif.value;

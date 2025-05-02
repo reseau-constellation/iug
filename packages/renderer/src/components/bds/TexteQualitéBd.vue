@@ -31,7 +31,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Qualité BD
-const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.id});
+const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: computed(() => props.id)});
 const score = computed(() => {
   return qualité.value?.total;
 });

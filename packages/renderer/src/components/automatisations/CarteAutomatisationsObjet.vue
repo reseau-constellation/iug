@@ -110,7 +110,7 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idObjet});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idObjet)});
 
 // Automatisations
 const automatisations = suivre(constl.automatisations.suivreAutomatisations);

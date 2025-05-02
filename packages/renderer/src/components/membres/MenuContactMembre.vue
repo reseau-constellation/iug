@@ -29,7 +29,7 @@ import {computed} from 'vue';
 import {copier, ouvrirLien} from '/@/utils';
 
 import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {obtIcôneContact} from './utils';
+import {utiliserIcôneContact} from './utils';
 
 const props = defineProps<{type: string; contact: string}>();
 
@@ -38,9 +38,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {எண்_எழுத்து_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 // Contenu
-const icône = computed(() => {
-  return obtIcôneContact({type: props.type});
-});
+const icône = utiliserIcôneContact({type: props.type});
 
 const autoContactable = computed(() => {
   return ['siteInternet', 'télégramme', 'téléphone', 'courriel', 'whatsapp'].includes(props.type);

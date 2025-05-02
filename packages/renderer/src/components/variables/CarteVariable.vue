@@ -122,8 +122,8 @@ import ItemRegle from '/@/components/règles/ItemRègle.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {icôneCatégorieVariable} from '/@/components/variables/utils';
-import {ajusterTexteTraductible} from '/@/utils';
 import EpinglerVariable from '/@/components/épingles/ÉpinglerVariable.vue';
+import {ajusterTexteTraductible} from '/@/utils';
 
 import {catégoriesBase} from './utils';
 
@@ -135,10 +135,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 
 // Nom variable
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: computed(() => props.id)});
 
 const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -158,7 +158,9 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 };
 
 // Descriptions variable
-const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {idVariable: props.id});
+const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {
+  idVariable: computed(() => props.id),
+});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -181,7 +183,9 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {
+  idVariable: computed(() => props.id),
+});
 
 const choixCatégorieListe = ref(false);
 const choixCatégorieBase = ref<variables.catégorieBaseVariables>();
@@ -218,10 +222,12 @@ const sauvegarderCatégorie = async () => {
 };
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: computed(() => props.id)});
 
 // Règles
-const règles = suivre(constl.variables.suivreRèglesVariable, {idVariable: props.id});
+const règles = suivre(constl.variables.suivreRèglesVariable, {
+  idVariable: computed(() => props.id),
+});
 const ajouterRègle = async (r: valid.règleVariable) => {
   await constl.variables.ajouterRègleVariable({
     idVariable: props.id,

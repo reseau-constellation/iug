@@ -87,7 +87,9 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const dialogue = ref(false);
 
 // Épingle actuelle
-const épingle = suivre(constl.variables.suivreÉpingleVariable, {idVariable: props.idVariable});
+const épingle = suivre(constl.variables.suivreÉpingleVariable, {
+  idVariable: computed(() => props.idVariable),
+});
 
 // Options
 const {

@@ -156,18 +156,24 @@ const infoSourceMotClef = sourceObjetConnexe('motClef');
 const infoSourceBdDirecte = sourceObjetConnexe('bd');
 
 // Nom
-const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.résultat.id});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: computed(() => props.résultat.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
-const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {idProjet: props.résultat.id});
+const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {
+  idProjet: computed(() => props.résultat.id),
+});
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursProjet, {idProjet: props.résultat.id});
+const auteurs = suivre(constl.réseau.suivreAuteursProjet, {
+  idProjet: computed(() => props.résultat.id),
+});
 
 // Image
-const imageProjet = suivre(constl.projets.suivreImage, {idProjet: props.résultat.id});
+const imageProjet = suivre(constl.projets.suivreImage, {
+  idProjet: computed(() => props.résultat.id),
+});
 const srcImgProjet = computed(() => {
   if (imageProjet.value) {
     return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));

@@ -137,7 +137,7 @@ const dialogue = ref(false);
 const optionsAvancées = ref(false);
 
 // Épingle actuelle
-const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idNuée: props.idNuee});
+const épingle = suivre(constl.nuées.suivreÉpingleNuée, {idNuée: computed(() => props.idNuee)});
 
 // Options
 const {

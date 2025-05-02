@@ -46,8 +46,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {utiliserConstellation} from '/@/components/utils';
 
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
-import {ajusterTexteTraductible} from '/@/utils';
 import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
+import {ajusterTexteTraductible} from '/@/utils';
+import { computed } from 'vue';
 
 const props = defineProps<{id: string}>();
 
@@ -57,7 +58,7 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Nom de la nuée
-const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id}, {});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: computed(() => props.id)}, {});
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -71,7 +72,11 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Descriptions nuée
-const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.id}, {});
+const descriptions = suivre(
+  constl.nuées.suivreDescriptionsNuée,
+  {idNuée: computed(() => props.id)},
+  {},
+);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -88,7 +93,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: computed(() => props.id)});
 
 // Effacer
 const effacerNuée = async () => {

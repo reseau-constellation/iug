@@ -187,6 +187,7 @@
 
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
+import {computed} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
@@ -223,10 +224,10 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const {obtImageDéco} = utiliserImagesDéco();
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 
 // Nom bd
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id}, {});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: computed(() => props.id)}, {});
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -240,7 +241,7 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Descriptions bd
-const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: props.id}, {});
+const descriptions = suivre(constl.bds.suivreDescriptionsBd, {idBd: computed(() => props.id)}, {});
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -257,15 +258,15 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Image
-const image = sourceImage(suivre(constl.bds.suivreImage, {idBd: props.id}));
+const image = sourceImage(suivre(constl.bds.suivreImage, {idBd: computed(() => props.id)}));
 const imageDéfaut = obtImageDéco('logoBD');
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursBd, {idBd: computed(() => props.id)});
 
 // Licence
-const licence = suivre(constl.bds.suivreLicenceBd, {idBd: props.id});
-const licenceContenu = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.id});
+const licence = suivre(constl.bds.suivreLicenceBd, {idBd: computed(() => props.id)});
+const licenceContenu = suivre(constl.bds.suivreLicenceContenuBd, {idBd: computed(() => props.id)});
 const changerLicence = async ({
   licence: nouvelleLicence,
   licenceContenu: nouvelleLicenceContenu,
@@ -280,10 +281,10 @@ const changerLicence = async ({
 };
 
 // Variables
-const variables = suivre(constl.bds.suivreVariablesBd, {idBd: props.id});
+const variables = suivre(constl.bds.suivreVariablesBd, {idBd: computed(() => props.id)});
 
 // Mots-clefs
-const motsClefs = suivre(constl.bds.suivreMotsClefsBd, {idBd: props.id});
+const motsClefs = suivre(constl.bds.suivreMotsClefsBd, {idBd: computed(() => props.id)});
 const sauvegarderMotsClefs = async (àJour: string[]) => {
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
@@ -295,7 +296,7 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 };
 
 // Tableaux
-const tableaux = suivre(constl.bds.suivreTableauxBd, {idBd: props.id});
+const tableaux = suivre(constl.bds.suivreTableauxBd, {idBd: computed(() => props.id)});
 
 // Effacer
 const effacerBd = async () => {

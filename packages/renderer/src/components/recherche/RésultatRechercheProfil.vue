@@ -76,6 +76,6 @@ const infoSourceContact = sourceDirecte('contact');
 const infoSourceId = sourceDirecte('id');
 
 // Nom
-const noms = suivre(constl.profil.suivreNoms, {idCompte: props.résultat.id});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: computed(() => props.résultat.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 </script>

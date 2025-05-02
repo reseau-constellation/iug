@@ -96,23 +96,25 @@ const constl = utiliserConstellation();
 const props = defineProps<{idNuee: string; idTableau: string; clefTableau: string}>();
 
 // Autorisation
-const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
+const autorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
 
 // Variables
-const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau}); // à faire: .nuées.
+const variables = suivre(constl.tableaux.suivreVariables, {
+  idTableau: computed(() => props.idTableau),
+}); // à faire: .nuées.
 
 // Règles
 const règles = suivre(constl.nuées.suivreRèglesTableauNuée, {
-  idNuée: props.idNuee,
-  clefTableau: props.clefTableau,
+  idNuée: computed(() => props.idNuee),
+  clefTableau: computed(() => props.clefTableau),
 });
 
 // Données
 const {résultats: données} = rechercher(
   constl.nuées.suivreDonnéesTableauNuée<tableaux.élémentBdListeDonnées>,
   {
-    idNuée: props.idNuee,
-    clefTableau: props.clefTableau,
+    idNuée: computed(() => props.idNuee),
+    clefTableau: computed(() => props.clefTableau),
   },
 );
 const donnéesAvecCompte = computed(() => {
@@ -153,13 +155,13 @@ const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
 
 // Colonnes
 const colonnes = suivre(constl.nuées.suivreColonnesTableauNuée, {
-  idNuée: props.idNuee,
-  clefTableau: props.clefTableau,
+  idNuée: computed(() => props.idNuee),
+  clefTableau: computed(() => props.clefTableau),
 });
 
 const colonnesAvecCatégories = suivre(constl.nuées.suivreColonnesEtCatégoriesTableauNuée, {
-  idNuée: props.idNuee,
-  clefTableau: props.clefTableau,
+  idNuée: computed(() => props.idNuee),
+  clefTableau: computed(() => props.clefTableau),
 });
 
 const colonnesVariables = computed(() => {

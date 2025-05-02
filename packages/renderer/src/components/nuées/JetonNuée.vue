@@ -27,11 +27,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Image
-const imageNuée = suivre(constl.nuées.suivreImage, {idNuée: props.id});
+const imageNuée = suivre(constl.nuées.suivreImage, {idNuée: computed(() => props.id)});
 const srcImgNuée = computed(() => {
   if (imageNuée.value) {
     return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));

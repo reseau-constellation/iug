@@ -62,8 +62,8 @@ const idColonne = computed(() => props.erreur.règle.règle.règle.détails.colo
 
 // Autorisation
 const monAutorisation = utiliserMonAutorisationRègleSourceErreur({
-  erreur: props.erreur,
-  idTableau: props.idTableau,
+  erreur: computed(() => props.erreur),
+  idTableau: computed(() => props.idTableau),
 });
 
 // Actions

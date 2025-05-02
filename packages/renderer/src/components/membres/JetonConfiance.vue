@@ -82,7 +82,7 @@ const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
 const {résultats: confiance} = rechercher(constl.réseau.suivreConfianceMonRéseauPourMembre, {
-  idCompte: props.id,
+  idCompte: computed(() => props.id),
   profondeur: 5,
 });
 

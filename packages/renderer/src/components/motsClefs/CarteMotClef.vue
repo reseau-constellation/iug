@@ -35,16 +35,17 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
-import EpinglerMotClef from '/@/components/épingles/ÉpinglerMotClef.vue';
 import {utiliserConstellation} from '/@/components/utils';
+import EpinglerMotClef from '/@/components/épingles/ÉpinglerMotClef.vue';
 import {ajusterTexteTraductible} from '/@/utils';
+import { computed } from 'vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = utiliserConstellation();
 
 // Nom mot-clef
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id}, {});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: computed(() => props.id)}, {});
 
 const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -64,7 +65,11 @@ const ajusterNoms = async (nouveauxNoms: {[langue: string]: string}) => {
 };
 
 // Descriptions mot-clef
-const descriptions = suivre(constl.motsClefs.suivreDescriptionsMotClef, {idMotClef: props.id}, {});
+const descriptions = suivre(
+  constl.motsClefs.suivreDescriptionsMotClef,
+  {idMotClef: computed(() => props.id)},
+  {},
+);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -85,7 +90,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 
 // Auteurs
 const auteurs = suivre(constl.réseau.suivreAuteursMotClef, {
-  idMotClef: props.id,
+  idMotClef: computed(() => props.id),
 });
 
 // Effacer

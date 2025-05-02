@@ -21,7 +21,7 @@ const props = defineProps<{id: string}>();
 const constl = utiliserConstellation();
 
 // Qualité BD
-const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.id});
+const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: computed(() => props.id)});
 const score = computed(() => {
   return qualité.value?.total;
 });

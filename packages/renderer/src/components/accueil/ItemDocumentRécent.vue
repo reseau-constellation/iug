@@ -45,12 +45,12 @@ const {obtImageDéco} = utiliserImagesDéco();
 const constl = utiliserConstellation();
 
 // Solution temporaire pour Constellation qui ne sait pas de quel type est l'objet
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.id});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const historiqueDocuments = utiliserHistoriqueDocuments();
 
-const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: props.id});
+const typeObjet = suivre(constl.suivreTypeObjet, {idObjet: computed(() => props.id)});
 const icôneTypeItem = computed(() => {
   const icône = icôneObjet(typeObjet.value);
   return icône || 'mdi-file-document-outline';
@@ -60,7 +60,7 @@ const sansNom = computed(() => {
 });
 
 // À faire : différencier par type d'objet
-const image = suivre(constl.bds.suivreImage, {idBd: props.id});
+const image = suivre(constl.bds.suivreImage, {idBd: computed(() => props.id)});
 const srcImg = computed(() => {
   if (image.value) {
     return URL.createObjectURL(new Blob([image.value], {type: 'image'}));
@@ -70,7 +70,7 @@ const srcImg = computed(() => {
 });
 const imgDéfaut = obtImageDéco('logoBD');
 
-const {texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.a, t});
+const {texte: texteVuIlYA} = utiliserIlYA({vuÀ: computed(() => props.a), t});
 
 const effacerDeLHistorique = () => historiqueDocuments.effacer({id: props.id});
 </script>

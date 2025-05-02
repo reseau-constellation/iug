@@ -72,7 +72,7 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 
 // Statut
-const statut = suivre(constl.bds.suivreStatutBd, {idBd: props.idBd});
+const statut = suivre(constl.bds.suivreStatutBd, {idBd: computed(() => props.idBd)});
 const statutChoisi = ref<types.schémaStatut>();
 watchEffect(() => {
   statutChoisi.value = statut.value;

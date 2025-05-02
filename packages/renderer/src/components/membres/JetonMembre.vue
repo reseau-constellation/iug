@@ -49,7 +49,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.profil.suivreNoms, {idCompte: props.compte});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: computed(() => props.compte)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Mon compte
@@ -57,7 +57,7 @@ const monCompte = suivre(constl.suivreIdCompte);
 
 // Confiance
 const {résultats: confiance} = rechercher(constl.réseau.suivreConfianceMonRéseauPourMembre, {
-  idCompte: props.compte,
+  idCompte: computed(() => props.compte),
   profondeur: 5,
 });
 

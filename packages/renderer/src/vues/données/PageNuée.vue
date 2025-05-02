@@ -604,7 +604,7 @@ const petitPousset = computed<{title: string; href?: string; disabled?: boolean}
 // Nom de la nuée
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: props.id});
+const noms = suivre(constl.nuées.suivreNomsNuée, {idNuée: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
@@ -619,7 +619,9 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Description de la nuée
-const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {idNuée: props.id});
+const descriptions = suivre(constl.nuées.suivreDescriptionsNuée, {
+  idNuée: computed(() => props.id),
+});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
@@ -637,7 +639,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Image
-const image = sourceImage(suivre(constl.nuées.suivreImage, {idNuée: props.id}));
+const image = sourceImage(suivre(constl.nuées.suivreImage, {idNuée: computed(() => props.id)}));
 
 const imgDéfaut = obtImageDéco('logoBD');
 
@@ -656,16 +658,16 @@ const modifierImage = async (image?: {contenu: ArrayBuffer; fichier: string}) =>
 const imageVide = obtImageDéco('vide');
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursNuée, {idNuée: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursNuée, {idNuée: computed(() => props.id)});
 
 // Variables
-const variables = suivre(constl.nuées.suivreVariablesNuée, {idNuée: props.id});
+const variables = suivre(constl.nuées.suivreVariablesNuée, {idNuée: computed(() => props.id)});
 
 // Mots-clefs
-const motsClefs = suivre(constl.nuées.suivreMotsClefsNuée, {idNuée: props.id});
+const motsClefs = suivre(constl.nuées.suivreMotsClefsNuée, {idNuée: computed(() => props.id)});
 const sauvegarderMotsClefs = async (àJour: string[]) => {
   const nouveaux = àJour.filter(m => !motsClefs.value?.includes(m));
   const àEnlever = motsClefs.value?.filter(m => !àJour.includes(m)) || [];
@@ -679,7 +681,7 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 };
 
 // Statut
-const statut = suivre(constl.nuées.suivreStatutNuée, {idNuée: props.id});
+const statut = suivre(constl.nuées.suivreStatutNuée, {idNuée: computed(() => props.id)});
 
 /*
 const estApprouvable = computed(()=>{})
@@ -689,7 +691,7 @@ const activerApprouvable = async () => {
 */
 
 // Tableaux
-const tableaux = suivre(constl.nuées.suivreTableauxNuée, {idNuée: props.id});
+const tableaux = suivre(constl.nuées.suivreTableauxNuée, {idNuée: computed(() => props.id)});
 const tableauxOrdonnés = computed(() => {
   if (!tableaux.value) return;
   return [...tableaux.value].sort((a, b) => (a.id > b.id ? -1 : 1));

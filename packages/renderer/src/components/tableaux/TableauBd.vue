@@ -337,13 +337,17 @@ const constl = utiliserConstellation();
 const props = defineProps<{idTableau: string; idBd: string}>();
 
 // Autorisation
-const autorisation = suivre(constl.suivrePermission, {idObjet: props.idTableau});
+const autorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
 
 // Noms
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
+const noms = suivre(constl.tableaux.suivreNomsTableau, {
+  idTableau: computed(() => props.idTableau),
+});
 
 // Variables
-const variables = suivre(constl.tableaux.suivreVariables, {idTableau: props.idTableau});
+const variables = suivre(constl.tableaux.suivreVariables, {
+  idTableau: computed(() => props.idTableau),
+});
 
 // Colonnes
 const colonnes = suivre(constl.tableaux.suivreColonnesTableau, {
@@ -448,7 +452,7 @@ const effacerColonne = async ({idColonne}: {idColonne: string}) => {
 
 // Données
 const données = suivre(constl.tableaux.suivreDonnées<tableaux.élémentBdListeDonnées>, {
-  idTableau: props.idTableau,
+  idTableau: computed(() => props.idTableau),
 });
 const filesTableau = computed(() => {
   const ordonnées = données.value?.toSorted((a, b) => {
@@ -489,7 +493,7 @@ const ordonnerPar = ref<{key: string; order: 'asc' | 'desc'}[]>();
 const sélectionnées = ref<string[]>([]);
 
 // Règles
-const règles = suivre(constl.tableaux.suivreRègles, {idTableau: props.idTableau});
+const règles = suivre(constl.tableaux.suivreRègles, {idTableau: computed(() => props.idTableau)});
 
 // Modification valeurs
 const édition = ref(false);

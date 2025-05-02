@@ -33,6 +33,7 @@ import {utiliserConstellation} from '../utils';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import {ajusterTexteTraductible} from '/@/utils';
+import { computed } from 'vue';
 
 const props = defineProps<{id: string; clef: string}>();
 
@@ -43,7 +44,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = utiliserConstellation();
 
 // Noms
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.id}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
+const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: computed(() => props.id)}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 const changerNoms = async (nms: {[langue: string]: string}) => {
@@ -55,5 +56,5 @@ const changerNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 </script>

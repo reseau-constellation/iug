@@ -53,15 +53,17 @@ const constl = utiliserConstellation();
 // Nom du projet
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Description du projet
-const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {idProjet: props.id});
+const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {
+  idProjet: computed(() => props.id),
+});
 const descrTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Image
-const imageProjet = suivre(constl.projets.suivreImage, {idProjet: props.id});
+const imageProjet = suivre(constl.projets.suivreImage, {idProjet: computed(() => props.id)});
 const srcImgProjet = computed(() => {
   if (imageProjet.value) {
     return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));
@@ -74,5 +76,5 @@ const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
 
 // Bds
-const bds = suivre(constl.projets.suivreBdsProjet, {idProjet: props.id});
+const bds = suivre(constl.projets.suivreBdsProjet, {idProjet: computed(() => props.id)});
 </script>

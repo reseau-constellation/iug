@@ -24,10 +24,10 @@ const {மொழியாக்கம்_பயன்படுத்து} = �
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 
 // Statut favoris
-const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
+const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: computed(() => props.id)});
 
 const estÉpingléSurCeDispositif = suivre(constl.favoris.suivreEstÉpingléSurDispositif, {
-  idObjet: props.id,
+  idObjet: computed(() => props.id),
 });
 
 const icône = computed(() => {

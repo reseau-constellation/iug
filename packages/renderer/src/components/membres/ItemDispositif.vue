@@ -51,8 +51,8 @@ const constl = utiliserConstellation();
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
-  idDispositif: props.idDispositif,
-  idCompte: props.idCompte,
+  idDispositif: computed(() => props.idDispositif),
+  idCompte: computed(() => props.idCompte),
 });
 
 // Icône
@@ -61,7 +61,7 @@ const icôneDispositif = computed(() => {
 });
 
 // Activité
-const {ilYAMs: vuIlYA, texte: texteVuIlYA} = utiliserIlYA({vuÀ: props.vuA, t});
+const {ilYAMs: vuIlYA, texte: texteVuIlYA} = utiliserIlYA({vuÀ: computed(() => props.vuA), t});
 const ceDispositif = ref<string>();
 onMounted(async () => {
   ceDispositif.value = await constl.obtIdDispositif();

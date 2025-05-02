@@ -34,7 +34,7 @@
           v-model="valeur"
           variant="outlined"
           :label="t('membres.nouvelleInfoContact.valeur')"
-          :prepend-inner-icon="type ? obtIcôneContact({type}) : undefined"
+          :prepend-inner-icon="icône"
         >
         </v-text-field>
       </v-card-text>
@@ -89,6 +89,9 @@ const sauvegardeEnCours = ref(false);
 watchEffect(() => {
   valeur.value = props.valeurAvant;
 });
+
+// Icône
+const icône = obtIcôneContact({type: props.type});
 
 // Contrôles
 const valeurEtTypeFinaux = computed<{valeur: string; type: string} | undefined>(() => {

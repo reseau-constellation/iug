@@ -23,8 +23,8 @@ const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
 // Info dispositif
 const {nomDispositif, typeDispositif} = utiliserNomEtTypeDispositif({
-  idDispositif: props.idDispositif,
-  idCompte: props.idCompte,
+  idDispositif: computed(() => props.idDispositif),
+  idCompte: computed(() => props.idCompte),
 });
 
 // Icône

@@ -130,7 +130,7 @@ const dialogue = ref(false);
 const optionsAvancées = ref(false);
 
 // Épingle actuelle
-const épingle = suivre(constl.bds.suivreÉpingleBd, {idBd: props.idBd});
+const épingle = suivre(constl.bds.suivreÉpingleBd, {idBd: computed(() => props.idBd)});
 
 // Options
 const {

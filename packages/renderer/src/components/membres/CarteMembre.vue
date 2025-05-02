@@ -200,7 +200,7 @@
 
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
@@ -236,21 +236,23 @@ const dialogue = ref(false);
 // Nom
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.profil.suivreNoms, {idCompte: props.id});
+const noms = suivre(constl.profil.suivreNoms, {idCompte: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Contacts
-const contacts = suivre(constl.profil.suivreContacts, {idCompte: props.id});
+const contacts = suivre(constl.profil.suivreContacts, {idCompte: computed(() => props.id)});
 
 // Dispositifs
-const dispositifsMembre = suivre(constl.suivreDispositifs, {idCompte: props.id});
+const dispositifsMembre = suivre(constl.suivreDispositifs, {idCompte: computed(() => props.id)});
 
 // Bds
-const bdsMembre = suivre(constl.réseau.suivreBdsMembre, {idCompte: props.id});
+const bdsMembre = suivre(constl.réseau.suivreBdsMembre, {idCompte: computed(() => props.id)});
 
 // Projets
-const projetsMembre = suivre(constl.réseau.suivreProjetsMembre, {idCompte: props.id});
+const projetsMembre = suivre(constl.réseau.suivreProjetsMembre, {
+  idCompte: computed(() => props.id),
+});
 
 // Nuées
-const nuéesMembre = suivre(constl.réseau.suivreNuéesMembre, {idCompte: props.id});
+const nuéesMembre = suivre(constl.réseau.suivreNuéesMembre, {idCompte: computed(() => props.id)});
 </script>

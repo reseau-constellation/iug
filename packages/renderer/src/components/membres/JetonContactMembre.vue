@@ -12,15 +12,14 @@
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 
-import {obtIcôneContact} from './utils';
+import {utiliserIcôneContact} from './utils';
 
 const props = defineProps<{type: string; contact: string}>();
 
 const {எண்_எழுத்து_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const icône = computed(() => {
-  return obtIcôneContact({type: props.type});
-});
+const icône = utiliserIcôneContact({type: props.type});
+
 const numéroFormatté = எண்_எழுத்து_வடிவூட்டு(props.contact);
 const contactFormatté = computed(() => {
   switch (props.type) {

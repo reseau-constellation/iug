@@ -82,18 +82,24 @@ const infoSourceId = sourceDirecte('id');
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.résultat.id});
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {
+  idVariable: computed(() => props.résultat.id),
+});
 
 // Nom
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.résultat.id});
+const noms = suivre(constl.variables.suivreNomsVariable, {
+  idVariable: computed(() => props.résultat.id),
+});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Descriptions
 const descriptions = suivre(constl.variables.suivreDescriptionsVariable, {
-  idVariable: props.résultat.id,
+  idVariable: computed(() => props.résultat.id),
 });
 const descriptionTraduite = அகராதியிலிருந்து_மொழிபெயர்ப்பு(descriptions);
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursVariable, {idVariable: props.résultat.id});
+const auteurs = suivre(constl.réseau.suivreAuteursVariable, {
+  idVariable: computed(() => props.résultat.id),
+});
 </script>

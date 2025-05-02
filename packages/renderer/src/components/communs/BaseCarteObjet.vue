@@ -256,7 +256,7 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const dialogue = ref(false);
 
 // Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.id});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 
 // Nom
 const nom = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.noms));
@@ -265,7 +265,7 @@ const nom = அகராதியிலிருந்து_மொழிபெ�
 const description = அகராதியிலிருந்து_மொழிபெயர்ப்பு(computed(() => props.descriptions));
 
 // Épingles
-const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: props.id});
+const statutFavoris = suivre(constl.favoris.suivreÉtatFavori, {idObjet: computed(() => props.id)});
 const épinglé = computed(() => !!statutFavoris.value);
 
 // Effacer objet

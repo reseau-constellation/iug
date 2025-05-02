@@ -1,8 +1,14 @@
 import {suivre} from '@constl/vue';
-import {type ComputedRef, type Ref, computed, onMounted, onUnmounted, ref, unref} from 'vue';
+import type {ComputedRef, MaybeRef, Ref} from 'vue';
+import {computed, isRef, onMounted, onUnmounted, ref, unref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
+
+export const utiliserIcôneContact = ({type}: {type: MaybeRef<string>}): ComputedRef<string> => {
+  const réfType = isRef(type) ? type : ref(type);
+  return computed(()=> obtIcôneContact({type: réfType.value}));
+};
 
 export const obtIcôneContact = ({type}: {type: string}): string => {
   switch (type) {
@@ -102,7 +108,7 @@ export const utiliserIlYA = ({
     ilYALongtemps: 'membres.vu.ilYALongtemps',
   },
 }: {
-  vuÀ?: number;
+  vuÀ?: MaybeRef<number | undefined>;
   t: (
     clef: string,
     interpol?: {[clef: string]: unknown} | number | unknown[],
@@ -125,6 +131,7 @@ export const utiliserIlYA = ({
 } => {
   // Chronomètre
   const maintenant = ref(new Date().getTime());
+  const refVuÀ = isRef(vuÀ) ? vuÀ : ref(vuÀ);
   let oublierChronomètre: number | undefined;
   onMounted(() => {
     oublierChronomètre = window.setInterval(() => {
@@ -135,7 +142,7 @@ export const utiliserIlYA = ({
     if (oublierChronomètre) clearInterval(oublierChronomètre);
   });
   const ilYA = computed(() => {
-    return vuÀ ? maintenant.value - vuÀ : undefined;
+    return refVuÀ.value ? maintenant.value - refVuÀ.value : undefined;
   });
 
   const info = computed(() => {

@@ -30,7 +30,7 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 
 // Réplications
 const {résultats: réplications} = rechercher(constl.réseau.suivreRéplications, {
-  idObjet: props.id,
+  idObjet: computed(() => props.id),
   profondeur: 5,
 });
 const nRéplicationsDispositifs = computed(() => {

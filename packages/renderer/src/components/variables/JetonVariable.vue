@@ -31,9 +31,11 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const icône = computed(() =>
   catégorie.value ? icôneCatégorieVariable(catégorie.value) : 'mdi-variable',
 );
-const catégorie = suivre(constl.variables.suivreCatégorieVariable, {idVariable: props.id});
+const catégorie = suivre(constl.variables.suivreCatégorieVariable, {
+  idVariable: computed(() => props.id),
+});
 
 // Nom
-const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: props.id});
+const noms = suivre(constl.variables.suivreNomsVariable, {idVariable: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 </script>

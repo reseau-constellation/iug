@@ -67,7 +67,9 @@ const {அகராதியிலிருந்து_மொழிபெயர
 const constl = utiliserConstellation();
 
 // Nom de ce tableau
-const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {idTableau: props.idTableau});
+const nomsTableau = suivre(constl.tableaux.suivreNomsTableau, {
+  idTableau: computed(() => props.idTableau),
+});
 const nomTableau = அகராதியிலிருந்து_மொழிபெயர்ப்பு(nomsTableau);
 
 // Nom variable référence
@@ -81,8 +83,8 @@ const nomVariable = அகராதியிலிருந்து_மொழ�
 
 // Autorisation
 const monAutorisation = utiliserMonAutorisationRègleSourceErreur({
-  erreur: props.erreur,
-  idTableau: props.idTableau,
+  erreur: computed(() => props.erreur),
+  idTableau: computed(() => props.idTableau),
 });
 
 // Actions

@@ -117,7 +117,7 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
@@ -137,12 +137,14 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 
 // Qualité
-const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: props.idBd});
+const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: computed(() => props.idBd)});
 
 // Licence
-const licenceBd = suivre(constl.bds.suivreLicenceBd, {idBd: props.idBd});
-const licenceContenuBd = suivre(constl.bds.suivreLicenceContenuBd, {idBd: props.idBd});
+const licenceBd = suivre(constl.bds.suivreLicenceBd, {idBd: computed(() => props.idBd)});
+const licenceContenuBd = suivre(constl.bds.suivreLicenceContenuBd, {
+  idBd: computed(() => props.idBd),
+});
 
 // Permissions
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: props.idBd});
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idBd)});
 </script>

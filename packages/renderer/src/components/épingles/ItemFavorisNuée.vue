@@ -68,12 +68,12 @@ import type {favoris} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {ref, watchEffect} from 'vue';
+import {computed, ref, watchEffect} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
+import CarteNuee from '../nuées/CarteNuée.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import JetonPartEpingle from './JetonPartÉpingle.vue';
 import EpinglerNuee from './ÉpinglerNuée.vue';
-import CarteNuee from '../nuées/CarteNuée.vue';
 
 const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.ÉpingleNuée>}>();
 
@@ -85,7 +85,9 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 const constl = utiliserConstellation();
 
 // Noms objet
-const noms = suivre(constl.motsClefs.suivreNomsMotClef, {idMotClef: props.epingle.idObjet});
+const noms = suivre(constl.motsClefs.suivreNomsMotClef, {
+  idMotClef: computed(() => props.epingle.idObjet),
+});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Type objet

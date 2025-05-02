@@ -34,15 +34,16 @@ import {suivre} from '@constl/vue';
 
 import BaseCarteObjet from '../communs/BaseCarteObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
-import {ajusterTexteTraductible} from '/@/utils';
 import EpinglerProjet from '/@/components/épingles/ÉpinglerProjet.vue';
+import {ajusterTexteTraductible} from '/@/utils';
+import { computed } from 'vue';
 
 const props = defineProps<{id: string}>();
 
 const constl = utiliserConstellation();
 
 // Nom projet
-const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: props.id}, {});
+const noms = suivre(constl.projets.suivreNomsProjet, {idProjet: computed(() => props.id)}, {});
 const ajusterNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
   for (const langue of àEffacer) {
@@ -55,7 +56,11 @@ const ajusterNoms = async (nms: {[langue: string]: string}) => {
 };
 
 // Descriptions projet
-const descriptions = suivre(constl.projets.suivreDescriptionsProjet, {idProjet: props.id}, {});
+const descriptions = suivre(
+  constl.projets.suivreDescriptionsProjet,
+  {idProjet: computed(() => props.id)},
+  {},
+);
 
 const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({
@@ -72,7 +77,7 @@ const ajusterDescriptions = async (descrs: {[langue: string]: string}) => {
 };
 
 // Auteurs
-const auteurs = suivre(constl.réseau.suivreAuteursProjet, {idProjet: props.id});
+const auteurs = suivre(constl.réseau.suivreAuteursProjet, {idProjet: computed(() => props.id)});
 
 // Effacer
 const effacerProjet = async () => {

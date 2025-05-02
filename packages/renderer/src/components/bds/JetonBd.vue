@@ -29,11 +29,11 @@ const {$மொ: t} = மொழியாக்கம்_பயன்படுத�
 // Nom de la Bd
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const noms = suivre(constl.bds.suivreNomsBd, {idBd: props.id});
+const noms = suivre(constl.bds.suivreNomsBd, {idBd: computed(() => props.id)});
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
 
 // Image
-const imageBd = suivre(constl.bds.suivreImage, {idBd: props.id});
+const imageBd = suivre(constl.bds.suivreImage, {idBd: computed(() => props.id)});
 const srcImgBd = computed(() => {
   if (imageBd.value) {
     return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
