@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: encodeURI('/données/bd/:id'),
-    component: () => import('/@/vues/données/PageBD.vue'),
+    component: () => import('/@/vues/données/PageBd.vue'),
     props: route => {
       const {id} = route.params;
       if (typeof id === 'string') return {id: decodeURIComponent(id)};
