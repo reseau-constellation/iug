@@ -8,7 +8,7 @@
     </template>
     <v-card
       class="mx-auto"
-      :min-width="mdAndUp ? 500 : 300"
+      :max-width="mdAndUp ? 600 : 300"
     >
       <v-card-item>
         <v-card-title class="d-flex">
@@ -21,6 +21,7 @@
             @click="dialogue = false"
           />
         </v-card-title>
+        <v-divider />
       </v-card-item>
       <v-card-text style="overflow-y: scroll">
         <vue-markdown

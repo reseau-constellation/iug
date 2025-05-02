@@ -199,16 +199,18 @@
               <span class="text-caption text-grey">{{
                 t('accueil.initialiserCompte.sousTitreBienvenu')
               }}</span>
-              <v-checkbox
-                v-model="état.acceptées"
-                color="primary"
-                hide-details
-                readonly
-              >
-                <template #label>
-                  <conditions-utilisation>
-                    <template #activator="{props: propsActivateur}">
-                      <div v-bind="propsActivateur">
+              
+              <conditions-utilisation>
+                <template #activator="{props: propsActivateur}">
+                  <v-checkbox
+                    v-bind="propsActivateur"
+                    v-model="état.acceptées"
+                    color="primary"
+                    hide-details
+                    readonly
+                  >
+                    <template #label>
+                      <div>
                         {{ t('conditions.jaccepte') }}
                         <v-icon
                           end
@@ -217,9 +219,9 @@
                         />
                       </div>
                     </template>
-                  </conditions-utilisation>
+                  </v-checkbox>
                 </template>
-              </v-checkbox>
+              </conditions-utilisation>
               <p>
                 <v-btn
                   variant="outlined"
