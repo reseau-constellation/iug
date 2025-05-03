@@ -41,7 +41,7 @@
       class="mx-auto"
     >
       <v-card-item>
-        <v-card-title class="d-flex">{{ titre }} </v-card-title>
+        <v-card-title class="d-flex align-center">{{ titre }} </v-card-title>
         <v-card-subtitle>
           {{ sousTitre }}
         </v-card-subtitle>

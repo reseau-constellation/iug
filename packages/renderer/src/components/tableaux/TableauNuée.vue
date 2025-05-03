@@ -72,6 +72,13 @@
         :editable="false"
       />
     </template>
+
+    <template #[`header.idCompte`]>
+      {{ t('nuées.tableaux.contributeur') }}
+    </template>
+    <template #[`item.idCompte`]="{item}">
+      <jeton-membre :compte="item.idCompte" />
+    </template>
   </v-data-table>
 </template>
 <script setup lang="ts">
@@ -84,6 +91,7 @@ import CelluleTableau from './cellules/CelluleTableau.vue';
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import JetonMembre from '/@/components/membres/JetonMembre.vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {triable} from './utils';
@@ -182,9 +190,9 @@ const colonnesVariables = computed(() => {
 });
 
 const entêtes = computed(() => {
-  return (colonnes.value || []).map(c => ({
+  return [...(colonnes.value || []).map(c => ({
     key: c.id,
-  }));
+  })), { key: 'idCompte' }];
 });
 
 const ajouterColonne = async ({

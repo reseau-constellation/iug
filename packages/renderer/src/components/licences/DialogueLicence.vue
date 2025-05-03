@@ -12,7 +12,7 @@
     </template>
 
     <v-card>
-      <v-card-title class="d-flex text-h5">
+      <v-card-title class="d-flex align-center text-h5">
         {{ t('licences.carte.titre') }}
         <v-spacer />
         <v-btn
@@ -49,7 +49,7 @@
             scrollable
             max-width="500"
           >
-            <v-card-title class="d-flex text-h5">
+            <v-card-title class="d-flex align-center text-h5">
               {{ t('licences.carte.titre') }}
               <v-spacer />
               <v-btn

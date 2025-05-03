@@ -11,7 +11,7 @@
       :max-width="mdAndUp ? 600 : 300"
     >
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           {{ t('conditions.entête') }}
           <v-spacer />
           <v-btn

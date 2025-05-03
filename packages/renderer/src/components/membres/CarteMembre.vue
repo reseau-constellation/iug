@@ -11,7 +11,7 @@
     </template>
     <v-card>
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           <ImageProfil :id="id" />
           <span class="mx-4">{{ nomTraduit || t('membres.anonyme') }}</span>
           <JetonConfiance

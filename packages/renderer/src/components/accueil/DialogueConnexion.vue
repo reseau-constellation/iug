@@ -13,7 +13,7 @@
       max-height="90%"
     >
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           {{ t('accueil.page.connectivité.réseau.connexion.titre') }}
           <v-spacer />
           <v-btn

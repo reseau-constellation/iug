@@ -11,7 +11,7 @@
     </template>
     <v-card>
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           <span class="text-error">
             {{ titre || t('effacer.titre') }}
           </span>

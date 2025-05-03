@@ -11,7 +11,7 @@
       :width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           {{ t('ennikkai.nouvelle.titre') }}
           <v-spacer />
           <v-btn

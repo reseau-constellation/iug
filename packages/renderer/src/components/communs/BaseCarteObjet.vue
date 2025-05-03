@@ -11,7 +11,7 @@
       class="mx-auto"
     >
       <v-card-item>
-        <v-card-title class="d-flex">
+        <v-card-title class="d-flex align-center">
           <v-avatar
             v-if="icone"
             class="mx-2"
