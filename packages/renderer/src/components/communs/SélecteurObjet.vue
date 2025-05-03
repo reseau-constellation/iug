@@ -1,5 +1,6 @@
 <template>
   <v-menu
+    v-model="menu"
     location="bottom"
     transition="slide-y-transition"
   >
@@ -99,6 +100,9 @@ const émettre = defineEmits<{
   (é: 'requete-modifiee', requête: string): void;
 }>();
 
+// Menu
+const menu = ref(false);
+
 // Sélection
 const idsSélectionnés = ref<string[]>(props.originaux || []);
 watchEffect(() => {
@@ -124,6 +128,7 @@ const sélectionner = ({id}: {id: string}) => {
     idsSélectionnés.value = [id];
   }
   requête.value = '';
+  menu.value = false;
 };
 const désélectionner = ({id}: {id: string}) => {
   idsSélectionnés.value = idsSélectionnés.value.filter(mc => mc !== id);
