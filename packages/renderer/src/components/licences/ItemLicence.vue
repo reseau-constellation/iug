@@ -30,7 +30,7 @@ const props = defineProps<{licence: string | undefined}>();
 // Info licence
 const infoLicences = suivre(constl.licences.suivreLicences);
 const licenceApprouvée = computed(() => {
-  return (
+  return !!(
     props.licence && infoLicences.value && Object.keys(infoLicences.value).includes(props.licence)
   );
 });
