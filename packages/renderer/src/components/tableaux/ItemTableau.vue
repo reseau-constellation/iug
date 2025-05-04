@@ -17,6 +17,7 @@
               v-bind="propsActivateur"
               :id="idVariable"
               size="small"
+              class="me-1 mb-1"
             />
           </template>
         </carte-variable>

@@ -635,7 +635,17 @@
         "nePlusConfirmerEffacer": "Ne plus me demander confirmation"
       },
       "colonnes": {
-        "indiceIndex": "Une colonne indexe ne peut avoir de valeurs dupliquées (p.ex., identifiant unique)."
+        "indiceIndex": "Une colonne indexe ne peut avoir de valeurs dupliquées (p.ex., identifiant unique).",
+        "sélecteur": {
+          "titreTableau": "Choisir un tableau",
+          "sousTitreTableau": "Sélectionner la base de données et le tableau",
+          "titreColonne": "Choisir une colonne",
+          "sousTitreColonne": "Sélectionner parmi les colonnes du tableau",
+          "choixColonne": "Sélectionner la colonne"
+        }
+      },
+      "sélecteur": {
+        "étiquette": "Recherche un tableau"
       }
     },
     "nuées": {
@@ -786,11 +796,25 @@
         "sousTitreBorneFixeOuDynamique": "Les bornes peuvent être fixes ou dynamiques",
         "titreValeurBorne": "Spécifier les bornes",
         "sousTitreValeurBorne": "Choisir les limites de la variable",
+        "titreCatégorieFixeOuDynamique": "Choisir le type de catégorie",
+        "sousTitreCatégorieFixeOuDynamique": "Les catégories dynamiques dépendent d'une autre variable",
+        "titreValeurCatégorie": "Catégories permises",
+        "sousTitreValeurCatégorie": "Spécifier les valeurs permises",
         "borneFixe": "Borne fixe",
+        "indiceBorneFixe": "Limites selon une borne fixe",
         "borneDynamiqueVariable": "Borne dynamique variable",
+        "indiceBorneDynamiqueVariable": "Limites relatives à une autre variable",
         "borneDynamiqueColonne": "Borne dynamique colonne",
+        "indiceBorneDynamiqueColonne": "Limites relatives à une autre colonne",
         "opBorne": "Opérateur",
         "valBorneFixe": "Valeur",
+        "valBorneDynamiqueColonne": "Colonne référence",
+        "aucuneAutreColonne": "Aucune autre colonne disponible",
+        "catégoriesFixes": "Catégories fixes",
+        "indiceCatégoriesFixes": "Spécifier un liste de valeurs permises",
+        "catégoriesDynamiques": "Catégories dynamiques",
+        "indiceCatégoriesDynamiques": "Spécifier une colonne contenant les valeurs permises",
+        "choisirColonne": "Choisir colonne",
         "titreConfirmer": "Confirmation",
         "sousTitreConfirmer": "Confirmer la création de la règle",
         "confirmer": "Créer règle"
@@ -799,7 +823,7 @@
         "catégorie": "Cette variable doit être de type {categorie}",
         "existe": "Cette variable ne doit pas contenir de valeurs manquantes",
         "bornes": "Cette variable doit être {op} que {val}",
-        "valeurCatégorique": "Valeurs limités selon liste pré-définie"
+        "valeurCatégorique": "Valeurs limitées selon liste pré-définie"
       },
       "source": {
         "tableau": "Règle spécifiée dans le tableau",

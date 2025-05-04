@@ -55,15 +55,20 @@
             <v-list>
               <v-list-item @click="() => utiliserBorne('fixe')">
                 {{ t('règles.nouvelle.borneFixe') }}
+                <p class="text-disabled"> {{ t('règles.nouvelle.indiceBorneFixe') }}</p>
               </v-list-item>
               <v-list-item @click="() => utiliserBorne('dynamiqueVariable')">
                 {{ t('règles.nouvelle.borneDynamiqueVariable') }}
+                <p class="text-disabled">
+                  {{ t('règles.nouvelle.indiceBorneDynamiqueVariable') }}
+                </p>
               </v-list-item>
               <v-list-item
                 v-if="idTableauPourRègle"
                 @click="() => utiliserBorne('dynamiqueColonne')"
               >
                 {{ t('règles.nouvelle.borneDynamiqueColonne') }}
+                <p class="text-disabled"> {{ t('règles.nouvelle.indiceBorneDynamiqueColonne') }}</p>
               </v-list-item>
             </v-list>
           </v-window-item>
@@ -87,38 +92,43 @@
               :interdites="source.idVariable ? [source.idVariable] : undefined"
               @selectionnee="x => (valBorneDynamiqueVariable = x)"
             />
-            <SelecteurColonne
+            <v-select
               v-else-if="typeBornes === 'dynamiqueColonne'"
-              :id-tableau="idTableauPourRègle"
-              :tableau-changeable="false"
-              @selectionnee="x => (valBorneDynamiqueColonne = x.idColonne)"
+              v-model="choixColonneBorneDynamique"
+              :label="t('règles.nouvelle.valBorneDynamiqueColonne')"
+              :items="
+                colonnesTableau?.filter(c => source.type !== 'tableau' || c.id !== source.idColonne)
+              "
+              variant="outlined"
+              :no-data-text="t('règles.nouvelle.aucuneAutreColonne')"
             >
-              <template #activator="{props: propsActivateur}">
+              <template #item="{item, props: propsItem}">
                 <item-colonne-tableau
-                  v-if="infoColonneChoisie"
-                  v-bind="propsActivateur"
-                  :info="infoColonneChoisie"
+                  v-bind="
+                    Object.fromEntries(
+                      Object.entries(propsItem).filter(([clef, _val]) => clef !== 'title'),
+                    )
+                  "
+                  :info="item.raw"
                 />
-                <v-list-item
-                  v-else
-                  prepend-icon="mdi-table-column"
-                  v-bind="propsActivateur"
-                >
-                  {{ t('règles.nouvelle.choisirColonne') }}
-                </v-list-item>
               </template>
-            </SelecteurColonne>
+              <template #selection="{item}">
+                <jeton-colonne-tableau :info="item.raw" />
+              </template>
+            </v-select>
           </v-window-item>
           <v-window-item :value="3">
             <v-list>
               <v-list-item @click="() => utiliserCatégorie('fixe')">
                 {{ t('règles.nouvelle.catégoriesFixes') }}
+                <p class="text-disabled"> {{ t('règles.nouvelle.indiceCatégoriesFixes') }}</p>
               </v-list-item>
               <v-list-item
                 :disabled="!idTableauPourRègle"
                 @click="() => utiliserCatégorie('dynamique')"
               >
-                {{ t('règles.nouvelle.catégoriesDynamique') }}
+                {{ t('règles.nouvelle.catégoriesDynamiques') }}
+                <p class="text-disabled"> {{ t('règles.nouvelle.indiceCatégoriesDynamiques') }}</p>
               </v-list-item>
             </v-list>
           </v-window-item>
@@ -129,15 +139,29 @@
               multiple
               chips
               clearable
+              variant="outlined"
             />
             <SelecteurColonne
               v-else
-              :id-tableau="idTableauPourRègle"
               :tableau-changeable="true"
               @selectionnee="
                 x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})
               "
-            />
+            >
+              <template #activator="{props: propsActivateur}">
+                <item-colonne-tableau
+                  v-if="valCatégorieDynamique"
+                  v-bind="propsActivateur"
+                  :info="{id: valCatégorieDynamique.colonne, variable: idVariableColonneDynamique}"
+                />
+                <v-list-item
+                  v-else
+                  v-bind="propsActivateur"
+                  prepend-icon="mdi-table-column"
+                  :title="t('règles.nouvelle.choisirColonne')"
+                />
+              </template>
+            </SelecteurColonne>
           </v-window-item>
           <v-window-item :value="5">
             <v-divider />
@@ -174,7 +198,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import type {valid, variables} from '@constl/ipa';
+import type {tableaux, valid, variables} from '@constl/ipa';
 
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -183,6 +207,7 @@ import {மொழியாக்கத்தைப்_பயன்படுத�
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ItemColonneTableau from '/@/components/tableaux/ItemColonneTableau.vue';
+import JetonColonneTableau from '/@/components/tableaux/JetonColonneTableau.vue';
 import SelecteurColonne from '/@/components/tableaux/SélecteurColonne.vue';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
@@ -340,7 +365,7 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
       return {
         actif:
           typeCatégorie.value === 'fixe' ? !!valCatégorieFixe.value : !!valCatégorieDynamique.value,
-        visible: false,
+        visible: true,
       };
     case 'Confirmer':
       return {actif: false, visible: false};
@@ -381,18 +406,25 @@ const utiliserBorne = (type: 'dynamiqueColonne' | 'dynamiqueVariable' | 'fixe') 
 const opBorne = ref<valid.typeOp>();
 const valBorneFixe = ref<number>();
 const valBorneDynamiqueVariable = ref<string[]>();
-const valBorneDynamiqueColonne = ref<string>();
+const choixColonneBorneDynamique = ref<tableaux.InfoCol>();
+const valBorneDynamiqueColonne = computed(() => choixColonneBorneDynamique.value?.id);
 const colonnesTableau = suivre(constl.tableaux.suivreColonnesTableau, {
   idTableau: computed(() => (props.source.type === 'tableau' ? props.source.idTableau : undefined)),
 });
-const infoColonneChoisie = computed(() =>
-  colonnesTableau.value?.find(c => c.id === valBorneDynamiqueColonne.value),
-);
 
 // Règle catégorique
 const typeCatégorie = ref<'dynamique' | 'fixe'>();
 const valCatégorieFixe = ref<(string | number | boolean)[]>();
 const valCatégorieDynamique = ref<{tableau: string; colonne: string}>();
+
+const colonnesTableauCatégorieDynamique = suivre(constl.tableaux.suivreColonnesTableau, {
+  idTableau: computed(() => valCatégorieDynamique.value?.tableau),
+});
+const idVariableColonneDynamique = computed(() => {
+  return colonnesTableauCatégorieDynamique.value?.find(
+    c => c.id === valCatégorieDynamique.value?.colonne,
+  )?.variable;
+});
 
 const utiliserCatégorie = (type: 'dynamique' | 'fixe') => {
   typeCatégorie.value = type;

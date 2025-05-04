@@ -40,6 +40,7 @@
         :items="catégoriesBase"
         :label="t('variables.catégorie')"
         variant="outlined"
+        hide-details
       >
         <template #selection="{item}">
           <v-icon
@@ -59,10 +60,10 @@
           />
         </template>
       </v-select>
-      <v-checkbox
+      <!--<v-checkbox
         v-model="choixCatégorieListe"
         :label="t('variables.nouvelle.typeListe')"
-      />
+      />-->
     </span>
     <v-chip
       v-else-if="catégorie"

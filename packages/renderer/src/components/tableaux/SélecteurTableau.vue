@@ -12,9 +12,10 @@
       :loading="!tableaux"
       :disabled="!tableaux"
       :items="tableaux"
-      :label="t('tableaux.sélection.étiquette')"
+      :label="t('tableaux.sélecteur.étiquette')"
       item-value="id"
       variant="outlined"
+      hide-details
     >
       <template #selection="{item}">
         <jeton-tableau :id="item.value" />

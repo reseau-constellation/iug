@@ -11,8 +11,15 @@
       :max-width="mdAndUp ? 500 : 300"
     >
       <v-card-item>
-        <v-card-title class="text-h5 justify-space-between">
+        <v-card-title class="text-h5 justify-space-between align-center d-flex">
           <span>{{ t(titreCarte) }}</span>
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          />
         </v-card-title>
         <v-card-subtitle> {{ t(sousTitreCarte) }} </v-card-subtitle>
       </v-card-item>
@@ -33,9 +40,9 @@
           </v-window-item>
           <v-window-item :value="1">
             <v-select
-              v-model="idColonne"
+              v-model="choixColonne"
               :items="colonnesTableau"
-              :label="t('tableaux.colonnes.sélecteur.choixTableau')"
+              :label="t('tableaux.colonnes.sélecteur.choixColonne')"
               variant="outlined"
               class="mt-2"
             >
@@ -80,6 +87,8 @@ import {useDisplay} from 'vuetify';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
+import type {tableaux} from '@constl/ipa';
+import {watchEffect} from 'vue';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
@@ -99,7 +108,7 @@ const {mdAndUp} = useDisplay();
 
 // Navigation
 const dialogue = ref(false);
-const étape = ref(props.idTableau ? 1 : 0);
+const étape = ref(0);
 
 const listeÉtapes = ['Tableau', 'Colonne'] as const;
 
@@ -180,14 +189,27 @@ const idBd = ref<string>();
 const idTableauSélectionné = ref(props.idTableau);
 
 // Colonne
-const idColonne = ref<string>();
+const choixColonne = ref<tableaux.InfoCol>();
+const idColonne = computed(() => choixColonne.value?.id);
 const colonnesTableau = suivre(constl.tableaux.suivreColonnesTableau, {
   idTableau: idTableauSélectionné,
+});
+
+watchEffect(() => {
+  if (idColonne.value && !colonnesTableau.value?.find(c => c.id === idColonne.value)) {
+    choixColonne.value = undefined;
+  }
 });
 
 // Contrôles
 const confirmer = () => {
   if (idColonne.value && idTableauSélectionné.value)
     émettre('selectionnee', {idTableau: idTableauSélectionné.value, idColonne: idColonne.value});
+  fermer();
+};
+const fermer = () => {
+  dialogue.value = false;
+  idBd.value = undefined;
+  étape.value = 0;
 };
 </script>
