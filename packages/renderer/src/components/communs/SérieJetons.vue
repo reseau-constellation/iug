@@ -17,7 +17,7 @@
           label
           variant="outlined"
           size="small"
-          class="me-2 mb-2"
+          class="mb-1"
         >
           <v-icon start>mdi-plus</v-icon>
           {{ nExtrasFormatté }}

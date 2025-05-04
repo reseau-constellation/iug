@@ -20,8 +20,9 @@
       <carte-variable :id="id">
         <template #activator="{props: propsActivateur}">
           <jeton-variable
-            :id="id"
             v-bind="{props: propsActivateur}"
+            :id="id"
+            class="me-1 mb-1"
           >
             <v-icon
               class="ms-2"

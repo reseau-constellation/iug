@@ -19,8 +19,9 @@
       <carte-projet :id="id">
         <template #activator="{props: propsActivateur}">
           <jeton-projet
-            :id="id"
             v-bind="{props: propsActivateur}"
+            :id="id"
+            class="me-1 mb-1"
           >
             <v-icon
               class="ms-2"

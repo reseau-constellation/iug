@@ -20,8 +20,9 @@
       <carte-membre :id="id">
         <template #activator="{props: propsActivateur}">
           <jeton-membre
-            :compte="id"
             v-bind="{props: propsActivateur}"
+            :compte="id"
+            class="me-1 mb-1"
           >
             <v-icon
               class="ms-2"
