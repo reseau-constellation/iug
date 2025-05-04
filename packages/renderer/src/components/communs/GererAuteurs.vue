@@ -11,8 +11,15 @@
     </template>
     <v-card>
       <v-card-item>
-        <v-card-title>
+        <v-card-title class="d-flex align-center">
           {{ t('auteurs.carteGérer.titre') }}
+          <v-spacer />
+          <v-btn
+            icon="mdi-close"
+            size="small"
+            variant="flat"
+            @click="dialogue = false"
+          />
         </v-card-title>
         <v-card-subtitle>
           {{ t('auteurs.carteGérer.sousTitre') }}

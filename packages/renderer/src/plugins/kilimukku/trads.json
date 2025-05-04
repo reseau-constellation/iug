@@ -651,9 +651,15 @@
     "nuées": {
       "nouvelle": {
         "texteIndiceNom": "Par exemple, « Science citoyenne hydrologie Saint-Laurent ».",
+        "sousTitreTableaux": "Ajouter des tableaux à la nuée",
         "ouvrirAprèsCréation": "Ouvrir la nuée",
         "btn": "Nouvelle nuée"
       },
+      "aucunMotClef": "Aucun mot-clef",
+      "aucuneVariable": "Aucune variable",
+      "info": "Info nuée",
+      "variables": "Variables",
+      "tableaux": "Tableaux",
       "recherche": {
         "étiquette": "Rechercher une nuée",
         "aucunRésultat": "Aucune nuée retrouvée"

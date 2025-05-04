@@ -1,9 +1,9 @@
 <template>
   <v-dialog v-model="dialogue">
-    <template #activator="{props}">
+    <template #activator="{props: propsActivateur}">
       <slot
         name="activator"
-        v-bind="{props}"
+        v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
@@ -131,7 +131,10 @@
             />
           </v-window-item>
           <v-window-item :value="listeÉtapes.indexOf('statut')">
-            <choisir-statut @choisir="stt => (statut = stt)">
+            <choisir-statut
+              :initial="statut"
+              @choisir="stt => (statut = stt)"
+            >
               <template #sélecteur="{choisirNouvelle}">
                 <selecteur-bd
                   :multiples="false"
@@ -152,6 +155,7 @@
               </v-btn>
               <v-checkbox
                 v-model="ouvrirAprèsCréation"
+                color="primary"
                 :label="t('bds.nouvelle.ouvrirAprèsCréation')"
               />
             </div>
@@ -195,6 +199,7 @@ import ChoixLicence from '/@/components/licences/ChoixLicence.vue';
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
 import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 
+const props = defineProps<{init?: {type: 'nuée' | 'bd'; id: string}}>();
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 
 const constl = utiliserConstellation();
@@ -207,7 +212,6 @@ const {mdAndUp} = useDisplay();
 // Navigation
 const dialogue = ref(false);
 
-const étape = ref(0);
 const listeÉtapes = [
   'cheminement',
   'gabaritBd',
@@ -220,6 +224,7 @@ const listeÉtapes = [
   'statut',
   'confirmation',
 ] as const;
+const étape = ref(props.init?.type === undefined ? 0 : listeÉtapes.indexOf('statut'));
 
 const titreCarte = computed(() => {
   const é = listeÉtapes[étape.value];
@@ -277,7 +282,7 @@ const sousTitreCarte = computed(() => {
   }
 });
 
-const cheminement = ref<'nouvelle' | 'bd' | 'nuée'>();
+const cheminement = ref<'nouvelle' | 'bd' | 'nuée' | undefined>(props.init?.type);
 const suivreCheminementGabarit = (type: 'nuée' | 'bd') => {
   cheminement.value = type;
   étape.value = listeÉtapes.indexOf(type === 'bd' ? 'gabaritBd' : 'gabaritNuée');
@@ -360,6 +365,8 @@ const suivantActif = computed<{actif: boolean; visible: boolean}>(() => {
 const retourActif = computed<{actif: boolean; visible: boolean}>(() => {
   const é = listeÉtapes[étape.value];
   switch (é) {
+    case 'statut':
+      return {actif: !props.init, visible: !props.init};
     case 'cheminement':
       return {actif: false, visible: false};
     case 'confirmation':
@@ -388,6 +395,13 @@ const choisirGabaritNuée = async (idNuée: string) => {
   }
 };
 const copierDonnées = ref(true);
+
+watchEffect(() => {
+  if (props.init) {
+    if (props.init.type === 'bd') choisirGabaritBd(props.init.id);
+    else if (props.init.type === 'nuée') choisirGabaritNuée(props.init.id);
+  }
+});
 
 // Noms
 const noms = ref<{[lng: string]: string}>({});

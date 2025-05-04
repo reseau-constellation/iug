@@ -133,6 +133,8 @@
               </v-btn>
               <v-checkbox
                 v-model="ouvrirAprèsCréation"
+                class="mx-auto"
+                color="primary"
                 :label="t('nuées.nouvelle.ouvrirAprèsCréation')"
               >
               </v-checkbox>
@@ -359,7 +361,7 @@ const effacerColonneTableau = ({
 };
 
 // Création
-const ouvrirAprèsCréation = ref(false);
+const ouvrirAprèsCréation = ref(true);
 
 const enCréation = ref(false);
 

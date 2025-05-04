@@ -70,7 +70,7 @@
     </div>
 
     <div class="text-center">
-      <SérieJetons
+      <SerieJetons
         :n-max="5"
         :items="motsClefs"
       >
@@ -80,6 +80,7 @@
               <JetonMotClef
                 v-bind="propsActivateur"
                 :id="idMotClef"
+                class="me-1 mb-1"
               />
             </template>
           </carte-mot-clef>
@@ -94,7 +95,7 @@
             </template>
           </carte-mot-clef>
         </template>
-      </SérieJetons>
+      </SerieJetons>
       <span
         v-if="motsClefs && !motsClefs.length"
         class="text-disabled"
@@ -351,6 +352,7 @@
               <JetonVariable
                 v-bind="propsActivateur"
                 :id="idVariable"
+                class="me-1 mb-1"
               />
             </template>
           </carte-variable>
@@ -372,6 +374,41 @@
       >
         {{ t('nuées.aucuneVariable') }}
       </p>
+      <p class="mt-6 text-h5">
+        {{ t('nuées.gestion') }}
+      </p>
+      <v-divider class="mb-2" />
+      <div class="d-flex flex-wrap">
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <carte-autorisations-nuee :id-nuee="id">
+            <template #activator="{props: propsActivateur}">
+              <ItemAutorisationsNuee
+                v-bind="propsActivateur"
+                :id-nuee="id"
+              />
+            </template>
+          </carte-autorisations-nuee>
+        </v-card>
+        <v-card
+          flat
+          width="200"
+          class="mb-3"
+        >
+          <carte-bds-de-nuee :id-nuee="id">
+            <template #activator="{props: propsActivateur}">
+              <ItemBdsDeNuee
+                v-bind="propsActivateur"
+                :id-nuee="id"
+              />
+            </template>
+          </carte-bds-de-nuee>
+        </v-card>
+      </div>
+
       <v-list>
         <p class="mt-6 text-h5">
           {{ t('nuées.tableaux') }}
@@ -552,6 +589,8 @@ import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
+import CarteAutorisationsNuee from '/@/components/nuées/CarteAutorisationsNuée.vue';
+import CarteBdsDeNuee from '/@/components/nuées/CarteBdsDeNuée.vue';
 import CarteStatutNuee from '/@/components/nuées/CarteStatutNuée.vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
@@ -566,6 +605,8 @@ import EnteteTableau from '/@/components/tableaux/EntêteTableau.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 
+import ItemAutorisationsNuee from '/@/components/nuées/ItemAutorisationsNuée.vue';
+import ItemBdsDeNuee from '/@/components/nuées/ItemBdsDeNuée.vue';
 import NouveauTableau from '/@/components/tableaux/NouveauTableau.vue';
 import TableauNuee from '/@/components/tableaux/TableauNuée.vue';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';

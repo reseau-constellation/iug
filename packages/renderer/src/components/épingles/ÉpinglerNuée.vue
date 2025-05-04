@@ -49,7 +49,7 @@
               <div v-show="optionsAvancées">
                 <v-divider class="mb-2" />
                 <p>
-                  <v-icon start>mdi-databasee</v-icon>
+                  <v-icon start>mdi-database-outline</v-icon>
                   <span class="font-weight-bold"> {{ t('épingler.dispositifsÉpingleBds') }}</span>
                 </p>
                 <selection-dispositifs

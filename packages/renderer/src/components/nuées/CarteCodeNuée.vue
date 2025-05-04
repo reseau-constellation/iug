@@ -46,8 +46,6 @@ const fOublierDonnées = await client.nuées.suivreDonnéesExportation({
 `,
     py: `from constellationPy import Serveur, ClientSync
 
-client = ClientSync()
-
 with Serveur():
     client = ClientSync()
 
