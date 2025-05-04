@@ -97,7 +97,7 @@
           </v-list-item>
         </template>
       </nouvelle-regle>
-      <v-divider class="mb-2" />
+      <v-divider />
       <item-regle
         v-for="r in règles"
         :key="r.id"
