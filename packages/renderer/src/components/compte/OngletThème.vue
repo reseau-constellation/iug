@@ -136,8 +136,9 @@ import {useTheme} from 'vuetify';
 
 import {
   எண்களைப்_பயன்படுத்து,
-  கிளிமூக்கை_பயன்படுத்து,
+  கிடைக்கும்_மொழிகளைப்_பயன்படுத்து,
   மொழிகளைப்_பயன்படுத்து,
+  மொழியாக்கத்தைப்_பயன்படுத்து,
 } from '@lassi-js/kilimukku-vue';
 
 import {utiliserÉtatThème} from '/@/état/thème';
@@ -149,12 +150,11 @@ import JetonNumeration from '/@/components/langues/JetonNumération.vue';
 import NouvelleNumeration from '/@/components/langues/contribuer/ennikkai/NouvelleNumération.vue';
 import NouvelleLangue from '/@/components/langues/contribuer/nuchabäl/NouvelleLangue.vue';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி, மொழிகளை_தேர்ந்தெடுக்கொள்ளு, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
 const {தேர்ந்தெடுத்தப்பட்ட_எண்ணுரு, எண்ணுரு_முறைமைகள்} = எண்களைப்_பயன்படுத்து();
 
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Thème
 const état = utiliserÉtatThème();
@@ -174,7 +174,7 @@ watchEffect(() => {
 
 // Langues
 const languesChoisies = ref([மொழி.value, ...மாற்றுமொழிகள்.value]);
-const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {கிடைக்கும்_மொழி_குறியீடுகள்} = கிடைக்கும்_மொழிகளைப்_பயன்படுத்து();
 
 watchEffect(() => {
   languesChoisies.value = [மொழி.value, ...மாற்றுமொழிகள்.value];

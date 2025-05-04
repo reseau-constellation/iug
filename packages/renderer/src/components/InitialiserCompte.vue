@@ -268,7 +268,7 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import {utiliserImagesDéco} from '/@/composables/images';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ConditionsUtilisation from './ConditionsUtilisation.vue';
 import JetonMembre from './membres/JetonMembre.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
@@ -283,8 +283,7 @@ import {utiliserÉtatConditions} from '/@/état/conditions';
 
 const props = defineProps<{cheminement?: 'nouveau' | 'connecter'}>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();

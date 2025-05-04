@@ -56,7 +56,7 @@ import ResultatRechercheProjet from '/@/components/recherche/RésultatRechercheP
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteProjet from './CarteProjet.vue';
 import JetonProjet from './JetonProjet.vue';
 import NouveauProjet from './NouveauProjet.vue';
@@ -66,8 +66,7 @@ const émettre = defineEmits<{
   (é: 'selectionne', idsProjets: string[]): void;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 

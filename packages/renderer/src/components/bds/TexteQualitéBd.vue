@@ -21,14 +21,12 @@ import {computed} from 'vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {couleurScore} from '/@/utils';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 const props = defineProps<{id: string}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Qualité BD
 const qualité = suivre(constl.bds.suivreQualitéBd, {idBd: computed(() => props.id)});

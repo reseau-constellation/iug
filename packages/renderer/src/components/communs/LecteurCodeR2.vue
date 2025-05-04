@@ -18,8 +18,7 @@
   </v-expand-transition>
 </template>
 <script setup lang="ts" generic="T extends object">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import Ajv, {type JSONSchemaType} from 'ajv';
 import {toByteArray} from 'base64-js';
 import {gunzipSync} from 'fflate';
@@ -28,8 +27,7 @@ import {QrcodeStream} from 'vue-qrcode-reader';
 import {isElectronRenderer} from 'wherearewe';
 import {demanderAccèsMédia} from '/@/utils';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const ajv = new Ajv();
 

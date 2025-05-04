@@ -86,7 +86,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import {மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்} from '@lassi-js/kilimukku';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கு} from '/@/components/utils';
 
 import GroupeSuggestionsTraduction from './GroupeSuggestionsTraduction.vue';
@@ -94,8 +94,8 @@ import GroupeSuggestionsTraduction from './GroupeSuggestionsTraduction.vue';
 import {saveAs} from 'file-saver';
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const கிளி = கிளிமூக்கு();
 

@@ -129,7 +129,7 @@ import {useDisplay} from 'vuetify';
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonMembre from './JetonMembre.vue';
 
 import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
@@ -141,8 +141,7 @@ const props = defineProps<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 // Navigation

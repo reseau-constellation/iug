@@ -425,7 +425,15 @@ import {useDisplay} from 'vuetify';
 
 import correspTexte from 'approx-string-match';
 
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {
+  எண்களைப்_பயன்படுத்து,
+  கிடைக்கும்_மொழிகளைப்_பயன்படுத்து,
+  சாபிகளைப்_பயன்படுத்து,
+  பரிந்துரைகளைப்_பயன்படுத்து,
+  மொழி_முன்னேற்றத்தைப்_பயன்படுத்து,
+  மொழிபெயர்ப்புகளைப்_பயன்படுத்து,
+  மொழியாக்கத்தைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {couper} from '/@/utils';
 
@@ -447,18 +455,10 @@ const கிளி = கிளிமூக்கு();
 const {mdAndUp} = useDisplay();
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
-const {
-  கிடைக்கும்_மொழிகளை_பயன்படுத்து,
-  சாபிகளை_பயன்படுத்து,
-  மொழிபெயர்ப்புகளை_பயன்படுத்து,
-  பரிந்துரைகளை_பயன்படுத்து,
-  மொழியாக்கம்_பயன்படுத்து,
-  மொழி_முன்னேற்றத்தை_பயன்படுத்து,
-} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
-const {கிடைக்கும்_மொழி_குறியீடுகள், மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
+const {கிடைக்கும்_மொழி_குறியீடுகள், மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளைப்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);
@@ -508,7 +508,7 @@ const échangerLangues = () => {
 };
 
 // Ligne de progrès
-const {மொழி_முன்னேற்றம்: progrèsLangue} = மொழி_முன்னேற்றத்தை_பயன்படுத்து({
+const {மொழி_முன்னேற்றம்: progrèsLangue} = மொழி_முன்னேற்றத்தைப்_பயன்படுத்து({
   மொழி: langueCible,
   வகை: 'வார்த்தை',
 });
@@ -527,7 +527,7 @@ const progrèsSuggéré = computed(() => {
 const montrer = ref<'toutes' | 'nonTraduites' | 'sansSuggestion'>('nonTraduites');
 const rechercher = ref('');
 
-const {சாபிகள்: clefsDisponibles} = சாபிகளை_பயன்படுத்து();
+const {சாபிகள்: clefsDisponibles} = சாபிகளைப்_பயன்படுத்து();
 const clefsPourListe = computed(() => {
   if (!clefsDisponibles.value) return;
   let toutesClefs: string[] = clefsDisponibles.value;
@@ -553,7 +553,7 @@ watch(clefSélectionnée, () => {
   suggestion.value = '';
 });
 
-const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளை_பயன்படுத்து(
+const {அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்புகள்: traductionsApprouvées} = மொழிபெயர்ப்புகளைப்_பயன்படுத்து(
   {},
 );
 const traductionsApprouvéesLangueCible = computed(() => {
@@ -609,7 +609,7 @@ const suggestionsDisponibles = computed(() => {
   );
 });
 const imgVide = obtImageDéco('vide');
-const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளை_பயன்படுத்து();
+const {பரிந்துரைகள்: suggestions} = பரிந்துரைகளைப்_பயன்படுத்து();
 const suggestionsLangueCibleClef = computed(() => {
   const {value: lngCible} = langueCible;
   return (

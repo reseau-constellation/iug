@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 import {storeToRefs} from 'pinia';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ItemInfo from './ItemInfo.vue';
 import {utiliserÉtatInfos} from '/@/état/infos';
 
 const étatInfos = utiliserÉtatInfos();
 const {infos} = storeToRefs(étatInfos);
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 </script>
 
 <template>

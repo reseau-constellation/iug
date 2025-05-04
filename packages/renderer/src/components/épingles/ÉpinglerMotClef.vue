@@ -53,7 +53,7 @@ import {suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import SelectionDispositifs from './SélectionDispositifs.vue';
 import {optionsDispositifs} from './utils';
 import {utiliserConstellation} from '/@/components/utils';
@@ -66,8 +66,8 @@ const props = defineProps<{idMotClef: string}>();
 const constl = utiliserConstellation();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);

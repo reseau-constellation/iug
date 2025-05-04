@@ -64,14 +64,13 @@
 <script setup lang="ts">
 import type {tableaux, valid} from '@constl/ipa';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 import ItemSpecificationColonne from './ItemSpécificationColonne.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
 const props = defineProps<{

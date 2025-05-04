@@ -49,12 +49,12 @@ import {useDisplay} from 'vuetify';
 import InitialiserCompte from '/@/components/InitialiserCompte.vue';
 import LogoAnimé from '/@/components/LogoAnimé.vue';
 
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../components/utils';
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 const VERSION_APPLI = import.meta.env.VITE_APP_VERSION;

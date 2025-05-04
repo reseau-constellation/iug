@@ -42,7 +42,7 @@
 import type {types} from '@constl/ipa';
 import {idcEtExt} from '@constl/utils-ipa';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import CelluleFichier from './CelluleFichier.vue';
 import {utiliserConstellation} from '/@/components/utils';
@@ -58,8 +58,7 @@ const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // À faire - obtenir l'objet validé directement de CelluleFichier.vue
 const valValide = computed(() => {

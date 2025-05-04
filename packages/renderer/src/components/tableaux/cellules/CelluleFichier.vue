@@ -103,7 +103,7 @@ import type {types} from '@constl/ipa';
 import {computed, ref, watch} from 'vue';
 
 import {idcEtExt} from '@constl/utils-ipa';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {itérableÀFlux, téléchargerFlux} from '/@/utils';
@@ -118,8 +118,7 @@ const émettre = defineEmits<{(é: 'modifiee', args: {val?: File}): void}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const valValide = computed(() => {
   if (typeof props.val === 'string') {

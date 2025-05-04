@@ -2,7 +2,7 @@ import {suivre} from '@constl/vue';
 import type {ComputedRef, MaybeRef, Ref} from 'vue';
 import {computed, isRef, onMounted, onUnmounted, ref, unref} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
 export const utiliserIcôneContact = ({type}: {type: MaybeRef<string>}): ComputedRef<string> => {
@@ -35,8 +35,8 @@ export const utiliserNomEtTypeDispositif = ({
   idCompte?: string | Ref<string | undefined>;
 }): {nomDispositif: Ref<string | undefined>; typeDispositif: Ref<string | undefined>} => {
   const constl = utiliserConstellation();
-  const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-  const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+  const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
   const monCompte = suivre(constl.suivreIdCompte);
 

@@ -125,7 +125,7 @@ import {v4 as uuidv4} from 'uuid';
 import {utiliserConstellation} from '/@/components/utils';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
@@ -152,8 +152,8 @@ const émettre = defineEmits<{
 }>();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 
@@ -259,8 +259,7 @@ const règlesExistantes = computed<valid.règleColonne[] | undefined>(() => {
     règle: r,
     source: {type: 'variable', id: idVariable},
     colonne: '',
-  }),
-  );
+  }));
 });
 
 // Règles colonne

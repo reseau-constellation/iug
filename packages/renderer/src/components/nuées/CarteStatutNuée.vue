@@ -44,7 +44,7 @@ import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import type {types} from '@constl/ipa';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurNuee from './SélecteurNuée.vue';
@@ -55,8 +55,7 @@ import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{idNuee: string}>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 const constl = utiliserConstellation();

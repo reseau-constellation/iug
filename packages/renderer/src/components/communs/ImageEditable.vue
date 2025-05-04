@@ -89,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import convert from 'image-file-resize';
 import {computed, ref, watchEffect} from 'vue';
 
@@ -104,8 +104,7 @@ const émettre = defineEmits<{
   (é: 'imageChangee', image?: {contenu: ArrayBuffer; fichier: string}): void;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Actions fichier
 const HTMLChoixFichier = ref<HTMLInputElement>();

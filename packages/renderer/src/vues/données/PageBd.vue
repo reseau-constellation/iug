@@ -543,7 +543,7 @@ import type {tableaux as typesTableaux} from '@constl/ipa';
 import {useDisplay, useRtl} from 'vuetify';
 
 import {suivre} from '@constl/vue';
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, onMounted, ref, toRaw, watchEffect} from 'vue';
 
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -594,8 +594,8 @@ const constl = utiliserConstellation();
 
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 const historiqueDocuments = utiliserHistoriqueDocuments();

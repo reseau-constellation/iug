@@ -45,7 +45,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -60,8 +60,7 @@ const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 // Navigation

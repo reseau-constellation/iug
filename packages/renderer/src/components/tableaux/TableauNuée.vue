@@ -93,12 +93,11 @@ import NouvelleColonne from './NouvelleColonne.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {triable} from './utils';
 import {utiliserConstellation} from '/@/components/utils';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 const props = defineProps<{idNuee: string; idTableau: string; clefTableau: string}>();

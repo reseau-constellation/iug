@@ -80,7 +80,11 @@
 </template>
 
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {
+  கிடைக்கும்_மொழிகளைப்_பயன்படுத்து,
+  மொழிகளைப்_பயன்படுத்து,
+  மொழியாக்கத்தைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -92,10 +96,9 @@ import GestionnaireEnnikkai from '/@/components/langues/contribuer/ennikkai/Gest
 import {utiliserNuchabäl} from '/@/components/utils';
 import {utiliserHistoriqueLangues} from '/@/état/historiqueLangues';
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {மொழிகளும்_குறியீடுகளும், மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளைப்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {வலதிலிருந்து_இடது_மொழி} = மொழிகளைப்_பயன்படுத்து();
 const historiqueLangues = utiliserHistoriqueLangues();
 

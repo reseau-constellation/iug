@@ -56,7 +56,7 @@ import ResultatRechercheNuée from '/@/components/recherche/RésultatRechercheNu
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CarteNuée from './CarteNuée.vue';
 import JetonNuee from './JetonNuée.vue';
 import NouvelleNuée from './NouvelleNuée.vue';
@@ -66,8 +66,7 @@ const émettre = defineEmits<{
   (é: 'selectionnee', idsNuées: string[]): void;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 

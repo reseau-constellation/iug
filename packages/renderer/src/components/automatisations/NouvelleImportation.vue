@@ -196,7 +196,7 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -214,8 +214,8 @@ const props = defineProps<{
 }>();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);

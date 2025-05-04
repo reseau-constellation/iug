@@ -1,9 +1,7 @@
 import type {valid} from '@constl/ipa';
-import type {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import type {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-type typeT = ReturnType<
-  ReturnType<typeof கிளிமூக்கை_பயன்படுத்து>['மொழியாக்கம்_பயன்படுத்து']
->['$மொ'];
+type typeT = ReturnType<typeof மொழியாக்கத்தைப்_பயன்படுத்து>['$மொ'];
 export const texteInfoRègle = ({règle, t}: {règle: valid.règleVariable; t: typeT}): string => {
   switch (règle.typeRègle) {
     case 'catégorie':

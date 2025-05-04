@@ -189,7 +189,7 @@
 import {suivre} from '@constl/vue';
 import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BaseCarteObjet from '/@/components/communs/BaseCarteObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
@@ -219,8 +219,7 @@ const props = defineProps<{id: string}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
 // Autorisation

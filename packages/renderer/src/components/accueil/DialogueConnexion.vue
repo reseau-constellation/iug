@@ -64,7 +64,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -76,8 +76,7 @@ import {schémaCodeR2Connexion} from '/@/codesR2';
 import CodeR2 from '/@/components/communs/CodeR2.vue';
 import LecteurCodeR2 from '/@/components/communs/LecteurCodeR2.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const constl = utiliserConstellation();
 

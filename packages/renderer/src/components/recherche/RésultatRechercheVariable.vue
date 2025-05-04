@@ -46,7 +46,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 import AuteursObjet from '/@/components/communs/AuteursObjet.vue';
 import JetonIdObjet from '/@/components/communs/JetonIdObjet.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import TexteTronque from '../communs/TexteTronqué.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {utiliserConstellation} from '/@/components/utils';
@@ -58,9 +58,8 @@ const props = defineProps<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Sources résultat directes (nom, description, id de la variable)
 const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {

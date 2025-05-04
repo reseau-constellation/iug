@@ -61,7 +61,7 @@
 import {rechercher, suivre} from '@constl/vue';
 import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 
 import CarteConfianceMembre from './CarteConfianceMembre.vue';
@@ -74,8 +74,7 @@ const props = defineProps<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Mon compte
 const monCompte = suivre(constl.suivreIdCompte);

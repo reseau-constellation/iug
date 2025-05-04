@@ -63,16 +63,14 @@ import {storeToRefs} from 'pinia';
 import {computed, onMounted, ref, watchEffect} from 'vue';
 
 import {rechercher, suivre} from '@constl/vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 import {utiliserHistorique} from '/@/état/historique';
 
 import GraphiqueHistoriqueLigne from './GraphiqueHistoriqueLigne.vue';
 import GestionConnaissances from '/@/components/réseau/GestionConnaissances.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const historique = utiliserHistorique({});
 
 const constl = utiliserConstellation();

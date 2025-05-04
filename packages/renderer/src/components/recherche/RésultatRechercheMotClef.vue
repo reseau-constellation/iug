@@ -43,7 +43,7 @@ import {type ComputedRef, computed} from 'vue';
 import AuteursObjet from '../communs/AuteursObjet.vue';
 import JetonIdObjet from '../communs/JetonIdObjet.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import LienObjet from '../communs/LienObjet.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import {utiliserConstellation} from '/@/components/utils';
@@ -54,9 +54,8 @@ const props = defineProps<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Sources résultat directes (nom, description, id du mot-clef)
 const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {

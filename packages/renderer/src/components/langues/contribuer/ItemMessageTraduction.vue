@@ -26,7 +26,7 @@
 import {computed} from 'vue';
 
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 const props = defineProps<{
   clef: string;
@@ -36,8 +36,7 @@ const props = defineProps<{
   suggestions: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[];
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 
 const nSuggestions = computed(() => {

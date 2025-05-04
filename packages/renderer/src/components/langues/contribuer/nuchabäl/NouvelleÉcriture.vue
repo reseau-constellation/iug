@@ -216,7 +216,7 @@ import {computed, ref, watch, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
 import type {types} from '@constl/ipa';
-import {எண்களைப்_பயன்படுத்து, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்களைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {direction as détecterDirection} from 'direction';
 import {utiliserNuchabäl} from '/@/components/utils';
 import {couper, ouvrirLien} from '/@/utils';
@@ -232,8 +232,8 @@ const nuchabäl = utiliserNuchabäl();
 const {mdAndUp} = useDisplay();
 
 const {எண்ணுரு_முறைமைகள்} = எண்களைப்_பயன்படுத்து();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Navigation
 const dialogue = ref(false);

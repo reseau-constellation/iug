@@ -110,7 +110,7 @@ import {computed, ref, watchEffect} from 'vue';
 import {useDisplay, useRtl} from 'vuetify';
 
 import {suivre} from '@constl/vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
@@ -118,8 +118,7 @@ import CodeR2 from '/@/components/communs/CodeR2.vue';
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const {isRtl} = useRtl();
 const enLigne = useOnline();

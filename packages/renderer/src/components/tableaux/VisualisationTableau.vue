@@ -190,7 +190,7 @@ import type {Ref} from 'vue';
 import {suivre} from '@constl/vue';
 import {type ComputedRef, computed, ref} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
 import NouvelleColonne from './NouvelleColonne.vue';
@@ -203,8 +203,7 @@ const props = defineProps<{idTableau: string}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Contrôles
 const éditer = ref(false);

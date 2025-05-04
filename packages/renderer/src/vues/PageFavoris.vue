@@ -22,8 +22,7 @@
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../components/utils';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import ItemFavoris from '/@/components/épingles/ItemFavoris.vue';
@@ -31,8 +30,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {obtImageDéco} = utiliserImagesDéco();
 
 const imgFavoris = obtImageDéco('automatisation');

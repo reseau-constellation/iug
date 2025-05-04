@@ -166,7 +166,7 @@ import {type எண்_வகை} from 'ennikkai';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்ணிக்கையை_கண்டுப்பிடி, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemBaseNumeration from './ItemBaseNumération.vue';
 
@@ -174,8 +174,7 @@ import {ouvrirLien} from '/@/utils';
 
 import {watchEffect} from 'vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const {mdAndUp} = useDisplay();
 

@@ -54,7 +54,10 @@
 <script setup lang="ts">
 import type {பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை} from '@lassi-js/kilimukku';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {
+  கிடைக்கும்_மொழிகளைப்_பயன்படுத்து,
+  மொழியாக்கத்தைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கு} from '/@/components/utils';
 
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
@@ -65,9 +68,8 @@ const props = defineProps<{
   suggestions: பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை[];
 }>();
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து, மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {மொழியின்_பெயர்} = கிடைக்கும்_மொழிகளைப்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const கிளி = கிளிமூக்கு();
 

@@ -316,7 +316,7 @@ import type {tableaux, types, valid} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 import {computed, ref, watch} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
@@ -330,8 +330,7 @@ import CelluleTableau from './cellules/CelluleTableau.vue';
 import {triable} from './utils';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 const props = defineProps<{idTableau: string; idBd: string}>();

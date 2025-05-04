@@ -43,7 +43,7 @@
 import type {favoris} from '@constl/ipa';
 import {suivre} from '@constl/vue';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {icôneObjet, utiliserConstellation} from '../utils';
@@ -55,8 +55,7 @@ const props = defineProps<{epingle: favoris.ÉpingleFavorisAvecId<favoris.Éping
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 

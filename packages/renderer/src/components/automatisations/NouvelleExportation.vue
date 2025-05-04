@@ -273,7 +273,7 @@
 <script setup lang="ts">
 import type {automatisation} from '@constl/ipa';
 
-import {எண்ணிக்கையை_கண்டுப்பிடி, கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {எண்ணிக்கையை_கண்டுப்பிடி, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
@@ -300,8 +300,8 @@ const props = defineProps<{
 }>();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const எண்ணிக்கை = எண்ணிக்கையை_கண்டுப்பிடி();
 

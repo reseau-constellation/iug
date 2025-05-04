@@ -120,7 +120,7 @@ import type {types} from '@constl/ipa';
 
 import {type Ref, watchEffect} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {MultiChercheur, utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
@@ -135,8 +135,7 @@ import RésultatRechercheVariable from '/@/components/recherche/RésultatRecherc
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imageTitre = obtImageDéco('recherche');

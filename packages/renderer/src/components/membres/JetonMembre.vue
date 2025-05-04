@@ -35,7 +35,7 @@
 import {rechercher, suivre} from '@constl/vue';
 import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
 import {utiliserConstellation} from '/@/components/utils';
 
@@ -43,8 +43,7 @@ const props = defineProps<{compte: string}>();
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Nom d'utilisatrice
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();

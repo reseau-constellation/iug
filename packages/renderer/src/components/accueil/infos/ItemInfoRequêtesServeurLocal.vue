@@ -22,15 +22,14 @@ import {type InfoAvecId, type InfoRequêtesServeurLocal} from '/@/état/infos';
 
 import {computed} from 'vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BaseItemInfo from './BaseItemInfo.vue';
 
 const props = defineProps<{
   info: InfoAvecId<InfoRequêtesServeurLocal>;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const nRequêtes = computed(() => props.info.info.détails.n);
 </script>

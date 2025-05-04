@@ -133,7 +133,7 @@ import JetonCondition from './JetonConditionLicence.vue';
 import JetonDroit from './JetonDroitLicence.vue';
 import JetonLimitation from './JetonLimitationLicence.vue';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {ouvrirLien} from '/@/utils';
 
@@ -147,8 +147,7 @@ const émettre = defineEmits<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Avertissement
 const détailsAvertissement = ref(false);

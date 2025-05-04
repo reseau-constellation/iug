@@ -18,12 +18,11 @@
 import {redémarrer} from '#preload';
 import {ERREUR_INIT_IPA, ERREUR_INIT_IPA_DÉJÀ_LANCÉ} from '@constl/mandataire';
 import {suivre} from '@constl/vue';
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 import {utiliserConstellation} from '/@/components/utils';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 

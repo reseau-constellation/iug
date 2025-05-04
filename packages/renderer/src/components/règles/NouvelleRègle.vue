@@ -179,8 +179,7 @@ import type {valid, variables} from '@constl/ipa';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ItemColonneTableau from '/@/components/tableaux/ItemColonneTableau.vue';
@@ -202,8 +201,7 @@ const émettre = defineEmits<{
   (é: 'sauvegarder', règle: valid.règleVariable): void;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 const constl = utiliserConstellation();

@@ -109,15 +109,14 @@ import {rechercher} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
 
 import {எண்களைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import ItemMembre from '/@/components/membres/ItemMembre.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const {எண்ணை_வடிவூட்டு} = எண்களைப்_பயன்படுத்து();
 

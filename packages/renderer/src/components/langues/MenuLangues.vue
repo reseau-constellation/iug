@@ -65,7 +65,10 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useRtl} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {
+  கிடைக்கும்_மொழிகளைப்_பயன்படுத்து,
+  மொழியாக்கத்தைப்_பயன்படுத்து,
+} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {utiliserConstellation} from '../utils';
 import ContribuerTraductions from './contribuer/ContribuerTraductions.vue';
@@ -76,10 +79,9 @@ const constl = utiliserConstellation();
 const constellationPrète = ref(false);
 constl.obtIdCompte().then(() => (constellationPrète.value = true));
 
-const {கிடைக்கும்_மொழிகளை_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளை_பயன்படுத்து();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {மொழிகளும்_குறியீடுகளும்} = கிடைக்கும்_மொழிகளைப்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const {isRtl} = useRtl();
 

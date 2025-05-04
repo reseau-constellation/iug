@@ -152,8 +152,7 @@ import {v4 as uuidv4} from 'uuid';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
 import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
@@ -189,8 +188,8 @@ const émettre = defineEmits<{
 }>();
 
 const {mdAndUp} = useDisplay();
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 

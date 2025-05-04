@@ -44,7 +44,7 @@ import {மொழிகளைப்_பயன்படுத்து} from '@la
 
 import {utiliserConstellation} from '/@/components/utils';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonContactMembre from '../membres/JetonContactMembre.vue';
 import TexteSurligneRecherche from './TexteSurlignéRecherche.vue';
 import ImageProfil from '/@/components/communs/ImageProfil.vue';
@@ -55,9 +55,8 @@ const props = defineProps<{
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 // Source résultat
 const sourceDirecte = (de: string): ComputedRef<types.infoRésultatTexte | undefined> => {

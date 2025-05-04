@@ -161,7 +161,7 @@ import {type tableaux as tblx, type valid} from '@constl/ipa';
 
 import {v4 as uuidv4} from 'uuid';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref} from 'vue';
 import {useRouter} from 'vue-router';
 import {useDisplay} from 'vuetify';
@@ -174,8 +174,7 @@ import {utiliserConstellation} from '/@/components/utils';
 
 const {mdAndUp} = useDisplay();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const router = useRouter();
 
 const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();

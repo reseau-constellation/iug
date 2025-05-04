@@ -114,7 +114,7 @@ import {requêteHttp} from '#preload';
 import {saveAs} from 'file-saver';
 import JSZip from 'jszip';
 
-import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
@@ -125,9 +125,8 @@ import {GABARIT_CODE} from '/@/consts';
 
 const constl = utiliserConstellation();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {மொழி} = மொழிகளைப்_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const props = defineProps<{idNuee: string}>();
 const {mdAndUp} = useDisplay();

@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import {type InfoAvecId, type InfoProtégerDonnnées, utiliserÉtatInfos} from '/@/état/infos';
 
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import BaseItemInfo from './BaseItemInfo.vue';
 
@@ -46,8 +46,7 @@ const props = defineProps<{
 
 const étatInfos = utiliserÉtatInfos();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const persisterDonnées = async () => {
   const persistées = await navigator.storage.persist();
