@@ -633,6 +633,9 @@
         "titreEffacerSélectionnées": "|Voulez-vous effacer {n} élément ?|Voulez-vous effacer {n} éléments ?",
         "titreEffacer": "Voulez-vous effacer cet élément ?",
         "nePlusConfirmerEffacer": "Ne plus me demander confirmation"
+      },
+      "colonnes": {
+        "indiceIndex": "Une colonne indexe ne peut avoir de valeurs dupliquées (p.ex., identifiant unique)."
       }
     },
     "nuées": {
@@ -672,7 +675,7 @@
         "titreVariable": "Choisir variable",
         "sousTitreVariable": "Cette variable sera associée avec la colonne",
         "titreIndex": "Index",
-        "sousTitreIndex": "Spécifier si c'est une colonne index",
+        "sousTitreIndex": "Une colonne index ne peut pas avoir de valeurs dupliquées",
         "index": "Colonne index",
         "titreRègles": "Règles colonne",
         "sousTitreRègles": "Choisir des règles pour la colonne",
@@ -683,7 +686,8 @@
       "carte": {
         "titre": "Options colonne",
         "variable": "Variable",
-        "règles": "Règles"
+        "règles": "Règles",
+        "avancées": "Options avancées"
       }
     },
     "motsClefs": {
@@ -780,22 +784,36 @@
         "sousTitreTypeRègle": "Choisir le genre de règle",
         "titreBorneFixeOuDynamique": "Type de borne",
         "sousTitreBorneFixeOuDynamique": "Les bornes peuvent être fixes ou dynamiques",
+        "titreValeurBorne": "Spécifier les bornes",
+        "sousTitreValeurBorne": "Choisir les limites de la variable",
         "borneFixe": "Borne fixe",
         "borneDynamiqueVariable": "Borne dynamique variable",
         "borneDynamiqueColonne": "Borne dynamique colonne",
+        "opBorne": "Opérateur",
+        "valBorneFixe": "Valeur",
         "titreConfirmer": "Confirmation",
         "sousTitreConfirmer": "Confirmer la création de la règle",
         "confirmer": "Créer règle"
       },
       "infos": {
+        "catégorie": "Cette variable doit être de type {categorie}",
         "existe": "Cette variable ne doit pas contenir de valeurs manquantes",
-        "bornes": "Cette variable doit être {op} à {val}",
+        "bornes": "Cette variable doit être {op} que {val}",
         "valeurCatégorique": "Valeurs limités selon liste pré-définie"
+      },
+      "source": {
+        "tableau": "Règle spécifiée dans le tableau",
+        "variable": "Règle spécifiée par la variable"
       },
       "types": {
         "existe": "Valeurs non-manquantes",
         "borne": "Bornes",
-        "catégorique": "Catégories"
+        "valeurCatégorique": "Catégorique"
+      },
+      "indiceTypes": {
+        "existe": "Aucune valeur vide permise",
+        "borne": "Valeurs permises selon limites spécifiées",
+        "catégorique": "Liste de valeurs permises"
       }
     },
     "épingler": {
@@ -1506,7 +1524,7 @@
         "catégorie": "மதிப்பின் வகை"
       },
       "infos": {
-        "catégorie": "இந்த மாறியின் மதிப்பு {categorie} வகை இருக்கவும்."
+        "catégorie": "இந்த மாறியின் மதிப்பு {categorie} வகையாக இருக்கவும்."
       }
     },
     "réplications": {
