@@ -334,7 +334,7 @@
           class="mb-3"
         >
           <carte-automatisations-bd
-            :id-objet="id"
+            :id-bd="id"
             :permission="monAutorisation"
             type-objet="bd"
           >
@@ -552,6 +552,7 @@ import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
 
+import CarteAutomatisationsBd from '/@/components/automatisations/CarteAutomatisationsBd.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import ItemAutomatisationsObjet from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
