@@ -1,5 +1,6 @@
 <template>
   <v-chip
+    v-bind="$attrs"
     variant="outlined"
     label
   >

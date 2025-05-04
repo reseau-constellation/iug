@@ -1,6 +1,6 @@
 <template>
   <v-chip
-    class="mb-2 me-2"
+    v-bind="$attrs"
     :prepend-icon="icône"
     variant="outlined"
     label

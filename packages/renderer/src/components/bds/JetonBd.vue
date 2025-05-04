@@ -1,7 +1,7 @@
 <template>
   <v-chip
+    v-bind="$attrs"
     variant="outlined"
-    class="me-2 mb-2"
     label
   >
     <v-avatar start>

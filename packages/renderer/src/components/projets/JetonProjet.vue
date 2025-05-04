@@ -1,5 +1,8 @@
 <template>
-  <v-chip variant="outlined">
+  <v-chip
+    v-bind="$attrs"
+    variant="outlined"
+  >
     <v-avatar start>
       <v-img :src="srcImgProjet || imgDéfaut"></v-img>
     </v-avatar>
