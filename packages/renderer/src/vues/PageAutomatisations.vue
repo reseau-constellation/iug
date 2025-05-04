@@ -61,8 +61,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {utiliserConstellation} from '../components/utils';
 import CarteAutomatisationExportation from '/@/components/automatisations/CarteAutomatisationExportation.vue';
 import CarteAutomatisationImportation from '/@/components/automatisations/CarteAutomatisationImportation.vue';
-import ItemAutomatisationImportation from '/@/components/automatisations/ItemAutomatisationImportation.vue';
 import ItemAutomatisationExportation from '/@/components/automatisations/ItemAutomatisationExportation.vue';
+import ItemAutomatisationImportation from '/@/components/automatisations/ItemAutomatisationImportation.vue';
 import NouvelleAutomatisation from '/@/components/automatisations/NouvelleAutomatisation.vue';
 import TitrePage from '/@/components/communs/TitrePage.vue';
 import {utiliserImagesDéco} from '/@/composables/images';

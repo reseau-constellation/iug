@@ -47,7 +47,7 @@ export const optionsDispositifs = (
     else return sélection.value;
   });
   const valide = computed(() => {
-    return sélection.value === 'SPÉCIFIQUES' ? spécifiques.value?.length : true;
+    return sélection.value === 'SPÉCIFIQUES' ? spécifiques.value?.length > 0 : true;
   });
   const modifié = computed(() => {
     if (valeur.value === 'AUCUN' || valeur.value === undefined) {

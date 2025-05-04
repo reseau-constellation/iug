@@ -190,9 +190,12 @@ const colonnesVariables = computed(() => {
 });
 
 const entêtes = computed(() => {
-  return [...(colonnes.value || []).map(c => ({
-    key: c.id,
-  })), { key: 'idCompte' }];
+  return [
+    ...(colonnes.value || []).map(c => ({
+      key: c.id,
+    })),
+    {key: 'idCompte'},
+  ];
 });
 
 const ajouterColonne = async ({

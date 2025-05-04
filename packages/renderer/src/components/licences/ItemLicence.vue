@@ -31,7 +31,9 @@ const props = defineProps<{licence: string | undefined}>();
 const infoLicences = suivre(constl.licences.suivreLicences);
 const licenceApprouvée = computed(() => {
   return !!(
-    props.licence && infoLicences.value && Object.keys(infoLicences.value).includes(props.licence)
+    props.licence &&
+    infoLicences.value &&
+    Object.keys(infoLicences.value).includes(props.licence)
   );
 });
 </script>
