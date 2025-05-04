@@ -35,9 +35,19 @@
             <v-select
               v-model="idColonne"
               :items="colonnesTableau"
+              :label="t('tableaux.colonnes.sélecteur.choixTableau')"
+              variant="outlined"
+              class="mt-2"
             >
-              <template #item="{item}">
-                <ItemColonneTableau :info="item.raw" />
+              <template #item="{item, props: propsItem}">
+                <ItemColonneTableau
+                  v-bind="
+                    Object.fromEntries(
+                      Object.entries(propsItem).filter(([clef, _val]) => clef !== 'title'),
+                    )
+                  "
+                  :info="item.raw"
+                />
               </template>
               <template #selection="{item}">
                 <JetonColonneTableau :info="item.raw" />
@@ -73,6 +83,8 @@ import {utiliserConstellation} from '../utils';
 import SelecteurBd from '/@/components/bds/SélecteurBd.vue';
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
+import ItemColonneTableau from '/@/components/tableaux/ItemColonneTableau.vue';
+import JetonColonneTableau from '/@/components/tableaux/JetonColonneTableau.vue';
 import SelecteurTableau from '/@/components/tableaux/SélecteurTableau.vue';
 
 const props = defineProps<{idTableau?: string; tableauChangeable?: boolean}>();

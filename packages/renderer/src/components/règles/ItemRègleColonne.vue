@@ -4,7 +4,9 @@
     :effacable="effaçable"
     :autorisation-modifier="autorisationModifier"
     @effacer="() => émettre('effacer')"
-  />
+  >
+    <source-regle-colonne :source="regle.source" />
+  </item-regle>
 </template>
 <script setup lang="ts">
 import type {valid} from '@constl/ipa';
@@ -12,6 +14,7 @@ import type {valid} from '@constl/ipa';
 import {computed} from 'vue';
 
 import ItemRegle from './ItemRègle.vue';
+import SourceRegleColonne from './SourceRègleColonne.vue';
 
 const props = defineProps<{
   regle: valid.règleColonne;

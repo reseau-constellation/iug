@@ -64,6 +64,14 @@
                 </template>
               </NouvelleRegle>
 
+              <item-regle-colonne
+                v-for="règle in règlesExistantes"
+                :key="règle.règle.id"
+                :regle="règle"
+                :effacable="false"
+                :autorisation-modifier="false"
+              />
+
               <item-regle
                 v-for="règle in règlesColonne"
                 :key="règle.id"
@@ -71,14 +79,6 @@
                 effacable
                 :autorisation-modifier="true"
                 @effacer="() => effacerRègle(règle.id)"
-              />
-
-              <item-regle
-                v-for="règle in règlesVariable"
-                :key="règle.id"
-                :regle="règle"
-                :effacable="false"
-                :autorisation-modifier="false"
               />
             </v-list>
           </v-window-item>
@@ -129,6 +129,7 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import BtnRetour from '/@/components/communs/BtnRetour.vue';
 import BtnSuivant from '/@/components/communs/BtnSuivant.vue';
 import ItemRegle from '/@/components/règles/ItemRègle.vue';
+import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 
 const props = defineProps<{
@@ -250,6 +251,16 @@ const index = ref(false);
 // Règles variable associée
 const règlesVariable = suivre(constl.variables.suivreRèglesVariable, {
   idVariable: idVariableChoisie,
+});
+const règlesExistantes = computed<valid.règleColonne[] | undefined>(() => {
+  const idVariable = idVariableChoisie.value;
+  if (!idVariable) return undefined;
+  return règlesVariable.value?.map(r => ({
+    règle: r,
+    source: {type: 'variable', id: idVariable},
+    colonne: '',
+  }),
+  );
 });
 
 // Règles colonne
