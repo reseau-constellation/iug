@@ -94,7 +94,7 @@
     "@constl/vue": "^1.0.4",
     "@lassi-js/kili": "^0.4.4",
     "@lassi-js/kilimukku": "^1.1.9",
-    "@lassi-js/kilimukku-vue": "^1.1.11",
+    "@lassi-js/kilimukku-vue": "^2.0.0",
     "@mdi/font": "^7.4.47",
     "@videojs-player/vue": "^1.0.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
