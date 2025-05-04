@@ -78,15 +78,6 @@
       :en-attente="!règles"
     />
     <v-list v-if="règles">
-      <item-regle
-        v-for="r in règles"
-        :key="r.id"
-        :regle="r"
-        :effacable="!!(monAutorisation && r.règle.typeRègle !== 'catégorie')"
-        :autorisation-modifier="!!monAutorisation"
-        @effacer="() => effacerRègle(r.id)"
-      ></item-regle>
-      <v-divider class="mt-2" />
       <nouvelle-regle
         v-if="monAutorisation"
         :source="{
@@ -106,6 +97,15 @@
           </v-list-item>
         </template>
       </nouvelle-regle>
+      <v-divider class="mb-2" />
+      <item-regle
+        v-for="r in règles"
+        :key="r.id"
+        :regle="r"
+        :effacable="!!(monAutorisation && r.règle.typeRègle !== 'catégorie')"
+        :autorisation-modifier="!!monAutorisation"
+        @effacer="() => effacerRègle(r.id)"
+      ></item-regle>
     </v-list>
   </base-carte-objet>
 </template>
