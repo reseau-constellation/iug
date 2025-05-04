@@ -80,21 +80,7 @@
                   :epingle="épinglé"
                 >
                 </slot>
-                <CarteEpingler
-                  :id="id"
-                  :option-fichiers="fichiersEpinglables"
-                >
-                  <template #activator="{props: propsActivateur}">
-                    <v-list-item v-bind="propsActivateur">
-                      <template #prepend>
-                        <IconeEpingle :id="id" />
-                      </template>
-                      <v-list-item-title>
-                        {{ épinglé ? t('épingler.épinglé') : t('épingler.épingler') }}
-                      </v-list-item-title>
-                    </v-list-item>
-                  </template>
-                </CarteEpingler>
+
                 <carte-effacer
                   v-if="monAutorisation"
                   @effacer="effacer"
@@ -185,21 +171,12 @@
         <v-spacer />
         <slot name="pied"></slot>
 
-        <v-btn
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
           v-if="sauvegardePossible && monAutorisation"
-          variant="flat"
-          color="primary"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
-        <v-btn
-          variant="flat"
-          append-icon="mdi-close"
-          @click="dialogue = false"
-        >
-          {{ t('communs.fermer') }}
-        </v-btn>
+          :actif="true"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -216,7 +193,6 @@ import {utiliserConstellation} from '/@/components/utils';
 import {கிளிமூக்கை_பயன்படுத்து, மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 
-import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemListeIconeEpingler from '/@/components/épingles/ItemListeIcôneÉpingler.vue';
 
 import AuteursObjet from './AuteursObjet.vue';
@@ -226,6 +202,8 @@ import DivisionCarte from './DivisionCarte.vue';
 import GererAuteurs from './GererAuteurs.vue';
 import LienObjet from './LienObjet.vue';
 import DialogueNoms from './listeNoms/DialogueNoms.vue';
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{
   id: string;
