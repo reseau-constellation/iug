@@ -28,22 +28,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!modifié"
-          :loading="enModification"
-          variant="flat"
-          color="primary"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
-        <v-btn
-          variant="flat"
-          append-icon="mdi-close"
-          @click="dialogue = false"
-        >
-          {{ t('communs.fermer') }}
-        </v-btn>
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
+          :actif="modifié"
+          :en-attente="enModification"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -59,6 +49,9 @@ import {watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurNuee from './SélecteurNuée.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{idNuee: string}>();
 

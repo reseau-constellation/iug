@@ -69,20 +69,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          variant="flat"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
-        </v-btn>
-        <v-btn
-          variant="outlined"
-          color="primary"
-          :disabled="!sélectionnés.length"
+
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="sélectionnés.length > 0"
           @click="() => émettre('sauvegarder')"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -100,6 +92,9 @@ import {utiliserConstellation} from '/@/components/utils';
 import DivisionCarte from './DivisionCarte.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import RésultatRechercheProfil from '/@/components/recherche/RésultatRechercheProfil.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{
   id: string;

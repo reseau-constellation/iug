@@ -91,23 +91,12 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          variant="outlined"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }}
-          <v-icon end>mdi-close</v-icon>
-        </v-btn>
-        <v-btn
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
           v-if="permissionModifier"
-          color="primary"
-          variant="outlined"
-          :disabled="!licencesChangées"
-          @click="sauvegarderLicence"
-        >
-          {{ t('communs.sauvegarder') }}
-          <v-icon end>mdi-check</v-icon>
-        </v-btn>
+          :actif="licencesChangées"
+          @click="() => sauvegarderLicence()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -119,6 +108,9 @@ import {computed, ref, watchEffect} from 'vue';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import ChoixLicence from './ChoixLicence.vue';
 import JetonLicence from './JetonLicence.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps({
   licence: {type: String, required: false, default: undefined},

@@ -112,20 +112,12 @@
       <v-divider />
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          variant="flat"
-          @click="dialogue = false"
-        >
-          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
-        </v-btn>
-        <v-btn
-          variant="outlined"
-          color="primary"
-          :disabled="statutRelation === statutRelationSélectionné"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
+
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
+          :actif="statutRelation !== statutRelationSélectionné"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -139,6 +131,9 @@ import {utiliserConstellation} from '/@/components/utils';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import JetonMembre from './JetonMembre.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{
   id: string;

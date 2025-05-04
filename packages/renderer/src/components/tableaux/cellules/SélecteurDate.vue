@@ -86,37 +86,27 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!modifié"
-          variant="flat"
-          color="primary"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
-        <v-btn
-          variant="flat"
-          append-icon="mdi-close"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }}
-        </v-btn>
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="modifié"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{originale?: number}>();
 const émettre = defineEmits<{
   (é: 'modifiee', args: {val?: number}): void;
 }>();
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 
 // Navigation

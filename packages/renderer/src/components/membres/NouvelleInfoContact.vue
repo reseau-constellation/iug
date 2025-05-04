@@ -66,21 +66,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          variant="flat"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
-        </v-btn>
-        <v-btn
-          variant="outlined"
-          color="primary"
-          :disabled="!valeurEtTypeFinaux"
-          :loading="sauvegardeEnCours"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="!!valeurEtTypeFinaux"
+          :en-attente="sauvegardeEnCours"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -93,6 +84,9 @@ import {useDisplay} from 'vuetify';
 import {computed} from 'vue';
 import {utiliserConstellation} from '../utils';
 import {obtIcôneContact} from './utils';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{dejaPresents: string[]}>();
 

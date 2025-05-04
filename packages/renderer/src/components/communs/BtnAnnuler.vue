@@ -1,12 +1,9 @@
 <template>
   <v-btn
-    variant="text"
-    color="primary"
-    :disabled="!actif"
-    :loading="enAttente"
-    append-icon="mdi-check"
+    variant="flat"
+    append-icon="mdi-close"
   >
-    {{ t('communs.sauvegarder') }}
+    {{ t('communs.annuler') }}
   </v-btn>
 </template>
 <script setup lang="ts">
@@ -14,9 +11,4 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
-
-defineProps<{
-  actif: boolean;
-  enAttente?: boolean;
-}>();
 </script>

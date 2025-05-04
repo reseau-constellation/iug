@@ -36,29 +36,12 @@
       <v-divider />
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          variant="outlined"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }}
-          <v-icon
-            icon="mdi-close"
-            end
-          />
-        </v-btn>
-        <v-btn
-          color="primary"
-          variant="outlined"
-          :loading="enProgrès"
-          :disabled="!baseValide || !baseModifié"
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="baseValide && baseModifiée"
+          :en-attente="enProgrès"
           @click="() => épingler()"
-        >
-          {{ t('communs.sauvegarder') }}
-          <v-icon
-            icon="mdi-check"
-            end
-          />
-        </v-btn>
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -74,6 +57,9 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import SelectionDispositifs from './SélectionDispositifs.vue';
 import {optionsDispositifs} from './utils';
 import {utiliserConstellation} from '/@/components/utils';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{idVariable: string}>();
 
@@ -97,7 +83,7 @@ const {
   dispositifs: dispositifsBase,
   spécifiques: spécifiquesBase,
   valide: baseValide,
-  modifié: baseModifié,
+  modifié: baseModifiée,
 } = optionsDispositifs(computed(() => épingle.value?.base));
 
 // Sauvegarder

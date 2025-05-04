@@ -35,21 +35,11 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          variant="flat"
-          @click="dialogue = false"
-        >
-          {{ t('communs.fermer') }} <v-icon end>mdi-close</v-icon>
-        </v-btn>
-        <v-btn
-          variant="outlined"
-          color="primary"
-          :disabled="changé"
-          :loading="enModification"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
+          :actif="changé"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -62,6 +52,9 @@ import {useDisplay} from 'vuetify';
 import {computed, watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 import {obtIcôneDispositifDeType, utiliserNomEtTypeDispositif} from './utils';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{idDispositif: string; idCompte?: string}>();
 
@@ -96,8 +89,8 @@ const nomDispositifChoisi = ref(nomDispositif.value);
 // Sauvegarder
 const changé = computed(() => {
   return (
-    typeDispositifChoisi.value === typeDispositif.value &&
-    nomDispositifChoisi.value === nomDispositif.value
+    typeDispositifChoisi.value !== typeDispositif.value ||
+    nomDispositifChoisi.value !== nomDispositif.value
   );
 });
 const enModification = ref(false);

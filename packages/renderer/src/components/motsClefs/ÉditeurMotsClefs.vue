@@ -34,19 +34,11 @@
       <v-divider />
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          append-icon="mdi-close"
-          @click="fermer"
-        >
-          {{ t('communs.annuler') }}
-        </v-btn>
-        <v-btn
-          :disabled="!modifiés"
-          variant="outlined"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="modifiés"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -58,6 +50,9 @@ import {useDisplay} from 'vuetify';
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
 import SelecteurMotClef from '/@/components/motsClefs/SélecteurMotClef.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();

@@ -109,33 +109,27 @@
       <v-divider />
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          variant="outlined"
-          @click="fermer"
-        >
-          {{ t('communs.annuler') }}
-        </v-btn>
-        <v-btn
-          color="primary"
-          variant="outlined"
-          append-icon="mdi-check"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
+          :actif="modifié"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 import ItemMembre from '../membres/ItemMembre.vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
 const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
@@ -180,6 +174,10 @@ const sauvegarder = async () => {
     ),
   );
 };
+
+const modifié = computed(
+  () => nouvellesDeConfiance.value.length > 0 || nouvellesBloquées.value.length > 0,
+);
 
 const fermer = () => {
   nouvellesDeConfiance.value = [];

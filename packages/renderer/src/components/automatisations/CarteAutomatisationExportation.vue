@@ -54,20 +54,11 @@
       </v-card-text>
       <v-divider />
       <v-card-actions>
-        <v-btn
-          variant="outlined"
-          @click="dialogue = false"
-        >
-          {{ t('communs.annuler') }}
-        </v-btn>
-        <v-btn
-          :disabled="!modifié"
-          color="primary"
-          variant="outlined"
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
+          :actif="modifié"
           @click="() => sauvegarder()"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -91,6 +82,8 @@ import OptionsFormatExportation from './OptionsFormatExportation.vue';
 import OptionsFrequenceExportation from './OptionsFréquenceExportation.vue';
 import OptionsLanguesExportation from './OptionsLanguesExportation.vue';
 import OptionsSauvegardesMultiples from './OptionsSauvegardesMultiples.vue';
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {choisirFichierSauvegarde} from '/@/utils';
 

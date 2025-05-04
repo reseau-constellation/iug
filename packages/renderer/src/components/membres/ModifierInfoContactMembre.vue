@@ -40,23 +40,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-
-        <v-btn
-          variant="outlined"
-          color="error"
-          @click="effacer"
-        >
-          {{ t('communs.effacer') }} <v-icon end>mdi-delete</v-icon>
-        </v-btn>
-        <v-btn
-          variant="outlined"
-          color="primary"
-          :disabled="!valeurEtTypeFinaux"
-          :loading="sauvegardeEnCours"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }} <v-icon end>mdi-check</v-icon>
-        </v-btn>
+        <btn-annuler @click="effacer" />
+        <btn-sauvegarder
+          :actif="modifié"
+          :en-attente="sauvegardeEnCours"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -69,6 +58,9 @@ import {useDisplay} from 'vuetify';
 import {computed, watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 import {obtIcôneContact} from './utils';
+
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 
 const props = defineProps<{type: string; valeurAvant: string}>();
 
@@ -97,6 +89,9 @@ const icône = obtIcôneContact({type: props.type});
 const valeurEtTypeFinaux = computed<{valeur: string; type: string} | undefined>(() => {
   if (!valeur.value) return;
   return {valeur: valeur.value, type: props.type};
+});
+const modifié = computed(() => {
+  return valeur.value !== props.valeurAvant;
 });
 const sauvegarder = async () => {
   sauvegardeEnCours.value = true;

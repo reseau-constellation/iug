@@ -28,22 +28,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          :disabled="!modifié"
-          :loading="enModification"
-          variant="flat"
-          color="primary"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
-        <v-btn
-          variant="flat"
-          append-icon="mdi-close"
-          @click="dialogue = false"
-        >
-          {{ t('communs.fermer') }}
-        </v-btn>
+        <btn-annuler @click="dialogue = false" />
+        <btn-sauvegarder
+          :actif="modifié"
+          :en-attente="enModification"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -58,6 +48,8 @@ import {கிளிமூக்கை_பயன்படுத்து} from '
 import {watchEffect} from 'vue';
 import {utiliserConstellation} from '../utils';
 import SelecteurBd from './SélecteurBd.vue';
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 import ChoisirStatut from '/@/components/communs/ChoisirStatut.vue';
 
 const props = defineProps<{idBd: string}>();

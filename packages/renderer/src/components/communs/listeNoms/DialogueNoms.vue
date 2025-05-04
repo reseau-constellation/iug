@@ -32,37 +32,25 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          variant="text"
-          append-icon="mdi-close"
-          @click="fermer"
-        >
-          {{ t('communs.fermer') }}
-        </v-btn>
-
-        <v-btn
+        <btn-annuler @click="fermer" />
+        <btn-sauvegarder
           v-if="autorisationModification"
-          color="primary"
-          variant="outlined"
-          append-icon="mdi-check"
-          :disabled="!nomsChangés"
-          @click="sauvegarder"
-        >
-          {{ t('communs.sauvegarder') }}
-        </v-btn>
+          :actif="nomsChangés"
+          @click="() => sauvegarder()"
+        />
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script setup lang="ts">
-import {கிளிமூக்கை_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import deepEqual from 'deep-equal';
 import {computed, ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import ListeNoms from './ListeNoms.vue';
 
-const {மொழியாக்கம்_பயன்படுத்து} = கிளிமூக்கை_பயன்படுத்து();
-const {$மொ: t} = மொழியாக்கம்_பயன்படுத்து();
+import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
+import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
+
 const {mdAndUp} = useDisplay();
 
 const props = defineProps<{
