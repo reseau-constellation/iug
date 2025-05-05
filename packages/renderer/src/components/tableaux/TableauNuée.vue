@@ -92,8 +92,25 @@
       />
     </template>
 
-    <template #[`header.idCompte`]>
-      {{ t('nuées.tableaux.contributeur') }}
+    <template #[`header.idCompte`]="{column, isSorted, getSortIcon, toggleSort}">
+      <span @click="()=>toggleSort(column)">
+        <v-hover v-slot="{isHovering, props: propsSurvole}">
+          <span v-bind="propsSurvole">
+            {{ t('nuées.tableau.entêteContributrice') }}
+            <template v-if="column.sortable">
+              <v-icon
+                v-if="isSorted(column)"
+                :icon="getSortIcon(column)"
+              ></v-icon>
+              <v-icon
+                v-else
+                icon="mdi-arrow-up"
+                :color="isHovering ? 'disabled' : 'rgba(255,255,255,0)'"
+              ></v-icon>
+            </template>
+          </span>
+        </v-hover>
+      </span>
     </template>
     <template #[`item.idCompte`]="{item}">
       <jeton-membre :compte="item.idCompte" />

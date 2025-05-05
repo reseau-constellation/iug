@@ -693,6 +693,9 @@
         },
         "créer": "Créer une base de données de cette nuée",
         "aucuneBd": "Aucune base de données n'appartient à cette nuée"
+      },
+      "tableau": {
+        "entêteContributrice": "Contributrice" 
       }
     },
     "projets": {
