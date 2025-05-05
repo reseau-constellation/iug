@@ -1,5 +1,8 @@
 <template>
-  <carte-code :codes="codes">
+  <carte-code
+    :codes="codes"
+    langage-defaut="py"
+  >
     <template #activateur="{props: propsActivateur}">
       <slot
         name="activateur"

@@ -93,6 +93,7 @@ import {useDisplay} from 'vuetify';
 const props = defineProps<{
   codes: {[langage: string]: string};
   installation?: {[langage: string]: string};
+  langageDefaut?: string;
 }>();
 
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
@@ -102,7 +103,7 @@ const {mdAndDown} = useDisplay();
 const menu = ref(false);
 const copié = ref(false);
 
-const langage = ref<string>();
+const langage = ref(props.langageDefaut);
 const langages = computed(() => Object.keys(props.codes));
 onMounted(() => {
   langage.value = langages.value[0];
