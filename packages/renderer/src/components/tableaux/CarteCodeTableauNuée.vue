@@ -39,7 +39,7 @@ const monAnalyse = async (données) => {
 const fOublier = client.nuées.suivreDonnéesExportationTableau({
   idNuée: "${props.idNuee}",
   clefTableau: "${props.clefTableau}",
-  langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]  // Modifier langues selon vos besoins
+  langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}],  // Modifier langues selon vos besoins
   f: monAnalyse
 });
 `,

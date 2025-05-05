@@ -38,7 +38,7 @@ const monAnalyse = async (données) => {
 
 const fOublier = client.bds.suivreDonnéesExportation({
   idBd: "${props.id}",
-  langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]  // Modifier langues selon vos besoins
+  langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}],  // Modifier langues selon vos besoins
   f: monAnalyse
 })
 `,
