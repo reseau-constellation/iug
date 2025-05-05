@@ -10,8 +10,15 @@
       ></slot>
     </template>
     <v-card max-width="500">
-      <v-card-title>
+      <v-card-title class="d-flex align-center">
         {{ t('code.carte.titre') }}
+        <v-spacer />
+        <v-btn
+          icon="mdi-close"
+          size="small"
+          variant="flat"
+          @click="menu = false"
+        />
       </v-card-title>
       <v-card-text>
         <v-divider />
@@ -85,7 +92,7 @@
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import VCodeBlock from '@wdns/vue-code-block';
 
-import {computed, onMounted, ref} from 'vue';
+import {computed, ref} from 'vue';
 
 import {watch} from 'vue';
 import {useDisplay} from 'vuetify';
@@ -103,11 +110,8 @@ const {mdAndDown} = useDisplay();
 const menu = ref(false);
 const copié = ref(false);
 
-const langage = ref(props.langageDefaut);
+const langage = ref(props.langageDefaut || Object.keys(props.codes)[0]);
 const langages = computed(() => Object.keys(props.codes));
-onMounted(() => {
-  langage.value = langages.value[0];
-});
 
 const code = computed(() => {
   return langage.value ? props.codes[langage.value] : '';
