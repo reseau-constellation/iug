@@ -15,8 +15,8 @@
 <script setup lang="ts">
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
+import {computed} from 'vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
-import { computed } from 'vue';
 
 const props = defineProps<{idTableau: string}>();
 
@@ -42,7 +42,7 @@ const fOublier = client.tableaux.suivreDonnéesExportation({
   f: monAnalyse
 });
 `,
-py: `from constellationPy import Serveur, ClientSync
+  py: `from constellationPy import Serveur, ClientSync
 
 with Serveur():
     client = ClientSync()
@@ -56,7 +56,7 @@ with Serveur():
     # Analyser ou sauvegarder les données ici...
     données.to_excel("./MesDonnéesExportées.xlsx")
 `,
-julia: `import Constellation
+  julia: `import Constellation
 
 Constellation.avecServeur() do port
   Constellation.avecClient(port) do client

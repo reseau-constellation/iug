@@ -45,7 +45,7 @@
               v-if="!bdsDeNuée?.length"
               class="my-4 text-h6 text-disabled"
             >
-              {{ t('nuées.aucuneBd') }}
+              {{ t('nuées.bds.aucuneBd') }}
             </p>
           </div>
         </v-list>

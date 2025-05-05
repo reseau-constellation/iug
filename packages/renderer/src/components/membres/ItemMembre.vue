@@ -12,6 +12,7 @@
     </template>
     <template #append>
       <lien-objet :id="compte" />
+      <slot name="fin" />
     </template>
   </v-list-item>
 </template>

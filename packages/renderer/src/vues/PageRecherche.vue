@@ -127,7 +127,6 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 import TitrePage from '../components/communs/TitrePage.vue';
 import CarteBd from '/@/components/bds/CarteBd.vue';
-import CarteVariable from '/@/components/variable/CarteVariable.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import CarteNuee from '/@/components/nuées/CarteNuée.vue';
 import CarteProjet from '/@/components/projets/CarteProjet.vue';
@@ -136,6 +135,7 @@ import ResultatRechercheMotClef from '/@/components/recherche/RésultatRecherche
 import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
 import ResultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
 import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
+import CarteVariable from '/@/components/variable/CarteVariable.vue';
 
 const constl = utiliserConstellation();
 

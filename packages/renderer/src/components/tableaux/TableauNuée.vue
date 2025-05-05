@@ -106,14 +106,14 @@ import type {tableaux, valid} from '@constl/ipa';
 import {rechercher, suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';
 import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
+import {triable} from './utils';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
 import CarteCodeTableauNuee from '/@/components/tableaux/CarteCodeTableauNuée.vue';
-import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {triable} from './utils';
 import {utiliserConstellation} from '/@/components/utils';
 
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();

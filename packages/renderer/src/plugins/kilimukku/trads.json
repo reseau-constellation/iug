@@ -659,10 +659,40 @@
       "aucuneVariable": "Aucune variable",
       "info": "Info nuée",
       "variables": "Variables",
+      "gestion": "Gestion",
       "tableaux": "Tableaux",
       "recherche": {
         "étiquette": "Rechercher une nuée",
         "aucunRésultat": "Aucune nuée retrouvée"
+      },
+      "autorisations": {
+        "item": {
+          "titre": "Autorisations"
+        },
+        "carte": {
+          "titre": "Autorisations de la nuée"
+        },
+        "philosophie": "Système d'autorisation",
+        "membresAutorisés": "Membres autorisés",
+        "membresBloqués": "Membres bloqués",
+        "aucunMembreExclus": "Aucun membre n'est exclus de cette nuée",
+        "ajouterMembreExclus": "Exclure un membre de cette nuée",
+        "aucunMembreAccepté": "Aucun membre n'est inclus dans cette nuée",
+        "ajouterMembreAccepté": "Autoriser un membre à contribuer des données à cette nuée",
+        "parInvitation": "Groupe par invitation",
+        "ouverteÀTous": "Groupe ouvert",
+        "indiceParInvitation": "Uniquement les membres invités peuvent contribuer des données",
+        "indiceOuverteÀTous": "Toutes les personnes peuvent contribuer des données"
+      },
+      "bds": {
+        "item": {
+          "titre": "Bases de données"
+        },
+        "carte": {
+          "titre": "Bases de données liées"
+        },
+        "créer": "Créer une base de données de cette nuée",
+        "aucuneBd": "Aucune base de données n'appartient à cette nuée"
       }
     },
     "projets": {
