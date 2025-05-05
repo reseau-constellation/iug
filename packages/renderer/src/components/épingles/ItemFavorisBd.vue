@@ -1,6 +1,6 @@
 <template>
   <EpinglerBd :id-bd="epingle.idObjet">
-    <template #activator="{props: propsActivateurCarteÉpingle}">
+    <template #activateur="{props: propsActivateurCarteÉpingle}">
       <v-list-item v-bind="propsActivateurCarteÉpingle">
         <template #prepend>
           <v-icon>{{ icôneTypeItem }}</v-icon>
@@ -9,7 +9,7 @@
           {{ nomTraduit || t('bds.sansNom') }}
           <lien-objet :id="epingle.idObjet" />
           <carte-bd :id="epingle.idObjet">
-            <template #activator="{props: propsActivateurCarte}">
+            <template #activateur="{props: propsActivateurCarte}">
               <v-btn
                 v-bind="propsActivateurCarte"
                 icon="mdi-dots-horizontal"

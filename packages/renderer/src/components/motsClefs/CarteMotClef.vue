@@ -10,16 +10,16 @@
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
     @effacer="effacerMotClef"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
     <template #epingler="{activateur, epingle}">
       <epingler-mot-clef :id-mot-clef="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <component
             :is="activateur"
             v-bind="propsActivateur"

@@ -52,18 +52,38 @@
           :variables-interdites="variables"
           @nouvelle="col => ajouterColonne(col)"
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <v-btn
               v-bind="propsActivateur"
               icon="mdi-table-column-plus-after"
             ></v-btn>
           </template>
         </nouvelle-colonne>
+        <carte-code-tableau
+          :id-tableau="idTableau"
+          :pour-nuee="false"
+        >
+          <template #activateur="{props: propsActivateurCarte}">
+            <v-tooltip
+              :text="t('code.indice')"
+              :open-delay="200"
+              location="bottom"
+            >
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                  icon="mdi-xml"
+                  variant="flat"
+                />
+              </template>
+            </v-tooltip>
+          </template>
+        </carte-code-tableau>
         <carte-automatisations-objet
           :id-objet="idTableau"
           type-objet="tableau"
         >
-          <template #activator="{props: propsActivateurCarte}">
+          <template #activateur="{props: propsActivateurCarte}">
             <v-tooltip
               :text="t('exportations.indice')"
               :open-delay="200"
@@ -83,7 +103,7 @@
           :noms-objet="noms"
           type-objet="tableau"
         >
-          <template #activator="{props: propsActivateurCarte}">
+          <template #activateur="{props: propsActivateurCarte}">
             <v-tooltip
               :text="t('exportations.indice')"
               :open-delay="200"
@@ -102,7 +122,7 @@
           v-if="autorisation"
           @effacer="() => effacerTableau()"
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <v-btn
               v-bind="propsActivateur"
               icon="mdi-delete"
@@ -122,7 +142,7 @@
         :id-tableau="idTableau"
         :colonnes-tableau="colonnes || []"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-btn
             v-bind="propsActivateur"
             class="mb-4"
@@ -324,6 +344,7 @@ import NouvelleColonne from './NouvelleColonne.vue';
 import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import NouvelleImportation from '/@/components/automatisations/NouvelleImportation.vue';
+import CarteCodeTableau from '/@/components/tableaux/CarteCodeTableau.vue';
 
 import {watchEffect} from 'vue';
 import CelluleTableau from './cellules/CelluleTableau.vue';

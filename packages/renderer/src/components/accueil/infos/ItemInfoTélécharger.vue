@@ -62,7 +62,7 @@
                 {{ t('accueil.page.notifications.connecterInstallé.étape2.texte') }}
               </p>
               <inviter-dispositif>
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-btn
                     v-bind="propsActivateur"
                     class="mt-2"

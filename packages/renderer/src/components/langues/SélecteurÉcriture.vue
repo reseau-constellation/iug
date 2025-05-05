@@ -15,7 +15,7 @@
     </template>
     <template #append>
       <nouvelle-ecriture @suggestion="({code}) => (sélection = code)">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-icon
             icon="mdi-plus"
             v-bind="propsActivateur"

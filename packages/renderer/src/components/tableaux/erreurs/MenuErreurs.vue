@@ -2,7 +2,7 @@
   <v-menu>
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       >
         <v-icon
@@ -15,6 +15,7 @@
   </v-menu>
 </template>
 <script setup lang="ts">
+// À faire : composante non utilisée
 import type {valid} from '@constl/ipa';
 
 defineProps<{erreurs: valid.erreurValidation[]}>();

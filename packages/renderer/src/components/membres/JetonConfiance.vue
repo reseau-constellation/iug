@@ -3,7 +3,7 @@
     v-if="id !== monCompte"
     :id="id"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <icone-confiance
         v-if="styleJeton === 'icône'"
         v-bind="propsActivateur"

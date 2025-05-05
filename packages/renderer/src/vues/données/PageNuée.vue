@@ -50,7 +50,7 @@
         :autorisation-modification="!!monAutorisation"
         @ajuster-noms="ajusterNoms"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <span
             v-bind="propsActivateur"
             class="text-h4"
@@ -76,7 +76,7 @@
       >
         <template #jeton="{id: idMotClef}">
           <carte-mot-clef :id="idMotClef">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <JetonMotClef
                 v-bind="propsActivateur"
                 :id="idMotClef"
@@ -87,7 +87,7 @@
         </template>
         <template #itemListe="{id: idMotClef}">
           <carte-mot-clef :id="idMotClef">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-mot-clef
                 v-bind="propsActivateur"
                 :id="idMotClef"
@@ -111,7 +111,7 @@
 
     <div class="text-center">
       <epingler-nuee :id-nuee="id">
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -135,7 +135,7 @@
         :noms-objet="noms"
         type-objet="nuée"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             :text="t('exportations.indice')"
             :open-delay="200"
@@ -176,7 +176,7 @@
       </generer-appli>-->
 
       <carte-code-nuee :id="id">
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             :text="t('code.indice')"
             :open-delay="200"
@@ -197,7 +197,7 @@
         v-if="false"
         :id="id"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -218,7 +218,7 @@
         v-if="!!monAutorisation"
         @effacer="() => effacerNuée()"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -252,7 +252,7 @@
         longue
         @ajuster-noms="ajusterDescriptions"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <span :class="{'text-disabled': !descrTraduite}">{{
             descrTraduite || t('communs.baseCarteObjet.sansDescription')
           }}</span>
@@ -277,7 +277,7 @@
           class="mb-3"
         >
           <carte-statut-nuee :id-nuee="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-statut
                 v-bind="propsActivateur"
                 type-objet="nuée"
@@ -297,7 +297,7 @@
             :auteurs="auteurs"
             :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-auteurs
                 v-bind="propsActivateur"
                 :auteurs="auteurs"
@@ -311,7 +311,7 @@
           class="mb-3"
         >
           <CarteReplicationsObjet :id="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <ItemReplicationsObjet
                 v-bind="propsActivateur"
                 :id="id"
@@ -329,7 +329,7 @@
             :permission="monAutorisation"
             type-objet="bd"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-automatisations-objet
                 v-bind="propsActivateur"
                 :id-objet="id"
@@ -348,7 +348,7 @@
       >
         <template #jeton="{id: idVariable}">
           <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <JetonVariable
                 v-bind="propsActivateur"
                 :id="idVariable"
@@ -359,7 +359,7 @@
         </template>
         <template #itemListe="{id: idVariable}">
           <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <ItemVariable
                 v-bind="propsActivateur"
                 :id="idVariable"
@@ -385,7 +385,7 @@
           class="mb-3"
         >
           <carte-autorisations-nuee :id-nuee="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <ItemAutorisationsNuee
                 v-bind="propsActivateur"
                 :id-nuee="id"
@@ -399,7 +399,7 @@
           class="mb-3"
         >
           <carte-bds-de-nuee :id-nuee="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <ItemBdsDeNuee
                 v-bind="propsActivateur"
                 :id-nuee="id"
@@ -433,7 +433,7 @@
           </v-tab>
 
           <nouveau-tableau @sauvegarder="ajouterTableau">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-tab
                 v-if="monAutorisation"
                 v-bind="propsActivateur"
@@ -492,7 +492,7 @@
             value="nouveau"
           >
             <nouveau-tableau @sauvegarder="ajouterTableau">
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-chip
                   v-if="monAutorisation"
                   v-bind="propsActivateur"
@@ -530,7 +530,7 @@
             height="175px"
           />
           <nouveau-tableau @sauvegarder="ajouterTableau">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-btn
                 v-if="monAutorisation"
                 v-bind="propsActivateur"

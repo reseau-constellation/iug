@@ -18,7 +18,7 @@
     </template>
     <template #jeton-objet="{id, deselectionner}">
       <carte-membre :id="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <jeton-membre
             v-bind="{props: propsActivateur}"
             :compte="id"

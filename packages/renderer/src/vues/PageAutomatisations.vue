@@ -7,7 +7,7 @@
     />
     <v-list class="text-start">
       <NouvelleAutomatisation automatiser>
-        <template #activator="{props}">
+        <template #activateur="{props}">
           <v-list-item
             v-bind="props"
             prepend-icon="mdi-plus"
@@ -31,7 +31,7 @@
           :spécification="auto"
           objet-modifiable
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <item-automatisation-exportation
               v-bind="propsActivateur"
               :specification="auto"
@@ -43,7 +43,7 @@
           :specification="auto"
           objet-modifiable
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <item-automatisation-importation
               v-bind="propsActivateur"
               :specification="auto"

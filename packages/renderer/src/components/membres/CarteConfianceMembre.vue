@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>

@@ -86,7 +86,7 @@
             </template>
             <template #append>
               <nouvelle-langue @suggestion="({code}) => (languesChoisies = [code])">
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-icon
                     v-bind="propsActivateur"
                     icon="mdi-plus"
@@ -116,7 +116,7 @@
             </template>
             <template #append>
               <nouvelle-numeration @suggestion="({système}) => (choixNumération = système)">
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-icon
                     v-bind="propsActivateur"
                     icon="mdi-plus"

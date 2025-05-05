@@ -9,15 +9,15 @@
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
     @effacer="() => effacerNuée()"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <template #epingler="{activateur, epingle}">
       <epingler-nuee :id-nuee="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <component
             :is="activateur"
             v-bind="propsActivateur"

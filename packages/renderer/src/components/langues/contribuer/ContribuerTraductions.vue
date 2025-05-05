@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -16,7 +16,7 @@
           {{ t('kilimukku.titre') }}
           <v-spacer />
           <gestionnaire-traductions>
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-btn
                 v-bind="propsActivateur"
                 icon="mdi-cogs"
@@ -63,7 +63,7 @@
                   @click.stop
                   @suggestion="({code}) => (langueSource = code)"
                 >
-                  <template #activator="{props: propsActivateur}">
+                  <template #activateur="{props: propsActivateur}">
                     <v-icon
                       v-bind="propsActivateur"
                       icon="mdi-plus"
@@ -112,7 +112,7 @@
                   @click.stop
                   @suggestion="({code}) => (langueCible = code)"
                 >
-                  <template #activator="{props: propsActivateur}">
+                  <template #activateur="{props: propsActivateur}">
                     <v-icon
                       v-bind="propsActivateur"
                       icon="mdi-plus"

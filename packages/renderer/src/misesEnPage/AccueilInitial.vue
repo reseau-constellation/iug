@@ -19,7 +19,7 @@
         style="height: 150px"
       >
         <InitialiserCompte>
-          <template #activator="{props}">
+          <template #activateur="{props}">
             <v-fade-transition
               v-bind="props"
               leave-absolute

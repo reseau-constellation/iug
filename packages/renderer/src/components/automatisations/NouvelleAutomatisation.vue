@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -25,7 +25,7 @@
       <v-card-text>
         <v-list>
           <nouvelle-importation>
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-list-item
                 prepend-icon="mdi-import"
                 v-bind="propsActivateur"
@@ -35,7 +35,7 @@
             </template>
           </nouvelle-importation>
           <nouvelle-exportation>
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-list-item
                 prepend-icon="mdi-export"
                 v-bind="propsActivateur"

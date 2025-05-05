@@ -14,7 +14,7 @@
     >
       <v-list>
         <ContribuerTraductions>
-          <template #activator="{props}">
+          <template #activateur="{props}">
             <v-list-item
               v-bind="props"
               :disabled="!constellationPrète"

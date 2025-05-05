@@ -1,8 +1,8 @@
 <template>
   <CarteCode :codes="codes">
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -10,52 +10,83 @@
 </template>
 
 <script setup lang="ts">
-import CarteCode from '/@/components/communs/CarteCode.vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-const props = defineProps<{id: string}>();
-const port = 5000;
+import CarteCode from '/@/components/communs/CarteCode.vue';
+import { computed } from 'vue';
+
+const props = defineProps<{idTableau: string}>();
+
+const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
+
+const languesPréférées = computed(() => {
+  return [மொழி.value, ...மாற்றுமொழிகள்.value];
+});
+
 const codes = {
-  ts: `
-const analyser = async (données) => {
-    console.log(données) // Faire quelque chose de plus intelligent ici :)
+  ts: `import { créerConstellation } from "@constl/ipa";
+
+const client = créerConstellation();
+
+const monAnalyse = async (données) => {
+  console.log(données)
+  // Faire quelque chose...
 }
-const fOublierDonnées = await client.tableaux.suivreDonnéesExportation({
-    idTableau: ${props.id},
-    langues: ["த", "fr"],
-    f: analyser
+
+const fOublier = client.tableaux.suivreDonnéesExportation({
+  idTableau: "${props.idTableau}",
+  langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]  // Modifier langues selon vos besoins
+  f: monAnalyse
 });
 `,
-  julia: `
+py: `from constellationPy import Serveur, ClientSync
+
+with Serveur():
+    client = ClientSync()
+
+    données = client.obt_données_tableau(
+      idTableau="${props.idTableau}"
+      # Modifier langues selon vos besoins
+      langues=[${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]
+    )
+
+    # Analyser ou sauvegarder les données ici...
+    données.to_excel("./MesDonnéesExportées.xlsx")
+`,
+julia: `import Constellation
+
+Constellation.avecServeur() do port
+  Constellation.avecClient(port) do client
+
+    oublier = Constellation.suivre(
+        client, 
+        "tableaux.suivreDonnéesExportation", 
+        Dict([
+          ("idTableau","${props.idTableau}"),
+          ("langues", [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}])
+        ])
+    ) do résultat
+        print(résultat)
+    end
+  end
+end
 
 `,
-  r: `
+  r: `library(constellationR)
 
-`,
-  py: `
-import trio
-from constellationPy import ouvrir_client
-
-async def principale():
-    async with ouvrir_client(${port}) as client:
-        données = await client.obt_données_tableau(
-            id_tableau=${props.id}, langues=["த", "fr"], formatDonnées="pandas"
-        )
-        
-        # Analyser ou sauvegarder les données ici...
-        données.to_excel("./MesDonnéesExportées.xlsx")
-
-trio.run(principale)
-`,
-  'py:sync': `
-from constellationPy import ClientSync
-
-client = ClientSync(${port})
-données = client.obt_données_tableau(
-    id_tableau=${props.id}, langues=["த", "fr"], formatDonnées="pandas"
+constellationR::avecClientEtServeur(
+  function (client) {
+    
+    données <- client$appeler(
+      "tableaux.suivreDonnéesExportation", 
+      list(
+        idTableau="${props.idTableau}",
+        langues=c(${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')})
+      )
+    )
+  }
 )
 
-# Analyser ou sauvegarder les données ici...
-données.to_excel("./MesDonnéesExportées.xlsx")
 `,
 };
 </script>

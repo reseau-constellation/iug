@@ -5,7 +5,7 @@
   >
     <template #jeton="{idCompte}">
       <CarteMembre :id="idCompte as string">
-        <template #activator="{props: propsActivateurJetonMembre}">
+        <template #activateur="{props: propsActivateurJetonMembre}">
           <JetonMembre
             v-bind="propsActivateurJetonMembre"
             class="me-2"
@@ -16,7 +16,7 @@
     </template>
     <template #itemListe="{id}">
       <CarteMembre :id="id">
-        <template #activator="{props: propsActivateurItemMembre}">
+        <template #activateur="{props: propsActivateurItemMembre}">
           <ItemMembre
             v-bind="propsActivateurItemMembre"
             :compte="id"

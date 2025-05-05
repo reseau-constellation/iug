@@ -50,7 +50,7 @@
         :autorisation-modification="!!monAutorisation"
         @ajuster-noms="ajusterNoms"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <span
             v-bind="propsActivateur"
             class="text-h4"
@@ -76,7 +76,7 @@
       >
         <template #jeton="{id: idMotClef}">
           <carte-mot-clef :id="idMotClef">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <JetonMotClef
                 v-bind="propsActivateur"
                 :id="idMotClef"
@@ -86,7 +86,7 @@
         </template>
         <template #itemListe="{id: idMotClef}">
           <carte-mot-clef :id="idMotClef">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-mot-clef
                 v-bind="propsActivateur"
                 :id="idMotClef"
@@ -110,7 +110,7 @@
 
     <div class="text-center">
       <epingler-bd :id-bd="id">
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -134,7 +134,7 @@
         :noms-objet="noms"
         type-objet="bd"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             :text="t('exportations.indice')"
             :open-delay="200"
@@ -152,7 +152,7 @@
       </carte-exportation-objet>
 
       <carte-code-bd :id="id">
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             :text="t('code.indice')"
             :open-delay="200"
@@ -173,7 +173,7 @@
         v-if="false"
         :id="id"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -194,7 +194,7 @@
         v-if="!!monAutorisation"
         @effacer="effacerBd"
       >
-        <template #activator="{props: propsActivateurCarte}">
+        <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
@@ -228,7 +228,7 @@
         longue
         @ajuster-noms="ajusterDescriptions"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <span :class="{'text-disabled': !descrTraduite}">{{
             descrTraduite || t('communs.baseCarteObjet.sansDescription')
           }}</span>
@@ -253,7 +253,7 @@
           class="mb-3"
         >
           <carte-statut-bd :id-bd="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-statut
                 v-bind="propsActivateur"
                 type-objet="bd"
@@ -268,7 +268,7 @@
           class="mb-3"
         >
           <carte-qualite-bd :id-bd="id">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-qualite-bd
                 v-bind="propsActivateur"
                 :id="id"
@@ -286,7 +286,7 @@
             :auteurs="auteurs"
             :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-auteurs
                 v-bind="propsActivateur"
                 :auteurs="auteurs"
@@ -305,7 +305,7 @@
             :permission-modifier="monAutorisation === 'MODÉRATEUR'"
             @changer-licence="changerLicence"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-licence
                 v-bind="propsActivateur"
                 :licence="licence"
@@ -338,7 +338,7 @@
             :permission="monAutorisation"
             type-objet="bd"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <item-automatisations-objet
                 v-bind="propsActivateur"
                 :id-objet="id"
@@ -357,7 +357,7 @@
       >
         <template #jeton="{id: idVariable}">
           <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <JetonVariable
                 v-bind="propsActivateur"
                 :id="idVariable"
@@ -368,7 +368,7 @@
         </template>
         <template #itemListe="{id: idVariable}">
           <carte-variable :id="idVariable">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <ItemVariable
                 v-bind="propsActivateur"
                 :id="idVariable"
@@ -408,7 +408,7 @@
           </v-tab>
 
           <nouveau-tableau @sauvegarder="ajouterTableau">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-chip
                 v-if="monAutorisation"
                 v-bind="propsActivateur"
@@ -465,7 +465,7 @@
             value="nouveau"
           >
             <nouveau-tableau @sauvegarder="ajouterTableau">
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-chip
                   v-if="monAutorisation"
                   v-bind="propsActivateur"
@@ -503,7 +503,7 @@
             height="175px"
           />
           <nouveau-tableau @sauvegarder="ajouterTableau">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-btn
                 v-if="monAutorisation"
                 v-bind="propsActivateur"

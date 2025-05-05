@@ -1,6 +1,6 @@
 <template>
   <EpinglerNuee :id-nuee="epingle.idObjet">
-    <template #activator="{props: propsActivateurCarteÉpingle}">
+    <template #activateur="{props: propsActivateurCarteÉpingle}">
       <v-tooltip
         open-delay="200"
         location="bottom"
@@ -14,7 +14,7 @@
               {{ nomTraduit || t('nuées.sansNom') }}
               <lien-objet :id="epingle.idObjet" />
               <carte-nuee :id="epingle.idObjet">
-                <template #activator="{props: propsActivateurCarte}">
+                <template #activateur="{props: propsActivateurCarte}">
                   <v-btn
                     v-bind="propsActivateurCarte"
                     icon="mdi-dots-horizontal"

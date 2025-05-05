@@ -22,7 +22,7 @@
         autorisation-modification
         @ajuster-noms="nms => ajusterNoms(nms)"
       >
-        <template #activator="{props}">
+        <template #activateur="{props}">
           <v-btn
             v-bind="props"
             icon="mdi-pencil"
@@ -41,7 +41,7 @@
       :type="type"
       :valeur-avant="contact"
     >
-      <template #activator="{props}">
+      <template #activateur="{props}">
         <jeton-contact-membre
           v-bind="props"
           :type="type"
@@ -51,7 +51,7 @@
     </modifier-info-contact-membre>
 
     <nouvelle-info-contact-membre :deja-presents="Object.keys(contacts || {})">
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <v-chip
           v-bind="propsActivateur"
           class="mx-2"

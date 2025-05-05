@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -34,7 +34,7 @@
             :autorisation-modification="!!monAutorisation"
             @ajuster-noms="nms => émettre('ajusterNoms', nms)"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <span
                 v-bind="propsActivateur"
                 class="text-h5"
@@ -65,7 +65,7 @@
             <v-menu activator="parent">
               <v-list>
                 <carte-copier @copier="copier">
-                  <template #activator="{props: propsActivateur}">
+                  <template #activateur="{props: propsActivateur}">
                     <v-list-item
                       v-bind="propsActivateur"
                       prepend-icon="mdi-content-copy"
@@ -85,7 +85,7 @@
                   v-if="monAutorisation"
                   @effacer="effacer"
                 >
-                  <template #activator="{props: propsActivateur}">
+                  <template #activateur="{props: propsActivateur}">
                     <v-list-item v-bind="propsActivateur">
                       <template #prepend>
                         <v-icon
@@ -129,7 +129,7 @@
           longue
           @ajuster-noms="descrs => émettre('ajusterDescriptions', descrs)"
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <v-btn
               v-bind="propsActivateur"
               :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
@@ -150,7 +150,7 @@
           :auteurs="auteurs"
           :permission-moderateur="monAutorisation === 'MODÉRATEUR'"
         >
-          <template #activator="{props: propsActivateurAuteurs}">
+          <template #activateur="{props: propsActivateurAuteurs}">
             <v-chip
               v-bind="propsActivateurAuteurs"
               class="me-2"

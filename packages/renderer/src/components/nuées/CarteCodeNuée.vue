@@ -1,8 +1,8 @@
 <template>
   <carte-code :codes="codes">
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -10,16 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import {suivre} from '@constl/vue';
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {computed} from 'vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
 
-import {utiliserConstellation} from '../utils';
-
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
-
-const constl = utiliserConstellation();
 
 const languesPréférées = computed(() => {
   return [மொழி.value, ...மாற்றுமொழிகள்.value];
@@ -40,7 +35,6 @@ const fOublierDonnées = await client.nuées.suivreDonnéesExportation({
     idNuée: "${props.id}",
     // Modifier langues selon vos besoins
     langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}],
-    nRésultatsDésirés: 100,
     f: analyser
 });
 `,
@@ -49,16 +43,17 @@ const fOublierDonnées = await client.nuées.suivreDonnéesExportation({
 with Serveur():
     client = ClientSync()
 
-    données = client.obt_données_tableau_nuée(
+    données = client.obt_données_nuée(
         id_nuée="${props.id}",
-        clef_tableau=${clefTableau.value},
-        n_résultats_désirés=100,
         # Modifier langues selon vos besoins
         langues=[${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]
     )
 
-    # Analyser ou sauvegarder les données ici...
-    données.to_excel("./MesDonnéesExportées.xlsx")
+    # Analyser ou sauvegarder les données ici, par exemple...
+    données.exporter("fichier.ods")  # ou bien "fichier.xlsx" pour Excel
+
+    # Accéder à un tableau en format pandas
+    données_tableau = tableau_exporté_à_pandas(données["Un tableau"])
 `,
     julia: `import Constellation
 
@@ -67,7 +62,6 @@ Constellation.avecServeur() do port
         donnéesRéseau = Constellation.obtDonnéesTableauNuée(
           client, 
           "${props.id}", 
-          ${clefTableau.value}, 
           // Modifier langues selon vos besoins
           [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]
         )
@@ -86,19 +80,10 @@ constellationR::avecClientEtServeur(
     oublier <- client$obtDonnéesTableauNuée(
       f=f,
       idNuée="${props.id}",
-      clefTableau=${clefTableau.value},
-      nRésultatsDésirés=100
     )
   }
 )
 `,
   };
-});
-
-const infoTableaux = suivre(constl.nuées.suivreTableauxNuée, {
-  idNuée: computed(() => props.id),
-});
-const clefTableau = computed(() => {
-  return infoTableaux.value?.find(tbl => tbl.id === props.id)?.clef;
 });
 </script>

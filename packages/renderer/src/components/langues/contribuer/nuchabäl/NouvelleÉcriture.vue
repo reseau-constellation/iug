@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -162,7 +162,7 @@
                 </template>
                 <template #append>
                   <nouvelle-numeration @suggestion="({système}) => (numération = système)">
-                    <template #activator="{props: propsActivateur}">
+                    <template #activateur="{props: propsActivateur}">
                       <v-icon
                         v-bind="propsActivateur"
                         icon="mdi-plus"

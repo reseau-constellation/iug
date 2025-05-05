@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -148,7 +148,7 @@
                 x => (valCatégorieDynamique = {tableau: x.idTableau, colonne: x.idColonne})
               "
             >
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <item-colonne-tableau
                   v-if="valCatégorieDynamique"
                   v-bind="propsActivateur"

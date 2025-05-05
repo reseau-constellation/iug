@@ -17,7 +17,7 @@
             :autorisation-modification="modificationPermise"
             @ajuster-noms="modifierNoms"
           >
-            <template #activator="{props: propsActivateurDialogueNoms}">
+            <template #activateur="{props: propsActivateurDialogueNoms}">
               <span v-bind="propsActivateurDialogueNoms">
                 {{ nomTraduit || t('communs.baseCarteObjet.sansNom') }}
                 <v-btn
@@ -35,7 +35,7 @@
       :variables-interdites="variablesDéjàAjoutées"
       @nouvelle="ajouterColonne"
     >
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <v-list-item v-bind="propsActivateur">
           <template #prepend>
             <v-icon> mdi-plus </v-icon>

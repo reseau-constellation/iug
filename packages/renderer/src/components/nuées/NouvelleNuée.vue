@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -88,7 +88,7 @@
                 :importation-permise="false"
                 @sauvegarder="ajouterTableau"
               >
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-list-item
                     v-bind="propsActivateur"
                     :title="t('nuées.nouvelle.ajoutTableau')"

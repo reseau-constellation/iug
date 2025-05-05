@@ -25,7 +25,7 @@
         :id-variable="idVariable"
         @nouvelle="info => créerColonneTableau({idTableau, ...info})"
       >
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-btn v-bind="propsActivateur">
             {{ t('règles.erreursRègles.variableBornesInexistante.ajouterColonne') }}
           </v-btn>

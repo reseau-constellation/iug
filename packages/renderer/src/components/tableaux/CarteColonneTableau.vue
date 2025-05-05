@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -59,7 +59,7 @@
             "
             @sauvegarder="r => ajouterRègle(r)"
           >
-            <template #activator="{props: propsActivateurNouvelleRègle}">
+            <template #activateur="{props: propsActivateurNouvelleRègle}">
               <v-list-item
                 v-bind="propsActivateurNouvelleRègle"
                 prepend-icon="mdi-plus"

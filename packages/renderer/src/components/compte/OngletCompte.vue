@@ -7,7 +7,7 @@
       <v-divider class="my-2" />
       <v-list>
         <InviterDispositif>
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <v-list-item
               v-bind="propsActivateur"
               prepend-icon="mdi-plus"
@@ -41,7 +41,7 @@
             </v-list-item-subtitle>
             <template #append>
               <ExporterCompte>
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-btn
                     v-if="mdAndUp"
                     v-bind="propsActivateur"
@@ -74,7 +74,7 @@
             </v-list-item-subtitle>
             <template #append>
               <RejoindreCompte>
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-btn
                     v-if="mdAndUp"
                     v-bind="propsActivateur"
@@ -104,7 +104,7 @@
             </v-list-item-subtitle>
             <template #append>
               <FermerCompte>
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-btn
                     v-if="mdAndUp"
                     v-bind="propsActivateur"

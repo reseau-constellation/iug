@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -28,7 +28,7 @@
           <v-divider />
           <v-list>
             <nouvelle-importation :info-objet="{id: idObjet, typeObjet}">
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-list-item
                   v-bind="propsActivateur"
                   prepend-icon="mdi-upload-outline"
@@ -54,7 +54,7 @@
         <v-divider />
         <v-list>
           <nouvelle-exportation :info-objet="{id: idObjet, typeObjet}">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-list-item
                 prepend-icon="mdi-download-outline"
                 v-bind="propsActivateur"

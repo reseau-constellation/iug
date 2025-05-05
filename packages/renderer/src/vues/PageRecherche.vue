@@ -34,8 +34,8 @@
         :id="r.id"
         :key="r.id"
       >
-        <template #activator="{props}">
-          <RésultatRechercheBd
+        <template #activateur="{props}">
+          <resultat-recherche-bd
             v-bind="props"
             :résultat="r"
           />
@@ -46,69 +46,69 @@
       v-else-if="itemsTypesDonnées[typeDonnées].clef === 'motsClefs'"
       class="text-start"
     >
-      <carte-bd
+      <carte-mot-clef
         v-for="r in résultatsRechercheMotsClefs"
         :id="r.id"
         :key="r.id"
       >
-        <template #activator="{props}">
-          <RésultatRechercheMotClef
+        <template #activateur="{props}">
+          <resultat-recherche-mot-clef
             v-bind="props"
             :résultat="r"
           />
         </template>
-      </carte-bd>
+      </carte-mot-clef>
     </v-list>
     <v-list
       v-else-if="itemsTypesDonnées[typeDonnées].clef === 'variables'"
       class="text-start"
     >
-      <carte-bd
+      <carte-variable
         v-for="r in résultatsRechercheVariables"
         :id="r.id"
         :key="r.id"
       >
         <template #activator="{props}">
-          <RésultatRechercheVariable
+          <resultat-recherche-variable
             v-bind="props"
             :résultat="r"
           />
         </template>
-      </carte-bd>
+      </carte-variable>
     </v-list>
     <v-list
       v-else-if="itemsTypesDonnées[typeDonnées].clef === 'projets'"
       class="text-start"
     >
-      <carte-bd
+      <carte-projet
         v-for="r in résultatsRechercheProjets"
         :id="r.id"
         :key="r.id"
       >
-        <template #activator="{props}">
-          <RésultatRechercheProjet
+        <template #activateur="{props}">
+          <resultat-recherche-projet
             v-bind="props"
             :résultat="r"
           />
         </template>
-      </carte-bd>
+      </carte-projet>
     </v-list>
     <v-list
       v-else-if="itemsTypesDonnées[typeDonnées].clef === 'nuées'"
       class="text-start"
     >
-      <carte-bd
+      <carte-nuee
         v-for="r in résultatsRechercheNuée"
         :id="r.id"
         :key="r.id"
       >
-        <template #activator="{props}">
-          <RésultatRechercheNuée
+        <template #activateur="{props}">
+          <resultat-recherche-nuee
             v-bind="props"
             :résultat="r"
           />
         </template>
-      </carte-bd>
+      </carte-nuee>
       <v-list-item @click="augmenterN">
         <v-list-item-title> t('Augementer N') </v-list-item-title>
       </v-list-item>
@@ -127,11 +127,15 @@ import {utiliserImagesDéco} from '/@/composables/images';
 
 import TitrePage from '../components/communs/TitrePage.vue';
 import CarteBd from '/@/components/bds/CarteBd.vue';
-import RésultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
-import RésultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
-import RésultatRechercheNuée from '/@/components/recherche/RésultatRechercheNuée.vue';
-import RésultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
-import RésultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
+import CarteVariable from '/@/components/variable/CarteVariable.vue';
+import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
+import CarteNuee from '/@/components/nuées/CarteNuée.vue';
+import CarteProjet from '/@/components/projets/CarteProjet.vue';
+import ResultatRechercheBd from '/@/components/recherche/RésultatRechercheBd.vue';
+import ResultatRechercheMotClef from '/@/components/recherche/RésultatRechercheMotClef.vue';
+import ResultatRechercheNuee from '/@/components/recherche/RésultatRechercheNuée.vue';
+import ResultatRechercheProjet from '/@/components/recherche/RésultatRechercheProjet.vue';
+import ResultatRechercheVariable from '/@/components/recherche/RésultatRechercheVariable.vue';
 
 const constl = utiliserConstellation();
 

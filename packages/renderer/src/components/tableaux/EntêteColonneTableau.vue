@@ -33,7 +33,7 @@
     @sauvegarder="info => émettre('sauvegarder', info)"
     @effacer="() => émettre('effacer')"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <v-icon
         v-bind="propsActivateur"
         class="ms-1"

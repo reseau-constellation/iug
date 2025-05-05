@@ -5,7 +5,7 @@
   >
     <v-list-item-title class="d-flex">
       <carte-membre :id="suggestion.பங்கேற்பாளர்">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <span v-bind="propsActivateur">
             <image-profil :id="suggestion.பங்கேற்பாளர்" />
             <span class="mx-3">{{ nomCompte }}</span>

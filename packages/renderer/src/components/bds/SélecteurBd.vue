@@ -17,7 +17,7 @@
     </template>
     <template #jeton-objet="{id, deselectionner}">
       <carte-bd :id="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <jeton-bd
             v-bind="{props: propsActivateur}"
             :id="id"

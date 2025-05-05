@@ -9,15 +9,15 @@
     @ajuster-descriptions="ajusterDescriptions"
     @effacer="effacerProjet"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <template #epingler="{activateur, epingle}">
       <epingler-projet :id-projet="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <component
             :is="activateur"
             v-bind="propsActivateur"

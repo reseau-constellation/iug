@@ -4,7 +4,7 @@
       :originale="valValide?.[0]"
       @modifiee="({val}) => (valDébut = val)"
     >
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <v-icon
           v-bind="propsActivateur"
           icon="mdi-calendar-clock"
@@ -16,7 +16,7 @@
       :originale="valValide?.[1]"
       @modifiee="({val}) => (valFin = val)"
     >
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <v-icon
           v-bind="propsActivateur"
           icon="mdi-calendar-clock"

@@ -36,7 +36,7 @@
             <template #action>
               <div class="mx-auto mb-6 text-center text-disabled">
                 <GestionConnaissances>
-                  <template #activator="{props}">
+                  <template #activateur="{props}">
                     <v-btn
                       v-bind="props"
                       variant="outlined"

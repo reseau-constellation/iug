@@ -40,7 +40,7 @@
           </v-list>
           <div class="text-center">
             <dialogue-connexion>
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-btn
                   v-bind="propsActivateur"
                   class="mx-auto"

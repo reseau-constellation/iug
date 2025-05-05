@@ -92,7 +92,7 @@
         </v-list-item>
         <div class="text-center">
           <controles-serveur-local>
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-btn
                 v-bind="propsActivateur"
                 class="mx-auto"

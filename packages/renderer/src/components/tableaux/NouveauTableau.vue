@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -46,7 +46,7 @@
                 :variables-interdites="variablesDéjàAjoutées"
                 @nouvelle="col => ajouterColonne(col)"
               >
-                <template #activator="{props: propsActivateur}">
+                <template #activateur="{props: propsActivateur}">
                   <v-list-item
                     v-bind="propsActivateur"
                     :title="t('tableaux.nouveau.ajouterColonne')"

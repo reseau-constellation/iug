@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsDialogue}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsDialogue}"
       />
     </template>
@@ -45,6 +45,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+// À faire : composante non utilisée
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
 import {useDisplay} from 'vuetify';

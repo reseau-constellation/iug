@@ -35,7 +35,7 @@
             <v-window-item :key="0">
               <v-list class="text-start">
                 <NouveauMotClef>
-                  <template #activator="{props}">
+                  <template #activateur="{props}">
                     <v-list-item v-bind="props">
                       <template #prepend>
                         <v-icon>mdi-plus</v-icon>
@@ -52,7 +52,7 @@
                   :id="motClef"
                   :key="motClef"
                 >
-                  <template #activator="{props}">
+                  <template #activateur="{props}">
                     <ItemMotClef
                       v-bind="props"
                       :id="motClef"
@@ -66,7 +66,7 @@
                 <v-card-text>
                   <v-list class="text-start">
                     <NouvelleVariable>
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <v-list-item v-bind="props">
                           <template #prepend>
                             <v-icon>mdi-plus</v-icon>
@@ -83,7 +83,7 @@
                       :id="variable"
                       :key="variable"
                     >
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <ItemVariable
                           v-bind="props"
                           :id="variable"
@@ -99,7 +99,7 @@
                 <v-card-text>
                   <v-list class="text-start">
                     <NouvelleBd>
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <v-list-item v-bind="props">
                           <template #prepend>
                             <v-icon>mdi-plus</v-icon>
@@ -116,7 +116,7 @@
                       :id="bd.id"
                       :key="bd.id"
                     >
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <ResultatRechercheBd
                           v-bind="props"
                           :résultat="bd"
@@ -136,7 +136,7 @@
                 <v-card-text>
                   <v-list class="text-start">
                     <NouveauProjet>
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <v-list-item v-bind="props">
                           <template #prepend>
                             <v-icon>mdi-plus</v-icon>
@@ -153,7 +153,7 @@
                       :id="projet"
                       :key="projet"
                     >
-                      <template #activator="{props: propsActivateur}">
+                      <template #activateur="{props: propsActivateur}">
                         <ItemProjet
                           v-bind="propsActivateur"
                           :id="projet"

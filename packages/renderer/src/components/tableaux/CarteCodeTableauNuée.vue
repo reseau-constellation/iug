@@ -1,20 +1,21 @@
 <template>
-  <carte-code :codes="codes">
+  <CarteCode :codes="codes">
     <template #activateur="{props: propsActivateur}">
       <slot
         name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
-  </carte-code>
+  </CarteCode>
 </template>
+
 <script setup lang="ts">
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 
-import {computed} from 'vue';
 import CarteCode from '/@/components/communs/CarteCode.vue';
+import { computed } from 'vue';
 
-const props = defineProps<{id: string}>();
+const props = defineProps<{idNuee: string, clefTableau: string}>();
 
 const {மொழி, மாற்றுமொழிகள்} = மொழிகளைப்_பயன்படுத்து();
 
@@ -22,9 +23,8 @@ const languesPréférées = computed(() => {
   return [மொழி.value, ...மாற்றுமொழிகள்.value];
 });
 
-const codes = computed(() => {
-  return {
-    ts: `import { créerConstellation } from "@constl/ipa";
+const codes = {
+  ts: `import { créerConstellation } from "@constl/ipa";
 
 const client = créerConstellation();
 
@@ -33,57 +33,64 @@ const monAnalyse = async (données) => {
   // Faire quelque chose...
 }
 
-const fOublier = client.bds.suivreDonnéesExportation({
-  idBd: "${props.id}",
+const fOublier = client.nuées.suivreDonnéesExportationTableau({
+  idNuée: "${props.idNuee}",
+  clefTableau: "${props.clefTableau}",
   langues: [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]  // Modifier langues selon vos besoins
   f: monAnalyse
-})
+});
 `,
-    py: `from constellationPy import Serveur, ClientSync, tableau_exporté_à_pandas
-    
+py: `from constellationPy import Serveur, ClientSync
+
 with Serveur():
     client = ClientSync()
 
-    données = client.obt_données_bd(
-      idBd="${props.id}",
+    données = client.obt_données_tableau_nuée(
+      idNuée: "${props.idNuee}",
+      clefTableau: "${props.clefTableau}",
       # Modifier langues selon vos besoins
       langues=[${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}]
     )
 
-    # Exporter les données
-    données.exporter("fichier.ods")  # ou bien "fichier.xlsx" pour Excel
-
-    # Accéder à un tableau en format pandas
-    données_tableau = tableau_exporté_à_pandas(données["Un tableau"])
-    
+    # Analyser ou sauvegarder les données ici...
+    données.to_excel("./MesDonnéesExportées.xlsx")
 `,
-    julia: `import Constellation
+julia: `import Constellation
 
 Constellation.avecServeur() do port
   Constellation.avecClient(port) do client
 
     oublier = Constellation.suivre(
         client, 
-        "bds.suivreDonnéesExportation", 
-        Dict([("idBd","${props.id}")])
+        "nuées.suivreDonnéesExportationTableau", 
+        Dict([
+          ("idNuée","${props.idNuee}"),
+          ("clefTableau","${props.clefTableau}"),
+          ("langues", [${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')}])
+        ])
     ) do résultat
         print(résultat)
     end
   end
 end
+
 `,
-    r: `library(constellationR)
+  r: `library(constellationR)
 
 constellationR::avecClientEtServeur(
   function (client) {
     
     données <- client$appeler(
-      "bds.suivreDonnéesExportation", 
-      list(idBd="${props.id}")
+      "tableaux.suivreDonnéesExportation", 
+      list(
+        idNuée="${props.idNuee}",
+        clefTableau="${props.clefTableau}",
+        langues=c(${languesPréférées.value.map(lng => '"' + lng + '"').join(', ')})
+      )
     )
   }
 )
+
 `,
-  };
-});
+};
 </script>

@@ -10,7 +10,7 @@
     >
       <template #jeton="{id: idVariable}">
         <carte-bd :id="idVariable">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <jeton-bd
               v-bind="propsActivateur"
               :id="idVariable"
@@ -21,7 +21,7 @@
       </template>
       <template #itemListe="{id: idVariable}">
         <carte-bd :id="idVariable">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <item-bd
               v-bind="propsActivateur"
               :id="idVariable"

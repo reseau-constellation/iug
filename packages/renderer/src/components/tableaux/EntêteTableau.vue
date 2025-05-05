@@ -14,7 +14,7 @@
     :autorisation-modification="!!monAutorisation"
     @ajuster-noms="nms => changerNoms(nms)"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <v-icon
         v-bind="propsActivateur"
         class="ms-2"

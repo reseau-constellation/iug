@@ -39,7 +39,7 @@
             :id="membre.idCompte"
             :key="membre.idCompte"
           >
-            <template #activator="{props}">
+            <template #activateur="{props}">
               <item-connexion-constellation
                 v-bind="props"
                 :compte="membre.idCompte"

@@ -5,7 +5,7 @@
   >
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -56,7 +56,7 @@
             :licence-contenu="licenceContenuBd"
             :permission-modifier="!!monAutorisation"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-list-item v-bind="propsActivateur">
                 <template #prepend>
                   <v-avatar>

@@ -19,7 +19,7 @@
         <v-card-text>
           <v-list>
             <nouvelle-bd>
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('bd')"
@@ -28,7 +28,7 @@
               </template>
             </nouvelle-bd>
             <nouveau-projet>
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('projet')"
@@ -37,7 +37,7 @@
               </template>
             </nouveau-projet>
             <nouvelle-nuee>
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <v-list-item
                   v-bind="propsActivateur"
                   :prepend-icon="icôneObjet('nuée')"

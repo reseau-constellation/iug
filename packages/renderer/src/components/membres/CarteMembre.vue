@@ -5,7 +5,7 @@
   >
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -44,7 +44,7 @@
             :type="type"
             :contact="contact"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <jeton-contact-membre
                 v-bind="propsActivateur"
                 :type="type"
@@ -96,7 +96,7 @@
         >
           <template #jeton="{id: idBd}">
             <CarteBd :id="idBd">
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <JetonBd
                   v-bind="propsActivateur"
                   :id="idBd"
@@ -106,7 +106,7 @@
           </template>
           <template #itemListe="{id: idBd}">
             <CarteBd :id="idBd">
-              <template #activator="{props: propsActivateur}">
+              <template #activateur="{props: propsActivateur}">
                 <ItemBd
                   v-bind="propsActivateur"
                   :id="idBd"

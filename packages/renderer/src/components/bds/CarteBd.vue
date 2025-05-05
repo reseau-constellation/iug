@@ -10,16 +10,16 @@
     @ajuster-descriptions="ajusterDescriptions"
     @effacer="effacerBd"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
 
     <template #epingler="{activateur, epingle}">
       <epingler-bd :id-bd="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <component
             :is="activateur"
             v-bind="propsActivateur"
@@ -41,7 +41,7 @@
       :permission-modifier="!!monAutorisation"
       @changer-licence="changerLicence"
     >
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <jeton-licence
           v-bind="propsActivateur"
           class="me-2 mb-2"
@@ -55,7 +55,7 @@
       class="me-2 mb-2"
     />
     <carte-replications-objet :id="id">
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <jeton-replications
           v-bind="propsActivateur"
           :id="id"
@@ -74,7 +74,7 @@
     >
       <template #jeton="{id: idVariable}">
         <carte-variable :id="idVariable">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <JetonVariable
               v-bind="propsActivateur"
               :id="idVariable"
@@ -85,7 +85,7 @@
       </template>
       <template #itemListe="{id: idVariable}">
         <carte-variable :id="idVariable">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <ItemVariable
               v-bind="propsActivateur"
               :id="idVariable"
@@ -115,7 +115,7 @@
     >
       <template #jeton="{id: idMotClef}">
         <carte-mot-clef :id="idMotClef">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <JetonMotClef
               v-bind="propsActivateur"
               :id="idMotClef"
@@ -126,7 +126,7 @@
       </template>
       <template #itemListe="{id: idMotClef}">
         <carte-mot-clef :id="idMotClef">
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <ItemMotClef
               v-bind="propsActivateur"
               :id="idMotClef"

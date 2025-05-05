@@ -5,7 +5,7 @@
   >
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       >
         <v-list-item
@@ -23,6 +23,7 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+// À faire : composante non utilisée
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {useDisplay} from 'vuetify';
 

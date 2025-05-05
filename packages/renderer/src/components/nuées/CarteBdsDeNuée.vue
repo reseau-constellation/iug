@@ -2,7 +2,7 @@
   <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -25,7 +25,7 @@
       <v-card-text>
         <v-list>
           <nouvelle-bd :init="{type: 'nuée', id: idNuee}">
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-list-item
                 v-bind="propsActivateur"
                 prepend-icon="mdi-database-plus-outline"

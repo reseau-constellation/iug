@@ -11,15 +11,15 @@
     @ajuster-descriptions="descrs => ajusterDescriptions(descrs)"
     @sauvegarder="() => sauvegarderCatégorie()"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
     <template #epingler="{activateur, epingle}">
       <epingler-variable :id-variable="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <component
             :is="activateur"
             v-bind="propsActivateur"
@@ -87,7 +87,7 @@
         :categorie-variable="choixCatégorieBase"
         @sauvegarder="r => ajouterRègle(r)"
       >
-        <template #activator="{props: propsActivateurNouvelleRègle}">
+        <template #activateur="{props: propsActivateurNouvelleRègle}">
           <v-list-item
             v-bind="propsActivateurNouvelleRègle"
             prepend-icon="mdi-plus"

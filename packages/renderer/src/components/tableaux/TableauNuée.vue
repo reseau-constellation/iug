@@ -15,18 +15,38 @@
           :variables-interdites="variables"
           @nouvelle="col => ajouterColonne(col)"
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateur="{props: propsActivateur}">
             <v-btn
               v-bind="propsActivateur"
               icon="mdi-table-column-plus-after"
             ></v-btn>
           </template>
         </nouvelle-colonne>
+        <carte-code-tableau-nuee
+          :id-nuee="idNuee"
+          :clef-tableau="clefTableau"
+        >
+          <template #activateur="{props: propsActivateurCarte}">
+            <v-tooltip
+              :text="t('code.indice')"
+              :open-delay="200"
+              location="bottom"
+            >
+              <template #activator="{props: propsActivateurIndice}">
+                <v-btn
+                  v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                  icon="mdi-xml"
+                  variant="flat"
+                />
+              </template>
+            </v-tooltip>
+          </template>
+        </carte-code-tableau-nuee>
         <carte-effacer
           v-if="autorisation"
           @effacer="() => effacerTableau()"
         >
-          <template #activator="{props: propsActivateur}">
+          <template #activateurctivator="{props: propsActivateur}">
             <v-btn
               v-bind="propsActivateur"
               icon="mdi-delete"
@@ -92,7 +112,7 @@ import EnteteColonneTableau from './EntêteColonneTableau.vue';
 import NouvelleColonne from './NouvelleColonne.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import JetonMembre from '/@/components/membres/JetonMembre.vue';
-
+import CarteCodeTableauNuee from '/@/components/tableaux/CarteCodeTableauNuée.vue';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {triable} from './utils';
 import {utiliserConstellation} from '/@/components/utils';

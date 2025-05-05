@@ -17,7 +17,7 @@
     </template>
     <template #jeton-objet="{id, deselectionner}">
       <carte-mot-clef :id="id">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <jeton-mot-clef
             v-bind="{props: propsActivateur}"
             :id="id"
@@ -36,7 +36,7 @@
     </template>
     <template #nouveau="{nouveau}">
       <nouveau-mot-clef @nouveau="nouveau">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
             :title="t('motsClefs.nouveau.btn')"

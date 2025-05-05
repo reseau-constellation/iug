@@ -5,7 +5,7 @@
       :id-tableau="idTableau"
       @nouvelle="info => créerColonneTableau({idTableau, ...info})"
     >
-      <template #activator="{props: propsActivateur}">
+      <template #activateur="{props: propsActivateur}">
         <v-btn
           v-bind="propsActivateur"
           icon="mdi-table-column-plus-after"
@@ -47,7 +47,7 @@
             :id-tableau="idTableau"
             @nouvelle="info => créerColonneTableau({idTableau, ...info})"
           >
-            <template #activator="{props: propsActivateur}">
+            <template #activateur="{props: propsActivateur}">
               <v-btn
                 v-bind="propsActivateur"
                 color="primary"

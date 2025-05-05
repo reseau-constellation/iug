@@ -3,9 +3,9 @@
     type-objet="bd"
     :id-objet="idBd"
   >
-    <template #activator="{props: propsActivateur}">
+    <template #activateur="{props: propsActivateur}">
       <slot
-        name="activator"
+        name="activateur"
         v-bind="{props: propsActivateur}"
       ></slot>
     </template>
@@ -13,7 +13,7 @@
     <v-divider />
     <v-list>
       <nouvelle-importation :id-bd="idBd">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-list-item
             v-bind="propsActivateur"
             prepend-icon="mdi-upload-outline"
@@ -38,7 +38,7 @@
     <v-divider />
     <v-list>
       <nouvelle-exportation :id-bd="idBd">
-        <template #activator="{props: propsActivateur}">
+        <template #activateur="{props: propsActivateur}">
           <v-list-item
             prepend-icon="mdi-download-outline"
             v-bind="propsActivateur"
