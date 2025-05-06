@@ -404,6 +404,7 @@
             <entete-tableau
               :id="ong.id"
               :clef="ong.clef"
+              @effacer="()=>effacerTableau(ong.id)"
             />
           </v-tab>
 
@@ -752,6 +753,10 @@ const ajouterTableau = async ({
   } finally {
     ajoutTableauEnCours.value = false;
   }
+};
+
+const effacerTableau = async (idTableau: string) => {
+  await constl.bds.effacerTableauBd({ idBd: props.id, idTableau });
 };
 
 // Auteurs

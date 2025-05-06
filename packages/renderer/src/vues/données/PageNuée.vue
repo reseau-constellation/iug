@@ -429,6 +429,7 @@
             <entete-tableau
               :id="ong.id"
               :clef="ong.clef"
+              @effacer="()=>effacerTableau(ong.id)"
             />
           </v-tab>
 
@@ -798,6 +799,10 @@ const ajouterTableau = async ({
   } finally {
     ajoutTableauEnCours.value = false;
   }
+};
+
+const effacerTableau = async (idTableau: string) => {
+  await constl.nuées.effacerTableauNuée({ idNuée: props.id, idTableau });
 };
 
 // const autorisation = suivre(constl.nuées.suivrePhilosophieAutorisation, {idNuée: props.id});

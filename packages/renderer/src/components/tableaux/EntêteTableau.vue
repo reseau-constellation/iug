@@ -3,58 +3,40 @@
     :texte="nomTraduit || clef"
     :longueur-max="15"
   />
-  <DialogueNoms
-    :etiquette-nom="t('objet.étiquetteNom')"
-    :indice-nom="t('objet.indiceNom')"
-    :indice-langue="t('objet.indiceLangue')"
-    :texte-aucun-nom="t('objet.texteAucunNom')"
-    :noms-initiaux="noms"
-    :titre="t('objet.titreDialogueNoms')"
-    :sous-titre="t('objet.sousTitreDialogueNoms')"
-    :autorisation-modification="!!monAutorisation"
-    @ajuster-noms="nms => changerNoms(nms)"
+  <carte-tableau
+    :id-tableau="id"
+    @effacer="()=>émettre('effacer')"
   >
     <template #activateur="{props: propsActivateur}">
       <v-icon
         v-bind="propsActivateur"
         class="ms-2"
-        :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
+        icon="mdi-dots-horizontal"
         variant="flat"
         size="small"
       />
     </template>
-  </DialogueNoms>
+  </carte-tableau>
 </template>
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
-import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
+import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '../utils';
+import CarteTableau from './CarteTableau.vue';
 
 import {computed} from 'vue';
-import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
-import {ajusterTexteTraductible} from '/@/utils';
 
 const props = defineProps<{id: string; clef: string}>();
+const émettre = defineEmits<{
+  (é: 'effacer'): void;
+}>();
 
 const {அகராதியிலிருந்து_மொழிபெயர்ப்பு} = மொழிகளைப்_பயன்படுத்து();
-
-const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const constl = utiliserConstellation();
 
 // Noms
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: computed(() => props.id)}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
 const nomTraduit = அகராதியிலிருந்து_மொழிபெயர்ப்பு(noms);
-
-const changerNoms = async (nms: {[langue: string]: string}) => {
-  const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
-  for (const langue of àEffacer) {
-    await constl.tableaux.effacerNomTableau({idTableau: props.id, langue});
-  }
-  await constl.tableaux.sauvegarderNomsTableau({idTableau: props.id, noms: àAjouter});
-};
-
-// Autorisation
-const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.id)});
 </script>
