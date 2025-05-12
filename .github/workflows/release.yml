@@ -39,6 +39,8 @@ jobs:
           version: latest
 
       - uses: actions/setup-node@v4
+        with:
+          version: latest
 
       - run: pnpm install
         env:
