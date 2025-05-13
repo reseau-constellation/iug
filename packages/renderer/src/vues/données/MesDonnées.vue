@@ -168,7 +168,7 @@
               <v-card>
                 <v-card-text>
                   <v-list class="text-start">
-                    <NouvelleNuée>
+                    <nouvelle-nuee>
                       <template #activator="{props}">
                         <v-list-item v-bind="props">
                           <template #prepend>
@@ -180,8 +180,8 @@
                         </v-list-item>
                         <v-divider />
                       </template>
-                    </NouvelleNuée>
-                    <CarteNuée
+                    </nouvelle-nuee>
+                    <carte-nuee
                       v-for="nuée in mesNuées"
                       :id="nuée"
                       :key="nuée"
@@ -192,7 +192,7 @@
                           :id="nuée"
                         />
                       </template>
-                    </CarteNuée>
+                    </carte-nuee>
                   </v-list>
                 </v-card-text>
               </v-card>
@@ -217,9 +217,9 @@ import TitrePage from '/@/components/communs/TitrePage.vue';
 import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
-import CarteNuée from '/@/components/nuées/CarteNuée.vue';
+import CarteNuee from '/@/components/nuées/CarteNuée.vue';
 import ItemNuée from '/@/components/nuées/ItemNuée.vue';
-import NouvelleNuée from '/@/components/nuées/NouvelleNuée.vue';
+import NouvelleNuee from '/@/components/nuées/NouvelleNuée.vue';
 import CarteProjet from '/@/components/projets/CarteProjet.vue';
 import ItemProjet from '/@/components/projets/ItemProjet.vue';
 import NouveauProjet from '/@/components/projets/NouveauProjet.vue';
