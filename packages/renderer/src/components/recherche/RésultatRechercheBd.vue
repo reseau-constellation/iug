@@ -58,6 +58,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
@@ -138,13 +139,7 @@ const auteurs = suivre(constl.réseau.suivreAuteursVariable, {
 
 // Image
 const imageBd = suivre(constl.bds.suivreImage, {idBd: computed(() => props.résultat.id)});
-const srcImgBd = computed(() => {
-  if (imageBd.value) {
-    return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgBd = sourceImage(imageBd);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

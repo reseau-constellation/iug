@@ -68,6 +68,7 @@ import {மொழிகளைப்_பயன்படுத்து, மொழ
 import JetonBd from '../bds/JetonBd.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
@@ -174,13 +175,7 @@ const auteurs = suivre(constl.réseau.suivreAuteursProjet, {
 const imageProjet = suivre(constl.projets.suivreImage, {
   idProjet: computed(() => props.résultat.id),
 });
-const srcImgProjet = computed(() => {
-  if (imageProjet.value) {
-    return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgProjet = sourceImage(imageProjet);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
