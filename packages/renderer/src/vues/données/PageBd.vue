@@ -351,7 +351,7 @@
         {{ t('bds.variables') }}
       </p>
       <v-divider class="mb-2" />
-      <SérieJetons
+      <serie-jetons
         :n-max="5"
         :items="variables"
       >
@@ -376,7 +376,7 @@
             </template>
           </carte-variable>
         </template>
-      </SérieJetons>
+      </serie-jetons>
       <p
         v-if="!variables?.length"
         class="text-disabled"
@@ -568,7 +568,7 @@ import ImageEditable from '/@/components/communs/ImageEditable.vue';
 import ItemAuteurs from '/@/components/communs/ItemAuteurs.vue';
 import ItemStatut from '/@/components/communs/ItemStatut.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
-import SérieJetons from '/@/components/communs/SérieJetons.vue';
+import SerieJetons from '/@/components/communs/SérieJetons.vue';
 import TexteTronque from '/@/components/communs/TexteTronqué.vue';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import DialogueLicence from '/@/components/licences/DialogueLicence.vue';
