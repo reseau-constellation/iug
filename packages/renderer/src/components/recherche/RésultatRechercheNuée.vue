@@ -1,5 +1,13 @@
 <template>
   <v-list-item>
+    <template #prepend>
+      <v-img
+        :src="srcImgNuée || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <v-list-item-title>
       <TexteSurligneRecherche
         v-if="infoSourceNom"
@@ -57,6 +65,8 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 
 import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
+import { sourceImage } from '/@/utils';
+import { utiliserImagesDéco } from '/@/composables/images';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<
@@ -134,4 +144,11 @@ const descriptionTraduite = அகராதியிலிருந்து_ம
 const auteurs = suivre(constl.réseau.suivreAuteursNuée, {
   idNuée: computed(() => props.résultat.id),
 });
+
+// Image
+const imageBd = suivre(constl.bds.suivreImage, {idBd: computed(() => props.résultat.id)});
+const srcImgNuée = sourceImage(imageBd);
+
+const {obtImageDéco} = utiliserImagesDéco();
+const imgDéfaut = obtImageDéco('logoBD');
 </script>

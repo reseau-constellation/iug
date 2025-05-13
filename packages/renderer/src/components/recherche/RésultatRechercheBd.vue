@@ -1,5 +1,13 @@
 <template>
-  <v-list-item :prepend-avatar="srcImgBd || imgDéfaut">
+  <v-list-item>
+    <template #prepend>
+      <v-img
+        :src="srcImgBd || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <v-list-item-title>
       <TexteSurligneRecherche
         v-if="infoSourceNom"

@@ -4,21 +4,14 @@
       {{ titre }}
     </h1>
 
-    <v-avatar
-      v-if="image && imageRonde"
-      class="my-6"
-      :size="mdAndUp ? 275 : 175"
-    >
-      <v-img :src="image" />
-    </v-avatar>
     <v-img
-      v-else-if="image"
-      class="my-6"
-      :src="image"
-      contain
-      height="175"
-    />
-
+      v-if="image"
+      :class="{'my-6': true, 'mx-auto': true, 'rounded-circle': imageRonde, 'border-thin': imageRonde}"
+      :width="mdAndUp ? 275 : 175"
+      :height="mdAndUp ? 275 : 175"
+      :src="image" 
+    >
+    </v-img>
     <h2
       v-if="sousTitre"
       :class="['mb-5', mdAndUp ? 'text-h4' : 'text-h5']"
