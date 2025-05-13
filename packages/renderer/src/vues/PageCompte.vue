@@ -124,7 +124,7 @@
 <script setup lang="ts">
 import {suivre} from '@constl/vue';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {computed, ref} from 'vue';
+import {ref} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserImagesDéco} from '/@/composables/images';
 
@@ -142,7 +142,7 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 
 import JetonContactMembre from '/@/components/membres/JetonContactMembre.vue';
 import ModifierInfoContactMembre from '/@/components/membres/ModifierInfoContactMembre.vue';
-import {ajusterTexteTraductible} from '/@/utils';
+import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
 const constl = utiliserConstellation();
 
@@ -154,13 +154,7 @@ const idCompte = suivre(constl.suivreIdCompte);
 
 // Image profil
 const imageProfil = suivre(constl.profil.suivreImage);
-const srcImgProfil = computed(() => {
-  if (imageProfil.value) {
-    return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgProfil = sourceImage(imageProfil);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');
