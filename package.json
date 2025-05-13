@@ -32,6 +32,7 @@
     "watch:web": "cross-env WEB=true vite packages/renderer",
     "preview:web": "pnpm compile:web && cross-env WEB=true vite preview packages/renderer",
     "lint": "eslint . --fix",
+    "taille": "cd packages/renderer && npx vite-bundle-visualizer",
     "typecheck:main": "tsc --noEmit -p packages/main/tsconfig.json",
     "typecheck:preload": "tsc --noEmit -p packages/preload/tsconfig.json",
     "typecheck:renderer": "vue-tsc --noEmit -p packages/renderer/tsconfig.json",
