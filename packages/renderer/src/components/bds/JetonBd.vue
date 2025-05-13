@@ -18,6 +18,7 @@ import {computed} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -33,13 +34,7 @@ const nomTraduit = அகராதியிலிருந்து_மொழி
 
 // Image
 const imageBd = suivre(constl.bds.suivreImage, {idBd: computed(() => props.id)});
-const srcImgBd = computed(() => {
-  if (imageBd.value) {
-    return URL.createObjectURL(new Blob([imageBd.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgBd = sourceImage(imageBd);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

@@ -34,6 +34,7 @@ import {utiliserIlYA} from '../membres/utils';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id: string; a: number}>();
 
@@ -60,13 +61,7 @@ const sansNom = computed(() => {
 
 // À faire : différencier par type d'objet
 const image = suivre(constl.bds.suivreImage, {idBd: computed(() => props.id)});
-const srcImg = computed(() => {
-  if (image.value) {
-    return URL.createObjectURL(new Blob([image.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImg = sourceImage(image);
 const imgDéfaut = obtImageDéco('logoBD');
 
 const {texte: texteVuIlYA} = utiliserIlYA({vuÀ: computed(() => props.a), t});

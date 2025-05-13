@@ -10,6 +10,7 @@ import {computed} from 'vue';
 
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id?: string}>();
 
@@ -22,13 +23,7 @@ const imageProfil = suivre(
   constl.profil.suivreImage,
   props.id ? {idCompte: computed(() => props.id)} : undefined,
 );
-const srcImgProfil = computed(() => {
-  if (imageProfil.value) {
-    return URL.createObjectURL(new Blob([imageProfil.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgProfil = sourceImage(imageProfil);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('profil');

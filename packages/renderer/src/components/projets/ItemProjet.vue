@@ -45,6 +45,7 @@ import JetonBd from '/@/components/bds/JetonBd.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -64,13 +65,7 @@ const descrTraduite = அகராதியிலிருந்து_மொழ
 
 // Image
 const imageProjet = suivre(constl.projets.suivreImage, {idProjet: computed(() => props.id)});
-const srcImgProjet = computed(() => {
-  if (imageProjet.value) {
-    return URL.createObjectURL(new Blob([imageProjet.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgProjet = sourceImage(imageProjet);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');

@@ -16,6 +16,7 @@ import {computed} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id: string}>();
 
@@ -37,13 +38,7 @@ const descrTraduite = அகராதியிலிருந்து_மொழ
 
 // Image
 const imageNuée = suivre(constl.nuées.suivreImage, {idNuée: computed(() => props.id)});
-const srcImgNuée = computed(() => {
-  if (imageNuée.value) {
-    return URL.createObjectURL(new Blob([imageNuée.value], {type: 'image'}));
-  } else {
-    return undefined;
-  }
-});
+const srcImgNuée = sourceImage(imageNuée);
 
 const {obtImageDéco} = utiliserImagesDéco();
 const imgDéfaut = obtImageDéco('logoBD');
