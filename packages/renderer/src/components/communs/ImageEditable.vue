@@ -17,9 +17,9 @@
     </v-snackbar>
     <v-col cols="12">
       <v-hover :disabled="!editable">
-        <template #default="{isHovering, props: propsHover}">
+        <template #default="{isHovering, props: propsSurvol}">
           <v-avatar
-            v-bind="propsHover"
+            v-bind="propsSurvol"
             class="mb-3"
             :size="tailleAvatar"
             :elevation="isHovering ? 12 : 2"
