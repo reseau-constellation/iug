@@ -18,70 +18,70 @@
     <v-col cols="12">
       <v-hover :disabled="!editable">
         <template #default="{isHovering, props: propsSurvol}">
-          <v-avatar
+          <v-img
             v-bind="propsSurvol"
-            class="mb-3"
-            :size="tailleAvatar"
+            class="mb-3 mx-auto rounded-circle border-thin"
+            :width="tailleAvatar"
+            :height="tailleAvatar"
+            :src="srcImage || imgDefaut"
             :elevation="isHovering ? 12 : 2"
           >
-            <v-img :src="srcImage || imgDefaut">
-              <v-row
-                :class="{
-                  'ma-0': true,
-                  'on-hover': isHovering,
-                  'align-self-center': true,
-                  'fill-height': true,
-                  'flex-column': true,
-                  fond: true,
-                }"
-                style="background-color: black"
+            <v-row
+              :class="{
+                'ma-0': true,
+                'on-hover': isHovering,
+                'align-self-center': true,
+                'fill-height': true,
+                'flex-column': true,
+                fond: true,
+              }"
+              style="background-color: black"
+            >
+              <div
+                v-if="editable"
+                class="align-self-center"
+                style="height: 100%"
               >
-                <div
-                  v-if="editable"
-                  class="align-self-center"
-                  style="height: 100%"
-                >
-                  <v-row class="flex-column fill-height ma-0">
-                    <div class="my-auto">
-                      <v-btn
-                        :class="{'show-btns': isHovering, 'mx-2': true}"
+                <v-row class="flex-column fill-height ma-0">
+                  <div class="my-auto">
+                    <v-btn
+                      :class="{'show-btns': isHovering, 'mx-2': true}"
+                      color="rgba(255, 255, 255, 0)"
+                      class="align-self-center"
+                      icon
+                      large
+                      @click="() => ouvrirFenêtreChoisirImage()"
+                    >
+                      <v-icon
+                        :class="{'show-btns': isHovering}"
                         color="rgba(255, 255, 255, 0)"
-                        class="align-self-center"
-                        icon
                         large
-                        @click="() => ouvrirFenêtreChoisirImage()"
                       >
-                        <v-icon
-                          :class="{'show-btns': isHovering}"
-                          color="rgba(255, 255, 255, 0)"
-                          large
-                        >
-                          mdi-camera-outline
-                        </v-icon>
-                      </v-btn>
-                      <v-btn
-                        v-if="srcImage"
-                        :class="{'show-btns': isHovering, 'mx-2': true}"
+                        mdi-camera-outline
+                      </v-icon>
+                    </v-btn>
+                    <v-btn
+                      v-if="srcImage"
+                      :class="{'show-btns': isHovering, 'mx-2': true}"
+                      color="rgba(255, 255, 255, 0)"
+                      class="align-self-center"
+                      icon
+                      large
+                      @click="() => effacerImage()"
+                    >
+                      <v-icon
+                        :class="{'show-btns': isHovering}"
                         color="rgba(255, 255, 255, 0)"
-                        class="align-self-center"
-                        icon
                         large
-                        @click="() => effacerImage()"
                       >
-                        <v-icon
-                          :class="{'show-btns': isHovering}"
-                          color="rgba(255, 255, 255, 0)"
-                          large
-                        >
-                          mdi-close
-                        </v-icon>
-                      </v-btn>
-                    </div>
-                  </v-row>
-                </div>
-              </v-row>
-            </v-img>
-          </v-avatar>
+                        mdi-close
+                      </v-icon>
+                    </v-btn>
+                  </div>
+                </v-row>
+              </div>
+            </v-row>
+          </v-img>
         </template>
       </v-hover>
     </v-col>
