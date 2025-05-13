@@ -12,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex align-center">
-          {{ t('accueil.page.connectivité.serveurLocal.titre') }}
+          <nom-tableau :id-tableau="idTableau" />
           <DialogueNoms
             :etiquette-nom="t('objet.étiquetteNom')"
             :indice-nom="t('objet.indiceNom')"
@@ -25,7 +25,7 @@
             @ajuster-noms="nms => changerNoms(nms)"
           >
             <template #activateur="{props: propsActivateur}">
-              <v-icon
+              <v-btn
                 v-bind="propsActivateur"
                 class="ms-2"
                 :icon="monAutorisation ? 'mdi-pencil' : 'mdi-earth'"
@@ -34,6 +34,7 @@
               />
             </template>
           </DialogueNoms>
+          <lien-objet :id="idTableau" />
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -44,8 +45,20 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <v-dialog v-model="dialogueEffacer">
-          <template #activator="{props: propsActivateur}">
+        <division-carte :titre="t('tableaux.carte.optionsAvancées')" />
+        <v-list-item
+          variant="flat"
+          :append-icon="clefCopiée ? 'mdi-check' : 'mdi-content-copy'"
+          @click="()=>copierClef()"
+        >
+          {{ t('tableaux.carte.clef') }}
+          {{ clefTableau }}
+        </v-list-item>
+        <carte-effacer
+          v-if="monAutorisation"
+          @effacer="() => émettre('effacer')"
+        >
+          <template #activateur="{props: propsActivateur}">
             <v-list-item
               v-bind="propsActivateur"
               class="text-error"
@@ -55,26 +68,7 @@
               {{ t('communs.effacer') }}
             </v-list-item>
           </template>
-          <v-card
-            class="mx-auto"
-            max-width="300"
-          >
-            <v-card-item>
-              <p class="text-h5">
-                {{ t('tableaux.confirmerEffacer') }}
-              </p>
-            </v-card-item>
-            <v-card-actions>
-              <v-btn @click="dialogueEffacer = false">{{ t('communs.non') }}</v-btn>
-              <v-btn
-                color="error"
-                @click="() => émettre('effacer')"
-              >
-                {{ t('communs.oui') }}
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+        </carte-effacer>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -84,11 +78,15 @@ import { computed, ref } from 'vue';
 import {useDisplay} from 'vuetify';
 import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {ajusterTexteTraductible } from '/@/utils';
+import {ajusterTexteTraductible, copier } from '/@/utils';
 import { suivre } from '@constl/vue';
 import { utiliserConstellation } from '../utils';
+import LienObjet from '/@/components/communs/LienObjet.vue';
+import NomTableau from '/@/components/tableaux/NomTableau.vue';
+import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import DivisionCarte from '../communs/DivisionCarte.vue';
 
-const props = defineProps<{idTableau: string}>();
+const props = defineProps<{idTableau: string, clefTableau: string}>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;
 }>();
@@ -100,7 +98,6 @@ const constl = utiliserConstellation();
 
 // Navigation
 const dialogue = ref(false);
-const dialogueEffacer = ref(false);
 
 // Noms
 const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: computed(() => props.idTableau)}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
@@ -116,4 +113,11 @@ const changerNoms = async (nms: {[langue: string]: string}) => {
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
 
+
+// Clef tableau
+const clefCopiée = ref(false);
+const copierClef = async () => {
+  await copier(props.clefTableau);
+  clefCopiée.value = true;
+};
 </script>

@@ -5,6 +5,7 @@
   />
   <carte-tableau
     :id-tableau="id"
+    :clef-tableau="clef"
     @effacer="()=>émettre('effacer')"
   >
     <template #activateur="{props: propsActivateur}">
