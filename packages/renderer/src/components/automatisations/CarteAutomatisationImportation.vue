@@ -18,7 +18,6 @@
       <v-card-text>
         <division-carte
           :titre="t('automatisations.statut')"
-          :en-attente="false"
         />
         <jeton-statut-automatisation
           v-if="statut"

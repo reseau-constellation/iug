@@ -32,7 +32,6 @@
 
     <division-carte
       :titre="t('bds.info')"
-      :en-attente="false"
     />
 
     <dialogue-licence

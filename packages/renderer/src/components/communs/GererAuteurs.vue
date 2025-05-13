@@ -52,7 +52,6 @@
         </v-menu>
         <division-carte
           :titre="t('auteurs.carteGérer.nouveaux')"
-          :en-attente="false"
         />
         <jeton-membre
           v-for="s in sélectionnés"

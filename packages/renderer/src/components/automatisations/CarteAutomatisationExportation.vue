@@ -25,7 +25,6 @@
       <v-card-text style="overflow-y: scroll">
         <division-carte
           :titre="t('automatisations.exportation.sousSections.statut')"
-          :en-attente="false"
         />
         <item-statut-automatisation
           v-if="statut"
@@ -40,14 +39,12 @@
         />
         <division-carte
           :titre="t('automatisations.exportation.sousSections.format')"
-          :en-attente="false"
         />
         <OptionsFormatExportation v-model="formatDoc" />
         <OptionsLanguesExportation v-model="langues" />
         <OptionsDocumentsExportation v-model="inclureDocuments" />
         <division-carte
           :titre="t('automatisations.exportation.sousSections.fréquence')"
-          :en-attente="false"
         />
         <OptionsFrequenceExportation v-model="fréquence" />
         <OptionsSauvegardesMultiples v-model="copies" />
