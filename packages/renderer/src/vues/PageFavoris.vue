@@ -6,13 +6,8 @@
       :sous-titre="t('pages.favoris.sousTitre')"
     />
     <v-list class="text-start">
-      <v-list-item
-        prepend-icon="mdi-plus"
-        :title="t('pages.favoris.commentAjouterNouveau.titre')"
-        :subtitle="t('pages.favoris.commentAjouterNouveau.sousTitre')"
-        @click="$router.push(encodeURI('/données/'))"
-      />
-      <ItemFavoris
+      <p class="text-h6 text-disabled text-center"> {{ t('pages.favoris.commentAjouterNouveau') }} </p>
+      <item-favoris
         v-for="fav in mesFavoris"
         :key="fav.idObjet"
         :epingle="fav"
