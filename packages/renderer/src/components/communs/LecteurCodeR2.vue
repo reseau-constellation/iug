@@ -19,7 +19,7 @@
 </template>
 <script setup lang="ts" generic="T extends object">
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import Ajv, {type JSONSchemaType} from 'ajv';
+import {type JSONSchemaType} from 'ajv';
 import {toByteArray} from 'base64-js';
 import {gunzipSync} from 'fflate';
 import {onMounted, ref} from 'vue';
@@ -27,9 +27,9 @@ import {QrcodeStream} from 'vue-qrcode-reader';
 import {isElectronRenderer} from 'wherearewe';
 import {demanderAccèsMédia} from '/@/utils';
 
-const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
+const importerAjv = async () => await import('ajv');
 
-const ajv = new Ajv();
+const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
 const props = defineProps<{
   schema?: JSONSchemaType<T>;
@@ -66,7 +66,10 @@ function paintBoundingBox(detectedCodes: TypeCodeDétecté[], ctx: CanvasRenderi
   }
 }
 
-const lorsqueDétecté = (info: TypeCodeDétecté[]) => {
+const lorsqueDétecté = async (info: TypeCodeDétecté[]) => {
+  const Ajv = (await importerAjv()).default;
+  const ajv = new Ajv();
+
   erreur.value = undefined;
 
   let texteCode = info[0].rawValue; // On utilise le premier code détecté
