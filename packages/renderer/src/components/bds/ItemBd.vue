@@ -1,8 +1,15 @@
 <template>
   <v-list-item
-    :prepend-avatar="srcImgBd || imgDéfaut"
     :subtitle="descrTraduite"
   >
+    <template #prepend>
+      <v-img
+        :src="srcImgBd || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <template #title>
       <slot>
         <span v-if="noms">{{ nomTraduit || t('bds.sansNom') }}</span>

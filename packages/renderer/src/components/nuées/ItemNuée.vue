@@ -1,9 +1,16 @@
 <template>
   <v-list-item
-    :prepend-avatar="srcImgNuée || imgDéfaut"
     :title="nomTraduit || t('nuées.sansNom')"
     :subtitle="descrTraduite || t('communs.baseCarteObjet.sansDescription')"
   >
+    <template #prepend>
+      <v-img
+        :src="srcImgNuée || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <template #append>
       <lien-objet :id="id"></lien-objet>
     </template>

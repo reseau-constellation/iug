@@ -1,9 +1,16 @@
 <template>
   <v-list-item
-    :prepend-avatar="srcImgProjet || imgDéfaut"
     :title="nomTraduit"
     :subtitle="descrTraduite"
   >
+    <template #prepend>
+      <v-img
+        :src="srcImgProjet || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <série-jetons
       :n-max="3"
       :items="bds"

@@ -645,7 +645,7 @@
         }
       },
       "sélecteur": {
-        "étiquette": "Recherche un tableau"
+        "étiquette": "Rechercher un tableau"
       }
     },
     "nuées": {
@@ -717,6 +717,9 @@
         "texteCréer": "Confirmer la création du projet",
         "texteBtnCréation": "Créer projet",
         "ouvrirAprèsCréation": "Ouvrir le projet"
+      },
+      "recherche": {
+        "étiquette": "Rechercher un projet"
       }
     },
     "colonnes": {
