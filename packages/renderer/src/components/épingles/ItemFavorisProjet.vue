@@ -1,64 +1,57 @@
 <template>
   <EpinglerProjet :id-projet="epingle.idObjet">
     <template #activateur="{props: propsActivateurCarteÉpingle}">
-      <v-tooltip
-        open-delay="200"
-        location="bottom"
-      >
-        <template #activator="{props: propsActivateurIndice}">
-          <v-list-item v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}">
-            <template #prepend>
-              <v-icon>{{ icôneTypeItem }}</v-icon>
-            </template>
-            <v-list-item-title>
-              {{ nomTraduit || t('projets.sansNom') }}
-              <lien-objet :id="epingle.idObjet" />
-              <carte-projet :id="epingle.idObjet">
-                <template #activateur="{props: propsActivateurCarte}">
-                  <v-btn
-                    v-bind="propsActivateurCarte"
-                    icon="mdi-dots-horizontal"
-                    size="small"
-                    variant="flat"
-                  />
-                </template>
-              </carte-projet>
-            </v-list-item-title>
-            <jeton-part-epingle
-              icone="mdi-save-outline"
-              :dispositifs="props.epingle.épingle.base"
-              :statut="statutÉpingle?.base"
-              indice="épingler.indicesJetons.projet"
-            >
-              {{ t('épingler.jetons.projet') }}
-            </jeton-part-epingle>
-            <jeton-part-epingle
-              icone="mdi-table-multiple"
-              :dispositifs="props.epingle.épingle.bds.base"
-              :statut="statutÉpingle?.bds?.base"
-              indice="épingler.indicesJetons.bds"
-            >
-              {{ t('épingler.jetons.bds') }}
-            </jeton-part-epingle>
-            <jeton-part-epingle
-              icone="mdi-database"
-              :dispositifs="props.epingle.épingle.bds.données.tableaux"
-              :statut="statutÉpingle?.bds?.données?.tableaux"
-              indice="épingler.indicesJetons.données"
-            >
-              {{ t('épingler.jetons.données') }}
-            </jeton-part-epingle>
-            <jeton-part-epingle
-              icone="mdi-image-multiple-outline"
-              :dispositifs="props.epingle.épingle.bds.données.fichiers"
-              :statut="statutÉpingle?.bds?.données?.fichiers"
-              indice="épingler.indicesJetons.documents"
-            >
-              {{ t('épingler.jetons.documents') }}
-            </jeton-part-epingle>
-          </v-list-item>
+      <v-list-item v-bind="propsActivateurCarteÉpingle">
+        <template #prepend>
+          <v-icon>{{ icôneTypeItem }}</v-icon>
         </template>
-      </v-tooltip>
+        <v-list-item-title>
+          {{ nomTraduit || t('projets.sansNom') }}
+          <lien-objet :id="epingle.idObjet" />
+          <carte-projet :id="epingle.idObjet">
+            <template #activateur="{props: propsActivateurCarte}">
+              <v-btn
+                v-bind="propsActivateurCarte"
+                icon="mdi-dots-horizontal"
+                size="small"
+                variant="flat"
+              />
+            </template>
+          </carte-projet>
+        </v-list-item-title>
+        <jeton-part-epingle
+          icone="mdi-save-outline"
+          :dispositifs="props.epingle.épingle.base"
+          :statut="statutÉpingle?.base"
+          indice="épingler.indicesJetons.projet"
+        >
+          {{ t('épingler.jetons.projet') }}
+        </jeton-part-epingle>
+        <jeton-part-epingle
+          icone="mdi-table-multiple"
+          :dispositifs="props.epingle.épingle.bds.base"
+          :statut="statutÉpingle?.bds?.base"
+          indice="épingler.indicesJetons.bds"
+        >
+          {{ t('épingler.jetons.bds') }}
+        </jeton-part-epingle>
+        <jeton-part-epingle
+          icone="mdi-database"
+          :dispositifs="props.epingle.épingle.bds.données.tableaux"
+          :statut="statutÉpingle?.bds?.données?.tableaux"
+          indice="épingler.indicesJetons.données"
+        >
+          {{ t('épingler.jetons.données') }}
+        </jeton-part-epingle>
+        <jeton-part-epingle
+          icone="mdi-image-multiple-outline"
+          :dispositifs="props.epingle.épingle.bds.données.fichiers"
+          :statut="statutÉpingle?.bds?.données?.fichiers"
+          indice="épingler.indicesJetons.documents"
+        >
+          {{ t('épingler.jetons.documents') }}
+        </jeton-part-epingle>
+      </v-list-item>
     </template>
   </EpinglerProjet>
 </template>

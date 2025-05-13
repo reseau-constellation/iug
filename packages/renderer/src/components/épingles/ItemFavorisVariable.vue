@@ -1,40 +1,33 @@
 <template>
   <EpinglerVariable :id-variable="epingle.idObjet">
     <template #activateur="{props: propsActivateurCarteÉpingle}">
-      <v-tooltip
-        open-delay="200"
-        location="bottom"
-      >
-        <template #activator="{props: propsActivateurIndice}">
-          <v-list-item v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}">
-            <template #prepend>
-              <v-icon>{{ icôneTypeItem }}</v-icon>
-            </template>
-            <v-list-item-title>
-              {{ nomTraduit || t('variables.sansNom') }}
-              <lien-objet :id="epingle.idObjet" />
-              <carte-variable :id="epingle.idObjet">
-                <template #activateur="{props: propsActivateurCarte}">
-                  <v-btn
-                    v-bind="propsActivateurCarte"
-                    icon="mdi-dots-horizontal"
-                    size="small"
-                    variant="flat"
-                  />
-                </template>
-              </carte-variable>
-            </v-list-item-title>
-            <jeton-part-epingle
-              icone="mdi-save-outline"
-              :dispositifs="props.epingle.épingle.base"
-              :statut="statut"
-              indice="épingler.indicesJetons.variable"
-            >
-              {{ t('épingler.jetons.variable') }}
-            </jeton-part-epingle>
-          </v-list-item>
+      <v-list-item v-bind="propsActivateurCarteÉpingle">
+        <template #prepend>
+          <v-icon>{{ icôneTypeItem }}</v-icon>
         </template>
-      </v-tooltip>
+        <v-list-item-title>
+          {{ nomTraduit || t('variables.sansNom') }}
+          <lien-objet :id="epingle.idObjet" />
+          <carte-variable :id="epingle.idObjet">
+            <template #activateur="{props: propsActivateurCarte}">
+              <v-btn
+                v-bind="propsActivateurCarte"
+                icon="mdi-dots-horizontal"
+                size="small"
+                variant="flat"
+              />
+            </template>
+          </carte-variable>
+        </v-list-item-title>
+        <jeton-part-epingle
+          icone="mdi-save-outline"
+          :dispositifs="props.epingle.épingle.base"
+          :statut="statut"
+          indice="épingler.indicesJetons.variable"
+        >
+          {{ t('épingler.jetons.variable') }}
+        </jeton-part-epingle>
+      </v-list-item>
     </template>
   </EpinglerVariable>
 </template>

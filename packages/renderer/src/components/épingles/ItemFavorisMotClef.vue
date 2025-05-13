@@ -1,40 +1,33 @@
 <template>
   <EpinglerMotClef :id-mot-clef="epingle.idObjet">
     <template #activateur="{props: propsActivateurCarteÉpingle}">
-      <v-tooltip
-        open-delay="200"
-        location="bottom"
-      >
-        <template #activator="{props: propsActivateurIndice}">
-          <v-list-item v-bind="{...propsActivateurCarteÉpingle, ...propsActivateurIndice}">
-            <template #prepend>
-              <v-icon>{{ icôneTypeItem }}</v-icon>
-            </template>
-            <v-list-item-title>
-              {{ nomTraduit || t('motClefs.sansNom') }}
-              <lien-objet :id="epingle.idObjet" />
-              <carte-mot-clef :id="epingle.idObjet">
-                <template #activateur="{props: propsActivateurCarte}">
-                  <v-btn
-                    v-bind="propsActivateurCarte"
-                    icon="mdi-dots-horizontal"
-                    size="small"
-                    variant="flat"
-                  />
-                </template>
-              </carte-mot-clef>
-            </v-list-item-title>
-            <jeton-part-epingle
-              icone="mdi-save-outline"
-              :dispositifs="props.epingle.épingle.base"
-              :statut="statut"
-              indice="épingler.indicesJetons.motClef"
-            >
-              {{ t('épingler.jetons.motClef') }}
-            </jeton-part-epingle>
-          </v-list-item>
+      <v-list-item v-bind="propsActivateurCarteÉpingle">
+        <template #prepend>
+          <v-icon>{{ icôneTypeItem }}</v-icon>
         </template>
-      </v-tooltip>
+        <v-list-item-title>
+          {{ nomTraduit || t('motClefs.sansNom') }}
+          <lien-objet :id="epingle.idObjet" />
+          <carte-mot-clef :id="epingle.idObjet">
+            <template #activateur="{props: propsActivateurCarte}">
+              <v-btn
+                v-bind="propsActivateurCarte"
+                icon="mdi-dots-horizontal"
+                size="small"
+                variant="flat"
+              />
+            </template>
+          </carte-mot-clef>
+        </v-list-item-title>
+        <jeton-part-epingle
+          icone="mdi-save-outline"
+          :dispositifs="props.epingle.épingle.base"
+          :statut="statut"
+          indice="épingler.indicesJetons.motClef"
+        >
+          {{ t('épingler.jetons.motClef') }}
+        </jeton-part-epingle>
+      </v-list-item>
     </template>
   </EpinglerMotClef>
 </template>
