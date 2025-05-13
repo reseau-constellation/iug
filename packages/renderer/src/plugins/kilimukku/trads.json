@@ -646,6 +646,10 @@
       },
       "sélecteur": {
         "étiquette": "Rechercher un tableau"
+      },
+      "carte": {
+        "clef": "Clef tableau :",
+        "optionsAvancées": "Options avancées"
       }
     },
     "nuées": {
