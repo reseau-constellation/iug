@@ -16,15 +16,12 @@
       <v-card-subtitle>{{ texteVuIlYA }}</v-card-subtitle>
     </v-card-item>
     <v-card-text class="align-center text-center">
-      <v-avatar
-        class="mb-3"
-        :size="mdAndUp ? 125 : 100"
-      >
-        <v-img
-          class="my-0"
-          :src="srcImg || imgDéfaut"
-        />
-      </v-avatar>
+      <v-img
+        :src="srcImg || imgDéfaut"
+        class="mx-auto rounded-circle border-thin"
+        :width="mdAndUp ? 125 : 100"
+        :height="mdAndUp ? 125 : 100"
+      />
     </v-card-text>
     <v-divider />
     <v-card-actions>
