@@ -193,15 +193,14 @@
         </template>
       </carte-code-nuee>
 
-      <carte-copier
-        v-if="false"
-        :id="id"
+      <carte-copier-nuee
+        :id-nuee="id"
       >
         <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
             location="bottom"
-            :text="t('copier.indice')"
+            :text="t('nuées.copier.indice')"
           >
             <template #activator="{props: propsActivateurIndice}">
               <v-btn
@@ -212,7 +211,7 @@
             </template>
           </v-tooltip>
         </template>
-      </carte-copier>
+      </carte-copier-nuee>
 
       <carte-effacer
         v-if="!!monAutorisation"
@@ -580,7 +579,7 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
 import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
-import CarteCopier from '/@/components/communs/CarteCopier.vue';
+import CarteCopierNuee from '/@/components/nuées/CarteCopierNuée.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';

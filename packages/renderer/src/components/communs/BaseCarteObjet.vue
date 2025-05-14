@@ -64,16 +64,6 @@
             <v-icon>mdi-dots-horizontal</v-icon>
             <v-menu activator="parent">
               <v-list>
-                <carte-copier @copier="copier">
-                  <template #activateur="{props: propsActivateur}">
-                    <v-list-item
-                      v-bind="propsActivateur"
-                      prepend-icon="mdi-content-copy"
-                    >
-                      <v-list-item-title>{{ t('communs.copier') }}</v-list-item-title>
-                    </v-list-item>
-                  </template>
-                </carte-copier>
                 <slot
                   name="epingler"
                   :activateur="ItemListeIconeEpingler"
@@ -196,7 +186,6 @@ import {useDisplay} from 'vuetify';
 import ItemListeIconeEpingler from '/@/components/épingles/ItemListeIcôneÉpingler.vue';
 
 import AuteursObjet from './AuteursObjet.vue';
-import CarteCopier from './CarteCopier.vue';
 import CarteEffacer from './CarteEffacer.vue';
 import DivisionCarte from './DivisionCarte.vue';
 import GererAuteurs from './GererAuteurs.vue';
@@ -249,12 +238,6 @@ const épinglé = computed(() => !!statutFavoris.value);
 // Effacer objet
 const effacer = async () => {
   émettre('effacer');
-  dialogue.value = false;
-};
-
-// Copier objet
-const copier = async () => {
-  émettre('copier');
   dialogue.value = false;
 };
 

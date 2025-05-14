@@ -70,7 +70,7 @@
     </div>
 
     <div class="text-center">
-      <SérieJetons
+      <serie-jetons
         :n-max="5"
         :items="motsClefs"
       >
@@ -94,7 +94,7 @@
             </template>
           </carte-mot-clef>
         </template>
-      </SérieJetons>
+      </serie-jetons>
       <span
         v-if="motsClefs && !motsClefs.length"
         class="text-disabled"
@@ -169,7 +169,7 @@
         </template>
       </carte-code-bd>
 
-      <carte-copier
+      <carte-copier-bd
         v-if="false"
         :id="id"
       >
@@ -188,7 +188,7 @@
             </template>
           </v-tooltip>
         </template>
-      </carte-copier>
+      </carte-copier-bd>
 
       <carte-effacer
         v-if="!!monAutorisation"
@@ -393,20 +393,26 @@
           v-model="tableauActif"
           class="mt-2"
         >
-          <v-tab
-            v-for="ong in tableaux"
-            :key="ong.clef"
-            :value="ong.clef"
-            color="primary"
-            size="small"
-            density="compact"
+          <draggable
+            v-model="tableauxOrdonnables"
+            item-key="id"
           >
-            <entete-tableau
-              :id="ong.id"
-              :clef="ong.clef"
-              @effacer="()=>effacerTableau(ong.id)"
-            />
-          </v-tab>
+            <template #item="{ element: ong }">
+              <v-tab
+                :value="ong.clef"
+                color="primary"
+                size="small"
+                density="compact"
+              >
+                <entete-tableau
+                  :id="ong.id"
+                  :clef="ong.clef"
+                  @effacer="()=>effacerTableau(ong.id)"
+                />
+              </v-tab>
+            </template>
+          </draggable>
+          
 
           <nouveau-tableau @sauvegarder="ajouterTableau">
             <template #activateur="{props: propsActivateur}">
@@ -553,15 +559,16 @@ import {MAX_TAILLE_IMAGE} from '/@/consts';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
-
+import Draggable from 'vuedraggable';
 import CarteAutomatisationsBd from '/@/components/automatisations/CarteAutomatisationsBd.vue';
 import CarteExportationObjet from '/@/components/automatisations/CarteExportationObjet.vue';
 import ItemAutomatisationsObjet from '/@/components/automatisations/ItemAutomatisationsObjet.vue';
+import CarteReplicationsObjet from '/@/components/épingles/CarteRéplicationsObjet.vue';
 import CarteCodeBd from '/@/components/bds/CarteCodeBd.vue';
 import CarteQualiteBd from '/@/components/bds/CarteQualitéBd.vue';
 import CarteStatutBd from '/@/components/bds/CarteStatutBd.vue';
 import ItemQualiteBd from '/@/components/bds/ItemQualitéBd.vue';
-import CarteCopier from '/@/components/communs/CarteCopier.vue';
+import CarteCopierBd from '/@/components/bds/CarteCopierBd.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -700,6 +707,18 @@ watchEffect(() => {
   }
   if (tableauActif.value && !tableaux.value?.map(t => t.clef).includes(tableauActif.value)) {
     tableauActif.value = undefined;
+  }
+});
+const tableauxOrdonnables = ref(tableaux.value);
+watchEffect(()=>{
+  tableauxOrdonnables.value = tableaux.value;
+});
+watchEffect(async ()=>{
+  if (tableauxOrdonnables.value) {
+    /* await constl.bds.réordonnerTableauxBd({
+      idBd: props.id,
+      ordreIdsTableaux: tableauxOrdonnables.value.map(t=>t.id),
+    }); */
   }
 });
 
