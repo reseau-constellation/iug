@@ -45,6 +45,7 @@
               </template>
             </v-select>
             <v-checkbox
+              v-show="false"
               v-model="catégorieListe"
               :label="t('variables.nouvelle.typeListe')"
               color="primary"

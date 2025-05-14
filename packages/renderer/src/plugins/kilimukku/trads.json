@@ -661,6 +661,15 @@
       },
       "aucunMotClef": "Aucun mot-clef",
       "aucuneVariable": "Aucune variable",
+      "copier": {
+        "titre": "Copier la nuée",
+        "indice": "Copier cette nuée",
+        "indépendante": "Copie indépendante",
+        "dépendante": "Copie dépendante",
+        "indiceIndépendante": "Créer une nouvelle nuée indépendante qui pourra évoluer indépendamment de l'origiinale",
+        "indiceDépendante": "La nouvelle nuée reflétera les changements (tableaux, structure, noms) apportés à l'originale",
+        "ouvrirCopie": "Ouvrir la nuée copiée"
+      },
       "info": "Info nuée",
       "variables": "Variables",
       "gestion": "Gestion",

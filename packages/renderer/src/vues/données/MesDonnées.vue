@@ -169,7 +169,7 @@
                 <v-card-text>
                   <v-list class="text-start">
                     <nouvelle-nuee>
-                      <template #activator="{props}">
+                      <template #activateur="{props}">
                         <v-list-item v-bind="props">
                           <template #prepend>
                             <v-icon>mdi-plus</v-icon>
@@ -186,8 +186,8 @@
                       :id="nuée"
                       :key="nuée"
                     >
-                      <template #activator="{props}">
-                        <ItemNuée
+                      <template #activateur="{props}">
+                        <item-nuee
                           v-bind="props"
                           :id="nuée"
                         />
@@ -218,7 +218,7 @@ import CarteMotClef from '/@/components/motsClefs/CarteMotClef.vue';
 import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import NouveauMotClef from '/@/components/motsClefs/NouveauMotClef.vue';
 import CarteNuee from '/@/components/nuées/CarteNuée.vue';
-import ItemNuée from '/@/components/nuées/ItemNuée.vue';
+import ItemNuee from '/@/components/nuées/ItemNuée.vue';
 import NouvelleNuee from '/@/components/nuées/NouvelleNuée.vue';
 import CarteProjet from '/@/components/projets/CarteProjet.vue';
 import ItemProjet from '/@/components/projets/ItemProjet.vue';

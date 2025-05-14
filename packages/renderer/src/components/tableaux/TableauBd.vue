@@ -73,7 +73,6 @@
                 <v-btn
                   v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
                   icon="mdi-xml"
-                  variant="flat"
                 />
               </template>
             </v-tooltip>
