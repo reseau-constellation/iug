@@ -1,9 +1,16 @@
 <template>
   <v-list-item
     :subtitle="texteVuIlYA"
-    :prepend-avatar="srcImg || imgDéfaut"
     @click="$router.push(encodeURI(`/données/${typeObjet}/${encodeURIComponent(id)}`))"
   >
+    <template #prepend>
+      <v-img
+        :src="srcImg || imgDéfaut"
+        class="me-4 rounded-circle border-thin"
+        width="40"
+        height="40"
+      />
+    </template>
     <template #title>
       <span v-if="noms">
         {{ nomTraduit || t(sansNom) }}
