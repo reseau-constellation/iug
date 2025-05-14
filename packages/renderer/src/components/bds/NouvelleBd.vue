@@ -205,7 +205,7 @@ const émettre = defineEmits<{(é: 'nouvelle', id: string): void}>();
 const constl = utiliserConstellation();
 
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
-const router = useRouter();
+const routeur = useRouter();
 const {isRtl} = useRtl();
 const {mdAndUp} = useDisplay();
 
@@ -501,7 +501,7 @@ const créerBd = async () => {
 
   émettre('nouvelle', idBd);
   fermer();
-  if (ouvrirAprèsCréation.value) router.push(encodeURI(`/données/bd/${encodeURIComponent(idBd)}`));
+  if (ouvrirAprèsCréation.value) routeur.push(encodeURI(`/données/bd/${encodeURIComponent(idBd)}`));
 };
 
 // Fermer
