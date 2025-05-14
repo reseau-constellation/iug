@@ -49,8 +49,8 @@ import {மொழியாக்கத்தைப்_பயன்படுத�
 import {ref, watchEffect} from 'vue';
 import {useDisplay} from 'vuetify';
 import {utiliserÉtatConditions} from '/@/état/conditions';
+import VueMarkdown from 'vue-markdown-render';
 
-const VueMarkdown = async ()=> await import('vue-markdown-render');
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 const {mdAndUp} = useDisplay();
 const état = utiliserÉtatConditions();
