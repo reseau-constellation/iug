@@ -82,59 +82,61 @@
             @effacer="() => effacerRègle(r.règle.id)"
           ></item-regle-colonne>
         </v-list>
-        <division-carte
+        <section-retractible
           :titre="t('colonnes.carte.avancées')"
-        />
-        <v-checkbox
-          v-model="choixIndex"
-          :disabled="!permissionModifier"
-          color="primary"
-          hide-details
+          initial="fermé"
         >
-          <template #label>
-            {{ t('colonnes.nouvelle.index') }}
-            <v-tooltip :text="t('tableaux.colonnes.indiceIndex')">
-              <template #activator="{props: propsActivateur}">
-                <v-icon
-                  v-bind="propsActivateur"
-                  icon="mdi-information-outline"
-                  end
-                />
-              </template>
-            </v-tooltip>
-          </template>
-        </v-checkbox>
-        <v-dialog v-model="dialogueEffacer">
-          <template #activator="{props: propsActivateur}">
-            <v-list-item
-              v-bind="propsActivateur"
-              class="text-error"
-              variant="flat"
-              append-icon="mdi-delete"
-            >
-              {{ t('communs.effacer') }}
-            </v-list-item>
-          </template>
-          <v-card
-            class="mx-auto"
-            max-width="300"
+          <v-checkbox
+            v-model="choixIndex"
+            :disabled="!permissionModifier"
+            color="primary"
+            hide-details
           >
-            <v-card-item>
-              <p class="text-h5">
-                {{ t('tableaux.colonnes.confirmerEffacer') }}
-              </p>
-            </v-card-item>
-            <v-card-actions>
-              <v-btn @click="dialogueEffacer = false">{{ t('communs.non') }}</v-btn>
-              <v-btn
-                color="error"
-                @click="() => émettre('effacer')"
+            <template #label>
+              {{ t('colonnes.nouvelle.index') }}
+              <v-tooltip :text="t('tableaux.colonnes.indiceIndex')">
+                <template #activator="{props: propsActivateur}">
+                  <v-icon
+                    v-bind="propsActivateur"
+                    icon="mdi-information-outline"
+                    end
+                  />
+                </template>
+              </v-tooltip>
+            </template>
+          </v-checkbox>
+          <v-dialog v-model="dialogueEffacer">
+            <template #activator="{props: propsActivateur}">
+              <v-list-item
+                v-bind="propsActivateur"
+                class="text-error"
+                variant="flat"
+                append-icon="mdi-delete"
               >
-                {{ t('communs.oui') }}
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+                {{ t('communs.effacer') }}
+              </v-list-item>
+            </template>
+            <v-card
+              class="mx-auto"
+              max-width="300"
+            >
+              <v-card-item>
+                <p class="text-h5">
+                  {{ t('tableaux.colonnes.confirmerEffacer') }}
+                </p>
+              </v-card-item>
+              <v-card-actions>
+                <v-btn @click="dialogueEffacer = false">{{ t('communs.non') }}</v-btn>
+                <v-btn
+                  color="error"
+                  @click="() => émettre('effacer')"
+                >
+                  {{ t('communs.oui') }}
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        </section-retractible>
       </v-card-text>
       <v-card-actions>
         <v-spacer />
@@ -164,6 +166,7 @@ import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
+import SectionRetractible from '/@/components/communs/SectionRétractible.vue';
 
 import {utiliserConstellation} from '../utils';
 
