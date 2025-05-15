@@ -13,7 +13,11 @@
       <v-card-item class="mb-0">
         <v-card-title class="d-flex align-center align-center">
           {{ t('colonnes.carte.titre') }}
-          <lien-objet :id="idColonne" />
+          <lien-objet
+            :id="idColonne"
+            :editable="!!monAutorisation"
+            @modifie="(x)=>choixIdColonne = x"
+          />
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -80,7 +84,6 @@
         </v-list>
         <division-carte
           :titre="t('colonnes.carte.avancées')"
-          :en-attente="!règlesÀAfficher"
         />
         <v-checkbox
           v-model="choixIndex"
@@ -197,9 +200,27 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 const dialogueEffacer = ref(false);
 
+
+// Autorisation
+const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
+
 // Index
 const choixIndex = ref(props.index);
 const indexModifié = computed(() => choixIndex.value !== props.index);
+watchEffect(() => choixIndex.value = props.index);
+
+// Id
+const choixIdColonne = ref(props.idColonne);
+const idColonneModifiée = computed(() => choixIdColonne.value !== props.idColonne);
+watchEffect(() => choixIdColonne.value = props.idColonne);
+
+watchEffect(async () => {
+  if (idColonneModifiée.value) await constl.tableaux.changerIdColonne({
+    idTableau: props.idTableau,
+    idColonne: props.idColonne,
+    nouvelleIdColonne: choixIdColonne.value,
+  });
+});
 
 // Variable
 const choixVariable = ref(props.idVariable);
