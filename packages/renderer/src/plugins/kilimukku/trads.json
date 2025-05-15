@@ -666,7 +666,7 @@
         "indice": "Copier cette nuée",
         "indépendante": "Copie indépendante",
         "dépendante": "Copie dépendante",
-        "indiceIndépendante": "Créer une nouvelle nuée indépendante qui pourra évoluer indépendamment de l'origiinale",
+        "indiceIndépendante": "Créer une nouvelle nuée indépendante qui pourra évoluer indépendamment de l'originale",
         "indiceDépendante": "La nouvelle nuée reflétera les changements (tableaux, structure, noms) apportés à l'originale",
         "ouvrirCopie": "Ouvrir la nuée copiée"
       },
