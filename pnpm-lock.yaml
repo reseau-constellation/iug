@@ -12,14 +12,22 @@ importers:
   .:
     dependencies:
       '@constl/ipa':
+<<<<<<< HEAD
         specifier: ^1.6.17
+=======
+        specifier: ^1.6.19
+>>>>>>> 8e2d39b (Mises à jour)
         version: 1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire':
         specifier: ^3.0.3
         version: 3.0.3
       '@constl/mandataire-electron-principal':
         specifier: ^3.1.3
+<<<<<<< HEAD
         version: 3.1.3(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(electron@36.2.1)
+=======
+        version: 3.1.3(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(electron@36.1.0)
+>>>>>>> 8e2d39b (Mises à jour)
       '@constl/mandataire-electron-rendu':
         specifier: ^3.1.3
         version: 3.1.3
@@ -28,6 +36,7 @@ importers:
         version: 2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@constl/vue':
         specifier: ^1.0.4
+<<<<<<< HEAD
         version: 1.0.4(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.14(typescript@5.8.3))
       '@lassi-js/kili':
         specifier: ^0.4.4
@@ -38,6 +47,18 @@ importers:
       '@lassi-js/kilimukku-vue':
         specifier: ^2.0.0
         version: 2.0.0(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.14(typescript@5.8.3))
+=======
+        version: 1.0.4(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.3))
+      '@lassi-js/kili':
+        specifier: ^0.4.5
+        version: 0.4.5
+      '@lassi-js/kilimukku':
+        specifier: ^1.2.0
+        version: 1.2.0(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
+      '@lassi-js/kilimukku-vue':
+        specifier: ^2.0.0
+        version: 2.0.0(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.3))
+>>>>>>> 8e2d39b (Mises à jour)
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
@@ -49,7 +70,11 @@ importers:
         version: 0.10.1(leaflet@1.9.4)(typescript@5.8.3)
       '@vueuse/core':
         specifier: ^13.1.0
+<<<<<<< HEAD
         version: 13.2.0(vue@3.5.14(typescript@5.8.3))
+=======
+        version: 13.2.0(vue@3.5.13(typescript@5.8.3))
+>>>>>>> 8e2d39b (Mises à jour)
       '@wdns/vue-code-block':
         specifier: ^2.3.5
         version: 2.3.5(typescript@5.8.3)
@@ -193,7 +218,11 @@ importers:
         version: 4.1.0(vue@3.5.13(typescript@5.8.3))
       vuetify:
         specifier: ^3.8.3
+<<<<<<< HEAD
         version: 3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.14(typescript@5.8.3))
+=======
+        version: 3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.13(typescript@5.8.3))
+>>>>>>> 8e2d39b (Mises à jour)
       webfontloader:
         specifier: ^1.6.28
         version: 1.6.28
@@ -251,7 +280,11 @@ importers:
         version: 8.32.1(eslint@9.26.0(jiti@2.4.2))(typescript@5.8.3)
       '@vitejs/plugin-vue':
         specifier: ^5.2.3
+<<<<<<< HEAD
         version: 5.2.4(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.14(typescript@5.8.3))
+=======
+        version: 5.2.4(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.13(typescript@5.8.3))
+>>>>>>> 8e2d39b (Mises à jour)
       '@vitest/coverage-istanbul':
         specifier: ^3.1.2
         version: 3.1.3(vitest@3.1.3(@types/debug@4.1.12)(@types/node@22.15.18)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.39.1))
@@ -326,7 +359,11 @@ importers:
         version: 0.23.0(rollup@4.40.1)(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))
       vite-plugin-vuetify:
         specifier: ^2.1.1
+<<<<<<< HEAD
         version: 2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.14(typescript@5.8.3))(vuetify@3.8.5)
+=======
+        version: 2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.13(typescript@5.8.3))(vuetify@3.8.5)
+>>>>>>> 8e2d39b (Mises à jour)
       vitest:
         specifier: ^3.1.2
         version: 3.1.3(@types/debug@4.1.12)(@types/node@22.15.18)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.39.1)
@@ -7439,9 +7476,14 @@ packages:
     peerDependencies:
       vue: ^3.0.1
 
+<<<<<<< HEAD
   vuetify@3.8.4:
     resolution: {integrity: sha512-hfA1eqA6vhrF5LF8Yfk0uHdNUmh8Uckxn5wREiThO82HW/9Vfreh+IpxPgEtCsAhV33KW+NVamltQCu3HczRKw==}
 >>>>>>> 5e600c1 (Format bouton)
+=======
+  vuetify@3.8.5:
+    resolution: {integrity: sha512-W/mTaNDyO6NRqAQmnkMUn9TYvRb//BPF/vk7h3+2xNJOyI9ev90JmYjrihOtb+6QDrB79wVUH0Y+0OjYK73GsA==}
+>>>>>>> 8e2d39b (Mises à jour)
     engines: {node: ^12.20 || >=14.13}
     peerDependencies:
       typescript: '>=4.7'
@@ -8837,7 +8879,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+<<<<<<< HEAD
   '@constl/mandataire-electron-principal@3.1.3(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(electron@36.2.1)':
+=======
+  '@constl/mandataire-electron-principal@3.1.3(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(@constl/mandataire@3.0.3)(@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(electron@36.1.0)':
+>>>>>>> 8e2d39b (Mises à jour)
     dependencies:
       '@constl/ipa': 1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@constl/mandataire': 3.0.3
@@ -8862,7 +8908,11 @@ snapshots:
   '@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@constl/ipa': 1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
+<<<<<<< HEAD
       axios: 1.9.0(debug@4.4.1)
+=======
+      axios: 1.9.0(debug@4.4.0)
+>>>>>>> 8e2d39b (Mises à jour)
       bip39: 3.1.0
       bufferutil: 4.0.9
       chalk: 5.4.1
@@ -8943,7 +8993,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+<<<<<<< HEAD
   '@constl/vue@1.0.4(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.14(typescript@5.8.3))':
+=======
+  '@constl/vue@1.0.4(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.3))':
+>>>>>>> 8e2d39b (Mises à jour)
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.12
       '@constl/utils-ipa': 1.0.5
@@ -9029,7 +9083,7 @@ snapshots:
       make-fetch-happen: 10.2.1
       nopt: 6.0.0
       proc-log: 2.0.1
-      semver: 7.7.2
+      semver: 7.7.1
       tar: 6.2.1
       which: 2.0.2
     transitivePeerDependencies:
@@ -9630,7 +9684,11 @@ snapshots:
       '@orbitdb/core': 2.5.0
       deepcopy: 2.1.0
 
+<<<<<<< HEAD
   '@lassi-js/kilimukku-vue@2.0.0(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.14(typescript@5.8.3))':
+=======
+  '@lassi-js/kilimukku-vue@2.0.0(@constl/ipa@1.6.19(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1)))(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.1)(@babel/preset-env@7.26.0(@babel/core@7.27.1))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))(vue@3.5.13(typescript@5.8.3))':
+>>>>>>> 8e2d39b (Mises à jour)
     dependencies:
       '@chriscdn/promise-semaphore': 2.0.12
       '@lassi-js/kili': 0.4.5
@@ -10321,7 +10379,7 @@ snapshots:
   '@npmcli/fs@2.1.2':
     dependencies:
       '@gar/promisify': 1.1.3
-      semver: 7.7.2
+      semver: 7.7.1
 
   '@npmcli/move-file@2.0.1':
     dependencies:
@@ -11130,10 +11188,17 @@ snapshots:
       global: 4.4.0
       is-function: 1.0.2
 
+<<<<<<< HEAD
   '@vitejs/plugin-vue@5.2.4(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.14(typescript@5.8.3))':
     dependencies:
       vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1)
       vue: 3.5.14(typescript@5.8.3)
+=======
+  '@vitejs/plugin-vue@5.2.4(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.13(typescript@5.8.3))':
+    dependencies:
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1)
+      vue: 3.5.13(typescript@5.8.3)
+>>>>>>> 8e2d39b (Mises à jour)
 
   '@vitest/coverage-istanbul@3.1.3(vitest@3.1.3(@types/debug@4.1.12)(@types/node@22.15.18)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.39.1))':
     dependencies:
@@ -11340,6 +11405,7 @@ snapshots:
       js-beautify: 1.15.4
       vue-component-type-helpers: 2.2.10
 
+<<<<<<< HEAD
   '@vuetify/loader-shared@2.1.0(vue@3.5.14(typescript@5.8.3))(vuetify@3.8.5)':
     dependencies:
       upath: 2.0.1
@@ -11356,6 +11422,24 @@ snapshots:
   '@vueuse/metadata@13.2.0': {}
 
   '@vueuse/shared@13.2.0(vue@3.5.14(typescript@5.8.3))':
+=======
+  '@vuetify/loader-shared@2.1.0(vue@3.5.13(typescript@5.8.3))(vuetify@3.8.5)':
+    dependencies:
+      upath: 2.0.1
+      vue: 3.5.13(typescript@5.8.3)
+      vuetify: 3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.13(typescript@5.8.3))
+
+  '@vueuse/core@13.2.0(vue@3.5.13(typescript@5.8.3))':
+    dependencies:
+      '@types/web-bluetooth': 0.0.21
+      '@vueuse/metadata': 13.2.0
+      '@vueuse/shared': 13.2.0(vue@3.5.13(typescript@5.8.3))
+      vue: 3.5.13(typescript@5.8.3)
+
+  '@vueuse/metadata@13.2.0': {}
+
+  '@vueuse/shared@13.2.0(vue@3.5.13(typescript@5.8.3))':
+>>>>>>> 8e2d39b (Mises à jour)
     dependencies:
       vue: 3.5.14(typescript@5.8.3)
 
@@ -17231,6 +17315,7 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+<<<<<<< HEAD
   vite-plugin-vuetify@2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.14(typescript@5.8.3))(vuetify@3.8.5):
     dependencies:
       '@vuetify/loader-shared': 2.1.0(vue@3.5.14(typescript@5.8.3))(vuetify@3.8.5)
@@ -17239,6 +17324,16 @@ snapshots:
       vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1)
       vue: 3.5.14(typescript@5.8.3)
       vuetify: 3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.14(typescript@5.8.3))
+=======
+  vite-plugin-vuetify@2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.13(typescript@5.8.3))(vuetify@3.8.5):
+    dependencies:
+      '@vuetify/loader-shared': 2.1.0(vue@3.5.13(typescript@5.8.3))(vuetify@3.8.5)
+      debug: 4.4.0
+      upath: 2.0.1
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1)
+      vue: 3.5.13(typescript@5.8.3)
+      vuetify: 3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.13(typescript@5.8.3))
+>>>>>>> 8e2d39b (Mises à jour)
     transitivePeerDependencies:
       - supports-color
 
@@ -17364,13 +17459,21 @@ snapshots:
       sortablejs: 1.14.0
       vue: 3.5.13(typescript@5.8.3)
 
+<<<<<<< HEAD
   vuetify@3.8.4(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.13(typescript@5.8.3)):
 >>>>>>> 5e600c1 (Format bouton)
+=======
+  vuetify@3.8.5(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.13(typescript@5.8.3)):
+>>>>>>> 8e2d39b (Mises à jour)
     dependencies:
       vue: 3.5.14(typescript@5.8.3)
     optionalDependencies:
       typescript: 5.8.3
+<<<<<<< HEAD
       vite-plugin-vuetify: 2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.14(typescript@5.8.3))(vuetify@3.8.5)
+=======
+      vite-plugin-vuetify: 2.1.1(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(terser@5.39.1))(vue@3.5.13(typescript@5.8.3))(vuetify@3.8.5)
+>>>>>>> 8e2d39b (Mises à jour)
 
   w3c-xmlserializer@5.0.0:
     dependencies:

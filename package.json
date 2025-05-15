@@ -87,14 +87,14 @@
     "vue-tsc": "2.2.10"
   },
   "dependencies": {
-    "@constl/ipa": "^1.6.17",
+    "@constl/ipa": "^1.6.19",
     "@constl/mandataire": "^3.0.3",
     "@constl/mandataire-electron-principal": "^3.1.3",
     "@constl/mandataire-electron-rendu": "^3.1.3",
     "@constl/serveur": "^2.1.9",
     "@constl/vue": "^1.0.4",
-    "@lassi-js/kili": "^0.4.4",
-    "@lassi-js/kilimukku": "^1.1.9",
+    "@lassi-js/kili": "^0.4.5",
+    "@lassi-js/kilimukku": "^1.2.0",
     "@lassi-js/kilimukku-vue": "^2.0.0",
     "@mdi/font": "^7.4.47",
     "@videojs-player/vue": "^1.0.0",
