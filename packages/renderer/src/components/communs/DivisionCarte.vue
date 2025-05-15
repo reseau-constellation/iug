@@ -1,6 +1,5 @@
 <template>
   <p class="mt-2 font-weight-bold">{{ titre }}</p>
-  <v-slot />
   <v-progress-linear
     v-if="enAttente"
     class="mb-2"
