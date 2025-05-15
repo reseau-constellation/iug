@@ -80,6 +80,7 @@
               <JetonMotClef
                 v-bind="propsActivateur"
                 :id="idMotClef"
+                class="me-1 mb-1"
               />
             </template>
           </carte-mot-clef>
