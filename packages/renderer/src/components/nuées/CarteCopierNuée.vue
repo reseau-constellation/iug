@@ -1,7 +1,5 @@
 <template>
-  <v-dialog
-    v-model="dialogue"
-  >
+  <v-dialog v-model="dialogue">
     <template #activator="{props: propsActivateur}">
       <slot
         name="activateur"
@@ -14,7 +12,7 @@
     >
       <v-card-item>
         <v-card-title class="d-flex align-center">
-          {{ t('nuées.copier.titre') }} 
+          {{ t('nuées.copier.titre') }}
           <v-spacer />
           <v-btn
             icon="mdi-close"
@@ -72,14 +70,13 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
+import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 import {useDisplay} from 'vuetify';
 import {utiliserConstellation} from '../utils';
-import { மொழியாக்கத்தைப்_பயன்படுத்து } from '@lassi-js/kilimukku-vue';
 import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
 import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
-import {useRouter} from 'vue-router';
-
 
 const props = defineProps<{idNuee: string}>();
 const routeur = useRouter();
@@ -88,7 +85,6 @@ const {mdAndUp} = useDisplay();
 const constl = utiliserConstellation();
 
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
-
 
 // Navigation
 const dialogue = ref(false);
@@ -100,10 +96,12 @@ const typeCopie = ref<'indépendante' | 'dépendante'>('dépendante');
 const ouvrirCopie = ref(true);
 const copier = async () => {
   copieEnCours.value = true;
-  const idCopie = typeCopie.value === 'indépendante' ?
-  await constl.nuées.copierNuée({ idNuée: props.idNuee}) : await constl.nuées.créerNuée({nuéeParent: props.idNuee});
+  const idCopie =
+    typeCopie.value === 'indépendante'
+      ? await constl.nuées.copierNuée({idNuée: props.idNuee})
+      : await constl.nuées.créerNuée({nuéeParent: props.idNuee});
   copieEnCours.value = false;
-  dialogue.value=false;
+  dialogue.value = false;
   if (ouvrirCopie.value) {
     routeur.push(encodeURI(`/données/nuée/${encodeURIComponent(idCopie)}`));
   }

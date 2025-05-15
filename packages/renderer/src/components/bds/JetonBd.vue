@@ -18,7 +18,7 @@ import {computed} from 'vue';
 import {மொழிகளைப்_பயன்படுத்து, மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

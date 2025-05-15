@@ -193,9 +193,7 @@
         </template>
       </carte-code-nuee>
 
-      <carte-copier-nuee
-        :id-nuee="id"
-      >
+      <carte-copier-nuee :id-nuee="id">
         <template #activateur="{props: propsActivateurCarte}">
           <v-tooltip
             open-delay="200"
@@ -428,7 +426,7 @@
             <entete-tableau
               :id="ong.id"
               :clef="ong.clef"
-              @effacer="()=>effacerTableau(ong.id)"
+              @effacer="() => effacerTableau(ong.id)"
             />
           </v-tab>
 
@@ -579,7 +577,6 @@ import {utiliserImagesDéco} from '/@/composables/images';
 import {ajusterTexteTraductible, sourceImage} from '/@/utils';
 
 import CarteAutomatisationsObjet from '/@/components/automatisations/CarteAutomatisationsObjet.vue';
-import CarteCopierNuee from '/@/components/nuées/CarteCopierNuée.vue';
 import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
 import GererAuteurs from '/@/components/communs/GererAuteurs.vue';
 import ImageEditable from '/@/components/communs/ImageEditable.vue';
@@ -591,6 +588,7 @@ import ItemMotClef from '/@/components/motsClefs/ItemMotClef.vue';
 import JetonMotClef from '/@/components/motsClefs/JetonMotClef.vue';
 import CarteAutorisationsNuee from '/@/components/nuées/CarteAutorisationsNuée.vue';
 import CarteBdsDeNuee from '/@/components/nuées/CarteBdsDeNuée.vue';
+import CarteCopierNuee from '/@/components/nuées/CarteCopierNuée.vue';
 import CarteStatutNuee from '/@/components/nuées/CarteStatutNuée.vue';
 
 import LienObjet from '/@/components/communs/LienObjet.vue';
@@ -801,7 +799,7 @@ const ajouterTableau = async ({
 };
 
 const effacerTableau = async (idTableau: string) => {
-  await constl.nuées.effacerTableauNuée({ idNuée: props.id, idTableau });
+  await constl.nuées.effacerTableauNuée({idNuée: props.id, idTableau});
 };
 
 // const autorisation = suivre(constl.nuées.suivrePhilosophieAutorisation, {idNuée: props.id});

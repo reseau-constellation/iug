@@ -30,9 +30,7 @@
       </epingler-bd>
     </template>
 
-    <division-carte
-      :titre="t('bds.info')"
-    />
+    <division-carte :titre="t('bds.info')" />
 
     <dialogue-licence
       :licence="licence"

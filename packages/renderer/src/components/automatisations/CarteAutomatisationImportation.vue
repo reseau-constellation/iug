@@ -16,9 +16,7 @@
         </v-card-title>
       </v-card-item>
       <v-card-text>
-        <division-carte
-          :titre="t('automatisations.statut')"
-        />
+        <division-carte :titre="t('automatisations.statut')" />
         <jeton-statut-automatisation
           v-if="statut"
           :statut="statut"

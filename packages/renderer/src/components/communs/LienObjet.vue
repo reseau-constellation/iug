@@ -32,7 +32,7 @@
             icon="mdi-content-save-outline"
             size="small"
             variant="flat"
-            @click="()=>émettre('modifie', choixId)"
+            @click="() => émettre('modifie', choixId)"
           ></v-btn>
           <v-btn
             v-else
@@ -49,21 +49,23 @@
 
 <script setup lang="ts">
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {mergeProps, ref} from 'vue';
+import {computed, mergeProps, ref, watchEffect} from 'vue';
 import {copier} from '/@/utils';
-import { computed, watchEffect } from 'vue';
 
 const {$மொ: t} = மொழியாக்கத்தைப்_பயன்படுத்து();
 
-const props = defineProps({id: {type: String, required: true}, editable: { type: Boolean, default: false}});
+const props = defineProps({
+  id: {type: String, required: true},
+  editable: {type: Boolean, default: false},
+});
 const émettre = defineEmits<{
-  (é: 'modifie', val: string): void
+  (é: 'modifie', val: string): void;
 }>();
 
 // Modifications
 const choixId = ref(props.id);
-watchEffect(()=>choixId.value = props.id);
-const idModifié = computed(()=>choixId.value !== props.id);
+watchEffect(() => (choixId.value = props.id));
+const idModifié = computed(() => choixId.value !== props.id);
 
 // Contrôles
 const copié = ref(false);

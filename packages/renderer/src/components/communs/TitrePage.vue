@@ -6,10 +6,15 @@
 
     <v-img
       v-if="image"
-      :class="{'my-6': true, 'mx-auto': true, 'rounded-circle': imageRonde, 'border-thin': imageRonde}"
+      :class="{
+        'my-6': true,
+        'mx-auto': true,
+        'rounded-circle': imageRonde,
+        'border-thin': imageRonde,
+      }"
       :width="mdAndUp ? 275 : 175"
       :height="mdAndUp ? 275 : 175"
-      :src="image" 
+      :src="image"
     >
     </v-img>
     <h2

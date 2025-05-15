@@ -40,8 +40,8 @@ import {மொழிகளைப்_பயன்படுத்து, மொழ
 import {utiliserIlYA} from '../membres/utils';
 import {icôneObjet, utiliserConstellation} from '../utils';
 import {utiliserImagesDéco} from '/@/composables/images';
+import {sourceImage} from '/@/utils';
 import {utiliserHistoriqueDocuments} from '/@/état/historiqueDocuments';
-import { sourceImage } from '/@/utils';
 
 const props = defineProps<{id: string; a: number}>();
 

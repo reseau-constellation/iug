@@ -52,7 +52,7 @@ import JetonBd from '/@/components/bds/JetonBd.vue';
 import SérieJetons from '/@/components/communs/SérieJetons.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

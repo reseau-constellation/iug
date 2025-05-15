@@ -6,7 +6,9 @@
       :sous-titre="t('pages.favoris.sousTitre')"
     />
     <v-list class="text-start">
-      <p class="text-h6 text-disabled text-center"> {{ t('pages.favoris.commentAjouterNouveau') }} </p>
+      <p class="text-h6 text-disabled text-center">
+        {{ t('pages.favoris.commentAjouterNouveau') }}
+      </p>
       <item-favoris
         v-for="fav in mesFavoris"
         :key="fav.idObjet"

@@ -17,7 +17,7 @@ import {மொழிகளைப்_பயன்படுத்து, மொழ
 import {computed} from 'vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

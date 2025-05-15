@@ -49,7 +49,7 @@
         <v-list-item
           variant="flat"
           :append-icon="clefCopiée ? 'mdi-check' : 'mdi-content-copy'"
-          @click="()=>copierClef()"
+          @click="() => copierClef()"
         >
           {{ t('tableaux.carte.clef') }}
           {{ clefTableau }}
@@ -74,19 +74,19 @@
   </v-dialog>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import {useDisplay} from 'vuetify';
-import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
+import {suivre} from '@constl/vue';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {ajusterTexteTraductible, copier } from '/@/utils';
-import { suivre } from '@constl/vue';
-import { utiliserConstellation } from '../utils';
-import LienObjet from '/@/components/communs/LienObjet.vue';
-import NomTableau from '/@/components/tableaux/NomTableau.vue';
-import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import {computed, ref} from 'vue';
+import {useDisplay} from 'vuetify';
 import DivisionCarte from '../communs/DivisionCarte.vue';
+import {utiliserConstellation} from '../utils';
+import CarteEffacer from '/@/components/communs/CarteEffacer.vue';
+import LienObjet from '/@/components/communs/LienObjet.vue';
+import DialogueNoms from '/@/components/communs/listeNoms/DialogueNoms.vue';
+import NomTableau from '/@/components/tableaux/NomTableau.vue';
+import {ajusterTexteTraductible, copier} from '/@/utils';
 
-const props = defineProps<{idTableau: string, clefTableau: string}>();
+const props = defineProps<{idTableau: string; clefTableau: string}>();
 const émettre = defineEmits<{
   (é: 'effacer'): void;
 }>();
@@ -100,7 +100,9 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 
 // Noms
-const noms = suivre(constl.tableaux.suivreNomsTableau, {idTableau: computed(() => props.idTableau)}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
+const noms = suivre(constl.tableaux.suivreNomsTableau, {
+  idTableau: computed(() => props.idTableau),
+}); // À faire - voir comment utiliser constl.nuées.suivreNomsTableauNuée
 
 const changerNoms = async (nms: {[langue: string]: string}) => {
   const {àEffacer, àAjouter} = ajusterTexteTraductible({anciennes: noms.value, nouvelles: nms});
@@ -112,7 +114,6 @@ const changerNoms = async (nms: {[langue: string]: string}) => {
 
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
-
 
 // Clef tableau
 const clefCopiée = ref(false);

@@ -50,9 +50,7 @@
             />
           </v-list>
         </v-menu>
-        <division-carte
-          :titre="t('auteurs.carteGérer.nouveaux')"
-        />
+        <division-carte :titre="t('auteurs.carteGérer.nouveaux')" />
         <jeton-membre
           v-for="s in sélectionnés"
           :key="s"

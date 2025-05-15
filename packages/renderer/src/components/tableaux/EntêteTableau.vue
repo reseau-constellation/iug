@@ -6,7 +6,7 @@
   <carte-tableau
     :id-tableau="id"
     :clef-tableau="clef"
-    @effacer="()=>émettre('effacer')"
+    @effacer="() => émettre('effacer')"
   >
     <template #activateur="{props: propsActivateur}">
       <v-icon

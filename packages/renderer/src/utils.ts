@@ -167,14 +167,20 @@ export const plateforme = (): InfoPlateforme => {
   }
 };
 
-export const sourceImage = (image: Ref<{
-  image: Uint8Array,
-  idImage: string
-} | null | undefined>): ComputedRef<string | null | undefined> => {
+export const sourceImage = (
+  image: Ref<
+    | {
+        image: Uint8Array;
+        idImage: string;
+      }
+    | null
+    | undefined
+  >,
+): ComputedRef<string | null | undefined> => {
   return computed(() => {
     if (image.value) {
       // De https://stackoverflow.com/questions/190852/how-can-i-get-file-extensions-with-javascript/12900504#12900504
-      const ext = image.value.idImage.slice((image.value.idImage.lastIndexOf('.') - 1 >>> 0) + 2);
+      const ext = image.value.idImage.slice(((image.value.idImage.lastIndexOf('.') - 1) >>> 0) + 2);
 
       const type = ext === 'svg' ? 'image/svg+xml' : `image/${ext}`;
       return URL.createObjectURL(new Blob([image.value.image], {type}));

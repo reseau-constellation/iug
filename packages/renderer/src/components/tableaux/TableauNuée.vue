@@ -93,7 +93,7 @@
     </template>
 
     <template #[`header.idCompte`]="{column, isSorted, getSortIcon, toggleSort}">
-      <span @click="()=>toggleSort(column)">
+      <span @click="() => toggleSort(column)">
         <v-hover v-slot="{isHovering, props: propsSurvole}">
           <span v-bind="propsSurvole">
             {{ t('nuées.tableau.entêteContributrice') }}

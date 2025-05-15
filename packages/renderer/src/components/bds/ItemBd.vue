@@ -1,7 +1,5 @@
 <template>
-  <v-list-item
-    :subtitle="descrTraduite"
-  >
+  <v-list-item :subtitle="descrTraduite">
     <template #prepend>
       <v-img
         :src="srcImgBd || imgDéfaut"
@@ -74,7 +72,7 @@ import {utiliserConstellation} from '/@/components/utils';
 import CarteVariable from '/@/components/variables/CarteVariable.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

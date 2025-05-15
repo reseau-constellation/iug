@@ -75,7 +75,7 @@
 <script setup lang="ts">
 import type {types} from '@constl/ipa';
 import type {
-அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்பு_வகை,
+  அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்பு_வகை,
   பிணையம்_மொழிபெயர்ப்பு_பரிந்துரை_வகை,
   மொழிபெயர்ப்பு_அகராதி_வகை,
 } from '@lassi-js/kilimukku';
@@ -84,7 +84,10 @@ import {rechercher, suivre} from '@constl/vue';
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import {மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம், மொழிபெயர்ப்பு_உறுப்படியிலிருந்து_மொழிபெயர்ப்பு_முடிவு} from '@lassi-js/kilimukku';
+import {
+  மொழிபெயர்ப்பு_அகராதியிலிருந்து_மரம்,
+  மொழிபெயர்ப்பு_உறுப்படியிலிருந்து_மொழிபெயர்ப்பு_முடிவு,
+} from '@lassi-js/kilimukku';
 import {மொழியாக்கத்தைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
 import {கிளிமூக்கு} from '/@/components/utils';
 
@@ -121,10 +124,7 @@ const nouvellesSuggestions = computed(() => {
   return suggérées.value.filter(s => {
     const {சாபி, இலக்கு_மொழி, தேதி} = s.பரிந்துரை;
     return !autorisées.value?.find(
-      a =>
-        a.சாபி === சாபி &&
-        a.இலக்கு_மொழி === இலக்கு_மொழி &&
-        தேதி.getTime() > a.தேதி.getTime(),
+      a => a.சாபி === சாபி && a.இலக்கு_மொழி === இலக்கு_மொழி && தேதி.getTime() > a.தேதி.getTime(),
     );
   });
 });
@@ -158,13 +158,10 @@ const nouvellesSuggestionsParClefEtLangue = computed(() => {
 });
 
 const autorisées = suivre(
-  async ({
-    f,
-  }: {
-    f: types.schémaFonctionSuivi<
-      அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்பு_வகை[]
-    >;
-  }) => await கிளி.கிளி!.அங்கீகரிக்கப்பட்ட_உறுப்படிகளை_கேள்ளு({செ: entrées => f(entrées.map(e=>மொழிபெயர்ப்பு_உறுப்படியிலிருந்து_மொழிபெயர்ப்பு_முடிவு(e)))}),
+  async ({f}: {f: types.schémaFonctionSuivi<அங்கீகரிக்கப்பட்ட_மொழிபெயர்ப்பு_வகை[]>}) =>
+    await கிளி.கிளி!.அங்கீகரிக்கப்பட்ட_உறுப்படிகளை_கேள்ளு({
+      செ: entrées => f(entrées.map(e => மொழிபெயர்ப்பு_உறுப்படியிலிருந்து_மொழிபெயர்ப்பு_முடிவு(e))),
+    }),
 );
 /*const dicAutorisées = suivre(
   async ({f}: {f: types.schémaFonctionSuivi<மொழிபெயர்ப்பு_அகராதி_வகை>}) =>

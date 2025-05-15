@@ -23,7 +23,7 @@ import {computed} from 'vue';
 import LienObjet from '../communs/LienObjet.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{id: string}>();
 

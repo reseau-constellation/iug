@@ -71,8 +71,8 @@ import {useDisplay} from 'vuetify';
 import {suivre} from '@constl/vue';
 import {utiliserConstellation} from '../utils';
 import ItemNuee from '/@/components/nuées/ItemNuée.vue';
-import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 import NouvelleNuee from '/@/components/nuées/NouvelleNuée.vue';
+import SelecteurNuee from '/@/components/nuées/SélecteurNuée.vue';
 
 const props = defineProps<{idBd: string}>();
 
@@ -88,4 +88,3 @@ const nuéesDeBd = suivre(constl.bds.suivreNuéesBd, {
   idBd: computed(() => props.idBd),
 });
 </script>
-  

@@ -12,5 +12,5 @@
   />
 </template>
 <script setup lang="ts">
-defineProps({titre: {type: String, required: true }, enAttente: {type: Boolean, default: false}});
+defineProps({titre: {type: String, required: true}, enAttente: {type: Boolean, default: false}});
 </script>

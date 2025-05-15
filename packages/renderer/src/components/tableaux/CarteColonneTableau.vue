@@ -16,7 +16,7 @@
           <lien-objet
             :id="idColonne"
             :editable="!!monAutorisation"
-            @modifie="(x)=>choixIdColonne = x"
+            @modifie="x => (choixIdColonne = x)"
           />
           <v-spacer />
           <v-btn
@@ -162,11 +162,11 @@ import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
 import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
 import DivisionCarte from '/@/components/communs/DivisionCarte.vue';
 import LienObjet from '/@/components/communs/LienObjet.vue';
+import SectionRetractible from '/@/components/communs/SectionRétractible.vue';
 import ItemRegleColonne from '/@/components/règles/ItemRègleColonne.vue';
 import NouvelleRegle from '/@/components/règles/NouvelleRègle.vue';
 import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import SelecteurVariable from '/@/components/variables/SélecteurVariable.vue';
-import SectionRetractible from '/@/components/communs/SectionRétractible.vue';
 
 import {utiliserConstellation} from '../utils';
 
@@ -203,26 +203,26 @@ const constl = utiliserConstellation();
 const dialogue = ref(false);
 const dialogueEffacer = ref(false);
 
-
 // Autorisation
 const monAutorisation = suivre(constl.suivrePermission, {idObjet: computed(() => props.idTableau)});
 
 // Index
 const choixIndex = ref(props.index);
 const indexModifié = computed(() => choixIndex.value !== props.index);
-watchEffect(() => choixIndex.value = props.index);
+watchEffect(() => (choixIndex.value = props.index));
 
 // Id
 const choixIdColonne = ref(props.idColonne);
 const idColonneModifiée = computed(() => choixIdColonne.value !== props.idColonne);
-watchEffect(() => choixIdColonne.value = props.idColonne);
+watchEffect(() => (choixIdColonne.value = props.idColonne));
 
 watchEffect(async () => {
-  if (idColonneModifiée.value) await constl.tableaux.changerIdColonne({
-    idTableau: props.idTableau,
-    idColonne: props.idColonne,
-    nouvelleIdColonne: choixIdColonne.value,
-  });
+  if (idColonneModifiée.value)
+    await constl.tableaux.changerIdColonne({
+      idTableau: props.idTableau,
+      idColonne: props.idColonne,
+      nouvelleIdColonne: choixIdColonne.value,
+    });
 });
 
 // Variable

@@ -76,7 +76,7 @@ import {மொழிகளைப்_பயன்படுத்து, மொழ
 import JetonBd from '../bds/JetonBd.vue';
 import {utiliserConstellation} from '/@/components/utils';
 import {utiliserImagesDéco} from '/@/composables/images';
-import { sourceImage } from '/@/utils';
+import {sourceImage} from '/@/utils';
 
 const props = defineProps<{
   résultat: types.résultatRecherche<

@@ -25,9 +25,7 @@
       <v-card-text v-if="monAutorisation">
         <p class="mt-2 font-weight-bold">{{ t('nuées.autorisations.philosophie') }}</p>
         <v-divider />
-        <v-radio-group
-          v-model="autorisation"
-        >
+        <v-radio-group v-model="autorisation">
           <v-radio
             value="CJPI"
             class="my-2"
@@ -67,7 +65,9 @@
           <template #activator="{props: propsActivateur}">
             <v-list-item
               v-bind="propsActivateur"
-              :prepend-icon="autorisation === 'CJPI' ? 'mdi-account-plus-outline' : 'mdi-account-cancel-outline'"
+              :prepend-icon="
+                autorisation === 'CJPI' ? 'mdi-account-plus-outline' : 'mdi-account-cancel-outline'
+              "
             >
               {{
                 t(
@@ -87,21 +87,25 @@
                 :interdits="autorisation === 'CJPI' ? membresAcceptés : membresExclus"
                 @selectionnee="membres => lorsqueMembresSélectionnés(membres)"
               />
-            </v-card-text>  
+            </v-card-text>
           </v-card>
         </v-dialog>
         <p
           v-if="autorisation === 'CJPI' ? !membresAcceptés?.length : !membresExclus?.length"
           class="text-h6 text-disabled text-center"
         >
-          {{ t(`nuées.autorisations.${autorisation === 'CJPI' ? 'aucunMembreAccepté' : 'aucunMembreExclus'}`) }}
+          {{
+            t(
+              `nuées.autorisations.${autorisation === 'CJPI' ? 'aucunMembreAccepté' : 'aucunMembreExclus'}`,
+            )
+          }}
         </p>
         <v-list v-if="autorisation === 'CJPI'">
           <item-membre-accepte-nuee
             v-for="membre in membresAcceptés"
             :key="membre"
             :id-compte="membre"
-            @effacer="idMembre=>révoquerAcceptationMembre(idMembre)"
+            @effacer="idMembre => révoquerAcceptationMembre(idMembre)"
           />
         </v-list>
         <v-list v-else-if="autorisation === 'IJPC'">
@@ -109,15 +113,25 @@
             v-for="membre in membresExclus"
             :key="membre"
             :id-compte="membre"
-            @effacer="idMembre=>révoquerExclusionMembre(idMembre)"
+            @effacer="idMembre => révoquerExclusionMembre(idMembre)"
           />
         </v-list>
       </v-card-text>
       <v-card-text v-else>
         <div class="text-center">
-          <p class="text-h5">{{ autorisation === 'CJPI' ? t('nuées.autorisations.parInvitation') : t('nuées.autorisations.ouverteÀTous') }}</p>
+          <p class="text-h5">
+            {{
+              autorisation === 'CJPI'
+                ? t('nuées.autorisations.parInvitation')
+                : t('nuées.autorisations.ouverteÀTous')
+            }}
+          </p>
           <p class="text-disabled text-h6">
-            {{ autorisation === 'CJPI' ? t('nuées.autorisations.indiceParInvitation') : t('nuées.autorisations.indiceOuverteÀTous') }}
+            {{
+              autorisation === 'CJPI'
+                ? t('nuées.autorisations.indiceParInvitation')
+                : t('nuées.autorisations.indiceOuverteÀTous')
+            }}
           </p>
         </div>
       </v-card-text>
@@ -137,9 +151,9 @@ import {மொழியாக்கத்தைப்_பயன்படுத�
 import {computed, ref} from 'vue';
 import {useDisplay} from 'vuetify';
 
-import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
-import ItemMembreExclusNuee from '../nuées/ItemMembreExclusNuée.vue';
 import ItemMembreAccepteNuee from '../nuées/ItemMembreAcceptéNuée.vue';
+import ItemMembreExclusNuee from '../nuées/ItemMembreExclusNuée.vue';
+import SelecteurMembre from '/@/components/membres/SélecteurMembre.vue';
 
 import BtnAnnuler from '/@/components/communs/BtnAnnuler.vue';
 import BtnSauvegarder from '/@/components/communs/BtnSauvegarder.vue';
@@ -183,17 +197,23 @@ const membresExclus = computed(() =>
 const lorsqueMembresSélectionnés = async (membres: string[]) => {
   if (autorisation.value === 'CJPI') {
     await Promise.all(
-      membres.map(async m=>await constl.nuées.accepterMembreNuée({
-        idNuée: props.idNuee,
-        idCompte: m,
-      }),
-    ));
+      membres.map(
+        async m =>
+          await constl.nuées.accepterMembreNuée({
+            idNuée: props.idNuee,
+            idCompte: m,
+          }),
+      ),
+    );
   } else if (autorisation.value === 'IJPC') {
     await Promise.all(
-      membres.map(async m => await constl.nuées.exclureMembreDeNuée({
-        idNuée: props.idNuee,
-        idCompte: m,
-      })),
+      membres.map(
+        async m =>
+          await constl.nuées.exclureMembreDeNuée({
+            idNuée: props.idNuee,
+            idCompte: m,
+          }),
+      ),
     );
   }
 };
@@ -203,13 +223,13 @@ const révoquerExclusionMembre = async (idMembre: string) => {
     idNuée: props.idNuee,
     idCompte: idMembre,
   });
-}; 
+};
 const révoquerAcceptationMembre = async (idMembre: string) => {
   await constl.nuées.révoquerAcceptationMembreNuée({
     idNuée: props.idNuee,
     idCompte: idMembre,
   });
-}; 
+};
 
 // Sauvegarde
 const modifié = computed(() => autorisation.value !== autorisationNuée.value);
