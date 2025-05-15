@@ -14,5 +14,4 @@ export const MAX_TAILLE_IMAGE = 500 * 1000; // 500 kilooctets
 export const GABARIT_CODE =
   'https://github.com/reseau-constellation/gabarits/archive/refs/heads/main.zip';
 
-/** À changer - temporaire ! */
-export const ID_KILIMUKKU_INTERFACE = '/orbitdb/zdpuAsViPqnpRhUwN6kL7cSyLFaxSEkK233cJAChJMtc2vwLT';
+export const ID_KILIMUKKU_INTERFACE = '/orbitdb/zdpuB2TS5hMwjrYKmCife6WxBFUAG4JiUfR9zct9s8FnH278n';
