@@ -211,6 +211,29 @@
         </template>
       </carte-copier-nuee>
 
+      <carte-metadonnees
+        v-if="métadonnnées"
+        :metadonnees="métadonnnées"
+        :modifiable="!!monAutorisation"
+        @sauvegarde="x=>sauvegarderMétadonnée(x)"
+      >
+        <template #activateur="{props: propsActivateurCarte}">
+          <v-tooltip
+            open-delay="200"
+            location="bottom"
+            :text="t('nuées.métadonnéees.indice')"
+          >
+            <template #activator="{props: propsActivateurIndice}">
+              <v-btn
+                v-bind="{...propsActivateurCarte, ...propsActivateurIndice}"
+                icon="mdi-bracket"
+                variant="flat"
+              />
+            </template>
+          </v-tooltip>
+        </template>
+      </carte-metadonnees>
+
       <carte-effacer
         v-if="!!monAutorisation"
         @effacer="() => effacerNuée()"
@@ -613,6 +636,7 @@ import JetonVariable from '/@/components/variables/JetonVariable.vue';
 import IconeEpingle from '/@/components/épingles/IcôneÉpingle.vue';
 import ItemReplicationsObjet from '/@/components/épingles/ItemRéplicationsObjet.vue';
 import EpinglerNuee from '/@/components/épingles/ÉpinglerNuée.vue';
+import CarteMetadonnees from '/@/components/communs/métadonnées/CarteMétadonnées.vue';
 
 import {useDisplay, useRtl} from 'vuetify';
 import {MAX_TAILLE_IMAGE} from '/@/consts';
@@ -721,6 +745,15 @@ const sauvegarderMotsClefs = async (àJour: string[]) => {
 // Statut
 const statut = suivre(constl.nuées.suivreStatutNuée, {idNuée: computed(() => props.id)});
 
+// Métadonnées
+const métadonnnées = suivre(constl.nuées.suivreMétadonnéesNuée, {idNuée: computed(() => props.id)});
+const sauvegarderMétadonnée = async ({clef, val}: {clef: string, val: string}) => {
+  await constl.nuées.sauvegarderMétadonnéeNuée({
+    idNuée: props.id,
+    clef,
+    métadonnée: val,
+  });
+};
 /*
 const estApprouvable = computed(()=>{})
 const activerApprouvable = async () => {
