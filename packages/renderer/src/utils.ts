@@ -234,10 +234,10 @@ export const téléchargerFlux = async ({
   nom: string;
   types?: Exclude<Parameters<typeof showSaveFilePicker>[0], undefined>['types'];
 }) => {
-  const accèesFichier = await showSaveFilePicker({
+  const accèsFichier = await showSaveFilePicker({
     _preferPolyfill: false,
     suggestedName: nom,
     types,
   });
-  await flux.pipeTo(await accèesFichier.createWritable());
+  await flux.pipeTo(await accèsFichier.createWritable());
 };
