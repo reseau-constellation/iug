@@ -12,7 +12,7 @@ import {fausseConstellation, substitionsJSDOM} from '../utils';
 const constl = fausseConstellation(client => {
   client.prototype.profil = {
     suivreImage: vi.fn(async ({f, idCompte}) => {
-      f(idCompte ? new Uint8Array([0, 1, 2]) : null);
+      f(idCompte ? {image: new Uint8Array(Array(100)), idImage: 'mon image.png'} : null);
       return async () => {};
     }),
   } as unknown as Constellation['profil'];
