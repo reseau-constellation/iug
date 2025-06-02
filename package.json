@@ -145,7 +145,7 @@
     "vue-markdown-render": "^2.2.1",
     "vue-qrcode-reader": "^5.7.2",
     "vue-router": "4.5.1",
-    "vue3-simple-icons": "^13.2.0",
+    "vue3-simple-icons": "^15.0.0",
     "vuedraggable": "^4.1.0",
     "vuetify": "^3.8.3",
     "webfontloader": "^1.6.28",
