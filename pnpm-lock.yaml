@@ -323,7 +323,7 @@ importers:
         version: 0.1.4(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       vite-plugin-node-polyfills:
         specifier: ^0.23.0
-        version: 0.23.0(rollup@4.44.1)(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+        version: 0.23.1(rollup@4.44.1)(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       vite-plugin-vuetify:
         specifier: ^2.1.1
         version: 2.1.1(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.8.12)
@@ -4289,8 +4289,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.274.2:
-    resolution: {integrity: sha512-kCjoA1h5j+Ttu/9fekY9XzeKPG8SvNtxigiCkezmDIOlcKr+d9LysczrPylEeSYINE3sLlX45W5vT2CroD6sWA==}
+  flow-parser@0.275.0:
+    resolution: {integrity: sha512-fHNwawoA2LM7FsxhU/1lTRGq9n6/Q8k861eHgN7GKtamYt9Qrxpg/ZSrev8o1WX7fQ2D3Gg3+uvYN15PmsG7Yw==}
     engines: {node: '>=0.4.0'}
 
   follow-redirects@1.15.9:
@@ -7448,10 +7448,10 @@ packages:
     peerDependencies:
       vite: ^4.3.9 || ^5.0.0
 
-  vite-plugin-node-polyfills@0.23.0:
-    resolution: {integrity: sha512-4n+Ys+2bKHQohPBKigFlndwWQ5fFKwaGY6muNDMTb0fSQLyBzS+jjUNRZG9sKF0S/Go4ApG6LFnUGopjkILg3w==}
+  vite-plugin-node-polyfills@0.23.1:
+    resolution: {integrity: sha512-hR2YlaMqVo2f/0w6V9YgaeKsIy8z5gEsMFHX8MQlh8ATEAbfI4EWjE6qnCvkZ9lyaXKoJD2rAwL/up8/Rzsjkg==}
     peerDependencies:
-      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+      vite: ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   vite-plugin-vuetify@2.1.1:
     resolution: {integrity: sha512-Pb7bKhQH8qPMzURmEGq2aIqCJkruFNsyf1NcrrtnjsOIkqJPMcBbiP0oJoO8/uAmyB5W/1JTbbUEsyXdMM0QHQ==}
@@ -13930,7 +13930,7 @@ snapshots:
 
   flow-enums-runtime@0.0.6: {}
 
-  flow-parser@0.274.2: {}
+  flow-parser@0.275.0: {}
 
   follow-redirects@1.15.9(debug@4.4.1):
     optionalDependencies:
@@ -15088,7 +15088,7 @@ snapshots:
       '@babel/register': 7.27.1(@babel/core@7.28.0)
       babel-core: 7.0.0-bridge.0(@babel/core@7.28.0)
       chalk: 4.1.2
-      flow-parser: 0.274.2
+      flow-parser: 0.275.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
@@ -17640,7 +17640,7 @@ snapshots:
       magic-string: 0.30.15
       vite: 7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
 
-  vite-plugin-node-polyfills@0.23.0(rollup@4.44.1)(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
+  vite-plugin-node-polyfills@0.23.1(rollup@4.44.1)(vite@7.0.1(@types/node@22.15.34)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.44.1)
       node-stdlib-browser: 1.3.1
