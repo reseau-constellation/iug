@@ -251,7 +251,7 @@ importers:
         version: 8.35.1(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)
       '@vitejs/plugin-vue':
         specifier: ^6.0.0
-        version: 6.0.0(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
+        version: 6.0.0(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))
       '@vitest/coverage-istanbul':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.0)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.43.1)(yaml@2.8.0))
@@ -317,16 +317,16 @@ importers:
         version: 0.3.0(rollup@4.44.2)
       vite:
         specifier: ^7.0.0
-        version: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+        version: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
       vite-plugin-commonjs-externals:
         specifier: ^0.1.4
-        version: 0.1.4(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+        version: 0.1.4(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       vite-plugin-node-polyfills:
         specifier: ^0.24.0
-        version: 0.24.0(rollup@4.44.2)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+        version: 0.24.0(rollup@4.44.2)(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       vite-plugin-vuetify:
         specifier: ^2.1.1
-        version: 2.1.1(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0)
+        version: 2.1.1(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0)
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/debug@4.1.12)(@types/node@22.16.0)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.43.1)(yaml@2.8.0)
@@ -7464,8 +7464,8 @@ packages:
       vue: ^3.0.0
       vuetify: ^3.0.0
 
-  vite@7.0.2:
-    resolution: {integrity: sha512-hxdyZDY1CM6SNpKI4w4lcUc3Mtkd9ej4ECWVHSMrOdSinVc2zYOAppHeGc/hzmRo3pxM5blMzkuWHOJA/3NiFw==}
+  vite@7.0.3:
+    resolution: {integrity: sha512-y2L5oJZF7bj4c0jgGYgBNSdIu+5HF+m68rn2cQXFbGoShdhV1phX9rbnxy9YXj82aS8MMsCLAAFkRxZeWdldrQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -11619,10 +11619,10 @@ snapshots:
       global: 4.4.0
       is-function: 1.0.2
 
-  '@vitejs/plugin-vue@6.0.0(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))':
+  '@vitejs/plugin-vue@6.0.0(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-beta.19
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
 
   '@vitest/coverage-istanbul@3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.0)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0(bufferutil@4.0.9))(terser@5.43.1)(yaml@2.8.0))':
@@ -11668,13 +11668,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.2.4(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
+  '@vitest/mocker@3.2.4(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
     dependencies:
       '@vitest/spy': 3.2.4
       estree-walker: 3.0.3
       magic-string: 0.30.15
     optionalDependencies:
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
 
   '@vitest/pretty-format@2.1.9':
     dependencies:
@@ -17621,7 +17621,7 @@ snapshots:
       debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -17636,33 +17636,33 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-commonjs-externals@0.1.4(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
+  vite-plugin-commonjs-externals@0.1.4(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
     dependencies:
       acorn: 8.15.0
       es-module-lexer: 1.7.0
       magic-string: 0.30.15
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
 
-  vite-plugin-node-polyfills@0.24.0(rollup@4.44.2)(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
+  vite-plugin-node-polyfills@0.24.0(rollup@4.44.2)(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.44.2)
       node-stdlib-browser: 1.3.1
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
     transitivePeerDependencies:
       - rollup
 
-  vite-plugin-vuetify@2.1.1(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0):
+  vite-plugin-vuetify@2.1.1(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0):
     dependencies:
       '@vuetify/loader-shared': 2.1.0(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0)
       debug: 4.4.1
       upath: 2.0.1
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.8.3)
       vuetify: 3.9.0(typescript@5.8.3)(vite-plugin-vuetify@2.1.1)(vue@3.5.17(typescript@5.8.3))
     transitivePeerDependencies:
       - supports-color
 
-  vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0):
+  vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0):
     dependencies:
       esbuild: 0.25.6
       fdir: 6.4.6(picomatch@4.0.2)
@@ -17681,7 +17681,7 @@ snapshots:
     dependencies:
       '@types/chai': 5.2.2
       '@vitest/expect': 3.2.4
-      '@vitest/mocker': 3.2.4(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+      '@vitest/mocker': 3.2.4(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       '@vitest/pretty-format': 3.2.4
       '@vitest/runner': 3.2.4
       '@vitest/snapshot': 3.2.4
@@ -17699,7 +17699,7 @@ snapshots:
       tinyglobby: 0.2.14
       tinypool: 1.1.1
       tinyrainbow: 2.0.0
-      vite: 7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
+      vite: 7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
       vite-node: 3.2.4(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
@@ -17789,7 +17789,7 @@ snapshots:
       vue: 3.5.17(typescript@5.8.3)
     optionalDependencies:
       typescript: 5.8.3
-      vite-plugin-vuetify: 2.1.1(vite@7.0.2(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0)
+      vite-plugin-vuetify: 2.1.1(vite@7.0.3(@types/node@22.16.0)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.8.3))(vuetify@3.9.0)
 
   w3c-xmlserializer@5.0.0:
     dependencies:
