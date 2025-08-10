@@ -1,0 +1,2 @@
+import{ab as i}from"./index-CT7odO1-.js";const o=20,n=i("historiqueDocuments",{state:()=>({récents:[]}),actions:{documentOuvert({id:t,à:e}){this.récents=[{id:t,à:e},...this.récents.filter(s=>s.id!==t)].sort((s,r)=>s.à>r.à?-1:1).slice(0,o)},effacer({id:t}){this.récents=[...this.récents.filter(e=>e.id!==t)]}},persist:{afterHydrate:t=>{console.log("état",t.store.$state)}}});export{n as u};
+//# sourceMappingURL=historiqueDocuments-7VbCkag3.js.map
