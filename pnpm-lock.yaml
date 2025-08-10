@@ -187,7 +187,7 @@ importers:
         version: 4.5.1(vue@3.5.18(typescript@5.8.3))
       vue3-simple-icons:
         specifier: ^15.0.0
-        version: 15.0.0(typescript@5.8.3)
+        version: 15.6.0(typescript@5.8.3)
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.5.18(typescript@5.8.3))
@@ -7750,8 +7750,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue3-simple-icons@15.0.0:
-    resolution: {integrity: sha512-RvynBry4kkuTFhxtmfEIbGLWEYlVzsUp3ExSqsZdaab8c2p2T+LcDyyDhNMWWHg++9Qn8/sxSKVo83KZzrx0UA==}
+  vue3-simple-icons@15.6.0:
+    resolution: {integrity: sha512-e7FkRt5yY6wDmeBzOL7PQw/n5PIiYh5Xbk9f0aAVJpl1E1ddMRLLRjiD9tG8P2UTtCc0Yh48XN3tn0TdZAuL0w==}
 
   vue@3.5.18:
     resolution: {integrity: sha512-7W4Y4ZbMiQ3SEo+m9lnoNpV9xG7QVMLa+/0RFwwiAVkeYoyGXqWE85jabU4pllJNUzqfLShJ5YLptewhCWUgNA==}
@@ -18617,7 +18617,7 @@ snapshots:
       '@vue/language-core': 2.2.12(typescript@5.8.3)
       typescript: 5.8.3
 
-  vue3-simple-icons@15.0.0(typescript@5.8.3):
+  vue3-simple-icons@15.6.0(typescript@5.8.3):
     dependencies:
       vue: 3.5.18(typescript@5.8.3)
     transitivePeerDependencies:
