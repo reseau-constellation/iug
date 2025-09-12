@@ -67,7 +67,7 @@ importers:
         version: 2.1.0
       axios:
         specifier: ^1.10.0
-        version: 1.11.0(debug@4.4.1)
+        version: 1.12.0(debug@4.4.1)
       base64-js:
         specifier: ^1.5.1
         version: 1.5.1
@@ -3144,8 +3144,8 @@ packages:
     resolution: {integrity: sha512-x511uiJ/57FIsbgUe5csJ13k3uzu25uWQE+XqfBis/sB0SFoiElJWXRkgEAUh0U6n40eT3ay5Ue4oPkRMu1LYw==}
     engines: {node: '>= 10.0.0'}
 
-  axios@1.11.0:
-    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
+  axios@1.12.0:
+    resolution: {integrity: sha512-oXTDccv8PcfjZmPGlWsPSwtOJCZ/b6W5jAMCNcfwJbCzDckwG0jrYJFaWH1yvivfCXjVzV/SPDEhMB3Q+DSurg==}
 
   babel-core@7.0.0-bridge.0:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
@@ -4106,8 +4106,8 @@ packages:
   electron-to-chromium@1.5.171:
     resolution: {integrity: sha512-scWpzXEJEMrGJa4Y6m/tVotb0WuvNmasv3wWVzUAeCgKU0ToFOhUW6Z+xWnRQANMYGxN4ngJXIThgBJOqzVPCQ==}
 
-  electron-to-chromium@1.5.217:
-    resolution: {integrity: sha512-Pludfu5iBxp9XzNl0qq2G87hdD17ZV7h5T4n6rQXDi3nCyloBV3jreE9+8GC6g4X/5yxqVgXEURpcLtM0WS4jA==}
+  electron-to-chromium@1.5.218:
+    resolution: {integrity: sha512-uwwdN0TUHs8u6iRgN8vKeWZMRll4gBkz+QMqdS7DDe49uiK68/UX92lFb61oiFPrpYZNeZIqa4bA7O6Aiasnzg==}
 
   electron-updater@6.6.2:
     resolution: {integrity: sha512-Cr4GDOkbAUqRHP5/oeOmH/L2Bn6+FQPxVLZtPbcmKZC63a1F3uu5EefYOssgZXG3u/zBlubbJ5PJdITdMVggbw==}
@@ -6088,8 +6088,8 @@ packages:
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
 
-  node-releases@2.0.20:
-    resolution: {integrity: sha512-7gK6zSXEH6neM212JgfYFXe+GmZQM+fia5SsusuBIUgnPheLFBmIPhtFoAQRj8/7wASYQnbDlHPVwY0BefoFgA==}
+  node-releases@2.0.21:
+    resolution: {integrity: sha512-5b0pgg78U3hwXkCM8Z9b2FJdPZlr9Psr9V2gQPESdGHqbntyFJKFW4r5TeWGFzafGY3hzs1JC62VEQMbl1JFkw==}
 
   node-stdlib-browser@1.3.1:
     resolution: {integrity: sha512-X75ZN8DCLftGM5iKwoYLA3rjnrAEs97MkzvSd4q2746Tgpg8b8XWiBGiBG4ZpgcAqBgtgPHTiAc8ZMCvZuikDw==}
@@ -9519,7 +9519,7 @@ snapshots:
       ajv: 8.17.1
       any-signal: 4.1.1
       approx-string-match: 2.0.0
-      axios: 1.11.0(debug@4.4.1)
+      axios: 1.12.0(debug@4.4.1)
       blockstore-fs: 2.0.4
       blockstore-idb: 2.0.3
       browser-fs-access: 0.37.0
@@ -9595,7 +9595,7 @@ snapshots:
   '@constl/serveur@2.1.9(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@constl/ipa': 1.6.24(bufferutil@4.0.9)(encoding@0.1.13)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
-      axios: 1.11.0(debug@4.4.1)
+      axios: 1.12.0(debug@4.4.1)
       bip39: 3.1.0
       bufferutil: 4.0.9
       chalk: 5.4.1
@@ -12758,7 +12758,7 @@ snapshots:
     dependencies:
       '@peculiar/x509': 1.12.4
       asn1js: 3.0.6
-      axios: 1.11.0(debug@4.4.1)
+      axios: 1.12.0(debug@4.4.1)
       debug: 4.4.1
       node-forge: 1.3.1
     transitivePeerDependencies:
@@ -13050,7 +13050,7 @@ snapshots:
       uuid: 8.0.0
       xml2js: 0.6.2
 
-  axios@1.11.0(debug@4.4.1):
+  axios@1.12.0(debug@4.4.1):
     dependencies:
       follow-redirects: 1.15.11(debug@4.4.1)
       form-data: 4.0.4
@@ -13365,8 +13365,8 @@ snapshots:
   browserslist@4.25.4:
     dependencies:
       caniuse-lite: 1.0.30001741
-      electron-to-chromium: 1.5.217
-      node-releases: 2.0.20
+      electron-to-chromium: 1.5.218
+      node-releases: 2.0.21
       update-browserslist-db: 1.1.3(browserslist@4.25.4)
 
   bs58@6.0.0:
@@ -14323,7 +14323,7 @@ snapshots:
 
   electron-to-chromium@1.5.171: {}
 
-  electron-to-chromium@1.5.217: {}
+  electron-to-chromium@1.5.218: {}
 
   electron-updater@6.6.2:
     dependencies:
@@ -16796,7 +16796,7 @@ snapshots:
 
   node-releases@2.0.19: {}
 
-  node-releases@2.0.20: {}
+  node-releases@2.0.21: {}
 
   node-stdlib-browser@1.3.1:
     dependencies:
