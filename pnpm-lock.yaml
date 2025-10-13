@@ -73,7 +73,7 @@ importers:
         version: 1.5.1
       core-js:
         specifier: ^3.43.0
-        version: 3.45.1
+        version: 3.46.0
       crypto-browserify:
         specifier: ^3.12.1
         version: 3.12.1
@@ -3696,8 +3696,8 @@ packages:
   core-js-compat@3.46.0:
     resolution: {integrity: sha512-p9hObIIEENxSV8xIu+V68JjSeARg6UVMG5mR+JEUguG3sI6MsiS1njz2jHmyJDvA+8jX/sytkBHup6kxhM9law==}
 
-  core-js@3.45.1:
-    resolution: {integrity: sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==}
+  core-js@3.46.0:
+    resolution: {integrity: sha512-vDMm9B0xnqqZ8uSBpZ8sNtRtOdmfShrvT6h2TuQGLs0Is+cR0DYbj/KWP6ALVNbWPpqA/qPLoOuppJN07humpA==}
 
   core-util-is@1.0.2:
     resolution: {integrity: sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ==}
@@ -4510,8 +4510,8 @@ packages:
   flow-enums-runtime@0.0.6:
     resolution: {integrity: sha512-3PYnM29RFXwvAN6Pc/scUfkI7RwhQ/xqyLUyPNlXUp9S40zI8nup9tUSrTLSVnWGBN38FNiGWbwZOB6uR4OGdw==}
 
-  flow-parser@0.287.0:
-    resolution: {integrity: sha512-92XfPmSg6zV/UD/R3Hw+sxBUi3SiIL8COqD7p3HRZysX1ksrw5MdPhpqox0U0Hd5lqQ9F1AJCi92fnRO7WDgFw==}
+  flow-parser@0.288.0:
+    resolution: {integrity: sha512-JnObnfMUNoPLaWafBnA/al7ZF2t6yFPXSJriHZZWWw3+9z7Zhwk4NMA+ZxE1WI1Z50/ti/mjsDcGl/TMy/qLhg==}
     engines: {node: '>=0.4.0'}
 
   follow-redirects@1.15.11:
@@ -9667,7 +9667,7 @@ snapshots:
       bip39: 3.1.0
       bufferutil: 4.0.9
       chalk: 5.4.1
-      core-js: 3.45.1
+      core-js: 3.46.0
       express: 4.21.2
       find-free-port: 2.0.0
       iso-constants: https://codeload.github.com/inverted-capital/iso-constants/tar.gz/2af6fdfb2cacaa03ebd58543703918783e62649f
@@ -13870,7 +13870,7 @@ snapshots:
     dependencies:
       browserslist: 4.26.3
 
-  core-js@3.45.1: {}
+  core-js@3.46.0: {}
 
   core-util-is@1.0.2:
     optional: true
@@ -14893,7 +14893,7 @@ snapshots:
 
   flow-enums-runtime@0.0.6: {}
 
-  flow-parser@0.287.0: {}
+  flow-parser@0.288.0: {}
 
   follow-redirects@1.15.11(debug@4.4.3):
     optionalDependencies:
@@ -16037,7 +16037,7 @@ snapshots:
       '@babel/register': 7.28.3(@babel/core@7.28.4)
       babel-core: 7.0.0-bridge.0(@babel/core@7.28.4)
       chalk: 4.1.2
-      flow-parser: 0.287.0
+      flow-parser: 0.288.0
       graceful-fs: 4.2.11
       micromatch: 4.0.8
       neo-async: 2.6.2
