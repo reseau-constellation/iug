@@ -202,8 +202,8 @@ importers:
         version: 2.0.1
     devDependencies:
       '@constl/utils-tests':
-        specifier: ^1.6.15
-        version: 1.7.0(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
+        specifier: ^2.0.0
+        version: 2.0.1(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
       '@eslint/js':
         specifier: ^9.29.0
         version: 9.37.0
@@ -1274,8 +1274,8 @@ packages:
     resolution: {integrity: sha512-ypThNw7fa47lu5HSRkEL12nqKz1CjCFeY9ticpOaEBMbqXvpTVNw9044+fvgIaI/KsXWrDf8RQZvTwOU1zz5yw==}
     engines: {node: '>=20'}
 
-  '@constl/utils-tests@1.7.0':
-    resolution: {integrity: sha512-U4gHC2Qg9L+/R4QM2ZXL6qd08HJEqy3k6qdDyLkIuERRMRibIh+qI3MfcvYMHCiAA9KKX0lYndHqZEIp33em0A==}
+  '@constl/utils-tests@2.0.1':
+    resolution: {integrity: sha512-dQuc9lkBUcLp48RMmOQprRtvt0I/WZmFXLuMol3wNXSl3DdIS1E7CdOKNFa7D+/co5UngbxYPQl0Pi1oN4Wi6g==}
     engines: {node: '>=20'}
 
   '@constl/vue@1.0.4':
@@ -9715,7 +9715,7 @@ snapshots:
       uint8arrays: 5.1.0
       wherearewe: 2.0.1
 
-  '@constl/utils-tests@1.7.0(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))':
+  '@constl/utils-tests@2.0.1(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@chainsafe/libp2p-gossipsub': 14.1.1
       '@helia/block-brokers': 4.2.4
@@ -10111,7 +10111,7 @@ snapshots:
     dependencies:
       '@libp2p/interface': 2.10.4
       '@libp2p/logger': 5.1.20
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@multiformats/multiaddr': 12.5.0
       any-signal: 4.1.1
       browser-readablestream-to-it: 2.0.10
@@ -10151,7 +10151,7 @@ snapshots:
       '@helia/delegated-routing-v1-http-api-client': 4.2.5
       '@helia/interface': 5.3.2
       '@libp2p/interface': 2.10.4
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@multiformats/uri-to-multiaddr': 9.0.1
       ipns: 10.0.2
       it-first: 3.0.9
@@ -10273,7 +10273,7 @@ snapshots:
   '@ipld/dag-json@10.2.5':
     dependencies:
       cborg: 4.2.12
-      multiformats: 13.3.7
+      multiformats: 13.4.0
 
   '@ipld/dag-pb@4.1.5':
     dependencies:
@@ -10660,11 +10660,11 @@ snapshots:
   '@libp2p/http-fetch@2.2.2':
     dependencies:
       '@achingbrain/http-parser-js': 0.5.9
-      '@libp2p/crypto': 5.1.6
-      '@libp2p/interface': 2.10.4
-      '@libp2p/interface-internal': 2.3.17
-      '@libp2p/peer-id': 5.1.7
-      '@multiformats/multiaddr': 12.5.0
+      '@libp2p/crypto': 5.1.7
+      '@libp2p/interface': 2.10.5
+      '@libp2p/interface-internal': 2.3.18
+      '@libp2p/peer-id': 5.1.8
+      '@multiformats/multiaddr': 12.5.1
       '@multiformats/multiaddr-to-uri': 11.0.2
       http-cookie-agent: 6.0.8(tough-cookie@5.1.2)(undici@6.21.3)
       p-defer: 4.0.1
@@ -10877,7 +10877,7 @@ snapshots:
   '@libp2p/logger@2.1.1':
     dependencies:
       '@libp2p/interface-peer-id': 2.0.2
-      '@multiformats/multiaddr': 12.5.0
+      '@multiformats/multiaddr': 12.5.1
       debug: 4.4.3
       interface-datastore: 8.3.2
       multiformats: 11.0.2
@@ -10973,7 +10973,7 @@ snapshots:
   '@libp2p/peer-collections@6.0.33':
     dependencies:
       '@libp2p/interface': 2.10.4
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@libp2p/utils': 6.7.0
       multiformats: 13.3.7
 
@@ -11002,7 +11002,7 @@ snapshots:
     dependencies:
       '@libp2p/crypto': 5.1.6
       '@libp2p/interface': 2.10.4
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@libp2p/utils': 6.7.0
       '@multiformats/multiaddr': 12.5.0
       multiformats: 13.3.7
@@ -11029,7 +11029,7 @@ snapshots:
       '@libp2p/crypto': 5.1.6
       '@libp2p/interface': 2.10.4
       '@libp2p/peer-collections': 6.0.33
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@libp2p/peer-record': 8.0.33
       '@multiformats/multiaddr': 12.5.0
       interface-datastore: 8.3.2
@@ -11144,7 +11144,7 @@ snapshots:
     dependencies:
       '@libp2p/crypto': 5.1.6
       '@libp2p/interface': 2.10.4
-      '@libp2p/peer-id': 5.1.7
+      '@libp2p/peer-id': 5.1.8
       '@peculiar/asn1-schema': 2.3.15
       '@peculiar/asn1-x509': 2.3.15
       '@peculiar/webcrypto': 1.5.0
@@ -11623,7 +11623,7 @@ snapshots:
   '@orbitdb/nested-db@1.0.3(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))':
     dependencies:
       '@orbitdb/core': 2.5.0
-      helia: 5.4.2(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
+      helia: 5.5.0(bufferutil@4.0.9)(react-native@0.76.2(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(bufferutil@4.0.9)(encoding@0.1.13)(react@18.3.1))
     transitivePeerDependencies:
       - bufferutil
       - react-native
@@ -11696,10 +11696,10 @@ snapshots:
 
   '@peculiar/asn1-pfx@2.3.15':
     dependencies:
-      '@peculiar/asn1-cms': 2.3.15
+      '@peculiar/asn1-cms': 2.4.0
       '@peculiar/asn1-pkcs8': 2.3.15
-      '@peculiar/asn1-rsa': 2.3.15
-      '@peculiar/asn1-schema': 2.3.15
+      '@peculiar/asn1-rsa': 2.4.0
+      '@peculiar/asn1-schema': 2.4.0
       asn1js: 3.0.6
       tslib: 2.8.1
 
@@ -11714,8 +11714,8 @@ snapshots:
 
   '@peculiar/asn1-pkcs8@2.3.15':
     dependencies:
-      '@peculiar/asn1-schema': 2.3.15
-      '@peculiar/asn1-x509': 2.3.15
+      '@peculiar/asn1-schema': 2.4.0
+      '@peculiar/asn1-x509': 2.4.0
       asn1js: 3.0.6
       tslib: 2.8.1
 
@@ -11776,8 +11776,8 @@ snapshots:
 
   '@peculiar/asn1-x509-attr@2.3.15':
     dependencies:
-      '@peculiar/asn1-schema': 2.3.15
-      '@peculiar/asn1-x509': 2.3.15
+      '@peculiar/asn1-schema': 2.4.0
+      '@peculiar/asn1-x509': 2.4.0
       asn1js: 3.0.6
       tslib: 2.8.1
 
@@ -12830,7 +12830,7 @@ snapshots:
 
   acme-client@5.4.0:
     dependencies:
-      '@peculiar/x509': 1.12.4
+      '@peculiar/x509': 1.13.0
       asn1js: 3.0.6
       axios: 1.12.2(debug@4.4.3)
       debug: 4.4.3
