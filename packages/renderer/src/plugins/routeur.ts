@@ -1,5 +1,5 @@
 import {மொழிகளைப்_பயன்படுத்து} from '@lassi-js/kilimukku-vue';
-import {type RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-router';
+import {type RouteRecordRaw, createRouter, createWebHistory} from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -63,7 +63,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const routeur = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
   scrollBehavior() {
     return {top: 0};
