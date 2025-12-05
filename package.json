@@ -41,7 +41,7 @@
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,mts,cts,vue,json}\" && eslint --cache --fix"
   },
   "devDependencies": {
-    "@constl/utils-tests": "^1.6.15",
+    "@constl/utils-tests": "^2.0.0",
     "@eslint/js": "^9.29.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/d3": "^7.4.3",
