@@ -141,7 +141,7 @@
     "semaphore-async-await": "^1.5.1",
     "tslib": "^2.8.1",
     "uuid": "^13.0.0",
-    "vue": "3.5.22",
+    "vue": "3.5.25",
     "vue-markdown-render": "^2.2.1",
     "vue-qrcode-reader": "^5.7.2",
     "vue-router": "4.6.3",
